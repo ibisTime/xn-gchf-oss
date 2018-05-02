@@ -77,7 +77,6 @@ class RoleMenu extends React.Component {
       });
       companyCodeObj[v.code] = v.companyCode;
     });
-    console.log(companyCodeObj);
     this.companyCodeObj = companyCodeObj;
     this.result = result;
     let tree = [];
@@ -102,21 +101,9 @@ class RoleMenu extends React.Component {
     }
     if(!this.state.stopGetTree1) {
         getBumen(key).then(bumenData => {
-                console.log(bumenData);
                 this.getTree1(bumenData, key);
             });
     }
-  }
-  onLoadData = (treeNode) => {
-      console.log('onloadData');
-    // return new Promise((resolve) => {
-    //   setTimeout(() => {
-    //     const treeData = [...this.state.treeData];
-    //     this.getNewTreeData(treeData, treeNode.props.eventKey, this.generateTreeNodes(treeNode), 2);
-    //     this.setState({ treeData });
-    //     resolve();
-    //   }, 1000);
-    // });
   }
   findCheckItem(arr, key) {
     if (this.findCheckItem[key]) {
@@ -193,10 +180,7 @@ class RoleMenu extends React.Component {
   }
   editBumen = () => {
     if(this.state.selectKey !== '') {
-        console.log(this.companyCodeObj);
-        console.log(this.state.selectKey);
         let companyCode = this.companyCodeObj[this.state.selectKey];
-        console.log(companyCode);
         this.props.history.push(`/newProj/addBumen?code=${this.state.selectKey}&companyCode=${companyCode}`);
     }else {
         showWarnMsg('请选择一个部门');
@@ -247,9 +231,7 @@ class RoleMenu extends React.Component {
                 checkStrictly={this.state.checkStrictly}
                 defaultExpandAll
                 autoExpandParent={this.state.autoExpandParent}
-                // onCheck={this.onCheck}
                 onSelect={this.onSelect}
-                // loadData={this.onLoadData}
                 checkedKeys={this.state.checkedKeys}
               >
                 {this.renderTreeNodes(this.state.treeData)}

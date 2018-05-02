@@ -31,7 +31,7 @@ class AccountAddEdit extends React.Component {
     }, {
       field: 'bankName',
       title: '银行名称',
-      type: 'select',
+      type: this.view ? null : 'select',
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',

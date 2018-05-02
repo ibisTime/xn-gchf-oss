@@ -29,6 +29,11 @@ export function getUserName() {
   return cookies.get('userName');
 }
 
+// 获取用户类型
+export function getUserKind() {
+  return cookies.get('loginKind');
+}
+
 // 设置用户角色信息
 export function setRoleInfo({ roleCode, type, level, loginName }) {
   cookies.set('roleCode', roleCode);

@@ -135,6 +135,25 @@ class ProjectEdit extends React.Component {
             }).catch(this.props.cancelFetching);
           });
         }
+      }, {
+        title: '提请审核项目',
+        check: true,
+        handler: (param) => {
+          param.companyCode = this.state.companyCode;
+          getBankNameByCode(param.bankName).then(data => {
+            param.bankCode = data[0].bankCode;
+            param.bankName = data[0].bankName;
+            this.props.doFetching();
+            console.log(param);
+            fetch(631353, param).then(() => {
+              showSucMsg('操作成功');
+              this.props.cancelFetching();
+              setTimeout(() => {
+                this.props.history.go(-1);
+              }, 1000);
+            }).catch(this.props.cancelFetching);
+          });
+        }
       }]
     }) : null;
   }

@@ -7,19 +7,18 @@ import {
   setSelectData,
   setPageData,
   restore
-} from '@redux/newProj/project-addedit';
+} from '@redux/newProj/project-end';
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import fetch from 'common/js/fetch';
 import { getBankNameByCode } from 'api/project';
-import { getUserDetail } from 'api/user';
-import { basename } from 'upath';
+import { getUserDetail, getUserId } from 'api/user';
 
 @DetailWrapper(
-  state => state.newprojProjectAddEdit,
+  state => state.newprojProjectEnd,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
 )
-class ProjectAddedit extends React.Component {
+class ProjectEnd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,24 +100,21 @@ class ProjectAddedit extends React.Component {
       field: 'bankcardNumber',
       title: '账户号',
       required: true
+      // render: (v) => {
+      //   console.log(v);
+      //   // v.companyCard.bankcardNumber
+      // }
     }, {
-      field: 'startDatetime',
-      title: '项目开始时间',
+      field: 'endDatetime',
+      title: '项目结束时间',
       type: 'date',
-      required: true
-    }, {
-      field: 'salaryDatetime',
-      title: '薪资发放时间(每月多少号)',
-      date28: true,
-      required: true
-    }, {
-      field: 'salaryCreateDatetime',
-      title: '工资条形成时间(每月多少号)',
-      date28: true,
-      required: true
+      required: true,
+      readonly: false
     }, {
       field: 'remark',
-      title: '备注'
+      title: '备注',
+      required: true,
+      readonly: false
     }];
     return this.state.departmentCode ? this.props.buildDetail({
       fields: fields,
@@ -128,35 +124,24 @@ class ProjectAddedit extends React.Component {
       addCode: 631350,
       detailCode: 631358,
       editCode: 631352,
-      beforeSubmit: (param) => {
-        param.companyCode = this.state.companyCode;
-        getBankNameByCode(param.bankName).then(data => {
-            param.bankCode = data.bankCode;
-        });
-        return param;
-      },
       buttons: [{
         title: '保存',
         check: true,
         handler: (param) => {
-          param.companyCode = this.state.companyCode;
-          getBankNameByCode(param.bankName).then(data => {
-            param.bankCode = data[0].bankCode;
-            param.bankName = data[0].bankName;
+            param.code = this.code;
+            param.updater = getUserId();
             this.props.doFetching();
-            console.log(param);
-            fetch(631350, param).then(() => {
+            fetch(631355, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
               setTimeout(() => {
                 this.props.history.go(-1);
               }, 1000);
             }).catch(this.props.cancelFetching);
-          });
         }
       }]
     }) : null;
   }
 }
 
-export default ProjectAddedit;
+export default ProjectEnd;

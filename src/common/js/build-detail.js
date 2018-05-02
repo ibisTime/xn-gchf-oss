@@ -143,7 +143,7 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         }
         areaKeys.forEach(v => values[v] = this.textareas[v].editorContent);
         values[this.options.key || 'code'] = this.props.code || '';
-        this.options.fields.forEach(v => {
+        this.options.fields.filter(v => !v.readonly).forEach(v => {
           if (v.amount) {
             values[v.field] = moneyParse(v.amount, v.amountRate);
           } else if (v.type === 'citySelect') {
@@ -239,16 +239,7 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         }
       }
       getUploadData = (file) => {
-        const { token } = this.state;
-        let sourceLink = file.name;
-        let idx = sourceLink.lastIndexOf('.');
-        let name = sourceLink.slice(0, idx);
-        let suffix = sourceLink.slice(idx + 1);
-        name = name + '_' + new Date().getTime();
-        return {
-          token,
-          key: name + '.' + suffix
-        };
+        return { token: this.state.token };
       }
       getDetailInfo() {
         let key = this.options.key || 'code';
@@ -630,14 +621,23 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
       getRealDateVal(item, result) {
         let format = item.type === 'date' ? DATE_FORMAT : DATETIME_FORMAT;
         let format1 = item.type === 'date' ? dateFormat : dateTimeFormat;
+        let readonly = this.options.view || item.readonly;
+        if (readonly) {
+          return item.rangedate
+            ? this.getRangeDateVal(item, result, format, format1, readonly)
+            : result ? format1(result, format) : null;
+        }
         return item.rangedate
           ? this.getRangeDateVal(item, result, format, format1)
           : result ? moment(dateTimeFormat(result), format) : null;
       }
-      getRangeDateVal(item, result, format, fn) {
+      getRangeDateVal(item, result, format, fn, readonly) {
         let dates = item._keys && result ? result : this.props.pageData;
         let start = dates[item.rangedate[0]];
         let end = dates[item.rangedate[1]];
+        if (readonly) {
+          return start ? fn(start, format) + '~' + fn(end, format) : null;
+        }
         return start ? [moment(fn(start), format), moment(fn(end), format)] : null;
       }
       getCityVal(item, result) {
@@ -658,7 +658,7 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         item._keys.forEach(key => {
           _value = isUndefined(_value[key]) ? emptyObj : _value[key];
         });
-        return _value;
+        return _value === emptyObj ? '' : _value;
       }
       getUploadBtn(item, isImg) {
         let btn = isImg ? imgUploadBtn : fileUploadBtn;
@@ -760,8 +760,14 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         }
         if (item.integer) {
           rules.push({
-            type: /^-?\d+$/,
+            pattern: /^-?\d+$/,
             message: '请输入合法的整数'
+          });
+        }
+        if (item.date28) {
+          rules.push({
+            pattern: /(^[1-9]$)|(^[1][0-9]$)|(^[2][0-8]$)/,
+            message: '请输入1-28之间的整数'
           });
         }
         return rules;

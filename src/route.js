@@ -147,17 +147,25 @@ const ROUTES = [
     path: '/newProj/addBumen',
     component: asyncComponent(() => import('container/newProj/addBumen/addBumen'))
   },
-  {
-    path: '/projectManage/project',
-    component: asyncComponent(() => import('container/newProj/project/project'))
-  },
+  // {
+  //   path: '/projectManage/project',
+  //   component: asyncComponent(() => import('container/newProj/project/project'))
+  // },
   {
     path: '/newProj/project/edit',
     component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
   },
+  // {
+  //   path: '/newProj/project/detail',
+  //   component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
+  // },
   {
     path: '/newProj/project/check',
     component: asyncComponent(() => import('container/newProj/project-check/project-check'))
+  },
+  {
+    path: '/newProj/project/end',
+    component: asyncComponent(() => import('container/newProj/project-end/project-end'))
   },
   {
     path: '/projectManage/project/addedit',
@@ -172,11 +180,35 @@ const ROUTES = [
     component: asyncComponent(() => import('container/yewuManage/account-addedit/account-addedit'))
   },
   {
+    path: '/hetong/chengbaoshang',
+    component: asyncComponent(() => import('container/hetong/chengbaoshang/chengbaoshang'))
+  },
+  {
+    path: '/hetong/chengbaoshang/addedit',
+    component: asyncComponent(() => import('container/hetong/chengbaoshang-addedit/chengbaoshang-addedit'))
+  },
+  {
+    path: '/hetong/jindu',
+    component: asyncComponent(() => import('container/hetong/jindu/jindu'))
+  },
+  {
+    path: '/hetong/jindu/addedit',
+    component: asyncComponent(() => import('container/hetong/jindu-addedit/jindu-addedit'))
+  },
+  {
+    path: '/hetong/wugong',
+    component: asyncComponent(() => import('container/hetong/wugong/wugong'))
+  },
+  {
+    path: '/hetong/wugong/addedit',
+    component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
+  },
+  {
     path: '/demo/export',
     component: asyncComponent(() => import('container/demo/export_import'))
   },
   {
-    path: '/dailiManage/yixiangdailifenpei',
+    path: '/projectManage/project',
     component: asyncComponent(() => import('container/dailiManage/map/map3'))
   }
 ];

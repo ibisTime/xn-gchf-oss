@@ -10,7 +10,7 @@ import {
   setSearchData
 } from '@redux/security/role';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg } from 'common/js/util';
+import { showWarnMsg, getUserKind } from 'common/js/util';
 import XLSX from 'xlsx';
 import { Button, Upload } from 'antd';
 
@@ -36,6 +36,7 @@ class Role extends React.Component {
     super(props);
     this.handleExport = this.handleExport.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.type = getUserKind();
     this.state = {
       data: [],
       cols: []
@@ -97,7 +98,7 @@ class Role extends React.Component {
         }
       }
     };
-    return this.props.buildList({ fields, btnEvent, pageCode: 631045, deleteCode: 631041 });
+    return this.props.buildList({ fields, btnEvent, searchParams: { type: this.type }, pageCode: 631045, deleteCode: 631041 });
     // return (
     //   <div>
     //     <input type="file" onChange={this.handleChange}/>

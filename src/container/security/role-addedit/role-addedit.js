@@ -7,7 +7,7 @@ import {
   setPageData,
   restore
 } from '@redux/security/role-addedit';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 
 @DetailWrapper(
@@ -19,6 +19,7 @@ class MenuAddEdit extends React.Component {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.type = getUserKind();
   }
   render() {
     const fields = [{
@@ -26,6 +27,11 @@ class MenuAddEdit extends React.Component {
       field: 'name',
       required: true,
       maxlength: 30
+    }, {
+      title: '类型',
+      field: 'type',
+      hidden: true,
+      value: this.type
     }, {
       title: '备注',
       field: 'remark',
