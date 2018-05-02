@@ -76,14 +76,6 @@ class Role extends React.Component {
       field: 'name',
       search: true
     }, {
-      title: '角色等级',
-      field: 'level',
-      type: 'select',
-      key: 'role_level',
-      keyName: 'dkey',
-      valueName: 'dvalue',
-      search: true
-    }, {
       title: '更新人',
       field: 'updater'
     }, {
@@ -105,7 +97,7 @@ class Role extends React.Component {
         }
       }
     };
-    return this.props.buildList({ fields, btnEvent, pageCode: 627045, deleteCode: 627042 });
+    return this.props.buildList({ fields, btnEvent, pageCode: 631045, deleteCode: 631041 });
     // return (
     //   <div>
     //     <input type="file" onChange={this.handleChange}/>

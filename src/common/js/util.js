@@ -30,9 +30,9 @@ export function getUserName() {
 }
 
 // 设置用户角色信息
-export function setRoleInfo({ roleCode, kind, level, loginName }) {
+export function setRoleInfo({ roleCode, type, level, loginName }) {
   cookies.set('roleCode', roleCode);
-  cookies.set('loginKind', kind);
+  cookies.set('loginKind', type);
   // cookies.set('roleLevel', level);
   cookies.set('userName', loginName);
 }

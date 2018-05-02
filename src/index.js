@@ -12,8 +12,8 @@ import AuthRoute from 'component/authroute/authroute';
 import './index.css';
 
 const store = createStore(reducers, compose(
-  applyMiddleware(thunk)
-// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
 
 const Login = asyncComponent(() => import('container/login/login'));
@@ -22,7 +22,8 @@ const Dashboard = asyncComponent(() => import('component/dashboard/dashboard'));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <div>
+      <div className="big-div">
+      {/* <img src="../img/setting.png" className="big-img"/> */}
         <AuthRoute></AuthRoute>
         <Switch>
           <Route path='/login' component={Login}></Route>

@@ -11,7 +11,6 @@ import {
 } from '@redux/finance/ledger';
 import { listWrapper } from 'common/js/build-list';
 import { getQueryString, getUserId, showWarnMsg } from 'common/js/util';
-import { COMPANY_CODE } from 'common/js/config';
 
 @listWrapper(
   state => ({
@@ -84,8 +83,7 @@ class Ledger extends React.Component {
         kind: 0,
         currency: this.currency,
         userId: this.accountNumber ? '' : getUserId(),
-        accountNumber: this.accountNumber,
-        companyCode: COMPANY_CODE
+        accountNumber: this.accountNumber
       },
       buttons: [{
         code: 'detail',

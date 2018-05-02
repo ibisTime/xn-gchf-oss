@@ -1,7 +1,7 @@
 // import cookies from 'browser-cookies';
 // import { COMPANY_CODE } from 'common/js/config';
 import fetch from 'common/js/fetch';
-import { COMPANY_CODE, SYS_USER, SYS_USER_TG } from 'common/js/config';
+import { SYS_USER, SYS_USER_TG } from 'common/js/config';
 
 /**
  * 分页查询账号
@@ -12,7 +12,6 @@ import { COMPANY_CODE, SYS_USER, SYS_USER_TG } from 'common/js/config';
 export function getPageAccount({ start, limit, type }) {
   return fetch(802500, {
     // updater: cookies.get('userName'),
-    companyCode: COMPANY_CODE,
     start,
     limit,
     type

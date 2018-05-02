@@ -52,7 +52,9 @@ class Dashboard extends React.Component {
   }
   handleTopMenuClick(e) {
     this.props.setTopCode(e.key);
-    let url = this.props.top2SubObj[e.key][0].children[0].url.split('.')[0];
+    let leftMenu = this.props.top2SubObj[e.key][0];
+    leftMenu = leftMenu.children ? leftMenu.children[0] : leftMenu;
+    let url = leftMenu.url.split('.')[0];
     this.props.history.push(url);
   }
   handleSubMenuClick(e) {
@@ -70,11 +72,15 @@ class Dashboard extends React.Component {
     if (!this.props.topMenuCode || !this.props.subMenuCode) {
       return null;
     }
-    return [
+    let menuArr = [
       this.props.menus[this.props.topMenuCode],
       this.props.menus[this.props.menus[this.props.subMenuCode].parentCode],
       this.props.menus[this.props.subMenuCode]
-    ].map(v => (
+    ];
+    if (this.props.menus[this.props.subMenuCode].parentCode === this.props.topMenuCode) {
+      menuArr.splice(1, 1);
+    }
+    return menuArr.map(v => (
       <Breadcrumb.Item key={v.code}>
         {v.url !== '#'
           ? <Link to={v.url.split('.')[0]}>
@@ -95,14 +101,14 @@ class Dashboard extends React.Component {
     } else if (this.state.collapsed) {
       rightCls += ' collapsed';
     }
-    const menu = (
-    <Menu>
-    <Menu.Item>
-    <div onClick={this.logout}>退出登录</div>
-    </Menu.Item>
-    </Menu>
-    );
 
+    const menu = (
+      <Menu>
+      <Menu.Item>
+      <div onClick={this.logout}>退出登录</div>
+      </Menu.Item>
+      </Menu>
+    );
     return (
       <Layout className="dashboard-layout">
         <Header className="header">
@@ -112,7 +118,7 @@ class Dashboard extends React.Component {
           <Menu
             theme="dark"
             mode="horizontal"
-            style={{ lineHeight: '64px', display: 'inline-block' }}
+            style={{ lineHeight: '64px' }}
             onClick={this.handleTopMenuClick}
             selectedKeys={[this.props.topMenuCode]}
           >
@@ -121,9 +127,9 @@ class Dashboard extends React.Component {
             ))}
           </Menu>
           <div className="dropdown">
-           <Dropdown overlay={menu} placement="bottomCenter">
-           <Button>{getUserName()}</Button>
-           </Dropdown>
+              <Dropdown overlay={menu} placement="bottomCenter">
+                <Button>{getUserName()}</Button>
+              </Dropdown>
           </div>
         </Header>
         <Layout>
@@ -151,7 +157,7 @@ class Dashboard extends React.Component {
                   </SubMenu>
                 ) : (
                   <Item key={v.code}>
-                    <Icon type="desktop" />
+                    <Icon type="" />
                     <span>{v.name}</span>
                   </Item>
                 )

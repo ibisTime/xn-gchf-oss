@@ -6,8 +6,8 @@ import { getRoleCode } from 'common/js/util';
  * @param parentKey
  */
 export function getOwnerBtns(parentCode) {
-  // 805026
-  return fetch(627056, {
+  // 627056
+  return fetch(631056, {
     parentCode,
     roleCode: getRoleCode(),
     type: 2
@@ -18,7 +18,7 @@ export function getOwnerBtns(parentCode) {
  * 列表获取菜单和按钮
  */
 export function getMenuBtnList() {
-  return fetch(627056);
+  return fetch(631066);
 }
 
 /**
@@ -26,16 +26,16 @@ export function getMenuBtnList() {
  */
 export function getRoleMenuList() {
   // 805026
-  return fetch(627056, {
+  return fetch(631056, {
     type: 1,
     roleCode: getRoleCode()
   });
 }
 
 /**
- * 根据角色列表获取菜单和按钮
+ * 根据角色列表获取菜单和按钮getRoleMenuList
  */
 export function getRoleMenuBtnList(roleCode) {
   roleCode = roleCode || getRoleCode();
-  return fetch(627056, { roleCode });
+  return fetch(631056, { roleCode });
 }

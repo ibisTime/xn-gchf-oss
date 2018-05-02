@@ -10,7 +10,6 @@ import {
   setSearchData
 } from '@redux/public/banner';
 import { listWrapper } from 'common/js/build-list';
-import { COMPANY_CODE } from 'common/js/config';
 
 @listWrapper(
   state => ({
@@ -48,7 +47,6 @@ class Banner extends React.Component {
       pageCode: 627035,
       deleteCode: 627031,
       searchParams: {
-        companyCode: COMPANY_CODE,
         type: 2
       }
     });

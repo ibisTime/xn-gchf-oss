@@ -34,6 +34,9 @@ module.exports = {
   },
   'globals': {
     'BigDecimal': true,
-    'MathContext': true
+    'MathContext': true,
+    'AMap': true,
+    'worldData': true,
+    'createInfoWindow': true
   }
 }

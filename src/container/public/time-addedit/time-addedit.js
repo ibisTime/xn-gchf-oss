@@ -9,7 +9,6 @@ import {
 } from '@redux/public/time-addedit';
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
-import { COMPANY_CODE } from 'common/js/config';
 import fetch from 'common/js/fetch';
 
 @DetailWrapper(
@@ -40,7 +39,6 @@ class TimeAddEdit extends React.Component {
       detailCode: 627087,
       editCode: 627081,
       beforeDetail: (param) => {
-        param['companyCode'] = COMPANY_CODE;
       },
       buttons: [{
         title: '保存',

@@ -22,6 +22,26 @@ const ROUTES = [
     component: asyncComponent(() => import('container/security/user/user'))
   },
   {
+    path: '/system/user/addedit',
+    component: asyncComponent(() => import('container/security/user-addedit/user-addedit'))
+  },
+  {
+    path: '/system/sysPara',
+    component: asyncComponent(() => import('container/security/sysParam/sysParam'))
+  },
+  {
+    path: '/system/sysPara/addedit',
+    component: asyncComponent(() => import('container/security/sysParam-addedit/sysParam-addedit'))
+  },
+  {
+    path: '/system/dataDict',
+    component: asyncComponent(() => import('container/security/dict/dict'))
+  },
+  {
+    path: '/system/dataDict/addedit',
+    component: asyncComponent(() => import('container/security/dict-addedit/dict-addedit'))
+  },
+  {
     path: '/public/aboutus_addedit',
     component: asyncComponent(() => import('container/public/aboutus-addedit/aboutus-addedit'))
   },
@@ -45,6 +65,22 @@ const ROUTES = [
   {
     path: '/security/menu/addedit',
     component: asyncComponent(() => import('container/security/menu-addedit/menu-addedit'))
+  },
+  {
+    path: '/security/user/resetPwd',
+    component: asyncComponent(() => import('container/security/user-resetPwd/user-resetPwd'))
+  },
+  {
+    path: '/security/user/setRole',
+    component: asyncComponent(() => import('container/security/user-setRole/user-setRole'))
+  },
+  {
+    path: '/security/user/setBumen',
+    component: asyncComponent(() => import('container/security/user-setBumen/user-setBumen'))
+  },
+  {
+    path: '/security/user/changeMobile',
+    component: asyncComponent(() => import('container/security/user-changeMobile/user-changeMobile'))
   },
   {
     path: '/public/banner',
@@ -96,8 +132,52 @@ const ROUTES = [
     component: asyncComponent(() => import('container/finance/dist-addr-ledger/dist-addr-ledger'))
   },
   {
+    path: '/newProj/companyConstruct',
+    component: asyncComponent(() => import('container/newProj/companyConstruct/companyConstruct'))
+  },
+  {
+    path: '/newProj/bumenConstruct',
+    component: asyncComponent(() => import('container/newProj/bumenConstruct/bumenConstruct'))
+  },
+  {
+    path: '/newProj/addCompany',
+    component: asyncComponent(() => import('container/newProj/addCompany/addCompany'))
+  },
+  {
+    path: '/newProj/addBumen',
+    component: asyncComponent(() => import('container/newProj/addBumen/addBumen'))
+  },
+  {
+    path: '/projectManage/project',
+    component: asyncComponent(() => import('container/newProj/project/project'))
+  },
+  {
+    path: '/newProj/project/edit',
+    component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
+  },
+  {
+    path: '/newProj/project/check',
+    component: asyncComponent(() => import('container/newProj/project-check/project-check'))
+  },
+  {
+    path: '/projectManage/project/addedit',
+    component: asyncComponent(() => import('container/newProj/project-addedit/project-addedit'))
+  },
+  {
+    path: '/yewuManage/account',
+    component: asyncComponent(() => import('container/yewuManage/account/account'))
+  },
+  {
+    path: '/yewuManage/account/addedit',
+    component: asyncComponent(() => import('container/yewuManage/account-addedit/account-addedit'))
+  },
+  {
     path: '/demo/export',
     component: asyncComponent(() => import('container/demo/export_import'))
+  },
+  {
+    path: '/dailiManage/yixiangdailifenpei',
+    component: asyncComponent(() => import('container/dailiManage/map/map3'))
   }
 ];
 

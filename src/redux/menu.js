@@ -99,10 +99,16 @@ function _getMenuState({ data, pathname }) {
     if (menu) {
       result.subMenuCode = menu.code;
       result.subOpenCode = [menu.parentCode];
-      result.topMenuCode = result.menus[menu.parentCode].parentCode;
+      if (result.top2SubObj[result.subOpenCode]) {
+        result.topMenuCode = menu.parentCode;
+      } else {
+        result.topMenuCode = result.menus[menu.parentCode].parentCode;
+      }
       result.subMenuList = result.top2SubObj[result.topMenuCode];
       if (!result.subMenuCode) {
-        result.subMenuCode = result.subMenuList[0].children ? result.subMenuList[0].children[0].code : '';
+        result.subMenuCode = result.subMenuList[0].children
+          ? result.subMenuList[0].children[0].code
+          : result.subMenuList[0].code;
       }
       if (!result.subOpenCode.length) {
         result.subOpenCode = [result.subMenuList[0].code];
@@ -162,7 +168,7 @@ function sortSubMenus(result) {
 function getSubCode(code, state) {
   return {
     subOpenCode: [state.top2SubObj[code][0].code],
-    subMenuCode: state.top2SubObj[code][0].children ? state.top2SubObj[code][0].children[0].code : '',
+    subMenuCode: state.top2SubObj[code][0].children ? state.top2SubObj[code][0].children[0].code : state.top2SubObj[code][0].code,
     subMenuList: state.top2SubObj[code]
   };
 }

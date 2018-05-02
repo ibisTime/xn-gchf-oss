@@ -51,8 +51,10 @@ class RoleMenu extends React.Component {
       });
     });
     this.result = result;
+    // console.log(this.result);
     let tree = [];
     this.getTreeNode(result['ROOT'], tree);
+    // console.log(tree);
     this.setState({ treeData: tree });
   }
   getTreeNode(arr, children) {

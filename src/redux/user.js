@@ -1,6 +1,6 @@
 import fetch from 'common/js/fetch';
 import { setUser, getUserId, setRoleInfo } from 'common/js/util';
-import { COMPANY_CODE } from 'common/js/config';
+import { showWarnMsg } from '../common/js/util';
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGOUT = 'LOGOUT';
@@ -50,8 +50,12 @@ export function cancelFetching() {
 
 // 获取用户信息成功
 export function loadData(data) {
-  setRoleInfo(data);
-  return { type: LOAD_DATA, payload: data };
+  if(data.roleCode) {
+    setRoleInfo(data);
+    return { type: LOAD_DATA, payload: data };
+  }else {
+    showWarnMsg('该用户未分配角色，请联系管理员');
+  }
 }
 
 // 获取用户信息
@@ -68,15 +72,16 @@ export function getUser() {
 }
 
 // 登录
-export function login({ loginName, loginPwd }) {
+export function login({ loginName, loginPwd, type }) {
   return dispatch => {
     dispatch(doFetching());
-    // 805050
-    fetch(627300, {
+    // 627300 631071
+    fetch(631071, {
       loginName,
       loginPwd,
-      kind: 'P',
-      companyCode: COMPANY_CODE
+      type
+      // kind: 'P'
+      // companyCode: COMPANY_CODE
     }).then(data => {
       setUser(data);
       dispatch(loginSuccess());
@@ -92,8 +97,8 @@ export function login({ loginName, loginPwd }) {
 }
 
 function _getUser() {
-  // 805121
-  return fetch(627357, {
+  // 805121 详情查用户
+  return fetch(631087, {
     userId: getUserId()
   });
 }
