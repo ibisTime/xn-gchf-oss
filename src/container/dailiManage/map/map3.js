@@ -26,6 +26,8 @@ class Map3 extends React.Component {
         content += item.attendanceStarttime + '-' + item.attendanceEndtime;
         content += item.startDatetime + item.salaryDatetime;
         content += '<a type="button" class="ant-btn" href="' + location.origin + '/hetong/wugong?code=' + item.code + '">查看务工人员合同</a>';
+        content += '<a type="button" class="ant-btn" href="' + location.origin + '/people/wugong?code=' + item.code + '">务工人员</a>';
+        content += '<a type="button" class="ant-btn" href="' + location.origin + '/people/wugong/addedit?projectCode=' + item.code + '">添加务工人员</a>';
         temp.push(item.latitude);
         temp.push(item.longitude);
         lnglats.push(temp);

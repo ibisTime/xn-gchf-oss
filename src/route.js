@@ -204,6 +204,50 @@ const ROUTES = [
     component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
   },
   {
+    path: '/hetong/staff/addedit',
+    component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
+  },
+  {
+    path: '/hetong/staff',
+    component: asyncComponent(() => import('container/hetong/staff/staff'))
+  },
+  {
+    path: '/people/wugong',
+    component: asyncComponent(() => import('container/people/wugong/wugong'))
+  },
+  {
+    path: '/people/wugong/addedit',
+    component: asyncComponent(() => import('container/people/wugong-addedit/wugong-addedit'))
+  },
+  {
+    path: '/staff/allStaff',
+    component: asyncComponent(() => import('container/staff/allStaff/allStaff'))
+  },
+  {
+    path: '/staff/allStaff/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
+  },
+  {
+    path: '/staff/bankCard',
+    component: asyncComponent(() => import('container/staff/bankCard/bankCard'))
+  },
+  {
+    path: '/staff/bankCard/addedit',
+    component: asyncComponent(() => import('container/staff/bankCard-addedit/bankCard-addedit'))
+  },
+  {
+    path: '/staff/baogong',
+    component: asyncComponent(() => import('container/staff/baogong/baogong'))
+  },
+  {
+    path: '/daifa/daifa',
+    component: asyncComponent(() => import('container/daifa/daifa/daifa'))
+  },
+  {
+    path: '/daifa/daifa/addedit',
+    component: asyncComponent(() => import('container/daifa/daifa-addedit/daifa-addedit'))
+  },
+  {
     path: '/demo/export',
     component: asyncComponent(() => import('container/demo/export_import'))
   },

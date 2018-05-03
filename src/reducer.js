@@ -46,6 +46,16 @@ import { hetongJindu } from './redux/hetong/jindu';
 import { hetongJinduAddEdit } from './redux/hetong/jindu-addedit';
 import { hetongWugong } from './redux/hetong/wugong';
 import { hetongWugongAddEdit } from './redux/hetong/wugong-addedit';
+import { hetongStaff } from './redux/hetong/staff';
+import { peopleWugong } from './redux/people/wugong';
+import { peopleWugongAddEdit } from './redux/people/wugong-addedit';
+import { staffAllStaff } from './redux/staff/allStaff';
+import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
+import { staffBankCard } from './redux/staff/bankCard';
+import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
+import { staffBaogong } from './redux/staff/baogong';
+import { daifaDaifa } from './redux/daifa/daifa';
+import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
 
 export default combineReducers({
   user,
@@ -93,5 +103,15 @@ export default combineReducers({
   hetongJindu,
   hetongJinduAddEdit,
   hetongWugong,
-  hetongWugongAddEdit
+  hetongWugongAddEdit,
+  hetongStaff,
+  peopleWugong,
+  peopleWugongAddEdit,
+  staffAllStaff,
+  staffAllStaffAddEdit,
+  staffBaogong,
+  staffBankCard,
+  staffBankCardAddEdit,
+  daifaDaifa,
+  daifaDaifaAddEdit
 });

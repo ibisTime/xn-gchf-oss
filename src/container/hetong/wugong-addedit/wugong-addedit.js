@@ -25,6 +25,7 @@ class WugongAddEdit extends React.Component {
       companyCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
+    this.staffCode = getQueryString('staffCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.updater = cookies.get('userId');
@@ -43,6 +44,7 @@ class WugongAddEdit extends React.Component {
       field: 'contentPic',
       title: '合同照片',
       type: 'img',
+      single: true,
       required: true
     }, {
       field: 'projectCode',
@@ -52,14 +54,8 @@ class WugongAddEdit extends React.Component {
     }, {
       field: 'staffCode',
       title: '工人编号',
-      type: 'select',
-      listCode: '631416',
-      keyName: 'code',
-      valueName: 'name',
-      params: {
-        updater: cookies.get('userId')
-      },
-      required: true
+      value: this.staffCode,
+      hidden: true
     }, {
       field: 'contractDatetime',
       title: '签约时间',

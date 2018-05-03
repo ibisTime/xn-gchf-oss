@@ -55,6 +55,7 @@ class JinduAddEdit extends React.Component {
       field: 'picture',
       title: '工程进度图片',
       type: 'img',
+      single: true,
       required: true
     }, {
       field: 'datetime',

@@ -48,5 +48,5 @@ export function getBankNameByCode(bankCode) {
 }
 
 export function getProjectList() {
-  return fetch(631357, {});
+  return fetch(631357, { updater: '' });
 }

@@ -49,7 +49,7 @@ class Wugong extends React.Component {
     }];
     const btnEvent = {
       add: (selectedRowKeys, selectedRows) => {
-        this.props.history.push(`/hetong/wugong/addedit?projectCode=${this.projectCode}`);
+        this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
       },
       edit: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
