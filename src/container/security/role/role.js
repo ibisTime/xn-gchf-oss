@@ -17,7 +17,7 @@ import { Button, Upload } from 'antd';
 function makeCols(refstr) {
   var o = [];
   var range = XLSX.utils.decode_range(refstr);
-  for(var i = 0; i <= range.e.c; ++i) {
+  for (var i = 0; i <= range.e.c; ++i) {
     o.push({ name: XLSX.utils.encode_col(i), key: i });
   }
   return o;
@@ -28,8 +28,10 @@ function makeCols(refstr) {
     ...state.securityRole,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Role extends React.Component {
   constructor(props) {

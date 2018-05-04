@@ -188,7 +188,7 @@ export function multiply(a, b) {
  * @param suffix
  */
 export function formatFile(urls, suffix = '') {
-  if(!urls) {
+  if (!urls) {
     return '';
   }
   let url = urls.split(/\|\|/)[0];
@@ -217,7 +217,7 @@ export function isUndefined(value) {
 }
 
 export function tempString(str, data) {
-  return str.replace(/\{\{(\w+)\.DATA\}\}/gi, function(matchs) {
+  return str.replace(/\{\{(\w+)\.DATA\}\}/gi, function (matchs) {
     var returns = data[matchs.replace(/\{\{(\w+)\.DATA\}\}/, '$1')];
     return isUndefined(returns) ? '' : returns;
   });
