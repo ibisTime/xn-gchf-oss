@@ -30,6 +30,10 @@ class MenuAddEdit extends React.Component {
     }, {
       title: '类型',
       field: 'type',
+<<<<<<< HEAD
+=======
+      hidden: true,
+>>>>>>> 1e00639646630bf242d9f9c1b207ac02931581a9
       value: this.type
     }, {
       title: '备注',

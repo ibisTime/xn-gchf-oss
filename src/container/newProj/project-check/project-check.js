@@ -36,10 +36,7 @@ class ProjectCheck extends React.Component {
       });
   }
   getUserDetail(departmentCode, companyCode) {
-    // let b = a;
-    // this.departmentCode = de;
-    this.setState({ departmentCode: departmentCode, companyCode: companyCode });
-    console.log(this.state.departmentCode);
+    this.setState({ departmentCode, companyCode });
   }
   render() {
     const fields = [{
@@ -88,7 +85,8 @@ class ProjectCheck extends React.Component {
     }, {
       field: 'bankName',
       title: '银行名称',
-      type: 'select',
+      type: this.view ? null : 'select',
+      _keys: ['companyCard', 'bankName'],
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',
@@ -96,15 +94,13 @@ class ProjectCheck extends React.Component {
     }, {
       field: 'subbranch',
       title: '开户行',
+      _keys: ['companyCard', 'subbranch'],
       required: true
     }, {
       field: 'bankcardNumber',
       title: '账户号',
+      _keys: ['companyCard', 'bankcardNumber'],
       required: true
-      // render: (v) => {
-      //   console.log(v);
-      //   // v.companyCard.bankcardNumber
-      // }
     }, {
       field: 'approveNote',
       title: '审核备注',
@@ -122,7 +118,6 @@ class ProjectCheck extends React.Component {
       buttons: [{
         title: '通过',
         handler: (param) => {
-          debugger;
             param.result = '1';
             param.code = this.code;
             param.approver = getUserId();
@@ -134,7 +129,25 @@ class ProjectCheck extends React.Component {
                 this.props.history.go(-1);
               }, 1000);
             }).catch(this.props.cancelFetching);
-        }
+        },
+        check: true,
+        type: 'primary'
+      }, {
+        title: '不通过',
+        handler: (param) => {
+            param.result = '0';
+            param.code = this.code;
+            param.approver = getUserId();
+            this.props.doFetching();
+            fetch(631354, param).then(() => {
+              showSucMsg('操作成功');
+              this.props.cancelFetching();
+              setTimeout(() => {
+                this.props.history.go(-1);
+              }, 1000);
+            }).catch(this.props.cancelFetching);
+        },
+        check: true
       }]
     }) : null;
   }

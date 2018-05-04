@@ -41,8 +41,25 @@ import { newProjProject } from './redux/newProj/project';
 import { newprojProjectAddEdit } from './redux/newProj/project-addedit';
 import { newprojProjectEdit } from './redux/newProj/project-edit';
 import { newprojProjectCheck } from './redux/newProj/project-check';
+import { newprojProjectEnd } from './redux/newProj/project-end';
 import { yewuManageAccount } from './redux/yewuManage/account';
 import { yewuManageAccountAddEdit } from './redux/yewuManage/account-addedit';
+import { hetongChengbaoshang } from './redux/hetong/chengbaoshang';
+import { hetongChengbaoshangAddEdit } from './redux/hetong/chengbaoshang-addedit';
+import { hetongJindu } from './redux/hetong/jindu';
+import { hetongJinduAddEdit } from './redux/hetong/jindu-addedit';
+import { hetongWugong } from './redux/hetong/wugong';
+import { hetongWugongAddEdit } from './redux/hetong/wugong-addedit';
+import { hetongStaff } from './redux/hetong/staff';
+import { peopleWugong } from './redux/people/wugong';
+import { peopleWugongAddEdit } from './redux/people/wugong-addedit';
+import { staffAllStaff } from './redux/staff/allStaff';
+import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
+import { staffBankCard } from './redux/staff/bankCard';
+import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
+import { staffBaogong } from './redux/staff/baogong';
+import { daifaDaifa } from './redux/daifa/daifa';
+import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
 
 export default combineReducers({
   user,
@@ -55,6 +72,7 @@ export default combineReducers({
   securityUser,
   securityUserAddEdit,
   securityUserSetRole,
+  securityUserSetBumen,
   securityUserResetPwd,
   securityUserChangeMobile,
   securitySysParam,
@@ -85,7 +103,23 @@ export default combineReducers({
   newprojProjectAddEdit,
   newprojProjectEdit,
   newprojProjectCheck,
+  newprojProjectEnd,
   yewuManageAccount,
   yewuManageAccountAddEdit,
-  securityUserSetBumen
+  hetongChengbaoshang,
+  hetongChengbaoshangAddEdit,
+  hetongJindu,
+  hetongJinduAddEdit,
+  hetongWugong,
+  hetongWugongAddEdit,
+  hetongStaff,
+  peopleWugong,
+  peopleWugongAddEdit,
+  staffAllStaff,
+  staffAllStaffAddEdit,
+  staffBaogong,
+  staffBankCard,
+  staffBankCardAddEdit,
+  daifaDaifa,
+  daifaDaifaAddEdit
 });

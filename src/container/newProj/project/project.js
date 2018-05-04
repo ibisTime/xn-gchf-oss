@@ -31,11 +31,11 @@ class project extends React.Component {
     }, {
       field: 'startDatetime',
       title: '项目开始时间',
-      type: 'datetime'
+      type: 'date'
     }, {
       field: 'endDatetime',
       title: '项目结束时间',
-      type: 'datetime'
+      type: 'date'
     }, {
       field: 'salaryDatetime',
       title: '薪资发放时间'
@@ -57,7 +57,17 @@ class project extends React.Component {
     }];
     const btnEvent = {
       edit: (selectedRowKeys, selectedRows) => {
-        this.props.history.push(`/newProj/project/edit?code=${selectedRowKeys[0]}`);
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          if(selectedRows[0].status === '0') {
+            this.props.history.push(`/newProj/project/edit?code=${selectedRowKeys[0]}`);
+          }else {
+            showWarnMsg('该状态无法进行审核');
+          }
+        }
       },
       check: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
@@ -78,10 +88,10 @@ class project extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if(selectedRows[0].status === '2') {
-            this.props.history.push(`/newProj/project/project-end?code=${selectedRows[0].code}`);
+          if(selectedRows[0].status !== '3') {
+            this.props.history.push(`/newProj/project/end?v=1&code=${selectedRows[0].code}`);
           }else {
-            showWarnMsg('该状态无法结束项目');
+            showWarnMsg('该项目已结束');
           }
         }
       }

@@ -205,7 +205,7 @@ export const listWrapper = (mapStateToProps = state => state, mapDispatchToProps
         switch(url) {
           case 'add':
             btnEvent.add
-              ? btnEvent.add()
+              ? btnEvent.add(this.state.selectedRowKeys, this.state.selectedRows)
               : this.props.history.push(`${this.props.location.pathname}/addedit`);
             break;
           case 'edit':
