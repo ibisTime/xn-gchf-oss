@@ -28,6 +28,7 @@ class ProjectAddedit extends React.Component {
       companyCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
+    this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
@@ -36,10 +37,7 @@ class ProjectAddedit extends React.Component {
       });
   }
   getUserDetail(departmentCode, companyCode) {
-    // let b = a;
-    // this.departmentCode = de;
     this.setState({ departmentCode: departmentCode, companyCode: companyCode });
-    console.log(this.state.departmentCode);
   }
   render() {
     const fields = [{
@@ -49,7 +47,7 @@ class ProjectAddedit extends React.Component {
     }, {
       field: 'chargeUser',
       title: '负责人',
-      type: 'select',
+      type: this.view ? null : 'select',
       listCode: '631086',
       params: {
         departmentCode: this.state.departmentCode,
@@ -88,7 +86,7 @@ class ProjectAddedit extends React.Component {
     }, {
       field: 'bankName',
       title: '银行名称',
-      type: 'select',
+      type: this.view ? null : 'select',
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',
@@ -121,9 +119,9 @@ class ProjectAddedit extends React.Component {
       title: '备注'
     }];
     return this.state.departmentCode ? this.props.buildDetail({
-      fields: fields,
+      fields,
       key: 'code',
-      code: this.code,
+      code: this.projectCode,
       view: this.view,
       addCode: 631350,
       detailCode: 631358,

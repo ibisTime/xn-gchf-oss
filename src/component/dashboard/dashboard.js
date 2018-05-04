@@ -51,19 +51,25 @@ class Dashboard extends React.Component {
     });
   }
   handleTopMenuClick(e) {
-    this.props.setTopCode(e.key);
-    let leftMenu = this.props.top2SubObj[e.key][0];
-    leftMenu = leftMenu.children ? leftMenu.children[0] : leftMenu;
-    let url = leftMenu.url.split('.')[0];
-    this.props.history.push(url);
+    if (e.key) {
+      this.props.setTopCode(e.key);
+      let leftMenu = this.props.top2SubObj[e.key][0];
+      leftMenu = leftMenu.children ? leftMenu.children[0] : leftMenu;
+      let url = leftMenu.url.split('.')[0];
+      this.props.history.push(url);
+    }
   }
   handleSubMenuClick(e) {
-    this.props.setSubMenuCode(e.key);
-    let url = this.props.menus[e.key].url.split('.')[0];
-    this.props.history.push(url);
+    if (e.key) {
+      this.props.setSubMenuCode(e.key);
+      let url = this.props.menus[e.key].url.split('.')[0];
+      this.props.history.push(url);
+    }
   }
   handleTitleClick(e) {
-    this.props.setSubOpenCode(e.key);
+    if (e.key) {
+      this.props.setSubOpenCode(e.key);
+    }
   }
   getRoutes() {
     return ROUTES.map(v => <Route key={v.path} exact path={v.path} component={v.component}></Route>);

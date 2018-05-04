@@ -1,6 +1,7 @@
 import React from 'react';
 import fetch from 'common/js/fetch';
-import { getProjectList } from 'api/project';
+import cookies from 'browser-cookies';
+import { getProjectList, getProjectStatus } from 'api/project';
 import { dateFormat } from 'common/js/util';
 
 class Map3 extends React.Component {
@@ -13,12 +14,15 @@ class Map3 extends React.Component {
     this.addProject = this.addProject.bind(this);
   }
   componentDidMount() {
-    getProjectList().then(data => {
-      console.log(data);
+    Promise.all([
+      getProjectList(),
+      getProjectStatus()
+    ]).then(([data, statusData]) => {
+      console.log(statusData);
       this.map = new AMap.Map('container', {
         zoom: 6,
         center: [112.868904, 39.923423]
-    });
+      });
       var lnglats = [];
       var contents = [];
       data.map((item) => {
@@ -32,6 +36,8 @@ class Map3 extends React.Component {
         content += '<a type="button" class="ant-btn" href="' + location.origin + '/people/wugong/addedit?projectCode=' + item.code + '">添加务工人员</a>';
         content += '<a type="button" class="ant-btn" href="' + location.origin + '/newProj/project/kaoqin?projectCode=' + item.code + '">查看考勤</a>';
         content += '<a type="button" class="ant-btn" href="' + location.origin + '/newProj/project/salary?projectCode=' + item.code + '">工资明细</a>';
+        content += '<a type="button" class="ant-btn" href="' + location.origin + '/projectManage/project/addedit?projectCode=' + item.code + '">修改项目</a>';
+        content += '<a type="button" class="ant-btn" href="' + location.origin + '/projectManage/project/addedit?v=1&projectCode=' + item.code + '">项目详情</a>';
         temp.push(item.latitude);
         temp.push(item.longitude);
         lnglats.push(temp);
@@ -58,12 +64,14 @@ class Map3 extends React.Component {
     this.infoWindow.open(this.map, e.target.getPosition());
   }
   addProject() {
-    this.props.history.push(`/newProj/project/addedit`);
+    this.props.history.push(`/projectManage/project/addedit`);
   }
   render() {
     return (
       <div>
-        <div class="tools-wrapper" style={{'margin-top': '8px'}}><button onClick={this.addProject} type="button" class="ant-btn"><span>新增项目</span></button></div>
+        { cookies.get('loginKind') === 'O'
+        ? <div class="tools-wrapper" style={{'margin-top': '8px'}}><button onClick={this.addProject} type="button" class="ant-btn"><span>新增项目</span></button></div>
+        : null }
         <div id="container" style={{width: '100%', height: '400px'}}></div>
       </div>
     );

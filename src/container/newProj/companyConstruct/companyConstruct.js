@@ -25,9 +25,7 @@ class RoleMenu extends React.Component {
     this.name = getQueryString('name');
   }
   componentDidMount() {
-    Promise.all([
-        getCompany()
-    ]).then((companyData) => {
+    getCompany().then((companyData) => {
       this.getTree(companyData);
       this.setState({
         fetching: false

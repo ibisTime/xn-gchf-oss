@@ -50,3 +50,7 @@ export function getBankNameByCode(bankCode) {
 export function getProjectList() {
   return fetch(631357, { updater: '' });
 }
+
+export function getProjectStatus() {
+  return fetch(631006, { parentKey: 'project_status' });
+}
