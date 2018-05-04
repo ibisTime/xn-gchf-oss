@@ -10,6 +10,7 @@ import {
   setSearchData
 } from '@redux/staff/allStaff';
 import { listWrapper } from 'common/js/build-list';
+import { showWarnMsg, showSucMsg } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -49,7 +50,27 @@ class AllStaff extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.props.buildList({ fields, pageCode: 631415 });
+    const btnEvent = {
+      error: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
+        }
+      },
+      history: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRowKeys[0]}`);
+        }
+      }
+    };
+    return this.props.buildList({ fields, btnEvent, pageCode: 631415 });
   }
 }
 

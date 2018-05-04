@@ -153,7 +153,7 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         values[key] = isUndefined(values[key]) ? this.props.code || '' : values[key];
         this.options.fields.filter(v => !v.readonly).forEach(v => {
           if (v.amount) {
-            values[v.field] = moneyParse(v.amount, v.amountRate);
+            values[v.field] = moneyParse(values[v.field], v.amountRate);
           } else if (v.type === 'citySelect') {
             let mid = values[v.field].map(a => a === '全部' ? '' : a);
             v.cFields.forEach((f, i) => {

@@ -17,11 +17,17 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        console.log(window.location.port);
+        values.type = window.location.port === '2505' ? 'S'
+        : window.location.port === '2506' ? 'B'
+        : window.location.port === '2507' ? 'O'
+        : window.location.port === '2508' ? 'P' : 'S';
         // this.setState({ loading: true })
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户
-        values.type = 'O'; // 业主单位
+        // values.type = 'O'; // 业主单位
         // values.type = 'S'; // 监管单位
+        console.log(values.type);
         this.props.login(values);
       }
     });

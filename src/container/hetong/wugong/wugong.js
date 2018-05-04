@@ -61,7 +61,43 @@ class Wugong extends React.Component {
         }
       }
     };
-    return this.props.buildList({ fields, btnEvent, searchParams: { projectCode: this.projectCode }, pageCode: 631405 });
+    return this.props.buildList({
+      fields,
+      btnEvent,
+      searchParams: { projectCode: this.projectCode },
+      buttons: [{
+        code: 'add',
+        name: '合同录入',
+        handler: (selectedRowKeys, selectedRows) => {
+          this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
+        }
+      }, {
+        code: 'edit',
+        name: '修改',
+        handler: (selectedRowKeys, selectedRows) => {
+          if (!selectedRowKeys.length) {
+            showWarnMsg('请选择记录');
+          } else if (selectedRowKeys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+          }
+        }
+      }, {
+        code: 'detail',
+        name: '详情',
+        handler: (selectedRowKeys, selectedRows) => {
+          if (!selectedRowKeys.length) {
+            showWarnMsg('请选择记录');
+          } else if (selectedRowKeys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            this.props.history.push(`/hetong/wugong/addedit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+          }
+        }
+      }],
+      pageCode: 631405
+    });
   }
 }
 

@@ -66,12 +66,16 @@ class PWugong extends React.Component {
       field: 'upUser',
       title: '上级'
     }, {
+      field: 'status',
+      title: '状态',
+      key: 'staff_status'
+    }, {
       field: 'remark',
       title: '备注'
     }];
     return this.props.buildList({
       fields,
-      searchParams: { projectCode: this.projectCode },
+      searchParams: { projectCode: this.projectCode, updater: '' },
       pageCode: 631465,
       rowKey: 'staffCode',
       buttons: [{
@@ -83,7 +87,7 @@ class PWugong extends React.Component {
           } else if (selectedRowKeys.length > 1) {
             showWarnMsg('请选择一条记录');
           } else {
-            this.props.history.push(`/hetong/staff/addedit?staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+            this.props.history.push(`/people/wugong/break?code1=${selectedRows[0].code}`);
           }
         }
       }, {
@@ -95,7 +99,7 @@ class PWugong extends React.Component {
           } else if (selectedRowKeys.length > 1) {
             showWarnMsg('请选择一条记录');
           } else {
-            this.props.history.push(`/hetong/staff/addedit?staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+            this.props.history.push(`/people/wugong/leave?code1=${selectedRows[0].code}`);
           }
         }
       }, {
@@ -107,7 +111,7 @@ class PWugong extends React.Component {
           } else if (selectedRowKeys.length > 1) {
             showWarnMsg('请选择一条记录');
           } else {
-            this.props.history.push(`/people/wugong/addedit?v=1&staffCode=${selectedRowKeys[0]}`);
+            this.props.history.push(`/people/wugong/addedit?v=1&staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
           }
         }
       }]

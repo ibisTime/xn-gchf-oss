@@ -38,6 +38,10 @@ import { newprojProjectAddEdit } from './redux/newProj/project-addedit';
 import { newprojProjectEdit } from './redux/newProj/project-edit';
 import { newprojProjectCheck } from './redux/newProj/project-check';
 import { newprojProjectEnd } from './redux/newProj/project-end';
+import { newProjProjectSalary } from './redux/newProj/project-salary';
+import { newProjProjectSalaryEdit } from './redux/newProj/project-salary-edit';
+import { newProjProjectSalaryCheck } from './redux/newProj/project-salary-check';
+import { newProjKaoqin } from './redux/newProj/project-kaoqin';
 import { yewuManageAccount } from './redux/yewuManage/account';
 import { yewuManageAccountAddEdit } from './redux/yewuManage/account-addedit';
 import { hetongChengbaoshang } from './redux/hetong/chengbaoshang';
@@ -49,8 +53,14 @@ import { hetongWugongAddEdit } from './redux/hetong/wugong-addedit';
 import { hetongStaff } from './redux/hetong/staff';
 import { peopleWugong } from './redux/people/wugong';
 import { peopleWugongAddEdit } from './redux/people/wugong-addedit';
+import { peopleWugongBreak } from './redux/people/wugong-break';
+import { peopleWugongLeave } from './redux/people/wugong-leave';
+import { peopleHistory } from './redux/people/history';
 import { staffAllStaff } from './redux/staff/allStaff';
 import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
+import { staffAllStaffError } from './redux/staff/allStaff-error';
+import { staffAllStaffHistory } from './redux/staff/allStaff-history';
+import { staffAllStaffDetail } from './redux/staff/allStaff-detail';
 import { staffBankCard } from './redux/staff/bankCard';
 import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
 import { staffBaogong } from './redux/staff/baogong';
@@ -96,6 +106,10 @@ export default combineReducers({
   newprojProjectEdit,
   newprojProjectCheck,
   newprojProjectEnd,
+  newProjProjectSalary,
+  newProjProjectSalaryEdit,
+  newProjProjectSalaryCheck,
+  newProjKaoqin,
   yewuManageAccount,
   yewuManageAccountAddEdit,
   hetongChengbaoshang,
@@ -107,8 +121,14 @@ export default combineReducers({
   hetongStaff,
   peopleWugong,
   peopleWugongAddEdit,
+  peopleWugongBreak,
+  peopleWugongLeave,
+  peopleHistory,
   staffAllStaff,
   staffAllStaffAddEdit,
+  staffAllStaffError,
+  staffAllStaffHistory,
+  staffAllStaffDetail,
   staffBaogong,
   staffBankCard,
   staffBankCardAddEdit,

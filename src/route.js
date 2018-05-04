@@ -168,6 +168,22 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-end/project-end'))
   },
   {
+    path: '/newProj/project/kaoqin',
+    component: asyncComponent(() => import('container/newProj/project-kaoqin/project-kaoqin'))
+  },
+  {
+    path: '/newProj/project/salary',
+    component: asyncComponent(() => import('container/newProj/project-salary/project-salary'))
+  },
+  {
+    path: '/newProj/project/salary/edit',
+    component: asyncComponent(() => import('container/newProj/project-salary-edit/project-salary-edit'))
+  },
+  {
+    path: '/newProj/project/salary/check',
+    component: asyncComponent(() => import('container/newProj/project-salary-check/project-salary-check'))
+  },
+  {
     path: '/projectManage/project/addedit',
     component: asyncComponent(() => import('container/newProj/project-addedit/project-addedit'))
   },
@@ -220,12 +236,44 @@ const ROUTES = [
     component: asyncComponent(() => import('container/people/wugong-addedit/wugong-addedit'))
   },
   {
+    path: '/people/wugong/break',
+    component: asyncComponent(() => import('container/people/wugong-break/wugong-break'))
+  },
+  {
+    path: '/people/wugong/leave',
+    component: asyncComponent(() => import('container/people/wugong-leave/wugong-leave'))
+  },
+  {
+    path: '/people/history',
+    component: asyncComponent(() => import('container/people/history/history'))
+  },
+  {
     path: '/staff/allStaff',
     component: asyncComponent(() => import('container/staff/allStaff/allStaff'))
   },
   {
     path: '/staff/allStaff/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
+  },
+  {
+    path: '/staff/allStaff/error',
+    component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
+  },
+  {
+    path: '/staff/allStaff/error/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
+  },
+  {
+    path: '/staff/allStaff/history',
+    component: asyncComponent(() => import('container/staff/allStaff-history/allStaff-history'))
+  },
+  {
+    path: '/staff/allStaff/history/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
+  },
+  {
+    path: '/staff/allStaff/detail',
+    component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
   },
   {
     path: '/staff/bankCard',
