@@ -19,8 +19,8 @@ class Login extends React.Component {
       if (!err) {
         // this.setState({ loading: true })
         // values.type = 'P'; // 平台用户
-        // values.type = 'B'; // 银行用户
-        values.type = 'O'; // 业主单位
+        values.type = 'B'; // 银行用户
+        // values.type = 'O'; // 业主单位
         // values.type = 'S'; // 监管单位
         this.props.login(values);
       }

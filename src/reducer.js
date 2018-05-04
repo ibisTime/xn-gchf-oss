@@ -20,6 +20,10 @@ import { publicBanner } from './redux/public/banner';
 import { publicBannerAddEdit } from './redux/public/banner-addedit';
 import { publicAboutusAddEdit } from './redux/public/aboutus-addedit';
 import { publicTimeAddEdit } from './redux/public/time-addedit';
+import { waitListPostRequest } from './redux/waitList/postRequest';
+import { waitListPostReauestAddEdit } from './redux/waitList/postRequest-addedit';
+import { waitListAlreadyQuest } from './redux/waitList/alreadyQuest';
+import { waitListAlreadyQuestAddedit } from './redux/waitList/alreadyQuest-addedit';
 import { generalTextParam } from './redux/general/text-param';
 import { generalTextParamAddEdit } from './redux/general/text-param-addedit';
 import { financeAccount } from './redux/finance/account';
@@ -61,6 +65,10 @@ export default combineReducers({
   publicBannerAddEdit,
   publicAboutusAddEdit,
   publicTimeAddEdit,
+  waitListPostRequest,
+  waitListAlreadyQuest,
+  waitListPostReauestAddEdit,
+  waitListAlreadyQuestAddedit,
   generalTextParam,
   generalTextParamAddEdit,
   financeAccount,

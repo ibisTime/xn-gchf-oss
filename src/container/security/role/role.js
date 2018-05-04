@@ -10,14 +10,14 @@ import {
   setSearchData
 } from '@redux/security/role';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg } from 'common/js/util';
+import { showWarnMsg, getUserKind } from 'common/js/util';
 import XLSX from 'xlsx';
 import { Button, Upload } from 'antd';
 
 function makeCols(refstr) {
   var o = [];
   var range = XLSX.utils.decode_range(refstr);
-  for(var i = 0; i <= range.e.c; ++i) {
+  for (var i = 0; i <= range.e.c; ++i) {
     o.push({ name: XLSX.utils.encode_col(i), key: i });
   }
   return o;
@@ -28,14 +28,17 @@ function makeCols(refstr) {
     ...state.securityRole,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Role extends React.Component {
   constructor(props) {
     super(props);
     this.handleExport = this.handleExport.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.type = getUserKind();
     this.state = {
       data: [],
       cols: []
@@ -97,7 +100,7 @@ class Role extends React.Component {
         }
       }
     };
-    return this.props.buildList({ fields, btnEvent, pageCode: 631045, deleteCode: 631041 });
+    return this.props.buildList({ fields, btnEvent, searchParams: { type: this.type }, pageCode: 631045, deleteCode: 631041 });
     // return (
     //   <div>
     //     <input type="file" onChange={this.handleChange}/>

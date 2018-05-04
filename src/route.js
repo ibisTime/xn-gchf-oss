@@ -95,6 +95,22 @@ const ROUTES = [
     component: asyncComponent(() => import('container/public/time-addedit/time-addedit'))
   },
   {
+    path: '/waitList/postRequest',
+    component: asyncComponent(() => import('container/waitList/postRequest/postRequest'))
+  },
+  {
+    path: '/waitList/alreadyQuest',
+    component: asyncComponent(() => import('container/waitList/alreadyQuest/alreadyQuest'))
+  },
+  {
+    path: '/waitList/postRequest/addedit',
+    component: asyncComponent(() => import('container/waitList/postRequest-addedit/postRequest-addedit'))
+  },
+  {
+    path: '/waitList/alreadyQuest/addedit',
+    component: asyncComponent(() => import('container/waitList/alreadyQuest-addedit/alreadyQuest-addedit'))
+  },
+  {
     path: '/general/textParam',
     component: asyncComponent(() => import('container/general/text-param/text-param'))
   },
@@ -178,6 +194,10 @@ const ROUTES = [
   {
     path: '/dailiManage/yixiangdailifenpei',
     component: asyncComponent(() => import('container/dailiManage/map/map3'))
+  },
+  {
+    path: '/demo/export',
+    component: asyncComponent(() => import('container/sss/export_import'))
   }
 ];
 

@@ -29,6 +29,11 @@ export function getUserName() {
   return cookies.get('userName');
 }
 
+// 获取用户类型
+export function getUserKind() {
+  return cookies.get('loginKind');
+}
+
 // 设置用户角色信息
 export function setRoleInfo({ roleCode, type, level, loginName }) {
   cookies.set('roleCode', roleCode);
@@ -172,7 +177,7 @@ export function multiply(a, b) {
  * @param suffix
  */
 export function formatFile(urls, suffix = '') {
-  if(!urls) {
+  if (!urls) {
     return '';
   }
   let url = urls.split(/\|\|/)[0];
@@ -201,7 +206,7 @@ export function isUndefined(value) {
 }
 
 export function tempString(str, data) {
-  return str.replace(/\{\{(\w+)\.DATA\}\}/gi, function(matchs) {
+  return str.replace(/\{\{(\w+)\.DATA\}\}/gi, function (matchs) {
     var returns = data[matchs.replace(/\{\{(\w+)\.DATA\}\}/, '$1')];
     return isUndefined(returns) ? '' : returns;
   });
