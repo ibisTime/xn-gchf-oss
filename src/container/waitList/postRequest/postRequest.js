@@ -44,9 +44,6 @@ class PostRequest extends React.Component {
     }];
     return this.props.buildList({
       fields,
-      searchParams: {
-        status: 1
-      },
       pageCode: 631435
     });
   }

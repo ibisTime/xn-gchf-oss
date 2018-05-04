@@ -29,7 +29,8 @@ class AlreadyQuestAddedit extends React.Component {
       hidden: true
     }, {
       title: '请求时间',
-      field: 'sendDatetime'
+      field: 'sendDatetime',
+      type: 'datetime'
     }, {
       title: '代发账户户名',
       field: 'bankName'

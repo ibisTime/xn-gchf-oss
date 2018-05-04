@@ -89,7 +89,8 @@ class PostRequestAddedit extends React.Component {
     }, {
       title: '请求时间',
       field: 'sendDatetime',
-      readonly: true
+      readonly: true,
+      type: 'datetime'
     }, {
       title: '代发账户户名',
       field: 'staffName',
