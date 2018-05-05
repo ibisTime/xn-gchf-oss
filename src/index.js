@@ -12,7 +12,7 @@ import AuthRoute from 'component/authroute/authroute';
 import './index.css';
 
 const store = createStore(reducers, compose(
-  applyMiddleware(thunk)
+  applyMiddleware(thunk);
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // 打包注释掉
 ));
 

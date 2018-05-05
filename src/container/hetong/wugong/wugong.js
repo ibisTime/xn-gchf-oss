@@ -30,8 +30,8 @@ class Wugong extends React.Component {
       field: 'projectName',
       title: '工程名称'
     }, {
-      field: 'staffCode',
-      title: '务工人员ID'
+      field: 'staffName',
+      title: '工人姓名'
     }, {
       field: 'staffMobile',
       title: '手机号'
