@@ -32,46 +32,42 @@ class PWugong extends React.Component {
       value: this.projectCode,
       hidden: true
     }, {
-      field: 'staffCode',
+      field: 'name',
       title: '员工',
-      type: 'select',
-      listCode: '631406',
-      params: {
-        projectCode: this.projectCode,
-        updater: ''
-      },
-      keyName: 'staffCode',
-      valueName: 'staffCode',
-      required: true
+      _keys: ['staff', 'pict1']
     }, {
       field: 'type',
       title: '员工类别',
       type: 'select',
-      key: 'staff_type',
-      required: true
+      search: true,
+      key: 'staff_type'
     }, {
       field: 'position',
-      title: '职位',
-      required: true
+      title: '职位'
     }, {
       field: 'salary',
-      title: '薪酬',
-      required: true
+      title: '薪酬'
     }, {
       field: 'joinDatetime',
       title: '入职时间',
-      type: 'date',
-      required: true
+      type: 'date'
     }, {
       field: 'upUser',
       title: '上级'
     }, {
       field: 'status',
       title: '状态',
+      type: 'select',
+      search: true,
       key: 'staff_status'
     }, {
       field: 'remark',
       title: '备注'
+    }, {
+      field: 'keyword',
+      search: true,
+      hidden: true,
+      title: '关键字'
     }];
     return this.props.buildList({
       fields,

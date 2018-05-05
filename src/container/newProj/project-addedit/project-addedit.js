@@ -90,14 +90,17 @@ class ProjectAddedit extends React.Component {
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',
+      _keys: ['companyCard', 'bankName'],
       required: true
     }, {
       field: 'subbranch',
       title: '开户行',
+      _keys: ['companyCard', 'subbranch'],
       required: true
     }, {
       field: 'bankcardNumber',
       title: '账户号',
+      _keys: ['companyCard', 'bankcardNumber'],
       required: true
     }, {
       field: 'startDatetime',
@@ -118,7 +121,7 @@ class ProjectAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.state.departmentCode ? this.props.buildDetail({
+    return this.view || this.state.departmentCode ? this.props.buildDetail({
       fields,
       key: 'code',
       code: this.projectCode,

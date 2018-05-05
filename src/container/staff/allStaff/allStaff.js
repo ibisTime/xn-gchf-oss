@@ -49,6 +49,11 @@ class AllStaff extends React.Component {
     }, {
       field: 'remark',
       title: '备注'
+    }, {
+      field: 'keyword',
+      hidden: true,
+      search: true,
+      title: '关键字'
     }];
     const btnEvent = {
       error: (selectedRowKeys, selectedRows) => {

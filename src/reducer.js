@@ -40,8 +40,11 @@ import { newProjAddBumen } from './redux/newProj/addBumen';
 import { newProjProject } from './redux/newProj/project';
 import { newprojProjectAddEdit } from './redux/newProj/project-addedit';
 import { newprojProjectEdit } from './redux/newProj/project-edit';
+import { newProjProjectDaka } from './redux/newProj/project-daka';
 import { newprojProjectCheck } from './redux/newProj/project-check';
 import { newprojProjectEnd } from './redux/newProj/project-end';
+import { newprojProjectStop } from './redux/newProj/project-stop';
+import { newProjProjectLeijifaxin } from './redux/newProj/project-leijifaxin';
 import { newProjProjectSalary } from './redux/newProj/project-salary';
 import { newProjProjectSalaryEdit } from './redux/newProj/project-salary-edit';
 import { newProjProjectSalaryCheck } from './redux/newProj/project-salary-check';
@@ -112,8 +115,11 @@ export default combineReducers({
   newProjProject,
   newprojProjectAddEdit,
   newprojProjectEdit,
+  newProjProjectDaka,
   newprojProjectCheck,
   newprojProjectEnd,
+  newprojProjectStop,
+  newProjProjectLeijifaxin,
   newProjProjectSalary,
   newProjProjectSalaryEdit,
   newProjProjectSalaryCheck,

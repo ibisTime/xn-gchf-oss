@@ -85,6 +85,9 @@ export const listWrapper = (mapStateToProps = state => state, mapDispatchToProps
               return '';
             };
           }
+          if (f.hidden) {
+            return;
+          }
           if (f.formatter) {
             obj.render = f.formatter;
           } else if (f.amount) {

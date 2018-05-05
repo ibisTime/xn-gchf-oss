@@ -31,9 +31,6 @@ class Jindu extends React.Component {
       field: 'description',
       title: '工程进度描述'
     }, {
-      field: 'picture',
-      title: '工程进度图片'
-    }, {
       field: 'datetime',
       title: '进度时间',
       type: 'date'
@@ -44,6 +41,11 @@ class Jindu extends React.Component {
       field: 'updateDatetime',
       title: '更新时间',
       type: 'datetime'
+    }, {
+      field: 'keyword',
+      search: true,
+      hidden: true,
+      title: '关键字'
     }];
     return this.props.buildList({ fields, pageCode: 631385, rowKey: 'code' });
   }

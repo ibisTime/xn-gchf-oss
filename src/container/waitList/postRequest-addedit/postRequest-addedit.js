@@ -9,7 +9,6 @@ import {
 } from '@redux/waitList/postRequest-addedit';
 import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
-import { div } from 'gl-matrix/src/gl-matrix/vec3';
 import XLSX from 'xlsx';
 import { Button } from 'antd';
 import { downLoad } from 'api/downLoad';

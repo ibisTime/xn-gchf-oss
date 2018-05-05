@@ -52,6 +52,7 @@ class Daifa extends React.Component {
     }, {
       field: 'status',
       title: '状态',
+      search: true,
       type: 'select',
       key: 'message_status',
       searcH: true
@@ -69,6 +70,11 @@ class Daifa extends React.Component {
     }, {
       field: 'handler',
       title: '处理人'
+    }, {
+      field: 'keyword',
+      search: true,
+      hidden: true,
+      title: '关键字'
     }];
     const btnEvent = {
       send: (selectedRowKeys, selectedRows) => {
@@ -77,7 +83,7 @@ class Daifa extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if (selectedRows.status === '0') {
+          if (selectedRows[0].status === '0') {
             this.code = selectedRowKeys[0];
             this.setState({ visible: true });
             this.setState({ code: selectedRowKeys[0] });
@@ -120,7 +126,7 @@ class Daifa extends React.Component {
       <div>
         {this.props.buildList({ fields, btnEvent, pageCode: 631435, rowKey: 'code' })}
         <ModalDetail
-          title='修改密码'
+          title='发送消息'
           visible={this.state.visible}
           hideModal={() => this.setState({ visible: false })}
           options={options} />

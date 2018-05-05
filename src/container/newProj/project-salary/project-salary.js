@@ -66,7 +66,8 @@ class Salary extends React.Component {
       amount: true
     }, {
       title: '所属月份',
-      field: 'month'
+      field: 'month',
+      search: true
     }, {
       title: '最近一次发放时间',
       field: 'payDatetime',

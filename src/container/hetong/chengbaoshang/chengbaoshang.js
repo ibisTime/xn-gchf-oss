@@ -39,28 +39,13 @@ class Chengbaoshang extends React.Component {
       title: '签约时间',
       type: 'date'
     }, {
-      field: 'contentPic',
-      title: '合同照片',
-      single: true,
-      type: 'img'
-    }, {
-      field: 'pict1',
-      title: '免冠照片',
-      single: true,
-      type: 'img'
-    }, {
-      field: 'pict2',
-      title: '手持身份证照片',
-      single: true,
-      type: 'img'
-    }, {
-      field: 'pict3',
-      title: '身份证正反面照片',
-      single: true,
-      type: 'img'
-    }, {
       field: 'remark',
       title: '备注'
+    }, {
+      field: 'keyword',
+      search: true,
+      hidden: true,
+      title: '关键字'
     }];
     return this.props.buildList({ fields, pageCode: 631375, rowKey: 'code' });
   }

@@ -180,8 +180,16 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-check/project-check'))
   },
   {
-    path: '/newProj/project/end',
+    path: '/projectManage/project/end',
     component: asyncComponent(() => import('container/newProj/project-end/project-end'))
+  },
+  {
+    path: '/projectManage/project/stop',
+    component: asyncComponent(() => import('container/newProj/project-stop/project-stop'))
+  },
+  {
+    path: '/projectManage/project/leijifaxin',
+    component: asyncComponent(() => import('container/newProj/project-leijifaxin/project-leijifaxin'))
   },
   {
     path: '/newProj/project/kaoqin',
@@ -202,6 +210,10 @@ const ROUTES = [
   {
     path: '/projectManage/project/addedit',
     component: asyncComponent(() => import('container/newProj/project-addedit/project-addedit'))
+  },
+  {
+    path: '/projectManage/project/daka',
+    component: asyncComponent(() => import('container/newProj/project-daka/project-daka'))
   },
   {
     path: '/yewuManage/account',

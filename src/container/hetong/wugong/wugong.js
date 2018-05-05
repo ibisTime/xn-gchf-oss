@@ -47,23 +47,22 @@ class Wugong extends React.Component {
       title: '更新时间',
       type: 'datetime'
     }];
-    const btnEvent = {
-      add: (selectedRowKeys, selectedRows) => {
-        this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
-      },
-      edit: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
-        }
-      }
-    };
+    // const btnEvent = {
+    //   add: (selectedRowKeys, selectedRows) => {
+    //     this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
+    //   },
+    //   edit: (selectedRowKeys, selectedRows) => {
+    //     if (!selectedRowKeys.length) {
+    //       showWarnMsg('请选择记录');
+    //     } else if (selectedRowKeys.length > 1) {
+    //       showWarnMsg('请选择一条记录');
+    //     } else {
+    //       this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+    //     }
+    //   }
+    // };
     return this.props.buildList({
       fields,
-      btnEvent,
       searchParams: { projectCode: this.projectCode },
       buttons: [{
         code: 'add',

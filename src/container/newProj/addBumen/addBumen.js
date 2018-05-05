@@ -28,29 +28,35 @@ class AddBumen extends React.Component {
       value: this.companyCode,
       hidden: true
     }, {
-      field: 'parentCode',
-      title: '上级部门编号',
-      type: 'select',
-      listCode: '631036',
-      params: {
-        companyCode: this.code ? this.companyCode : this.code
-      },
-      keyName: 'code',
-      valueName: 'name',
-      required: true
-    }, {
       field: 'name',
       title: '部门名',
       required: true
     }, {
       field: 'leader',
       title: '负责人',
+      type: 'select',
+      listCode: '631086',
+      params: {
+        type: 'O'
+      },
+      keyName: 'userId',
+      valueName: 'loginName',
       required: true
     }, {
       field: 'leadeMobile',
       title: '负责人手机号',
       mobile: true,
       required: true
+    }, {
+      field: 'parentCode',
+      title: '上级部门',
+      type: 'select',
+      listCode: '631036',
+      params: {
+        companyCode: this.companyCode
+      },
+      keyName: 'code',
+      valueName: 'name'
     }];
     return this.props.buildDetail({
       fields,

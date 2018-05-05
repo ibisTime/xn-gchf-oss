@@ -27,33 +27,32 @@ class Kaoqin extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'name',
+      field: 'projectName',
       title: '项目名称'
     }, {
-      field: 'address',
-      title: '详细地址'
+      field: 'staffName',
+      title: '员工姓名'
+    }, {
+      field: 'staffMobile',
+      title: '员工手机号'
     }, {
       field: 'startDatetime',
-      title: '项目开始时间',
-      type: 'date'
+      title: '上班时间'
     }, {
       field: 'endDatetime',
-      title: '项目结束时间',
-      type: 'date'
-    }, {
-      field: 'salaryDatetime',
-      title: '薪资发放时间'
+      title: '下班时间'
     }, {
       field: 'status',
-      title: '状态',
+      title: '出工状态',
       type: 'select',
-      key: 'project_status'
+      key: 'attendance_status'
     }, {
-      field: 'updater',
-      title: '修改人'
+      field: 'settleDatetime',
+      title: '结算时间',
+      type: 'date'
     }, {
-      field: 'updateDatetime',
-      title: '修改时间',
+      field: 'createDatetime',
+      title: '生成时间',
       type: 'datetime'
     }, {
       field: 'remark',

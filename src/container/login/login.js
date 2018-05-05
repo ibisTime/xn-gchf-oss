@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import { Form, Icon, Input, Button, Card, Checkbox } from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -21,13 +22,12 @@ class Login extends React.Component {
         values.type = window.location.port === '2505' ? 'S'
         : window.location.port === '2506' ? 'B'
         : window.location.port === '2507' ? 'O'
-        : window.location.port === '2508' ? 'P' : 'O';
+        : window.location.port === '2508' ? 'P' : 'S';
         // this.setState({ loading: true })
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户
         // values.type = 'O'; // 业主单位
         // values.type = 'S'; // 监管单位
-        console.log(values.type);
         this.props.login(values);
       }
     });
@@ -82,8 +82,14 @@ class Login extends React.Component {
           </FormItem>
         </Form>
         <div className="role">
-            <img src="../img/qiye.png" />
-            <span>企业端</span>
+            { cookies.get('loginKind') === 'S'
+              ? <div><img src="../img/jianguan.png" /><span>监管单位端</span></div>
+              : cookies.get('loginKind') === 'O'
+              ? <div><img src="../img/qiye.png" /><span>业主端</span></div>
+              : cookies.get('loginKind') === 'B'
+              ? <div><img src="../img/qiye.png" /><span>银行端</span></div>
+              : <div><img src="../img/qiye.png" /><span>平台端</span></div>
+            }
         </div>
         {/* </Card> */}
       </div>
