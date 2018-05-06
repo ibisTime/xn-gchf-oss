@@ -1,7 +1,7 @@
 import React from 'react';
 import cookies from 'browser-cookies';
 import { Form, Spin, Button, Tree, Modal } from 'antd';
-import { getCompany, getBumen, deleteCompany1, deleteBumen1 } from 'api/company';
+import { getCompany, getBumen, deleteCompany1, deleteBumen1, getCompanyDetail } from 'api/company';
 import { setRoleMenus, getUserDetail } from 'api/user';
 import { getQueryString, showSucMsg, showWarnMsg } from 'common/js/util';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
@@ -27,14 +27,25 @@ class RoleMenu extends React.Component {
   }
   componentDidMount() {
     let codes;
-    getUserDetail(cookies.get('userId')).then((data) => {
-      getCompany(data.companyCodeList).then((companyData) => {
-        this.getTree(companyData);
-        this.setState({
-          fetching: false
-        });
-      }).catch(() => this.setState({ fetching: false }));
-    });
+    if (cookies.get('loginKind') === 'S') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        getCompany(data.companyCodeList).then((companyData) => {
+          this.getTree(companyData);
+          this.setState({
+            fetching: false
+          });
+        }).catch(() => this.setState({ fetching: false }));
+      });
+    } else {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        getCompanyDetail(data.code).then((companyData) => {
+          this.getTree(companyData);
+          this.setState({
+            fetching: false
+          });
+        }).catch(() => this.setState({ fetching: false }));
+      });
+    }
   }
   res = {
     'key': 'company'

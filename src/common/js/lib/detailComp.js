@@ -9,7 +9,7 @@ import E from 'wangeditor';
 import { getDictList } from 'api/dict';
 import { getQiniuToken } from 'api/general';
 import {
-  formatFile, formatImg, isUndefined, dateTimeFormat, dateFormat,
+  formatFile, formatImg, isUndefined, dateTimeFormat, dateFormat, getUserId,
   tempString, moneyFormat, moneyParse, showSucMsg, showErrMsg, showWarnMsg
 } from 'common/js/util';
 import { UPLOAD_URL, PIC_PREFIX, formItemLayout, tailFormItemLayout } from '../config';
@@ -174,6 +174,7 @@ export default class DetailComp extends React.Component {
         values[v.field] = this.props.pageData[v.field];
       }
     });
+    values.updater = values.updater || getUserId();
     return values;
   }
   customSubmit = (handler) => {

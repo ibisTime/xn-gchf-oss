@@ -16,8 +16,10 @@ import { listWrapper } from 'common/js/build-list';
     ...state.securityMenu,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class SysParam extends React.Component {
   render() {
@@ -32,7 +34,13 @@ class SysParam extends React.Component {
       title: '最近修改时间',
       type: 'datetime'
     }];
-    return this.props.buildList({ fields, pageCode: 631015, rowKey: 'id' });
+    return this.props.buildList({
+      fields,
+      pageCode: 631015,
+      searchParam: {
+        updater: null
+      }
+    });
   }
 }
 

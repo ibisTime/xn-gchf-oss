@@ -2,7 +2,7 @@ import React from 'react';
 import cookies from 'browser-cookies';
 import { Form, Spin, Button, Tree } from 'antd';
 import { getMenuBtnList, getRoleMenuBtnList } from 'api/menu';
-import { setRoleMenus } from 'api/user';
+import { setRoleMenus, getUserId } from 'api/user';
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
 
@@ -27,7 +27,7 @@ class RoleMenu extends React.Component {
   componentDidMount() {
     Promise.all([
       cookies.get('loginKind') === 'P' ? getMenuBtnList()
-      : getRoleMenuBtnList(this.allMenuCode),
+        : getRoleMenuBtnList(this.allMenuCode),
       getRoleMenuBtnList(this.code)
     ]).then(([allData, checkData]) => {
       this.getTree(allData);
@@ -143,7 +143,7 @@ class RoleMenu extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ fetching: true });
-    setRoleMenus(this.state.checkedKeys.checked, this.code).then(() => {
+    setRoleMenus(this.state.checkedKeys.checked, this.code, getUserId()).then(() => {
       this.setState({ fetching: false });
       showSucMsg('操作成功');
       setTimeout(() => this.props.history.go(-1), 1000);
@@ -176,7 +176,7 @@ class RoleMenu extends React.Component {
           </FormItem>
           <FormItem key='btns' {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">保存</Button>
-            <Button style={{marginLeft: 20}} onClick={() => this.props.history.go(-1)}>返回</Button>
+            <Button style={{ marginLeft: 20 }} onClick={() => this.props.history.go(-1)}>返回</Button>
           </FormItem>
         </Form>
       </Spin>

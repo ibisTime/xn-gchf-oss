@@ -66,6 +66,7 @@ import { staffBankCard } from './redux/staff/bankCard';
 import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
 import { staffBaogong } from './redux/staff/baogong';
 import { daifaDaifa } from './redux/daifa/daifa';
+import { mapMap } from './redux/map/map';
 import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
 import { newIdBank } from './redux/newId/bank';
 import { newIdBankAddEdit } from './redux/newId/bank-addedit';
@@ -97,6 +98,7 @@ export default combineReducers({
   publicAboutusAddEdit,
   publicTimeAddEdit,
   waitListPostRequest,
+  mapMap,
   waitListAlreadyQuest,
   waitListAlreadyQuestAddedit,
   generalTextParam,

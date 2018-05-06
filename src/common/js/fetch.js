@@ -13,7 +13,7 @@ export default function fetch(code, param = {}) {
     // systemCode: SYSTEM_CODE,
     // companyCode: SYSTEM_CODE,
     token: cookies.get('token') || '',
-    updater: cookies.get('userId'),
+    // updater: cookies.get('userId'),
     ...param
   };
 
