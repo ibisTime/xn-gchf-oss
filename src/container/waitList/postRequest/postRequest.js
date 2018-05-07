@@ -10,6 +10,7 @@ import {
   setSearchData
 } from '@redux/waitList/postRequest';
 import { listWrapper } from 'common/js/build-list';
+import { showWarnMsg } from 'common/js/util';
 
 @listWrapper(
   state => ({
