@@ -1,9 +1,7 @@
 import React from 'react';
-import fetch from 'common/js/fetch';
 import cookies from 'browser-cookies';
 import { getProjectList, getProjectStatus } from 'api/project';
 import { dateFormat } from 'common/js/util';
-import ModalDetail from 'common/js/build-modal-detail';
 
 class Map3 extends React.Component {
   constructor(props) {
@@ -15,23 +13,8 @@ class Map3 extends React.Component {
     };
     this.markerClick = this.markerClick.bind(this);
     this.addProject = this.addProject.bind(this);
-    // this.stopStart = this.stopStart.bind(this);
   }
   componentDidMount() {
-    this.stopStart = (code, todo) => {
-      alert('1');
-      this.projectCode = code;
-      if (todo === 'stop') {
-        this.addCode = '631470';
-        this.setState({ stop: true });
-      }else {
-        this.addCode = '631471';
-        this.setState({ start: true });
-      }
-    };
-    this.haha = () => {
-      alert('1');
-    };
     Promise.all([
       getProjectList(),
       getProjectStatus()
@@ -73,11 +56,6 @@ class Map3 extends React.Component {
               content += '<a type="button" class="ant-btn" href="' + location.origin + '/projectManage/project/check?projectCode=' + item.code + '">审核项目</a>';
             }
             if (v.dkey === '3') { // 在建的项目可以停工和打卡
-              let todo = 'stop';
-              let code = item.code;
-              let addCode = '631470';
-              // content += '<a class="ant-btn"  onclick="function A(){this.addCode = '631470';
-              // this.setState({ stop: true });};A()">项目停工</a>';
               content += '<a class="ant-btn" href="' + location.origin + '/projectManage/project/stop?stop=1&projectCode=' + item.code + '">项目停工</a>';
               content += '<a type="button" class="ant-btn" href="' + location.origin + '/projectManage/project/daka?projectCode=' + item.code + '">打卡</a>';
             }
@@ -114,9 +92,6 @@ class Map3 extends React.Component {
   addProject() {
     this.props.history.push(`/projectManage/project/addedit`);
   }
-  haha() {
-    alert('1');
-  }
   render() {
     const options = {
       fields: [{
@@ -136,16 +111,6 @@ class Map3 extends React.Component {
         ? <div className="tools-wrapper" style={{'margintop': '8px'}}><button onClick={this.addProject} type="button" className="ant-btn"><span>新增项目</span></button></div>
         : null }
         <div id="container" style={{width: '100%', height: '400px'}}></div>
-        <ModalDetail
-          title='停工'
-          visible={this.state.stop}
-          hideModal={() => this.setState({ stop: false })}
-          options={options} />
-          <ModalDetail
-          title='重新开工'
-          visible={this.state.start}
-          hideModal={() => this.setState({ start: false })}
-          options={options} />
       </div>
     );
   }

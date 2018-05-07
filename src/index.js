@@ -12,7 +12,7 @@ import AuthRoute from 'component/authroute/authroute';
 import './index.css';
 
 const store = createStore(reducers, compose(
-  applyMiddleware(thunk);
+  applyMiddleware(thunk)
   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // 打包注释掉
 ));
 
@@ -23,7 +23,6 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div className="big-div">
-      {/* <img src="../img/setting.png" className="big-img"/> */}
         <AuthRoute></AuthRoute>
         <Switch>
           <Route path='/login' component={Login}></Route>

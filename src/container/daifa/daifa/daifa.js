@@ -54,8 +54,7 @@ class Daifa extends React.Component {
       title: '状态',
       search: true,
       type: 'select',
-      key: 'message_status',
-      searcH: true
+      key: 'message_status'
     }, {
       field: 'createDatetime',
       title: '创建时间',
@@ -116,10 +115,6 @@ class Daifa extends React.Component {
         field: 'sendNote',
         title: '发送说明'
       }],
-      beforeSubmit: (param) => {
-        // param.code = this.code;
-        return param;
-      },
       addCode: 631430
     };
     return (

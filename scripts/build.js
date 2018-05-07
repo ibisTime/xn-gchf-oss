@@ -39,7 +39,7 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 2 * 1024 * 1024;
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
-
+var start = new Date();
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
@@ -70,7 +70,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
       } else {
         console.log(chalk.green('Compiled successfully.\n'));
       }
-
+      var end = new Date();
+      console.log('耗时：' + ((end.getTime() - start.getTime()) / 1000) + 'S');
       console.log('File sizes after gzip:\n');
       printFileSizesAfterBuild(
         stats,

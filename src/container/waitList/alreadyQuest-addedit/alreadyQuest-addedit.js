@@ -9,7 +9,6 @@ import {
 } from '@redux/waitList/alreadyQuest-addedit';
 import { getQueryString } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
-import { Button } from 'antd';
 
 @DetailWrapper(
   state => state.waitListAlreadyQuestAddedit,

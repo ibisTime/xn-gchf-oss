@@ -26,13 +26,7 @@ import { waitListAlreadyQuest } from './redux/waitList/alreadyQuest';
 import { waitListAlreadyQuestAddedit } from './redux/waitList/alreadyQuest-addedit';
 import { generalTextParam } from './redux/general/text-param';
 import { generalTextParamAddEdit } from './redux/general/text-param-addedit';
-import { financeAccount } from './redux/finance/account';
-import { financeLedger } from './redux/finance/ledger';
 import { dailiManageMap } from './redux/dailiManage/map';
-import { financeLedgerAddEdit } from '@redux/finance/ledger-addedit';
-import { financePlatformLedger } from '@redux/finance/platform-ledger';
-import { financeDistAddr } from '@redux/finance/dist-addr';
-import { financeDistAddrLedger } from '@redux/finance/dist-addr-ledger';
 import { newProjCompanyConstruct } from './redux/newProj/companyConstruct';
 import { newProjBumenConstruct } from './redux/newProj/bumenConstruct';
 import { newProjAddCompany } from './redux/newProj/addCompany';
@@ -102,12 +96,6 @@ export default combineReducers({
   waitListAlreadyQuestAddedit,
   generalTextParam,
   generalTextParamAddEdit,
-  financeAccount,
-  financeLedger,
-  financeLedgerAddEdit,
-  financePlatformLedger,
-  financeDistAddr,
-  financeDistAddrLedger,
   newProjCompanyConstruct,
   newProjBumenConstruct,
   newProjAddCompany,
