@@ -42,7 +42,15 @@ class Daifa extends React.Component {
       title: '项目编号'
     }, {
       field: 'projectName',
-      title: '项目名称'
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: ''
+      },
+      keyName: 'name',
+      valueName: 'name'
     }, {
       field: 'title',
       title: '标题'

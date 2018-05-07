@@ -6,14 +6,14 @@ import {
   setSelectData,
   setPageData,
   restore
-} from '@redux/security/user-addedit';
+} from '@redux/newId/supervise-addedit';
 import { getQueryString } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 @DetailWrapper(
-  state => state.securityUserAddEdit,
+  state => state.newIdSuperviseAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
 )
-class UserAddEdit extends React.Component {
+class SuperviseAddEdit extends React.Component {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
@@ -41,8 +41,8 @@ class UserAddEdit extends React.Component {
     }, {
       title: '用户类型',
       field: 'type',
-      value: 'P',
-      required: true
+      value: 'S',
+      hidden: true
     }, {
       title: '备注',
       field: 'remark'
@@ -57,4 +57,4 @@ class UserAddEdit extends React.Component {
   }
 }
 
-export default UserAddEdit;
+export default SuperviseAddEdit;

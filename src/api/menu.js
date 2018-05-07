@@ -10,7 +10,8 @@ export function getOwnerBtns(parentCode) {
   return fetch(631056, {
     parentCode,
     roleCode: getRoleCode(),
-    type: 2
+    type: 2,
+    updater: ''
   });
 }
 
@@ -28,7 +29,8 @@ export function getRoleMenuList() {
   // 805026
   return fetch(631056, {
     type: 1,
-    roleCode: getRoleCode()
+    roleCode: getRoleCode(),
+    updater: ''
   });
 }
 
@@ -37,5 +39,5 @@ export function getRoleMenuList() {
  */
 export function getRoleMenuBtnList(roleCode) {
   roleCode = roleCode || getRoleCode();
-  return fetch(631056, { roleCode });
+  return fetch(631056, { roleCode, updater: '' });
 }

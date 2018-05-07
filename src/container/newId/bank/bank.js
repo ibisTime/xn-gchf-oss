@@ -11,25 +11,23 @@ import {
   doFetching,
   cancelFetching,
   setSearchData
-} from '@redux/security/user';
+} from '@redux/newId/bank';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
 
 @listWrapper(
   state => ({
-    ...state.securityUser,
+    ...state.newIdBank,
     parentCode: state.menu.subMenuCode
   }),
   { setTableData, clearSearchParam, doFetching, setBtnList,
     cancelFetching, setPagination, setSearchParam, setSearchData }
 )
-class User extends React.Component {
+class Bank extends React.Component {
   render() {
     const fields = [{
-      title: '用户名',
-      field: 'loginName',
-      search: true,
-      render: (v) => v + '1'
+      title: '登录名',
+      field: 'loginName'
     }, {
       title: '状态',
       field: 'status',
@@ -45,12 +43,6 @@ class User extends React.Component {
       },
       keyName: 'code',
       valueName: 'name',
-      search: true
-    }, {
-      title: '用户类型',
-      field: 'type',
-      type: 'select',
-      key: 'user_kind',
       search: true
     }, {
       title: '备注',
@@ -105,29 +97,19 @@ class User extends React.Component {
         }
       },
       setBumen: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          if (selectedRows[0].type === 'O') {
-            this.props.history.push(`/security/user/setBumen?userId=${selectedRowKeys[0]}&loginName=${selectedRows[0].loginName}`);
-          }else {
-            showWarnMsg('只有业主单位的用户可以设置部门');
-          }
-        }
+        this.props.history.push(`/security/user/setBumen?userId=${selectedRowKeys[0]}&loginName=${selectedRows[0].loginName}`);
       }
     };
     return this.props.buildList({
       fields,
       btnEvent,
-      searchParams: cookies.get('loginKind') === 'P' ? {}
-      : {'type': cookies.get('loginKind') === 'O' ? 'O'
-      : cookies.get('loginKind') === 'B' ? 'B' : 'S'},
+      searchParams: {
+        'type': 'B'
+      },
       pageCode: 631085,
       rowKey: 'userId'
     });
   }
 }
 
-export default User;
+export default Bank;

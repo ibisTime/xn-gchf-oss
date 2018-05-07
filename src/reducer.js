@@ -67,6 +67,12 @@ import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
 import { staffBaogong } from './redux/staff/baogong';
 import { daifaDaifa } from './redux/daifa/daifa';
 import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
+import { newIdBank } from './redux/newId/bank';
+import { newIdBankAddEdit } from './redux/newId/bank-addedit';
+import { newIdYezhu } from './redux/newId/yezhu';
+import { newIdYezhuAddEdit } from './redux/newId/yezhu-addedit';
+import { newIdSupervise } from './redux/newId/supervise';
+import { newIdSuperviseAddEdit } from './redux/newId/supervise-addedit';
 
 export default combineReducers({
   user,
@@ -135,5 +141,11 @@ export default combineReducers({
   staffBankCard,
   staffBankCardAddEdit,
   daifaDaifa,
-  daifaDaifaAddEdit
+  daifaDaifaAddEdit,
+  newIdBank,
+  newIdBankAddEdit,
+  newIdYezhu,
+  newIdYezhuAddEdit,
+  newIdSupervise,
+  newIdSuperviseAddEdit
 });

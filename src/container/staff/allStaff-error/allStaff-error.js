@@ -35,17 +35,34 @@ class AllStaffError extends React.Component {
       field: 'projectCode',
       title: '项目编号'
     }, {
+      field: 'projectName',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: ''
+      },
+      keyName: 'name',
+      valueName: 'name'
+    }, {
       field: 'salaryCode',
       title: '工资条编号'
     }, {
       field: 'handleNote',
       title: '操作描述'
     }, {
-      field: 'type',
-      title: '类型'
-    }, {
       field: 'handler',
-      title: '处理人'
+      title: '处理人',
+      listCode: '631086',
+      type: 'select',
+      search: true,
+      params: {
+        updater: '',
+        type: 'O'
+      },
+      keyName: 'userId',
+      valueName: 'loginName'
     }, {
       field: 'handleDatetime',
       title: '处理时间',

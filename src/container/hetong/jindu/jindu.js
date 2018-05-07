@@ -26,6 +26,18 @@ class Jindu extends React.Component {
       title: '工程编号'
     }, {
       field: 'projectName',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: ''
+      },
+      keyName: 'name',
+      valueName: 'name',
+      hidden: true
+    }, {
+      field: 'projectName',
       title: '工程名称'
     }, {
       field: 'description',

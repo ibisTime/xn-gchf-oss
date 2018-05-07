@@ -2,6 +2,10 @@ import asyncComponent from './component/async-component/async-component';
 
 const ROUTES = [
   {
+    path: '/home',
+    component: asyncComponent(() => import('container/home/home'))
+  },
+  {
     path: '/system/role',
     component: asyncComponent(() => import('container/security/role/role'))
   },
@@ -234,6 +238,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
   },
   {
+    path: '/staff/error',
+    component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
+  },
+  {
     path: '/staff/allStaff/error/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
   },
@@ -268,6 +276,30 @@ const ROUTES = [
   {
     path: '/daifa/daifa/addedit',
     component: asyncComponent(() => import('container/daifa/daifa-addedit/daifa-addedit'))
+  },
+  {
+    path: '/newId/bank',
+    component: asyncComponent(() => import('container/newId/bank/bank'))
+  },
+  {
+    path: '/newId/bank/addedit',
+    component: asyncComponent(() => import('container/newId/bank-addedit/bank-addedit'))
+  },
+  {
+    path: '/newId/yezhu',
+    component: asyncComponent(() => import('container/newId/yezhu/yezhu'))
+  },
+  {
+    path: '/newId/yezhu/addedit',
+    component: asyncComponent(() => import('container/newId/yezhu-addedit/yezhu-addedit'))
+  },
+  {
+    path: '/newId/supervise',
+    component: asyncComponent(() => import('container/newId/supervise/supervise'))
+  },
+  {
+    path: '/newId/supervise/addedit',
+    component: asyncComponent(() => import('container/newId/supervise-addedit/supervise-addedit'))
   },
   {
     path: '/projectManage/project',

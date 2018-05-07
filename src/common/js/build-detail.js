@@ -298,7 +298,7 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         }, 300);
       }
       // 获取select框的数据
-      getSelectData(item) {
+      getSelectData = (item) => {
         if (item.key) {
           getDictList({ parentKey: item.key, bizType: item.keyCode }).then(data => {
             this.props.setSelectData({ data, key: item.field });
@@ -306,6 +306,7 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         } else if (item.listCode) {
           let param = item.params || {};
           fetch(item.listCode, param).then(data => {
+            // console.log('get', this.props, item, data);
             this.props.setSelectData({ data, key: item.field });
           }).catch(() => {});
         }
@@ -611,10 +612,14 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         );
       }
       getSearchSelectItem(item, initVal, rules, getFieldDecorator) {
+        let data;
+        if (item.readonly && item.data) {
+          data = item.data.filter(v => v[item.keyName] === initVal);
+        }
         return (
           <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
             {
-              item.readonly ? <div className="readonly-text">{item.data ? item.data[0][item.valueName] || tempString(item.valueName, item.data[0]) : ''}</div>
+              item.readonly ? <div className="readonly-text">{data ? data[0][item.valueName] || tempString(item.valueName, data[0]) : ''}</div>
               : getFieldDecorator(item.field, {
                 rules,
                 initialValue: item.data ? initVal : ''
@@ -654,10 +659,14 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
         );
       }
       getSelectComp(item, initVal, rules, getFieldDecorator) {
+        let data;
+        if (item.readonly && item.data) {
+          data = item.data.filter(v => v[item.keyName] === initVal);
+        }
         return (
           <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
             {
-              item.readonly ? <div className="readonly-text">{item.data ? item.data[0][item.valueName] || tempString(item.valueName, item.data[0]) : ''}</div>
+              item.readonly ? <div className="readonly-text">{data ? data[0][item.valueName] || tempString(item.valueName, data[0]) : ''}</div>
               : getFieldDecorator(item.field, {
                 rules,
                 initialValue: item.data ? initVal : ''
@@ -665,6 +674,9 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
                 <Select
                   showSearch
                   allowClear
+                  onChange={(val) => {
+                    item.onChange && item.onChange(val);
+                  }}
                   optionFilterProp="children"
                   filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                   style={{ width: '100%' }}
@@ -994,7 +1006,7 @@ export const DetailWrapper = (mapStateToProps = state => state, mapDispatchToPro
       render() {
         return (
           <div>
-            <WrapComponent {...this.props} buildDetail={this.buildDetail}></WrapComponent>
+            <WrapComponent {...this.props} buildDetail={this.buildDetail} getSelectData={this.getSelectData}></WrapComponent>
             <ModalDetail
               title={this.state.modalOptions.title || ''}
               visible={this.state.modalVisible}

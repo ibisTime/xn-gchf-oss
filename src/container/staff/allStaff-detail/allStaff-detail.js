@@ -55,7 +55,7 @@ class AllStaffDetail extends React.Component {
       code: this.code,
       view: this.view,
       addCode: 631410,
-      detailCode: 631456,
+      detailCode: 631457,
       editCode: 631412
     });
   }
