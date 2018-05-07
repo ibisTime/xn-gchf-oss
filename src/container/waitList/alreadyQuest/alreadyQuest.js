@@ -10,7 +10,6 @@ import {
   setSearchData
 } from '@redux/waitList/alreadyQuest';
 import { listWrapper } from 'common/js/build-list';
-import { Button, Card } from 'antd';
 
 @listWrapper(
   state => ({

@@ -26,6 +26,10 @@ class UserAddEdit extends React.Component {
       mobile: true,
       required: true
     }, {
+      title: '用户名',
+      field: 'loginName',
+      required: true
+    }, {
       title: '真实姓名',
       field: 'realName',
       required: true
@@ -37,8 +41,7 @@ class UserAddEdit extends React.Component {
     }, {
       title: '用户类型',
       field: 'type',
-      type: 'select',
-      key: 'user_kind',
+      value: 'P',
       required: true
     }, {
       title: '备注',

@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import { Form, Spin, Button, Tree } from 'antd';
 import { getMenuBtnList, getRoleMenuBtnList } from 'api/menu';
 import { setRoleMenus } from 'api/user';
@@ -21,10 +22,11 @@ class RoleMenu extends React.Component {
     };
     this.code = getQueryString('code');
     this.name = getQueryString('name');
+    this.allMenuCode = cookies.get('roleCode');
   }
   componentDidMount() {
     Promise.all([
-      getMenuBtnList(),
+      getRoleMenuBtnList(this.allMenuCode),
       getRoleMenuBtnList(this.code)
     ]).then(([allData, checkData]) => {
       this.getTree(allData);

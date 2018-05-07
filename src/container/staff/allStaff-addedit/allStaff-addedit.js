@@ -50,18 +50,21 @@ class AllStaffAddEdit extends React.Component {
     }, {
       field: 'bankName',
       title: '银行名称',
-      type: 'select',
+      type: this.view ? '' : 'select',
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',
+      _keys: ['bankCard', 'bankName'],
       required: true
     }, {
       field: 'subbranch',
       title: '开户行',
+      _keys: ['bankCard', 'subbranch'],
       required: true
     }, {
       field: 'bankcardNumber',
       title: '银行卡号',
+      _keys: ['bankCard', 'bankcardNumber'],
       required: true
     }, {
       field: 'pict1',
@@ -101,8 +104,9 @@ class AllStaffAddEdit extends React.Component {
             param.bankName = data[0].bankName;
             param.updater = getUserId();
             this.props.doFetching();
-            console.log(param);
-            fetch(631410, param).then(() => {
+            var code = this.code ? '631412' : '631410';
+            console.log(code);
+            fetch(code, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
               setTimeout(() => {

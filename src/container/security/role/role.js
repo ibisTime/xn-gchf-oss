@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -100,7 +101,15 @@ class Role extends React.Component {
         }
       }
     };
-    return this.props.buildList({ fields, btnEvent, searchParams: { type: this.type }, pageCode: 631045, deleteCode: 631041 });
+    return this.props.buildList({
+      fields,
+      btnEvent,
+      searchParams: cookies.get('loginKind') === 'P' ? {}
+      : {'type': cookies.get('loginKind') === 'O' ? 'O'
+      : cookies.get('loginKind') === 'B' ? 'B' : 'S'},
+      pageCode: 631045,
+      deleteCode: 631041
+    });
     // return (
     //   <div>
     //     <input type="file" onChange={this.handleChange}/>

@@ -10,8 +10,6 @@ import {
   setSearchData
 } from '@redux/waitList/postRequest';
 import { listWrapper } from 'common/js/build-list';
-import { Button, Card, Modal } from 'antd';
-import { showWarnMsg, showSucMsg } from 'common/js/util';
 
 @listWrapper(
   state => ({

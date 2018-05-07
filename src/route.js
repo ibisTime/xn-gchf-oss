@@ -2,12 +2,20 @@ import asyncComponent from './component/async-component/async-component';
 
 const ROUTES = [
   {
+    path: '/home',
+    component: asyncComponent(() => import('container/home/home'))
+  },
+  {
     path: '/system/role',
     component: asyncComponent(() => import('container/security/role/role'))
   },
   {
     path: '/system/role/addedit',
     component: asyncComponent(() => import('container/security/role-addedit/role-addedit'))
+  },
+  {
+    path: '/security/role/menu',
+    component: asyncComponent(() => import('container/security/role-menu/role-menu'))
   },
   {
     path: '/system/menu',
@@ -44,27 +52,6 @@ const ROUTES = [
   {
     path: '/public/aboutus_addedit',
     component: asyncComponent(() => import('container/public/aboutus-addedit/aboutus-addedit'))
-  },
-
-  {
-    path: '/security/role',
-    component: asyncComponent(() => import('container/security/role/role'))
-  },
-  {
-    path: '/security/role/addedit',
-    component: asyncComponent(() => import('container/security/role-addedit/role-addedit'))
-  },
-  {
-    path: '/security/role/menu',
-    component: asyncComponent(() => import('container/security/role-menu/role-menu'))
-  },
-  {
-    path: '/security/menu',
-    component: asyncComponent(() => import('container/security/menu/menu'))
-  },
-  {
-    path: '/security/menu/addedit',
-    component: asyncComponent(() => import('container/security/menu-addedit/menu-addedit'))
   },
   {
     path: '/security/user/resetPwd',
@@ -118,35 +105,6 @@ const ROUTES = [
     path: '/general/textParam/addedit',
     component: asyncComponent(() => import('container/general/text-param-addedit/text-param-addedit'))
   },
-
-  {
-    path: '/finance/breakBalance',
-    component: asyncComponent(() => import('container/finance/account/account'))
-  },
-  {
-    path: '/finance/breakBalance/ledger',
-    component: asyncComponent(() => import('container/finance/ledger/ledger'))
-  },
-  {
-    path: '/finance/breakBalance/ledger/addedit',
-    component: asyncComponent(() => import('container/finance/ledger-addedit/ledger-addedit'))
-  },
-  {
-    path: '/finance/platform_ledger',
-    component: asyncComponent(() => import('container/finance/platform-ledger/platform-ledger'))
-  },
-  {
-    path: '/finance/platform_ledger/addedit',
-    component: asyncComponent(() => import('container/finance/ledger-addedit/ledger-addedit'))
-  },
-  {
-    path: '/finance/diviAddress',
-    component: asyncComponent(() => import('container/finance/dist-addr/dist-addr'))
-  },
-  {
-    path: '/finance/diviAddress/ledger',
-    component: asyncComponent(() => import('container/finance/dist-addr-ledger/dist-addr-ledger'))
-  },
   {
     path: '/newProj/companyConstruct',
     component: asyncComponent(() => import('container/newProj/companyConstruct/companyConstruct'))
@@ -163,29 +121,49 @@ const ROUTES = [
     path: '/newProj/addBumen',
     component: asyncComponent(() => import('container/newProj/addBumen/addBumen'))
   },
-  // {
-  //   path: '/projectManage/project',
-  //   component: asyncComponent(() => import('container/newProj/project/project'))
-  // },
   {
     path: '/newProj/project/edit',
     component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
   },
-  // {
-  //   path: '/newProj/project/detail',
-  //   component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
-  // },
   {
     path: '/newProj/project/check',
     component: asyncComponent(() => import('container/newProj/project-check/project-check'))
   },
   {
-    path: '/newProj/project/end',
+    path: '/projectManage/project/end',
     component: asyncComponent(() => import('container/newProj/project-end/project-end'))
+  },
+  {
+    path: '/projectManage/project/stop',
+    component: asyncComponent(() => import('container/newProj/project-stop/project-stop'))
+  },
+  {
+    path: '/projectManage/project/leijifaxin',
+    component: asyncComponent(() => import('container/newProj/project-leijifaxin/project-leijifaxin'))
+  },
+  {
+    path: '/newProj/project/kaoqin',
+    component: asyncComponent(() => import('container/newProj/project-kaoqin/project-kaoqin'))
+  },
+  {
+    path: '/newProj/project/salary',
+    component: asyncComponent(() => import('container/newProj/project-salary/project-salary'))
+  },
+  {
+    path: '/newProj/project/salary/edit',
+    component: asyncComponent(() => import('container/newProj/project-salary-edit/project-salary-edit'))
+  },
+  {
+    path: '/newProj/project/salary/check',
+    component: asyncComponent(() => import('container/newProj/project-salary-check/project-salary-check'))
   },
   {
     path: '/projectManage/project/addedit',
     component: asyncComponent(() => import('container/newProj/project-addedit/project-addedit'))
+  },
+  {
+    path: '/projectManage/project/daka',
+    component: asyncComponent(() => import('container/newProj/project-daka/project-daka'))
   },
   {
     path: '/yewuManage/account',
@@ -236,12 +214,48 @@ const ROUTES = [
     component: asyncComponent(() => import('container/people/wugong-addedit/wugong-addedit'))
   },
   {
+    path: '/people/wugong/break',
+    component: asyncComponent(() => import('container/people/wugong-break/wugong-break'))
+  },
+  {
+    path: '/people/wugong/leave',
+    component: asyncComponent(() => import('container/people/wugong-leave/wugong-leave'))
+  },
+  {
+    path: '/people/history',
+    component: asyncComponent(() => import('container/people/history/history'))
+  },
+  {
     path: '/staff/allStaff',
     component: asyncComponent(() => import('container/staff/allStaff/allStaff'))
   },
   {
     path: '/staff/allStaff/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
+  },
+  {
+    path: '/staff/allStaff/error',
+    component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
+  },
+  {
+    path: '/staff/error',
+    component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
+  },
+  {
+    path: '/staff/allStaff/error/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
+  },
+  {
+    path: '/staff/allStaff/history',
+    component: asyncComponent(() => import('container/staff/allStaff-history/allStaff-history'))
+  },
+  {
+    path: '/staff/allStaff/history/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
+  },
+  {
+    path: '/staff/allStaff/detail',
+    component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
   },
   {
     path: '/staff/bankCard',
@@ -264,16 +278,32 @@ const ROUTES = [
     component: asyncComponent(() => import('container/daifa/daifa-addedit/daifa-addedit'))
   },
   {
-    path: '/demo/export',
-    component: asyncComponent(() => import('container/demo/export_import'))
+    path: '/newId/bank',
+    component: asyncComponent(() => import('container/newId/bank/bank'))
+  },
+  {
+    path: '/newId/bank/addedit',
+    component: asyncComponent(() => import('container/newId/bank-addedit/bank-addedit'))
+  },
+  {
+    path: '/newId/yezhu',
+    component: asyncComponent(() => import('container/newId/yezhu/yezhu'))
+  },
+  {
+    path: '/newId/yezhu/addedit',
+    component: asyncComponent(() => import('container/newId/yezhu-addedit/yezhu-addedit'))
+  },
+  {
+    path: '/newId/supervise',
+    component: asyncComponent(() => import('container/newId/supervise/supervise'))
+  },
+  {
+    path: '/newId/supervise/addedit',
+    component: asyncComponent(() => import('container/newId/supervise-addedit/supervise-addedit'))
   },
   {
     path: '/projectManage/project',
     component: asyncComponent(() => import('container/dailiManage/map/map3'))
-  },
-  {
-    path: '/demo/export',
-    component: asyncComponent(() => import('container/sss/export_import'))
   }
 ];
 

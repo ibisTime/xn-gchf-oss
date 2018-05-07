@@ -55,8 +55,7 @@ class DaifaAddEdit extends React.Component {
       field: 'status',
       title: '状态',
       type: 'select',
-      key: 'message_status',
-      searcH: true
+      key: 'message_status'
     }, {
       field: 'createDatetime',
       title: '创建时间',

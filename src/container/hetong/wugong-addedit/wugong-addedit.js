@@ -52,6 +52,11 @@ class WugongAddEdit extends React.Component {
       value: this.projectCode,
       hidden: true
     }, {
+      field: 'staffName',
+      title: '工人姓名',
+      _keys: ['staff', 'name'],
+      hidden: !this.view
+    }, {
       field: 'staffCode',
       title: '工人编号',
       value: this.staffCode,

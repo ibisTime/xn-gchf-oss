@@ -42,6 +42,7 @@ export function cancelFetching() {
 }
 
 export function setSelectData(data) {
+  console.log('set', data);
   return { type: SET_SELECT_DATA, payload: data };
 }
 

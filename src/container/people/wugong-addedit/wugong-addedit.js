@@ -24,6 +24,8 @@ class PWugongAddedit extends React.Component {
     };
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.break = !!getQueryString('break', this.props.location.search);
+    this.leave = !!getQueryString('leave', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   componentDidMount() {
@@ -50,7 +52,7 @@ class PWugongAddedit extends React.Component {
         updater: ''
       },
       keyName: 'staffCode',
-      valueName: 'staffCode',
+      valueName: 'staffName',
       required: true
     }, {
       field: 'type',
@@ -87,8 +89,31 @@ class PWugongAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
+    const break1 = [{
+      field: 'startDatetime',
+      title: '开始时间',
+      type: 'date',
+      required: true
+    }, {
+      field: 'endDatetime',
+      title: '结束时间',
+      type: 'date',
+      required: true
+    }, {
+      field: 'remark',
+      title: '备注'
+    }];
+    const leave1 = [{
+      field: 'leavingDatetime',
+      title: '离职时间',
+      type: 'date',
+      required: true
+    }, {
+      field: 'remark',
+      title: '备注'
+    }];
     return this.state.departmentCode ? this.props.buildDetail({
-      fields,
+      fields: this.break ? this.break1 : this.leave ? this.leave1 : this.field,
       key: 'id',
       code: this.code,
       view: this.view,

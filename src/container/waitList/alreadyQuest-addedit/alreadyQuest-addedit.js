@@ -9,9 +9,12 @@ import {
 } from '@redux/waitList/alreadyQuest-addedit';
 import { getQueryString, showSucMsg, formatDate, showWarnMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
+<<<<<<< HEAD
 import { Button } from 'antd';
 import { downLoad } from 'api/downLoad';
 import XLSX from 'xlsx';
+=======
+>>>>>>> cb2cfebf8270274cdab2c89548d1ce3d6189302c
 
 @DetailWrapper(
   state => state.waitListAlreadyQuestAddedit,

@@ -30,8 +30,8 @@ class Wugong extends React.Component {
       field: 'projectName',
       title: '工程名称'
     }, {
-      field: 'staffCode',
-      title: '务工人员ID'
+      field: 'staffName',
+      title: '工人姓名'
     }, {
       field: 'staffMobile',
       title: '手机号'
@@ -47,21 +47,56 @@ class Wugong extends React.Component {
       title: '更新时间',
       type: 'datetime'
     }];
-    const btnEvent = {
-      add: (selectedRowKeys, selectedRows) => {
-        this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
-      },
-      edit: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+    // const btnEvent = {
+    //   add: (selectedRowKeys, selectedRows) => {
+    //     this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
+    //   },
+    //   edit: (selectedRowKeys, selectedRows) => {
+    //     if (!selectedRowKeys.length) {
+    //       showWarnMsg('请选择记录');
+    //     } else if (selectedRowKeys.length > 1) {
+    //       showWarnMsg('请选择一条记录');
+    //     } else {
+    //       this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+    //     }
+    //   }
+    // };
+    return this.props.buildList({
+      fields,
+      searchParams: { projectCode: this.projectCode },
+      buttons: [{
+        code: 'add',
+        name: '合同录入',
+        handler: (selectedRowKeys, selectedRows) => {
+          this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
         }
-      }
-    };
-    return this.props.buildList({ fields, btnEvent, searchParams: { projectCode: this.projectCode }, pageCode: 631405 });
+      }, {
+        code: 'edit',
+        name: '修改',
+        handler: (selectedRowKeys, selectedRows) => {
+          if (!selectedRowKeys.length) {
+            showWarnMsg('请选择记录');
+          } else if (selectedRowKeys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+          }
+        }
+      }, {
+        code: 'detail',
+        name: '详情',
+        handler: (selectedRowKeys, selectedRows) => {
+          if (!selectedRowKeys.length) {
+            showWarnMsg('请选择记录');
+          } else if (selectedRowKeys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            this.props.history.push(`/hetong/wugong/addedit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+          }
+        }
+      }],
+      pageCode: 631405
+    });
   }
 }
 

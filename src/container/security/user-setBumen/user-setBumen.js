@@ -22,24 +22,38 @@ class UserSetBummen extends React.Component {
     this.code = getQueryString('userId', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
-  componentDidMount() {
-    getUserDetail(cookies.get('userId')).then(data => {
-      this.companyCode = data.companyCode;
-    });
-  }
+  // componentDidMount() {
+  //   getUserDetail(cookies.get('userId')).then(data => {
+  //     this.companyCode = data.companyCode;
+  //   });
+  // }
   render() {
     const fields = [{
       title: '用户名',
       field: 'loginName',
       required: true
     }, {
+      title: '公司',
+      field: 'companyCode',
+      type: 'select',
+      listCode: '631026',
+      onChange: (val) => {
+        this.companyCode = val;
+        this.props.getSelectData({
+          field: 'departmentCode',
+          listCode: 631036,
+          params: {
+            companyCode: val
+          }
+        });
+      },
+      keyName: 'code',
+      valueName: 'name',
+      required: true
+    }, {
       title: '部门',
       field: 'departmentCode',
       type: 'select',
-      listCode: '631036',
-      params: {
-        companyCode: this.companyCode
-      },
       keyName: 'code',
       valueName: 'name',
       required: true

@@ -26,37 +26,29 @@ class ProjectEnd extends React.Component {
       bankCode: '',
       companyCode: ''
     };
-    this.code = getQueryString('code', this.props.location.search);
+    this.code = getQueryString('projectCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
-  componentDidMount() {
-      getUserDetail(cookies.get('userId')).then(data => {
-        this.getUserDetail(data.departmentCode, data.companyCode);
-      });
-  }
-  getUserDetail(departmentCode, companyCode) {
-    // let b = a;
-    // this.departmentCode = de;
-    this.setState({ departmentCode: departmentCode, companyCode: companyCode });
-    console.log(this.state.departmentCode);
-  }
+  // componentDidMount() {
+  //     getUserDetail(cookies.get('userId')).then(data => {
+  //       this.getUserDetail(data.departmentCode, data.companyCode);
+  //     });
+  // }
+  // getUserDetail(departmentCode, companyCode) {
+  //   // let b = a;
+  //   // this.departmentCode = de;
+  //   this.setState({ departmentCode: departmentCode, companyCode: companyCode });
+  //   console.log(this.state.departmentCode);
+  // }
   render() {
-    const fields = [{
+    const fields = [
+      {
       field: 'name',
       title: '项目名称',
       required: true
     }, {
       field: 'chargeUser',
-      title: '负责人',
-      type: 'select',
-      listCode: '631086',
-      params: {
-        departmentCode: this.state.departmentCode,
-        type: 'O'
-      },
-      keyName: 'userId',
-      valueName: 'loginName',
-      required: true
+      title: '负责人'
     }, {
       field: 'quyu',
       title: '地区',
@@ -116,8 +108,8 @@ class ProjectEnd extends React.Component {
       required: true,
       readonly: false
     }];
-    return this.state.departmentCode ? this.props.buildDetail({
-      fields: fields,
+    return this.props.buildDetail({
+      fields,
       key: 'code',
       code: this.code,
       view: this.view,
@@ -140,7 +132,7 @@ class ProjectEnd extends React.Component {
             }).catch(this.props.cancelFetching);
         }
       }]
-    }) : null;
+    });
   }
 }
 

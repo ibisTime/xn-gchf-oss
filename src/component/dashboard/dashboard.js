@@ -1,6 +1,8 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import { Layout, Menu, Breadcrumb, Icon, Dropdown, Button } from 'antd';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Link } from 'react-router-dom';
+import { Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import {
   getMenuList,
@@ -20,6 +22,7 @@ import logo from './logo.svg';
 const { SubMenu, Item } = Menu;
 const { Header, Content, Sider } = Layout;
 const Home = asyncComponent(() => import('../../container/home/home'));
+const Role = asyncComponent(() => import('../../container/security/role/role'));
 
 @connect(
   state => state.menu,
@@ -31,6 +34,7 @@ class Dashboard extends React.Component {
     this.state = {
       collapsed: false
     };
+    this.homePage = cookies.get('loginKind') === 'B' ? Home : Role;
     this.toggle = this.toggle.bind(this);
     this.handleTopMenuClick = this.handleTopMenuClick.bind(this);
     this.handleSubMenuClick = this.handleSubMenuClick.bind(this);
@@ -51,19 +55,25 @@ class Dashboard extends React.Component {
     });
   }
   handleTopMenuClick(e) {
-    this.props.setTopCode(e.key);
-    let leftMenu = this.props.top2SubObj[e.key][0];
-    leftMenu = leftMenu.children ? leftMenu.children[0] : leftMenu;
-    let url = leftMenu.url.split('.')[0];
-    this.props.history.push(url);
+    if (e.key) {
+      this.props.setTopCode(e.key);
+      let leftMenu = this.props.top2SubObj[e.key][0];
+      leftMenu = leftMenu.children ? leftMenu.children[0] : leftMenu;
+      let url = leftMenu.url.split('.')[0];
+      this.props.history.push(url);
+    }
   }
   handleSubMenuClick(e) {
-    this.props.setSubMenuCode(e.key);
-    let url = this.props.menus[e.key].url.split('.')[0];
-    this.props.history.push(url);
+    if (e.key) {
+      this.props.setSubMenuCode(e.key);
+      let url = this.props.menus[e.key].url.split('.')[0];
+      this.props.history.push(url);
+    }
   }
   handleTitleClick(e) {
-    this.props.setSubOpenCode(e.key);
+    if (e.key) {
+      this.props.setSubOpenCode(e.key);
+    }
   }
   getRoutes() {
     return ROUTES.map(v => <Route key={v.path} exact path={v.path} component={v.component}></Route>);
@@ -175,7 +185,13 @@ class Dashboard extends React.Component {
             </Breadcrumb>
             <Content className="right-content">
               <Switch>
-                <Route path='/' exact component={Home}></Route>
+                <Route exact path="/" render={() => (
+                cookies.get('loginKind') === 'B' ? (
+                <Redirect to="/home"/>
+              ) : (
+                <Redirect to="/system/role"/>
+                )
+              )}/>
                 {this.props.topMenuList.length ? this.getRoutes() : null}
               </Switch>
             </Content>

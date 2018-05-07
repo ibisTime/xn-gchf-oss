@@ -25,9 +25,7 @@ class RoleMenu extends React.Component {
     this.name = getQueryString('name');
   }
   componentDidMount() {
-    Promise.all([
-        getCompany()
-    ]).then((companyData) => {
+    getCompany().then((companyData) => {
       this.getTree(companyData);
       this.setState({
         fetching: false
@@ -39,16 +37,17 @@ class RoleMenu extends React.Component {
   }
   getTree(data) {
     let result = [];
-    data.forEach(item => {
-        item.map(v => {
+    data.forEach(v => {
+        // item.map(v => {
             result.push({
                 title: v.name,
                 key: v.code
-            });
+            // });
         });
     });
     this.result = result;
     this.setState({ treeData: this.result });
+    console.log(this.state.treeData);
   }
   getTreeNode(arr, children) {
     if(arr) {
@@ -179,7 +178,7 @@ class RoleMenu extends React.Component {
     }
   }
   editBumen = () => {
-    if(this.state.selectKey !== '') {
+    if(this.state.selectKey !== '' && this.companyCodeObj[this.state.selectKey] !== undefined) {
         let companyCode = this.companyCodeObj[this.state.selectKey];
         this.props.history.push(`/newProj/addBumen?code=${this.state.selectKey}&companyCode=${companyCode}`);
     }else {

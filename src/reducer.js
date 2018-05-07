@@ -26,13 +26,7 @@ import { waitListAlreadyQuest } from './redux/waitList/alreadyQuest';
 import { waitListAlreadyQuestAddedit } from './redux/waitList/alreadyQuest-addedit';
 import { generalTextParam } from './redux/general/text-param';
 import { generalTextParamAddEdit } from './redux/general/text-param-addedit';
-import { financeAccount } from './redux/finance/account';
-import { financeLedger } from './redux/finance/ledger';
 import { dailiManageMap } from './redux/dailiManage/map';
-import { financeLedgerAddEdit } from '@redux/finance/ledger-addedit';
-import { financePlatformLedger } from '@redux/finance/platform-ledger';
-import { financeDistAddr } from '@redux/finance/dist-addr';
-import { financeDistAddrLedger } from '@redux/finance/dist-addr-ledger';
 import { newProjCompanyConstruct } from './redux/newProj/companyConstruct';
 import { newProjBumenConstruct } from './redux/newProj/bumenConstruct';
 import { newProjAddCompany } from './redux/newProj/addCompany';
@@ -40,8 +34,15 @@ import { newProjAddBumen } from './redux/newProj/addBumen';
 import { newProjProject } from './redux/newProj/project';
 import { newprojProjectAddEdit } from './redux/newProj/project-addedit';
 import { newprojProjectEdit } from './redux/newProj/project-edit';
+import { newProjProjectDaka } from './redux/newProj/project-daka';
 import { newprojProjectCheck } from './redux/newProj/project-check';
 import { newprojProjectEnd } from './redux/newProj/project-end';
+import { newprojProjectStop } from './redux/newProj/project-stop';
+import { newProjProjectLeijifaxin } from './redux/newProj/project-leijifaxin';
+import { newProjProjectSalary } from './redux/newProj/project-salary';
+import { newProjProjectSalaryEdit } from './redux/newProj/project-salary-edit';
+import { newProjProjectSalaryCheck } from './redux/newProj/project-salary-check';
+import { newProjKaoqin } from './redux/newProj/project-kaoqin';
 import { yewuManageAccount } from './redux/yewuManage/account';
 import { yewuManageAccountAddEdit } from './redux/yewuManage/account-addedit';
 import { hetongChengbaoshang } from './redux/hetong/chengbaoshang';
@@ -53,13 +54,25 @@ import { hetongWugongAddEdit } from './redux/hetong/wugong-addedit';
 import { hetongStaff } from './redux/hetong/staff';
 import { peopleWugong } from './redux/people/wugong';
 import { peopleWugongAddEdit } from './redux/people/wugong-addedit';
+import { peopleWugongBreak } from './redux/people/wugong-break';
+import { peopleWugongLeave } from './redux/people/wugong-leave';
+import { peopleHistory } from './redux/people/history';
 import { staffAllStaff } from './redux/staff/allStaff';
 import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
+import { staffAllStaffError } from './redux/staff/allStaff-error';
+import { staffAllStaffHistory } from './redux/staff/allStaff-history';
+import { staffAllStaffDetail } from './redux/staff/allStaff-detail';
 import { staffBankCard } from './redux/staff/bankCard';
 import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
 import { staffBaogong } from './redux/staff/baogong';
 import { daifaDaifa } from './redux/daifa/daifa';
 import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
+import { newIdBank } from './redux/newId/bank';
+import { newIdBankAddEdit } from './redux/newId/bank-addedit';
+import { newIdYezhu } from './redux/newId/yezhu';
+import { newIdYezhuAddEdit } from './redux/newId/yezhu-addedit';
+import { newIdSupervise } from './redux/newId/supervise';
+import { newIdSuperviseAddEdit } from './redux/newId/supervise-addedit';
 
 export default combineReducers({
   user,
@@ -89,12 +102,6 @@ export default combineReducers({
   waitListAlreadyQuestAddedit,
   generalTextParam,
   generalTextParamAddEdit,
-  financeAccount,
-  financeLedger,
-  financeLedgerAddEdit,
-  financePlatformLedger,
-  financeDistAddr,
-  financeDistAddrLedger,
   newProjCompanyConstruct,
   newProjBumenConstruct,
   newProjAddCompany,
@@ -102,8 +109,15 @@ export default combineReducers({
   newProjProject,
   newprojProjectAddEdit,
   newprojProjectEdit,
+  newProjProjectDaka,
   newprojProjectCheck,
   newprojProjectEnd,
+  newprojProjectStop,
+  newProjProjectLeijifaxin,
+  newProjProjectSalary,
+  newProjProjectSalaryEdit,
+  newProjProjectSalaryCheck,
+  newProjKaoqin,
   yewuManageAccount,
   yewuManageAccountAddEdit,
   hetongChengbaoshang,
@@ -115,11 +129,23 @@ export default combineReducers({
   hetongStaff,
   peopleWugong,
   peopleWugongAddEdit,
+  peopleWugongBreak,
+  peopleWugongLeave,
+  peopleHistory,
   staffAllStaff,
   staffAllStaffAddEdit,
+  staffAllStaffError,
+  staffAllStaffHistory,
+  staffAllStaffDetail,
   staffBaogong,
   staffBankCard,
   staffBankCardAddEdit,
   daifaDaifa,
-  daifaDaifaAddEdit
+  daifaDaifaAddEdit,
+  newIdBank,
+  newIdBankAddEdit,
+  newIdYezhu,
+  newIdYezhuAddEdit,
+  newIdSupervise,
+  newIdSuperviseAddEdit
 });

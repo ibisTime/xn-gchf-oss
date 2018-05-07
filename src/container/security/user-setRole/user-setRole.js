@@ -30,6 +30,9 @@ class UserAddEdit extends React.Component {
       field: 'roleCode',
       type: 'select',
       listCode: '631046',
+      params: {
+        updater: ''
+      },
       keyName: 'code',
       valueName: 'name',
       required: true

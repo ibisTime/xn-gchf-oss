@@ -32,14 +32,14 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.
-const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
-const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
+const WARN_AFTER_BUNDLE_GZIP_SIZE = 4 * 512 * 1024;
+const WARN_AFTER_CHUNK_GZIP_SIZE = 2 * 1024 * 1024;
 
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
-
+var start = new Date();
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
@@ -70,7 +70,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
       } else {
         console.log(chalk.green('Compiled successfully.\n'));
       }
-
+      var end = new Date();
+      console.log('耗时：' + ((end.getTime() - start.getTime()) / 1000) + 'S');
       console.log('File sizes after gzip:\n');
       printFileSizesAfterBuild(
         stats,
