@@ -31,7 +31,8 @@ class PostRequest extends React.Component {
       type: 'datetime'
     }, {
       title: '发件人',
-      field: 'sender'
+      field: 'sendName',
+      search: true
     }, {
       title: '标题',
       field: 'title'
@@ -40,11 +41,34 @@ class PostRequest extends React.Component {
       field: 'status',
       type: 'select',
       search: true,
-      key: 'message_status'
+      data: [{
+        key: '1',
+        value: '待处理'
+      }, {
+        key: '2',
+        value: '待反馈'
+      }],
+      keyName: 'key',
+      valueName: 'value'
     }];
     return this.props.buildList({
       fields,
-      pageCode: 631435
+      searchParams: {
+        statusList: [1, 2]
+      },
+      pageCode: 631435,
+      btnEvent: {
+        detail: (selectedRowKeys, selectedRows) => {
+          if (!selectedRowKeys.length) {
+            showWarnMsg('请选择记录');
+          } else if (selectedRowKeys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            let url = `${this.props.location.pathname}/addedit?v=1&code=${selectedRowKeys[0]}&status=${selectedRows[0].status}`;
+            this.props.history.push(url);
+          }
+        }
+      }
     });
   }
 }
