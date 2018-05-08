@@ -13,16 +13,21 @@ const FormItem = Form.Item;
   { login }
 )
 class Login extends React.Component {
-  handleSubmit = (e) => {
-    // console.log(window.location.href);
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log(window.location.port);
+  constructor(props) {
+    super(props);
         this.type = window.location.port === '2505' ? 'S'
         : window.location.port === '2506' ? 'B'
         : window.location.port === '2507' ? 'O'
         : window.location.port === '2508' ? 'P' : 'O';
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.type = window.location.port === '2505' ? 'S'
+        : window.location.port === '2506' ? 'B'
+        : window.location.port === '2507' ? 'O'
+        : window.location.port === '2508' ? 'P' : 'S';
         // this.setState({ loading: true })
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户
@@ -52,7 +57,7 @@ class Login extends React.Component {
               }]
             })(
               <div className="input-border">
-                <Input prefix={<span style={{color: '#b0d1f6'}}>手机号</span>} placeholder="用户名" />
+                <Input prefix={<span style={{color: '#b0d1f6'}}>登录名</span>} placeholder="登录名" />
               </div>
             )}
           </FormItem>
@@ -88,7 +93,7 @@ class Login extends React.Component {
               : this.type === 'O'
               ? <div><img src="../img/qiye.png" /><span>业主端</span></div>
               : this.type === 'B'
-              ? <div><img src="../img/qiye.png" /><span>银行端</span></div>
+              ? <div><img src="../img/yinhang.png" /><span>银行端</span></div>
               : <div><img src="../img/qiye.png" /><span>平台端</span></div>
             }
         </div>

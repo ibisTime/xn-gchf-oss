@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import { Form, Spin, Button, Tree, Modal } from 'antd';
 import { getCompany, getBumen, deleteCompany1, deleteBumen1 } from 'api/company';
 import { setRoleMenus } from 'api/user';
@@ -213,14 +214,16 @@ class RoleMenu extends React.Component {
     const treeNodes = loop(this.state.treeData);
     return (
       <Spin spinning={this.state.fetching}>
-      <div className="tools-wrapper" style={{ marginTop: 8 }}>
-        <button type="button" className="ant-btn" onClick={this.addCompany}><span>新增公司</span></button>
-        <button type="button" className="ant-btn" onClick={this.editCompany}><span>修改公司</span></button>
-        <button type="button" className="ant-btn" onClick={this.deleteCompany}><span>删除公司</span></button>
-        <button type="button" className="ant-btn" onClick={this.addBumen}><span>新增部门</span></button>
-        <button type="button" className="ant-btn" onClick={this.editBumen}><span>修改部门</span></button>
-        <button type="button" className="ant-btn" onClick={this.deleteBumen}><span>删除部门</span></button>
+      { cookies.get('loginKind') === 'S' ? null
+      : <div className="tools-wrapper" style={{ marginTop: 8 }}>
+          <button type="button" className="ant-btn" onClick={this.addCompany}><span>新增公司</span></button>
+          <button type="button" className="ant-btn" onClick={this.editCompany}><span>修改公司</span></button>
+          <button type="button" className="ant-btn" onClick={this.deleteCompany}><span>删除公司</span></button>
+          <button type="button" className="ant-btn" onClick={this.addBumen}><span>新增部门</span></button>
+          <button type="button" className="ant-btn" onClick={this.editBumen}><span>修改部门</span></button>
+          <button type="button" className="ant-btn" onClick={this.deleteBumen}><span>删除部门</span></button>
         </div>
+      }
         <Form className="detail-form-wrapper" onSubmit={this.handleSubmit}>
           <FormItem key='treeMenu' {...formItemLayout} >
             {this.state.treeData.length ? (

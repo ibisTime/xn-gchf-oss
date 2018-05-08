@@ -34,7 +34,6 @@ class Dashboard extends React.Component {
     this.state = {
       collapsed: false
     };
-    this.homePage = cookies.get('loginKind') === 'B' ? Home : Role;
     this.toggle = this.toggle.bind(this);
     this.handleTopMenuClick = this.handleTopMenuClick.bind(this);
     this.handleSubMenuClick = this.handleSubMenuClick.bind(this);
