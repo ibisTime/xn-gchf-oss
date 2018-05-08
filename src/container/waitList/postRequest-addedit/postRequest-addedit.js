@@ -27,7 +27,6 @@ function makeCols(refstr) {
   state => state.waitListPostReauestAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
 )
-
 class PostRequestAddedit extends React.Component {
   constructor(props) {
     super(props);
@@ -74,20 +73,29 @@ class PostRequestAddedit extends React.Component {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
       let data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      console.log(data);
+      console.log(data[6][6]);
+      let statusNum;
       data.forEach((d, i) => {
         if (i > 4) {
           d[7] = formatDate(d[7]);
+          if (d[6] === undefined || d[7] === undefined) {
+            showWarnMsg('请确定已发工资或发放日期填写完整填写！');
+            statusNum = true;
+          }
         }
       });
-      this.setState({ data: data, cols: makeCols(ws['!ref']) });
-      this.props.setPageData({
-        ...this.props.pageData,
-        payList: [{
-          uid: file.uid,
-          name: file.name,
-          status: 'done'
-        }]
-      });
+      if (!statusNum) {
+        this.setState({ data: data, cols: makeCols(ws['!ref']) });
+        this.props.setPageData({
+          ...this.props.pageData,
+          payList: [{
+            uid: file.uid,
+            name: file.name,
+            status: 'done'
+          }]
+        });
+      }
     };
     if (rABS) {
       reader.readAsBinaryString(file);
@@ -109,6 +117,10 @@ class PostRequestAddedit extends React.Component {
       field: 'title',
       formatter: (v, d) => {
         return v + '工资';
+      },
+      style: {
+        fontSize: '16px',
+        fontWeight: 600
       },
       readonly: true
     }, {
@@ -133,7 +145,7 @@ class PostRequestAddedit extends React.Component {
       field: 'download',
       readonly: true
     }, {
-      title: 'title',
+      title: '标题',
       field: 'title1',
       hidden: !this.fankui,
       _keys: ['title'],
@@ -163,7 +175,7 @@ class PostRequestAddedit extends React.Component {
         handler: (param) => {
           console.log(this);
           if (!this.props.pageData['payList'] || !this.props.pageData['payList'].length) {
-            showWarnMsg('请填写已发金额,发放时间！');
+            showWarnMsg('请上传文件！');
             return;
           }
           let payList = [];

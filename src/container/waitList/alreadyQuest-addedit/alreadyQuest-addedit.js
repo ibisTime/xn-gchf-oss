@@ -30,7 +30,7 @@ class AlreadyQuestAddedit extends React.Component {
     };
   };
   handleExport() {
-    downLoad().then((data) => {
+    downLoad(this.code).then((data) => {
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[1].projectCode],
@@ -73,6 +73,17 @@ class AlreadyQuestAddedit extends React.Component {
     }, {
       title: '下载次数',
       field: 'download'
+    }, {
+      title: '标题',
+      field: 'title1',
+      _keys: ['title'],
+      formatter: (v, d) => {
+        return v + '反馈';
+      }
+    }, {
+      title: '反馈时间',
+      field: 'handleDatetime',
+      type: 'datetime'
     }];
     return this.props.buildDetail({
       fields,
