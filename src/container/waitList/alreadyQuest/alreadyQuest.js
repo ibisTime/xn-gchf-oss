@@ -24,12 +24,13 @@ import { listWrapper } from 'common/js/build-list';
 class AlreadyQuest extends React.Component {
   render() {
     const fields = [{
-      title: '时间',
+      title: '请求时间',
       field: 'sendDatetime',
       type: 'datetime'
     }, {
       title: '发件人',
-      field: 'sender'
+      field: 'sendName',
+      search: true
     }, {
       title: '标题',
       field: 'title'
@@ -38,11 +39,15 @@ class AlreadyQuest extends React.Component {
       field: 'status',
       key: 'message_status',
       type: 'select'
+    }, {
+      title: '完成时间',
+      field: 'handleDatetime',
+      type: 'datetime'
     }];
     return this.props.buildList({
       fields,
       searchParams: {
-        status: 2
+        status: 3
       },
       pageCode: 631435
     });
