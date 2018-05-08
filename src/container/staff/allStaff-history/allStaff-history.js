@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -11,6 +12,7 @@ import {
 } from '@redux/staff/allStaff-history';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
@@ -23,6 +25,14 @@ import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
 class AllStaffHistory extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      companyCode: ''
+    };
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.staffCode = getQueryString('staffCode', this.props.location.search);
@@ -65,19 +75,34 @@ class AllStaffHistory extends React.Component {
         }
       }
     };
-    return this.props.buildList({
-      fields,
-      btnEvent,
-      searchParams: { staffCode: this.staffCode, type: '0' },
-      buttons: [{
-        code: 'detail',
-        name: '详情'
-        // handler: (selectedRowKeys, selectedRows) => {
-        //   this.props.history.push(`/staff/allStaff/detail?code=${selectedRowKeys[0]}`);
-        // }
-      }],
-      pageCode: 631455
-    });
+    if(cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildList({
+        fields,
+        btnEvent,
+        searchParams: {
+          staffCode: this.staffCode,
+          type: '0',
+          comapanyCode: this.state.companyCode,
+          kind: 'O'
+        },
+        buttons: [{
+          code: 'detail',
+          name: '详情'
+        }],
+        pageCode: 631455
+      }) : null;
+    }else {
+      return this.props.buildList({
+        fields,
+        btnEvent,
+        searchParams: { staffCode: this.staffCode, type: '0' },
+        buttons: [{
+          code: 'detail',
+          name: '详情'
+        }],
+        pageCode: 631455
+      });
+    }
   }
 }
 

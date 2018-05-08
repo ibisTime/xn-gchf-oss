@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -11,6 +12,7 @@ import {
 } from '@redux/newProj/project-leijifaxin';
 import { listWrapper } from 'common/js/build-list';
 import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
@@ -23,6 +25,14 @@ import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
 class Leijifaxin extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      companyCode: ''
+    };
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
     this.projectCode = getQueryString('code', this.props.location.search);
   }
   render() {
@@ -63,13 +73,28 @@ class Leijifaxin extends React.Component {
       search: true,
       hidden: true
     }];
-    return this.props.buildList({
-      fields,
-      searchParams: { projectCode: this.projectCode, updater: '' },
-      pageCode: 631448,
-      rowKey: 'staffCode',
-      buttons: []
-    });
+    if(cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildList({
+        fields,
+        searchParams: {
+          projectCode: this.projectCode,
+          updater: '',
+          companyCode: this.state.companyCode,
+          kind: 'O'
+        },
+        pageCode: 631448,
+        rowKey: 'staffCode',
+        buttons: []
+      }) : null;
+    }else {
+      return this.props.buildList({
+        fields,
+        searchParams: { projectCode: this.projectCode, updater: '' },
+        pageCode: 631448,
+        rowKey: 'staffCode',
+        buttons: []
+      });
+    }
   }
 }
 

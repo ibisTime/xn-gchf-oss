@@ -14,6 +14,7 @@ import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
 import ModalDetail from 'common/js/build-modal-detail';
 import fetch from 'common/js/fetch';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
@@ -27,8 +28,14 @@ class Salary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
+      companyCode: ''
     };
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   render() {
@@ -128,56 +135,113 @@ class Salary extends React.Component {
         }
       }]
     };
-    return(
-      <div>
-        {
-          this.props.buildList({
-            fields,
-            buttons: [{
-              code: 'edit',
-              name: '修改',
-              handler: (selectedRowKeys, selectedRows) => {
-                if (!selectedRowKeys.length) {
-                  showWarnMsg('请选择记录');
-                } else if (selectedRowKeys.length > 1) {
-                  showWarnMsg('请选择一条记录');
-                } else {
-                  if (selectedRows[0].status === '0') {
-                    this.props.history.push(`/newProj/project/salary/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+    if(cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? (
+        <div>
+          {
+            this.props.buildList({
+              fields,
+              buttons: [{
+                code: 'edit',
+                name: '修改',
+                handler: (selectedRowKeys, selectedRows) => {
+                  if (!selectedRowKeys.length) {
+                    showWarnMsg('请选择记录');
+                  } else if (selectedRowKeys.length > 1) {
+                    showWarnMsg('请选择一条记录');
                   } else {
-                    showWarnMsg('该状态的工资条不可修改');
+                    if (selectedRows[0].status === '0') {
+                      this.props.history.push(`/newProj/project/salary/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+                    } else {
+                      showWarnMsg('该状态的工资条不可修改');
+                    }
                   }
                 }
-              }
-            }, {
-              code: 'check',
-              name: '审核',
-              handler: (selectedRowKeys, selectedRows) => {
-                if (!selectedRowKeys.length) {
-                  showWarnMsg('请选择记录');
-                } else if (selectedRowKeys.length > 1) {
-                  showWarnMsg('请选择一条记录');
-                } else {
-                  if (selectedRows[0].status === '0') {
-                    this.code = selectedRowKeys[0];
-                    this.setState({ visible: true });
+              }, {
+                code: 'check',
+                name: '审核',
+                handler: (selectedRowKeys, selectedRows) => {
+                  if (!selectedRowKeys.length) {
+                    showWarnMsg('请选择记录');
+                  } else if (selectedRowKeys.length > 1) {
+                    showWarnMsg('请选择一条记录');
                   } else {
-                    showWarnMsg('该状态的工资条不可审核');
+                    if (selectedRows[0].status === '0') {
+                      this.code = selectedRowKeys[0];
+                      this.setState({ visible: true });
+                    } else {
+                      showWarnMsg('该状态的工资条不可审核');
+                    }
                   }
                 }
-              }
-            }],
-            searchParams: { projectCode: this.projectCode },
-            pageCode: 631445,
-            rowKey: 'code' })
-        }
-        <ModalDetail
-          title='修改密码'
-          visible={this.state.visible}
-          hideModal={() => this.setState({ visible: false })}
-          options={options} />
-      </div>
-    );
+              }],
+              searchParams: {
+                projectCode: this.projectCode,
+                companyCode: this.state.companyCode,
+                kind: 'O'
+              },
+              pageCode: 631445
+            })
+          }
+          <ModalDetail
+            title='修改密码'
+            visible={this.state.visible}
+            hideModal={() => this.setState({ visible: false })}
+            options={options} />
+        </div>
+      ) : null;
+    }else {
+      return(
+        <div>
+          {
+            this.props.buildList({
+              fields,
+              buttons: [{
+                code: 'edit',
+                name: '修改',
+                handler: (selectedRowKeys, selectedRows) => {
+                  if (!selectedRowKeys.length) {
+                    showWarnMsg('请选择记录');
+                  } else if (selectedRowKeys.length > 1) {
+                    showWarnMsg('请选择一条记录');
+                  } else {
+                    if (selectedRows[0].status === '0') {
+                      this.props.history.push(`/newProj/project/salary/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+                    } else {
+                      showWarnMsg('该状态的工资条不可修改');
+                    }
+                  }
+                }
+              }, {
+                code: 'check',
+                name: '审核',
+                handler: (selectedRowKeys, selectedRows) => {
+                  if (!selectedRowKeys.length) {
+                    showWarnMsg('请选择记录');
+                  } else if (selectedRowKeys.length > 1) {
+                    showWarnMsg('请选择一条记录');
+                  } else {
+                    if (selectedRows[0].status === '0') {
+                      this.code = selectedRowKeys[0];
+                      this.setState({ visible: true });
+                    } else {
+                      showWarnMsg('该状态的工资条不可审核');
+                    }
+                  }
+                }
+              }],
+              searchParams: { projectCode: this.projectCode },
+              pageCode: 631445
+            })
+          }
+          <ModalDetail
+            title='修改密码'
+            visible={this.state.visible}
+            hideModal={() => this.setState({ visible: false })}
+            options={options} />
+        </div>
+      );
+    }
   }
 }
 

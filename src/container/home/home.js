@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import fetch from 'common/js/fetch';
 import { getProjectList } from 'api/project';
 
@@ -11,7 +12,7 @@ class Home extends React.Component {
     this.markerClick = this.markerClick.bind(this);
   }
   componentDidMount() {
-    getProjectList().then(data => {
+    getProjectList(cookies.get('loginKind')).then(data => {
       console.log(data);
       this.map = new AMap.Map('container', {
         zoom: 6,

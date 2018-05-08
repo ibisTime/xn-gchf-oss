@@ -1,6 +1,7 @@
 import React from 'react';
 import cookies from 'browser-cookies';
 import { getProjectList, getProjectStatus } from 'api/project';
+import { getUserDetail } from 'api/user';
 import { dateFormat } from 'common/js/util';
 
 class Map3 extends React.Component {
@@ -9,14 +10,26 @@ class Map3 extends React.Component {
     this.state = {
       collapsed: false,
       stop: false,
-      start: false
+      start: false,
+      companyCode: ''
     };
     this.markerClick = this.markerClick.bind(this);
     this.addProject = this.addProject.bind(this);
+    this.createMap = this.createMap.bind(this);
   }
   componentDidMount() {
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+        this.createMap(data.companyCode);
+      });
+    }else {
+      this.createMap();
+    }
+  }
+  createMap(companyCode) {
     Promise.all([
-      getProjectList(),
+      getProjectList(cookies.get('loginKind'), companyCode),
       getProjectStatus()
     ]).then(([data, statusData]) => {
       this.map = new AMap.Map('container', {

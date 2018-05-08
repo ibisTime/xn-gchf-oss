@@ -14,6 +14,7 @@ import {
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
 import ModalDetail from 'common/js/build-modal-detail';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
@@ -30,8 +31,14 @@ class Daifa extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      code: ''
+      code: '',
+      companyCode: ''
     };
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
   }
   render() {
     const fields = [{
@@ -48,6 +55,57 @@ class Daifa extends React.Component {
       listCode: '631357',
       params: {
         updater: ''
+      },
+      keyName: 'name',
+      valueName: 'name'
+    }, {
+      field: 'title',
+      title: '标题'
+    }, {
+      field: 'content',
+      title: '内容'
+    }, {
+      field: 'status',
+      title: '状态',
+      search: true,
+      type: 'select',
+      key: 'message_status'
+    }, {
+      field: 'createDatetime',
+      title: '创建时间',
+      type: 'datetime'
+    }, {
+      field: 'handleDatetime',
+      title: '处理时间',
+      type: 'datetime'
+    }, {
+      field: 'handleNote',
+      title: '处理备注'
+    }, {
+      field: 'handler',
+      title: '处理人'
+    }, {
+      field: 'keyword',
+      search: true,
+      hidden: true,
+      title: '关键字'
+    }];
+    const fieldso = [{
+      field: 'code',
+      title: '编号'
+    }, {
+      field: 'projectCode',
+      title: '项目编号'
+    }, {
+      field: 'projectName',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: '',
+        kind: 'O',
+        companyCode: this.state.companyCode
       },
       keyName: 'name',
       valueName: 'name'
@@ -125,16 +183,47 @@ class Daifa extends React.Component {
       }],
       addCode: 631430
     };
-    return (
-      <div>
-        {this.props.buildList({ fields, btnEvent, pageCode: 631435, rowKey: 'code' })}
-        <ModalDetail
-          title='发送消息'
-          visible={this.state.visible}
-          hideModal={() => this.setState({ visible: false })}
-          options={options} />
-      </div>
-    );
+    if (cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? (
+            <div>
+              {this.props.buildList({
+                fields: fieldso,
+                btnEvent,
+                searchParams: {
+                  updater: '',
+                  companyCode: this.state.companyCode,
+                  kind: 'O'
+                },
+                pageCode: 631435,
+                rowKey: 'code'
+                })}
+              <ModalDetail
+                title='发送消息'
+                visible={this.state.visible}
+                hideModal={() => this.setState({ visible: false })}
+                options={options} />
+            </div>
+          ) : null;
+    }else {
+      return (
+        <div>
+          {this.props.buildList({
+            fields,
+            btnEvent,
+            searchParams: {
+              updater: ''
+            },
+            pageCode: 631435,
+            rowKey: 'code'
+            })}
+          <ModalDetail
+            title='发送消息'
+            visible={this.state.visible}
+            hideModal={() => this.setState({ visible: false })}
+            options={options} />
+        </div>
+      );
+    }
   }
 }
 

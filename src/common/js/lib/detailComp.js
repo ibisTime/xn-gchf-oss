@@ -614,7 +614,7 @@ export default class DetailComp extends React.Component {
       return (
         <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
           {
-            item.readonly ? <div className="readonly-text">{data ? data[0][item.valueName] || tempString(item.valueName, data[0]) : ''}</div>
+            item.readonly ? <div className="readonly-text">{data && data.length ? data[0][item.valueName] || tempString(item.valueName, data[0]) : ''}</div>
             : getFieldDecorator(item.field, {
               rules,
               initialValue: item.data ? initVal : ''
@@ -661,7 +661,7 @@ export default class DetailComp extends React.Component {
       return (
         <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
           {
-            item.readonly ? <div className="readonly-text">{data ? data[0][item.valueName] || tempString(item.valueName, data[0]) : ''}</div>
+            item.readonly ? <div className="readonly-text">{data && data.length ? data[0][item.valueName] || tempString(item.valueName, data[0]) : ''}</div>
             : getFieldDecorator(item.field, {
               rules,
               initialValue: item.data ? initVal : ''

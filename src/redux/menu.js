@@ -70,15 +70,15 @@ function setMenuList(data) {
 }
 
 // 获取菜单列表
-export function getMenuList(pathname) {
+export function getMenuList() {
   return dispatch => {
     getRoleMenuList().then(data => {
-      dispatch(setMenuList({ data, pathname }));
+      dispatch(setMenuList({ data }));
     }).catch(() => {});
   };
 }
 
-function _getMenuState({ data, pathname }) {
+function _getMenuState({ data }) {
   let result = {
     topMenuList: [],
     topMenuCode: '',
@@ -91,6 +91,7 @@ function _getMenuState({ data, pathname }) {
   let newList = getFilterList(result, data);
   createMenus(newList, result);
   sortSubMenus(result);
+  let pathname = location.pathname;
   if (pathname !== '/') {
     var pathArr = pathname.split('/').filter(v => v);
     let realPath = pathArr.slice(0, 2).join('/');

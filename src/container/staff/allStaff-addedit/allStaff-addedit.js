@@ -21,6 +21,7 @@ class AllStaffAddEdit extends React.Component {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
+    this.staffCode = getQueryString('staffCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   render() {
@@ -50,11 +51,11 @@ class AllStaffAddEdit extends React.Component {
     }, {
       field: 'bankName',
       title: '银行名称',
-      type: this.view ? '' : 'select',
+      type: 'select',
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',
-      _keys: ['bankCard', 'bankName'],
+      _keys: ['bankCard', 'bankCode'],
       required: true
     }, {
       field: 'subbranch',
@@ -90,7 +91,7 @@ class AllStaffAddEdit extends React.Component {
     }];
     return this.props.buildDetail({
       fields,
-      code: this.code,
+      code: this.staffCode,
       view: this.view,
       addCode: 631410,
       detailCode: 631417,

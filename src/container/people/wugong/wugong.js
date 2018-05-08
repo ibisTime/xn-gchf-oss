@@ -34,7 +34,7 @@ class PWugong extends React.Component {
     }, {
       field: 'name',
       title: '员工',
-      _keys: ['staff', 'pict1']
+      _keys: ['staff', 'name']
     }, {
       field: 'type',
       title: '员工类别',

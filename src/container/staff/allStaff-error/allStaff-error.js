@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -11,6 +12,7 @@ import {
 } from '@redux/staff/allStaff-error';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
@@ -23,11 +25,64 @@ import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
 class AllStaffError extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      companyCode: ''
+    };
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.staffCode = getQueryString('staffCode', this.props.location.search);
     }
   render() {
+    const fieldso = [{
+      field: 'code',
+      title: '编号'
+    }, {
+      field: 'projectCode',
+      title: '项目编号'
+    }, {
+      field: 'projectName',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: '',
+        kind: 'O',
+        companyCode: this.state.companyCode
+      },
+      keyName: 'name',
+      valueName: 'name'
+    }, {
+      field: 'salaryCode',
+      title: '工资条编号'
+    }, {
+      field: 'handleNote',
+      title: '操作描述'
+    }, {
+      field: 'handler',
+      title: '处理人',
+      listCode: '631086',
+      type: 'select',
+      search: true,
+      params: {
+        updater: '',
+        type: 'O'
+      },
+      keyName: 'userId',
+      valueName: 'loginName'
+    }, {
+      field: 'handleDatetime',
+      title: '处理时间',
+      type: 'datetime'
+    }, {
+      field: 'remark',
+      title: '备注'
+    }];
     const fields = [{
       field: 'code',
       title: '编号'
@@ -82,19 +137,34 @@ class AllStaffError extends React.Component {
         }
       }
     };
-    return this.props.buildList({
-      fields,
-      btnEvent,
-      searchParams: { staffCode: this.staffCode, type: '1' },
-      buttons: [{
-        code: 'detail',
-        name: '详情'
-        // handler: (selectedRowKeys, selectedRows) => {
-        //   this.props.history.push(`/staff/allStaff/detail?code=${selectedRowKeys[0]}`);
-        // }
-      }],
-      pageCode: 631455
-    });
+    if(cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildList({
+        fields: fieldso,
+        btnEvent,
+        searchParams: {
+          staffCode: this.staffCode,
+          type: '1',
+          companyCode: this.state.companyCode,
+          kind: 'O'
+        },
+        buttons: [{
+          code: 'detail',
+          name: '详情'
+        }],
+        pageCode: 631455
+      }) : null;
+    }else {
+      return this.props.buildList({
+        fields,
+        btnEvent,
+        searchParams: { staffCode: this.staffCode, type: '1' },
+        buttons: [{
+          code: 'detail',
+          name: '详情'
+        }],
+        pageCode: 631455
+      });
+    }
   }
 }
 

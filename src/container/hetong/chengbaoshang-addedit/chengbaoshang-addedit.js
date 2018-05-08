@@ -26,17 +26,15 @@ class ChengbaoshangAddEdit extends React.Component {
     };
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
   }
-  componentDidMount() {
-    getUserDetail(cookies.get('userId')).then(data => {
-      this.getUserDetail(data.companyCode);
-    });
-  }
-  getUserDetail(companyCode) {
-    this.setState({ companyCode: companyCode });
-  }
+
   render() {
-    const fields = [{
+    const fieldso = [{
       field: 'companyCode',
       title: '所属公司',
       value: this.state.companyCode,
@@ -47,7 +45,9 @@ class ChengbaoshangAddEdit extends React.Component {
       type: 'select',
       listCode: '631357',
       params: {
-        companyCode: this.state.companyCode
+        companyCode: this.state.companyCode,
+        updater: '',
+        kind: 'O'
       },
       keyName: 'code',
       valueName: 'name',
@@ -94,14 +94,83 @@ class ChengbaoshangAddEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.state.companyCode ? this.props.buildDetail({
-      fields,
-      code: this.code,
-      view: this.view,
-      addCode: 631370,
-      detailCode: 631377,
-      editCode: 631372
-    }) : null;
+    const fields = [{
+      field: 'companyCode',
+      title: '所属公司',
+      value: this.state.companyCode,
+      hidden: true
+    }, {
+      field: 'projectCode',
+      title: '所属工程',
+      type: 'select',
+      listCode: '631357',
+      params: {
+        updater: ''
+      },
+      keyName: 'code',
+      valueName: 'name',
+      required: true
+    }, {
+      field: 'bname',
+      title: '承包商名称',
+      required: true
+    }, {
+      field: 'bmobile',
+      title: '承包商手机号',
+      mobile: true,
+      required: true
+    }, {
+      field: 'contractDatetime',
+      title: '签约时间',
+      type: 'date',
+      required: true
+    }, {
+      field: 'contentPic',
+      title: '合同照片',
+      type: 'img',
+      single: true,
+      required: true
+    }, {
+      field: 'pict1',
+      title: '免冠照片',
+      type: 'img',
+      single: true,
+      required: true
+    }, {
+      field: 'pict2',
+      title: '手持身份证照片',
+      type: 'img',
+      single: true,
+      required: true
+    }, {
+      field: 'pict3',
+      title: '身份证正反面照片',
+      type: 'img',
+      single: true,
+      required: true
+    }, {
+      field: 'remark',
+      title: '备注'
+    }];
+    if(cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildDetail({
+        fields: fieldso,
+        code: this.code,
+        view: this.view,
+        addCode: 631370,
+        detailCode: 631377,
+        editCode: 631372
+      }) : null;
+    }else {
+      return this.props.buildDetail({
+        fields,
+        code: this.code,
+        view: this.view,
+        addCode: 631370,
+        detailCode: 631377,
+        editCode: 631372
+      });
+    }
   }
 }
 

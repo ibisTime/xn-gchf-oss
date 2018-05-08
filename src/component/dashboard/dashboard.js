@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
     this.getUserName = this.getUserName.bind(this);
   }
   componentDidMount() {
-    this.props.getMenuList(this.props.location.pathname);
+    this.props.getMenuList();
   }
   toggle() {
     if (this.state.collapsed) {
@@ -185,12 +185,12 @@ class Dashboard extends React.Component {
             <Content className="right-content">
               <Switch>
                 <Route exact path="/" render={() => (
-                cookies.get('loginKind') === 'B' ? (
-                <Redirect to="/home"/>
-              ) : (
-                <Redirect to="/system/role"/>
-                )
-              )}/>
+                  cookies.get('loginKind') === 'B' ? (
+                  <Redirect to="/home"/>
+                ) : (
+                  <Redirect to="/system/role"/>
+                  )
+                )}/>
                 {this.props.topMenuList.length ? this.getRoutes() : null}
               </Switch>
             </Content>

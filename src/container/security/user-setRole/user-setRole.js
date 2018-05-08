@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import {
   initStates,
   doFetching,
@@ -31,7 +32,8 @@ class UserAddEdit extends React.Component {
       type: 'select',
       listCode: '631046',
       params: {
-        updater: ''
+        updater: '',
+        type: cookies.get('loginKind') === 'P' ? '' : cookies.get('loginKind')
       },
       keyName: 'code',
       valueName: 'name',
