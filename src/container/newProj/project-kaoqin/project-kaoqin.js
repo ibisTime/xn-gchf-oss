@@ -1,4 +1,6 @@
 import React from 'react';
+import fetch from 'common/js/fetch';
+import XLSX from 'xlsx';
 import {
   setTableData,
   setPagination,
@@ -10,7 +12,7 @@ import {
   setSearchData
 } from '@redux/newProj/project-kaoqin';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -57,49 +59,56 @@ class Kaoqin extends React.Component {
     }, {
       field: 'remark',
       title: '备注'
+    }, {
+      field: 'keyName',
+      title: '关键字',
+      search: true,
+      hidden: true
     }];
-    const btnEvent = {
-      edit: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          if(selectedRows[0].status === '0') {
-            this.props.history.push(`/newProj/project/edit?code=${selectedRowKeys[0]}`);
-          }else {
-            showWarnMsg('该状态无法进行审核');
-          }
+    return this.props.buildList({
+      fields,
+      searchParams: { projectCode: this.projectCode },
+      pageCode: 631395,
+      buttons: [{
+        code: 'export',
+        name: '导出',
+        handler: (selectedRowKeys, selectedRows) => {
+          fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+            let tableData = [];
+            let title = [];
+            fields.map((item) => {
+              if(item.title !== '关键字') {
+                title.push(item.title);
+              }
+            });
+            tableData.push(title);
+            data.list.map((item) => {
+              let temp = [];
+              this.props.searchData.status.map((v) => {
+                if(v.dkey === item.status) {
+                  item.status = v.dvalue;
+                }
+              });
+              temp.push(item.projectName,
+                item.staffName,
+                item.staffMobile,
+                item.startDatetime,
+                item.endDatetime,
+                item.status,
+                item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
+                item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
+                item.remark
+              );
+              tableData.push(temp);
+            });
+            const ws = XLSX.utils.aoa_to_sheet(tableData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+            XLSX.writeFile(wb, 'sheetjs.xlsx');
+          });
         }
-      },
-      check: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          if(selectedRows[0].status === '1') {
-            this.props.history.push(`/newProj/project/check?v=1&code=${selectedRows[0].code}`);
-          }else {
-            showWarnMsg('该状态无法进行审核');
-          }
-        }
-      },
-      endProject: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          if(selectedRows[0].status !== '3') {
-            this.props.history.push(`/newProj/project/end?v=1&code=${selectedRows[0].code}`);
-          }else {
-            showWarnMsg('该项目已结束');
-          }
-        }
-      }
-    };
-    return this.props.buildList({ fields, btnEvent, searchParams: { projectCode: this.projectCode }, pageCode: 631395, rowKey: 'code' });
+      }]
+    });
   }
 }
 

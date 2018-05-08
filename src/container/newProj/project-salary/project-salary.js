@@ -1,5 +1,6 @@
 import React from 'react';
 import cookies from 'browser-cookies';
+import XLSX from 'xlsx';
 import {
   setTableData,
   setPagination,
@@ -11,7 +12,7 @@ import {
   setSearchData
 } from '@redux/newProj/project-salary';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, moneyFormat } from 'common/js/util';
 import ModalDetail from 'common/js/build-modal-detail';
 import fetch from 'common/js/fetch';
 import { getUserDetail } from 'api/user';
@@ -174,6 +175,55 @@ class Salary extends React.Component {
                     }
                   }
                 }
+              }, {
+                code: 'export',
+                name: '导出',
+                handler: (selectedRowKeys, selectedRows) => {
+                  fetch(631445, {
+                    projectCode: this.projectCode,
+                    companyCode: this.state.companyCode,
+                    kind: 'O'
+                  }).then((data) => {
+                    let tableData = [];
+                    let title = [];
+                    fields.map((item) => {
+                      if(item.title !== '关键字') {
+                        title.push(item.title);
+                      }
+                    });
+                    tableData.push(title);
+                    data.list.map((item) => {
+                      let temp = [];
+                      this.props.searchData.status.map((v) => {
+                        if(v.dkey === item.status) {
+                          item.status = v.dvalue;
+                        }
+                      });
+                      console.log(item.delayDays);
+                      temp.push(
+                        item.amount ? moneyFormat(item.amount) : '',
+                        item.cutAmount ? moneyFormat(item.cutAmount) : '',
+                        item.cutNote,
+                        item.delayDays,
+                        item.earlyDays,
+                        item.leavingDays,
+                        item.shouldAmount ? moneyFormat(item.shouldAmount) : '',
+                        item.factAmount ? moneyFormat(item.factAmount) : '',
+                        item.tax ? moneyFormat(item.tax) : '',
+                        item.month,
+                        item.payDatetime ? dateTimeFormat(item.payDatetime) : '',
+                        item.payAmount ? moneyFormat(item.payAmount) : '',
+                        item.status,
+                        item.remark
+                      );
+                      tableData.push(temp);
+                    });
+                    const ws = XLSX.utils.aoa_to_sheet(tableData);
+                    const wb = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+                    XLSX.writeFile(wb, 'sheetjs.xlsx');
+                  });
+                }
               }],
               searchParams: {
                 projectCode: this.projectCode,
@@ -228,6 +278,51 @@ class Salary extends React.Component {
                       showWarnMsg('该状态的工资条不可审核');
                     }
                   }
+                }
+              }, {
+                code: 'export',
+                name: '导出',
+                handler: (selectedRowKeys, selectedRows) => {
+                  fetch(631445, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+                    let tableData = [];
+                    let title = [];
+                    fields.map((item) => {
+                      if(item.title !== '关键字') {
+                        title.push(item.title);
+                      }
+                    });
+                    tableData.push(title);
+                    data.list.map((item) => {
+                      let temp = [];
+                      this.props.searchData.status.map((v) => {
+                        if(v.dkey === item.status) {
+                          item.status = v.dvalue;
+                        }
+                      });
+                      console.log('=========' + item.delayDays);
+                      temp.push(
+                        item.amount !== undefined ? moneyFormat(item.amount) : '',
+                        item.cutAmount !== undefined ? moneyFormat(item.cutAmount) : '',
+                        item.cutNote,
+                        item.delayDays !== undefined ? item.delayDays : '',
+                        item.earlyDays !== undefined ? item.earlyDays : '',
+                        item.leavingDays !== undefined ? item.leavingDays : '',
+                        item.shouldAmount !== undefined ? moneyFormat(item.shouldAmount) : '',
+                        item.factAmount !== undefined ? moneyFormat(item.factAmount) : '',
+                        item.tax !== undefined ? moneyFormat(item.tax) : '',
+                        item.month,
+                        item.payDatetime ? dateTimeFormat(item.payDatetime) : '',
+                        item.payAmount !== undefined ? moneyFormat(item.payAmount) : '',
+                        item.status,
+                        item.remark
+                      );
+                      tableData.push(temp);
+                    });
+                    const ws = XLSX.utils.aoa_to_sheet(tableData);
+                    const wb = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+                    XLSX.writeFile(wb, 'sheetjs.xlsx');
+                  });
                 }
               }],
               searchParams: { projectCode: this.projectCode },
