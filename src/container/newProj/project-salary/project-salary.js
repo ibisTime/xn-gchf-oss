@@ -199,7 +199,6 @@ class Salary extends React.Component {
                           item.status = v.dvalue;
                         }
                       });
-                      console.log(item.delayDays);
                       temp.push(
                         item.amount ? moneyFormat(item.amount) : '',
                         item.cutAmount ? moneyFormat(item.cutAmount) : '',
@@ -247,39 +246,6 @@ class Salary extends React.Component {
             this.props.buildList({
               fields,
               buttons: [{
-                code: 'edit',
-                name: '修改',
-                handler: (selectedRowKeys, selectedRows) => {
-                  if (!selectedRowKeys.length) {
-                    showWarnMsg('请选择记录');
-                  } else if (selectedRowKeys.length > 1) {
-                    showWarnMsg('请选择一条记录');
-                  } else {
-                    if (selectedRows[0].status === '0') {
-                      this.props.history.push(`/newProj/project/salary/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
-                    } else {
-                      showWarnMsg('该状态的工资条不可修改');
-                    }
-                  }
-                }
-              }, {
-                code: 'check',
-                name: '审核',
-                handler: (selectedRowKeys, selectedRows) => {
-                  if (!selectedRowKeys.length) {
-                    showWarnMsg('请选择记录');
-                  } else if (selectedRowKeys.length > 1) {
-                    showWarnMsg('请选择一条记录');
-                  } else {
-                    if (selectedRows[0].status === '0') {
-                      this.code = selectedRowKeys[0];
-                      this.setState({ visible: true });
-                    } else {
-                      showWarnMsg('该状态的工资条不可审核');
-                    }
-                  }
-                }
-              }, {
                 code: 'export',
                 name: '导出',
                 handler: (selectedRowKeys, selectedRows) => {
@@ -299,7 +265,6 @@ class Salary extends React.Component {
                           item.status = v.dvalue;
                         }
                       });
-                      console.log('=========' + item.delayDays);
                       temp.push(
                         item.amount !== undefined ? moneyFormat(item.amount) : '',
                         item.cutAmount !== undefined ? moneyFormat(item.cutAmount) : '',

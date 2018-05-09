@@ -64,17 +64,8 @@ class AllStaffError extends React.Component {
       field: 'handleNote',
       title: '操作描述'
     }, {
-      field: 'handler',
-      title: '处理人',
-      listCode: '631086',
-      type: 'select',
-      search: true,
-      params: {
-        updater: '',
-        type: 'O'
-      },
-      keyName: 'userId',
-      valueName: 'loginName'
+      field: 'handleName',
+      title: '处理人'
     }, {
       field: 'handleDatetime',
       title: '处理时间',
@@ -107,17 +98,8 @@ class AllStaffError extends React.Component {
       field: 'handleNote',
       title: '操作描述'
     }, {
-      field: 'handler',
-      title: '处理人',
-      listCode: '631086',
-      type: 'select',
-      search: true,
-      params: {
-        updater: '',
-        type: 'O'
-      },
-      keyName: 'userId',
-      valueName: 'loginName'
+      field: 'handleName',
+      title: '处理人'
     }, {
       field: 'handleDatetime',
       title: '处理时间',

@@ -30,12 +30,12 @@ class AllStaffHistory extends React.Component {
     };
     if(cookies.get('loginKind') === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+        this.setState({'companyCode': data.companyCode, 'updater': ''});
       });
     }
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
-    this.staffCode = getQueryString('staffCode', this.props.location.search);
+    this.staffCode = getQueryString('staffCode', this.props.location.search, 'updater': '');
     }
   render() {
     const fields = [{
@@ -45,62 +45,135 @@ class AllStaffHistory extends React.Component {
       field: 'projectCode',
       title: '项目编号'
     }, {
-      field: 'salaryCode',
-      title: '工资条编号'
+      field: 'projectName',
+      title: '项目名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: ''
+      },
+      keyName: 'name',
+      valueName: 'name'
     }, {
-      field: 'handleNote',
-      title: '操作描述'
+      field: 'joinDatetime',
+      title: '入职时间',
+      type: 'date'
     }, {
-      field: 'type',
-      title: '类型'
+      field: 'leavingDatetime',
+      title: '离职时间',
+      type: 'date'
     }, {
-      field: 'handler',
-      title: '处理人'
+      field: 'name',
+      title: '姓名',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.name : '';
+      }
     }, {
-      field: 'handleDatetime',
-      title: '处理时间',
-      type: 'datetime'
+      field: 'mobile',
+      title: '手机号',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.mobile : '';
+      }
+    }, {
+      field: 'idType',
+      title: '证件类型',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.idType : '';
+      },
+      key: 'id_type'
+    }, {
+      field: 'idNo',
+      title: '姓名',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.idNo : '';
+      }
     }, {
       field: 'remark',
       title: '备注'
+    }, {
+      field: 'keyword',
+      title: '关键字',
+      search: true,
+      hidden: true
     }];
-    const btnEvent = {
-      error: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
-        }
+    const fieldso = [{
+      field: 'code',
+      title: '编号'
+    }, {
+      field: 'projectCode',
+      title: '项目编号'
+    }, {
+      field: 'projectName',
+      title: '项目名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: '',
+        companyCode: this.state.companyCode,
+        kind: 'O'
+      },
+      keyName: 'name',
+      valueName: 'name'
+    }, {
+      field: 'joinDatetime',
+      title: '入职时间',
+      type: 'date'
+    }, {
+      field: 'leavingDatetime',
+      title: '离职时间',
+      type: 'date'
+    }, {
+      field: 'name',
+      title: '姓名',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.name : '';
       }
-    };
+    }, {
+      field: 'mobile',
+      title: '手机号',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.mobile : '';
+      }
+    }, {
+      field: 'idType',
+      title: '证件类型',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.idType : '';
+      },
+      key: 'id_type'
+    }, {
+      field: 'idNo',
+      title: '姓名',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.idNo : '';
+      }
+    }, {
+      field: 'remark',
+      title: '备注'
+    }, {
+      field: 'keyword',
+      title: '关键字',
+      search: true,
+      hidden: true
+    }];
     if(cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
-        fields,
-        btnEvent,
+        fieldso,
         searchParams: {
           staffCode: this.staffCode,
-          type: '0',
-          comapanyCode: this.state.companyCode,
-          kind: 'O'
+          comapanyCode: this.state.companyCode
         },
-        buttons: [{
-          code: 'detail',
-          name: '详情'
-        }],
-        pageCode: 631455
+        buttons: [],
+        pageCode: 631465
       }) : null;
     }else {
       return this.props.buildList({
         fields,
-        btnEvent,
-        searchParams: { staffCode: this.staffCode, type: '0' },
-        buttons: [{
-          code: 'detail',
-          name: '详情'
-        }],
-        pageCode: 631455
+        searchParams: { staffCode: this.staffCode },
+        buttons: [],
+        pageCode: 631465
       });
     }
   }

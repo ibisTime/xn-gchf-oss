@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -34,7 +35,9 @@ class PWugong extends React.Component {
     }, {
       field: 'name',
       title: '员工',
-      _keys: ['staff', 'name']
+      formatter: (v, data) => {
+        return data.staff ? data.staff.name : '-';
+      }
     }, {
       field: 'type',
       title: '员工类别',
@@ -52,7 +55,7 @@ class PWugong extends React.Component {
       title: '入职时间',
       type: 'date'
     }, {
-      field: 'upUser',
+      field: 'upUserName',
       title: '上级'
     }, {
       field: 'status',
@@ -69,12 +72,21 @@ class PWugong extends React.Component {
       hidden: true,
       title: '关键字'
     }];
-    return this.props.buildList({
-      fields,
-      searchParams: { projectCode: this.projectCode, updater: '' },
-      pageCode: 631465,
-      rowKey: 'staffCode',
-      buttons: [{
+    let buttons = [{
+      code: 'detail',
+      name: '详情',
+      handler: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/people/wugong/addedit?v=1&staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+        }
+      }
+    }];
+    if(cookies.get('loginKind') === 'O') {
+      buttons.unshift({
         code: 'break',
         name: '请假',
         handler: (selectedRowKeys, selectedRows) => {
@@ -86,7 +98,8 @@ class PWugong extends React.Component {
             this.props.history.push(`/people/wugong/break?code1=${selectedRows[0].code}`);
           }
         }
-      }, {
+      });
+      buttons.unshift({
         code: 'leave',
         name: '离职',
         handler: (selectedRowKeys, selectedRows) => {
@@ -98,19 +111,14 @@ class PWugong extends React.Component {
             this.props.history.push(`/people/wugong/leave?code1=${selectedRows[0].code}`);
           }
         }
-      }, {
-        code: 'detail',
-        name: '详情',
-        handler: (selectedRowKeys, selectedRows) => {
-          if (!selectedRowKeys.length) {
-            showWarnMsg('请选择记录');
-          } else if (selectedRowKeys.length > 1) {
-            showWarnMsg('请选择一条记录');
-          } else {
-            this.props.history.push(`/people/wugong/addedit?v=1&staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
-          }
-        }
-      }]
+      });
+    }
+    return this.props.buildList({
+      fields,
+      searchParams: { projectCode: this.projectCode, updater: '' },
+      pageCode: 631465,
+      rowKey: 'staffCode',
+      buttons: buttons
     });
   }
 }

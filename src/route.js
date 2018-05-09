@@ -150,6 +150,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-salary/project-salary'))
   },
   {
+    path: '/newProj/project/detail',
+    component: asyncComponent(() => import('container/newProj/project-detail/project-detail'))
+  },
+  {
     path: '/newProj/project/salary/edit',
     component: asyncComponent(() => import('container/newProj/project-salary-edit/project-salary-edit'))
   },

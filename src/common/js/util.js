@@ -258,3 +258,10 @@ export function showConfirm({ okType = 'primary', onOk, onCancel }) {
 export function showDelConfirm({ onOk, onCancel }) {
   showConfirm({ okType: 'danger', onOk, onCancel });
 }
+
+export function DeleteCookie(name) {
+  var date = new Date();
+  date.setTime(date.getTime() - 10000); // 删除一个cookie，就是将其过期时间设定为一个过去的时间
+  document.cookie = name + '=删除' + '; expires=' + date.toUTCString();
+  // document.cookie = " " + name + "=删除" + "; expires=" + date.toGMTString();
+}

@@ -52,7 +52,7 @@ class Chengbaoshang extends React.Component {
         kind: 'O',
         companyCode: this.state.companyCode
       },
-      keyName: 'code',
+      keyName: 'name',
       valueName: 'name'
     }, {
       field: 'bname',
@@ -89,7 +89,7 @@ class Chengbaoshang extends React.Component {
       params: {
         updater: ''
       },
-      keyName: 'code',
+      keyName: 'name',
       valueName: 'name'
     }, {
       field: 'bname',

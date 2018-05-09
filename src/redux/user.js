@@ -1,6 +1,7 @@
 import fetch from 'common/js/fetch';
+import cookies from 'browser-cookies';
 import { setUser, getUserId, setRoleInfo } from 'common/js/util';
-import { showWarnMsg } from '../common/js/util';
+import { showWarnMsg, DeleteCookie } from '../common/js/util';
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGOUT = 'LOGOUT';
@@ -72,7 +73,7 @@ export function getUser() {
 }
 
 // 登录
-export function login({ loginName, loginPwd, type }) {
+export function login({ loginName, loginPwd, type }, storePwd) {
   return dispatch => {
     dispatch(doFetching());
     // 627300 631071
@@ -85,6 +86,13 @@ export function login({ loginName, loginPwd, type }) {
     }).then(data => {
       setUser(data);
       dispatch(loginSuccess());
+      if(storePwd === true) {
+        cookies.set('loginName', loginName);
+        cookies.set('loginPwd', loginPwd);
+      }else {
+        DeleteCookie('loginName');
+        DeleteCookie('loginPwd');
+      }
     }).then(() => {
       return _getUser().then(data => {
         dispatch(cancelFetching());

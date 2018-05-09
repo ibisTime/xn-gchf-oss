@@ -50,22 +50,6 @@ class HStaff extends React.Component {
       title: '证件号',
       required: true
     }, {
-      field: 'bankName',
-      title: '银行名称',
-      type: 'select',
-      listCode: '631093',
-      keyName: 'bankCode',
-      valueName: 'bankName',
-      required: true
-    }, {
-      field: 'subbranch',
-      title: '开户行',
-      required: true
-    }, {
-      field: 'bankcardNumber',
-      title: '银行卡号',
-      required: true
-    }, {
       field: 'remark',
       title: '备注'
     }];
@@ -83,6 +67,9 @@ class HStaff extends React.Component {
     return this.props.buildList({
         fields,
         btnEvent,
+        searchParams: {
+          updater: ''
+        },
         pageCode: 631415,
         buttons: [{
           code: 'add',

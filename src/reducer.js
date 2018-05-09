@@ -33,6 +33,7 @@ import { newProjAddCompany } from './redux/newProj/addCompany';
 import { newProjAddBumen } from './redux/newProj/addBumen';
 import { newProjProject } from './redux/newProj/project';
 import { newprojProjectAddEdit } from './redux/newProj/project-addedit';
+import { newprojProjectDetail } from './redux/newProj/project-detail';
 import { newprojProjectEdit } from './redux/newProj/project-edit';
 import { newProjProjectDaka } from './redux/newProj/project-daka';
 import { newprojProjectCheck } from './redux/newProj/project-check';
@@ -108,6 +109,7 @@ export default combineReducers({
   newProjAddBumen,
   newProjProject,
   newprojProjectAddEdit,
+  newprojProjectDetail,
   newprojProjectEdit,
   newProjProjectDaka,
   newprojProjectCheck,

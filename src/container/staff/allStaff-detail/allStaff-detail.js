@@ -38,9 +38,11 @@ class AllStaffDetail extends React.Component {
       title: '操作描述'
     }, {
       field: 'type',
-      title: '类型'
+      title: '类型',
+      key: 'salary_log_type',
+      type: 'select'
     }, {
-      field: 'handler',
+      field: 'handleName',
       title: '处理人'
     }, {
       field: 'handleDatetime',

@@ -186,7 +186,7 @@ class Dashboard extends React.Component {
               <Switch>
                 <Route exact path="/" render={() => (
                   cookies.get('loginKind') === 'B' ? (
-                  <Redirect to="/home"/>
+                  <Redirect to="/waitList/postRequest"/>
                 ) : (
                   <Redirect to="/system/role"/>
                   )

@@ -24,20 +24,16 @@ class WugongAddEdit extends React.Component {
     this.state = {
       companyCode: ''
     };
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
     this.code = getQueryString('code', this.props.location.search);
     this.staffCode = getQueryString('staffCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.updater = cookies.get('userId');
-    console.log(this.updater);
-  }
-  componentDidMount() {
-    getUserDetail(cookies.get('userId')).then(data => {
-      this.getUserDetail(data.companyCode);
-    });
-  }
-  getUserDetail(companyCode) {
-    this.setState({ companyCode: companyCode });
   }
   render() {
     const fields = [{
@@ -46,15 +42,25 @@ class WugongAddEdit extends React.Component {
       type: 'img',
       single: true,
       required: true
-    }, {
-      field: 'projectCode',
-      title: '所属工程',
-      value: this.projectCode,
-      hidden: true
-    }, {
+    },
+    //  {
+    //   field: 'projectCode',
+    //   title: '所属工程',
+    //   type: 'select',
+    //   listCode: '631357',
+    //   params: {
+    //     companyCode: this.state.companyCode,
+    //     kind: 'O',
+    //     updater: ''
+    //   },
+    //   keyName: 'name',
+    //   valuName: 'name',
+    //   required: true
+    // },
+    {
       field: 'staffName',
       title: '工人姓名',
-      _keys: ['staff', 'name'],
+      _keys: ['Staff', 'name'],
       hidden: !this.view
     }, {
       field: 'staffCode',
@@ -70,18 +76,14 @@ class WugongAddEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.props.buildDetail({
+    return this.state.companyCode ? this.props.buildDetail({
       fields,
       code: this.code,
       view: this.view,
       addCode: 631400,
       detailCode: 631407,
       editCode: 631402
-      // beforeSubmit: (param) => {
-      //   param.updater = this;
-      //   return param;
-      // }
-    });
+    }) : null;
   }
 }
 

@@ -23,11 +23,18 @@ class PWugongAddedit extends React.Component {
       departmentCode: '',
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    getUserDetail(cookies.get('userId')).then((data) => {
+      if(cookies.get('loginKind') === 'O') {
         this.setState({'companyCode': data.companyCode, 'departmentCode': data.departmentCode});
-      });
-    }
+      }else {
+        this.setState({'departmentCode': data.departmentCode});
+      }
+    });
+    // if(cookies.get('loginKind') === 'O') {
+    //   getUserDetail(cookies.get('userId')).then((data) => {
+    //     this.setState({'companyCode': data.companyCode, 'departmentCode': data.departmentCode});
+    //   });
+    // }
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.break = !!getQueryString('break', this.props.location.search);
@@ -86,6 +93,11 @@ class PWugongAddedit extends React.Component {
       valueName: 'realName',
       required: true
     }, {
+      field: 'couAmount',
+      title: '迟到/早退每小时扣款金额',
+      amount: true,
+      required: true
+    }, {
       field: 'remark',
       title: '备注'
     }];
@@ -136,6 +148,11 @@ class PWugongAddedit extends React.Component {
       },
       keyName: 'userId',
       valueName: 'realName',
+      required: true
+    }, {
+      field: 'couAmount',
+      title: '迟到/早退每小时扣款金额',
+      amount: true,
       required: true
     }, {
       field: 'remark',

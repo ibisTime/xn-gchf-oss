@@ -15,10 +15,23 @@ const FormItem = Form.Item;
 class Login extends React.Component {
   constructor(props) {
     super(props);
-        this.type = window.location.port === '2505' ? 'S'
-        : window.location.port === '2506' ? 'B'
-        : window.location.port === '2507' ? 'O'
-        : window.location.port === '2508' ? 'P' : 'O';
+    this.state = {
+      storePwd: true
+    };
+    this.type = window.location.port === '2505' ? 'S'
+      : window.location.port === '2506' ? 'B'
+      : window.location.port === '2507' ? 'O'
+      : window.location.port === '2508' ? 'P' : 'O';
+    this.onChange = this.onChange.bind(this);
+    if(cookies.get('loginName') && cookies.get('loginName') !== null && cookies.get('loginName') !== undefined) {
+      this.initName = cookies.get('loginName');
+    }
+    if(cookies.get('loginPwd') && cookies.get('loginPwd') !== null && cookies.get('loginPwd') !== undefined) {
+      this.initPwd = cookies.get('loginPwd');
+    }
+  }
+  onChange(e) {
+    this.setState({ 'storePwd': e.target.checked });
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -27,14 +40,14 @@ class Login extends React.Component {
         this.type = window.location.port === '2505' ? 'S'
         : window.location.port === '2506' ? 'B'
         : window.location.port === '2507' ? 'O'
-        : window.location.port === '2508' ? 'P' : 'B';
+        : window.location.port === '2508' ? 'P' : 'O';
         // this.setState({ loading: true })
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户
         // values.type = 'O'; // 业主单位
         // values.type = 'S'; // 监管单位
         values.type = this.type;
-        this.props.login(values);
+        this.props.login(values, this.state.storePwd);
       }
     });
   }
@@ -54,10 +67,11 @@ class Login extends React.Component {
               rules: [{
                 required: true,
                 message: '请输入用户名!'
-              }]
+              }],
+              initialValue: this.initName
             })(
               <div className="input-border">
-                <Input prefix={<span style={{color: '#b0d1f6'}}>登录名</span>} placeholder="登录名" />
+                <Input defaultValue={this.initName} prefix={<span style={{color: '#b0d1f6'}}>登录名</span>} placeholder="登录名" />
               </div>
             )}
           </FormItem>
@@ -66,10 +80,11 @@ class Login extends React.Component {
               rules: [{
                 required: true,
                 message: '请输入密码!'
-              }]
+              }],
+              initialValue: this.initPwd
             })(
               <div className="input-border">
-                <Input prefix={<span style={{color: '#b0d1f6'}}>密码</span>} type="password" placeholder="密码" />
+                <Input defaultValue={this.initPwd}prefix={<span style={{color: '#b0d1f6'}}>密码</span>} type="password" placeholder="密码" />
               </div>
             )}
           </FormItem>
@@ -78,7 +93,7 @@ class Login extends React.Component {
             valuePropName: 'checked',
             initialValue: true
           })(
-            <Checkbox className="remember-pwd"><span>记住密码</span></Checkbox>
+            <Checkbox className="remember-pwd" onChange={this.onChange}><span>记住密码</span></Checkbox>
           )}
         </FormItem>
           <FormItem>
