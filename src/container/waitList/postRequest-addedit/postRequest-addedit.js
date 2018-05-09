@@ -8,11 +8,11 @@ import {
   restore
 } from '@redux/waitList/postRequest-addedit';
 import fetch from 'common/js/fetch';
-import { getQueryString, showWarnMsg, showSucMsg, formatDate, getUserName } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg, formatDate, getUserName, isUndefined } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import XLSX from 'xlsx';
 import { Button } from 'antd';
-import { downLoad } from 'api/downLoad';
+import { downLoad, downNum } from 'api/downLoad';
 
 function makeCols(refstr) {
   var o = [];
@@ -41,7 +41,13 @@ class PostRequestAddedit extends React.Component {
     };
   };
   handleExport() {
-    downLoad().then((data) => {
+    let download;
+    downNum(this.code).then((data) => {
+      if (data.isSuccess) {
+        download = download + 1;
+      }
+    });
+    downLoad(this.code).then((data) => {
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[1].projectCode],
@@ -73,18 +79,15 @@ class PostRequestAddedit extends React.Component {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
       let data = XLSX.utils.sheet_to_json(ws, { header: 1 });
-      console.log(data);
-      console.log(data[6][6]);
       let statusNum;
-      data.forEach((d, i) => {
-        if (i > 4) {
-          d[7] = formatDate(d[7]);
-          if (d[6] === undefined || d[7] === undefined) {
-            showWarnMsg('请确定已发工资或发放日期填写完整填写！');
-            statusNum = true;
-          }
+      for (let i = 5; i < data.length; i++) {
+        data[i][7] = formatDate(data[i][7]);
+        if (isUndefined(data[i][6]) || isUndefined(data[i][7])) {
+          showWarnMsg('请确定已发工资或发放日期填写完整填写！');
+          statusNum = true;
+          return;
         }
-      });
+      }
       if (!statusNum) {
         this.setState({ data: data, cols: makeCols(ws['!ref']) });
         this.props.setPageData({
@@ -119,7 +122,7 @@ class PostRequestAddedit extends React.Component {
         return v + '工资';
       },
       style: {
-        fontSize: '16px',
+        fontSize: '20px',
         fontWeight: 600
       },
       readonly: true
@@ -152,6 +155,10 @@ class PostRequestAddedit extends React.Component {
       readonly: true,
       formatter: (v, d) => {
         return v + '工资反馈';
+      },
+      style: {
+        fontSize: '20px',
+        fontWeight: 600
       }
     }, {
       title: '工资上传反馈',

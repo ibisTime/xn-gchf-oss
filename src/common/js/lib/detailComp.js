@@ -572,6 +572,7 @@ export default class DetailComp extends React.Component {
   getDownloadComp(item, initVal, rules, getFieldDecorator) {
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
+        <Icon type="file-excel" style={{ fontSize: 50 }} />
         {
           <a onClick={() => {
             item.handler && item.handler();
@@ -597,6 +598,7 @@ export default class DetailComp extends React.Component {
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
         <Upload {...props}>
+          <Icon type="file-excel" style={{ fontSize: 50 }} />
           {this.getUploadBtn(item, false)}
         </Upload>
       </FormItem>
