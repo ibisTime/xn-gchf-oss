@@ -21,11 +21,6 @@ class BankAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      title: '手机号',
-      field: 'mobile',
-      mobile: true,
-      required: true
-    }, {
       title: '用户名',
       field: 'loginName',
       required: true
@@ -43,6 +38,22 @@ class BankAddEdit extends React.Component {
       field: 'type',
       value: 'B',
       hidden: true
+    }, {
+      field: 'bankName',
+      title: '银行名称',
+      type: 'select',
+      listCode: '631093',
+      keyName: 'bankName',
+      valueName: 'bankName',
+      required: true
+    }, {
+      title: '所属支行',
+      field: 'subbranch',
+      required: true
+    }, {
+      title: '手机号',
+      field: 'mobile',
+      mobile: true
     }, {
       title: '备注',
       field: 'remark'

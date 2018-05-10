@@ -21,11 +21,6 @@ class SuperviseAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      title: '手机号',
-      field: 'mobile',
-      mobile: true,
-      required: true
-    }, {
       title: '用户名',
       field: 'loginName',
       required: true
@@ -43,6 +38,15 @@ class SuperviseAddEdit extends React.Component {
       field: 'type',
       value: 'S',
       hidden: true
+    }, {
+      title: '区域',
+      field: 'quyu',
+      type: 'citySelect',
+      required: true
+    }, {
+      title: '手机号',
+      field: 'mobile',
+      mobile: true
     }, {
       title: '备注',
       field: 'remark'

@@ -28,15 +28,16 @@ class ProjectCheck extends React.Component {
       companyCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
+    this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-      getUserDetail(cookies.get('userId')).then(data => {
-        this.getUserDetail(data.departmentCode, data.companyCode);
-      });
+    getUserDetail(cookies.get('userId')).then(data => {
+      this.getUserDetail(data.companyCode);
+    });
   }
-  getUserDetail(departmentCode, companyCode) {
-    this.setState({ departmentCode, companyCode });
+  getUserDetail(companyCode) {
+    this.setState({ companyCode });
   }
   render() {
     const fields = [{
@@ -44,17 +45,8 @@ class ProjectCheck extends React.Component {
       title: '项目名称',
       required: true
     }, {
-      field: 'chargeUser',
-      title: '负责人',
-      type: 'select',
-      listCode: '631086',
-      params: {
-        departmentCode: this.state.departmentCode,
-        type: 'O'
-      },
-      keyName: 'userId',
-      valueName: 'loginName',
-      required: true
+      field: 'chargeName',
+      title: '负责人'
     }, {
       field: 'quyu',
       title: '地区',
@@ -107,10 +99,10 @@ class ProjectCheck extends React.Component {
       required: true,
       readonly: false
     }];
-    return this.state.departmentCode ? this.props.buildDetail({
+    return this.state.companyCode ? this.props.buildDetail({
       fields: fields,
       key: 'code',
-      code: this.code,
+      code: this.projectCode,
       view: this.view,
       addCode: 631350,
       detailCode: 631358,
@@ -119,7 +111,7 @@ class ProjectCheck extends React.Component {
         title: '通过',
         handler: (param) => {
             param.result = '1';
-            param.code = this.code;
+            param.code = this.projectCode;
             param.approver = getUserId();
             this.props.doFetching();
             fetch(631354, param).then(() => {
@@ -136,7 +128,7 @@ class ProjectCheck extends React.Component {
         title: '不通过',
         handler: (param) => {
             param.result = '0';
-            param.code = this.code;
+            param.code = this.projectCode;
             param.approver = getUserId();
             this.props.doFetching();
             fetch(631354, param).then(() => {

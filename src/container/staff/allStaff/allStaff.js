@@ -33,7 +33,7 @@ class AllStaff extends React.Component {
   componentDidMount() {
     getUserDetail(cookies.get('userId')).then((data) => {
       if (cookies.get('loginKind') === 'O') {
-        this.setState({ pageCode: '631405' });
+        this.setState({ pageCode: '631415' });
         this.setState({ searchParams: {'companyCode': data.companyCode, 'kind': 'O'} });
       }else {
         this.setState({ pageCode: '631415' });
@@ -79,47 +79,47 @@ class AllStaff extends React.Component {
 
     const fieldso = [{
       field: 'name',
-      title: '姓名',
-      formatter: (v, data) => {
-        if(data.Staff) {
-          return data.Staff.name;
-        }
-      }
+      title: '姓名'
+      // formatter: (v, data) => {
+      //   if(data.Staff) {
+      //     return data.Staff.name;
+      //   }
+      // }
     }, {
       field: 'place',
-      title: '籍贯',
-      formatter: (v, data) => {
-        if(data.Staff) {
-          return data.Staff.place;
-        }
-      }
+      title: '籍贯'
+      // formatter: (v, data) => {
+      //   if(data.Staff) {
+      //     return data.Staff.place;
+      //   }
+      // }
     }, {
       field: 'idType',
       title: '证件类型',
       type: 'select',
       search: true,
-      key: 'id_type',
-      formatter: (v, data) => {
-        if(data.Staff) {
-          return data.Staff.idType;
-        }
-      }
+      key: 'id_type'
+      // formatter: (v, data) => {
+      //   if(data.Staff) {
+      //     return data.Staff.idType;
+      //   }
+      // }
     }, {
       field: 'idNo',
-      title: '证件号',
-      formatter: (v, data) => {
-        if(data.Staff) {
-          return data.Staff.idNo;
-        }
-      }
+      title: '证件号'
+      // formatter: (v, data) => {
+      //   if(data.Staff) {
+      //     return data.Staff.idNo;
+      //   }
+      // }
     }, {
       field: 'mobile',
-      title: '联系方式',
-      formatter: (v, data) => {
-        if(data.Staff) {
-          return data.Staff.mobile;
-        }
-      }
+      title: '联系方式'
+      // formatter: (v, data) => {
+      //   if(data.Staff) {
+      //     return data.Staff.mobile;
+      //   }
+      // }
     }, {
       field: 'updateDatetime',
       title: '更新时间',
@@ -143,11 +143,11 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if (cookies.get('loginKind') === 'O') {
-            this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRows[0].Staff.code}`);
-          }else {
+          // if (cookies.get('loginKind') === 'O') {
+          //   this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRows[0].Staff.code}`);
+          // }else {
             this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRowKeys[0]}`);
-          }
+          // }
         }
       },
       detail: (selectedRowKeys, selectedRows) => {
@@ -156,11 +156,11 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if (cookies.get('loginKind') === 'O') {
-            this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRows[0].Staff.code}`);
-          }else {
+          // if (cookies.get('loginKind') === 'O') {
+          //   this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRows[0].Staff.code}`);
+          // }else {
             this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRowKeys[0]}`);
-          }
+          // }
         }
       },
       error: (selectedRowKeys, selectedRows) => {
@@ -169,11 +169,11 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if (cookies.get('loginKind') === 'O') {
-            this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRows[0].Staff.code}`);
-          }else {
+          // if (cookies.get('loginKind') === 'O') {
+          //   this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRows[0].Staff.code}`);
+          // }else {
             this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
-          }
+          // }
         }
       },
       history: (selectedRowKeys, selectedRows) => {
@@ -182,11 +182,11 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if (cookies.get('loginKind') === 'O') {
-            this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRows[0].Staff.code}`);
-          }else {
+          // if (cookies.get('loginKind') === 'O') {
+          //   this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRows[0].Staff.code}`);
+          // }else {
             this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRowKeys[0]}`);
-          }
+          // }
         }
       }
     };

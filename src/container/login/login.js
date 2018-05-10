@@ -18,10 +18,10 @@ class Login extends React.Component {
     this.state = {
       storePwd: true
     };
-    this.type = window.location.port === '2505' ? 'S'
-      : window.location.port === '2506' ? 'B'
-      : window.location.port === '2507' ? 'O'
-      : window.location.port === '2508' ? 'P' : 'O';
+    this.typeName = window.location.port === '2505' ? '监管端'
+        : window.location.port === '2506' ? '银行端'
+        : window.location.port === '2507' ? '业主端'
+        : window.location.port === '2508' ? '平台端' : '平台端';
     this.onChange = this.onChange.bind(this);
     if(cookies.get('loginName') && cookies.get('loginName') !== null && cookies.get('loginName') !== undefined) {
       this.initName = cookies.get('loginName');
@@ -41,7 +41,7 @@ class Login extends React.Component {
         : window.location.port === '2506' ? 'B'
         : window.location.port === '2507' ? 'O'
         : window.location.port === '2508' ? 'P' : 'O';
-        // this.setState({ loading: true })
+        this.setState({ loading: true });
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户
         // values.type = 'O'; // 业主单位
@@ -58,7 +58,7 @@ class Login extends React.Component {
         <img src="../img/sy.png" className="big-img"/>
         <img src="../img/circle.png" className="big-circle"/>
         <img src="../img/biaoti.png" className="big-title"/>
-        <span className="big-title">务工人员实名制分账平台</span>
+        <span className="big-title">鲸目60s---{this.typeName}</span>
         {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
         {/* {/* <Card title="登录" extra={<a href="#">More</a>} className="login-card"> */}
         <Form onSubmit={this.handleSubmit} className="login-form">
@@ -102,16 +102,6 @@ class Login extends React.Component {
             </Button>
           </FormItem>
         </Form>
-        <div className="role">
-            { this.type === 'S'
-              ? <div><img src="../img/jianguan.png" /><span>监管单位端</span></div>
-              : this.type === 'O'
-              ? <div><img src="../img/qiye.png" /><span>业主端</span></div>
-              : this.type === 'B'
-              ? <div><img src="../img/yinhang.png" /><span>银行端</span></div>
-              : <div><img src="../img/qiye.png" /><span>平台端</span></div>
-            }
-        </div>
         {/* </Card> */}
       </div>
     );

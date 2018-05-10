@@ -12,6 +12,7 @@ import {
 } from '@redux/people/wugong';
 import { listWrapper } from 'common/js/build-list';
 import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
@@ -24,6 +25,16 @@ import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
 class PWugong extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      visible: false,
+      code: '',
+      companyCode: ''
+    };
+    if(cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({'companyCode': data.companyCode});
+      });
+    }
     this.projectCode = getQueryString('code', this.props.location.search);
   }
   render() {
@@ -113,13 +124,23 @@ class PWugong extends React.Component {
         }
       });
     }
-    return this.props.buildList({
-      fields,
-      searchParams: { projectCode: this.projectCode, updater: '' },
-      pageCode: 631465,
-      rowKey: 'staffCode',
-      buttons: buttons
-    });
+    if(cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildList({
+        fields,
+        searchParams: { projectCode: this.projectCode, updater: '', companyCode: this.state.companyCode },
+        pageCode: 631465,
+        rowKey: 'staffCode',
+        buttons: buttons
+      }) : null;
+    }else {
+      return this.props.buildList({
+        fields,
+        searchParams: { projectCode: this.projectCode, updater: '' },
+        pageCode: 631465,
+        rowKey: 'staffCode',
+        buttons: buttons
+      });
+    }
   }
 }
 

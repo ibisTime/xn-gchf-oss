@@ -43,20 +43,20 @@ class WugongAddEdit extends React.Component {
       single: true,
       required: true
     },
-    //  {
-    //   field: 'projectCode',
-    //   title: '所属工程',
-    //   type: 'select',
-    //   listCode: '631357',
-    //   params: {
-    //     companyCode: this.state.companyCode,
-    //     kind: 'O',
-    //     updater: ''
-    //   },
-    //   keyName: 'name',
-    //   valuName: 'name',
-    //   required: true
-    // },
+     {
+      field: 'projectCode',
+      title: '所属工程',
+      type: 'select',
+      listCode: '631357',
+      params: {
+        companyCode: this.state.companyCode,
+        kind: 'O',
+        updater: ''
+      },
+      keyName: 'code',
+      valueName: 'name',
+      required: true
+    },
     {
       field: 'staffName',
       title: '工人姓名',
@@ -82,7 +82,13 @@ class WugongAddEdit extends React.Component {
       view: this.view,
       addCode: 631400,
       detailCode: 631407,
-      editCode: 631402
+      editCode: 631402,
+      onOk: () => {
+        this.props.cancelFetching();
+        setTimeout(() => {
+          this.props.history.go(-2);
+        }, 1000);
+      }
     }) : null;
   }
 }

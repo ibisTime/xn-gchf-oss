@@ -46,6 +46,11 @@ class BankCard extends React.Component {
     }, {
       field: 'remark',
       title: '备注'
+    }, {
+      field: 'keyword',
+      title: '关键字',
+      search: true,
+      hidden: true
     }];
     return this.props.buildList({ fields, pageCode: 631425 });
   }

@@ -11,7 +11,7 @@ import {
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import fetch from 'common/js/fetch';
-import { getBankNameByCode } from 'api/project';
+import { getBankNameByCode, getBankCodeByName } from 'api/project';
 import { getUserDetail } from 'api/user';
 import { basename } from 'upath';
 
@@ -33,11 +33,11 @@ class ProjectAddedit extends React.Component {
   }
   componentDidMount() {
       getUserDetail(cookies.get('userId')).then(data => {
-        this.getUserDetail(data.departmentCode, data.companyCode);
+        this.getUserDetail(data.companyCode);
       });
   }
-  getUserDetail(departmentCode, companyCode) {
-    this.setState({ departmentCode: departmentCode, companyCode: companyCode });
+  getUserDetail(companyCode) {
+    this.setState({ companyCode: companyCode });
   }
   render() {
     const fields = [{
@@ -45,12 +45,12 @@ class ProjectAddedit extends React.Component {
       title: '项目名称',
       required: true
     }, {
-      field: 'chargeUser',
+      field: this.view ? 'chargeName' : 'chargeUser',
       title: '负责人',
-      type: this.view ? null : 'select',
+      type: this.view ? '' : 'select',
       listCode: '631086',
       params: {
-        departmentCode: this.state.departmentCode,
+        companyCode: this.state.companyCode,
         type: 'O'
       },
       keyName: 'userId',
@@ -121,7 +121,7 @@ class ProjectAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.view || this.state.departmentCode ? this.props.buildDetail({
+    return this.state.companyCode ? this.props.buildDetail({
       fields,
       key: 'code',
       code: this.projectCode,
@@ -136,7 +136,44 @@ class ProjectAddedit extends React.Component {
         });
         return param;
       },
-      buttons: [{
+      buttons: this.projectCode ? [{
+        title: '保存',
+        check: true,
+        handler: (param) => {
+          param.companyCode = this.state.companyCode;
+          getBankCodeByName(param.bankName).then(data => {
+            param.bankCode = data[0].bankCode;
+            param.bankName = data[0].bankName;
+            this.props.doFetching();
+            fetch(631352, param).then(() => {
+              showSucMsg('操作成功');
+              this.props.cancelFetching();
+              setTimeout(() => {
+                this.props.history.go(-1);
+              }, 1000);
+            }).catch(this.props.cancelFetching);
+          });
+        }
+      }, {
+        title: '项目提请审核',
+        check: true,
+        type: 'primary',
+        handler: (param) => {
+          param.companyCode = this.state.companyCode;
+          getBankCodeByName(param.bankName).then(data => {
+            param.bankCode = data[0].bankCode;
+            param.bankName = data[0].bankName;
+            this.props.doFetching();
+            fetch(631353, param).then(() => {
+              showSucMsg('操作成功');
+              this.props.cancelFetching();
+              setTimeout(() => {
+                this.props.history.go(-1);
+              }, 1000);
+            }).catch(this.props.cancelFetching);
+          });
+        }
+      }] : [{
         title: '保存',
         check: true,
         handler: (param) => {
@@ -145,7 +182,6 @@ class ProjectAddedit extends React.Component {
             param.bankCode = data[0].bankCode;
             param.bankName = data[0].bankName;
             this.props.doFetching();
-            console.log(param);
             fetch(631350, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();

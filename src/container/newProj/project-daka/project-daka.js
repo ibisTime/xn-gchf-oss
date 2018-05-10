@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/newProj/project-daka';
 import { listWrapper } from 'common/js/build-list';
-import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg, dateTimeFormat } from 'common/js/util';
 import { Modal } from 'antd';
 
 @listWrapper(
@@ -26,41 +26,33 @@ class Daka extends React.Component {
   constructor(props) {
     super(props);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
+    this.dateTime = dateTimeFormat(new Date());
+    console.log(this.dateTime);
+    this.dateStart = this.dateTime.split(' ')[0] + '00:00:00';
+    this.dateEnd = this.dateTime.split(' ')[0] + '23:59:59';
   }
   render() {
     const fields = [{
-      field: 'name',
-      title: '员工',
-      _keys: ['staff', 'name']
+      field: 'projectName',
+      title: '项目名称'
     }, {
-      field: 'type',
-      title: '员工类别',
-      search: true,
-      type: 'select',
-      key: 'staff_type',
-      required: true
+      field: 'staffName',
+      title: '员工姓名'
     }, {
-      field: 'position',
-      title: '职位',
-      required: true
+      field: 'staffMobile',
+      title: '员工手机号'
     }, {
-      field: 'salary',
-      title: '薪酬',
-      required: true
+      field: 'startDatetime',
+      title: '上班时间'
     }, {
-      field: 'joinDatetime',
-      title: '入职时间',
-      type: 'date',
-      required: true
-    }, {
-      field: 'upUser',
-      title: '上级'
+      field: 'endDatetime',
+      title: '下班时间'
     }, {
       field: 'status',
       title: '状态',
       type: 'select',
       search: true,
-      key: 'staff_status'
+      key: 'attendance_status'
     }, {
       field: 'remark',
       title: '备注'
@@ -72,9 +64,9 @@ class Daka extends React.Component {
     }];
     return this.props.buildList({
       fields,
-      searchParams: { projectCode: this.projectCode, updater: '', status: '0' },
-      pageCode: 631465,
-      rowKey: 'staffCode',
+      searchParams: { dateStart: this.dateStart, dateEnd: this.dateEnd, projectCode: this.projectCode },
+      pageCode: 631395,
+      rowKey: 'code',
       buttons: [{
         code: 'daka',
         name: '打卡',
@@ -90,9 +82,10 @@ class Daka extends React.Component {
               content: '确定打卡？',
               onOk: () => {
                 this.props.doFetching();
-                fetch(631390, { projectCode: this.projectCode, staffCode: selectedRowKeys[0] }).then(() => {
+                fetch(631390, { projectCode: this.projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
                   showSucMsg('操作成功');
                   this.props.cancelFetching();
+                  setTableData();
                   }).catch(this.props.cancelFetching);
                   }
             });

@@ -12,7 +12,6 @@ import { DetailWrapper } from 'common/js/build-detail';
 import { Button, Card } from 'antd';
 import { downLoad, detailDate } from 'api/downLoad';
 import XLSX from 'xlsx';
-import { div } from 'gl-matrix/src/gl-matrix/vec4';
 
 @DetailWrapper(
   state => state.waitListAlreadyQuestAddedit,

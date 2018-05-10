@@ -104,7 +104,8 @@ class Bank extends React.Component {
       fields,
       btnEvent,
       searchParams: {
-        'type': 'B'
+        'type': 'B',
+        'updater': ''
       },
       pageCode: 631085,
       rowKey: 'userId'

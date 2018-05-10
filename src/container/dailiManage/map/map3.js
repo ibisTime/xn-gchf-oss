@@ -46,7 +46,7 @@ class Map3 extends React.Component {
               var temp = [];
               var content = '<p style="font-size: 10px">';
               // content += data.lastMonthSalary + '</br>';
-              content += item.name + '</br>' + item.chargeUser + '</br>' + item.province + item.city + item.area + item.address + '</br>';
+              content += item.name + '</br>' + item.chargeName + '</br>' + item.province + item.city + item.area + item.address + '</br>';
               content += '工作时间：' + item.attendanceStarttime + '-' + item.attendanceEndtime + '</br>';
               content += '项目开始时间：' + dateFormat(item.startDatetime) + '</br>';
               if(item.salaryDatetime) {
@@ -55,7 +55,7 @@ class Map3 extends React.Component {
               content += '项目状态：' + v.dvalue + '</br></p>';
               // content += '<a type="button" class="ant-btn" href="' + location.origin + '/hetong/wugong?code=' + item.code + '">查看务工人员合同</a></br>';
               content += '<a type="button" class="ant-btn" href="' + location.origin + '/people/wugong?code=' + item.code + '">务工人员</a></br>';
-              content += '<a type="button" class="ant-btn" href="' + location.origin + '/newProj/project/detail?code=' + item.code + '">统计信息</a></br>';
+              content += '<a type="button" class="ant-btn" href="' + location.origin + '/newProj/project/detail?v=1&code=' + item.code + '">统计信息</a></br>';
               if(cookies.get('loginKind') === 'O') {
                 content += '<a type="button" class="ant-btn" href="' + location.origin + '/people/wugong/addedit?projectCode=' + item.code + '">添加务工人员</a>';
               }
@@ -72,7 +72,7 @@ class Map3 extends React.Component {
                 content += '<a type="button" class="ant-btn" href="' + location.origin + '/projectManage/project/addedit?projectCode=' + item.code + '">修改项目</a>';
               }
               if (v.dkey === '1' && cookies.get('loginKind') === 'O') { // 审核
-                content += '<a type="button" class="ant-btn" href="' + location.origin + '/projectManage/project/check?projectCode=' + item.code + '">审核项目</a>';
+                content += '<a type="button" class="ant-btn" href="' + location.origin + '/projectManage/project/check?v=1&projectCode=' + item.code + '">审核项目</a>';
               }
               if (v.dkey === '3' && cookies.get('loginKind') === 'O') { // 在建的项目可以停工和打卡
                 content += '<a class="ant-btn" href="' + location.origin + '/projectManage/project/stop?stop=1&projectCode=' + item.code + '">项目停工</a>';

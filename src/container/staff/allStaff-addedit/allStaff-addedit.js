@@ -105,8 +105,7 @@ class AllStaffAddEdit extends React.Component {
             param.bankName = data[0].bankName;
             param.updater = getUserId();
             this.props.doFetching();
-            var code = this.code ? '631412' : '631410';
-            console.log(code);
+            var code = this.staffCode ? '631412' : '631410';
             fetch(code, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();

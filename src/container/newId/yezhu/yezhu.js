@@ -98,12 +98,26 @@ class Yezhu extends React.Component {
       },
       setBumen: (selectedRowKeys, selectedRows) => {
         this.props.history.push(`/security/user/setBumen?userId=${selectedRowKeys[0]}&loginName=${selectedRows[0].loginName}`);
+      },
+      setBumen1: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          if (selectedRows[0].type === 'O') {
+            this.props.history.push(`/security/user/setBumen?userId=${selectedRowKeys[0]}&loginName=${selectedRows[0].loginName}`);
+          }else {
+            showWarnMsg('只有业主单位的用户可以设置部门');
+          }
+        }
       }
     };
     return this.props.buildList({
       fields,
       btnEvent,
       searchParams: {
+        'updater': '',
         'type': 'O'
       },
       pageCode: 631085,

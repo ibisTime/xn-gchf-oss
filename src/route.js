@@ -130,6 +130,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-check/project-check'))
   },
   {
+    path: '/projectManage/project/check',
+    component: asyncComponent(() => import('container/newProj/project-check/project-check'))
+  },
+  {
     path: '/projectManage/project/end',
     component: asyncComponent(() => import('container/newProj/project-end/project-end'))
   },
@@ -300,6 +304,10 @@ const ROUTES = [
   {
     path: '/newId/supervise',
     component: asyncComponent(() => import('container/newId/supervise/supervise'))
+  },
+  {
+    path: '/newId/companyConstruct',
+    component: asyncComponent(() => import('container/newId/companyConstruct/companyConstruct'))
   },
   {
     path: '/newId/supervise/addedit',

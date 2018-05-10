@@ -21,11 +21,6 @@ class UserAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      title: '手机号',
-      field: 'mobile',
-      mobile: true,
-      required: true
-    }, {
       title: '用户名',
       field: 'loginName',
       required: true
@@ -42,7 +37,12 @@ class UserAddEdit extends React.Component {
       title: '用户类型',
       field: 'type',
       value: 'P',
+      hidden: true,
       required: true
+    }, {
+      title: '手机号',
+      field: 'mobile',
+      mobile: true
     }, {
       title: '备注',
       field: 'remark'

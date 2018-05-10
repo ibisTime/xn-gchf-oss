@@ -45,6 +45,10 @@ class Supervise extends React.Component {
       valueName: 'name',
       search: true
     }, {
+      title: '手机号',
+      field: 'mobile',
+      mobile: true
+    }, {
       title: '备注',
       field: 'remark'
     }];
@@ -104,7 +108,8 @@ class Supervise extends React.Component {
       fields,
       btnEvent,
       searchParams: {
-        'type': 'S'
+        'type': 'S',
+        'updater': ''
       },
       pageCode: 631085,
       rowKey: 'userId'
