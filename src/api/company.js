@@ -19,8 +19,8 @@ export function getPageAccount({ start, limit, type }) {
 /**
  * 列表查公司
  */
-export function getCompany() {
-  return fetch(631026);
+export function getCompany(code) {
+  return fetch(631027, { code });
 }
 
 /**

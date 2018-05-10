@@ -11,6 +11,8 @@ import {
 } from '@redux/waitList/postRequest';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg } from 'common/js/util';
+import { getUserDetail } from 'api/user';
+import cookies from 'browser-cookies';
 
 @listWrapper(
   state => ({
@@ -23,6 +25,21 @@ import { showWarnMsg } from 'common/js/util';
   }
 )
 class PostRequest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      subbranch: '',
+      bankName: ''
+    };
+  };
+  componentDidMount() {
+    getUserDetail(cookies.get('userId')).then((data) => {
+      this.setState({
+        subbranch: data.subbranch,
+        bankName: data.bankName
+      });
+    });
+  }
   render() {
     const fields = [{
       title: '时间',
@@ -50,25 +67,29 @@ class PostRequest extends React.Component {
       keyName: 'key',
       valueName: 'value'
     }];
-    return this.props.buildList({
-      fields,
-      searchParams: {
-        statusList: [1, 2]
-      },
-      pageCode: 631435,
-      btnEvent: {
-        detail: (selectedRowKeys, selectedRows) => {
-          if (!selectedRowKeys.length) {
-            showWarnMsg('请选择记录');
-          } else if (selectedRowKeys.length > 1) {
-            showWarnMsg('请选择一条记录');
-          } else {
-            let url = `${this.props.location.pathname}/addedit?v=1&code=${selectedRowKeys[0]}&status=${selectedRows[0].status}`;
-            this.props.history.push(url);
+    return this.state.subbranch && this.state.bankName
+      ? this.props.buildList({
+        fields,
+        searchParams: {
+          statusList: [1, 2],
+          subbranch: this.state.subbranch,
+          bankName: this.state.bankName
+        },
+        pageCode: 631435,
+        btnEvent: {
+          detail: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              let url = `${this.props.location.pathname}/addedit?v=1&code=${selectedRowKeys[0]}&status=${selectedRows[0].status}`;
+              this.props.history.push(url);
+            }
           }
         }
-      }
-    });
+      })
+      : null;
   }
 }
 

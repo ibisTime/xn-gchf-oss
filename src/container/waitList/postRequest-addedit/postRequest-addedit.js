@@ -35,7 +35,7 @@ class PostRequestAddedit extends React.Component {
       sendDatetime: '',
       fileList: []
     };
-  };
+  }
   componentDidMount() {
     detailDate(this.code).then((data) => {
       this.setState({

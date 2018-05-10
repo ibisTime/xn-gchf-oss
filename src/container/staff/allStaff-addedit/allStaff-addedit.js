@@ -47,7 +47,8 @@ class AllStaffAddEdit extends React.Component {
     }, {
       field: 'idNo',
       title: '证件号',
-      required: true
+      required: true,
+      listCode: '631416'
     }, {
       field: 'bankName',
       title: '银行名称',

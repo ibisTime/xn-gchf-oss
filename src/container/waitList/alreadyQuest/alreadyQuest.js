@@ -10,6 +10,8 @@ import {
   setSearchData
 } from '@redux/waitList/alreadyQuest';
 import { listWrapper } from 'common/js/build-list';
+import { getUserDetail } from 'api/user';
+import cookies from 'browser-cookies';
 
 @listWrapper(
   state => ({
@@ -22,6 +24,21 @@ import { listWrapper } from 'common/js/build-list';
   }
 )
 class AlreadyQuest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      subbranch: '',
+      bankName: ''
+    };
+  };
+  componentDidMount() {
+    getUserDetail(cookies.get('userId')).then((data) => {
+      this.setState({
+        subbranch: data.subbranch,
+        bankName: data.bankName
+      });
+    });
+  }
   render() {
     const fields = [{
       title: '请求时间',
@@ -44,13 +61,17 @@ class AlreadyQuest extends React.Component {
       field: 'handleDatetime',
       type: 'datetime'
     }];
-    return this.props.buildList({
+    return this.state.subbranch && this.state.bankName
+    ? this.props.buildList({
       fields,
       searchParams: {
-        status: 3
+        status: 3,
+        subbranch: this.state.subbranch,
+        bankName: this.state.bankName
       },
       pageCode: 631435
-    });
+    })
+    : null;
   }
 }
 
