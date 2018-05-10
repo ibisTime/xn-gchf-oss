@@ -42,6 +42,6 @@ export default function fetch(code, param = {}) {
 
 export function logout() {
   clearUser();
-  showErrMsg('登录超时，请重新登录!');
+  // showErrMsg('登录超时，请重新登录!');
   window.location.href = '/login';
 }
