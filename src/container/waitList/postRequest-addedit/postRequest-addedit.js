@@ -3,7 +3,7 @@ import fetch from 'common/js/fetch';
 import { getQueryString, showWarnMsg, showSucMsg, formatDate, getUserName, isUndefined, getUserId } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import XLSX from 'xlsx';
-import { Button, Card, Upload, Icon, Spin } from 'antd';
+import { Button, Card, Upload, Icon } from 'antd';
 import { downLoad, downNum, detailDate } from 'api/downLoad';
 
 function makeCols(refstr) {
@@ -33,9 +33,7 @@ class PostRequestAddedit extends React.Component {
       download: '',
       projectName: '',
       sendDatetime: '',
-      downLoad: '',
-      fileList: [],
-      loading: true
+      fileList: []
     };
   };
   componentDidMount() {
@@ -46,17 +44,13 @@ class PostRequestAddedit extends React.Component {
         bankName: data.bankName,
         projectName: data.projectName,
         sendDatetime: data.sendDatetime,
-        downLoad: data.downLoad,
-        loading: false
+        download: data.download
       });
     });
   }
   handleExport() {
-    let download;
     downNum(this.code).then((data) => {
-      if (data.isSuccess) {
-        download = download + 1;
-      }
+      this.setState({ download: this.state.download + 1 });
     });
     downLoad(this.code).then((data) => {
       if (!data || !data.length) {
@@ -72,7 +66,7 @@ class PostRequestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, (d.shouldAmount) / 1000, '', ''];
+        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, (d.factAmount) / 1000, '', ''];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -82,7 +76,7 @@ class PostRequestAddedit extends React.Component {
     }, () => { });
   }
   goBack() {
-    history.go(-1);
+    this.props.history.go(-1);
   }
   handleChange(file) {
     try {
@@ -149,11 +143,10 @@ class PostRequestAddedit extends React.Component {
     console.log(param);
     fetch(631432, param).then(() => {
       showSucMsg('操作成功');
-      this.state.loading();
       setTimeout(() => {
-        history.go(-1);
+        this.props.history.go(-1);
       }, 1000);
-    }).catch(this.state.loading);
+    }).catch();
   }
   render() {
     const props = {
@@ -175,7 +168,7 @@ class PostRequestAddedit extends React.Component {
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
           <Button onClick={this.handleExport}>点击下载</Button>
-          <p>下载次数{this.state.downLoad}</p>
+          <p>下载次数{this.state.download}</p>
         </Card>
         <Card title={this.state.projectName + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
           <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>

@@ -10,7 +10,7 @@ import {
 import { getQueryString, showSucMsg, formatDate, showWarnMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { Button, Card } from 'antd';
-import { downLoad, detailDate } from 'api/downLoad';
+import { downLoad, detailDate, downNum } from 'api/downLoad';
 import XLSX from 'xlsx';
 import { div } from 'gl-matrix/src/gl-matrix/vec4';
 
@@ -29,13 +29,13 @@ class AlreadyQuestAddedit extends React.Component {
     this.state = {
       data: [],
       cols: [],
-      bankcardNumber: ' ',
-      handleDatetime: ' ',
-      bankName: ' ',
-      download: ' ',
-      projectName: ' ',
+      bankcardNumber: '',
+      handleDatetime: '',
+      bankName: '',
+      download: '',
+      projectName: '',
       sendDatetime: '',
-      downLoad: ''
+      backDownload: ''
     };
   };
   componentDidMount() {
@@ -47,14 +47,23 @@ class AlreadyQuestAddedit extends React.Component {
         bankName: data.bankName,
         projectName: data.projectName,
         sendDatetime: data.sendDatetime,
-        downLoad: data.downLoad
+        download: data.download
+      });
+    });
+    downNum(this.code).then((data) => {
+      console.log(data);
+      this.setState({
+        backDownload: data.backDownload
       });
     });
   }
   goBack() {
-    history.go(-1);
+    this.props.history.go(-1);
   }
-  handleExport1(argu) {
+  handleExport1() {
+    downNum(this.code).then((data) => {
+      this.setState({ backDownload: this.state.backDownload + 1 });
+    });
     downLoad(this.code).then((data) => {
       let payroll1 = [
         ['项目信息'],
@@ -64,7 +73,7 @@ class AlreadyQuestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.shouldAmount / 1000, d.factAmount / 1000, formatDate(d.latePayDatetime)];
+        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.factAmount / 1000, d.payAmount / 1000, formatDate(d.latePayDatetime)];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -73,7 +82,10 @@ class AlreadyQuestAddedit extends React.Component {
       XLSX.writeFile(wb, 'sheetjs.xlsx');
     }, () => { });
   }
-  handleExport(argu) {
+  handleExport() {
+    downNum(this.code).then((data) => {
+      this.setState({ download: this.state.download + 1 });
+    });
     downLoad(this.code).then((data) => {
       let payroll1 = [
         ['项目信息'],
@@ -83,7 +95,7 @@ class AlreadyQuestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.shouldAmount, '', ''];
+        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.factAmount / 1000, '', ''];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -100,12 +112,12 @@ class AlreadyQuestAddedit extends React.Component {
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
           <button onClick={this.handleExport}>点击下载</button>
-          <p>下载次数{this.state.downLoad}</p>
+          <p>下载次数{this.state.download}</p>
         </Card>
         <Card title={this.state.projectName + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
           <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>
           <button onClick={this.handleExport1}>点击下载</button>
-          <p>下载次数{this.state.downLoad}</p>
+          <p>下载次数{this.state.backDownload}</p>
         </Card>
         <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20 }}>返回</Button>
       </div>
