@@ -53,6 +53,10 @@ class User extends React.Component {
       key: 'user_kind',
       search: true
     }, {
+      title: '手机号',
+      field: 'mobile',
+      mobile: true
+    }, {
       title: '备注',
       field: 'remark'
     }];
@@ -103,27 +107,14 @@ class User extends React.Component {
         } else {
           this.props.history.push(`/security/user/changeMobile?userId=${selectedRowKeys[0]}&loginName=${selectedRows[0].loginName}`);
         }
-      },
-      setBumen: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          if (selectedRows[0].type === 'O') {
-            this.props.history.push(`/security/user/setBumen?userId=${selectedRowKeys[0]}&loginName=${selectedRows[0].loginName}`);
-          }else {
-            showWarnMsg('只有业主单位的用户可以设置部门');
-          }
-        }
       }
     };
     return this.props.buildList({
       fields,
       btnEvent,
-      searchParams: cookies.get('loginKind') === 'P' ? {}
-      : {'type': cookies.get('loginKind') === 'O' ? 'O'
-      : cookies.get('loginKind') === 'B' ? 'B' : 'S'},
+      searchParams: cookies.get('loginKind') === 'P' ? { type: 'P', updater: '' }
+      : cookies.get('loginKind') === 'O' ? {'type': 'O', updater: ''}
+      : cookies.get('loginKind') === 'B' ? {'type': 'B', updater: ''} : {'type': 's', updater: ''},
       pageCode: 631085,
       rowKey: 'userId'
     });

@@ -44,7 +44,10 @@ export function deleteCompany1(code) {
  * @param code
  */
 export function getBankNameByCode(bankCode) {
-  return fetch(631093, { bankCode });
+  return fetch(631093, { bankCode, updater: '' });
+}
+export function getBankCodeByName(bankName) {
+  return fetch(631093, { bankName, updater: '' });
 }
 
 export function getProjectList(kind, companyCode) {

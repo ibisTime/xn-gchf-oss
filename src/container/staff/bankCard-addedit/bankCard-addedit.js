@@ -25,62 +25,38 @@ class BankCardAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'name',
-      title: '姓名',
-      required: true
+      field: 'staffCode',
+      title: '员工编号',
+      readonly: true
     }, {
-      field: 'place',
-      title: '籍贯',
-      required: true
-    }, {
-      field: 'mobile',
-      title: '手机号',
-      mobile: true,
-      required: true
-    }, {
-      field: 'idType',
-      title: '证件类型',
-      type: 'select',
-      key: 'id_type',
-      required: true
-    }, {
-      field: 'idNo',
-      title: '证件号',
-      required: true
+      field: 'staffName',
+      title: '真实姓名',
+      readonly: true
     }, {
       field: 'bankName',
       title: '银行名称',
-      type: 'select',
+      type: this.view ? null : 'select',
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',
-      required: true
-    }, {
-      field: 'subbranch',
-      title: '开户行',
       required: true
     }, {
       field: 'bankcardNumber',
       title: '银行卡号',
       required: true
     }, {
-      field: 'pict1',
-      title: '免冠照片',
-      single: true,
-      type: 'img',
+      field: 'subbranch',
+      title: '开户支行',
       required: true
     }, {
-      field: 'pict2',
-      title: '手持身份证照片',
-      single: true,
-      type: 'img',
-      required: true
+      field: 'updateDatetime',
+      title: '更新时间',
+      type: 'datetime',
+      readonly: true
     }, {
-      field: 'pict3',
-      title: '身份证正反面照片',
-      single: true,
-      type: 'img',
-      required: true
+      field: 'updater',
+      title: '更新人',
+      readonly: true
     }, {
       field: 'remark',
       title: '备注'
@@ -89,7 +65,7 @@ class BankCardAddEdit extends React.Component {
       fields,
       code: this.code,
       view: this.view,
-      detailCode: 631426,
+      detailCode: 631427,
       editCode: 631422,
       buttons: this.view ? [] : [{
         title: '保存',

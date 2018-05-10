@@ -25,9 +25,9 @@ class PWugongAddedit extends React.Component {
     };
     getUserDetail(cookies.get('userId')).then((data) => {
       if(cookies.get('loginKind') === 'O') {
-        this.setState({'companyCode': data.companyCode, 'departmentCode': data.departmentCode});
+        this.setState({'companyCode': data.companyCode});
       }else {
-        this.setState({'departmentCode': data.departmentCode});
+        // this.setState({'departmentCode': data.departmentCode});
       }
     });
     // if(cookies.get('loginKind') === 'O') {
@@ -74,6 +74,7 @@ class PWugongAddedit extends React.Component {
     }, {
       field: 'salary',
       title: '薪酬',
+      amount: true,
       required: true
     }, {
       field: 'joinDatetime',
@@ -87,13 +88,13 @@ class PWugongAddedit extends React.Component {
       listCode: '631086',
       params: {
         type: cookies.get('loginKind'),
-        departmentCode: this.state.departmentCode
+        companyCode: this.state.companyCode
       },
       keyName: 'userId',
       valueName: 'realName',
       required: true
     }, {
-      field: 'couAmount',
+      field: 'cutAmount',
       title: '迟到/早退每小时扣款金额',
       amount: true,
       required: true
@@ -144,7 +145,7 @@ class PWugongAddedit extends React.Component {
       listCode: '631086',
       params: {
         type: cookies.get('loginKind'),
-        departmentCode: this.state.departmentCode
+        companyCode: this.state.companyCode
       },
       keyName: 'userId',
       valueName: 'realName',
@@ -159,7 +160,7 @@ class PWugongAddedit extends React.Component {
       title: '备注'
     }];
     if(cookies.get('loginKind') === 'O') {
-      return this.state.departmentCode && this.state.companyCode ? this.props.buildDetail({
+      return this.state.companyCode ? this.props.buildDetail({
         fields: fieldso,
         key: 'id',
         code: this.code,
@@ -168,14 +169,14 @@ class PWugongAddedit extends React.Component {
         addCode: 631460
       }) : null;
     }else {
-      return this.state.departmentCode ? this.props.buildDetail({
+      return this.props.buildDetail({
         fields,
         key: 'id',
         code: this.code,
         view: this.view,
         detailCode: 631417,
         addCode: 631460
-      }) : null;
+      });
     }
   }
 }

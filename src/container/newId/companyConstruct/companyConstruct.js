@@ -48,7 +48,6 @@ class RoleMenu extends React.Component {
     });
     this.result = result;
     this.setState({ treeData: this.result });
-    console.log(this.state.treeData);
   }
   getTreeNode(arr, children) {
     if(arr) {
@@ -143,9 +142,9 @@ class RoleMenu extends React.Component {
       return <TreeNode {...item} />;
     });
   }
-  // addCompany = () => {
-  //   this.props.history.push(`/newProj/addCompany`);
-  // }
+  addCompany = () => {
+    this.props.history.push(`/newProj/addCompany`);
+  }
   editCompany = () => {
     if(this.state.selectKey !== '') {
         this.props.history.push(`/newProj/addCompany?code=${this.state.selectKey}`);
@@ -153,51 +152,18 @@ class RoleMenu extends React.Component {
         showWarnMsg('请选择一家公司');
     }
   }
-  // deleteCompany = () => {
-  //   if(this.state.selectKey !== '') {
-  //       Modal.confirm({
-  //           okText: '确认',
-  //           cancelText: '取消',
-  //           content: '确定删除该公司？',
-  //           onOk: () => {
-  //               this.setState({ fetching: true });
-  //               deleteCompany1(this.state.selectKey).then(() => {
-  //                 showSucMsg('操作成功');
-  //                 this.setState({ fetching: false });
-  //               }).catch(this.props.cancelFetching);
-  //           }
-  //       });
-  //   }else {
-  //       showWarnMsg('请选择一家公司');
-  //   }
-  // }
-  addBumen = () => {
-    if(this.state.selectKey !== '') {
-        this.props.history.push(`/newProj/addBumen?companyCode=${this.state.selectKey}`);
-    }else {
-        showWarnMsg('请选择一家公司');
-    }
-  }
-  editBumen = () => {
-    if(this.state.selectKey !== '' && this.companyCodeObj[this.state.selectKey] !== undefined) {
-        let companyCode = this.companyCodeObj[this.state.selectKey];
-        this.props.history.push(`/newProj/addBumen?code=${this.state.selectKey}&companyCode=${companyCode}`);
-    }else {
-        showWarnMsg('请选择一个部门');
-    }
-  }
-  deleteBumen = () => {
+  deleteCompany = () => {
     if(this.state.selectKey !== '') {
         Modal.confirm({
             okText: '确认',
             cancelText: '取消',
-            content: '确定删除该部门？',
+            content: '确定删除该公司？',
             onOk: () => {
                 this.setState({ fetching: true });
-                deleteBumen1(this.state.selectKey).then(() => {
-                    showSucMsg('操作成功');
-                    this.setState({ fetching: false });
-                  }).catch(this.setState({ fetching: false }));
+                deleteCompany1(this.state.selectKey).then(() => {
+                  showSucMsg('操作成功');
+                  this.setState({ fetching: false });
+                }).catch(this.props.cancelFetching);
             }
         });
     }else {
@@ -216,10 +182,9 @@ class RoleMenu extends React.Component {
       <Spin spinning={this.state.fetching}>
       { cookies.get('loginKind') === 'S' ? null
       : <div className="tools-wrapper" style={{ marginTop: 8 }}>
+          <button type="button" className="ant-btn" onClick={this.addCompany}><span>新增公司</span></button>
           <button type="button" className="ant-btn" onClick={this.editCompany}><span>修改公司</span></button>
-          <button type="button" className="ant-btn" onClick={this.addBumen}><span>新增部门</span></button>
-          <button type="button" className="ant-btn" onClick={this.editBumen}><span>修改部门</span></button>
-          <button type="button" className="ant-btn" onClick={this.deleteBumen}><span>删除部门</span></button>
+          <button type="button" className="ant-btn" onClick={this.deleteCompany}><span>删除公司</span></button>
         </div>
       }
         <Form className="detail-form-wrapper" onSubmit={this.handleSubmit}>

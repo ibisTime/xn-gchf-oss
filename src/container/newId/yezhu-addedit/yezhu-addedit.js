@@ -21,11 +21,6 @@ class YezhuAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      title: '手机号',
-      field: 'mobile',
-      mobile: true,
-      required: true
-    }, {
       title: '用户名',
       field: 'loginName',
       required: true
@@ -43,6 +38,18 @@ class YezhuAddEdit extends React.Component {
       field: 'type',
       value: 'O',
       hidden: true
+    }, {
+      title: '公司',
+      field: 'companyCode',
+      type: 'select',
+      listCode: '631026',
+      keyName: 'code',
+      valueName: 'name',
+      required: true
+    }, {
+      title: '手机号',
+      field: 'mobile',
+      mobile: true
     }, {
       title: '备注',
       field: 'remark'

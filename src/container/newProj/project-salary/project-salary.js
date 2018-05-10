@@ -41,16 +41,19 @@ class Salary extends React.Component {
   }
   render() {
     const fields = [{
-      title: '本月工资',
-      field: 'amount',
-      amount: true
+      title: '员工姓名',
+      field: 'staffName',
+      formatter: (v, data) => {
+        return data.staff ? data.staff.name : '-';
+      }
     }, {
-      title: '扣款金额',
-      field: 'cutAmount',
-      amount: true
+      title: '所属月份',
+      field: 'month',
+      search: true
     }, {
-      title: '扣款说明',
-      field: 'cutNote'
+      title: '应发工资',
+      field: 'shouldAmount',
+      amount: true
     }, {
       title: '迟到天数',
       field: 'delayDays'
@@ -61,43 +64,43 @@ class Salary extends React.Component {
       title: '请假天数',
       field: 'leavingDays'
     }, {
-      title: '应发工资',
-      field: 'shouldAmount',
+      title: '税费',
+      field: 'tax',
       amount: true
+    }, {
+      title: '扣款金额',
+      field: 'cutAmount',
+      amount: true
+    }, {
+      title: '扣款说明',
+      field: 'cutNote'
     }, {
       title: '实际工资',
       field: 'factAmount',
       amount: true
     }, {
-      title: '税费',
-      field: 'tax',
+      title: '发放金额',
+      field: 'payAmount',
       amount: true
-    }, {
-      title: '所属月份',
-      field: 'month',
-      search: true
     }, {
       title: '最近一次发放时间',
       field: 'payDatetime',
       type: 'datetime'
     }, {
-      title: '发放金额',
-      field: 'payAmount',
-      amount: true
-    }, {
       title: '状态',
       field: 'status',
       type: 'select',
-      key: 'salay_status'
+      key: 'salay_status',
+      search: true
     }, {
       title: '备注',
       field: 'remark'
     }];
     const options = {
       fields: [{
-        field: 'code',
+        field: 'codeList',
         title: '编号',
-        value: this.code,
+        value: this.codeList,
         hidden: true
       }, {
         field: 'approveNote',
@@ -114,9 +117,7 @@ class Salary extends React.Component {
             fetch(631443, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
+              this.setState({ visible: false });
             }).catch(this.props.cancelFetching);
         }
       }, {
@@ -129,9 +130,7 @@ class Salary extends React.Component {
           fetch(631443, param).then(() => {
             showSucMsg('操作成功');
             this.props.cancelFetching();
-            setTimeout(() => {
-              this.props.history.go(-1);
-            }, 1000);
+            this.setState({ visible: false });
           }).catch(this.props.cancelFetching);
         }
       }]
@@ -142,6 +141,7 @@ class Salary extends React.Component {
           {
             this.props.buildList({
               fields,
+              singleSelect: false,
               buttons: [{
                 code: 'edit',
                 name: '修改',
@@ -164,15 +164,13 @@ class Salary extends React.Component {
                 handler: (selectedRowKeys, selectedRows) => {
                   if (!selectedRowKeys.length) {
                     showWarnMsg('请选择记录');
-                  } else if (selectedRowKeys.length > 1) {
-                    showWarnMsg('请选择一条记录');
                   } else {
-                    if (selectedRows[0].status === '0') {
-                      this.code = selectedRowKeys[0];
+                    // if (selectedRows[0].status === '0') {
+                      this.codeList = selectedRowKeys;
                       this.setState({ visible: true });
-                    } else {
-                      showWarnMsg('该状态的工资条不可审核');
-                    }
+                    // } else {
+                      // showWarnMsg('该状态的工资条不可审核');
+                    // }
                   }
                 }
               }, {
@@ -233,7 +231,7 @@ class Salary extends React.Component {
             })
           }
           <ModalDetail
-            title='修改密码'
+            title='审核'
             visible={this.state.visible}
             hideModal={() => this.setState({ visible: false })}
             options={options} />
@@ -245,6 +243,7 @@ class Salary extends React.Component {
           {
             this.props.buildList({
               fields,
+              singleSelect: false,
               buttons: [{
                 code: 'export',
                 name: '导出',
@@ -295,7 +294,7 @@ class Salary extends React.Component {
             })
           }
           <ModalDetail
-            title='修改密码'
+            title='审核'
             visible={this.state.visible}
             hideModal={() => this.setState({ visible: false })}
             options={options} />
