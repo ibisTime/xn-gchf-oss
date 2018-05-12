@@ -96,7 +96,6 @@ class ProjectCheck extends React.Component {
     }, {
       field: 'approveNote',
       title: '审核备注',
-      required: true,
       readonly: false
     }];
     return this.state.companyCode ? this.props.buildDetail({

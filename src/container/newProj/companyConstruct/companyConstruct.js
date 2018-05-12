@@ -30,7 +30,6 @@ class RoleMenu extends React.Component {
     getUserDetail(cookies.get('userId')).then((companyList) => {
       codes = companyList.companyCode;
       getCompany(codes).then((companyData) => {
-        console.log(companyData);
         this.getTree(companyData);
         this.setState({
           fetching: false
@@ -43,14 +42,11 @@ class RoleMenu extends React.Component {
   }
   getTree(data) {
     let result = [];
-    data.forEach(v => {
-      // item.map(v => {
       result.push({
-        title: v.name,
-        key: v.code
-        // });
+        title: data.name,
+        key: data.code
       });
-    });
+    console.log(result);
     this.result = result;
     this.setState({ treeData: this.result });
     console.log(this.state.treeData);

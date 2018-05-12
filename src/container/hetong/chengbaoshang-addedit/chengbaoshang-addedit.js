@@ -70,25 +70,21 @@ class ChengbaoshangAddEdit extends React.Component {
       field: 'contentPic',
       title: '合同照片',
       type: 'img',
-      single: true,
       required: true
     }, {
       field: 'pict1',
       title: '免冠照片',
       type: 'img',
-      single: true,
       required: true
     }, {
       field: 'pict2',
       title: '手持身份证照片',
       type: 'img',
-      single: true,
       required: true
     }, {
       field: 'pict3',
       title: '身份证正反面照片',
       type: 'img',
-      single: true,
       required: true
     }, {
       field: 'remark',

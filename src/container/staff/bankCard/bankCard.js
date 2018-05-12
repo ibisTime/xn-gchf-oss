@@ -16,14 +16,17 @@ import { listWrapper } from 'common/js/build-list';
     ...state.staffBankCard,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class BankCard extends React.Component {
   render() {
     const fields = [{
       field: 'staffCode',
-      title: '员工编号'
+      title: '员工编号',
+      hidden: true
     }, {
       field: 'staffName',
       title: '真实姓名'

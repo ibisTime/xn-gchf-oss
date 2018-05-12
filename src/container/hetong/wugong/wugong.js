@@ -41,10 +41,7 @@ class Wugong extends React.Component {
       title: '工程名称'
     }, {
       field: 'staffName',
-      title: '工人姓名',
-      formatter: (v, data) => {
-        return data.Staff ? data.Staff.name : '-';
-      }
+      title: '工人姓名'
     }, {
       field: 'staffMobile',
       title: '手机号'

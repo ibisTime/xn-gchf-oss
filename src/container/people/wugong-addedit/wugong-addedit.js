@@ -24,9 +24,9 @@ class PWugongAddedit extends React.Component {
       companyCode: ''
     };
     getUserDetail(cookies.get('userId')).then((data) => {
-      if(cookies.get('loginKind') === 'O') {
-        this.setState({'companyCode': data.companyCode});
-      }else {
+      if (cookies.get('loginKind') === 'O') {
+        this.setState({ 'companyCode': data.companyCode });
+      } else {
         // this.setState({'departmentCode': data.departmentCode});
       }
     });
@@ -159,7 +159,7 @@ class PWugongAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
         fields: fieldso,
         key: 'id',
@@ -168,7 +168,7 @@ class PWugongAddedit extends React.Component {
         detailCode: 631417,
         addCode: 631460
       }) : null;
-    }else {
+    } else {
       return this.props.buildDetail({
         fields,
         key: 'id',

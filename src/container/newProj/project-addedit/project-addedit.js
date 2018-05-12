@@ -32,9 +32,9 @@ class ProjectAddedit extends React.Component {
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-      getUserDetail(cookies.get('userId')).then(data => {
-        this.getUserDetail(data.companyCode);
-      });
+    getUserDetail(cookies.get('userId')).then(data => {
+      this.getUserDetail(data.companyCode);
+    });
   }
   getUserDetail(companyCode) {
     this.setState({ companyCode: companyCode });
@@ -121,78 +121,13 @@ class ProjectAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.state.companyCode ? this.props.buildDetail({
+    return this.props.buildDetail({
       fields,
       key: 'code',
       code: this.projectCode,
       view: this.view,
-      addCode: 631350,
-      detailCode: 631358,
-      editCode: 631352,
-      beforeSubmit: (param) => {
-        param.companyCode = this.state.companyCode;
-        getBankNameByCode(param.bankName).then(data => {
-            param.bankCode = data.bankCode;
-        });
-        return param;
-      },
-      buttons: this.projectCode ? [{
-        title: '保存',
-        check: true,
-        handler: (param) => {
-          param.companyCode = this.state.companyCode;
-          getBankCodeByName(param.bankName).then(data => {
-            param.bankCode = data[0].bankCode;
-            param.bankName = data[0].bankName;
-            this.props.doFetching();
-            fetch(631352, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
-          });
-        }
-      }, {
-        title: '项目提请审核',
-        check: true,
-        type: 'primary',
-        handler: (param) => {
-          param.companyCode = this.state.companyCode;
-          getBankCodeByName(param.bankName).then(data => {
-            param.bankCode = data[0].bankCode;
-            param.bankName = data[0].bankName;
-            this.props.doFetching();
-            fetch(631353, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
-          });
-        }
-      }] : [{
-        title: '保存',
-        check: true,
-        handler: (param) => {
-          param.companyCode = this.state.companyCode;
-          getBankNameByCode(param.bankName).then(data => {
-            param.bankCode = data[0].bankCode;
-            param.bankName = data[0].bankName;
-            this.props.doFetching();
-            fetch(631350, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
-          });
-        }
-      }]
-    }) : null;
+      detailCode: 631358
+    });
   }
 }
 
