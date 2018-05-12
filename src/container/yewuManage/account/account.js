@@ -18,18 +18,26 @@ import { getUserDetail } from 'api/user';
     ...state.yewuManageAccount,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: ''
+      companyCode: '',
+      companyCodeList: ''
     };
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+        this.setState({ 'companyCodeList': data.companyCodeList });
+      });
+    }
+    if (cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
       });
     }
   }
@@ -83,17 +91,7 @@ class Account extends React.Component {
       title: '工程编号'
     }, {
       field: 'projectName',
-      title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: '',
-        companyCode: this.state.companyCode,
-        kind: 'O'
-      },
-      keyName: 'name',
-      valueName: 'name'
+      title: '工程名称'
     }, {
       field: 'bankName',
       title: '银行名称'
@@ -122,7 +120,7 @@ class Account extends React.Component {
       search: true,
       hidden: true
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         pageCode: 631365,
@@ -131,11 +129,14 @@ class Account extends React.Component {
           kind: 'O'
         }
       }) : null;
-    }else {
-      return this.props.buildList({
+    } else {
+      return this.state.companyCodeList ? this.props.buildList({
         fields,
-        pageCode: 631365
-      });
+        pageCode: 631365,
+        searchParams: {
+          companyCodeList: this.state.companyCodeList
+        }
+      }) : null;
     }
   }
 }

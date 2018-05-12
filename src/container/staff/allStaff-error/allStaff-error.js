@@ -19,24 +19,31 @@ import { getUserDetail } from 'api/user';
     ...state.staffAllStaffError,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class AllStaffError extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      companyCodeList: '',
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    } else if (cookies.get('loginKind') === 'S') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCodeList': data.companyCodeList });
       });
     }
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.staffCode = getQueryString('staffCode', this.props.location.search);
-    }
+  }
   render() {
     const fieldso = [{
       field: 'code',
@@ -53,7 +60,8 @@ class AllStaffError extends React.Component {
       params: {
         updater: '',
         kind: 'O',
-        companyCode: this.state.companyCode
+        companyCode: this.state.companyCode,
+        companyCodeList: this.state.companyCodeList
       },
       keyName: 'name',
       valueName: 'name'
@@ -119,7 +127,7 @@ class AllStaffError extends React.Component {
         }
       }
     };
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields: fieldso,
         btnEvent,
@@ -135,7 +143,23 @@ class AllStaffError extends React.Component {
         }],
         pageCode: 631455
       }) : null;
-    }else {
+    } else if (cookies.get('loginKind') === 'S') {
+      return this.state.companyCodeList ? this.props.buildList({
+        fields: fieldso,
+        btnEvent,
+        searchParams: {
+          staffCode: this.staffCode,
+          type: '1',
+          companyCodeList: this.state.companyCodeList,
+          kind: 'O'
+        },
+        buttons: [{
+          code: 'detail',
+          name: '详情'
+        }],
+        pageCode: 631455
+      }) : null;
+    } else {
       return this.props.buildList({
         fields,
         btnEvent,

@@ -28,15 +28,18 @@ class AlreadyQuest extends React.Component {
     super(props);
     this.state = {
       subbranch: '',
-      bankName: ''
+      bankName: '',
+      companyCodeList: ''
     };
   };
   componentDidMount() {
     getUserDetail(cookies.get('userId')).then((data) => {
       this.setState({
         subbranch: data.subbranch,
-        bankName: data.bankName
+        bankName: data.bankName,
+        companyCodeList: data.companyCodeList
       });
+      console.log(data);
     });
   }
   render() {
@@ -61,17 +64,34 @@ class AlreadyQuest extends React.Component {
       field: 'handleDatetime',
       type: 'datetime'
     }];
-    return this.state.subbranch && this.state.bankName
-    ? this.props.buildList({
-      fields,
-      searchParams: {
-        status: 3,
-        subbranch: this.state.subbranch,
-        bankName: this.state.bankName
-      },
-      pageCode: 631435
-    })
-    : null;
+    if (cookies.get('loginKind') === 'B') {
+      return this.state.subbranch && this.state.bankName
+        ? this.props.buildList({
+          fields,
+          searchParams: {
+            status: 3,
+            subbranch: this.state.subbranch,
+            bankName: this.state.bankName
+          },
+          pageCode: 631435
+        })
+        : null;
+    } else if (cookies.get('loginKind') === 'S') {
+      return this.state.companyCodeList
+        ? this.props.buildList({
+          fields,
+          searchParams: {
+            companyCodeList: this.state.companyCodeList
+          },
+          pageCode: 631435
+        })
+        : null;
+    } else {
+      this.props.buildList({
+        fields,
+        pageCode: 631435
+      });
+    }
   }
 }
 

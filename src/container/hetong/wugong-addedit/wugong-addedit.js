@@ -22,11 +22,11 @@ class WugongAddEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: ''
+      companyCodeList: ''
     };
     if(cookies.get('loginKind') === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+        this.setState({'companyCodeList': data.companyCodeList});
       });
     }
     this.code = getQueryString('code', this.props.location.search);
@@ -49,7 +49,7 @@ class WugongAddEdit extends React.Component {
       type: 'select',
       listCode: '631357',
       params: {
-        companyCode: this.state.companyCode,
+        companyCodeList: this.state.companyCodeList,
         kind: 'O',
         updater: ''
       },
@@ -76,7 +76,7 @@ class WugongAddEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.state.companyCode ? this.props.buildDetail({
+    return this.state.companyCodeList ? this.props.buildDetail({
       fields,
       code: this.code,
       view: this.view,

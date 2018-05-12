@@ -19,8 +19,10 @@ import { getUserDetail } from 'api/user';
     ...state.staffAllStaff,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class AllStaff extends React.Component {
   constructor(props) {
@@ -34,10 +36,10 @@ class AllStaff extends React.Component {
     getUserDetail(cookies.get('userId')).then((data) => {
       if (cookies.get('loginKind') === 'O') {
         this.setState({ pageCode: '631415' });
-        this.setState({ searchParams: {'companyCode': data.companyCode, 'kind': 'O'} });
-      }else {
+        this.setState({ searchParams: { 'companyCode': data.companyCode, 'kind': 'O' } });
+      } else {
         this.setState({ pageCode: '631415' });
-        this.setState({ searchParams: {} });
+        this.setState({ searchParams: { 'companyCodeList': data.companyCodeList } });
       }
     });
   }
@@ -146,7 +148,7 @@ class AllStaff extends React.Component {
           // if (cookies.get('loginKind') === 'O') {
           //   this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRows[0].Staff.code}`);
           // }else {
-            this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRowKeys[0]}`);
           // }
         }
       },
@@ -159,7 +161,7 @@ class AllStaff extends React.Component {
           // if (cookies.get('loginKind') === 'O') {
           //   this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRows[0].Staff.code}`);
           // }else {
-            this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRowKeys[0]}`);
           // }
         }
       },
@@ -172,7 +174,7 @@ class AllStaff extends React.Component {
           // if (cookies.get('loginKind') === 'O') {
           //   this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRows[0].Staff.code}`);
           // }else {
-            this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
           // }
         }
       },
@@ -185,7 +187,7 @@ class AllStaff extends React.Component {
           // if (cookies.get('loginKind') === 'O') {
           //   this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRows[0].Staff.code}`);
           // }else {
-            this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRowKeys[0]}`);
           // }
         }
       }

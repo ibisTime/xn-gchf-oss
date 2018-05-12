@@ -18,18 +18,26 @@ import { getUserDetail } from 'api/user';
     ...state.hetongChengbaoshang,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Chengbaoshang extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      companyCodeList: '',
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+        this.setState({ 'companyCodeList': data.companyCodeList });
+      });
+    };
+    if (cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
       });
     }
   }
@@ -110,7 +118,7 @@ class Chengbaoshang extends React.Component {
       hidden: true,
       title: '关键字'
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields: fieldso,
         searchParams: {
@@ -121,12 +129,15 @@ class Chengbaoshang extends React.Component {
         pageCode: 631375,
         rowKey: 'code'
       }) : null;
-    }else {
-      return this.props.buildList({
+    } else {
+      return this.state.companyCodeList ? this.props.buildList({
         fields,
         pageCode: 631375,
-        rowKey: 'code'
-      });
+        rowKey: 'code',
+        searchParams: {
+          companyCodeList: this.state.companyCodeList
+        }
+      }) : null;
     }
   }
 }

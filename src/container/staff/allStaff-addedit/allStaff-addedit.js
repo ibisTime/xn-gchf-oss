@@ -1,5 +1,6 @@
 import React from 'react';
 import fetch from 'common/js/fetch';
+import cookies from 'browser-cookies';
 import {
   initStates,
   doFetching,
@@ -11,7 +12,7 @@ import {
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
-import { getUserId } from 'api/user';
+import { getUserId, getUserDetail } from 'api/user';
 
 @DetailWrapper(
   state => state.staffAllStaffAddEdit,
@@ -20,7 +21,14 @@ import { getUserId } from 'api/user';
 class AllStaffAddEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.code = getQueryString('code', this.props.location.search);
+    this.state = {
+      companyCode: ''
+    };
+    if (cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    }
     this.staffCode = getQueryString('staffCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
@@ -85,6 +93,30 @@ class AllStaffAddEdit extends React.Component {
       title: '身份证正反面照片',
       single: true,
       type: 'img',
+      required: true
+    }, {
+      field: 'contentPic',
+      title: '合同照片',
+      type: 'img',
+      single: true,
+      required: true
+    }, {
+      field: 'projectCode',
+      title: '所属工程',
+      type: 'select',
+      listCode: '631357',
+      params: {
+        companyCode: this.state.companyCode,
+        kind: 'O',
+        updater: ''
+      },
+      keyName: 'code',
+      valueName: 'name',
+      required: true
+    }, {
+      field: 'contractDatetime',
+      title: '签约时间',
+      type: 'date',
       required: true
     }, {
       field: 'remark',

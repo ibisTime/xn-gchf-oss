@@ -40,7 +40,7 @@ class Login extends React.Component {
         this.type = window.location.port === '2505' ? 'S'
         : window.location.port === '2506' ? 'B'
         : window.location.port === '2507' ? 'O'
-        : window.location.port === '2508' ? 'P' : 'O';
+        : window.location.port === '2508' ? 'P' : 'S';
         this.setState({ loading: true });
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户

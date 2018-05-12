@@ -1,4 +1,5 @@
 import React from 'react';
+import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -10,6 +11,7 @@ import {
   setSearchData
 } from '@redux/staff/bankCard';
 import { listWrapper } from 'common/js/build-list';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
@@ -22,6 +24,22 @@ import { listWrapper } from 'common/js/build-list';
   }
 )
 class BankCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      companyCodeList: '',
+      companyCode: ''
+    };
+    if (cookies.get('loginKind') === 'S') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCodeList': data.companyCodeList });
+      });
+    } else if (cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    }
+  }
   render() {
     const fields = [{
       field: 'staffCode',
@@ -55,7 +73,20 @@ class BankCard extends React.Component {
       search: true,
       hidden: true
     }];
-    return this.props.buildList({ fields, pageCode: 631425 });
+    if (cookies.get('loginKind') === 'S') {
+      return this.props.buildList({
+        fields,
+        pageCode: 631425,
+        searchParam: {
+          companyCodeList: this.state.companyCodeList
+        }
+      });
+    } else {
+      return this.props.buildList({
+        fields,
+        pageCode: 631425
+      });
+    }
   }
 }
 

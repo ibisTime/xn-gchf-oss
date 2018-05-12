@@ -189,7 +189,7 @@ class Map3 extends React.Component {
     return (
       <div>
         <div>
-          {cookies.get('loginKind') === 'O'
+          {cookies.get('loginKind') === 'O' || cookies.get('loginKind') === 'S'
             ? (<div><div className="tools-wrapper" style={{ 'margintop': '8px', 'display': 'inline-block' }}><button onClick={this.addProject} type="button" className="ant-btn"><span>新增项目</span></button></div>
               <div className="tools-wrapper" style={{ 'margintop': '8px', 'display': 'inline-block' }}><button onClick={this.Statistics} type="button" className="ant-btn"><span>统计信息</span></button></div>
               <div className="tools-wrapper" style={{ 'margintop': '8px', 'display': 'inline-block' }}><button onClick={this.addWorkers} type="button" className="ant-btn"><span>办理入职</span></button></div>
