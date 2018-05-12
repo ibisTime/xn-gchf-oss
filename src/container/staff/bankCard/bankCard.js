@@ -30,15 +30,18 @@ class BankCard extends React.Component {
       companyCodeList: '',
       companyCode: ''
     };
+  }
+  componentDidMount() {
     if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
         this.setState({ 'companyCodeList': data.companyCodeList });
       });
-    } else if (cookies.get('loginKind') === 'O') {
+    };
+    if (cookies.get('loginKind') === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
-    }
+    };
   }
   render() {
     const fields = [{
@@ -73,19 +76,22 @@ class BankCard extends React.Component {
       search: true,
       hidden: true
     }];
-    if (cookies.get('loginKind') === 'S') {
-      return this.props.buildList({
+    if (cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildList({
         fields,
         pageCode: 631425,
         searchParam: {
+          companyCode: this.state.companyCode
+        }
+      }) : null;
+    } else {
+      return this.state.companyCodeList ? this.props.buildList({
+        fields,
+        pageCode: 631425,
+        searchParams: {
           companyCodeList: this.state.companyCodeList
         }
-      });
-    } else {
-      return this.props.buildList({
-        fields,
-        pageCode: 631425
-      });
+      }) : null;
     }
   }
 }

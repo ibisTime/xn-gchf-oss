@@ -30,6 +30,8 @@ class Chengbaoshang extends React.Component {
       companyCodeList: '',
       companyCode: ''
     };
+  }
+  componentDidMount() {
     if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
         this.setState({ 'companyCodeList': data.companyCodeList });
@@ -39,7 +41,7 @@ class Chengbaoshang extends React.Component {
       getUserDetail(cookies.get('userId')).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
-    }
+    };
   }
   render() {
     const fieldso = [{

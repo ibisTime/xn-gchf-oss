@@ -33,15 +33,16 @@ class AllStaff extends React.Component {
     };
   }
   componentDidMount() {
-    getUserDetail(cookies.get('userId')).then((data) => {
-      if (cookies.get('loginKind') === 'O') {
-        this.setState({ pageCode: '631415' });
-        this.setState({ searchParams: { 'companyCode': data.companyCode, 'kind': 'O' } });
-      } else {
-        this.setState({ pageCode: '631415' });
-        this.setState({ searchParams: { 'companyCodeList': data.companyCodeList } });
-      }
-    });
+    if (cookies.get('loginKind') === 'S') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCodeList': data.companyCodeList });
+      });
+    };
+    if (cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    };
   }
   render() {
     const fields = [{
@@ -192,12 +193,25 @@ class AllStaff extends React.Component {
         }
       }
     };
-    return this.state.pageCode && this.state.searchParams ? this.props.buildList({
-      fields: cookies.get('loginKind') === 'O' ? fieldso : fields,
-      btnEvent,
-      searchParams: this.state.searchParams,
-      pageCode: this.state.pageCode
-    }) : null;
+    if (cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildList({
+        fields: fieldso,
+        searchParams: {
+          updater: '',
+          kind: 'O',
+          companyCode: this.state.companyCode
+        },
+        pageCode: 631375
+      }) : null;
+    } else {
+      return this.state.companyCodeList ? this.props.buildList({
+        fields,
+        pageCode: 631375,
+        searchParams: {
+          companyCodeList: this.state.companyCodeList
+        }
+      }) : null;
+    }
   }
 }
 

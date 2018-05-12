@@ -19,10 +19,13 @@ export function getPageAccount({ start, limit, type }) {
 /**
  * 列表查公司
  */
-export function getCompany(code) {
-  return fetch(631027, { code });
+export function getCompany(companyCodeList) {
+  return fetch(631026, { companyCodeList });
 }
 
+export function getCompanyDetail(code) {
+  return fetch(631027, { code });
+}
 /**
  * 列表查部门
  * @param companyCode
