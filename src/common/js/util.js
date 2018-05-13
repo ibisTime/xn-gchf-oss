@@ -17,6 +17,9 @@ export function setUser({ userId, token }) {
 export function clearUser() {
   cookies.erase('userId');
   cookies.erase('token');
+  cookies.erase('roleCode');
+  cookies.erase('loginKind');
+  cookies.erase('userName');
 }
 
 // 获取用户编号

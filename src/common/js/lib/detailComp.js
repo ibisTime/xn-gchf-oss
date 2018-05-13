@@ -130,7 +130,9 @@ export default class DetailComp extends React.Component {
           f.data = this.props.selectData[f.field];
           this.first && this.getSelectData(f);
         } else if (!this.props.selectData[f.field]) {
-          this.props.setSelectData({ data: f.data, key: f.field });
+          setTimeout(() => {
+            this.props.setSelectData({ data: f.data, key: f.field });
+          }, 20);
         }
       }
       children.push(this.getItemByType(f.type, f));
@@ -516,7 +518,9 @@ export default class DetailComp extends React.Component {
           f.data = this.state.searchData[f.field];
           first && this.getO2MSelectData(f);
         } else if (!this.state.searchData[f.field]) {
-          this.setSearchData({ data: f.data, key: f.field });
+          setTimeout(() => {
+            this.setSearchData({ data: f.data, key: f.field });
+          }, 20);
         }
         obj.render = (value) => {
           let val = '';

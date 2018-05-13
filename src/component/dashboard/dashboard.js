@@ -13,8 +13,9 @@ import {
   restoreSubOpenCode
 } from '@redux/menu';
 import { logout } from 'common/js/fetch';
-import { getUserName } from 'common/js/util';
+import { getUserKind, clearUser } from 'common/js/util';
 import asyncComponent from '../async-component/async-component';
+import EditPwd from 'component/edit-pwd/edit-pwd';
 import ROUTES from 'src/route';
 import './dashboard.css';
 import logo from './logo.svg';
@@ -25,36 +26,33 @@ const Home = asyncComponent(() => import('../../container/home/home'));
 const Role = asyncComponent(() => import('../../container/security/role/role'));
 
 @connect(
-  state => state.menu,
+  state => ({ ...state.menu, loginName: state.user.loginName }),
   { getMenuList, setTopCode, setSubMenuCode, setSubOpenCode, clearSubOpenCode, restoreSubOpenCode }
 )
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false
+      editPwdVisible: false,
+      home: true
     };
-    this.toggle = this.toggle.bind(this);
     this.handleTopMenuClick = this.handleTopMenuClick.bind(this);
     this.handleSubMenuClick = this.handleSubMenuClick.bind(this);
     this.handleTitleClick = this.handleTitleClick.bind(this);
-    this.getUserName = this.getUserName.bind(this);
+    this.loginKind = getUserKind();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname === '/') {
+      !this.state.home && this.setState({ home: true });
+    } else if (this.state.home) {
+      this.setState({ home: false });
+    }
   }
   componentDidMount() {
     this.props.getMenuList();
   }
-  toggle() {
-    if (this.state.collapsed) {
-      this.props.restoreSubOpenCode();
-    } else {
-      this.props.clearSubOpenCode();
-    }
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
   handleTopMenuClick(e) {
-    if (e.key) {
+    if (e.key && e.key !== 'user') {
       this.props.setTopCode(e.key);
       let leftMenu = this.props.top2SubObj[e.key][0];
       leftMenu = leftMenu.children ? leftMenu.children[0] : leftMenu;
@@ -70,9 +68,7 @@ class Dashboard extends React.Component {
     }
   }
   handleTitleClick(e) {
-    if (e.key) {
-      this.props.setSubOpenCode(e.key);
-    }
+    e.key && this.props.setSubOpenCode(e.key);
   }
   getRoutes() {
     return ROUTES.map(v => <Route key={v.path} exact path={v.path} component={v.component}></Route>);
@@ -98,103 +94,110 @@ class Dashboard extends React.Component {
       </Breadcrumb.Item>
     ));
   }
-  getUserName() {
-    return getUserName();
+  getHeader() {
+    const userShow = (
+      <Menu>
+        <Menu.Item><a href="#" onClick={() => this.setEditPwdVisible(true)}>修改密码</a></Menu.Item>
+        <Menu.Item><a href="#" onClick={this.logout}>退出</a></Menu.Item>
+      </Menu>
+    );
+    return (
+      <Header className={{
+        'header': true,
+        'home-header': this.state.home
+      }}>
+        <Link to='/' className="logo"><img src={logo}/></Link>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          style={{ lineHeight: '64px' }}
+          onClick={this.handleTopMenuClick}
+          selectedKeys={[this.props.topMenuCode]}
+        >
+          {this.props.topMenuList.map(v => (
+            <Item key={v.code}>{v.name}</Item>
+          ))}
+          <Item key="user" style={{float: 'right'}}>
+            <Dropdown overlay={userShow}>
+              <a href="#" style={{display: 'inline'}}>
+                {this.props.loginName} <Icon type="down" />
+              </a>
+            </Dropdown>
+          </Item>
+        </Menu>
+        <EditPwd editPwdVisible={this.state.editPwdVisible} setEditPwdVisible={this.setEditPwdVisible}/>
+      </Header>
+    );
   }
-  logout = () => { logout(); }
+  getLeftSlider() {
+    return this.props.subMenuList.length ? (
+      <Menu
+        mode="inline"
+        selectedKeys={[this.props.subMenuCode]}
+        openKeys={[...this.props.subOpenCode]}
+        onClick={this.handleSubMenuClick}
+      >
+        {this.props.subMenuList.map(v => (
+          v.children ? (
+            <SubMenu
+              key={`${v.code}`}
+              onTitleClick={this.handleTitleClick}
+              title={<span><Icon type="desktop"/><span>{v.name}</span></span>}
+            >
+              {v.children.map(c => <Item key={c.code}>{c.name}</Item>)}
+            </SubMenu>
+          ) : (
+            <Item key={v.code}>
+              <Icon type="" />
+              <span>{v.name}</span>
+            </Item>
+          )
+        ))}
+      </Menu>
+    ) : null;
+  }
+  getContent(rightCls, innerCls) {
+    return (
+      <Layout className={rightCls}>
+        <Breadcrumb className={innerCls} style={{ margin: '16px 0' }}>
+          {this.getBreadcrumb()}
+        </Breadcrumb>
+        <Content className="right-content">
+          <Switch>
+            <Route exact path="/" render={() => (
+              this.loginKind === 'B'
+                ? <Redirect to="/waitList/postRequest"/>
+                : this.loginKind === 'O' || this.loginKind === 'S'
+                  ? <Home/>
+                  : <Redirect to="/system/role"/>
+            )}/>
+            {this.props.topMenuList.length ? this.getRoutes() : null}
+          </Switch>
+        </Content>
+      </Layout>
+    );
+  }
+  logout = (e) => {
+    clearUser();
+    window.location.href = '/login';
+  }
+  setEditPwdVisible = (editPwdVisible) => {
+    this.setState({ editPwdVisible });
+  }
   render() {
     const innerCls = this.props.topMenuCode ? '' : 'hidden';
     let rightCls = 'right-layout';
     if (!this.props.topMenuCode) {
       rightCls += ' full-right-content';
-    } else if (this.state.collapsed) {
-      rightCls += ' collapsed';
     }
-
-    const menu = (
-      <Menu>
-      <Menu.Item>
-      <div onClick={this.logout}>退出登录</div>
-      </Menu.Item>
-      </Menu>
-    );
     return (
       <Layout className="dashboard-layout">
-        <Header className="header">
-          <div className="logo">
-            <img src={logo} alt=""/>
-          </div>
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            style={{ lineHeight: '64px' }}
-            onClick={this.handleTopMenuClick}
-            selectedKeys={[this.props.topMenuCode]}
-          >
-            {this.props.topMenuList.map(v => (
-              <Item key={v.code}>{v.name}</Item>
-            ))}
-          </Menu>
-          <div className="dropdown">
-              <Dropdown overlay={menu} placement="bottomCenter">
-                <Button>{getUserName()}</Button>
-              </Dropdown>
-          </div>
-        </Header>
+        {this.getHeader()}
         <Layout>
-          <Sider
-            trigger={null}
-            collapsible
-            collapsed={this.state.collapsed}
-            className={`left-slider ${innerCls}`}
-          >
-            <Menu
-              mode="inline"
-              selectedKeys={[this.props.subMenuCode]}
-              openKeys={[...this.props.subOpenCode]}
-              onClick={this.handleSubMenuClick}
-              inlineCollapsed={this.state.collapsed}
-            >
-              {this.props.subMenuList.map(v => (
-                v.children ? (
-                  <SubMenu
-                    key={`${v.code}`}
-                    onTitleClick={this.handleTitleClick}
-                    title={<span><Icon type="desktop"/><span>{v.name}</span></span>}
-                  >
-                    {v.children.map(c => <Item key={c.code}>{c.name}</Item>)}
-                  </SubMenu>
-                ) : (
-                  <Item key={v.code}>
-                    <Icon type="" />
-                    <span>{v.name}</span>
-                  </Item>
-                )
-              ))}
-            </Menu>
+          <Sider trigger={null} className={`left-slider ${innerCls}`}>
+            {this.getLeftSlider()}
           </Sider>
-          <Layout className={rightCls}>
-            <Icon
-              className={`trigger ${innerCls}`}
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-            <Breadcrumb className={innerCls} style={{ margin: '16px 0', paddingLeft: 30 }}>
-              {this.getBreadcrumb()}
-            </Breadcrumb>
-            <Content className="right-content">
-              <Switch>
-                <Route exact path="/" render={() => (
-                  cookies.get('loginKind') === 'B' ? (
-                  <Redirect to="/waitList/postRequest"/>
-                ) : (
-                  <Redirect to="/system/role"/>
-                  )
-                )}/>
-                {this.props.topMenuList.length ? this.getRoutes() : null}
-              </Switch>
-            </Content>
-          </Layout>
+          {this.getContent(rightCls, innerCls)}
         </Layout>
       </Layout>
     );

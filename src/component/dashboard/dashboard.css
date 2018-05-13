@@ -1,3 +1,6 @@
+.dashboard-layout {
+  min-height: 100vh;
+}
 .dashboard-layout .trigger {
   position: absolute;
   top: 20px;
@@ -56,4 +59,16 @@
   padding: 24px;
   margin: 0px;
   min-height: 280px;
+}
+.home-header.ant-layout-header {
+  background: none;
+}
+.home-header .ant-menu-dark.ant-menu-horizontal > .ant-menu-item .ant-dropdown-trigger {
+  color: #fff;
+}
+.home-header .ant-menu-dark.ant-menu-horizontal > .ant-menu-item {
+  color: #fff;
+}
+.dashboard-layout .home-header .ant-menu-dark.ant-menu-horizontal {
+  background: none;
 }

@@ -40,6 +40,14 @@ export default function fetch(code, param = {}) {
   });
 }
 
+export function fetchImg(base64) {
+  return axios.post('http://10.211.55.3:8888/getfeature', {base64}, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+}
+
 export function logout() {
   clearUser();
   // showErrMsg('登录超时，请重新登录!');

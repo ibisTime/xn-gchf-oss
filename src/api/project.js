@@ -57,3 +57,37 @@ export function getProjectList(kind, companyCode) {
 export function getProjectStatus() {
   return fetch(631006, { parentKey: 'project_status' });
 }
+/**
+ * 详情查询项目
+ * @param code
+ */
+export function getProject(code) {
+  return fetch(631358, { code });
+}
+/**
+ * 分页查询工资条
+ * @param start
+ * @param limit
+ * @param projectCode
+ */
+export function getPagePayCode(start, limit, projectCode) {
+  return fetch(631445, {
+    start,
+    limit,
+    projectCode,
+    month: new Date().getMonth()
+  });
+}
+/**
+ * 分页查询考勤记录
+ * @param start
+ * @param limit
+ * @param projectCode
+ */
+export function getPageChecks(start, limit, projectCode) {
+  return fetch(631395, {
+    start,
+    limit,
+    projectCode
+  });
+}
