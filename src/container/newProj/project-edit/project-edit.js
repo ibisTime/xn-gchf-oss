@@ -30,34 +30,15 @@ class ProjectEdit extends React.Component {
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
-  componentDidMount() {
-      getUserDetail(cookies.get('userId')).then(data => {
-        this.getUserDetail(data.departmentCode, data.companyCode);
-      });
-  }
-  getUserDetail(departmentCode, companyCode) {
-    // let b = a;
-    // this.departmentCode = de;
-    this.setState({ departmentCode: departmentCode, companyCode: companyCode });
-    console.log(this.state.departmentCode);
-  }
+
   render() {
     const edit = [{
       field: 'name',
       title: '项目名称',
       required: true
     }, {
-      field: 'chargeUser',
-      title: '负责人',
-      type: 'select',
-      listCode: '631086',
-      params: {
-        departmentCode: this.departmentCode,
-        type: 'O'
-      },
-      keyName: 'userId',
-      valueName: 'loginName',
-      required: true
+      field: 'chargeName',
+      title: '负责人'
     }, {
       field: 'quyu',
       title: '地区',
@@ -102,20 +83,19 @@ class ProjectEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.state.departmentCode ? this.props.buildDetail({
+    return this.props.buildDetail({
       fields: edit,
       key: 'code',
       code: this.code,
       view: this.view,
       detailCode: 631358,
-      editCode: 631352,
-      beforeSubmit: (param) => {
-        param.companyCode = this.state.companyCode;
-        getBankNameByCode(param.bankName).then(data => {
-            param.bankCode = data.bankCode;
-        });
-        return param;
-      },
+      // beforeSubmit: (param) => {
+      //   param.companyCode = this.state.companyCode;
+      //   getBankNameByCode(param.bankName).then(data => {
+      //     param.bankCode = data.bankCode;
+      //   });
+      //   return param;
+      // },
       buttons: [{
         title: '保存',
         check: true,
@@ -126,6 +106,8 @@ class ProjectEdit extends React.Component {
             param.bankName = data[0].bankName;
             this.props.doFetching();
             console.log(param);
+            console.log(this.props.pageData);
+            param = { address: this.props.pageData.address, area: this.props.pageData.area, attendanceEndtime: this.props.pageData.attendanceEndtime, attendanceStarttime: this.props.pageData.attendanceStarttime, chargeUser: this.props.pageData.chargeUser, city: this.props.pageData.city, code: this.code, latitude: this.props.pageData.latitude, longitude: this.props.pageData.longitude, name: this.props.pageData.name, province: this.props.pageData.province, salaryCreateDatetime: this.props.pageData.salaryCreateDatetime, salaryDatetime: this.props.pageData.salaryDatetime, startDatetime: this.props.pageData.startDatetime, updater: this.props.pageData.updater };
             fetch(631352, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
@@ -139,12 +121,14 @@ class ProjectEdit extends React.Component {
         title: '提请审核项目',
         check: true,
         handler: (param) => {
+          console.log(param);
           param.companyCode = this.state.companyCode;
           getBankNameByCode(param.bankName).then(data => {
             param.bankCode = data[0].bankCode;
             param.bankName = data[0].bankName;
             this.props.doFetching();
             console.log(param);
+            param = { address: this.props.pageData.address, area: this.props.pageData.area, attendanceEndtime: this.props.pageData.attendanceEndtime, attendanceStarttime: this.props.pageData.attendanceStarttime, chargeUser: this.props.pageData.chargeUser, city: this.props.pageData.city, code: this.code, latitude: this.props.pageData.latitude, longitude: this.props.pageData.longitude, name: this.props.pageData.name, province: this.props.pageData.province, salaryCreateDatetime: this.props.pageData.salaryCreateDatetime, salaryDatetime: this.props.pageData.salaryDatetime, startDatetime: this.props.pageData.startDatetime, updater: this.props.pageData.updater };
             fetch(631353, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
@@ -155,7 +139,7 @@ class ProjectEdit extends React.Component {
           });
         }
       }]
-    }) : null;
+    });
   }
 }
 export default ProjectEdit;

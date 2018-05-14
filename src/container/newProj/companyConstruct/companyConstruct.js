@@ -38,8 +38,9 @@ class RoleMenu extends React.Component {
       });
     } else {
       getUserDetail(cookies.get('userId')).then((data) => {
-        getCompanyDetail(data.code).then((companyData) => {
-          this.getTree(companyData);
+        console.log(data);
+        getCompanyDetail(data.companyCode).then((data) => {
+          this.getTree(data);
           this.setState({
             fetching: false
           });

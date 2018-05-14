@@ -77,7 +77,9 @@ class BankCardAddEdit extends React.Component {
             param.updater = getUserId();
             this.props.doFetching();
             console.log(param);
-            fetch(631410, param).then(() => {
+            console.log(this.props.pageData);
+            console.log(param);
+            fetch(631422, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
               setTimeout(() => {

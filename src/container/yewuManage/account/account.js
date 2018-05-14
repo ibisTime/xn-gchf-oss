@@ -120,7 +120,15 @@ class Account extends React.Component {
       search: true,
       hidden: true
     }];
-    if (cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'P') {
+      return this.props.buildList({
+        fields,
+        pageCode: 631365,
+        searchParams: {
+          companyCode: ''
+        }
+      });
+    } else if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         pageCode: 631365,

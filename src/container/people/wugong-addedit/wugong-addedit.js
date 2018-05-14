@@ -55,7 +55,7 @@ class PWugongAddedit extends React.Component {
       params: {
         projectCode: this.projectCode,
         updater: '',
-        companyCode: this.state.companyCode,
+        companyCode: '',
         lind: 'O'
       },
       keyName: 'staffCode',
@@ -113,7 +113,7 @@ class PWugongAddedit extends React.Component {
       type: 'select',
       listCode: '631406',
       params: {
-        projectCode: this.projectCode,
+        projectCode: '',
         updater: ''
       },
       keyName: 'staffCode',

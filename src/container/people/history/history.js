@@ -49,7 +49,7 @@ class History extends React.Component {
       params: {
         projectCode: this.projectCode,
         updater: '',
-        companyCode: this.state.companyCode,
+        companyCode: '',
         kind: 'O'
       },
       keyName: 'staffCode',

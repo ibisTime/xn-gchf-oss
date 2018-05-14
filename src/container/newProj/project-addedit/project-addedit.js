@@ -25,7 +25,8 @@ class ProjectAddedit extends React.Component {
     this.state = {
       departmentCode: '',
       bankCode: '',
-      companyCode: ''
+      companyCode: '',
+      companyCodeList: ''
     };
     this.code = getQueryString('code', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
@@ -33,11 +34,15 @@ class ProjectAddedit extends React.Component {
   }
   componentDidMount() {
     getUserDetail(cookies.get('userId')).then(data => {
-      this.getUserDetail(data.companyCode);
+      console.log(data.companyCode);
+      this.setState({ 'companyCode': data.companyCode });
     });
-  }
-  getUserDetail(companyCode) {
-    this.setState({ companyCode: companyCode });
+    if (cookies.get('loginKind') === 'S') {
+      getUserDetail(cookies.get('userId')).then(data => {
+        console.log(data.companyCode);
+        this.setState({ 'companyCodeList': data.companyCodeList });
+      });
+    }
   }
   render() {
     const fields = [{
@@ -84,7 +89,7 @@ class ProjectAddedit extends React.Component {
       type: 'time',
       required: true
     }, {
-      field: 'bankName',
+      field: 'bankCode',
       title: '银行名称',
       type: this.view ? null : 'select',
       listCode: '631093',
@@ -92,6 +97,12 @@ class ProjectAddedit extends React.Component {
       valueName: 'bankName',
       _keys: ['companyCard', 'bankName'],
       required: true
+    }, {
+      field: 'companyCode',
+      formatter: (v, d) => {
+        return this.state.companyCode;
+      },
+      hidden: true
     }, {
       field: 'subbranch',
       title: '开户行',
@@ -121,13 +132,43 @@ class ProjectAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    return this.props.buildDetail({
-      fields,
-      key: 'code',
-      code: this.projectCode,
-      view: this.view,
-      detailCode: 631358
-    });
+    if (cookies.get('loginKind') === 'O') {
+      return this.state.companyCode ? this.props.buildDetail({
+        fields,
+        key: 'code',
+        code: this.projectCode,
+        view: this.view,
+        beforeSubmit: (params) => {
+          for (let i = 0; i < this.props.selectData.bankCode.length; i++) {
+            if (params.bankCode === this.props.selectData.bankCode[i].bankCode) {
+              params.bankName = this.props.selectData.bankCode[i].bankName;
+            }
+          }
+          return params;
+        },
+        editCode: 631352,
+        detailCode: 631358,
+        addCode: 631350
+      }) : null;
+    } else if (cookies.get('loginKind') === 'S') {
+      return this.state.companyCodeList ? this.props.buildDetail({
+        fields,
+        key: 'code',
+        code: this.projectCode,
+        view: this.view,
+        beforeSubmit: (params) => {
+          for (let i = 0; i < this.props.selectData.bankCode.length; i++) {
+            if (params.bankCode === this.props.selectData.bankCode[i].bankCode) {
+              params.bankName = this.props.selectData.bankCode[i].bankName;
+            }
+          }
+          return params;
+        },
+        editCode: 631352,
+        detailCode: 631358,
+        addCode: 631350
+      }) : null;
+    }
   }
 }
 

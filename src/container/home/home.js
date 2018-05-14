@@ -4,8 +4,9 @@ import AccumulatePie from 'component/accumulate-pie/accumulate-pie';
 import MoneyLine from 'component/money-line/money-line';
 import ThirtyPie from 'component/thirty-pie/thirty-pie';
 import fetch, { fetchImg } from 'common/js/fetch';
-import { formatDate, getUserKind, moneyFormat, isUndefined }from 'common/js/util';
+import { formatDate, getUserKind, moneyFormat, isUndefined, getUserId } from 'common/js/util';
 import { getProject, getProjectList, getPagePayCode, getPageChecks } from 'api/project';
+import { getUserDetail } from 'api/user';
 
 const Panel = Collapse.Panel;
 const orderDict = {
@@ -15,6 +16,12 @@ const orderDict = {
   3: '已发放',
   4: '部分发放',
   5: '补发'
+};
+const checkDict = {
+  0: '待上班打卡',
+  1: '待下班打卡',
+  2: '已打卡待结算',
+  3: '已结算'
 };
 const payColumns = [{
   title: '员工名称',
@@ -59,7 +66,8 @@ const checkColumns = [{
   render: (v) => formatDate(v, 'yyyy-MM-dd hh:mm:ss')
 }, {
   title: '出工状态',
-  dataIndex: 'status'
+  dataIndex: 'status',
+  render: (v) => checkDict[v]
 }];
 
 class Home extends React.Component {
@@ -78,13 +86,13 @@ class Home extends React.Component {
       checkData: [],
       payPagination: {
         current: 1,
-        pageSize: 10,
+        pageSize: 5,
         total: 0,
         hasMore: true
       },
       checkPagination: {
         current: 1,
-        pageSize: 10,
+        pageSize: 5,
         total: 0,
         hasMore: true
       },
@@ -112,7 +120,7 @@ class Home extends React.Component {
       }).then((stream) => {
         this.mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
         this.playVideo(stream);
-      }).catch(function(err) {
+      }).catch(function (err) {
         console.log(err);
       });
     } else if (navigator.getMedia) {
@@ -121,7 +129,7 @@ class Home extends React.Component {
       }, (stream) => {
         this.mediaStreamTrack = stream.getTracks()[0];
         this.playVideo(stream);
-      }, function(err) {
+      }, function (err) {
         console.log(err);
       });
     }
@@ -145,7 +153,7 @@ class Home extends React.Component {
   // 初始化地图
   initMap() {
     let traffic = new AMap.TileLayer({
-      getTileUrl: function(x, y, z) {
+      getTileUrl: function (x, y, z) {
         return 'http://tm.amap.com/trafficengine/mapabc/traffictile?v=1.0&t=1&zoom=' + (17 - z) + '&x=' + x + '&y=' + y;
       },
       zooms: [6, 20],
@@ -165,19 +173,21 @@ class Home extends React.Component {
   // 获取项目列表
   getProjectList() {
     this.points = {};
-    getProjectList(getUserKind()).then(data => {
-      this.data = data;
-      data.forEach((item, i) => {
-        let point = [item.longitude, item.latitude];
-        let marker = new AMap.Marker({
-          position: point,
-          map: this.map,
-          zIndex: 99,
-          content: `<div class="map-marker-point">${i + 1}</div>`
+    getUserDetail(getUserId()).then((data) => {
+      getProjectList(getUserKind(), data.companyCode).then(data => {
+        this.data = data;
+        data.forEach((item, i) => {
+          let point = [item.longitude, item.latitude];
+          let marker = new AMap.Marker({
+            position: point,
+            map: this.map,
+            zIndex: 99,
+            content: `<div class="map-marker-point">${i + 1}</div>`
+          });
+          marker.content = { index: i, code: item.code };
+          marker.on('click', this.markerClick);
+          this.points[item.code] = point;
         });
-        marker.content = {index: i, code: item.code};
-        marker.on('click', this.markerClick);
-        this.points[item.code] = point;
       });
     });
   }
@@ -368,7 +378,7 @@ class Home extends React.Component {
     } else {
       let options = this.data.filter(v => v.name.indexOf(val) > -1)
         .map(v => (
-          <li className="ant-select-dropdown-menu-item" key={v.code} onClick={(e) => this.choseItem(v.code, e)} style={{userSelect: 'none'}}>{v.name}</li>
+          <li className="ant-select-dropdown-menu-item" key={v.code} onClick={(e) => this.choseItem(v.code, e)} style={{ userSelect: 'none' }}>{v.name}</li>
         ));
       this.setState({ options });
     }
@@ -398,8 +408,8 @@ class Home extends React.Component {
             onChange={this.onChange}
             onFocus={this.handleFocus}
           />
-          <div className="ant-select-dropdown ant-select-dropdown--single ant-select-dropdown-placement-bottomLeft" style={{width: '200px'}}>
-            <div style={{overflow: 'auto'}}>
+          <div className="ant-select-dropdown ant-select-dropdown--single ant-select-dropdown-placement-bottomLeft" style={{ width: '200px' }}>
+            <div style={{ overflow: 'auto' }}>
               <ul className="ant-select-dropdown-menu ant-select-dropdown-menu-vertical  ant-select-dropdown-menu-root">
                 {this.state.options}
               </ul>
@@ -410,7 +420,7 @@ class Home extends React.Component {
         {this.state.chosed ? (
           <div>
             <div className="map-left-wrapper">
-              <Collapse accordion onChange={this.collapseChange} style={{background: 'rgba(16, 42, 123, 0.5)', borderRadius: 0, border: '1px solid #8faffe'}}>
+              <Collapse accordion onChange={this.collapseChange} style={{ background: 'rgba(16, 42, 123, 0.5)', borderRadius: 0, border: '1px solid #8faffe' }}>
                 <Panel header="本月工资详情" key="1">
                   <Table
                     columns={payColumns}
@@ -462,13 +472,13 @@ class Home extends React.Component {
                 <div className="map-right-cont">
                   <div className="map-rb-top">
                     <div className="map-rb-top-item">
-                      <div className="map-rb-item-title"><Icon type="caret-right"/>目前累计人数</div>
+                      <div className="map-rb-item-title"><Icon type="caret-right" />目前累计人数</div>
                       <div className="map-rbt-item-content">
-                        <AccumulatePie data={staffIn}/>
+                        <AccumulatePie data={staffIn} />
                       </div>
                     </div>
                     <div className="map-rb-top-item">
-                      <div className="map-rb-item-title"><Icon type="caret-right"/>累计发薪金额</div>
+                      <div className="map-rb-item-title"><Icon type="caret-right" />累计发薪金额</div>
                       <div className="map-rbt-item-content map-rbt-item-content1">
                         <MoneyLine />
                       </div>
@@ -476,13 +486,13 @@ class Home extends React.Component {
                     </div>
                   </div>
                   <div className="map-rb-bottom">
-                    <div className="map-rb-item-title"><Icon type="caret-right"/>30日累计人员情况</div>
+                    <div className="map-rb-item-title"><Icon type="caret-right" />30日累计人员情况</div>
                     <div className="map-rb-chart">
                       <ThirtyPie
                         staffIn={staffIn}
                         staffOut={staffOut}
                         leavingDays={leavingDays}
-                        workingDays={workingDays}/>
+                        workingDays={workingDays} />
                     </div>
                   </div>
                 </div>

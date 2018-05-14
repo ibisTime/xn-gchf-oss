@@ -19,8 +19,10 @@ import { getUserDetail } from 'api/user';
     ...state.hetongWugong,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Wugong extends React.Component {
   constructor(props) {
@@ -28,11 +30,6 @@ class Wugong extends React.Component {
     this.state = {
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
-      });
-    }
     this.projectCode = getQueryString('code', this.props.location.search);
   }
   render() {
@@ -57,68 +54,46 @@ class Wugong extends React.Component {
       title: '更新时间',
       type: 'datetime'
     }];
-    if(cookies.get('loginKind') === 'O') {
-      return this.state.companyCode ? this.props.buildList({
-        fields,
-        searchParams: {
-          projectCode: this.projectCode,
-          companyCode: this.state.companyCode,
-          kind: 'O',
-          updater: ''
-        },
-        buttons: [{
-          code: 'add',
-          name: '合同录入',
-          handler: (selectedRowKeys, selectedRows) => {
-            this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
+    return this.props.buildList({
+      fields,
+      searchParams: {
+        projectCode: this.projectCode,
+        kind: 'O',
+        updater: ''
+      },
+      buttons: [{
+        code: 'add',
+        name: '合同录入',
+        handler: (selectedRowKeys, selectedRows) => {
+          this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
+        }
+      }, {
+        code: 'edit',
+        name: '修改',
+        handler: (selectedRowKeys, selectedRows) => {
+          if (!selectedRowKeys.length) {
+            showWarnMsg('请选择记录');
+          } else if (selectedRowKeys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
           }
-        }, {
-          code: 'edit',
-          name: '修改',
-          handler: (selectedRowKeys, selectedRows) => {
-            if (!selectedRowKeys.length) {
-              showWarnMsg('请选择记录');
-            } else if (selectedRowKeys.length > 1) {
-              showWarnMsg('请选择一条记录');
-            } else {
-              this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
-            }
+        }
+      }, {
+        code: 'detail',
+        name: '详情',
+        handler: (selectedRowKeys, selectedRows) => {
+          if (!selectedRowKeys.length) {
+            showWarnMsg('请选择记录');
+          } else if (selectedRowKeys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            this.props.history.push(`/hetong/wugong/addedit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
           }
-        }, {
-          code: 'detail',
-          name: '详情',
-          handler: (selectedRowKeys, selectedRows) => {
-            if (!selectedRowKeys.length) {
-              showWarnMsg('请选择记录');
-            } else if (selectedRowKeys.length > 1) {
-              showWarnMsg('请选择一条记录');
-            } else {
-              this.props.history.push(`/hetong/wugong/addedit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
-            }
-          }
-        }],
-        pageCode: 631405
-      }) : null;
-    }else {
-      return this.props.buildList({
-        fields,
-        searchParams: { projectCode: this.projectCode, updater: '' },
-        buttons: [{
-          code: 'detail',
-          name: '详情',
-          handler: (selectedRowKeys, selectedRows) => {
-            if (!selectedRowKeys.length) {
-              showWarnMsg('请选择记录');
-            } else if (selectedRowKeys.length > 1) {
-              showWarnMsg('请选择一条记录');
-            } else {
-              this.props.history.push(`/hetong/wugong/addedit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
-            }
-          }
-        }],
-        pageCode: 631405
-      });
-    }
+        }
+      }],
+      pageCode: 631405
+    });
   }
 }
 

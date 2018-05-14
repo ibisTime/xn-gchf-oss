@@ -65,7 +65,7 @@ class AccountAddEdit extends React.Component {
         title: '保存',
         check: true,
         handler: (param) => {
-          getBankNameByCode(param.bankName).then(data => {
+          getBankNameByCode().then(data => {
             param.bankCode = data[0].bankCode;
             param.bankName = data[0].bankName;
             param.updater = getUserId();

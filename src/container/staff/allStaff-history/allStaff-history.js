@@ -19,24 +19,35 @@ import { getUserDetail } from 'api/user';
     ...state.staffAllStaffHistory,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class AllStaffHistory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: ''
+      companyCode: '',
+      companyCodeList: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode, 'updater': ''});
-      });
-    }
+
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.staffCode = getQueryString('staffCode', this.props.location.search, 'updater': '');
+  }
+  componentDidMount() {
+    if (cookies.get('loginKind') === 'O') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCode': data.companyCode, 'updater': '' });
+      });
     }
+    if (cookies.get('loginKind') === 'S') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCodeList': data.companyCodeList, 'updater': '' });
+      });
+    }
+  }
   render() {
     const fields = [{
       field: 'code',
@@ -158,23 +169,25 @@ class AllStaffHistory extends React.Component {
       search: true,
       hidden: true
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fieldso,
         searchParams: {
-          staffCode: this.staffCode,
-          comapanyCode: this.state.companyCode
+          staffCode: this.staffCode
         },
         buttons: [],
         pageCode: 631465
       }) : null;
-    }else {
-      return this.props.buildList({
-        fields,
-        searchParams: { staffCode: this.staffCode },
+    } else {
+      return this.state.companyCodeList ? this.props.buildList({
+        fieldso,
+        searchParams: {
+          staffCode: this.staffCode,
+          companyCodeList: this.state.companyCodeList
+        },
         buttons: [],
         pageCode: 631465
-      });
+      }) : null;
     }
   }
 }

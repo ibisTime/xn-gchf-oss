@@ -89,13 +89,14 @@ class AllStaff extends React.Component {
       //   }
       // }
     }, {
-      field: 'place',
-      title: '籍贯'
-      // formatter: (v, data) => {
-      //   if(data.Staff) {
-      //     return data.Staff.place;
-      //   }
-      // }
+      field: 'sex',
+      title: '性别'
+    }, {
+      field: 'idNation',
+      title: '民族'
+    }, {
+      field: '',
+      title: '出生日期'
     }, {
       field: 'idType',
       title: '证件类型',
@@ -115,29 +116,6 @@ class AllStaff extends React.Component {
       //     return data.Staff.idNo;
       //   }
       // }
-    }, {
-      field: 'mobile',
-      title: '联系方式'
-      // formatter: (v, data) => {
-      //   if(data.Staff) {
-      //     return data.Staff.mobile;
-      //   }
-      // }
-    }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime'
-    }, {
-      field: 'updater',
-      title: '更新人'
-    }, {
-      field: 'remark',
-      title: '备注'
-    }, {
-      field: 'keyword',
-      hidden: true,
-      search: true,
-      title: '关键字'
     }];
     const btnEvent = {
       edit: (selectedRowKeys, selectedRows) => {
@@ -196,17 +174,19 @@ class AllStaff extends React.Component {
     if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields: fieldso,
+        btnEvent,
         searchParams: {
           updater: '',
           kind: 'O',
           companyCode: this.state.companyCode
         },
-        pageCode: 631375
+        pageCode: 631415
       }) : null;
     } else {
       return this.state.companyCodeList ? this.props.buildList({
-        fields,
-        pageCode: 631375,
+        fields: fieldso,
+        btnEvent,
+        pageCode: 631415,
         searchParams: {
           companyCodeList: this.state.companyCodeList
         }

@@ -120,6 +120,15 @@ class Chengbaoshang extends React.Component {
       hidden: true,
       title: '关键字'
     }];
+    if (cookies.get('loginKind') === 'P') {
+      return this.props.buildList({
+        fields: fieldso,
+        searchParams: {
+          companyCode: ''
+        },
+        pageCode: 631375
+      });
+    }
     if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields: fieldso,

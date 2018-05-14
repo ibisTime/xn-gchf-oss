@@ -43,8 +43,8 @@ export function deleteCompany1(code) {
  * 查银行
  * @param code
  */
-export function getBankNameByCode(bankCode) {
-  return fetch(631093, { bankCode, updater: '' });
+export function getBankNameByCode() {
+  return fetch(631093);
 }
 export function getBankCodeByName(bankName) {
   return fetch(631093, { bankName, updater: '' });

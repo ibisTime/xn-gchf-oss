@@ -86,10 +86,11 @@ class AlreadyQuestAddedit extends React.Component {
       this.setState({ download: this.state.download + 1 });
     });
     downLoad(this.code).then((data) => {
+      console.log(data[0]);
       let payroll1 = [
         ['项目信息'],
-        ['项目编号', data[1].projectCode],
-        ['扣款账户', data[1].bankCard.bankName],
+        ['项目编号', data[0].projectCode],
+        ['扣款账户', data[0].bankCard.bankName],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];

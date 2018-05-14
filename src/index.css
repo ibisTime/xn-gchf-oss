@@ -13,7 +13,7 @@ html {
   float: left;
   margin: 4px 30px 4px 0;
   width: 120px;
-  height: 56px;
+  max-height: 56px;
 }
 
 .ant-layout-header .logo img {
@@ -232,6 +232,7 @@ html {
   left: 50px;
   width: 58.3333%;
   bottom: 80px;
+  z-index: 2;
 }
 .map-left-wrapper .ant-collapse {
   background: rgba(16, 42, 123, 0.5);

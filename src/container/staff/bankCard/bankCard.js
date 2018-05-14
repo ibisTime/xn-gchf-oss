@@ -80,7 +80,7 @@ class BankCard extends React.Component {
       return this.state.companyCode ? this.props.buildList({
         fields,
         pageCode: 631425,
-        searchParam: {
+        searchParams: {
           companyCode: this.state.companyCode
         }
       }) : null;

@@ -19,8 +19,10 @@ import { Modal } from 'antd';
     ...state.newProjProjectDaka,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Daka extends React.Component {
   constructor(props) {
@@ -28,8 +30,8 @@ class Daka extends React.Component {
     this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.dateTime = dateTimeFormat(new Date());
     console.log(this.dateTime);
-    this.dateStart = this.dateTime.split(' ')[0] + '00:00:00';
-    this.dateEnd = this.dateTime.split(' ')[0] + '23:59:59';
+    this.dateStart = this.dateTime.split(' ')[0] + ' ' + '00:00:00';
+    this.dateEnd = this.dateTime.split(' ')[0] + ' ' + '23:59:59';
   }
   render() {
     const fields = [{
@@ -86,8 +88,8 @@ class Daka extends React.Component {
                   showSucMsg('操作成功');
                   this.props.cancelFetching();
                   setTableData();
-                  }).catch(this.props.cancelFetching);
-                  }
+                }).catch(this.props.cancelFetching);
+              }
             });
           }
         }

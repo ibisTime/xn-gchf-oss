@@ -24,16 +24,38 @@ class AllStaffAddEdit extends React.Component {
     this.state = {
       companyCode: ''
     };
+    this.code = getQueryString('staffCode', this.props.location.search);
+    this.view = !!getQueryString('v', this.props.location.search);
+  }
+  componentDidMount() {
+    if (cookies.get('loginKind') === 'S') {
+      getUserDetail(cookies.get('userId')).then((data) => {
+        this.setState({ 'companyCodeList': data.companyCodeList });
+      });
+    };
     if (cookies.get('loginKind') === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCode': data.companyCode });
+        console.log(data.companyCode);
+        this.setState({ companyCode: data.companyCode });
       });
-    }
-    this.staffCode = getQueryString('staffCode', this.props.location.search);
-    this.view = !!getQueryString('v', this.props.location.search);
+    };
   }
   render() {
     const fields = [{
+      field: 'projectCode',
+      title: '所属工程',
+      type: 'select',
+      listCode: '631357',
+      params: {
+        companyCode: this.state.companyCode,
+        kind: 'O',
+        updater: ''
+      },
+      keyName: 'code',
+      valueName: 'name',
+      required: true,
+      hidden: true
+    }, {
       field: 'name',
       title: '姓名',
       required: true
@@ -77,6 +99,11 @@ class AllStaffAddEdit extends React.Component {
       _keys: ['bankCard', 'bankcardNumber'],
       required: true
     }, {
+      field: 'contractDatetime',
+      title: '签约时间',
+      type: 'date',
+      required: true
+    }, {
       field: 'pict1',
       title: '免冠照片',
       single: true,
@@ -101,33 +128,15 @@ class AllStaffAddEdit extends React.Component {
       single: true,
       required: true
     }, {
-      field: 'projectCode',
-      title: '所属工程',
-      type: 'select',
-      listCode: '631357',
-      params: {
-        companyCode: this.state.companyCode,
-        kind: 'O',
-        updater: ''
-      },
-      keyName: 'code',
-      valueName: 'name',
-      required: true
-    }, {
-      field: 'contractDatetime',
-      title: '签约时间',
-      type: 'date',
-      required: true
-    }, {
       field: 'remark',
       title: '备注'
     }];
     return this.props.buildDetail({
       fields,
-      code: this.staffCode,
+      code: this.code,
       view: this.view,
-      addCode: 631410,
       detailCode: 631417,
+      addCode: 631410,
       editCode: 631412,
       buttons: this.view ? [] : [{
         title: '保存',
