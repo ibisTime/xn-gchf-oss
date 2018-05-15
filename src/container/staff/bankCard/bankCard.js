@@ -84,7 +84,7 @@ class BankCard extends React.Component {
           companyCode: this.state.companyCode
         }
       }) : null;
-    } else {
+    } else if (cookies.get('loginKind') === 'S') {
       return this.state.companyCodeList ? this.props.buildList({
         fields,
         pageCode: 631425,
@@ -92,6 +92,11 @@ class BankCard extends React.Component {
           companyCodeList: this.state.companyCodeList
         }
       }) : null;
+    } else {
+      return this.props.buildList({
+        fields,
+        pageCode: 631425
+      });
     }
   }
 }

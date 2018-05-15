@@ -178,7 +178,7 @@ class AllStaffHistory extends React.Component {
         buttons: [],
         pageCode: 631465
       }) : null;
-    } else {
+    } else if (cookies.get('loginKind') === 'S') {
       return this.state.companyCodeList ? this.props.buildList({
         fieldso,
         searchParams: {
@@ -188,6 +188,15 @@ class AllStaffHistory extends React.Component {
         buttons: [],
         pageCode: 631465
       }) : null;
+    } else {
+      return this.props.buildList({
+        fields,
+        searchParams: {
+          staffCode: this.staffCode
+        },
+        buttons: [],
+        pageCode: 631465
+      });
     }
   }
 }

@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/hetong/wugong';
 import { listWrapper } from 'common/js/build-list';
-import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg, getUserKind, getUserId } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -31,6 +31,13 @@ class Wugong extends React.Component {
       companyCode: ''
     };
     this.projectCode = getQueryString('code', this.props.location.search);
+  }
+  componentDidMount() {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    };
   }
   render() {
     const fields = [{
@@ -54,18 +61,17 @@ class Wugong extends React.Component {
       title: '更新时间',
       type: 'datetime'
     }];
-    return this.props.buildList({
+    return this.state.companyCode ? this.props.buildList({
       fields,
       searchParams: {
-        projectCode: this.projectCode,
-        kind: 'O',
-        updater: ''
+        companyCode: this.state.companyCode,
+        kind: 'O'
       },
       buttons: [{
         code: 'add',
         name: '合同录入',
         handler: (selectedRowKeys, selectedRows) => {
-          this.props.history.push(`/hetong/staff?projectCode=${this.projectCode}`);
+          this.props.history.push(`/hetong/staff/addedit`);
         }
       }, {
         code: 'edit',
@@ -76,7 +82,7 @@ class Wugong extends React.Component {
           } else if (selectedRowKeys.length > 1) {
             showWarnMsg('请选择一条记录');
           } else {
-            this.props.history.push(`/hetong/wugong/addedit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+            this.props.history.push(`/hetong/wugong/edit?code=${selectedRowKeys[0]}`);
           }
         }
       }, {
@@ -88,12 +94,12 @@ class Wugong extends React.Component {
           } else if (selectedRowKeys.length > 1) {
             showWarnMsg('请选择一条记录');
           } else {
-            this.props.history.push(`/hetong/wugong/addedit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+            this.props.history.push(`/hetong/wugong/edit?v=1&code=${selectedRowKeys[0]}`);
           }
         }
       }],
       pageCode: 631405
-    });
+    }) : null;
   }
 }
 

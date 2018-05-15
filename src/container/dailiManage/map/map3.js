@@ -10,7 +10,7 @@ import {
   setSearchData
 } from '@redux/map/map';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg } from 'common/js/util';
+import { showWarnMsg, getUserKind, getUserId } from 'common/js/util';
 import cookies from 'browser-cookies';
 import { getUserDetail } from 'api/user';
 
@@ -33,14 +33,13 @@ class Map extends React.Component {
     };
   }
   componentDidMount() {
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.companyCodeList });
       });
     };
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        console.log(data);
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
     };
@@ -212,7 +211,7 @@ class Map extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if (cookies.get('loginKind') === 'P') {
+    if (getUserKind() === 'P') {
       return this.props.buildList({
         fields,
         btnEvent,
@@ -221,7 +220,7 @@ class Map extends React.Component {
         },
         pageCode: 631356
       });
-    } else if (cookies.get('loginKind') === 'O') {
+    } else if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         btnEvent,

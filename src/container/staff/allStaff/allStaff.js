@@ -95,8 +95,9 @@ class AllStaff extends React.Component {
       field: 'idNation',
       title: '民族'
     }, {
-      field: '',
-      title: '出生日期'
+      field: 'birthday',
+      title: '出生日期',
+      type: 'datetime'
     }, {
       field: 'idType',
       title: '证件类型',
@@ -169,29 +170,26 @@ class AllStaff extends React.Component {
           this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRowKeys[0]}`);
           // }
         }
+      },
+      detailAdd: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/staff/allStaff/detailadd?staffCode=${selectedRowKeys[0]}`);
+        }
       }
     };
-    if (cookies.get('loginKind') === 'O') {
-      return this.state.companyCode ? this.props.buildList({
-        fields: fieldso,
-        btnEvent,
-        searchParams: {
-          updater: '',
-          kind: 'O',
-          companyCode: this.state.companyCode
-        },
-        pageCode: 631415
-      }) : null;
-    } else {
-      return this.state.companyCodeList ? this.props.buildList({
-        fields: fieldso,
-        btnEvent,
-        pageCode: 631415,
-        searchParams: {
-          companyCodeList: this.state.companyCodeList
-        }
-      }) : null;
-    }
+    return this.props.buildList({
+      fields: fieldso,
+      btnEvent,
+      searchParams: {
+        updater: '',
+        kind: 'O'
+      },
+      pageCode: 631415
+    });
   }
 }
 

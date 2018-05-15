@@ -51,6 +51,7 @@ import { hetongJindu } from './redux/hetong/jindu';
 import { hetongJinduAddEdit } from './redux/hetong/jindu-addedit';
 import { hetongWugong } from './redux/hetong/wugong';
 import { hetongWugongAddEdit } from './redux/hetong/wugong-addedit';
+import { hetongWugongEdit } from './redux/hetong/wugong-edit';
 import { hetongStaff } from './redux/hetong/staff';
 import { peopleWugong } from './redux/people/wugong';
 import { peopleWugongAddEdit } from './redux/people/wugong-addedit';
@@ -59,6 +60,7 @@ import { peopleWugongLeave } from './redux/people/wugong-leave';
 import { peopleHistory } from './redux/people/history';
 import { staffAllStaff } from './redux/staff/allStaff';
 import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
+import { staffAllStaffAddEditAdd } from './redux/staff/allStaff-addeditAdd';
 import { staffAllStaffError } from './redux/staff/allStaff-error';
 import { staffAllStaffHistory } from './redux/staff/allStaff-history';
 import { staffAllStaffDetail } from './redux/staff/allStaff-detail';
@@ -128,6 +130,7 @@ export default combineReducers({
   hetongJinduAddEdit,
   hetongWugong,
   hetongWugongAddEdit,
+  hetongWugongEdit,
   hetongStaff,
   peopleWugong,
   peopleWugongAddEdit,
@@ -136,6 +139,7 @@ export default combineReducers({
   peopleHistory,
   staffAllStaff,
   staffAllStaffAddEdit,
+  staffAllStaffAddEditAdd,
   staffAllStaffError,
   staffAllStaffHistory,
   staffAllStaffDetail,

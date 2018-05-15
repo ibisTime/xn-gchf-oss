@@ -50,9 +50,6 @@ class Chengbaoshang extends React.Component {
       hidden: true
     }, {
       field: 'projectName',
-      title: '所属工程'
-    }, {
-      field: 'projectName',
       title: '工程名称',
       type: 'select',
       search: true,

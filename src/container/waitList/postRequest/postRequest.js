@@ -67,14 +67,9 @@ class PostRequest extends React.Component {
       keyName: 'key',
       valueName: 'value'
     }];
-    return this.state.subbranch && this.state.bankName
-      ? this.props.buildList({
+    if (cookies.get('loginKind') === 'P') {
+      return this.props.buildList({
         fields,
-        searchParams: {
-          statusList: [1, 2],
-          subbranch: this.state.subbranch,
-          bankName: this.state.bankName
-        },
         pageCode: 631435,
         btnEvent: {
           detail: (selectedRowKeys, selectedRows) => {
@@ -88,8 +83,32 @@ class PostRequest extends React.Component {
             }
           }
         }
-      })
-      : null;
+      });
+    } else {
+      return this.state.subbranch && this.state.bankName
+        ? this.props.buildList({
+          fields,
+          searchParams: {
+            statusList: [1, 2],
+            subbranch: this.state.subbranch,
+            bankName: this.state.bankName
+          },
+          pageCode: 631435,
+          btnEvent: {
+            detail: (selectedRowKeys, selectedRows) => {
+              if (!selectedRowKeys.length) {
+                showWarnMsg('请选择记录');
+              } else if (selectedRowKeys.length > 1) {
+                showWarnMsg('请选择一条记录');
+              } else {
+                let url = `${this.props.location.pathname}/addedit?v=1&code=${selectedRowKeys[0]}&status=${selectedRows[0].status}`;
+                this.props.history.push(url);
+              }
+            }
+          }
+        })
+        : null;
+    }
   }
 }
 

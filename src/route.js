@@ -206,6 +206,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
   },
   {
+    path: '/hetong/wugong/edit',
+    component: asyncComponent(() => import('container/hetong/wugong-edit/wugong-edit'))
+  },
+  {
     path: '/hetong/staff/addedit',
     component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
   },
@@ -240,6 +244,10 @@ const ROUTES = [
   {
     path: '/staff/allStaff/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
+  },
+  {
+    path: '/staff/allStaff/detailadd',
+    component: asyncComponent(() => import('container/staff/allStaff-deatilAdd/allStaff-deatilAdd'))
   },
   {
     path: '/staff/allStaff/error',

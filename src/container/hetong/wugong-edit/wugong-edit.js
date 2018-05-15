@@ -8,20 +8,21 @@ import {
   setSelectData,
   setPageData,
   restore
-} from '@redux/hetong/wugong-addedit';
+} from '@redux/hetong/wugong-edit';
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail } from 'api/user';
 
 @DetailWrapper(
-  state => state.hetongWugongAddEdit,
+  state => state.hetongWugongEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
 )
-class WugongAddEdit extends React.Component {
+class WugongEdit extends React.Component {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
+    this.view = getQueryString('v', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   render() {
@@ -36,7 +37,8 @@ class WugongAddEdit extends React.Component {
       },
       keyName: 'code',
       valueName: 'name',
-      required: true
+      required: true,
+      readonly: true
     }, {
       field: 'staffCode',
       title: '工人名字',
@@ -44,7 +46,8 @@ class WugongAddEdit extends React.Component {
       listCode: '631416',
       keyName: 'code',
       valueName: 'name',
-      required: true
+      required: true,
+      readonly: true
     }, {
       field: 'contentPic',
       title: '合同照片',
@@ -64,15 +67,10 @@ class WugongAddEdit extends React.Component {
       fields,
       code: this.code,
       view: this.view,
-      addCode: 631400,
-      onOk: () => {
-        this.props.cancelFetching();
-        setTimeout(() => {
-          this.props.history.go(-1);
-        }, 1000);
-      }
+      editCode: 631402,
+      detailCode: 631407
     });
   }
 }
 
-export default WugongAddEdit;
+export default WugongEdit;

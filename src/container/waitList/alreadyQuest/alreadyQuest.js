@@ -12,6 +12,7 @@ import {
 import { listWrapper } from 'common/js/build-list';
 import { getUserDetail } from 'api/user';
 import cookies from 'browser-cookies';
+import { getUserKind, getUserId } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -34,7 +35,7 @@ class AlreadyQuest extends React.Component {
     };
   };
   componentDidMount() {
-    getUserDetail(cookies.get('userId')).then((data) => {
+    getUserDetail(getUserId()).then((data) => {
       this.setState({
         subbranch: data.subbranch,
         bankName: data.bankName,
@@ -66,7 +67,7 @@ class AlreadyQuest extends React.Component {
       field: 'handleDatetime',
       type: 'datetime'
     }];
-    if (cookies.get('loginKind') === 'B') {
+    if (getUserKind() === 'B') {
       return this.state.subbranch && this.state.bankName
         ? this.props.buildList({
           fields,
@@ -78,7 +79,7 @@ class AlreadyQuest extends React.Component {
           pageCode: 631435
         })
         : null;
-    } else if (cookies.get('loginKind') === 'O') {
+    } else if (getUserKind() === 'O') {
       return this.state.companyCode
         ? this.props.buildList({
           fields,
@@ -89,14 +90,10 @@ class AlreadyQuest extends React.Component {
         })
         : null;
     } else {
-      return this.state.companyCodeList
-        ? this.props.buildList({
-          fields,
-          searchParams: {
-            companyCodeList: this.state.companyCodeList
-          },
-          pageCode: 631435
-        }) : null;
+      return this.props.buildList({
+        fields,
+        pageCode: 631435
+      });
     }
   }
 }

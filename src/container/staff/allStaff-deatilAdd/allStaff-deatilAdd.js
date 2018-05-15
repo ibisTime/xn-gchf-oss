@@ -8,17 +8,17 @@ import {
   setSelectData,
   setPageData,
   restore
-} from '@redux/staff/allStaff-addedit';
-import { getQueryString, showSucMsg } from 'common/js/util';
+} from '@redux/staff/allStaff-addeditAdd';
+import { getQueryString, showSucMsg, getUserKind, getUserId } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
-import { getUserId, getUserDetail } from 'api/user';
+import { getUserDetail } from 'api/user';
 
 @DetailWrapper(
-  state => state.staffAllStaffAddEdit,
+  state => state.staffAllStaffAddEditAdd,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
 )
-class AllStaffAddEdit extends React.Component {
+class AllStaffAddEditAdd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,13 +28,13 @@ class AllStaffAddEdit extends React.Component {
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'companyCodeList': data.companyCodeList });
       });
     };
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         console.log(data.companyCode);
         this.setState({ companyCode: data.companyCode });
       });
@@ -44,18 +44,20 @@ class AllStaffAddEdit extends React.Component {
     const fields = [{
       field: 'name',
       title: '姓名',
-      required: true
+      required: true,
+      readonly: true
     }, {
-      field: 'place',
-      title: '籍贯',
-      required: true
+      field: 'sex',
+      title: '性别',
+      required: true,
+      readonly: true
     }, {
-      field: 'mobile',
-      title: '手机号',
-      mobile: true,
-      required: true
+      field: 'idAddress',
+      title: '身份证地址',
+      required: true,
+      readonly: true
     }, {
-      field: 'idType',
+      field: 'idKind',
       title: '证件类型',
       type: 'select',
       key: 'id_type',
@@ -64,62 +66,40 @@ class AllStaffAddEdit extends React.Component {
       field: 'idNo',
       title: '证件号',
       required: true,
-      listCode: '631416'
+      listCode: '631416',
+      readonly: true
     }, {
-      field: 'bankName',
-      title: '银行名称',
-      type: 'select',
-      listCode: '631093',
-      keyName: 'bankCode',
-      valueName: 'bankName',
-      _keys: ['bankCard', 'bankCode'],
-      required: true
+      field: 'birthday',
+      title: '出生年月日',
+      readonly: true,
+      type: 'datetime'
     }, {
-      field: 'subbranch',
-      title: '开户行',
-      _keys: ['bankCard', 'subbranch'],
-      required: true
+      field: 'idEndDate',
+      title: '证件有效结束时间',
+      readonly: true
     }, {
-      field: 'bankcardNumber',
-      title: '银行卡号',
-      _keys: ['bankCard', 'bankcardNumber'],
-      required: true
+      field: 'idNation',
+      title: '民族',
+      readonly: true
     }, {
-      field: 'contractDatetime',
-      title: '签约时间',
-      type: 'date'
-    }, {
-      field: 'pict1',
-      title: '免冠照片',
-      single: true,
-      type: 'img'
-    }, {
-      field: 'pict2',
-      title: '手持身份证照片',
-      single: true,
-      type: 'img'
-    }, {
-      field: 'pict3',
-      title: '身份证正反面照片',
-      single: true,
-      type: 'img'
-    }, {
-      field: 'contentPic',
-      title: '合同照片',
+      field: 'idPic',
+      title: '身份证上头像',
       type: 'img',
       single: true
     }, {
-      field: 'remark',
-      title: '备注'
+      field: 'idPolice',
+      title: '签发机关',
+      readonly: true
+    }, {
+      field: 'isStartDate',
+      title: '证件有效开始时间'
     }];
     return this.props.buildDetail({
       fields,
       code: this.code,
       view: this.view,
       detailCode: 631417,
-      addCode: 631410,
-      editCode: 631412,
-      buttons: this.view ? [] : [{
+      buttons: [{
         title: '保存',
         check: true,
         handler: (param) => {
@@ -143,4 +123,4 @@ class AllStaffAddEdit extends React.Component {
   }
 }
 
-export default AllStaffAddEdit;
+export default AllStaffAddEditAdd;
