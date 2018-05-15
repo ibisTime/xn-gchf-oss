@@ -61,12 +61,12 @@ class BankCard extends React.Component {
       field: 'subbranch',
       title: '开户支行'
     }, {
+      field: 'updateName',
+      title: '更新人'
+    }, {
       field: 'updateDatetime',
       title: '更新时间',
       type: 'datetime'
-    }, {
-      field: 'updater',
-      title: '更新人'
     }, {
       field: 'remark',
       title: '备注'
