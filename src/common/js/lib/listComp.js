@@ -66,7 +66,9 @@ export default class ListComponent extends React.Component {
           f.data = this.props.searchData[f.field];
           this.first && this.getSelectData(f);
         } else if (!this.props.searchData[f.field]) {
-          this.props.setSearchData({ data: f.data, key: f.field });
+          setTimeout(() => {
+            this.props.setSearchData({ data: f.data, key: f.field });
+          }, 20);
         }
         obj.render = (value) => {
           if (value && f.data) {
@@ -233,12 +235,16 @@ export default class ListComponent extends React.Component {
   getSelectData(item) {
     if (item.key) {
       getDictList({ parentKey: item.key, bizType: item.keyCode }).then(data => {
-        this.props.setSearchData({ data, key: item.field });
+        setTimeout(() => {
+          this.props.setSearchData({ data, key: item.field });
+        }, 20);
       }).catch(() => {});
     } else if (item.listCode) {
       let param = item.params || {};
       fetch(item.listCode, param).then(data => {
-        this.props.setSearchData({ data, key: item.field });
+        setTimeout(() => {
+          this.props.setSearchData({ data, key: item.field });
+        }, 20);
       }).catch(() => {});
     }
   }

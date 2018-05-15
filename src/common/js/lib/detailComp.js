@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Form, Select, Input, Button, Tooltip, Icon, Spin, Upload,
-  Modal, Cascader, DatePicker
+  Modal, Cascader, DatePicker, TimePicker, Row, Col
 } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -26,6 +26,8 @@ const { TextArea } = Input;
 const { RangePicker } = DatePicker;
 const DATE_FORMAT = 'YYYY-MM-DD';
 const DATETIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+const TIME_FORMAT = 'HH:mm';
+const TIME_FORMAT1 = 'HH:mm:ss';
 const imgUploadBtn = (
   <div>
     <Icon type="plus" />
@@ -172,6 +174,9 @@ export default class DetailComp extends React.Component {
         } else {
           values[v.field] = values[v.field] ? values[v.field].format(format) : values[v.field];
         }
+      } else if (v.type === 'time') {
+        let format = v.isTime ? TIME_FORMAT1 : TIME_FORMAT;
+        values[v.field] = values[v.field] ? values[v.field].format(format) : values[v.field];
       } else if (v.type === 'o2m') {
         values[v.field] = this.props.pageData[v.field];
       }
@@ -308,7 +313,6 @@ export default class DetailComp extends React.Component {
     } else if (item.listCode) {
       let param = item.params || {};
       fetch(item.listCode, param).then(data => {
-        // console.log('get', this.props, item, data);
         this.props.setSelectData({ data, key: item.field });
       }).catch(() => { });
     }
@@ -325,6 +329,23 @@ export default class DetailComp extends React.Component {
         </Modal>
       </Spin>
     );
+  }
+  getLngLat(item) {
+    let address = '';
+    let addr = this.props.form.getFieldValue(item.lnglat).join('');
+    address = address + addr + this.props.form.getFieldValue(item.field);
+    let geocoder = new AMap.Geocoder();
+    // 地理编码,返回地理编码结果
+    geocoder.getLocation(address, (status, result) => {
+      if (status === 'complete' && result.info === 'OK') {
+        this.props.form.setFieldsValue({
+          [item.lnglatTo[0]]: result.geocodes[0].location.lng,
+          [item.lnglatTo[1]]: result.geocodes[0].location.lat
+        });
+      } else {
+        showErrMsg('经纬度获取失败');
+      }
+    });
   }
   getItemByType(type, item) {
     const { getFieldDecorator } = this.props.form;
@@ -347,6 +368,8 @@ export default class DetailComp extends React.Component {
         return item.rangedate
           ? this.getRangeDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime')
           : this.getDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime');
+      case 'time':
+        return this.getTimeComp(item, initVal, rules, getFieldDecorator);
       case 'img':
         return this.getImgComp(item, initVal, rules, getFieldDecorator);
       case 'file':
@@ -361,6 +384,8 @@ export default class DetailComp extends React.Component {
         return this.getDownloadComp(item, initVal, rules, getFieldDecorator);
       case 'import':
         return this.getImportComp(item, initVal, rules, getFieldDecorator);
+      case 'lnglat':
+        return this.getLngLatComp(item, initVal, rules, getFieldDecorator);
       default:
         return this.getInputComp(item, initVal, rules, getFieldDecorator);
     }
@@ -574,6 +599,37 @@ export default class DetailComp extends React.Component {
       searchData: { ...prevState.searchData, [key]: data }
     }));
   }
+  // 获取经纬度
+  getLngLatComp(item, initVal, rules, getFieldDecorator) {
+    return (
+      <FormItem
+        className={item.hidden ? 'hidden' : ''}
+        key={item.field}
+        {...formItemLayout}
+        label={this.getLabel(item)}>
+        {
+          item.readonly ? <div className="readonly-text" style={item.style ? item.style : {}}>{initVal}</div>
+            : (
+              <Row gutter={8}>
+                <Col span={16}>
+                  {getFieldDecorator(item.field, {
+                    rules,
+                    initialValue: initVal
+                  })(
+                    <Input type={item.hidden ? 'hidden' : 'text'}/>
+                  )}
+                </Col>
+                <Col span={8}>
+                  <Button onClick={() => {
+                    this.getLngLat(item);
+                  }}>获取经纬度</Button>
+                </Col>
+              </Row>
+            )
+        }
+      </FormItem>
+    );
+  }
   getDownloadComp(item, initVal, rules, getFieldDecorator) {
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
@@ -649,6 +705,22 @@ export default class DetailComp extends React.Component {
                 ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
                 format={format}
                 showTime={isTime} />
+            )
+        }
+      </FormItem>
+    );
+  }
+  getTimeComp(item, initVal, rules, getFieldDecorator) {
+    let format = item.isTime ? TIME_FORMAT1 : TIME_FORMAT;
+    return (
+      <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
+        {
+          item.readonly ? <div className="readonly-text">{initVal}</div>
+            : getFieldDecorator(item.field, {
+              rules,
+              initialValue: initVal || null
+            })(
+              <TimePicker placeholder='选择时间' format={format} />
             )
         }
       </FormItem>
@@ -883,6 +955,8 @@ export default class DetailComp extends React.Component {
         result = this.getCityVal(item, result);
       } else if (item.type === 'date' || item.type === 'datetime') {
         result = this.getRealDateVal(item, result);
+      } else if (item.type === 'time') {
+        result = this.getRealTimeVal(item, result);
       }
       if (item.formatter) {
         result = item.formatter(result, this.props.pageData);
@@ -913,6 +987,13 @@ export default class DetailComp extends React.Component {
       return start ? fn(start, format) + '~' + fn(end, format) : null;
     }
     return start ? [moment(fn(start), format), moment(fn(end), format)] : null;
+  }
+  getRealTimeVal(item, result) {
+    return result
+      ? item.readonly
+        ? result
+        : moment(result, TIME_FORMAT)
+      : '';
   }
   getCityVal(item, result) {
     let cData = item._keys && result ? result : this.props.pageData;

@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import {
   initStates,
   doFetching,
@@ -8,7 +7,7 @@ import {
   setPageData,
   restore
 } from '@redux/newProj/project-addedit';
-import { getQueryString, showSucMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, getUserId, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import fetch from 'common/js/fetch';
 import { getBankNameByCode, getBankCodeByName } from 'api/project';
@@ -33,14 +32,13 @@ class ProjectAddedit extends React.Component {
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-    getUserDetail(cookies.get('userId')).then(data => {
-      console.log(data.companyCode);
-      this.setState({ 'companyCode': data.companyCode });
-    });
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then(data => {
-        console.log(data.companyCode);
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then(data => {
         this.setState({ 'companyCodeList': data.companyCodeList });
+      });
+    } else {
+      getUserDetail(getUserId()).then(data => {
+        this.setState({ 'companyCode': data.companyCode });
       });
     }
   }
@@ -69,6 +67,9 @@ class ProjectAddedit extends React.Component {
     }, {
       field: 'address',
       title: '详细地址',
+      type: 'lnglat',
+      lnglat: 'quyu',
+      lnglatTo: ['longitude', 'latitude'],
       required: true
     }, {
       field: 'longitude',
@@ -132,7 +133,7 @@ class ProjectAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if (cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
         fields,
         key: 'code',
@@ -150,7 +151,7 @@ class ProjectAddedit extends React.Component {
         detailCode: 631358,
         addCode: 631350
       }) : null;
-    } else if (cookies.get('loginKind') === 'S') {
+    } else if (getUserKind() === 'S') {
       return this.state.companyCodeList ? this.props.buildDetail({
         fields,
         key: 'code',
