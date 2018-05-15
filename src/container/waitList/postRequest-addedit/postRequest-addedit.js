@@ -33,7 +33,8 @@ class PostRequestAddedit extends React.Component {
       download: '',
       projectName: '',
       sendDatetime: '',
-      fileList: []
+      fileList: [],
+      backDownload: ''
     };
   }
   componentDidMount() {
@@ -44,14 +45,27 @@ class PostRequestAddedit extends React.Component {
         bankName: data.bankName,
         projectName: data.projectName,
         sendDatetime: data.sendDatetime,
-        download: data.download
+        download: data.download,
+        backDownload: data.backDownload
+      });
+    });
+  }
+  downNum(flag) {
+    let { backDownload, download } = this.state;
+    if (flag) {
+      backDownload += 1;
+    } else {
+      download += 1;
+    }
+    downNum(this.code, backDownload, download).then((data) => {
+      this.setState({
+        download: data.download,
+        backDownload: data.backDownload
       });
     });
   }
   handleExport() {
-    downNum(this.code).then((data) => {
-      this.setState({ download: this.state.download + 1 });
-    });
+    this.downNum(true);
     downLoad(this.code).then((data) => {
       if (!data || !data.length) {
         showWarnMsg('没有工资条信息！');

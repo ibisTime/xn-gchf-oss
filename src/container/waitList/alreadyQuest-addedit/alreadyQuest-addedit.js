@@ -46,23 +46,31 @@ class AlreadyQuestAddedit extends React.Component {
         bankName: data.bankName,
         projectName: data.projectName,
         sendDatetime: data.sendDatetime,
-        download: data.download
-      });
-    });
-    downNum(this.code).then((data) => {
-      console.log(data);
-      this.setState({
+        download: data.download,
         backDownload: data.backDownload
       });
     });
   }
+  downNum(flag) {
+    let { backDownload, download } = this.state;
+    if (flag) {
+      backDownload += 1;
+    } else {
+      download += 1;
+    }
+    downNum(this.code, backDownload, download).then((data) => {
+      this.setState({
+        download: data.download,
+        backDownload: data.backDownload
+      });
+    });
+  }
+
   goBack() {
     this.props.history.go(-1);
   }
   handleExport1() {
-    downNum(this.code).then((data) => {
-      this.setState({ backDownload: this.state.backDownload + 1 });
-    });
+    this.downNum(true);
     downLoad(this.code).then((data) => {
       let payroll1 = [
         ['项目信息'],
@@ -82,9 +90,7 @@ class AlreadyQuestAddedit extends React.Component {
     }, () => { });
   }
   handleExport() {
-    downNum(this.code).then((data) => {
-      this.setState({ download: this.state.download + 1 });
-    });
+    this.downNum();
     downLoad(this.code).then((data) => {
       console.log(data[0]);
       let payroll1 = [
@@ -111,12 +117,12 @@ class AlreadyQuestAddedit extends React.Component {
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
-          <button onClick={this.handleExport}>点击下载</button>
+          <Button onClick={this.handleExport}>点击下载</Button>
           <p>下载次数{this.state.download}</p>
         </Card>
         <Card title={this.state.projectName + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
           <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>
-          <button onClick={this.handleExport1}>点击下载</button>
+          <Button onClick={this.handleExport1}>点击下载</Button>
           <p>下载次数{this.state.backDownload}</p>
         </Card>
         <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20 }}>返回</Button>
