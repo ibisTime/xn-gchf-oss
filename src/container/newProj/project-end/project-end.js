@@ -87,6 +87,7 @@ class ProjectEnd extends React.Component {
     }, {
       field: 'subbranch',
       title: '开户行',
+      _keys: ['companyCard', 'subbranch'],
       required: true
     }, {
       field: 'bankcardNumber',

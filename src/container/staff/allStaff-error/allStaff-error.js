@@ -47,10 +47,12 @@ class AllStaffError extends React.Component {
   render() {
     const fieldso = [{
       field: 'code',
-      title: '编号'
+      title: '编号',
+      hidden: true
     }, {
       field: 'projectCode',
-      title: '项目编号'
+      title: '项目编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '工程名称',
@@ -66,11 +68,20 @@ class AllStaffError extends React.Component {
       keyName: 'name',
       valueName: 'name'
     }, {
+      field: 'staffCode',
+      title: '务工人员',
+      type: 'select',
+      listCode: '631416',
+      keyName: 'code',
+      valueName: 'name'
+    }, {
       field: 'salaryCode',
-      title: '工资条编号'
+      title: '工资条编号',
+      hidden: true
     }, {
       field: 'handleNote',
-      title: '操作描述'
+      title: '操作描述',
+      hidden: true
     }, {
       field: 'handleName',
       title: '处理人'
@@ -84,10 +95,12 @@ class AllStaffError extends React.Component {
     }];
     const fields = [{
       field: 'code',
-      title: '编号'
+      title: '编号',
+      hidden: true
     }, {
       field: 'projectCode',
-      title: '项目编号'
+      title: '项目编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '工程名称',
@@ -101,10 +114,19 @@ class AllStaffError extends React.Component {
       valueName: 'name'
     }, {
       field: 'salaryCode',
-      title: '工资条编号'
+      title: '工资条编号',
+      hidden: true
     }, {
       field: 'handleNote',
-      title: '操作描述'
+      title: '操作描述',
+      hidden: true
+    }, {
+      field: 'staffCode',
+      title: '务工人员',
+      type: 'select',
+      listCode: '631416',
+      keyName: 'code',
+      valueName: 'name'
     }, {
       field: 'handleName',
       title: '处理人'

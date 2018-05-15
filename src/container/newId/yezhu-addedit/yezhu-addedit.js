@@ -32,7 +32,8 @@ class YezhuAddEdit extends React.Component {
       title: '密码',
       field: 'loginPwd',
       type: 'password',
-      required: true
+      required: true,
+      hidden: true
     }, {
       title: '用户类型',
       field: 'type',
@@ -57,6 +58,7 @@ class YezhuAddEdit extends React.Component {
     return this.props.buildDetail({
       fields,
       code: this.code,
+      key: 'userId',
       view: this.view,
       detailCode: 631087,
       addCode: 631070

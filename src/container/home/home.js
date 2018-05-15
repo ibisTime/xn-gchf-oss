@@ -174,7 +174,8 @@ class Home extends React.Component {
   getProjectList() {
     this.points = {};
     getUserDetail(getUserId()).then((data) => {
-      getProjectList(getUserKind(), data.projectCodeList).then(data => {
+      console.log(data.companyCodeList);
+      getProjectList(getUserKind(), data.companyCodeList).then(data => {
         this.data = data;
         data.forEach((item, i) => {
           let point = [item.longitude, item.latitude];

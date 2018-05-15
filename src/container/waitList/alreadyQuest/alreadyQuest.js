@@ -91,12 +91,17 @@ class AlreadyQuest extends React.Component {
         })
         : null;
     } else if (getUserKind() === 'S') {
-      return this.props.buildList({
+      return this.state.companyCodeList ? this.props.buildList({
         fields,
         searchParams: {
           status: 3,
           companyCodeList: this.state.companyCode
         },
+        pageCode: 631435
+      }) : null;
+    } else {
+      return this.props.buildList({
+        fields,
         pageCode: 631435
       });
     }

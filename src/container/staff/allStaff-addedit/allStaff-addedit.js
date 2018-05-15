@@ -66,25 +66,6 @@ class AllStaffAddEdit extends React.Component {
       required: true,
       listCode: '631416'
     }, {
-      field: 'bankName',
-      title: '银行名称',
-      type: 'select',
-      listCode: '631093',
-      keyName: 'bankCode',
-      valueName: 'bankName',
-      _keys: ['bankCard', 'bankCode'],
-      required: true
-    }, {
-      field: 'subbranch',
-      title: '开户行',
-      _keys: ['bankCard', 'subbranch'],
-      required: true
-    }, {
-      field: 'bankcardNumber',
-      title: '银行卡号',
-      _keys: ['bankCard', 'bankcardNumber'],
-      required: true
-    }, {
       field: 'contractDatetime',
       title: '签约时间',
       type: 'date'

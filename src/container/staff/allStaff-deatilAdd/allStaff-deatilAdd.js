@@ -11,7 +11,7 @@ import {
 } from '@redux/staff/allStaff-addeditAdd';
 import { getQueryString, showSucMsg, getUserKind, getUserId } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
-import { getBankNameByCode } from 'api/project';
+import { getBankNameByCode, buquanxinxi } from 'api/project';
 import { getUserDetail } from 'api/user';
 
 @DetailWrapper(
@@ -52,16 +52,35 @@ class AllStaffAddEditAdd extends React.Component {
       required: true,
       readonly: true
     }, {
+      field: 'mobile',
+      title: '联系方式',
+      search: true,
+      required: true
+    }, {
+      field: 'bankcardNumber',
+      title: '银行卡号',
+      search: true,
+      required: true
+    }, {
+      field: 'bankCode',
+      title: '开户行',
+      listCode: '631093',
+      keyName: 'bankCode',
+      valueName: 'bankName',
+      type: 'select',
+      _keys: ['companyCard', 'subbranch'],
+      search: true,
+      required: true
+    }, {
+      field: 'subbranch',
+      title: '开户支行',
+      search: true,
+      required: true
+    }, {
       field: 'idAddress',
       title: '身份证地址',
       required: true,
       readonly: true
-    }, {
-      field: 'idKind',
-      title: '证件类型',
-      type: 'select',
-      key: 'id_type',
-      required: true
     }, {
       field: 'idNo',
       title: '证件号',
@@ -76,14 +95,25 @@ class AllStaffAddEditAdd extends React.Component {
     }, {
       field: 'idEndDate',
       title: '证件有效结束时间',
-      readonly: true
+      readonly: true,
+      type: 'datetime'
     }, {
       field: 'idNation',
       title: '民族',
       readonly: true
     }, {
-      field: 'idPic',
-      title: '身份证上头像',
+      field: 'pict1',
+      title: '免冠照片',
+      type: 'img',
+      single: true
+    }, {
+      field: 'pict2',
+      title: '手持身份张照片',
+      type: 'img',
+      single: true
+    }, {
+      field: 'pict3',
+      title: '身份证正反面照片+签名',
       type: 'img',
       single: true
     }, {
@@ -103,17 +133,17 @@ class AllStaffAddEditAdd extends React.Component {
         title: '保存',
         check: true,
         handler: (param) => {
+          console.log(param);
           getBankNameByCode(param.bankName).then(data => {
             param.bankCode = data[0].bankCode;
             param.bankName = data[0].bankName;
             param.updater = getUserId();
             this.props.doFetching();
-            var code = this.staffCode ? '631412' : '631410';
-            fetch(code, param).then(() => {
+            fetch(631413, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
               setTimeout(() => {
-                this.props.history.go(-1);
+                this.props.history.go(-2);
               }, 1000);
             }).catch(this.props.cancelFetching);
           });

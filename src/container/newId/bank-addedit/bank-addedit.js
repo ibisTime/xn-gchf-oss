@@ -32,7 +32,7 @@ class BankAddEdit extends React.Component {
       title: '密码',
       field: 'loginPwd',
       type: 'password',
-      required: true
+      hidden: true
     }, {
       title: '用户类型',
       field: 'type',

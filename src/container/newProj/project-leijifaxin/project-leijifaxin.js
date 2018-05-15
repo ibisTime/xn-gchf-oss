@@ -19,8 +19,10 @@ import { getUserDetail } from 'api/user';
     ...state.newProjProjectLeijifaxin,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Leijifaxin extends React.Component {
   constructor(props) {
@@ -28,12 +30,15 @@ class Leijifaxin extends React.Component {
     this.state = {
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
+    this.projectCode = getQueryString('projectCode', this.props.location.search);
+  };
+  componentDidMount() {
+    if (cookies.get('loginKind') === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+        console.log(data);
+        this.setState({ 'companyCode': data.companyCode });
       });
     }
-    this.projectCode = getQueryString('code', this.props.location.search);
   }
   render() {
     const fields = [{
@@ -73,7 +78,7 @@ class Leijifaxin extends React.Component {
       search: true,
       hidden: true
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         searchParams: {
@@ -86,7 +91,7 @@ class Leijifaxin extends React.Component {
         rowKey: 'staffCode',
         buttons: []
       }) : null;
-    }else {
+    } else {
       return this.props.buildList({
         fields,
         searchParams: { projectCode: this.projectCode, updater: '' },

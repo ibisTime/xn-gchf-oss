@@ -58,7 +58,7 @@ class AlreadyQuestAddedit extends React.Component {
     } else {
       download += 1;
     }
-    downNum(this.code, backDownload, download).then((data) => {
+    downNum(this.code, download, backDownload).then((data) => {
       this.setState({
         download: data.download,
         backDownload: data.backDownload

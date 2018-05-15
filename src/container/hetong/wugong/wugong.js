@@ -61,45 +61,83 @@ class Wugong extends React.Component {
       title: '更新时间',
       type: 'datetime'
     }];
-    return this.state.companyCode ? this.props.buildList({
-      fields,
-      searchParams: {
-        companyCode: this.state.companyCode,
-        kind: 'O'
-      },
-      buttons: [{
-        code: 'add',
-        name: '合同录入',
-        handler: (selectedRowKeys, selectedRows) => {
-          this.props.history.push(`/hetong/staff/addedit`);
-        }
-      }, {
-        code: 'edit',
-        name: '修改',
-        handler: (selectedRowKeys, selectedRows) => {
-          if (!selectedRowKeys.length) {
-            showWarnMsg('请选择记录');
-          } else if (selectedRowKeys.length > 1) {
-            showWarnMsg('请选择一条记录');
-          } else {
-            this.props.history.push(`/hetong/wugong/edit?code=${selectedRowKeys[0]}`);
+    if (getUserKind() === 'O') {
+      return this.state.companyCode ? this.props.buildList({
+        fields,
+        searchParams: {
+          companyCode: this.state.companyCode,
+          kind: 'O'
+        },
+        buttons: [{
+          code: 'add',
+          name: '合同录入',
+          handler: (selectedRowKeys, selectedRows) => {
+            this.props.history.push(`/hetong/staff/addedit`);
           }
-        }
-      }, {
-        code: 'detail',
-        name: '详情',
-        handler: (selectedRowKeys, selectedRows) => {
-          if (!selectedRowKeys.length) {
-            showWarnMsg('请选择记录');
-          } else if (selectedRowKeys.length > 1) {
-            showWarnMsg('请选择一条记录');
-          } else {
-            this.props.history.push(`/hetong/wugong/edit?v=1&code=${selectedRowKeys[0]}`);
+        }, {
+          code: 'edit',
+          name: '修改',
+          handler: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              this.props.history.push(`/hetong/wugong/edit?code=${selectedRowKeys[0]}`);
+            }
           }
-        }
-      }],
-      pageCode: 631405
-    }) : null;
+        }, {
+          code: 'detail',
+          name: '详情',
+          handler: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              this.props.history.push(`/hetong/wugong/edit?v=1&code=${selectedRowKeys[0]}`);
+            }
+          }
+        }],
+        pageCode: 631405
+      }) : null;
+    }else {
+      return this.props.buildList({
+        fields,
+        buttons: [{
+          code: 'add',
+          name: '合同录入',
+          handler: (selectedRowKeys, selectedRows) => {
+            this.props.history.push(`/hetong/staff/addedit`);
+          }
+        }, {
+          code: 'edit',
+          name: '修改',
+          handler: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              this.props.history.push(`/hetong/wugong/edit?code=${selectedRowKeys[0]}`);
+            }
+          }
+        }, {
+          code: 'detail',
+          name: '详情',
+          handler: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              this.props.history.push(`/hetong/wugong/edit?v=1&code=${selectedRowKeys[0]}`);
+            }
+          }
+        }],
+        pageCode: 631405
+      });
+    }
   }
 }
 

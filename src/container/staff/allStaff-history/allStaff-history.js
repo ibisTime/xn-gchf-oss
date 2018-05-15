@@ -34,11 +34,12 @@ class AllStaffHistory extends React.Component {
 
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
-    this.staffCode = getQueryString('staffCode', this.props.location.search, 'updater': '');
+    this.staffCode = getQueryString('staffCode', this.props.location.search);
   }
   componentDidMount() {
     if (cookies.get('loginKind') === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
+        console.log(data);
         this.setState({ 'companyCode': data.companyCode, 'updater': '' });
       });
     }
@@ -51,10 +52,12 @@ class AllStaffHistory extends React.Component {
   render() {
     const fields = [{
       field: 'code',
-      title: '编号'
+      title: '编号',
+      hidden: true
     }, {
       field: 'projectCode',
-      title: '项目编号'
+      title: '项目编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '项目名称',
@@ -87,26 +90,11 @@ class AllStaffHistory extends React.Component {
         return data.staff ? data.staff.mobile : '';
       }
     }, {
-      field: 'idType',
-      title: '证件类型',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.idType : '';
-      },
-      key: 'id_type'
-    }, {
       field: 'idNo',
-      title: '姓名',
+      title: '证件号',
       formatter: (v, data) => {
-        return data.staff ? data.staff.idNo : '';
+        return data.staff.idNo;
       }
-    }, {
-      field: 'remark',
-      title: '备注'
-    }, {
-      field: 'keyword',
-      title: '关键字',
-      search: true,
-      hidden: true
     }];
     const fieldso = [{
       field: 'code',
@@ -171,7 +159,7 @@ class AllStaffHistory extends React.Component {
     }];
     if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
-        fieldso,
+        fields,
         searchParams: {
           staffCode: this.staffCode
         },
@@ -180,7 +168,7 @@ class AllStaffHistory extends React.Component {
       }) : null;
     } else if (cookies.get('loginKind') === 'S') {
       return this.state.companyCodeList ? this.props.buildList({
-        fieldso,
+        fields,
         searchParams: {
           staffCode: this.staffCode,
           companyCodeList: this.state.companyCodeList

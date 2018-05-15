@@ -35,7 +35,8 @@ class AllStaffDetail extends React.Component {
       title: '工资条编号'
     }, {
       field: 'handleNote',
-      title: '操作描述'
+      title: '操作描述',
+      hidden: true
     }, {
       field: 'type',
       title: '类型',

@@ -37,7 +37,8 @@ class AddBumen extends React.Component {
       type: 'select',
       listCode: '631086',
       params: {
-        type: 'O'
+        type: 'O',
+        companyCode: this.companyCode
       },
       keyName: 'userId',
       valueName: 'loginName',
@@ -48,7 +49,7 @@ class AddBumen extends React.Component {
       mobile: true,
       required: true
     }, {
-      field: 'parentCode',
+      field: 'companyCode',
       title: '上级部门',
       type: 'select',
       listCode: '631036',

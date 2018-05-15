@@ -43,10 +43,12 @@ class Daifa extends React.Component {
   render() {
     const fields = [{
       field: 'code',
-      title: '编号'
+      title: '编号',
+      hidden: true
     }, {
       field: 'projectCode',
-      title: '项目编号'
+      title: '项目编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '工程名称',
@@ -92,10 +94,12 @@ class Daifa extends React.Component {
     }];
     const fieldso = [{
       field: 'code',
-      title: '编号'
+      title: '编号',
+      hidden: true
     }, {
       field: 'projectCode',
-      title: '项目编号'
+      title: '项目编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '工程名称',
