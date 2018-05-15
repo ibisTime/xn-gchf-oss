@@ -84,14 +84,19 @@ class AlreadyQuest extends React.Component {
         ? this.props.buildList({
           fields,
           searchParams: {
-            companyCode: this.state.companyCode
+            companyCode: this.state.companyCode,
+            kind: 'O'
           },
           pageCode: 631435
         })
         : null;
-    } else {
+    } else if (getUserKind() === 'S') {
       return this.props.buildList({
         fields,
+        searchParams: {
+          status: 3,
+          companyCodeList: this.state.companyCode
+        },
         pageCode: 631435
       });
     }

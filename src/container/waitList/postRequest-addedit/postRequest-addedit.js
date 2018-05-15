@@ -57,16 +57,16 @@ class PostRequestAddedit extends React.Component {
         showWarnMsg('没有工资条信息！');
         return;
       }
-      console.log(data[0].bankCard.bankName);
+      console.log(data[0].companyCard.bankName);
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[0].projectCode],
-        ['扣款账户', data[0].bankCard.bankcardNumber],
+        ['扣款账户', data[0].companyCard.bankcardNumber],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, (d.factAmount) / 1000, '', ''];
+        return [i + 1, d.code, d.companyCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, (d.factAmount) / 1000, '', ''];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);

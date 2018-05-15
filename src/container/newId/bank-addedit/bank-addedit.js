@@ -16,7 +16,7 @@ import { DetailWrapper } from 'common/js/build-detail';
 class BankAddEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.code = getQueryString('code', this.props.location.search);
+    this.userId = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   render() {
@@ -60,7 +60,8 @@ class BankAddEdit extends React.Component {
     }];
     return this.props.buildDetail({
       fields,
-      code: this.code,
+      code: this.userId,
+      key: 'userId',
       view: this.view,
       detailCode: 631087,
       addCode: 631070

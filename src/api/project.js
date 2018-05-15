@@ -50,8 +50,8 @@ export function getBankCodeByName(bankName) {
   return fetch(631093, { bankName, updater: '' });
 }
 
-export function getProjectList(kind, companyCode) {
-  return fetch(631357, { updater: '', kind, companyCode });
+export function getProjectList(kind, projectCodeList) {
+  return fetch(631357, { updater: '', kind, projectCodeList: [] });
 }
 
 export function getProjectStatus() {

@@ -110,12 +110,6 @@ class Daifa extends React.Component {
       keyName: 'name',
       valueName: 'name'
     }, {
-      field: 'title',
-      title: '标题'
-    }, {
-      field: 'content',
-      title: '内容'
-    }, {
       field: 'status',
       title: '状态',
       search: true,

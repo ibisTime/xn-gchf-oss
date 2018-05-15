@@ -234,7 +234,7 @@ class Map extends React.Component {
         fields,
         btnEvent,
         searchParams: {
-          companyCodeList: this.state.projectCodeList
+          projectCodeList: this.state.projectCodeList
         },
         pageCode: 631356
       }) : null;
