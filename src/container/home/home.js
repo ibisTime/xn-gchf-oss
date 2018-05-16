@@ -27,7 +27,7 @@ const payColumns = [{
   title: '员工名称',
   dataIndex: 'name',
   render: (v, d) => {
-    return d.bankCard.staffName;
+    return (d.staff && d.staff.name) || '';
   }
 }, {
   title: '应发工资',
@@ -58,12 +58,10 @@ const checkColumns = [{
   dataIndex: 'staffMobile'
 }, {
   title: '上班时间',
-  dataIndex: 'startDatetime',
-  render: (v) => formatDate(v, 'yyyy-MM-dd hh:mm:ss')
+  dataIndex: 'startDatetime'
 }, {
   title: '下班时间',
-  dataIndex: 'endDatetime',
-  render: (v) => formatDate(v, 'yyyy-MM-dd hh:mm:ss')
+  dataIndex: 'endDatetime'
 }, {
   title: '出工状态',
   dataIndex: 'status',
@@ -110,8 +108,6 @@ class Home extends React.Component {
     let videos = document.querySelectorAll('video');
     this.video0 = videos[0];
     this.video1 = videos[1];
-    this.canvas = document.querySelector('canvas');
-    this.context = this.canvas.getContext('2d');
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({
@@ -145,7 +141,7 @@ class Home extends React.Component {
     setTimeout(() => {
       this.video0.play();
       this.video1.play();
-    }, 500);
+    }, 300);
   }
   closeVideo() {
     this.mediaStreamTrack && this.mediaStreamTrack.stop();
@@ -174,7 +170,6 @@ class Home extends React.Component {
   getProjectList() {
     this.points = {};
     getUserDetail(getUserId()).then((data) => {
-      console.log(data.companyCodeList);
       getProjectList(getUserKind(), data.companyCodeList).then(data => {
         this.data = data;
         data.forEach((item, i) => {
@@ -417,7 +412,6 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <canvas></canvas>
         {this.state.chosed ? (
           <div>
             <div className="map-left-wrapper">

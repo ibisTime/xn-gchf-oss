@@ -29,9 +29,9 @@ class AccountAddEdit extends React.Component {
       title: '工程编号',
       readonly: true
     }, {
-      field: 'bankName',
+      field: 'bankCode',
       title: '银行名称',
-      type: this.view ? null : 'select',
+      type: 'select',
       listCode: '631093',
       keyName: 'bankCode',
       valueName: 'bankName',
@@ -61,26 +61,10 @@ class AccountAddEdit extends React.Component {
       view: this.view,
       detailCode: 631367,
       editCode: 631362,
-      buttons: this.view ? [] : [{
-        title: '保存',
-        check: true,
-        handler: (param) => {
-          getBankNameByCode().then(data => {
-            param.bankCode = data[0].bankCode;
-            param.bankName = data[0].bankName;
-            param.updater = getUserId();
-            this.props.doFetching();
-            console.log(param);
-            fetch(631362, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
-          });
-        }
-      }]
+      beforeSubmit: (param) => {
+        param.bankName = this.props.selectData.bankCode.filter(v => v.bankCode === param.bankCode)[0].bankName;
+        return param;
+      }
     });
   }
 }
