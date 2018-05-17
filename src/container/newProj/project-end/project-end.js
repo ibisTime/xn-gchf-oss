@@ -80,7 +80,7 @@ class ProjectEnd extends React.Component {
       field: 'bankName',
       title: '银行名称',
       type: 'select',
-      listCode: '631093',
+      listCode: '631116',
       keyName: 'bankCode',
       valueName: 'bankName',
       required: true

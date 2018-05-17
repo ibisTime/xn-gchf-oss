@@ -25,7 +25,7 @@ class ProjectAddedit extends React.Component {
       departmentCode: '',
       bankCode: '',
       companyCode: '',
-      companyCodeList: ''
+      projectCodeList: ''
     };
     this.code = getQueryString('code', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
@@ -34,7 +34,7 @@ class ProjectAddedit extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then(data => {
-        this.setState({ 'companyCodeList': data.companyCodeList });
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     } else {
       getUserDetail(getUserId()).then(data => {
@@ -93,7 +93,7 @@ class ProjectAddedit extends React.Component {
       field: 'bankCode',
       title: '银行名称',
       type: this.view ? null : 'select',
-      listCode: '631093',
+      listCode: '631116',
       keyName: 'bankCode',
       valueName: 'bankName',
       _keys: ['companyCard', 'bankName'],
@@ -152,7 +152,7 @@ class ProjectAddedit extends React.Component {
         addCode: 631350
       }) : null;
     } else if (getUserKind() === 'S') {
-      return this.state.companyCodeList ? this.props.buildDetail({
+      return this.state.projectCodeList ? this.props.buildDetail({
         fields,
         key: 'code',
         code: this.projectCode,
@@ -169,6 +169,24 @@ class ProjectAddedit extends React.Component {
         detailCode: 631358,
         addCode: 631350
       }) : null;
+    } else {
+      return this.props.buildDetail({
+        fields,
+        key: 'code',
+        code: this.projectCode,
+        view: this.view,
+        beforeSubmit: (params) => {
+          for (let i = 0; i < this.props.selectData.bankCode.length; i++) {
+            if (params.bankCode === this.props.selectData.bankCode[i].bankCode) {
+              params.bankName = this.props.selectData.bankCode[i].bankName;
+            }
+          }
+          return params;
+        },
+        editCode: 631352,
+        detailCode: 631358,
+        addCode: 631350
+      });
     }
   }
 }

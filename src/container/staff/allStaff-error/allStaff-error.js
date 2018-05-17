@@ -28,7 +28,7 @@ class AllStaffError extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCodeList: '',
+      projectCodeList: '',
       companyCode: ''
     };
     if (cookies.get('loginKind') === 'O') {
@@ -37,7 +37,7 @@ class AllStaffError extends React.Component {
       });
     } else if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCodeList': data.companyCodeList });
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     }
     this.code = getQueryString('code', this.props.location.search);
@@ -63,7 +63,7 @@ class AllStaffError extends React.Component {
         updater: '',
         kind: 'O',
         companyCode: this.state.companyCode,
-        companyCodeList: this.state.companyCodeList
+        projectCodeList: this.state.projectCodeList
       },
       keyName: 'name',
       valueName: 'name'
@@ -157,7 +157,8 @@ class AllStaffError extends React.Component {
           staffCode: this.staffCode,
           type: '1',
           companyCode: this.state.companyCode,
-          kind: 'O'
+          kind: 'O',
+          status: 4
         },
         buttons: [{
           code: 'detail',
@@ -166,14 +167,15 @@ class AllStaffError extends React.Component {
         pageCode: 631455
       }) : null;
     } else if (cookies.get('loginKind') === 'S') {
-      return this.state.companyCodeList ? this.props.buildList({
+      return this.state.projectCodeList ? this.props.buildList({
         fields: fieldso,
         btnEvent,
         searchParams: {
           staffCode: this.staffCode,
           type: '1',
-          companyCodeList: this.state.companyCodeList,
-          kind: 'O'
+          projectCodeList: this.state.projectCodeList,
+          kind: 'S',
+          status: 4
         },
         buttons: [{
           code: 'detail',
@@ -185,7 +187,7 @@ class AllStaffError extends React.Component {
       return this.props.buildList({
         fields,
         btnEvent,
-        searchParams: { staffCode: this.staffCode, type: '1' },
+        searchParams: { staffCode: this.staffCode, type: '1', status: 4 },
         buttons: [{
           code: 'detail',
           name: '详情'

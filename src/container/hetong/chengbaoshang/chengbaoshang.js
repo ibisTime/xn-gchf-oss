@@ -27,14 +27,14 @@ class Chengbaoshang extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCodeList: '',
+      projectCodeList: '',
       companyCode: ''
     };
   }
   componentDidMount() {
     if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCodeList': data.companyCodeList });
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
     if (cookies.get('loginKind') === 'O') {
@@ -138,12 +138,12 @@ class Chengbaoshang extends React.Component {
         rowKey: 'code'
       }) : null;
     } else {
-      return this.state.companyCodeList ? this.props.buildList({
+      return this.state.projectCodeList ? this.props.buildList({
         fields,
         pageCode: 631375,
         rowKey: 'code',
         searchParams: {
-          companyCodeList: this.state.companyCodeList
+          projectCodeList: this.state.projectCodeList
         }
       }) : null;
     }

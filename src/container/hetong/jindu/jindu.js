@@ -12,14 +12,17 @@ import {
 } from '@redux/hetong/jindu';
 import { listWrapper } from 'common/js/build-list';
 import { getUserDetail } from 'api/user';
+import { getUserKind, getUserId } from 'common/js/util';
 
 @listWrapper(
   state => ({
     ...state.hetongJindu,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Jindu extends React.Component {
   constructor(props) {
@@ -27,30 +30,19 @@ class Jindu extends React.Component {
     this.state = {
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
-        console.log(this.state.companyCode);
+  }
+  componentDidMount() {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
       });
     }
   }
+
   render() {
     const fieldso = [{
       field: 'projectCode',
-      title: '工程编号'
-    }, {
-      field: 'projectName',
-      title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: '',
-        kind: 'O',
-        companyCode: this.state.companyCode
-      },
-      keyName: 'name',
-      valueName: 'name',
+      title: '工程编号',
       hidden: true
     }, {
       field: 'projectName',
@@ -63,7 +55,7 @@ class Jindu extends React.Component {
       title: '进度时间',
       type: 'date'
     }, {
-      field: 'updater',
+      field: 'updateName',
       title: '更新人'
     }, {
       field: 'updateDatetime',
@@ -77,18 +69,7 @@ class Jindu extends React.Component {
     }];
     const fields = [{
       field: 'projectCode',
-      title: '工程编号'
-    }, {
-      field: 'projectName',
-      title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: ''
-      },
-      keyName: 'name',
-      valueName: 'name',
+      title: '工程编号',
       hidden: true
     }, {
       field: 'projectName',
@@ -101,7 +82,7 @@ class Jindu extends React.Component {
       title: '进度时间',
       type: 'date'
     }, {
-      field: 'updater',
+      field: 'updateName',
       title: '更新人'
     }, {
       field: 'updateDatetime',
@@ -113,7 +94,7 @@ class Jindu extends React.Component {
       hidden: true,
       title: '关键字'
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields: fieldso,
         pageCode: 631385,
@@ -123,7 +104,7 @@ class Jindu extends React.Component {
           companyCode: this.state.companyCode
         }
       }) : null;
-    }else {
+    } else {
       return this.props.buildList({
         fields,
         pageCode: 631385,

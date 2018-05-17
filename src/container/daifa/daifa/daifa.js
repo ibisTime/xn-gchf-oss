@@ -84,7 +84,7 @@ class Daifa extends React.Component {
       field: 'handleNote',
       title: '处理备注'
     }, {
-      field: 'handler',
+      field: 'handleName',
       title: '处理人'
     }, {
       field: 'keyword',
@@ -131,7 +131,7 @@ class Daifa extends React.Component {
       field: 'handleNote',
       title: '处理备注'
     }, {
-      field: 'handler',
+      field: 'handleName',
       title: '处理人'
     }, {
       field: 'keyword',

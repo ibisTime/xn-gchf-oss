@@ -48,7 +48,7 @@ class Login extends React.Component {
         this.type = window.location.origin === 'https://jmgod.hichengdai.com' ? 'S'
           : window.location.origin === 'http://jmbank.hichengdai.com' ? 'B'
             : window.location.origin === 'https://jmcompany.hichengdai.com' ? 'O'
-              : window.location.origin === 'https://jmadmin.hichengdai.com' ? 'P' : 'P';
+              : window.location.origin === 'https://jmadmin.hichengdai.com' ? 'P' : 'O';
         this.setState({ loading: true });
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户

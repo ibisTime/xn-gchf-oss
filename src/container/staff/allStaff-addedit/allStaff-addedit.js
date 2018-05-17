@@ -30,7 +30,7 @@ class AllStaffAddEdit extends React.Component {
   componentDidMount() {
     if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCodeList': data.companyCodeList });
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
     if (cookies.get('loginKind') === 'O') {

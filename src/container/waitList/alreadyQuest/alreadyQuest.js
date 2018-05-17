@@ -30,7 +30,7 @@ class AlreadyQuest extends React.Component {
     this.state = {
       subbranch: '',
       bankName: '',
-      companyCodeList: '',
+      projectCodeList: '',
       companyCode: ''
     };
   };
@@ -39,7 +39,7 @@ class AlreadyQuest extends React.Component {
       this.setState({
         subbranch: data.subbranch,
         bankName: data.bankName,
-        companyCodeList: data.companyCodeList,
+        projectCodeList: data.projectCodeList,
         companyCode: data.companyCode
       });
       console.log(data);
@@ -91,11 +91,11 @@ class AlreadyQuest extends React.Component {
         })
         : null;
     } else if (getUserKind() === 'S') {
-      return this.state.companyCodeList ? this.props.buildList({
+      return this.state.projectCodeList ? this.props.buildList({
         fields,
         searchParams: {
           status: 3,
-          companyCodeList: this.state.companyCode
+          projectCodeList: this.state.companyCode
         },
         pageCode: 631435
       }) : null;

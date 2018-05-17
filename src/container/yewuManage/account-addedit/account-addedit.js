@@ -32,7 +32,7 @@ class AccountAddEdit extends React.Component {
       field: 'bankCode',
       title: '银行名称',
       type: 'select',
-      listCode: '631093',
+      listCode: '631116',
       keyName: 'bankCode',
       valueName: 'bankName',
       required: true

@@ -30,7 +30,7 @@ class AllStaffAddEditAdd extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'companyCodeList': data.companyCodeList });
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
     if (getUserKind() === 'O') {
@@ -64,7 +64,7 @@ class AllStaffAddEditAdd extends React.Component {
     }, {
       field: 'bankCode',
       title: '开户行',
-      listCode: '631093',
+      listCode: '631116',
       keyName: 'bankCode',
       valueName: 'bankName',
       type: 'select',

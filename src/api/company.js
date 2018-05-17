@@ -19,8 +19,8 @@ export function getPageAccount({ start, limit, type }) {
 /**
  * 列表查公司
  */
-export function getCompany(companyCodeList, kind) {
-  return fetch(631026, { companyCodeList, kind });
+export function getCompany(projectCodeList, kind) {
+  return fetch(631026, { projectCodeList, kind });
 }
 
 export function getCompanyDetail(code) {

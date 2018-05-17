@@ -35,7 +35,7 @@ class Map extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'projectCodeList': data.companyCodeList });
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
     if (getUserKind() === 'O') {
@@ -164,6 +164,15 @@ class Map extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           this.props.history.push(`/projectManage/project/stop?start=1&projectCode=${selectedRowKeys[0]}`);
+        }
+      },
+      progress: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/hetong/jindu?start=1&projectCode=${selectedRowKeys[0]}`);
         }
       }
     };

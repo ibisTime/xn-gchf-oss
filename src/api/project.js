@@ -44,7 +44,7 @@ export function deleteCompany1(code) {
  * @param code
  */
 export function getBankNameByCode() {
-  return fetch(631093);
+  return fetch(631116);
 }
 
 export function buquanxinxi(...param) {
@@ -52,7 +52,7 @@ export function buquanxinxi(...param) {
 }
 
 export function getBankCodeByName(bankName) {
-  return fetch(631093, { bankName, updater: '' });
+  return fetch(631116, { bankName, updater: '' });
 }
 
 export function getProjectList(kind, projectCodeList) {

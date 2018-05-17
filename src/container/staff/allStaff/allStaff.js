@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/staff/allStaff';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getUserKind, getUserId } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -33,13 +33,13 @@ class AllStaff extends React.Component {
     };
   }
   componentDidMount() {
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCodeList': data.companyCodeList });
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
     };
@@ -181,15 +181,26 @@ class AllStaff extends React.Component {
         }
       }
     };
-    return this.props.buildList({
-      fields: fieldso,
-      btnEvent,
-      searchParams: {
-        updater: '',
-        kind: 'O'
-      },
-      pageCode: 631415
-    });
+    if (getUserKind === 'O') {
+      return this.props.buildList({
+        fields: fieldso,
+        btnEvent,
+        searchParams: {
+          updater: '',
+          kind: 'O'
+        },
+        pageCode: 631415
+      });
+    } else {
+      return this.props.buildList({
+        fields: fieldso,
+        btnEvent,
+        searchParams: {
+          updater: ''
+        },
+        pageCode: 631415
+      });
+    }
   }
 }
 

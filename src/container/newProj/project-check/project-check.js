@@ -79,7 +79,7 @@ class ProjectCheck extends React.Component {
       title: '银行名称',
       type: this.view ? null : 'select',
       _keys: ['companyCard', 'bankName'],
-      listCode: '631093',
+      listCode: '631116',
       keyName: 'bankCode',
       valueName: 'bankName',
       required: true

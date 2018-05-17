@@ -298,6 +298,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newId/bank/bank'))
   },
   {
+    path: '/newId/operation',
+    component: asyncComponent(() => import('container/newId/operation/operation'))
+  },
+  {
     path: '/newId/bank/addedit',
     component: asyncComponent(() => import('container/newId/bank-addedit/bank-addedit'))
   },

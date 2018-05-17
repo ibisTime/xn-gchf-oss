@@ -42,30 +42,45 @@ class PostRequest extends React.Component {
   }
   render() {
     const fields = [{
-      title: '时间',
-      field: 'sendDatetime',
-      type: 'datetime'
+      field: 'code',
+      title: '编号',
+      hidden: true
     }, {
-      title: '发件人',
-      field: 'sendName',
-      search: true
+      field: 'projectCode',
+      title: '项目编号',
+      hidden: true
     }, {
-      title: '标题',
-      field: 'title'
+      field: 'projectName',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: '',
+        kind: 'O',
+        companyCode: this.state.companyCode
+      },
+      keyName: 'name',
+      valueName: 'name'
     }, {
       title: '状态',
       field: 'status',
       type: 'select',
       search: true,
-      data: [{
-        key: '1',
-        value: '待处理'
-      }, {
-        key: '2',
-        value: '待反馈'
-      }],
-      keyName: 'key',
-      valueName: 'value'
+      key: 'message_status'
+    }, {
+      title: '创建时间',
+      field: 'createDatetime'
+    }, {
+      title: '处理时间',
+      field: 'handleDatetime',
+      type: 'datetime'
+    }, {
+      title: '处理备注',
+      field: 'handleNote'
+    }, {
+      title: '处理人',
+      field: 'handleName'
     }];
     if (cookies.get('loginKind') === 'P') {
       return this.props.buildList({

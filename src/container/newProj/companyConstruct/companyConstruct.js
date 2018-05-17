@@ -29,7 +29,7 @@ class RoleMenu extends React.Component {
     let codes;
     if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        getCompany(data.companyCodeList, 'S').then((companyData) => {
+        getCompany(data.projectCodeList, 'S').then((companyData) => {
           this.getTree(companyData);
           this.setState({
             fetching: false

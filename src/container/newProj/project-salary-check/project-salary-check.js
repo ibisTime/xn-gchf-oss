@@ -51,7 +51,7 @@ class ProjectSalaryCheck extends React.Component {
       field: 'bankName',
       title: '银行名称',
       type: this.view ? '' : 'select',
-      listCode: '631093',
+      listCode: '631116',
       keyName: 'bankCode',
       valueName: 'bankName',
       _keys: ['bankCard', 'bankName'],

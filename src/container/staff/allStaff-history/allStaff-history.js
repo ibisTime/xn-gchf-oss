@@ -29,7 +29,7 @@ class AllStaffHistory extends React.Component {
     super(props);
     this.state = {
       companyCode: '',
-      companyCodeList: ''
+      projectCodeList: ''
     };
 
     this.code = getQueryString('code', this.props.location.search);
@@ -45,7 +45,7 @@ class AllStaffHistory extends React.Component {
     }
     if (cookies.get('loginKind') === 'S') {
       getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCodeList': data.companyCodeList, 'updater': '' });
+        this.setState({ 'projectCodeList': data.projectCodeList, 'updater': '' });
       });
     }
   }
@@ -167,11 +167,11 @@ class AllStaffHistory extends React.Component {
         pageCode: 631465
       }) : null;
     } else if (cookies.get('loginKind') === 'S') {
-      return this.state.companyCodeList ? this.props.buildList({
+      return this.state.projectCodeList ? this.props.buildList({
         fields,
         searchParams: {
           staffCode: this.staffCode,
-          companyCodeList: this.state.companyCodeList
+          projectCodeList: this.state.projectCodeList
         },
         buttons: [],
         pageCode: 631465

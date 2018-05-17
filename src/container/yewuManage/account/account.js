@@ -12,6 +12,7 @@ import {
 } from '@redux/yewuManage/account';
 import { listWrapper } from 'common/js/build-list';
 import { getUserDetail } from 'api/user';
+import { getUserKind, getUserId } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -28,15 +29,17 @@ class Account extends React.Component {
     super(props);
     this.state = {
       companyCode: '',
-      companyCodeList: ''
+      projectCodeList: ''
     };
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCodeList': data.companyCodeList });
+  }
+  componentDidMount() {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     }
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
     }
@@ -44,7 +47,8 @@ class Account extends React.Component {
   render() {
     const fieldso = [{
       field: 'projectCode',
-      title: '工程编号'
+      title: '工程编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '工程名称',
@@ -88,7 +92,8 @@ class Account extends React.Component {
     }];
     const fields = [{
       field: 'projectCode',
-      title: '工程编号'
+      title: '工程编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '工程名称'
@@ -120,7 +125,7 @@ class Account extends React.Component {
       search: true,
       hidden: true
     }];
-    if (cookies.get('loginKind') === 'P') {
+    if (getUserKind() === 'P') {
       return this.props.buildList({
         fields,
         pageCode: 631365,
@@ -128,7 +133,7 @@ class Account extends React.Component {
           companyCode: ''
         }
       });
-    } else if (cookies.get('loginKind') === 'O') {
+    } else if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         pageCode: 631365,
@@ -138,11 +143,11 @@ class Account extends React.Component {
         }
       }) : null;
     } else {
-      return this.state.companyCodeList ? this.props.buildList({
+      return this.state.projectCodeList ? this.props.buildList({
         fields,
         pageCode: 631365,
         searchParams: {
-          companyCodeList: this.state.companyCodeList
+          projectCodeList: this.state.projectCodeList
         }
       }) : null;
     }
