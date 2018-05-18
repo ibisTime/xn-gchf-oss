@@ -72,6 +72,7 @@ import { mapMap } from './redux/map/map';
 import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
 import { newIdBank } from './redux/newId/bank';
 import { newIdOperation } from './redux/newId/operation';
+import { newIdOperationAddEdit } from './redux/newId/operation-addedit';
 import { newIdBankAddEdit } from './redux/newId/bank-addedit';
 import { newIdYezhu } from './redux/newId/yezhu';
 import { newIdYezhuAddEdit } from './redux/newId/yezhu-addedit';
@@ -151,6 +152,7 @@ export default combineReducers({
   daifaDaifaAddEdit,
   newIdBank,
   newIdOperation,
+  newIdOperationAddEdit,
   newIdBankAddEdit,
   newIdYezhu,
   newIdYezhuAddEdit,

@@ -70,7 +70,8 @@ class PostRequest extends React.Component {
       key: 'message_status'
     }, {
       title: '创建时间',
-      field: 'createDatetime'
+      field: 'createDatetime',
+      type: 'datetime'
     }, {
       title: '处理时间',
       field: 'handleDatetime',
@@ -85,6 +86,9 @@ class PostRequest extends React.Component {
     if (cookies.get('loginKind') === 'P') {
       return this.props.buildList({
         fields,
+        searchParams: {
+          statusList: [1, 2]
+        },
         pageCode: 631435,
         btnEvent: {
           detail: (selectedRowKeys, selectedRows) => {

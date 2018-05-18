@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/staff/allStaff-error';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getQueryString, getUserKind, getUserId } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -31,68 +31,22 @@ class AllStaffError extends React.Component {
       projectCodeList: '',
       companyCode: ''
     };
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'companyCode': data.companyCode });
-      });
-    } else if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({ 'projectCodeList': data.projectCodeList });
-      });
-    }
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.staffCode = getQueryString('staffCode', this.props.location.search);
   }
+  componentDidMount() {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    } else if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'projectCodeList': data.projectCodeList });
+      });
+    }
+  }
   render() {
-    const fieldso = [{
-      field: 'code',
-      title: '编号',
-      hidden: true
-    }, {
-      field: 'projectCode',
-      title: '项目编号',
-      hidden: true
-    }, {
-      field: 'projectName',
-      title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: '',
-        kind: 'O',
-        companyCode: this.state.companyCode,
-        projectCodeList: this.state.projectCodeList
-      },
-      keyName: 'name',
-      valueName: 'name'
-    }, {
-      field: 'staffCode',
-      title: '务工人员',
-      type: 'select',
-      listCode: '631416',
-      keyName: 'code',
-      valueName: 'name'
-    }, {
-      field: 'salaryCode',
-      title: '工资条编号',
-      hidden: true
-    }, {
-      field: 'handleNote',
-      title: '操作描述',
-      hidden: true
-    }, {
-      field: 'handleName',
-      title: '处理人'
-    }, {
-      field: 'handleDatetime',
-      title: '处理时间',
-      type: 'datetime'
-    }, {
-      field: 'remark',
-      title: '备注'
-    }];
     const fields = [{
       field: 'code',
       title: '编号',
@@ -103,40 +57,29 @@ class AllStaffError extends React.Component {
       hidden: true
     }, {
       field: 'projectName',
-      title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: ''
-      },
-      keyName: 'name',
-      valueName: 'name'
+      title: '工程名称'
+    }, {
+      title: '姓名',
+      field: 'staffName'
+    }, {
+      field: 'month',
+      title: '发放工资月份'
     }, {
       field: 'salaryCode',
       title: '工资条编号',
       hidden: true
     }, {
-      field: 'handleNote',
-      title: '操作描述',
-      hidden: true
+      field: 'payAmount',
+      title: '应发工资'
     }, {
-      field: 'staffCode',
-      title: '务工人员',
+      field: 'factAmount',
+      title: '发放工资'
+    }, {
+      title: '状态',
+      field: 'status',
       type: 'select',
-      listCode: '631416',
-      keyName: 'code',
-      valueName: 'name'
-    }, {
-      field: 'handleName',
-      title: '处理人'
-    }, {
-      field: 'handleDatetime',
-      title: '处理时间',
-      type: 'datetime'
-    }, {
-      field: 'remark',
-      title: '备注'
+      search: true,
+      key: 'salary_status'
     }];
     const btnEvent = {
       error: (selectedRowKeys, selectedRows) => {
@@ -149,14 +92,14 @@ class AllStaffError extends React.Component {
         }
       }
     };
-    if (cookies.get('loginKind') === 'O') {
-      return this.state.companyCode ? this.props.buildList({
-        fields: fieldso,
+    if (getUserKind() === 'O') {
+      return this.state.projectCodeList ? this.props.buildList({
+        fields,
         btnEvent,
         searchParams: {
           staffCode: this.staffCode,
           type: '1',
-          companyCode: this.state.companyCode,
+          projectCodeList: this.state.projectCodeList,
           kind: 'O',
           status: 4
         },
@@ -164,11 +107,11 @@ class AllStaffError extends React.Component {
           code: 'detail',
           name: '详情'
         }],
-        pageCode: 631455
+        pageCode: 631444
       }) : null;
-    } else if (cookies.get('loginKind') === 'S') {
+    } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({
-        fields: fieldso,
+        fields,
         btnEvent,
         searchParams: {
           staffCode: this.staffCode,
@@ -181,18 +124,18 @@ class AllStaffError extends React.Component {
           code: 'detail',
           name: '详情'
         }],
-        pageCode: 631455
+        pageCode: 631444
       }) : null;
     } else {
       return this.props.buildList({
         fields,
         btnEvent,
-        searchParams: { staffCode: this.staffCode, type: '1', status: 4 },
+        searchParams: { staffCode: this.staffCode, type: 'P', status: 4 },
         buttons: [{
           code: 'detail',
           name: '详情'
         }],
-        pageCode: 631455
+        pageCode: 631444
       });
     }
   }

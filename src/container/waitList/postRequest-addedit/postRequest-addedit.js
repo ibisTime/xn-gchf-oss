@@ -57,7 +57,7 @@ class PostRequestAddedit extends React.Component {
     } else {
       download += 1;
     }
-    downNum(this.code, backDownload, download).then((data) => {
+    downNum(this.code, download, backDownload).then((data) => {
       this.setState({
         download: data.download,
         backDownload: data.backDownload
@@ -71,7 +71,6 @@ class PostRequestAddedit extends React.Component {
         showWarnMsg('没有工资条信息！');
         return;
       }
-      console.log(data[0].companyCard.bankName);
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[0].projectCode],

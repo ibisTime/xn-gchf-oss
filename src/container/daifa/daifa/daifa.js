@@ -12,7 +12,7 @@ import {
   setSearchData
 } from '@redux/daifa/daifa';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getUserKind, getUserId } from 'common/js/util';
 import ModalDetail from 'common/js/build-modal-detail';
 import { getUserDetail } from 'api/user';
 
@@ -34,8 +34,8 @@ class Daifa extends React.Component {
       code: '',
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if(getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({'companyCode': data.companyCode});
       });
     }
@@ -181,7 +181,7 @@ class Daifa extends React.Component {
       }],
       addCode: 631430
     };
-    if (cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.companyCode ? (
             <div>
               {this.props.buildList({
@@ -190,7 +190,8 @@ class Daifa extends React.Component {
                 searchParams: {
                   updater: '',
                   companyCode: this.state.companyCode,
-                  kind: 'O'
+                  kind: 'O',
+                  status: 0
                 },
                 pageCode: 631435,
                 rowKey: 'code'
@@ -209,7 +210,8 @@ class Daifa extends React.Component {
             fields,
             btnEvent,
             searchParams: {
-              updater: ''
+              updater: '',
+              status: 0
             },
             pageCode: 631435,
             rowKey: 'code'

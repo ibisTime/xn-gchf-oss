@@ -3,7 +3,7 @@ import cookies from 'browser-cookies';
 import { Form, Spin, Button, Tree, Modal } from 'antd';
 import { getCompany, getBumen, deleteCompany1, deleteBumen1 } from 'api/company';
 import { setRoleMenus } from 'api/user';
-import { getQueryString, showSucMsg, showWarnMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, showWarnMsg, getUserKind, getUserId } from 'common/js/util';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
 
 const TreeNode = Tree.TreeNode;
@@ -28,36 +28,37 @@ class RoleMenu extends React.Component {
   componentDidMount() {
     getCompany().then((companyData) => {
       this.getTree(companyData);
+      console.log(this.getTree(companyData));
       this.setState({
         fetching: false
       });
     }).catch(() => this.setState({ fetching: false }));
   }
   res = {
-      'key': 'company'
+    'key': 'company'
   }
   getTree(data) {
     let result = [];
     data.forEach(v => {
-        // item.map(v => {
-            result.push({
-                title: v.name,
-                key: v.code
-            // });
-        });
+      // item.map(v => {
+      result.push({
+        title: v.name,
+        key: v.code
+        // });
+      });
     });
     this.result = result;
     this.setState({ treeData: this.result });
   }
   getTreeNode(arr, children) {
-    if(arr) {
+    if (arr) {
       arr.forEach(a => {
         if (this.result[a.key]) {
-            a.children = [];
-            children.push(a);
-            this.getTreeNode(this.result[a.key], a.children);
+          a.children = [];
+          children.push(a);
+          this.getTreeNode(this.result[a.key], a.children);
         } else {
-            children.push(a);
+          children.push(a);
         }
       });
     }
@@ -82,9 +83,9 @@ class RoleMenu extends React.Component {
     this.getTreeNode(result['ROOT'], tree);
     let oldTree = this.state.treeData;
     oldTree.map(item => {
-        if(item.key === companyCode) {
-            item.children = tree;
-        }
+      if (item.key === companyCode) {
+        item.children = tree;
+      }
     });
     this.setState({ treeData: oldTree });
     this.setState({ stopGetTree1: true });
@@ -93,15 +94,15 @@ class RoleMenu extends React.Component {
     const { treeData } = this.state;
     this.checkNode = '';
     let key = event.node.props.eventKey;
-    if(key === this.state.selectKey) {
-        this.setState({ selectKey: '' });
-    }else {
-        this.setState({ selectKey: key });
+    if (key === this.state.selectKey) {
+      this.setState({ selectKey: '' });
+    } else {
+      this.setState({ selectKey: key });
     }
-    if(!this.state.stopGetTree1) {
-        getBumen(key).then(bumenData => {
-                this.getTree1(bumenData, key);
-            });
+    if (!this.state.stopGetTree1) {
+      getBumen(key).then(bumenData => {
+        this.getTree1(bumenData, key);
+      });
     }
   }
   findCheckItem(arr, key) {
@@ -146,52 +147,52 @@ class RoleMenu extends React.Component {
     this.props.history.push(`/newProj/addCompany`);
   }
   editCompany = () => {
-    if(this.state.selectKey !== '') {
-        this.props.history.push(`/newProj/addCompany?code=${this.state.selectKey}`);
-    }else {
-        showWarnMsg('请选择一家公司');
+    if (this.state.selectKey !== '') {
+      this.props.history.push(`/newProj/addCompany?code=${this.state.selectKey}`);
+    } else {
+      showWarnMsg('请选择一家公司');
     }
   }
   deleteCompany = () => {
-    if(this.state.selectKey !== '') {
-        Modal.confirm({
-            okText: '确认',
-            cancelText: '取消',
-            content: '确定删除该公司？',
-            onOk: () => {
-                this.setState({ fetching: true });
-                deleteCompany1(this.state.selectKey).then(() => {
-                  showSucMsg('操作成功');
-                  this.setState({ fetching: false });
-                }).catch(this.props.cancelFetching);
-            }
-        });
-    }else {
-        showWarnMsg('请选择一家公司');
+    if (this.state.selectKey !== '') {
+      Modal.confirm({
+        okText: '确认',
+        cancelText: '取消',
+        content: '确定删除该公司？',
+        onOk: () => {
+          this.setState({ fetching: true });
+          deleteCompany1(this.state.selectKey).then(() => {
+            showSucMsg('操作成功');
+            this.setState({ fetching: false });
+          }).catch(this.props.cancelFetching);
+        }
+      });
+    } else {
+      showWarnMsg('请选择一家公司');
     }
   }
   render() {
     const loop = data => data.map((item) => {
-        if (item.children) {
-          return <TreeNode title={item.name} key={item.key}>{loop(item.children)}</TreeNode>;
-        }
-        return <TreeNode title={item.name} key={item.key} isLeaf={item.isLeaf} disabled={item.key === '0-0-0'} />;
-      });
+      if (item.children) {
+        return <TreeNode title={item.name} key={item.key}>{loop(item.children)}</TreeNode>;
+      }
+      return <TreeNode title={item.name} key={item.key} isLeaf={item.isLeaf} disabled={item.key === '0-0-0'} />;
+    });
     const treeNodes = loop(this.state.treeData);
     return (
       <Spin spinning={this.state.fetching}>
-      { cookies.get('loginKind') === 'S' ? null
-      : <div className="tools-wrapper" style={{ marginTop: 8 }}>
-          <button type="button" className="ant-btn" onClick={this.addCompany}><span>新增公司</span></button>
-          <button type="button" className="ant-btn" onClick={this.editCompany}><span>修改公司</span></button>
-          <button type="button" className="ant-btn" onClick={this.deleteCompany}><span>删除公司</span></button>
-        </div>
-      }
+        {getUserKind === 'S' ? null
+          : <div className="tools-wrapper" style={{ marginTop: 8 }}>
+            <button type="button" className="ant-btn" onClick={this.addCompany}><span>新增公司</span></button>
+            <button type="button" className="ant-btn" onClick={this.editCompany}><span>修改公司</span></button>
+            <button type="button" className="ant-btn" onClick={this.deleteCompany}><span>删除公司</span></button>
+          </div>
+        }
         <Form className="detail-form-wrapper" onSubmit={this.handleSubmit}>
           <FormItem key='treeMenu' {...formItemLayout} >
             {this.state.treeData.length ? (
               <Tree
-                checkable = {false}
+                checkable={false}
                 showLine
                 checkStrictly={this.state.checkStrictly}
                 defaultExpandAll

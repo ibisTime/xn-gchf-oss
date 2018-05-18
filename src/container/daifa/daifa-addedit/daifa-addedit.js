@@ -27,21 +27,15 @@ class DaifaAddEdit extends React.Component {
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
-  // componentDidMount() {
-  //   getUserDetail(cookies.get('userId')).then(data => {
-  //     this.getUserDetail(data.companyCode);
-  //   });
-  // }
-  // getUserDetail(companyCode) {
-  //   this.setState({ companyCode: companyCode });
-  // }
   render() {
     const fields = [{
       field: 'code',
-      title: '编号'
+      title: '编号',
+      hidden: true
     }, {
       field: 'projectCode',
-      title: '项目编号'
+      title: '项目编号',
+      hidden: true
     }, {
       field: 'projectName',
       title: '项目名称'
@@ -70,76 +64,7 @@ class DaifaAddEdit extends React.Component {
     }, {
       field: 'handler',
       title: '处理人'
-    }
-    // {
-    //   title: '工资条',
-    //   field: 'list',
-    //   type: 'o2m',
-    //   options: {
-    //     // add: true,
-    //     // edit: true,
-    //     // delete: true,
-    //     // scroll: { x: 1300 },
-    //     fields: [
-    //       {
-    //         title: '本月工资',
-    //         field: 'amount',
-    //         amount: true
-    //       },
-    //       {
-    //         title: 'cutAmount',
-    //         field: '扣款金额',
-    //         amount: true
-    //       },
-    //       {
-    //         title: '扣款说明',
-    //         field: 'cutNote'
-    //       },
-    //       {
-    //         title: '迟到天数',
-    //         field: 'delayDays'
-    //       },
-    //       {
-    //         title: '早退天数',
-    //         field: 'earlyDays'
-    //       },
-    //       {
-    //         title: '请假天数',
-    //         field: 'leavingDays'
-    //       },
-    //       {
-    //         title: '应发工资',
-    //         field: 'shouldAmount',
-    //         amount: true
-    //       },
-    //       {
-    //         title: '实际工资',
-    //         field: 'factAmount',
-    //         amount: true
-    //       },
-    //       {
-    //         title: '税费',
-    //         field: 'tax',
-    //         amount: true
-    //       },
-    //       {
-    //         title: '所属月份',
-    //         field: 'month'
-    //       },
-    //       {
-    //         title: '最近一次发放时间',
-    //         field: 'payDatetime',
-    //         type: 'datetime'
-    //       },
-    //       {
-    //         title: '发放金额',
-    //         field: 'payAmount',
-    //         type: 'datetime'
-    //       }
-    //     ]
-    //   }
-    // }
-  ];
+    }];
     return this.props.buildDetail({
       fields,
       code: this.code,

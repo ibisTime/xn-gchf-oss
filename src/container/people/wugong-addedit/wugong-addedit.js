@@ -8,7 +8,7 @@ import {
   setPageData,
   restore
 } from '@redux/people/wugong-addedit';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, getUserKind, getUserId } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getUserDetail } from 'api/user';
 
@@ -23,13 +23,6 @@ class PWugongAddedit extends React.Component {
       departmentCode: '',
       companyCode: ''
     };
-    getUserDetail(cookies.get('userId')).then((data) => {
-      if (cookies.get('loginKind') === 'O') {
-        this.setState({ 'companyCode': data.companyCode });
-      } else {
-        // this.setState({'departmentCode': data.departmentCode});
-      }
-    });
     // if(cookies.get('loginKind') === 'O') {
     //   getUserDetail(cookies.get('userId')).then((data) => {
     //     this.setState({'companyCode': data.companyCode, 'departmentCode': data.departmentCode});
@@ -41,6 +34,19 @@ class PWugongAddedit extends React.Component {
     this.leave = !!getQueryString('leave', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
+  componentDidMount() {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'projectCodeList': data.projectCodeList });
+      });
+    };
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        console.log(data.companyCode);
+        this.setState({ companyCode: data.companyCode });
+      });
+    };
+  }
   render() {
     const fieldso = [{
       field: 'projectCode',
@@ -49,17 +55,17 @@ class PWugongAddedit extends React.Component {
       hidden: true
     }, {
       field: 'staffCode',
-      title: '员工',
+      title: '员工姓名',
       type: 'select',
-      listCode: '631406',
+      listCode: '631416',
       params: {
         projectCode: this.projectCode,
         updater: '',
         companyCode: '',
-        lind: 'O'
+        kind: 'O'
       },
-      keyName: 'staffCode',
-      valueName: 'staffName',
+      keyName: 'code',
+      valueName: 'name',
       required: true
     }, {
       field: 'type',
@@ -98,6 +104,15 @@ class PWugongAddedit extends React.Component {
       title: '迟到/早退每小时扣款金额',
       amount: true,
       required: true
+    }, {
+      field: 'contractDatetime',
+      title: '签约时间',
+      type: 'date'
+    }, {
+      field: 'contentPic',
+      title: '合同照片',
+      type: 'img',
+      single: true
     }, {
       field: 'remark',
       title: '备注'
@@ -155,9 +170,6 @@ class PWugongAddedit extends React.Component {
       title: '迟到/早退每小时扣款金额',
       amount: true,
       required: true
-    }, {
-      field: 'remark',
-      title: '备注'
     }];
     if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildDetail({

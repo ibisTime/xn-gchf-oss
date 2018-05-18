@@ -250,7 +250,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/allStaff-deatilAdd/allStaff-deatilAdd'))
   },
   {
-    path: '/staff/allStaff/error',
+    path: '/staff/allStafferror',
     component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
   },
   {
@@ -260,6 +260,10 @@ const ROUTES = [
   {
     path: '/staff/allStaff/error/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
+  },
+  {
+    path: '/staff/allStafferror/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-errorAddedit/allStaff-errorAddedit'))
   },
   {
     path: '/staff/allStaff/history',
@@ -300,6 +304,10 @@ const ROUTES = [
   {
     path: '/newId/operation',
     component: asyncComponent(() => import('container/newId/operation/operation'))
+  },
+  {
+    path: '/newId/operation/addedit',
+    component: asyncComponent(() => import('container/newId/operation-addedit/operation-addedit'))
   },
   {
     path: '/newId/bank/addedit',

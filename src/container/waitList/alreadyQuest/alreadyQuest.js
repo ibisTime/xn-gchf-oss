@@ -102,6 +102,9 @@ class AlreadyQuest extends React.Component {
     } else {
       return this.props.buildList({
         fields,
+        searchParams: {
+          status: 3
+        },
         pageCode: 631435
       });
     }
