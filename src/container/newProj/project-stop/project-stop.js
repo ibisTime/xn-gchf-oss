@@ -59,17 +59,23 @@ class ProjectStop extends React.Component {
         title: '保存',
         check: true,
         handler: (param) => {
-            param.code = this.projectCode;
-            param.updater = getUserId();
-            let code = this.stop ? '631470' : '631471';
-            this.props.doFetching();
-            fetch(code, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
+          param.code = this.projectCode;
+          param.updater = getUserId();
+          let code = this.stop ? '631470' : '631471';
+          this.props.doFetching();
+          fetch(code, param).then(() => {
+            showSucMsg('操作成功');
+            this.props.cancelFetching();
+            setTimeout(() => {
+              this.props.history.go(-1);
+            }, 1000);
+          }).catch(this.props.cancelFetching);
+        }
+      },
+      {
+        title: '返回',
+        handler: (param) => {
+          this.props.history.go(-1);
         }
       }]
     });

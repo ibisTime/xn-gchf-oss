@@ -45,16 +45,26 @@ class AllStaffAddEditAdd extends React.Component {
       field: 'name',
       title: '姓名',
       required: true,
-      readonly: true
+      readonly: true,
+      hidden: true
     }, {
       field: 'sex',
       title: '性别',
       required: true,
-      readonly: true
+      readonly: true,
+      hidden: true
     }, {
       field: 'mobile',
       title: '联系方式',
       search: true,
+      required: true
+    }, {
+      field: 'contacts',
+      title: '紧急联系人',
+      required: true
+    }, {
+      field: 'contactsMobile',
+      title: '紧急联系人联系方式',
       required: true
     }, {
       field: 'bankcardNumber',
@@ -80,27 +90,20 @@ class AllStaffAddEditAdd extends React.Component {
       field: 'idAddress',
       title: '身份证地址',
       required: true,
-      readonly: true
+      readonly: true,
+      hidden: true
     }, {
       field: 'idNo',
       title: '证件号',
       required: true,
       listCode: '631416',
-      readonly: true
-    }, {
-      field: 'birthday',
-      title: '出生年月日',
       readonly: true,
-      type: 'datetime'
-    }, {
-      field: 'idEndDate',
-      title: '证件有效结束时间',
-      readonly: true,
-      type: 'datetime'
+      hidden: true
     }, {
       field: 'idNation',
       title: '民族',
-      readonly: true
+      readonly: true,
+      hidden: true
     }, {
       field: 'pict1',
       title: '免冠照片',
@@ -119,10 +122,12 @@ class AllStaffAddEditAdd extends React.Component {
     }, {
       field: 'idPolice',
       title: '签发机关',
-      readonly: true
+      readonly: true,
+      hidden: true
     }, {
       field: 'isStartDate',
-      title: '证件有效开始时间'
+      title: '证件有效开始时间',
+      hidden: true
     }];
     return this.props.buildDetail({
       fields,
@@ -143,10 +148,15 @@ class AllStaffAddEditAdd extends React.Component {
               showSucMsg('操作成功');
               this.props.cancelFetching();
               setTimeout(() => {
-                this.props.history.go(-2);
+                this.props.history.go(-1);
               }, 1000);
             }).catch(this.props.cancelFetching);
           });
+        }
+      }, {
+        title: '返回',
+        handler: (param) => {
+          this.props.history.go(-1);
         }
       }]
     });

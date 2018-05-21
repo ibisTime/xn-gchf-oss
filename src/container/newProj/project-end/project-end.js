@@ -132,6 +132,12 @@ class ProjectEnd extends React.Component {
               }, 1000);
             }).catch(this.props.cancelFetching);
         }
+      },
+      {
+        title: '返回',
+        handler: (param) => {
+          this.props.history.go(-1);
+        }
       }]
     });
   }

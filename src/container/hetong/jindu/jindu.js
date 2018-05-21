@@ -11,13 +11,13 @@ import {
   setSearchData
 } from '@redux/hetong/jindu';
 import { listWrapper } from 'common/js/build-list';
-import { getUserDetail } from 'api/user';
-import { getUserKind, getUserId } from 'common/js/util';
+import { getUserDetail, getjinduO, getjindu } from 'api/user';
+import { getUserKind, getUserId, formatImg, formatDate, getQueryString } from 'common/js/util';
+import { Timeline, Button } from 'antd';
 
 @listWrapper(
   state => ({
-    ...state.hetongJindu,
-    parentCode: state.menu.subMenuCode
+    ...state.hetongJindu
   }),
   {
     setTableData, clearSearchParam, doFetching, setBtnList,
@@ -28,91 +28,63 @@ class Jindu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: ''
+      data: []
     };
+    this.projectCode = getQueryString('projectCode', this.props.location.search);
+    this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
     if (getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'companyCode': data.companyCode });
+        getjinduO(data.companyCode, this.projectCode).then(data => {
+          this.setState({
+            data: data
+          });
+        });
+      });
+    } else {
+      getUserDetail(getUserId()).then((data) => {
+        getjindu(data.companyCode, this.projectCode).then(data => {
+          this.setState({
+            data: data
+          });
+        });
       });
     }
   }
-
+  goBack() {
+    this.props.history.go(-1);
+  };
+  addjindu() {
+    this.props.history.push(`/hetong/jindu/addedit?code=${this.projectCode}`);
+  }
   render() {
-    const fieldso = [{
-      field: 'projectCode',
-      title: '工程编号',
-      hidden: true
-    }, {
-      field: 'projectName',
-      title: '工程名称'
-    }, {
-      field: 'description',
-      title: '工程进度描述'
-    }, {
-      field: 'datetime',
-      title: '进度时间',
-      type: 'date'
-    }, {
-      field: 'updateName',
-      title: '更新人'
-    }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime'
-    }, {
-      field: 'keyword',
-      search: true,
-      hidden: true,
-      title: '关键字'
-    }];
-    const fields = [{
-      field: 'projectCode',
-      title: '工程编号',
-      hidden: true
-    }, {
-      field: 'projectName',
-      title: '工程名称'
-    }, {
-      field: 'description',
-      title: '工程进度描述'
-    }, {
-      field: 'datetime',
-      title: '进度时间',
-      type: 'date'
-    }, {
-      field: 'updateName',
-      title: '更新人'
-    }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime'
-    }, {
-      field: 'keyword',
-      search: true,
-      hidden: true,
-      title: '关键字'
-    }];
-    if (cookies.get('loginKind') === 'O') {
-      return this.state.companyCode ? this.props.buildList({
-        fields: fieldso,
-        pageCode: 631385,
-        searchParams: {
-          updater: '',
-          kind: 'O',
-          companyCode: this.state.companyCode
-        }
-      }) : null;
-    } else {
-      return this.props.buildList({
-        fields,
-        pageCode: 631385,
-        searchParams: {
-          updater: ''
-        }
-      });
-    }
+    var list = (length) => {
+      var res = [];
+      if (!length) {
+        res.push(<Timeline key={0}>
+          <Timeline.Item>该项目没有录入进度</Timeline.Item>
+        </Timeline>);
+      }
+      for (let i = 0; i < length; i++) {
+        res.push(<Timeline key={i}>
+          <Timeline.Item>工程名字: {this.state.data[i].projectName}</Timeline.Item>
+          <Timeline.Item>公司名字: {this.state.data[i].companyName}</Timeline.Item>
+          <Timeline.Item>工程进度: {this.state.data[i].description}</Timeline.Item>
+          <Timeline.Item>进度图片：<img src={formatImg(this.state.data[i].picture)} style={{ width: 100, verticalAlign: 'text-top' }} /> </Timeline.Item>
+          <Timeline.Item>处理人： {this.state.data[i].updateName}</Timeline.Item>
+          <Timeline.Item>处理时间： {formatDate(this.state.data[i].datetime)}</Timeline.Item>
+        </Timeline>);
+      };
+      return res;
+    };
+
+    return (
+      <div>
+        {list(this.state.data.length)}
+        <Button onClick={this.goBack.bind(this)}>返回</Button>
+      </div>
+    );
   }
 }
 

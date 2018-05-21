@@ -40,30 +40,20 @@ class DaifaAddEdit extends React.Component {
       field: 'projectName',
       title: '项目名称'
     }, {
-      field: 'title',
-      title: '标题'
-    }, {
-      field: 'content',
-      title: '内容'
-    }, {
       field: 'status',
       title: '状态',
       type: 'select',
       key: 'message_status'
     }, {
+      field: 'bankName',
+      title: '开户行'
+    }, {
+      field: 'subbranch',
+      title: '开会支行'
+    }, {
       field: 'createDatetime',
       title: '创建时间',
       type: 'datetime'
-    }, {
-      field: 'handleDatetime',
-      title: '处理时间',
-      type: 'datetime'
-    }, {
-      field: 'handleNote',
-      title: '处理备注'
-    }, {
-      field: 'handler',
-      title: '处理人'
     }];
     return this.props.buildDetail({
       fields,

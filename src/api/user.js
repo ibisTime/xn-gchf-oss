@@ -16,3 +16,15 @@ export function getUserDetail(userId) {
 export function getUserId() {
   return cookies.get('userId');
 }
+
+export function getUserErrorInfo(salaryCode) {
+  return fetch(631456, { salaryCode });
+}
+
+export function getjinduO(companyCode, projectCode) {
+  return fetch(631386, { companyCode, kind: 'O', projectCode });
+}
+
+export function getjindu(companyCode, projectCode) {
+  return fetch(631386, { companyCode, projectCode });
+}

@@ -42,6 +42,7 @@ class AllStaffError extends React.Component {
       });
     } else if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
+        console.log(data.projectCodeList);
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
     }
@@ -69,11 +70,17 @@ class AllStaffError extends React.Component {
       title: '工资条编号',
       hidden: true
     }, {
-      field: 'payAmount',
-      title: '应发工资'
-    }, {
       field: 'factAmount',
-      title: '发放工资'
+      title: '应发工资',
+      formatter: (v, data) => {
+        return v / 1000;
+      }
+    }, {
+      field: 'payAmount',
+      title: '发放工资',
+      formatter: (v, data) => {
+        return v / 1000;
+      }
     }, {
       title: '状态',
       field: 'status',
@@ -114,11 +121,8 @@ class AllStaffError extends React.Component {
         fields,
         btnEvent,
         searchParams: {
-          staffCode: this.staffCode,
-          type: '1',
           projectCodeList: this.state.projectCodeList,
-          kind: 'S',
-          status: 4
+          kind: 'S'
         },
         buttons: [{
           code: 'detail',

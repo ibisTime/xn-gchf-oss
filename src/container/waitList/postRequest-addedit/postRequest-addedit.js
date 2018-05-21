@@ -57,7 +57,7 @@ class PostRequestAddedit extends React.Component {
     } else {
       download += 1;
     }
-    downNum(this.code, download, backDownload).then((data) => {
+    downNum(this.code, backDownload, download).then((data) => {
       this.setState({
         download: data.download,
         backDownload: data.backDownload
@@ -181,7 +181,7 @@ class PostRequestAddedit extends React.Component {
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
           <Button onClick={this.handleExport}>点击下载</Button>
-          <p>下载次数{this.state.download}</p>
+          <p>下载次数{this.state.backDownload}</p>
         </Card>
         <Card title={this.state.projectName + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
           <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>

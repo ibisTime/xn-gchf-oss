@@ -120,24 +120,15 @@ class Daifa extends React.Component {
       type: 'select',
       key: 'message_status'
     }, {
+      field: 'bankName',
+      title: '开户行'
+    }, {
+      field: 'subbranch',
+      title: '开会支行'
+    }, {
       field: 'createDatetime',
       title: '创建时间',
       type: 'datetime'
-    }, {
-      field: 'handleDatetime',
-      title: '处理时间',
-      type: 'datetime'
-    }, {
-      field: 'handleNote',
-      title: '处理备注'
-    }, {
-      field: 'handleName',
-      title: '处理人'
-    }, {
-      field: 'keyword',
-      search: true,
-      hidden: true,
-      title: '关键字'
     }];
     const btnEvent = {
       send: (selectedRowKeys, selectedRows) => {

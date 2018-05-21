@@ -37,8 +37,17 @@ class ProjectEdit extends React.Component {
       title: '项目名称',
       required: true
     }, {
-      field: 'chargeName',
-      title: '负责人'
+      field: 'chargeUser',
+      title: '负责人',
+      type: 'select',
+      listCode: '631086',
+      params: {
+        companyCode: this.state.companyCode,
+        type: 'O'
+      },
+      keyName: 'userId',
+      valueName: 'loginName',
+      required: true
     }, {
       field: 'quyu',
       title: '地区',
@@ -47,6 +56,9 @@ class ProjectEdit extends React.Component {
     }, {
       field: 'address',
       title: '详细地址',
+      type: 'lnglat',
+      lnglat: 'quyu',
+      lnglatTo: ['longitude', 'latitude'],
       required: true
     }, {
       field: 'longitude',
@@ -87,7 +99,6 @@ class ProjectEdit extends React.Component {
       fields: edit,
       key: 'code',
       code: this.code,
-      view: this.view,
       detailCode: 631358,
       // beforeSubmit: (param) => {
       //   param.companyCode = this.state.companyCode;
@@ -121,22 +132,13 @@ class ProjectEdit extends React.Component {
         title: '提请审核项目',
         check: true,
         handler: (param) => {
-          console.log(param);
-          param.companyCode = this.state.companyCode;
-          getBankNameByCode(param.bankName).then(data => {
-            param.bankCode = data[0].bankCode;
-            param.bankName = data[0].bankName;
-            this.props.doFetching();
-            console.log(param);
-            param = { address: this.props.pageData.address, area: this.props.pageData.area, attendanceEndtime: this.props.pageData.attendanceEndtime, attendanceStarttime: this.props.pageData.attendanceStarttime, chargeUser: this.props.pageData.chargeUser, city: this.props.pageData.city, code: this.code, latitude: this.props.pageData.latitude, longitude: this.props.pageData.longitude, name: this.props.pageData.name, province: this.props.pageData.province, salaryCreateDatetime: this.props.pageData.salaryCreateDatetime, salaryDatetime: this.props.pageData.salaryDatetime, startDatetime: this.props.pageData.startDatetime, updater: this.props.pageData.updater };
-            fetch(631353, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
-          });
+          fetch(631353, param).then(() => {
+            showSucMsg('操作成功');
+            this.props.cancelFetching();
+            setTimeout(() => {
+              this.props.history.go(-1);
+            }, 1000);
+          }).catch(this.props.cancelFetching);
         }
       }]
     });

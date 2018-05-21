@@ -42,7 +42,17 @@ class Wugong extends React.Component {
   render() {
     const fields = [{
       field: 'projectName',
-      title: '工程名称'
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        companyCode: this.state.companyCode,
+        kind: 'O',
+        updater: ''
+      },
+      keyName: 'name',
+      valueName: 'name'
     }, {
       field: 'staffName',
       title: '工人姓名'

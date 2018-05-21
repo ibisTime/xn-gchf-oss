@@ -58,7 +58,7 @@ class AlreadyQuestAddedit extends React.Component {
     } else {
       download += 1;
     }
-    downNum(this.code, download, backDownload).then((data) => {
+    downNum(this.code, backDownload, download).then((data) => {
       this.setState({
         download: data.download,
         backDownload: data.backDownload
@@ -113,7 +113,7 @@ class AlreadyQuestAddedit extends React.Component {
   render() {
     return (
       <div>
-        <Card title={this.state.projectName + '123'} style={{ width: 500 }}>
+        <Card title={this.state.projectName + '工资'} style={{ width: 500 }}>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>

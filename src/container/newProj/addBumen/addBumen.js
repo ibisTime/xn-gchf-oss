@@ -23,11 +23,6 @@ class AddBumen extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'companyCode',
-      title: '公司名',
-      value: this.companyCode,
-      hidden: true
-    }, {
       field: 'name',
       title: '部门名',
       required: true

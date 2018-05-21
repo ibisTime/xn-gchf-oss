@@ -3,7 +3,7 @@ import cookies from 'browser-cookies';
 import { Form, Spin, Button, Tree, Modal } from 'antd';
 import { getCompany, getBumen, deleteCompany1, deleteBumen1, getCompanyDetail } from 'api/company';
 import { setRoleMenus, getUserDetail } from 'api/user';
-import { getQueryString, showSucMsg, showWarnMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, showWarnMsg, getUserKind, getUserId } from 'common/js/util';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
 
 const TreeNode = Tree.TreeNode;
@@ -27,17 +27,18 @@ class RoleMenu extends React.Component {
   }
   componentDidMount() {
     let codes;
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
         getCompany(data.projectCodeList, 'S').then((companyData) => {
-          this.getTree(companyData);
+          // console.log(companyData);
+          this.getTree(companyData[0]);
           this.setState({
             fetching: false
           });
         }).catch(() => this.setState({ fetching: false }));
       });
     } else {
-      getUserDetail(cookies.get('userId')).then((data) => {
+      getUserDetail(getUserId()).then((data) => {
         console.log(data);
         getCompanyDetail(data.companyCode).then((data) => {
           this.getTree(data);
@@ -57,10 +58,8 @@ class RoleMenu extends React.Component {
       title: data.name,
       key: data.code
     });
-    console.log(result);
     this.result = result;
     this.setState({ treeData: this.result });
-    console.log(this.state.treeData);
   }
   getTreeNode(arr, children) {
     if (arr) {
@@ -146,6 +145,7 @@ class RoleMenu extends React.Component {
   renderTreeNodes = (data) => {
     return data.map((item) => {
       if (item.children) {
+        // console.log(item.children);
         return (
           <TreeNode title={item.title} key={item.key} dataRef={item}>
             {this.renderTreeNodes(item.children)}

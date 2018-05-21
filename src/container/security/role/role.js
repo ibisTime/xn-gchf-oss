@@ -77,11 +77,10 @@ class Role extends React.Component {
   render() {
     const fields = [{
       title: '角色名称',
-      field: 'name',
-      search: true
+      field: 'name'
     }, {
       title: '更新人',
-      field: 'updater'
+      field: 'updateName'
     }, {
       title: '更新时间',
       field: 'updateDatetime',

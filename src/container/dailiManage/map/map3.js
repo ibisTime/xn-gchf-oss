@@ -49,6 +49,9 @@ class Map extends React.Component {
       addProject: (selectedRowKeys, selectedRows) => {
         this.props.history.push(`/projectManage/project/addedit`);
       },
+      addjindu: (selectedRowKeys, selectedRows) => {
+        this.props.history.push(`/hetong/jindu/addedit`);
+      },
       Statistics: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
@@ -178,8 +181,17 @@ class Map extends React.Component {
     };
     const fields = [{
       field: 'name',
-      title: '项目名字',
-      search: true
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: '',
+        kind: 'O',
+        companyCode: this.state.companyCode
+      },
+      keyName: 'name',
+      valueName: 'name'
     }, {
       field: 'provinces',
       title: '项目地址',
