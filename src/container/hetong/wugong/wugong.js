@@ -115,12 +115,6 @@ class Wugong extends React.Component {
       return this.props.buildList({
         fields,
         buttons: [{
-          code: 'add',
-          name: '合同录入',
-          handler: (selectedRowKeys, selectedRows) => {
-            this.props.history.push(`/hetong/staff/addedit`);
-          }
-        }, {
           code: 'edit',
           name: '修改',
           handler: (selectedRowKeys, selectedRows) => {

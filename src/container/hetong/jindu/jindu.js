@@ -68,12 +68,12 @@ class Jindu extends React.Component {
       }
       for (let i = 0; i < length; i++) {
         res.push(<Timeline key={i}>
+          <Timeline.Item>时间： {formatDate(this.state.data[i].datetime)}</Timeline.Item>
           <Timeline.Item>工程名字: {this.state.data[i].projectName}</Timeline.Item>
           <Timeline.Item>公司名字: {this.state.data[i].companyName}</Timeline.Item>
           <Timeline.Item>工程进度: {this.state.data[i].description}</Timeline.Item>
           <Timeline.Item>进度图片：<img src={formatImg(this.state.data[i].picture)} style={{ width: 100, verticalAlign: 'text-top' }} /> </Timeline.Item>
-          <Timeline.Item>处理人： {this.state.data[i].updateName}</Timeline.Item>
-          <Timeline.Item>处理时间： {formatDate(this.state.data[i].datetime)}</Timeline.Item>
+          <Timeline.Item>更新人： {this.state.data[i].updateName}</Timeline.Item>
         </Timeline>);
       };
       return res;

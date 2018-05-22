@@ -34,7 +34,8 @@ class AlreadyQuestAddedit extends React.Component {
       download: '',
       projectName: '',
       sendDatetime: '',
-      backDownload: ''
+      backDownload: '',
+      title: ''
     };
   };
   componentDidMount() {
@@ -47,7 +48,8 @@ class AlreadyQuestAddedit extends React.Component {
         projectName: data.projectName,
         sendDatetime: data.sendDatetime,
         download: data.download,
-        backDownload: data.backDownload
+        backDownload: data.backDownload,
+        title: data.title
       });
     });
   }
@@ -113,14 +115,14 @@ class AlreadyQuestAddedit extends React.Component {
   render() {
     return (
       <div>
-        <Card title={this.state.projectName + '工资'} style={{ width: 500 }}>
+        <Card title={this.state.title + '工资'} style={{ width: 500 }}>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
           <Button onClick={this.handleExport}>点击下载</Button>
           <p>下载次数{this.state.download}</p>
         </Card>
-        <Card title={this.state.projectName + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
+        <Card title={this.state.title + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
           <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>
           <Button onClick={this.handleExport1}>点击下载</Button>
           <p>下载次数{this.state.backDownload}</p>

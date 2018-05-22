@@ -12,6 +12,7 @@ import {
 } from '@redux/hetong/chengbaoshang';
 import { listWrapper } from 'common/js/build-list';
 import { getUserDetail } from 'api/user';
+import { getQueryString, showSucMsg, getUserId, getUserKind } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -32,13 +33,13 @@ class Chengbaoshang extends React.Component {
     };
   }
   componentDidMount() {
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
     };
@@ -106,16 +107,16 @@ class Chengbaoshang extends React.Component {
       hidden: true,
       title: '关键字'
     }];
-    if (cookies.get('loginKind') === 'P') {
+    if (getUserKind() === 'P') {
       return this.props.buildList({
-        fields: fieldso,
+        fields,
         searchParams: {
           companyCode: ''
         },
         pageCode: 631375
       });
     }
-    if (cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields: fieldso,
         searchParams: {

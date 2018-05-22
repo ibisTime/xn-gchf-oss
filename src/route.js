@@ -266,6 +266,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/allStaff-errorAddedit/allStaff-errorAddedit'))
   },
   {
+    path: '/staff/allStaff/wages',
+    component: asyncComponent(() => import('container/staff/allStaff-wages/allStaff-wages'))
+  },
+  {
     path: '/staff/allStaff/history',
     component: asyncComponent(() => import('container/staff/allStaff-history/allStaff-history'))
   },

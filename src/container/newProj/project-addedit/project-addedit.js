@@ -133,6 +133,79 @@ class ProjectAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
+    const fieldos = [{
+      field: 'name',
+      title: '项目名称',
+      required: true
+    }, {
+      field: this.view ? 'chargeName' : 'chargeUser',
+      title: '负责人',
+      type: this.view ? '' : 'select',
+      listCode: '631086',
+      params: {
+        companyCode: this.state.companyCode,
+        type: 'O'
+      },
+      keyName: 'userId',
+      valueName: 'loginName',
+      required: true
+    }, {
+      field: 'quyus',
+      title: '详细地址',
+      formatter: (v, d) => {
+        return d.province + d.city + d.area + d.address + '';
+      },
+      required: true
+    }, {
+      field: 'attendanceStarttimes',
+      title: '上下班时间',
+      type: 'time',
+      formatter: (v, d) => {
+        return d.attendanceStarttime + '--' + d.attendanceEndtime;
+      },
+      required: true
+    }, {
+      field: 'bankCode',
+      title: '银行名称',
+      type: this.view ? null : 'select',
+      listCode: '631116',
+      keyName: 'bankCode',
+      valueName: 'bankName',
+      _keys: ['companyCard', 'bankName'],
+      required: true
+    }, {
+      field: 'companyCode',
+      formatter: (v, d) => {
+        return this.state.companyCode;
+      },
+      hidden: true
+    }, {
+      field: 'subbranch',
+      title: '开户行',
+      _keys: ['companyCard', 'subbranch'],
+      required: true
+    }, {
+      field: 'bankcardNumber',
+      title: '账户号',
+      _keys: ['companyCard', 'bankcardNumber'],
+      required: true
+    }, {
+      field: 'salaryCreateDatetimes',
+      title: '工资条形成时间',
+      date28: true,
+      formatter: (v, d) => {
+        return '每月' + d.salaryCreateDatetime + '多少号';
+      },
+      required: true
+    }, {
+      field: 'salaryDatetimes',
+      title: '薪资发放时间',
+      date28: true,
+      formatter: (v, d) => {
+        return '每月' + d.salaryDatetime + '多少号';
+      },
+      required: true
+    }];
     if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
         fields,
@@ -171,7 +244,7 @@ class ProjectAddedit extends React.Component {
       }) : null;
     } else {
       return this.props.buildDetail({
-        fields,
+        fields: this.view ? fieldos : fields,
         key: 'code',
         code: this.projectCode,
         view: this.view,

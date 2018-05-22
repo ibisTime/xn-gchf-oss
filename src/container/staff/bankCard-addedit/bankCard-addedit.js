@@ -27,7 +27,8 @@ class BankCardAddEdit extends React.Component {
     const fields = [{
       field: 'staffCode',
       title: '员工编号',
-      readonly: true
+      readonly: true,
+      hidden: true
     }, {
       field: 'staffName',
       title: '真实姓名',

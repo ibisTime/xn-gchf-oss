@@ -21,7 +21,7 @@ class BankAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      title: '用户名',
+      title: '登录名',
       field: 'loginName',
       required: true
     }, {
@@ -32,7 +32,7 @@ class BankAddEdit extends React.Component {
       title: '密码',
       field: 'loginPwd',
       type: 'password',
-      hidden: true
+      required: true
     }, {
       title: '用户类型',
       field: 'type',
@@ -53,10 +53,8 @@ class BankAddEdit extends React.Component {
     }, {
       title: '手机号',
       field: 'mobile',
-      mobile: true
-    }, {
-      title: '备注',
-      field: 'remark'
+      mobile: true,
+      required: true
     }];
     return this.props.buildDetail({
       fields,

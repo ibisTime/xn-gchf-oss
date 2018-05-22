@@ -56,9 +56,6 @@ class WugongAddEdit extends React.Component {
       title: '签约时间',
       type: 'date',
       required: true
-    }, {
-      field: 'remark',
-      title: '备注'
     }];
     return this.props.buildDetail({
       fields,

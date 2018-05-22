@@ -32,10 +32,6 @@ class MenuAddEdit extends React.Component {
       field: 'type',
       hidden: true,
       value: this.type
-    }, {
-      title: '备注',
-      field: 'remark',
-      maxlength: 250
     }];
     return this.props.buildDetail({
       fields,

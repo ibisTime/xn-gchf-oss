@@ -47,18 +47,9 @@ class User extends React.Component {
       valueName: 'name',
       search: true
     }, {
-      title: '用户类型',
-      field: 'type',
-      type: 'select',
-      key: 'user_kind',
-      search: true
-    }, {
       title: '手机号',
       field: 'mobile',
       mobile: true
-    }, {
-      title: '备注',
-      field: 'remark'
     }];
     const btnEvent = {
       reset: (selectedRowKeys, selectedRows) => {

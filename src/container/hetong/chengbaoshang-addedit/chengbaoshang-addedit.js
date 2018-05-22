@@ -9,10 +9,10 @@ import {
   setPageData,
   restore
 } from '@redux/hetong/chengbaoshang-addedit';
-import { getQueryString, showSucMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, getUserId, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
-import { getUserId, getUserDetail } from 'api/user';
+import { getUserDetail } from 'api/user';
 
 @DetailWrapper(
   state => state.hetongChengbaoshangAddEdit,
@@ -26,7 +26,7 @@ class ChengbaoshangAddEdit extends React.Component {
     };
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
-    if(cookies.get('loginKind') === 'O') {
+    if(getUserKind() === 'O') {
       getUserDetail(cookies.get('userId')).then((data) => {
         this.setState({'companyCode': data.companyCode});
       });
@@ -51,7 +51,8 @@ class ChengbaoshangAddEdit extends React.Component {
       },
       keyName: 'code',
       valueName: 'name',
-      required: true
+      required: true,
+      readonly: true
     }, {
       field: 'bname',
       title: '承包商名称',
@@ -115,7 +116,7 @@ class ChengbaoshangAddEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if(getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
         fields: fieldso,
         code: this.code,

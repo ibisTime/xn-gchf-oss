@@ -42,10 +42,7 @@ class Salary extends React.Component {
   render() {
     const fields = [{
       title: '员工姓名',
-      field: 'staffName',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.name : '-';
-      }
+      field: 'staffName'
     }, {
       title: '所属月份',
       field: 'month',

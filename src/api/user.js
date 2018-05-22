@@ -21,6 +21,18 @@ export function getUserErrorInfo(salaryCode) {
   return fetch(631456, { salaryCode });
 }
 
+export function senderrInfo(code, handleNote, handler) {
+  return fetch(631450, { code, handleNote, handler });
+}
+
+export function getUserWagesInfo(code) {
+  return fetch(631447, { code });
+}
+
+export function gongzirizi(code) {
+  return fetch(631457, { code });
+}
+
 export function getjinduO(companyCode, projectCode) {
   return fetch(631386, { companyCode, kind: 'O', projectCode });
 }

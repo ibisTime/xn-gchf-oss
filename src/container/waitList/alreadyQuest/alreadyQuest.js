@@ -47,10 +47,6 @@ class AlreadyQuest extends React.Component {
   }
   render() {
     const fields = [{
-      title: '请求时间',
-      field: 'sendDatetime',
-      type: 'datetime'
-    }, {
       title: '发件人',
       field: 'sendName',
       search: true
@@ -62,6 +58,10 @@ class AlreadyQuest extends React.Component {
       field: 'status',
       key: 'message_status',
       type: 'select'
+    }, {
+      title: '请求时间',
+      field: 'sendDatetime',
+      type: 'datetime'
     }, {
       title: '完成时间',
       field: 'handleDatetime',

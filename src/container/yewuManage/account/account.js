@@ -98,17 +98,18 @@ class Account extends React.Component {
       field: 'projectName',
       title: '工程名称'
     }, {
-      field: 'bankName',
-      title: '银行名称'
+      field: 'bankNames',
+      title: '银行名称账户',
+      formatter: (v, d) => {
+        return d.bankName + '(' + d.bankcardNumber + ')';
+      }
     }, {
       field: 'bankCode',
-      title: '银行类别'
+      title: '银行类别',
+      hidden: true
     }, {
       field: 'subbranch',
       title: '开户行'
-    }, {
-      field: 'bankcardNumber',
-      title: '银行卡号'
     }, {
       field: 'status',
       title: '状态',

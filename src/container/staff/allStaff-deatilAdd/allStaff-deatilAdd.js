@@ -87,23 +87,10 @@ class AllStaffAddEditAdd extends React.Component {
       search: true,
       required: true
     }, {
-      field: 'idAddress',
-      title: '身份证地址',
-      required: true,
-      readonly: true,
-      hidden: true
-    }, {
-      field: 'idNo',
-      title: '证件号',
-      required: true,
-      listCode: '631416',
-      readonly: true,
-      hidden: true
-    }, {
-      field: 'idNation',
-      title: '民族',
-      readonly: true,
-      hidden: true
+      field: 'skillPdf',
+      title: '技能证书',
+      type: 'img',
+      required: true
     }, {
       field: 'pict1',
       title: '免冠照片',
@@ -119,21 +106,9 @@ class AllStaffAddEditAdd extends React.Component {
       title: '身份证正反面照片+签名',
       type: 'img',
       single: true
-    }, {
-      field: 'idPolice',
-      title: '签发机关',
-      readonly: true,
-      hidden: true
-    }, {
-      field: 'isStartDate',
-      title: '证件有效开始时间',
-      hidden: true
     }];
     return this.props.buildDetail({
       fields,
-      code: this.code,
-      view: this.view,
-      detailCode: 631417,
       buttons: [{
         title: '保存',
         check: true,
@@ -143,6 +118,7 @@ class AllStaffAddEditAdd extends React.Component {
             param.bankCode = data[0].bankCode;
             param.bankName = data[0].bankName;
             param.updater = getUserId();
+            param.code = this.code;
             this.props.doFetching();
             fetch(631413, param).then(() => {
               showSucMsg('操作成功');

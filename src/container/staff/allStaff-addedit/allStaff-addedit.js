@@ -24,7 +24,7 @@ class AllStaffAddEdit extends React.Component {
     this.state = {
       companyCode: ''
     };
-    this.code = getQueryString('staffCode', this.props.location.search);
+    this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
@@ -50,25 +50,10 @@ class AllStaffAddEdit extends React.Component {
       title: '籍贯',
       required: true
     }, {
-      field: 'mobile',
-      title: '手机号',
-      mobile: true,
-      required: true
-    }, {
-      field: 'idType',
-      title: '证件类型',
-      type: 'select',
-      key: 'id_type',
-      required: true
-    }, {
       field: 'idNo',
       title: '证件号',
       required: true,
       listCode: '631416'
-    }, {
-      field: 'contractDatetime',
-      title: '签约时间',
-      type: 'date'
     }, {
       field: 'pict1',
       title: '免冠照片',
@@ -90,8 +75,8 @@ class AllStaffAddEdit extends React.Component {
       type: 'img',
       single: true
     }, {
-      field: 'remark',
-      title: '备注'
+      field: 'updateName',
+      title: '更新人'
     }];
     return this.props.buildDetail({
       fields,

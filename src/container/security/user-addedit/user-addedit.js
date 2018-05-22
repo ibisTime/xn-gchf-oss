@@ -42,16 +42,11 @@ class UserAddEdit extends React.Component {
     }, {
       title: '手机号',
       field: 'mobile',
-      mobile: true
-    }, {
-      title: '备注',
-      field: 'remark'
+      mobile: true,
+      required: true
     }];
     return this.props.buildDetail({
       fields,
-      code: this.code,
-      view: this.view,
-      detailCode: 631087,
       addCode: 631070
     });
   }

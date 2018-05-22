@@ -97,16 +97,26 @@ class AllStaffError extends React.Component {
         } else {
           this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
         }
+      },
+      detail: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          console.log(selectedRows);
+          this.props.history.push(`/staff/allStafferror/addedit?v=1&code=${selectedRowKeys[0]}`);
+        }
       }
     };
     if (getUserKind() === 'O') {
-      return this.state.projectCodeList ? this.props.buildList({
+      return this.state.companyCode ? this.props.buildList({
         fields,
         btnEvent,
         searchParams: {
           staffCode: this.staffCode,
           type: '1',
-          projectCodeList: this.state.projectCodeList,
+          companyCode: this.state.companyCode,
           kind: 'O',
           status: 4
         },

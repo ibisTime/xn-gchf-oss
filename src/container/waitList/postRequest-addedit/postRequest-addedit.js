@@ -34,7 +34,8 @@ class PostRequestAddedit extends React.Component {
       projectName: '',
       sendDatetime: '',
       fileList: [],
-      backDownload: ''
+      backDownload: '',
+      title: ''
     };
   }
   componentDidMount() {
@@ -46,7 +47,8 @@ class PostRequestAddedit extends React.Component {
         projectName: data.projectName,
         sendDatetime: data.sendDatetime,
         download: data.download,
-        backDownload: data.backDownload
+        backDownload: data.backDownload,
+        title: data.title
       });
     });
   }
@@ -176,22 +178,22 @@ class PostRequestAddedit extends React.Component {
     };
     return (
       <div>
-        <Card title={this.state.projectName + '123'} style={{ width: 500 }}>
+        <Card title={this.state.title} style={{ width: 500 }}>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
           <Button onClick={this.handleExport}>点击下载</Button>
           <p>下载次数{this.state.backDownload}</p>
         </Card>
-        <Card title={this.state.projectName + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
+        <Card title={this.state.title + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
           <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>
           <p>上传文件</p>
           <Upload {...props}>
             <Button>
-              <Icon type="upload" /> 上传
+              <Icon type="upload" /> 选择文件
             </Button>
           </Upload>
-          <Button style={{ marginTop: 10 }} onClick={this.postRequest1}>提交反馈</Button>
+          <Button style={{ marginTop: 10 }} onClick={this.postRequest1}>上传</Button>
         </Card>
         <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20 }}>返回</Button>
       </div>

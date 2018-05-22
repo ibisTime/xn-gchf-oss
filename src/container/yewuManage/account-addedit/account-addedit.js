@@ -27,23 +27,25 @@ class AccountAddEdit extends React.Component {
     const fields = [{
       field: 'projectCode',
       title: '工程编号',
-      readonly: true
+      readonly: true,
+      hidden: true
     }, {
-      field: 'bankCode',
-      title: '银行名称',
-      type: 'select',
-      listCode: '631116',
-      keyName: 'bankCode',
-      valueName: 'bankName',
-      required: true
+      field: 'projectName',
+      title: '工程名称'
+    }, {
+      field: 'bankNames',
+      title: '银行名称账户',
+      formatter: (v, d) => {
+        return d.bankName + '(' + d.bankcardNumber + ')';
+      }
     }, {
       field: 'subbranch',
       title: '开户行',
       required: true
     }, {
-      field: 'bankcardNumber',
-      title: '银行卡号',
-      required: true
+      field: 'createDatetime',
+      title: '创建时间',
+      type: 'datetime'
     }, {
       field: 'status',
       title: '状态',
@@ -51,9 +53,6 @@ class AccountAddEdit extends React.Component {
       type: 'select',
       search: true,
       readonly: true
-    }, {
-      field: 'remark',
-      title: '备注'
     }];
     return this.props.buildDetail({
       fields,

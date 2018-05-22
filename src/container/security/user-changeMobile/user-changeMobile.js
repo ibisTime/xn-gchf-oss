@@ -30,9 +30,6 @@ class UserChangeMobile extends React.Component {
       field: 'mobile',
       mobile: true,
       required: true
-    }, {
-      title: '备注',
-      field: 'remark'
     }];
     return this.props.buildDetail({
       fields,

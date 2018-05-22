@@ -54,9 +54,6 @@ class Menu extends React.Component {
     }, {
       title: '菜单顺序',
       field: 'orderNo'
-    }, {
-      title: '备注',
-      field: 'remark'
     }];
     return this.props.buildList({ fields, searchParams: { updater: '' }, pageCode: 631065, deleteCode: 631061 });
   }

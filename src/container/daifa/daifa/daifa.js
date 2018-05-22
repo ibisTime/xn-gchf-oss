@@ -61,12 +61,6 @@ class Daifa extends React.Component {
       keyName: 'name',
       valueName: 'name'
     }, {
-      field: 'title',
-      title: '标题'
-    }, {
-      field: 'content',
-      title: '内容'
-    }, {
       field: 'status',
       title: '状态',
       search: true,
@@ -116,7 +110,6 @@ class Daifa extends React.Component {
     }, {
       field: 'status',
       title: '状态',
-      search: true,
       type: 'select',
       key: 'message_status'
     }, {
@@ -198,7 +191,7 @@ class Daifa extends React.Component {
       return (
         <div>
           {this.props.buildList({
-            fields,
+            fields: fieldso,
             btnEvent,
             searchParams: {
               updater: '',

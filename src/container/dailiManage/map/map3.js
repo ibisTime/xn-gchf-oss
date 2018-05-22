@@ -194,13 +194,10 @@ class Map extends React.Component {
       valueName: 'name'
     }, {
       field: 'provinces',
-      title: '项目地址',
+      title: '项目详细地址',
       formatter: (v, d) => {
-        return d.province + d.city + d.area;
+        return d.province + d.city + d.area + d.address;
       }
-    }, {
-      field: 'address',
-      title: '详细地址'
     }, {
       field: 'startDatetime',
       title: '项目开始时间',

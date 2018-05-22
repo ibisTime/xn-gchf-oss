@@ -99,17 +99,6 @@ class AllStaff extends React.Component {
       title: '出生日期',
       type: 'datetime'
     }, {
-      field: 'idType',
-      title: '证件类型',
-      type: 'select',
-      search: true,
-      key: 'id_type'
-      // formatter: (v, data) => {
-      //   if(data.Staff) {
-      //     return data.Staff.idType;
-      //   }
-      // }
-    }, {
       field: 'idNo',
       title: '证件号'
       // formatter: (v, data) => {
@@ -119,32 +108,6 @@ class AllStaff extends React.Component {
       // }
     }];
     const btnEvent = {
-      edit: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          // if (cookies.get('loginKind') === 'O') {
-          //   this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRows[0].Staff.code}`);
-          // }else {
-          this.props.history.push(`/staff/allStaff/addedit?staffCode=${selectedRowKeys[0]}`);
-          // }
-        }
-      },
-      detail: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          // if (cookies.get('loginKind') === 'O') {
-          //   this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRows[0].Staff.code}`);
-          // }else {
-          this.props.history.push(`/staff/allStaff/addedit?v=1&staffCode=${selectedRowKeys[0]}`);
-          // }
-        }
-      },
       error: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');

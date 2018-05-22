@@ -85,9 +85,6 @@ class Role extends React.Component {
       title: '更新时间',
       field: 'updateDatetime',
       type: 'datetime'
-    }, {
-      title: '备注',
-      field: 'remark'
     }];
     const btnEvent = {
       change: (selectedRowKeys, selectedRows) => {

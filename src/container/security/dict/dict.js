@@ -39,15 +39,12 @@ class SysParam extends React.Component {
       field: 'dvalue',
       title: '字典值'
     }, {
-      field: 'updater',
+      field: 'updateName',
       title: '更新人'
     }, {
       field: 'updateDatetime',
       title: '最近修改时间',
       type: 'datetime'
-    }, {
-      field: 'remark',
-      title: '备注'
     }];
     return this.props.buildList({ fields, searchParams: {type: '1'}, pageCode: 631005, deleteCode: 631001, rowKey: 'id' });
   }
