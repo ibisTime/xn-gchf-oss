@@ -1,72 +1,105 @@
 import React from 'react';
+import { Timeline, Button, Card, Input, Divider, Table, Icon, Spin, Form, Checkbox } from 'antd';
 import fetch from 'common/js/fetch';
 import { getQueryString, showSucMsg, formatDate } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail, getUserErrorInfo, getUserWagesInfo, senderrInfo } from 'api/user';
-import { Timeline, Button, Card, Input } from 'antd';
+
 const { TextArea } = Input;
+const FormItem = Form.Item;
 
 class AllStaffAddEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectName: '',
-      staffName: '',
-      handleName: '',
-      handleNote: '',
-      handleDatetime: '',
-      rizicode: ''
+      data: '',
+      errordata: '',
+      loading: true
     };
     this.code = getQueryString('code', this.props.location.search);
-    this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-    getUserErrorInfo(this.code).then(data => {
-      console.log(data);
+    Promise.all([
+      getUserErrorInfo(this.code),
+      getUserWagesInfo(this.code)
+    ]).then(([errordata, data]) => {
       this.setState({
-        // projectName: data[0].projectName ? data[0].projectName : '',
-        // staffName: data[0].staffName ? data[0].staffName : '',
-        // handleName: data[0].handleName ? data[0].handleName : '',
-        // handleNote: data[0].handleNote ? data[0].handleNote : '',
-        // handleDatetime: data[0].handleDatetime ? data[0].handleDatetime : '',
-        // rizicode: data[0].code ? data[0].code : ''
+        errordata,
+        data,
+        loading: false
       });
-    });
-    getUserWagesInfo(this.code).then(data => {
-      console.log(data);
-    });
+    }).catch(() => this.setState({ loading: false }));
   };
   goBack() {
     this.props.history.go(-1);
   };
-  sendInfo() {
-    var info = document.getElementById('info');
-    senderrInfo(this.state.rizicode, info.value, getUserId()).then(() => {
-      showSucMsg('发送成功！');
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log(values['handleNote']);
+        this.sendInfo(values['handleNote']);
+      }
     });
+  }
+  sendInfo(handleNote) {
+    this.setState({ loading: true });
+    senderrInfo(this.code, handleNote, getUserId()).then(() => {
+      showSucMsg('发送成功！');
+      this.props.form.resetFields();
+      getUserErrorInfo(this.code).then(errordata => {
+        this.setState({ errordata, loading: false });
+      }).catch(() => this.setState({ loading: false }));
+    }).catch(() => this.setState({ loading: false }));
   };
   render() {
+    var list = (length) => {
+      var res = [];
+      if (!length) {
+        res.push(
+          <p>没有异常记录!</p>
+        );
+      } else {
+        for (let i = 0; i < length; i++) {
+          res.push(
+            <div key={i} style={{ margin: 10 }}>
+              <span style={{ margin: 10 }}>处理人: {this.state.errordata[i].handleName || '没有记录'}</span>
+              <span style={{ margin: 10 }}>处理信息: {this.state.errordata[i].handleNote || '没有记录'}</span>
+              <span style={{ margin: 10 }}>处理日期: {formatDate(this.state.errordata[i].handleDatetime) || '没有记录'}</span>
+            </div>
+          );
+        }
+      }
+      return res;
+    };
+    const { getFieldDecorator } = this.props.form;
     return (
-      <div>
-        <Card title="信息描述">
-          <p>工程名字：{this.state.projectName}</p>
-          <p>员工姓名：{this.state.staffName}</p>
-          <p>{this.state.cutNote}</p>
-        </Card>
-        <Card title="异常处理报告" style={{ marginTop: 10, marginBottom: 10 }}>
-          <p>处理人：{this.state.handleName}</p>
-          <p>处理信息：{this.state.handleNote}</p>
-          <p>处理时间: {formatDate(this.state.handleDatetime)}</p>
-        </Card>
-        <div style={{ marginBottom: 10 }}>
-          <TextArea id='info' placeholder="输入最新沟通情况" autosize={{ minRows: 2, maxRows: 6 }} />
-        </div>
-        <Button onClick={this.sendInfo.bind(this)} type="danger" ghost style={{ marginRight: 10 }}>处理异常</Button>
-        <Button onClick={this.goBack.bind(this)}>返回</Button>
-      </div>
+      <Spin spinning={this.state.loading}>
+        <h3 style={{ textAlign: 'center' }}>异常处理</h3>
+        <p>姓名：{this.state.data.staffName}</p>
+        <p>所属工程：{this.state.data.projectName}</p>
+        <p>应发工资：{this.state.data.factAmount / 1000}</p>
+        <p>实发工资：{this.state.data.payAmount / 1000}</p>
+        <p>工资所属月份：{this.state.data.month}</p>
+        <Divider>异常处理报告</Divider>
+        {list(this.state.errordata.length)}
+        <Form onSubmit={this.handleSubmit} className="login-form">
+          <FormItem>
+            {getFieldDecorator('handleNote', {
+              rules: [{ required: true, message: '必填字段' }]
+            })(
+              <TextArea placeholder="输入最新沟通情况" autosize={{ minRows: 2, maxRows: 6 }} style={{ width: 400 }} />
+            )}
+          </FormItem>
+          <FormItem>
+            <Button type="primary" htmlType="submit" style={{ marginRight: 10 }}>处理异常</Button>
+            <Button onClick={this.goBack.bind(this)}>返回</Button>
+          </FormItem>
+        </Form>
+      </Spin>
     );
   }
 }
 
-export default AllStaffAddEdit;
+export default Form.create()(AllStaffAddEdit);

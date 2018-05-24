@@ -50,15 +50,16 @@ class Daifa extends React.Component {
       title: '项目编号',
       hidden: true
     }, {
-      field: 'projectName',
+      field: 'projectCode',
       title: '工程名称',
       type: 'select',
       search: true,
       listCode: '631357',
       params: {
-        updater: ''
+        updater: '',
+        companyCode: this.state.companyCode
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
       field: 'status',
@@ -95,7 +96,7 @@ class Daifa extends React.Component {
       title: '项目编号',
       hidden: true
     }, {
-      field: 'projectName',
+      field: 'projectCode',
       title: '工程名称',
       type: 'select',
       search: true,
@@ -105,7 +106,7 @@ class Daifa extends React.Component {
         kind: 'O',
         companyCode: this.state.companyCode
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
       field: 'status',
@@ -191,7 +192,7 @@ class Daifa extends React.Component {
       return (
         <div>
           {this.props.buildList({
-            fields: fieldso,
+            fields,
             btnEvent,
             searchParams: {
               updater: '',

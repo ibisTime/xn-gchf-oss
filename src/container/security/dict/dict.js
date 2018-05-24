@@ -39,7 +39,7 @@ class SysParam extends React.Component {
       field: 'dvalue',
       title: '字典值'
     }, {
-      field: 'updateName',
+      field: 'updater',
       title: '更新人'
     }, {
       field: 'updateDatetime',

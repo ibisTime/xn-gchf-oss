@@ -50,7 +50,7 @@ class Chengbaoshang extends React.Component {
       title: '所属公司',
       hidden: true
     }, {
-      field: 'projectName',
+      field: 'projectCode',
       title: '工程名称',
       type: 'select',
       search: true,
@@ -60,7 +60,7 @@ class Chengbaoshang extends React.Component {
         kind: 'O',
         companyCode: this.state.companyCode
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
       field: 'bname',
@@ -78,7 +78,6 @@ class Chengbaoshang extends React.Component {
     }, {
       field: 'keyword',
       search: true,
-      hidden: true,
       title: '关键字'
     }];
     const fields = [{
@@ -86,8 +85,17 @@ class Chengbaoshang extends React.Component {
       title: '所属公司',
       hidden: true
     }, {
-      field: 'projectName',
-      title: '所属工程'
+      field: 'projectCode',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: '',
+        companyCode: this.state.companyCode
+      },
+      keyName: 'code',
+      valueName: 'name'
     }, {
       field: 'bname',
       title: '承包商名称'
@@ -104,7 +112,6 @@ class Chengbaoshang extends React.Component {
     }, {
       field: 'keyword',
       search: true,
-      hidden: true,
       title: '关键字'
     }];
     if (getUserKind() === 'P') {

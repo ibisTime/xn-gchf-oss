@@ -41,7 +41,7 @@ class Wugong extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'projectName',
+      field: 'projectCode',
       title: '工程名称',
       type: 'select',
       search: true,
@@ -51,7 +51,7 @@ class Wugong extends React.Component {
         kind: 'O',
         updater: ''
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
       field: 'staffName',

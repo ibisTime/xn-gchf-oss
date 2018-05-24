@@ -146,7 +146,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-leijifaxin/project-leijifaxin'))
   },
   {
-    path: '/newProj/project/kaoqin',
+    path: '/newProj/kaoqin',
     component: asyncComponent(() => import('container/newProj/project-kaoqin/project-kaoqin'))
   },
   {
@@ -248,6 +248,10 @@ const ROUTES = [
   {
     path: '/staff/allStaff/detailadd',
     component: asyncComponent(() => import('container/staff/allStaff-deatilAdd/allStaff-deatilAdd'))
+  },
+  {
+    path: '/staff/idCardQuery',
+    component: asyncComponent(() => import('container/staff/idCardQuery/idCardQuery'))
   },
   {
     path: '/staff/allStafferror',

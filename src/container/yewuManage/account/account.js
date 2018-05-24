@@ -50,7 +50,7 @@ class Account extends React.Component {
       title: '工程编号',
       hidden: true
     }, {
-      field: 'projectName',
+      field: 'projectCode',
       title: '工程名称',
       type: 'select',
       search: true,
@@ -60,56 +60,21 @@ class Account extends React.Component {
         companyCode: this.state.companyCode,
         kind: 'O'
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
-      field: 'bankName',
-      title: '银行名称'
-    }, {
-      field: 'bankCode',
-      title: '银行类别'
-    }, {
-      field: 'subbranch',
-      title: '开户行'
-    }, {
-      field: 'bankcardNumber',
-      title: '银行卡号'
-    }, {
-      field: 'status',
-      title: '状态',
-      key: 'account_status',
-      type: 'select',
-      search: true
-    }, {
-      field: 'createDatetime',
-      title: '创建时间',
-      type: 'datetime'
-    }, {
-      field: 'keyword',
-      title: '关键字',
-      search: true,
-      hidden: true
-    }];
-    const fields = [{
-      field: 'projectCode',
-      title: '工程编号',
-      hidden: true
-    }, {
-      field: 'projectName',
-      title: '工程名称'
-    }, {
       field: 'bankNames',
-      title: '银行名称账户',
+      title: '开户行',
       formatter: (v, d) => {
-        return d.bankName + '(' + d.bankcardNumber + ')';
+        return d.bankName + d.subbranch;
       }
     }, {
       field: 'bankCode',
       title: '银行类别',
       hidden: true
     }, {
-      field: 'subbranch',
-      title: '开户行'
+      field: 'bankcardNumber',
+      title: '银行账户'
     }, {
       field: 'status',
       title: '状态',
@@ -123,8 +88,51 @@ class Account extends React.Component {
     }, {
       field: 'keyword',
       title: '关键字',
-      search: true,
+      search: true
+    }];
+    const fields = [{
+      field: 'projectCode',
+      title: '工程编号',
       hidden: true
+    }, {
+      field: 'projectCode',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: '',
+        companyCode: this.state.companyCode
+      },
+      keyName: 'code',
+      valueName: 'name'
+    }, {
+      field: 'bankNames',
+      title: '开户行',
+      formatter: (v, d) => {
+        return d.bankName + d.subbranch;
+      }
+    }, {
+      field: 'bankCode',
+      title: '银行类别',
+      hidden: true
+    }, {
+      field: 'bankcardNumber',
+      title: '银行账户'
+    }, {
+      field: 'status',
+      title: '状态',
+      key: 'account_status',
+      type: 'select',
+      search: true
+    }, {
+      field: 'createDatetime',
+      title: '创建时间',
+      type: 'datetime'
+    }, {
+      field: 'keyword',
+      title: '关键字',
+      search: true
     }];
     if (getUserKind() === 'P') {
       return this.props.buildList({
@@ -136,7 +144,7 @@ class Account extends React.Component {
       });
     } else if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
-        fields,
+        fields: fieldso,
         pageCode: 631365,
         searchParams: {
           companyCode: this.state.companyCode,

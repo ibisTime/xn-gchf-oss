@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -11,7 +10,7 @@ import {
   setSearchData
 } from '@redux/newProj/project-leijifaxin';
 import { listWrapper } from 'common/js/build-list';
-import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg, getUserKind, getUserId } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -28,15 +27,15 @@ class Leijifaxin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: ''
+      projectCodeList: ''
     };
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   };
   componentDidMount() {
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         console.log(data);
-        this.setState({ 'companyCode': data.companyCode });
+        this.setState({ 'projectCodeList': data.projectCodeList });
       });
     }
   }
@@ -45,46 +44,29 @@ class Leijifaxin extends React.Component {
       title: '项目名称',
       field: 'projectName'
     }, {
-      title: '扣款金额',
-      field: 'cutAmount',
-      amount: true
-    }, {
-      title: '扣款说明',
-      field: 'cutNote'
-    }, {
-      title: '迟到天数',
-      field: 'delayDays'
-    }, {
-      title: '早退天数',
-      field: 'earlyDays'
-    }, {
-      title: '请假天数',
-      field: 'leavingDays'
-    }, {
-      title: '税费',
-      field: 'tax',
-      amount: true
-    }, {
       title: '所属月份',
       field: 'month',
       search: true
     }, {
-      title: '累计发放金额',
-      field: 'totalFactAmount',
+      title: '累计发薪',
+      field: 'totalFactAmount'
+    }, {
+      title: '领薪人数',
+      field: 'number'
+    }, {
+      title: '共计扣款',
+      field: 'totalCutAmount',
       amount: true
     }, {
-      title: '关键字',
-      field: 'keyword',
-      search: true,
-      hidden: true
+      title: '共计税费',
+      field: 'totalTax'
     }];
-    if (cookies.get('loginKind') === 'O') {
-      return this.state.companyCode ? this.props.buildList({
+    if (getUserKind() === 'O') {
+      return this.state.projectCodeList ? this.props.buildList({
         fields,
         searchParams: {
           projectCode: this.projectCode,
-          updater: '',
-          companyCode: this.state.companyCode,
+          projectCodeList: this.state.projectCodeList,
           kind: 'O'
         },
         pageCode: 631448,

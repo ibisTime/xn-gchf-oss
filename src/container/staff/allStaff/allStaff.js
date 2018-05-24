@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/staff/allStaff';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getUserKind, getUserId } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getUserKind, getUserId, formatDate } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -47,42 +47,9 @@ class AllStaff extends React.Component {
   render() {
     const fields = [{
       field: 'name',
-      title: '姓名'
-    }, {
-      field: 'place',
-      title: '籍贯'
-    }, {
-      field: 'idType',
-      title: '证件类型',
-      type: 'select',
+      title: '姓名',
       search: true,
-      key: 'id_type'
-    }, {
-      field: 'idNo',
-      title: '证件号'
-    }, {
-      field: 'mobile',
-      title: '联系方式'
-    }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime'
-    }, {
-      field: 'updater',
-      title: '更新人'
-    }, {
-      field: 'remark',
-      title: '备注'
-    }, {
-      field: 'keyword',
-      hidden: true,
-      search: true,
-      title: '关键字'
-    }];
-
-    const fieldso = [{
-      field: 'name',
-      title: '姓名'
+      requried: 'select'
       // formatter: (v, data) => {
       //   if(data.Staff) {
       //     return data.Staff.name;
@@ -95,12 +62,17 @@ class AllStaff extends React.Component {
       field: 'idNation',
       title: '民族'
     }, {
-      field: 'birthday',
-      title: '出生日期',
-      type: 'datetime'
+      field: 'birthdays',
+      title: '生日',
+      type: 'datetime',
+      formatter: (v, d) => {
+        return formatDate(d.birthday);
+      }
     }, {
       field: 'idNo',
-      title: '证件号'
+      title: '证件号',
+      search: true,
+      requried: 'select'
       // formatter: (v, data) => {
       //   if(data.Staff) {
       //     return data.Staff.idNo;
@@ -146,7 +118,7 @@ class AllStaff extends React.Component {
     };
     if (getUserKind === 'O') {
       return this.props.buildList({
-        fields: fieldso,
+        fields,
         btnEvent,
         searchParams: {
           updater: '',
@@ -156,7 +128,7 @@ class AllStaff extends React.Component {
       });
     } else {
       return this.props.buildList({
-        fields: fieldso,
+        fields,
         btnEvent,
         searchParams: {
           updater: ''

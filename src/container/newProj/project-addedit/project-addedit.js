@@ -208,7 +208,7 @@ class ProjectAddedit extends React.Component {
     }];
     if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
-        fields,
+        fields: this.view ? fieldos : fields,
         key: 'code',
         code: this.projectCode,
         view: this.view,
@@ -226,7 +226,7 @@ class ProjectAddedit extends React.Component {
       }) : null;
     } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildDetail({
-        fields,
+        fields: this.view ? fieldos : fields,
         key: 'code',
         code: this.projectCode,
         view: this.view,

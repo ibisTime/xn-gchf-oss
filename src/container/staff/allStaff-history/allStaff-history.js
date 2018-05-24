@@ -59,7 +59,7 @@ class AllStaffHistory extends React.Component {
       title: '项目编号',
       hidden: true
     }, {
-      field: 'projectName',
+      field: 'projectCode',
       title: '项目名称',
       type: 'select',
       search: true,
@@ -67,7 +67,7 @@ class AllStaffHistory extends React.Component {
       params: {
         updater: ''
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
       field: 'joinDatetime',
@@ -103,7 +103,7 @@ class AllStaffHistory extends React.Component {
       field: 'projectCode',
       title: '项目编号'
     }, {
-      field: 'projectName',
+      field: 'projectCode',
       title: '项目名称',
       type: 'select',
       search: true,
@@ -113,7 +113,7 @@ class AllStaffHistory extends React.Component {
         companyCode: this.state.companyCode,
         kind: 'O'
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
       field: 'joinDatetime',

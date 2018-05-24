@@ -21,8 +21,16 @@ export function getUserErrorInfo(salaryCode) {
   return fetch(631456, { salaryCode });
 }
 
-export function senderrInfo(code, handleNote, handler) {
-  return fetch(631450, { code, handleNote, handler });
+export function query(idNo, projectCodeList) {
+  return fetch(631418, { idNo, projectCodeList });
+}
+
+export function query1(idNo) {
+  return fetch(631418, { idNo });
+}
+
+export function senderrInfo(salaryCode, handleNote, handler) {
+  return fetch(631450, { salaryCode, handleNote, handler });
 }
 
 export function getUserWagesInfo(code) {

@@ -53,6 +53,38 @@ class BankCardAddEdit extends React.Component {
       field: 'updateDatetime',
       title: '更新时间',
       type: 'datetime',
+      required: true
+    }, {
+      field: 'updateName',
+      title: '更新人',
+      readonly: true
+    }, {
+      field: 'remark',
+      title: '备注'
+    }];
+    const fieldos = [{
+      field: 'staffCode',
+      title: '员工编号',
+      readonly: true,
+      hidden: true
+    }, {
+      field: 'staffName',
+      title: '真实姓名',
+      readonly: true
+    }, {
+      field: 'bankName',
+      title: '银行名称',
+      formatter: (v, d) => {
+        return d.bankName + '(' + d.bankcardNumber + ')';
+      }
+    }, {
+      field: 'subbranch',
+      title: '开户支行',
+      required: true
+    }, {
+      field: 'updateDatetime',
+      title: '更新时间',
+      type: 'datetime',
       readonly: true
     }, {
       field: 'updateName',
@@ -63,7 +95,7 @@ class BankCardAddEdit extends React.Component {
       title: '备注'
     }];
     return this.props.buildDetail({
-      fields,
+      fields: this.view ? fieldos : fields,
       code: this.code,
       view: this.view,
       detailCode: 631427,

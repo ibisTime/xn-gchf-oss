@@ -23,7 +23,7 @@ class BankAddEdit extends React.Component {
     const fields = [{
       title: '登录名',
       field: 'loginName',
-      required: true
+      readonly: true
     }, {
       title: '真实姓名',
       field: 'realName',
@@ -32,7 +32,8 @@ class BankAddEdit extends React.Component {
       title: '密码',
       field: 'loginPwd',
       type: 'password',
-      required: true
+      required: true,
+      hidden: this.view
     }, {
       title: '用户类型',
       field: 'type',
@@ -45,11 +46,23 @@ class BankAddEdit extends React.Component {
       listCode: '631116',
       keyName: 'bankName',
       valueName: 'bankName',
-      required: true
+      required: true,
+      onChange: (val) => {
+        this.props.setPageData({
+          ...this.props.pageData,
+          loginName: val + this.props.form.getFieldValue('subbranch')
+        });
+      }
     }, {
       title: '所属支行',
       field: 'subbranch',
-      required: true
+      required: true,
+      onChange: (val) => {
+        this.props.setPageData({
+          ...this.props.pageData,
+          loginName: this.props.form.getFieldValue('bankName') + val
+        });
+      }
     }, {
       title: '手机号',
       field: 'mobile',
@@ -61,6 +74,10 @@ class BankAddEdit extends React.Component {
       code: this.userId,
       key: 'userId',
       view: this.view,
+      beforeSubmit: (param) => {
+        param.loginName = param.subbranch + param.bankName;
+        return param;
+      },
       detailCode: 631087,
       addCode: 631070
     });

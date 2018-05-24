@@ -79,15 +79,6 @@ class Map extends React.Component {
           this.props.history.push(`/people/wugong/addedit?projectCode=${selectedRowKeys[0]}`);
         }
       },
-      attendance: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/newProj/project/kaoqin?projectCode=${selectedRowKeys[0]}`);
-        }
-      },
       wages: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');

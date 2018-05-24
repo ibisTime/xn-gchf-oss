@@ -42,7 +42,6 @@ class AllStaffError extends React.Component {
       });
     } else if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
-        console.log(data.projectCodeList);
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
     }
@@ -124,7 +123,7 @@ class AllStaffError extends React.Component {
           code: 'detail',
           name: '详情'
         }],
-        pageCode: 631444
+        pageCode: 631445
       }) : null;
     } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({
@@ -132,24 +131,25 @@ class AllStaffError extends React.Component {
         btnEvent,
         searchParams: {
           projectCodeList: this.state.projectCodeList,
-          kind: 'S'
+          kind: 'S',
+          statusList: [2, 4]
         },
         buttons: [{
           code: 'detail',
           name: '详情'
         }],
-        pageCode: 631444
+        pageCode: 631445
       }) : null;
     } else {
       return this.props.buildList({
         fields,
         btnEvent,
-        searchParams: { staffCode: this.staffCode, type: 'P', status: 4 },
+        searchParams: { staffCode: this.staffCode, type: 'P', statusList: [2, 4] },
         buttons: [{
           code: 'detail',
           name: '详情'
         }],
-        pageCode: 631444
+        pageCode: 631445
       });
     }
   }

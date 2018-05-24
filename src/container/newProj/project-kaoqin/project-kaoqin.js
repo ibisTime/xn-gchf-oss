@@ -12,25 +12,46 @@ import {
   setSearchData
 } from '@redux/newProj/project-kaoqin';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, getUserId, getUserKind } from 'common/js/util';
+import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
     ...state.newProjKaoqin,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Kaoqin extends React.Component {
   constructor(props) {
     super(props);
-    this.projectCode = getQueryString('projectCode', this.props.location.search);
+    this.state = {
+      projectCodeList: ''
+    };
+  }
+  componentDidMount() {
+    if (getUserKind() === 'S' || getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        console.log(data);
+        this.setState({ 'projectCodeList': data.projectCodeList });
+      });
+    };
   }
   render() {
     const fields = [{
-      field: 'projectName',
-      title: '项目名称'
+      field: 'projectCode',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      params: {
+        updater: ''
+      },
+      keyName: 'code',
+      valueName: 'name'
     }, {
       field: 'staffName',
       title: '员工姓名'
@@ -55,6 +76,8 @@ class Kaoqin extends React.Component {
     }, {
       field: 'createDatetime',
       title: '生成时间',
+      search: true,
+      rangedate: ['dateStart', 'dateEnd'],
       type: 'datetime'
     }, {
       field: 'remark',
@@ -65,50 +88,96 @@ class Kaoqin extends React.Component {
       search: true,
       hidden: true
     }];
-    return this.props.buildList({
-      fields,
-      searchParams: { projectCode: this.projectCode },
-      pageCode: 631395,
-      buttons: [{
-        code: 'export',
-        name: '导出',
-        handler: (selectedRowKeys, selectedRows) => {
-          fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
-            let tableData = [];
-            let title = [];
-            fields.map((item) => {
-              if(item.title !== '关键字') {
-                title.push(item.title);
-              }
-            });
-            tableData.push(title);
-            data.list.map((item) => {
-              let temp = [];
-              this.props.searchData.status.map((v) => {
-                if(v.dkey === item.status) {
-                  item.status = v.dvalue;
+    if (getUserKind() === 'S' || getUserKind() === 'O') {
+      return this.state.projectCodeList ? this.props.buildList({
+        fields,
+        searchParams: { projectCodeList: this.state.projectCodeList },
+        pageCode: 631395,
+        buttons: [{
+          code: 'export',
+          name: '导出',
+          handler: (selectedRowKeys, selectedRows) => {
+            fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+              let tableData = [];
+              let title = [];
+              fields.map((item) => {
+                if (item.title !== '关键字') {
+                  title.push(item.title);
                 }
               });
-              temp.push(item.projectName,
-                item.staffName,
-                item.staffMobile,
-                item.startDatetime,
-                item.endDatetime,
-                item.status,
-                item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
-                item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
-                item.remark
-              );
-              tableData.push(temp);
+              tableData.push(title);
+              data.list.map((item) => {
+                let temp = [];
+                this.props.searchData.status.map((v) => {
+                  if (v.dkey === item.status) {
+                    item.status = v.dvalue;
+                  }
+                });
+                temp.push(item.projectName,
+                  item.staffName,
+                  item.staffMobile,
+                  item.startDatetime,
+                  item.endDatetime,
+                  item.status,
+                  item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
+                  item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
+                  item.remark
+                );
+                tableData.push(temp);
+              });
+              const ws = XLSX.utils.aoa_to_sheet(tableData);
+              const wb = XLSX.utils.book_new();
+              XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+              XLSX.writeFile(wb, 'sheetjs.xlsx');
             });
-            const ws = XLSX.utils.aoa_to_sheet(tableData);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-            XLSX.writeFile(wb, 'sheetjs.xlsx');
-          });
-        }
-      }]
-    });
+          }
+        }]
+      }) : null;
+    } else {
+      return this.props.buildList({
+        fields,
+        pageCode: 631395,
+        buttons: [{
+          code: 'export',
+          name: '导出',
+          handler: (selectedRowKeys, selectedRows) => {
+            fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+              let tableData = [];
+              let title = [];
+              fields.map((item) => {
+                if (item.title !== '关键字') {
+                  title.push(item.title);
+                }
+              });
+              tableData.push(title);
+              data.list.map((item) => {
+                let temp = [];
+                this.props.searchData.status.map((v) => {
+                  if (v.dkey === item.status) {
+                    item.status = v.dvalue;
+                  }
+                });
+                temp.push(item.projectName,
+                  item.staffName,
+                  item.staffMobile,
+                  item.startDatetime,
+                  item.endDatetime,
+                  item.status,
+                  item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
+                  item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
+                  item.remark
+                );
+                tableData.push(temp);
+              });
+              const ws = XLSX.utils.aoa_to_sheet(tableData);
+              const wb = XLSX.utils.book_new();
+              XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+              XLSX.writeFile(wb, 'sheetjs.xlsx');
+            });
+          }
+        }]
+      });
+    }
   }
 }
 

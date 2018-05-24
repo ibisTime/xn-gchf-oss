@@ -69,6 +69,7 @@ class PostRequestAddedit extends React.Component {
   handleExport() {
     this.downNum(true);
     downLoad(this.code).then((data) => {
+      console.log(data);
       if (!data || !data.length) {
         showWarnMsg('没有工资条信息！');
         return;
@@ -81,7 +82,7 @@ class PostRequestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.companyCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, (d.factAmount) / 1000, '', ''];
+        return [i + 1, d.code, d.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.status === '4' ? (d.supplyAmount) / 1000 : (d.factAmount) / 1000, '', ''];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);

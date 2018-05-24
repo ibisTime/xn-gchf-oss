@@ -34,13 +34,13 @@ class AccountAddEdit extends React.Component {
       title: '工程名称'
     }, {
       field: 'bankNames',
-      title: '银行名称账户',
+      title: '开户行',
       formatter: (v, d) => {
-        return d.bankName + '(' + d.bankcardNumber + ')';
+        return d.bankName + d.subbranch;
       }
     }, {
-      field: 'subbranch',
-      title: '开户行',
+      field: 'bankcardNumber',
+      title: '银行账户',
       required: true
     }, {
       field: 'createDatetime',

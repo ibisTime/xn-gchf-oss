@@ -52,14 +52,14 @@ class BankCard extends React.Component {
       field: 'staffName',
       title: '真实姓名'
     }, {
-      field: 'bankName',
-      title: '银行名称'
+      field: 'bankNames',
+      title: '开户行',
+      formatter: (v, d) => {
+        return d.bankName + d.subbranch;
+      }
     }, {
       field: 'bankcardNumber',
-      title: '银行卡号'
-    }, {
-      field: 'subbranch',
-      title: '开户支行'
+      title: '银行账户'
     }, {
       field: 'updateName',
       title: '更新人'

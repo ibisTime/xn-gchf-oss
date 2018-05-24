@@ -9,7 +9,7 @@ import {
   setPageData,
   restore
 } from '@redux/staff/allStaff-addedit';
-import { getQueryString, showSucMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, formatDate } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail } from 'api/user';
@@ -46,8 +46,12 @@ class AllStaffAddEdit extends React.Component {
       title: '姓名',
       required: true
     }, {
-      field: 'place',
-      title: '籍贯',
+      field: 'idAddress',
+      title: '身份证上籍贯',
+      required: true
+    }, {
+      field: 'mobile',
+      title: '联系方式',
       required: true
     }, {
       field: 'idNo',
@@ -78,8 +82,59 @@ class AllStaffAddEdit extends React.Component {
       field: 'updateName',
       title: '更新人'
     }];
+    const fieldos = [{
+      field: 'name',
+      title: '姓名',
+      required: true
+    }, {
+      field: 'sex',
+      title: '性别'
+    }, {
+      field: 'idNation',
+      title: '民族'
+    }, {
+      field: 'birthdays',
+      title: '生日',
+      type: 'datetime',
+      formatter: (v, d) => {
+        return formatDate(d.birthday);
+      }
+    }, {
+      field: 'idNo',
+      title: '证件号',
+      required: true
+    }, {
+      field: 'idAddress',
+      title: '身份证上籍贯'
+    }, {
+      field: 'pict1',
+      title: '免冠照片',
+      type: 'img'
+    }, {
+      field: 'pict2',
+      title: '手持身份证照片',
+      single: true,
+      type: 'img'
+    }, {
+      field: 'pict3',
+      title: '身份证正反面照片',
+      single: true,
+      type: 'img'
+    }, {
+      field: 'idPolice',
+      title: '签发机关'
+    }, {
+      field: 'idStartDates',
+      title: '证件有效时间',
+      formatter: (v, d) => {
+        return formatDate(d.idStartDate) + '——' + formatDate(d.idEndDate);
+      }
+    }, {
+      field: 'updateName',
+      title: '更新人'
+    }];
     return this.props.buildDetail({
-      fields,
+      fields: this.view ? fieldos : fields,
       code: this.code,
       view: this.view,
       detailCode: 631417,
@@ -94,8 +149,7 @@ class AllStaffAddEdit extends React.Component {
             param.bankName = data[0].bankName;
             param.updater = getUserId();
             this.props.doFetching();
-            var code = this.staffCode ? '631412' : '631410';
-            fetch(code, param).then(() => {
+            fetch(631412, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();
               setTimeout(() => {
