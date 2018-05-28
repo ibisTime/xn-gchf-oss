@@ -24,10 +24,6 @@ class SysparamAddedit extends React.Component {
     const fields = [{
       field: 'remark',
       title: '参数名',
-      hidden: true
-    }, {
-      field: 'remark',
-      title: '参数名',
       readonly: true
     }, {
       field: 'cvalue',

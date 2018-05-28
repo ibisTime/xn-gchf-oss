@@ -1,6 +1,6 @@
 import React from 'react';
 import cookies from 'browser-cookies';
-import { rock } from 'api/user';
+import { rock, getUserId } from 'api/user';
 import { Modal } from 'antd';
 import {
   setTableData,
@@ -20,15 +20,16 @@ import { showWarnMsg, showSucMsg } from 'common/js/util';
     ...state.securityUser,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class User extends React.Component {
   render() {
     const fields = [{
       title: '用户名',
       field: 'loginName',
-      search: true,
       render: (v) => v + '1'
     }, {
       title: '状态',
@@ -44,12 +45,16 @@ class User extends React.Component {
         updater: ''
       },
       keyName: 'code',
-      valueName: 'name',
-      search: true
+      valueName: 'name'
     }, {
       title: '手机号',
       field: 'mobile',
       mobile: true
+    }, {
+      title: '关键字',
+      field: 'keyword',
+      search: true,
+      hidden: true
     }];
     const btnEvent = {
       reset: (selectedRowKeys, selectedRows) => {
@@ -73,7 +78,7 @@ class User extends React.Component {
             content: '确定注销/激活？',
             onOk: () => {
               this.props.doFetching();
-              rock(selectedRowKeys[0]).then(() => {
+              rock(selectedRowKeys[0], getUserId()).then(() => {
                 showSucMsg('操作成功');
                 this.props.cancelFetching();
               }).catch(this.props.cancelFetching);
@@ -104,8 +109,8 @@ class User extends React.Component {
       fields,
       btnEvent,
       searchParams: cookies.get('loginKind') === 'P' ? { type: 'P', updater: '' }
-      : cookies.get('loginKind') === 'O' ? {'type': 'O', updater: ''}
-      : cookies.get('loginKind') === 'B' ? {'type': 'B', updater: ''} : {'type': 's', updater: ''},
+        : cookies.get('loginKind') === 'O' ? { 'type': 'O', updater: '' }
+          : cookies.get('loginKind') === 'B' ? { 'type': 'B', updater: '' } : { 'type': 's', updater: '' },
       pageCode: 631085,
       rowKey: 'userId'
     });

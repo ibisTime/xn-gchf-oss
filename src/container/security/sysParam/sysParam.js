@@ -10,6 +10,7 @@ import {
   setSearchData
 } from '@redux/security/menu';
 import { listWrapper } from 'common/js/build-list';
+import { showWarnMsg } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -34,8 +35,21 @@ class SysParam extends React.Component {
       title: '最近修改时间',
       type: 'datetime'
     }];
+    const btnEvent = {
+      edit: (selectedRowKeys, selectedRows) => {
+        console.log(selectedRows);
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/system/sysPara/addedit?code=${selectedRows[0].id}`);
+        }
+      }
+    };
     return this.props.buildList({
       fields,
+      btnEvent,
       pageCode: 631015,
       searchParam: {
         updater: null

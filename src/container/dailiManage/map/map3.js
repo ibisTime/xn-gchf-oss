@@ -49,9 +49,6 @@ class Map extends React.Component {
       addProject: (selectedRowKeys, selectedRows) => {
         this.props.history.push(`/projectManage/project/addedit`);
       },
-      addjindu: (selectedRowKeys, selectedRows) => {
-        this.props.history.push(`/hetong/jindu/addedit`);
-      },
       Statistics: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
@@ -59,6 +56,15 @@ class Map extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           this.props.history.push(`/newProj/project/detail?v=1&code=${selectedRowKeys[0]}`);
+        }
+      },
+      attendance: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/newProj/kaoqin?code=${selectedRowKeys[0]}`);
         }
       },
       tiqingshenhe: (selectedRowKeys, selectedRows) => {
@@ -70,15 +76,25 @@ class Map extends React.Component {
           this.props.history.push(`/newProj/project/edit?v=1&code=${selectedRowKeys[0]}`);
         }
       },
-      addWorkers: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/people/wugong/addedit?projectCode=${selectedRowKeys[0]}`);
-        }
-      },
+      // weekday: (selectedRowKeys, selectedRows) => {
+      //   if (!selectedRowKeys.length) {
+      //     showWarnMsg('请选择记录');
+      //   } else if (selectedRowKeys.length > 1) {
+      //     showWarnMsg('请选择一条记录');
+      //   } else {
+      //     this.props.history.push(`/newProj/project/weekday?code=${selectedRowKeys[0]}`);
+      //   }
+      // },
+      // 办理入职
+      // addWorkers: (selectedRowKeys, selectedRows) => {
+      //   if (!selectedRowKeys.length) {
+      //     showWarnMsg('请选择记录');
+      //   } else if (selectedRowKeys.length > 1) {
+      //     showWarnMsg('请选择一条记录');
+      //   } else {
+      //     this.props.history.push(`/people/wugong/addedit?projectCode=${selectedRowKeys[0]}`);
+      //   }
+      // },
       wages: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
@@ -166,12 +182,25 @@ class Map extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/hetong/jindu?start=1&projectCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/hetong/jindu/info?start=1&projectCode=${selectedRowKeys[0]}`);
         }
       }
+      // quit: (selectedRowKeys, selectedRows) => {
+      //   if (!selectedRowKeys.length) {
+      //     showWarnMsg('请选择记录');
+      //   } else if (selectedRowKeys.length > 1) {
+      //     showWarnMsg('请选择一条记录');
+      //   } else {
+      //     console.log(selectedRows);
+      //     this.props.history.push(`/newProj/project/quit?code=${selectedRowKeys[0]}`);
+      //   }
+      // }
     };
     const fields = [{
-      field: 'name',
+      field: 'projectCode',
+      formatter: (v, d) => {
+        return d.name;
+      },
       title: '工程名称',
       type: 'select',
       search: true,
@@ -181,7 +210,7 @@ class Map extends React.Component {
         kind: 'O',
         companyCode: this.state.companyCode
       },
-      keyName: 'name',
+      keyName: 'code',
       valueName: 'name'
     }, {
       field: 'provinces',

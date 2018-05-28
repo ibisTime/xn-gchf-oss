@@ -40,16 +40,43 @@ class DaifaAddEdit extends React.Component {
       field: 'projectName',
       title: '项目名称'
     }, {
+      field: 'bankNames',
+      title: '开户行',
+      formatter: (v, d) => {
+        return d.bankName + d.subbranch;
+      }
+    }, {
+      field: 'bankcardNumber',
+      title: '账户'
+    }, {
+      field: 'totalAmounts',
+      title: '本月累计发薪',
+      formatter: (v, d) => {
+        return d.totalAmount / 1000;
+      }
+    }, {
+      title: '共计扣款',
+      field: 'totalCutAmounts',
+      formatter: (v, d) => {
+        return d.totalCutAmount / 1000;
+      }
+    }, {
+      title: '共计税费',
+      field: 'totalTaxs',
+      formatter: (v, d) => {
+        return d.totalTax / 1000;
+      }
+    }, {
+      title: '领薪人数',
+      field: 'number'
+    }, {
+      title: '所属月份',
+      field: 'month'
+    }, {
       field: 'status',
       title: '状态',
       type: 'select',
       key: 'message_status'
-    }, {
-      field: 'bankName',
-      title: '开户行'
-    }, {
-      field: 'subbranch',
-      title: '开会支行'
     }, {
       field: 'createDatetime',
       title: '创建时间',

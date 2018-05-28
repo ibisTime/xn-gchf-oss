@@ -29,6 +29,9 @@ class Bank extends React.Component {
       title: '登录名',
       field: 'loginName'
     }, {
+      title: '手机号',
+      field: 'mobile'
+    }, {
       title: '状态',
       field: 'status',
       type: 'select',
@@ -42,11 +45,15 @@ class Bank extends React.Component {
         updater: ''
       },
       keyName: 'code',
-      valueName: 'name',
-      search: true
+      valueName: 'name'
     }, {
       title: '备注',
       field: 'remark'
+    }, {
+      title: '关键字',
+      field: 'keyword',
+      search: true,
+      hidden: true
     }];
     const btnEvent = {
       reset: (selectedRowKeys, selectedRows) => {

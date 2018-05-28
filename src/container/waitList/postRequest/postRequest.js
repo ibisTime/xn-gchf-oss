@@ -49,6 +49,33 @@ class PostRequest extends React.Component {
       title: '标题',
       field: 'title'
     }, {
+      field: 'bankNames',
+      title: '开户行',
+      formatter: (v, d) => {
+        return d.bankName + d.subbranch;
+      }
+    }, {
+      field: 'bankcardNumber',
+      title: '账户'
+    }, {
+      field: 'totalAmounts',
+      title: '本月累计发薪',
+      formatter: (v, d) => {
+        return d.totalAmount / 1000;
+      }
+    }, {
+      title: '共计扣款',
+      field: 'totalCutAmounts',
+      formatter: (v, d) => {
+        return d.totalCutAmount / 1000;
+      }
+    }, {
+      title: '共计税费',
+      field: 'totalTaxs',
+      formatter: (v, d) => {
+        return d.totalTax / 1000;
+      }
+    }, {
       title: '状态',
       field: 'status',
       key: 'message_status',

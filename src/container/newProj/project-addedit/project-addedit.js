@@ -111,7 +111,7 @@ class ProjectAddedit extends React.Component {
       required: true
     }, {
       field: 'bankcardNumber',
-      title: '账户号',
+      title: '银行账户',
       _keys: ['companyCard', 'bankcardNumber'],
       required: true
     }, {
@@ -165,14 +165,11 @@ class ProjectAddedit extends React.Component {
       },
       required: true
     }, {
-      field: 'bankCode',
-      title: '银行名称',
-      type: this.view ? null : 'select',
-      listCode: '631116',
-      keyName: 'bankCode',
-      valueName: 'bankName',
-      _keys: ['companyCard', 'bankName'],
-      required: true
+      field: 'bankCodes',
+      title: '开户行',
+      formatter: (v, d) => {
+        return d.companyCard.bankName + d.companyCard.subbranch;
+      }
     }, {
       field: 'companyCode',
       formatter: (v, d) => {
@@ -180,13 +177,8 @@ class ProjectAddedit extends React.Component {
       },
       hidden: true
     }, {
-      field: 'subbranch',
-      title: '开户行',
-      _keys: ['companyCard', 'subbranch'],
-      required: true
-    }, {
       field: 'bankcardNumber',
-      title: '账户号',
+      title: '银行账户',
       _keys: ['companyCard', 'bankcardNumber'],
       required: true
     }, {
@@ -204,6 +196,51 @@ class ProjectAddedit extends React.Component {
       formatter: (v, d) => {
         return '每月' + d.salaryDatetime + '多少号';
       },
+      required: true
+    }, {
+      field: 'lastMonthSalary',
+      title: '上月实际发薪金额',
+      _keys: ['report', 'lastMonthSalary'],
+      required: true
+    }, {
+      field: 'leavingDays',
+      title: '累计请假人次',
+      _keys: ['report', 'leavingDays'],
+      required: true
+    }, {
+      field: 'nextMonthSalary',
+      title: '下月预计发薪金额',
+      _keys: ['report', 'nextMonthSalary'],
+      required: true
+    }, {
+      field: 'staffIn',
+      title: '累计入职人数',
+      _keys: ['report', 'staffIn'],
+      required: true
+    }, {
+      field: 'staffOn',
+      title: '目前在职人数',
+      _keys: ['report', 'staffOn'],
+      required: true
+    }, {
+      field: 'staffOut',
+      title: '累计离职人数',
+      _keys: ['report', 'staffOut'],
+      required: true
+    }, {
+      field: 'todayDays',
+      title: '今日上工人数',
+      _keys: ['report', 'todayDays'],
+      required: true
+    }, {
+      field: 'totalSalary',
+      title: '累计发薪金额',
+      _keys: ['report', 'totalSalary'],
+      required: true
+    }, {
+      field: 'workingDays',
+      title: '累计出工人次',
+      _keys: ['report', 'workingDays'],
       required: true
     }];
     if (getUserKind() === 'O') {

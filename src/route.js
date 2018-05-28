@@ -126,8 +126,16 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
   },
   {
+    path: '/newProj/project/weekday',
+    component: asyncComponent(() => import('container/newProj/project-weekday/project-weekday'))
+  },
+  {
     path: '/newProj/project/check',
     component: asyncComponent(() => import('container/newProj/project-check/project-check'))
+  },
+  {
+    path: '/newProj/project/quit',
+    component: asyncComponent(() => import('container/newProj/project-quit/project-quit'))
   },
   {
     path: '/projectManage/project/check',
@@ -256,6 +264,18 @@ const ROUTES = [
   {
     path: '/staff/allStafferror',
     component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
+  },
+  {
+    path: '/staff/allStafferrHistory',
+    component: asyncComponent(() => import('container/staff/allStaff-errHistory/allStaff-errHistory'))
+  },
+  {
+    path: '/staff/allStafferror/history/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-errHistoryAddedit/allStaff-errHistoryAddedit'))
+  },
+   {
+    path: '/staff/allStaff/error/Edit',
+    component: asyncComponent(() => import('container/staff/allStaff-errorEdit/allStaff-errorEdit'))
   },
   {
     path: '/staff/error',

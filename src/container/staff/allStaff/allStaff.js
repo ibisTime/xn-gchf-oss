@@ -47,14 +47,7 @@ class AllStaff extends React.Component {
   render() {
     const fields = [{
       field: 'name',
-      title: '姓名',
-      search: true,
-      requried: 'select'
-      // formatter: (v, data) => {
-      //   if(data.Staff) {
-      //     return data.Staff.name;
-      //   }
-      // }
+      title: '姓名'
     }, {
       field: 'sex',
       title: '性别'
@@ -70,14 +63,12 @@ class AllStaff extends React.Component {
       }
     }, {
       field: 'idNo',
-      title: '证件号',
-      search: true,
-      requried: 'select'
-      // formatter: (v, data) => {
-      //   if(data.Staff) {
-      //     return data.Staff.idNo;
-      //   }
-      // }
+      title: '证件号'
+    }, {
+      field: 'keyword',
+      title: '关键字查询(输入名字或者证件号)',
+      hidden: true,
+      search: true
     }];
     const btnEvent = {
       error: (selectedRowKeys, selectedRows) => {
@@ -113,6 +104,34 @@ class AllStaff extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           this.props.history.push(`/staff/allStaff/detailadd?staffCode=${selectedRowKeys[0]}`);
+        }
+      },
+      addWorkers: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/people/wugong/addedit?projectCode=${selectedRowKeys[0]}`);
+        }
+      },
+      weekday: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/newProj/project/weekday?code=${selectedRowKeys[0]}`);
+        }
+      },
+      quit: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          console.log(selectedRows);
+          this.props.history.push(`/newProj/project/quit?code=${selectedRowKeys[0]}`);
         }
       }
     };

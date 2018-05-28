@@ -48,50 +48,30 @@ class ProjectCheck extends React.Component {
       field: 'chargeName',
       title: '负责人'
     }, {
-      field: 'quyu',
-      title: '地区',
-      type: 'citySelect',
-      required: true
-    }, {
-      field: 'address',
+      field: 'quyus',
       title: '详细地址',
+      formatter: (v, d) => {
+        return d.province + d.city + d.area + d.address + '';
+      },
       required: true
     }, {
-      field: 'longitude',
-      title: '经度',
-      required: true
-    }, {
-      field: 'latitude',
-      title: '纬度',
-      required: true
-    }, {
-      field: 'attendanceStarttime',
-      title: '上班时间',
-      type: 'time',
-      required: true
-    }, {
-      field: 'attendanceEndtime',
-      title: '下班时间',
-      type: 'time',
-      required: true
-    }, {
-      field: 'bankName',
-      title: '银行名称',
-      type: this.view ? null : 'select',
-      _keys: ['companyCard', 'bankName'],
-      listCode: '631116',
-      keyName: 'bankCode',
-      valueName: 'bankName',
-      required: true
-    }, {
-      field: 'subbranch',
+      field: 'bankCodes',
       title: '开户行',
-      _keys: ['companyCard', 'subbranch'],
-      required: true
+      formatter: (v, d) => {
+        return d.companyCard.bankName + d.companyCard.subbranch;
+      }
     }, {
       field: 'bankcardNumber',
-      title: '账户号',
+      title: '银行账户',
       _keys: ['companyCard', 'bankcardNumber'],
+      required: true
+    }, {
+      field: 'attendanceStarttimes',
+      title: '上下班时间',
+      type: 'time',
+      formatter: (v, d) => {
+        return d.attendanceStarttime + '--' + d.attendanceEndtime;
+      },
       required: true
     }, {
       field: 'approveNote',

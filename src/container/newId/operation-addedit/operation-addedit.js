@@ -35,7 +35,7 @@ class OperationAddEdit extends React.Component {
       view: this.view,
       key: 'id',
       detailCode: 631117,
-      editCode: 631111,
+      editCode: 631112,
       addCode: 631110
     });
   }

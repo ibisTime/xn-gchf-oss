@@ -5,8 +5,8 @@ export function setRoleMenus(menuCodeList, roleCode, updater) {
   return fetch(631050, { menuCodeList, roleCode, updater });
 }
 
-export function rock(userId) {
-  return fetch(631075, { userId });
+export function rock(userId, updater) {
+  return fetch(631075, { userId, updater });
 }
 
 export function getUserDetail(userId) {
@@ -15,6 +15,10 @@ export function getUserDetail(userId) {
 
 export function getUserId() {
   return cookies.get('userId');
+}
+
+export function getjinduList(projectCodeList, companyCode, kind) {
+  return fetch(631357, { projectCodeList, companyCode, kind: 'O' });
 }
 
 export function getUserErrorInfo(salaryCode) {

@@ -9,7 +9,7 @@ import { getUserId, getUserDetail, getUserErrorInfo, getUserWagesInfo, senderrIn
 const { TextArea } = Input;
 const FormItem = Form.Item;
 
-class AllStaffAddEdit extends React.Component {
+class AllStaffErrHistoryAddEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,8 +83,10 @@ class AllStaffAddEdit extends React.Component {
         <p>实发工资：{this.state.data.payAmount / 1000}</p>
         <p>工资所属月份：{this.state.data.month}</p>
         <Divider>异常处理报告</Divider>
-        {list(this.state.errordata.length)}
-        <Form onSubmit={this.handleSubmit} className="login-form">
+        <div>
+          {list(this.state.errordata.length)}
+        </div>
+        <Form onSubmit={this.handleSubmit}>
           <FormItem>
             {getFieldDecorator('handleNote', {
               rules: [{ required: true, message: '必填字段' }]
@@ -102,4 +104,4 @@ class AllStaffAddEdit extends React.Component {
   }
 }
 
-export default Form.create()(AllStaffAddEdit);
+export default Form.create()(AllStaffErrHistoryAddEdit);

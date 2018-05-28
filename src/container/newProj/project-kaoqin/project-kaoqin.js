@@ -1,5 +1,6 @@
 import React from 'react';
 import fetch from 'common/js/fetch';
+import { Modal } from 'antd';
 import XLSX from 'xlsx';
 import {
   setTableData,
@@ -31,6 +32,7 @@ class Kaoqin extends React.Component {
     this.state = {
       projectCodeList: ''
     };
+    this.code = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
@@ -74,16 +76,22 @@ class Kaoqin extends React.Component {
       title: '结算时间',
       type: 'date'
     }, {
-      field: 'createDatetime',
-      title: '生成时间',
+      field: 'dateStart',
+      title: '开始时间',
       search: true,
-      rangedate: ['dateStart', 'dateEnd'],
-      type: 'datetime'
+      type: 'datetime',
+      hidden: true
+    }, {
+      field: 'dateEnd',
+      title: '结束时间',
+      search: true,
+      type: 'datetime',
+      hidden: true
     }, {
       field: 'remark',
       title: '备注'
     }, {
-      field: 'keyName',
+      field: 'keyword',
       title: '关键字',
       search: true,
       hidden: true
@@ -91,7 +99,7 @@ class Kaoqin extends React.Component {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
       return this.state.projectCodeList ? this.props.buildList({
         fields,
-        searchParams: { projectCodeList: this.state.projectCodeList },
+        searchParams: this.code ? { projectCode: this.code } : { projectCodeList: this.state.projectCodeList },
         pageCode: 631395,
         buttons: [{
           code: 'export',
@@ -131,11 +139,39 @@ class Kaoqin extends React.Component {
               XLSX.writeFile(wb, 'sheetjs.xlsx');
             });
           }
+        },
+        {
+          code: 'daka',
+          name: '打卡',
+          handler: (selectedRowKeys, selectedRows) => {
+            console.log(selectedRows[0].projectCode);
+            console.log(selectedRows[0].staffCode);
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              Modal.confirm({
+                okText: '确认',
+                cancelText: '取消',
+                content: '确定打卡？',
+                onOk: () => {
+                  this.props.doFetching();
+                  fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
+                    showSucMsg('操作成功');
+                    this.props.cancelFetching();
+                    setTableData();
+                  }).catch(this.props.cancelFetching);
+                }
+              });
+            }
+          }
         }]
       }) : null;
     } else {
       return this.props.buildList({
         fields,
+        searchParams: { projectCode: this.code },
         pageCode: 631395,
         buttons: [{
           code: 'export',

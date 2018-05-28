@@ -34,59 +34,18 @@ class Daifa extends React.Component {
       code: '',
       companyCode: ''
     };
-    if(getUserKind() === 'O') {
+    if (getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    }
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCodeList': data.companyCodeList });
       });
     }
   }
   render() {
-    const fields = [{
-      field: 'code',
-      title: '编号',
-      hidden: true
-    }, {
-      field: 'projectCode',
-      title: '项目编号',
-      hidden: true
-    }, {
-      field: 'projectCode',
-      title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: '',
-        companyCode: this.state.companyCode
-      },
-      keyName: 'code',
-      valueName: 'name'
-    }, {
-      field: 'status',
-      title: '状态',
-      search: true,
-      type: 'select',
-      key: 'message_status'
-    }, {
-      field: 'createDatetime',
-      title: '创建时间',
-      type: 'datetime'
-    }, {
-      field: 'handleDatetime',
-      title: '处理时间',
-      type: 'datetime'
-    }, {
-      field: 'handleNote',
-      title: '处理备注'
-    }, {
-      field: 'handleName',
-      title: '处理人'
-    }, {
-      field: 'keyword',
-      search: true,
-      hidden: true,
-      title: '关键字'
-    }];
     const fieldso = [{
       field: 'code',
       title: '编号',
@@ -109,16 +68,37 @@ class Daifa extends React.Component {
       keyName: 'code',
       valueName: 'name'
     }, {
+      field: 'bankNames',
+      title: '开户行',
+      formatter: (v, d) => {
+        return d.bankName + d.subbranch;
+      }
+    }, {
+      field: 'bankcardNumber',
+      title: '账户'
+    }, {
+      field: 'totalAmounts',
+      title: '本月累计发薪',
+      formatter: (v, d) => {
+        return d.totalAmount / 1000;
+      }
+    }, {
+      title: '共计扣款',
+      field: 'totalCutAmounts',
+      formatter: (v, d) => {
+        return d.totalCutAmount / 1000;
+      }
+    }, {
+      title: '共计税费',
+      field: 'totalTaxs',
+      formatter: (v, d) => {
+        return d.totalTax / 1000;
+      }
+    }, {
       field: 'status',
       title: '状态',
       type: 'select',
       key: 'message_status'
-    }, {
-      field: 'bankName',
-      title: '开户行'
-    }, {
-      field: 'subbranch',
-      title: '开会支行'
     }, {
       field: 'createDatetime',
       title: '创建时间',
@@ -135,7 +115,7 @@ class Daifa extends React.Component {
             this.code = selectedRowKeys[0];
             this.setState({ visible: true });
             this.setState({ code: selectedRowKeys[0] });
-          }else {
+          } else {
             showWarnMsg('该状态消息不可发送');
           }
         }
@@ -168,31 +148,31 @@ class Daifa extends React.Component {
     };
     if (getUserKind() === 'O') {
       return this.state.companyCode ? (
-            <div>
-              {this.props.buildList({
-                fields: fieldso,
-                btnEvent,
-                searchParams: {
-                  updater: '',
-                  companyCode: this.state.companyCode,
-                  kind: 'O',
-                  status: 0
-                },
-                pageCode: 631435,
-                rowKey: 'code'
-                })}
-              <ModalDetail
-                title='发送消息'
-                visible={this.state.visible}
-                hideModal={() => this.setState({ visible: false })}
-                options={options} />
-            </div>
-          ) : null;
-    }else {
+        <div>
+          {this.props.buildList({
+            fields: fieldso,
+            btnEvent,
+            searchParams: {
+              updater: '',
+              companyCode: this.state.companyCode,
+              kind: 'O',
+              status: 0
+            },
+            pageCode: 631435,
+            rowKey: 'code'
+          })}
+          <ModalDetail
+            title='发送消息'
+            visible={this.state.visible}
+            hideModal={() => this.setState({ visible: false })}
+            options={options} />
+        </div>
+      ) : null;
+    } else {
       return (
         <div>
           {this.props.buildList({
-            fields,
+            fields: fieldso,
             btnEvent,
             searchParams: {
               updater: '',
@@ -200,7 +180,7 @@ class Daifa extends React.Component {
             },
             pageCode: 631435,
             rowKey: 'code'
-            })}
+          })}
           <ModalDetail
             title='发送消息'
             visible={this.state.visible}

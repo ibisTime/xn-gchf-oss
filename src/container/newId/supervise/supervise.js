@@ -29,6 +29,9 @@ class Supervise extends React.Component {
       title: '登录名',
       field: 'loginName'
     }, {
+      title: '手机号',
+      field: 'mobile'
+    }, {
       title: '状态',
       field: 'status',
       type: 'select',
@@ -42,15 +45,15 @@ class Supervise extends React.Component {
       },
       listCode: '631046',
       keyName: 'code',
-      valueName: 'name',
-      search: true
-    }, {
-      title: '手机号',
-      field: 'mobile',
-      mobile: true
+      valueName: 'name'
     }, {
       title: '备注',
       field: 'remark'
+    }, {
+      title: '关键字',
+      field: 'keyword',
+      search: true,
+      hidden: true
     }];
     const btnEvent = {
       reset: (selectedRowKeys, selectedRows) => {

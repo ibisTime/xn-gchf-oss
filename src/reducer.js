@@ -43,6 +43,8 @@ import { newProjProjectSalary } from './redux/newProj/project-salary';
 import { newProjProjectSalaryEdit } from './redux/newProj/project-salary-edit';
 import { newProjProjectSalaryCheck } from './redux/newProj/project-salary-check';
 import { newProjKaoqin } from './redux/newProj/project-kaoqin';
+import { newProjProjectWeekday } from './redux/newProj/project-weekday';
+import { newProjProjectQuit } from './redux/newProj/project-quit';
 import { yewuManageAccount } from './redux/yewuManage/account';
 import { yewuManageAccountAddEdit } from './redux/yewuManage/account-addedit';
 import { hetongChengbaoshang } from './redux/hetong/chengbaoshang';
@@ -62,6 +64,8 @@ import { staffAllStaff } from './redux/staff/allStaff';
 import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
 import { staffAllStaffAddEditAdd } from './redux/staff/allStaff-addeditAdd';
 import { staffAllStaffError } from './redux/staff/allStaff-error';
+import { staffAllStaffErrHistory } from './redux/staff/allStaff-errHistory';
+import { staffAllStaffErrorEdit } from './redux/staff/allStaff-errorEdit';
 import { staffAllStaffHistory } from './redux/staff/allStaff-history';
 import { staffAllStaffDetail } from './redux/staff/allStaff-detail';
 import { staffAllStaffErrorAddEdit } from './redux/staff/allStaff-errorAddedit';
@@ -121,6 +125,8 @@ export default combineReducers({
   newprojProjectCheck,
   newprojProjectEnd,
   newprojProjectStop,
+  newProjProjectWeekday,
+  newProjProjectQuit,
   newProjProjectLeijifaxin,
   newProjProjectSalary,
   newProjProjectSalaryEdit,
@@ -145,6 +151,8 @@ export default combineReducers({
   staffAllStaffAddEdit,
   staffAllStaffAddEditAdd,
   staffAllStaffError,
+  staffAllStaffErrHistory,
+  staffAllStaffErrorEdit,
   staffAllStaffHistory,
   staffAllStaffDetail,
   staffBaogong,

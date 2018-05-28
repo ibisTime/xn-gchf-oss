@@ -75,7 +75,7 @@ class BankAddEdit extends React.Component {
       key: 'userId',
       view: this.view,
       beforeSubmit: (param) => {
-        param.loginName = param.subbranch + param.bankName;
+        param.loginName = param.bankName + param.subbranch;
         return param;
       },
       detailCode: 631087,

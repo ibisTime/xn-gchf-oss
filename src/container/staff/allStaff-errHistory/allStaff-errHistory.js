@@ -9,14 +9,14 @@ import {
   doFetching,
   cancelFetching,
   setSearchData
-} from '@redux/staff/allStaff-error';
+} from '@redux/staff/allStaff-errHistory';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getQueryString, getUserKind, getUserId } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
-    ...state.staffAllStaffError,
+    ...state.staffAllStaffErrHistory,
     parentCode: state.menu.subMenuCode
   }),
   {
@@ -102,16 +102,8 @@ class AllStaffError extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/staff/allStafferror/addedit?v=1&code=${selectedRowKeys[0]}`);
-        }
-      },
-      Transformation: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/staff/allStaff/error/Edit?v=1&code=${selectedRowKeys[0]}`);
+          console.log(selectedRows);
+          this.props.history.push(`/staff/allStafferror/history/addedit?v=1&code=${selectedRowKeys[0]}`);
         }
       }
     };
@@ -124,14 +116,11 @@ class AllStaffError extends React.Component {
           type: '1',
           companyCode: this.state.companyCode,
           kind: 'O',
-          status: 4
+          status: 5
         },
         buttons: [{
           code: 'detail',
           name: '详情'
-        }, {
-          code: 'Transformation',
-          name: '转化为正常'
         }],
         pageCode: 631445
       }) : null;
@@ -142,7 +131,7 @@ class AllStaffError extends React.Component {
         searchParams: {
           projectCodeList: this.state.projectCodeList,
           kind: 'S',
-          status: 4
+          status: 5
         },
         buttons: [{
           code: 'detail',
@@ -154,7 +143,7 @@ class AllStaffError extends React.Component {
       return this.props.buildList({
         fields,
         btnEvent,
-        searchParams: { staffCode: this.staffCode, type: 'P', status: 4 },
+        searchParams: { staffCode: this.staffCode, type: 'P', status: 5 },
         buttons: [{
           code: 'detail',
           name: '详情'
