@@ -73,35 +73,16 @@ class Map extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/newProj/project/edit?v=1&code=${selectedRowKeys[0]}`);
+          this.props.history.push(`/projectManage/project/edit?v=1&code=${selectedRowKeys[0]}`);
         }
       },
-      // weekday: (selectedRowKeys, selectedRows) => {
-      //   if (!selectedRowKeys.length) {
-      //     showWarnMsg('请选择记录');
-      //   } else if (selectedRowKeys.length > 1) {
-      //     showWarnMsg('请选择一条记录');
-      //   } else {
-      //     this.props.history.push(`/newProj/project/weekday?code=${selectedRowKeys[0]}`);
-      //   }
-      // },
-      // 办理入职
-      // addWorkers: (selectedRowKeys, selectedRows) => {
-      //   if (!selectedRowKeys.length) {
-      //     showWarnMsg('请选择记录');
-      //   } else if (selectedRowKeys.length > 1) {
-      //     showWarnMsg('请选择一条记录');
-      //   } else {
-      //     this.props.history.push(`/people/wugong/addedit?projectCode=${selectedRowKeys[0]}`);
-      //   }
-      // },
       wages: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/newProj/project/salary?projectCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/projectManage/project/salary?projectCode=${selectedRowKeys[0]}`);
         }
       },
       proDetail: (selectedRowKeys, selectedRows) => {
@@ -185,16 +166,6 @@ class Map extends React.Component {
           this.props.history.push(`/hetong/jindu/info?start=1&projectCode=${selectedRowKeys[0]}`);
         }
       }
-      // quit: (selectedRowKeys, selectedRows) => {
-      //   if (!selectedRowKeys.length) {
-      //     showWarnMsg('请选择记录');
-      //   } else if (selectedRowKeys.length > 1) {
-      //     showWarnMsg('请选择一条记录');
-      //   } else {
-      //     console.log(selectedRows);
-      //     this.props.history.push(`/newProj/project/quit?code=${selectedRowKeys[0]}`);
-      //   }
-      // }
     };
     const fields = [{
       field: 'projectCode',
@@ -248,6 +219,12 @@ class Map extends React.Component {
     }, {
       field: 'remark',
       title: '备注'
+    }, {
+      field: 'keyword',
+      title: '关键字',
+      placeholder: '手机号',
+      hidden: true,
+      search: true
     }];
     if (getUserKind() === 'P') {
       return this.props.buildList({
@@ -263,7 +240,8 @@ class Map extends React.Component {
         fields,
         btnEvent,
         searchParams: {
-          companyCode: this.state.companyCode
+          companyCode: this.state.companyCode,
+          kind: 'O'
         },
         pageCode: 631356
       }) : null;

@@ -16,8 +16,6 @@ class RoleMenu extends React.Component {
       fetching: true,
       treeData: [],
       expandedKeys: [],
-      autoExpandParent: false,
-      checkStrictly: true,
       checkedKeys: [],
       selectKey: '',
       stopGetTree1: false
@@ -26,11 +24,9 @@ class RoleMenu extends React.Component {
     this.name = getQueryString('name');
   }
   componentDidMount() {
-    let codes;
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
         getCompany(data.projectCodeList, 'S').then((companyData) => {
-          // console.log(companyData);
           this.getTree(companyData[0]);
           this.setState({
             fetching: false
@@ -41,6 +37,7 @@ class RoleMenu extends React.Component {
       getUserDetail(getUserId()).then((data) => {
         console.log(data);
         getCompanyDetail(data.companyCode).then((data) => {
+          console.log(data);
           this.getTree(data);
           this.setState({
             fetching: false
@@ -160,32 +157,15 @@ class RoleMenu extends React.Component {
   // }
   editCompany = () => {
     if (this.state.selectKey !== '') {
-      this.props.history.push(`/newProj/addCompany?code=${this.state.selectKey}`);
+      this.props.history.push(`/newProj/companyConstruct/addCompany?code=${this.state.selectKey}`);
     } else {
       showWarnMsg('请选择一家公司');
     }
   }
-  // deleteCompany = () => {
-  //   if(this.state.selectKey !== '') {
-  //       Modal.confirm({
-  //           okText: '确认',
-  //           cancelText: '取消',
-  //           content: '确定删除该公司？',
-  //           onOk: () => {
-  //               this.setState({ fetching: true });
-  //               deleteCompany1(this.state.selectKey).then(() => {
-  //                 showSucMsg('操作成功');
-  //                 this.setState({ fetching: false });
-  //               }).catch(this.props.cancelFetching);
-  //           }
-  //       });
-  //   }else {
-  //       showWarnMsg('请选择一家公司');
-  //   }
-  // }
   addBumen = () => {
     if (this.state.selectKey !== '') {
-      this.props.history.push(`/newProj/addBumen?companyCode=${this.state.selectKey}`);
+      console.log(this.state.treeData);
+      this.props.history.push(`/newProj/companyConstruct/addBumen?companyCode=${this.state.treeData[0].key}&bumenCode=${this.state.selectKey}`);
     } else {
       showWarnMsg('请选择一家公司');
     }
@@ -193,7 +173,7 @@ class RoleMenu extends React.Component {
   editBumen = () => {
     if (this.state.selectKey !== '' && this.companyCodeObj[this.state.selectKey] !== undefined) {
       let companyCode = this.companyCodeObj[this.state.selectKey];
-      this.props.history.push(`/newProj/addBumen?code=${this.state.selectKey}&companyCode=${companyCode}`);
+      this.props.history.push(`/newProj/companyConstruct/addBumen?code=${this.state.selectKey}&companyCode=${companyCode}`);
     } else {
       showWarnMsg('请选择一个部门');
     }
@@ -240,9 +220,9 @@ class RoleMenu extends React.Component {
               <Tree
                 checkable={false}
                 showLine
-                checkStrictly={this.state.checkStrictly}
+                checkStrictly={true}
                 defaultExpandAll
-                autoExpandParent={this.state.autoExpandParent}
+                autoExpandParent={false}
                 onSelect={this.onSelect}
                 checkedKeys={this.state.checkedKeys}
               >

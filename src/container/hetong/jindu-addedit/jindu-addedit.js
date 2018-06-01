@@ -1,6 +1,5 @@
 import React from 'react';
 import fetch from 'common/js/fetch';
-import cookies from 'browser-cookies';
 import {
   initStates,
   doFetching,
@@ -9,10 +8,10 @@ import {
   setPageData,
   restore
 } from '@redux/hetong/jindu-addedit';
-import { getQueryString, showSucMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, getUserId, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
-import { getUserId, getUserDetail } from 'api/user';
+import { getUserDetail } from 'api/user';
 
 @DetailWrapper(
   state => state.hetongJinduAddEdit,
@@ -25,13 +24,14 @@ class JinduAddEdit extends React.Component {
       companyCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
-    this.view = !!getQueryString('v', this.props.location.search);
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
+  }
+  componentDidMount() {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
       });
     }
-  }
+  };
   render() {
     const fieldso = [{
       field: 'projectCode',
@@ -83,8 +83,7 @@ class JinduAddEdit extends React.Component {
     }, {
       field: 'picture',
       title: '工程进度图片',
-      type: 'img',
-      required: true
+      type: 'img'
     }, {
       field: 'datetime',
       title: '进度时间',
@@ -94,23 +93,17 @@ class JinduAddEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (!this.code) {
       return this.state.companyCode ? this.props.buildDetail({
-        fields,
+        fields: fieldso,
         code: this.code,
-        view: this.view,
-        addCode: 631380,
-        detailCode: 631387,
-        editCode: 631382
+        editCode: 631380
       }) : null;
-    }else {
+    } else {
       return this.props.buildDetail({
         fields,
         code: this.code,
-        view: this.view,
-        addCode: 631380,
-        detailCode: 631387,
-        editCode: 631382
+        editCode: 631380
       });
     }
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import {
   initStates,
   doFetching,
@@ -32,7 +31,7 @@ class ProjectCheck extends React.Component {
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-    getUserDetail(cookies.get('userId')).then(data => {
+    getUserDetail(getUserId()).then(data => {
       this.getUserDetail(data.companyCode);
     });
   }
@@ -63,7 +62,7 @@ class ProjectCheck extends React.Component {
     }, {
       field: 'bankcardNumber',
       title: '银行账户',
-      _keys: ['companyCard', 'bankcardNumber'],
+      _keys: ['companyCard', 'accountName'],
       required: true
     }, {
       field: 'attendanceStarttimes',
@@ -89,34 +88,34 @@ class ProjectCheck extends React.Component {
       buttons: [{
         title: '通过',
         handler: (param) => {
-            param.result = '1';
-            param.code = this.projectCode;
-            param.approver = getUserId();
-            this.props.doFetching();
-            fetch(631354, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
+          param.result = '1';
+          param.code = this.projectCode;
+          param.approver = getUserId();
+          this.props.doFetching();
+          fetch(631354, param).then(() => {
+            showSucMsg('操作成功');
+            this.props.cancelFetching();
+            setTimeout(() => {
+              this.props.history.go(-1);
+            }, 1000);
+          }).catch(this.props.cancelFetching);
         },
         check: true,
         type: 'primary'
       }, {
         title: '不通过',
         handler: (param) => {
-            param.result = '0';
-            param.code = this.projectCode;
-            param.approver = getUserId();
-            this.props.doFetching();
-            fetch(631354, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              setTimeout(() => {
-                this.props.history.go(-1);
-              }, 1000);
-            }).catch(this.props.cancelFetching);
+          param.result = '0';
+          param.code = this.projectCode;
+          param.approver = getUserId();
+          this.props.doFetching();
+          fetch(631354, param).then(() => {
+            showSucMsg('操作成功');
+            this.props.cancelFetching();
+            setTimeout(() => {
+              this.props.history.go(-1);
+            }, 1000);
+          }).catch(this.props.cancelFetching);
         },
         check: true
       }]

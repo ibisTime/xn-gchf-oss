@@ -7,7 +7,7 @@ import {
   setPageData,
   restore
 } from '@redux/waitList/alreadyQuest-addedit';
-import { getQueryString, showSucMsg, formatDate, showWarnMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, formatDate, showWarnMsg, moneyFormat } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { Button, Card } from 'antd';
 import { downLoad, detailDate, downNum } from 'api/downLoad';
@@ -82,7 +82,7 @@ class AlreadyQuestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.companyCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, d.factAmount / 1000, d.payAmount / 1000, formatDate(d.latePayDatetime)];
+        return [i + 1, d.code, d.companyCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, moneyFormat(d.factAmount), moneyFormat(d.payAmount), formatDate(d.latePayDatetime)];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -103,7 +103,7 @@ class AlreadyQuestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.companyCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, d.factAmount / 1000, '', ''];
+        return [i + 1, d.code, d.companyCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);

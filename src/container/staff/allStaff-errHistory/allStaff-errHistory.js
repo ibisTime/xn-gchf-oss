@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/staff/allStaff-errHistory';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getQueryString, getUserKind, getUserId } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getQueryString, getUserKind, getUserId, moneyFormat } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -72,13 +72,13 @@ class AllStaffError extends React.Component {
       field: 'factAmount',
       title: '应发工资',
       formatter: (v, data) => {
-        return v / 1000;
+        return moneyFormat(v);
       }
     }, {
       field: 'payAmount',
       title: '发放工资',
       formatter: (v, data) => {
-        return v / 1000;
+        return moneyFormat(v);
       }
     }, {
       title: '状态',

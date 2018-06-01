@@ -38,7 +38,6 @@ class AllStaffErrHistoryAddEdit extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log(values['handleNote']);
         this.sendInfo(values['handleNote']);
       }
     });

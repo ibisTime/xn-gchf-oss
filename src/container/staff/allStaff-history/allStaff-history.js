@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/staff/allStaff-history';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getQueryString } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getQueryString, getUserId, getUserKind } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -31,20 +31,19 @@ class AllStaffHistory extends React.Component {
       companyCode: '',
       projectCodeList: ''
     };
-
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.staffCode = getQueryString('staffCode', this.props.location.search);
   }
   componentDidMount() {
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         console.log(data);
         this.setState({ 'companyCode': data.companyCode, 'updater': '' });
       });
     }
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList, 'updater': '' });
       });
     }
@@ -157,7 +156,7 @@ class AllStaffHistory extends React.Component {
       search: true,
       hidden: true
     }];
-    if (cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         searchParams: {
@@ -166,7 +165,7 @@ class AllStaffHistory extends React.Component {
         buttons: [],
         pageCode: 631465
       }) : null;
-    } else if (cookies.get('loginKind') === 'S') {
+    } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({
         fields,
         searchParams: {

@@ -76,6 +76,10 @@ class Kaoqin extends React.Component {
       title: '结算时间',
       type: 'date'
     }, {
+      field: 'createDatetime',
+      title: '考勤生成时间',
+      type: 'date'
+    }, {
       field: 'dateStart',
       title: '开始时间',
       search: true,
@@ -93,10 +97,11 @@ class Kaoqin extends React.Component {
     }, {
       field: 'keyword',
       title: '关键字',
+      placeholder: '姓名',
       search: true,
       hidden: true
     }];
-    if (getUserKind() === 'S' || getUserKind() === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.projectCodeList ? this.props.buildList({
         fields,
         searchParams: this.code ? { projectCode: this.code } : { projectCodeList: this.state.projectCodeList },
@@ -144,8 +149,6 @@ class Kaoqin extends React.Component {
           code: 'daka',
           name: '打卡',
           handler: (selectedRowKeys, selectedRows) => {
-            console.log(selectedRows[0].projectCode);
-            console.log(selectedRows[0].staffCode);
             if (!selectedRowKeys.length) {
               showWarnMsg('请选择记录');
             } else if (selectedRowKeys.length > 1) {
@@ -160,7 +163,7 @@ class Kaoqin extends React.Component {
                   fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
                     showSucMsg('操作成功');
                     this.props.cancelFetching();
-                    setTableData();
+                    this.getPageData();
                   }).catch(this.props.cancelFetching);
                 }
               });

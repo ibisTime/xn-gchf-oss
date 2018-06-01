@@ -51,8 +51,7 @@ class ChengbaoshangAddEdit extends React.Component {
       },
       keyName: 'code',
       valueName: 'name',
-      required: true,
-      readonly: true
+      required: true
     }, {
       field: 'bname',
       title: '承包商名称',
@@ -91,7 +90,8 @@ class ChengbaoshangAddEdit extends React.Component {
       },
       keyName: 'code',
       valueName: 'name',
-      required: true
+      required: true,
+      readonly: true
     }, {
       field: 'bname',
       title: '承包商名称',
@@ -116,7 +116,7 @@ class ChengbaoshangAddEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if(getUserKind() === 'O') {
+    if(!this.code) {
       return this.state.companyCode ? this.props.buildDetail({
         fields: fieldso,
         code: this.code,

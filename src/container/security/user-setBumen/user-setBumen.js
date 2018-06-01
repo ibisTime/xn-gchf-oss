@@ -22,11 +22,6 @@ class UserSetBummen extends React.Component {
     this.code = getQueryString('userId', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
-  // componentDidMount() {
-  //   getUserDetail(cookies.get('userId')).then(data => {
-  //     this.companyCode = data.companyCode;
-  //   });
-  // }
   render() {
     const fields = [{
       title: '用户名',

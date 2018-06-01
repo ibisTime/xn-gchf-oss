@@ -83,7 +83,7 @@ class Wugong extends React.Component {
           code: 'add',
           name: '合同录入',
           handler: (selectedRowKeys, selectedRows) => {
-            this.props.history.push(`/hetong/staff/addedit`);
+            this.props.history.push(`/hetong/wugong/contract`);
           }
         }, {
           code: 'edit',
@@ -122,7 +122,7 @@ class Wugong extends React.Component {
           code: 'add',
           name: '合同录入',
           handler: (selectedRowKeys, selectedRows) => {
-            this.props.history.push(`/hetong/staff/addedit`);
+            this.props.history.push(`/hetong/wugong/contract`);
           }
         }, {
           code: 'edit',

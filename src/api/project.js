@@ -96,3 +96,17 @@ export function getPageChecks(start, limit, projectCode) {
     projectCode
   });
 }
+/**
+ * 分页查询异常信息
+ * @param start
+ * @param limit
+ * @param projectCode
+ */
+export function getPageabnormal(start, limit, projectCode, status) {
+  return fetch(631445, {
+    start,
+    limit,
+    projectCode,
+    status: '5'
+  });
+}

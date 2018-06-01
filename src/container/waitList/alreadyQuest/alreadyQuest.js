@@ -12,7 +12,7 @@ import {
 import { listWrapper } from 'common/js/build-list';
 import { getUserDetail } from 'api/user';
 import cookies from 'browser-cookies';
-import { getUserKind, getUserId } from 'common/js/util';
+import { getUserKind, getUserId, moneyFormat } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -66,19 +66,19 @@ class AlreadyQuest extends React.Component {
       field: 'totalAmounts',
       title: '本月累计发薪',
       formatter: (v, d) => {
-        return d.totalAmount / 1000;
+        return moneyFormat(d.totalAmount);
       }
     }, {
       title: '共计扣款',
       field: 'totalCutAmounts',
       formatter: (v, d) => {
-        return d.totalCutAmount / 1000;
+        return moneyFormat(d.totalCutAmount);
       }
     }, {
       title: '共计税费',
       field: 'totalTaxs',
       formatter: (v, d) => {
-        return d.totalTax / 1000;
+        return moneyFormat(d.totalTax);
       }
     }, {
       title: '状态',

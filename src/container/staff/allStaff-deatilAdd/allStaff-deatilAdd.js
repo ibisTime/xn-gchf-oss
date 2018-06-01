@@ -42,18 +42,6 @@ class AllStaffAddEditAdd extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'name',
-      title: '姓名',
-      required: true,
-      readonly: true,
-      hidden: true
-    }, {
-      field: 'sex',
-      title: '性别',
-      required: true,
-      readonly: true,
-      hidden: true
-    }, {
       field: 'mobile',
       title: '联系方式',
       search: true,
@@ -87,25 +75,33 @@ class AllStaffAddEditAdd extends React.Component {
       search: true,
       required: true
     }, {
+      field: 'name',
+      title: '技能名称'
+    }, {
+      field: 'score',
+      title: '技能评分'
+    }, {
       field: 'skillPdf',
       title: '技能证书',
-      type: 'img',
-      required: true
+      type: 'img'
     }, {
       field: 'pict1',
       title: '免冠照片',
       type: 'img',
-      single: true
+      single: true,
+      required: true
     }, {
       field: 'pict2',
       title: '手持身份张照片',
       type: 'img',
-      single: true
+      single: true,
+      required: true
     }, {
       field: 'pict3',
       title: '身份证正反面照片+签名',
       type: 'img',
-      single: true
+      single: true,
+      required: true
     }];
     return this.props.buildDetail({
       fields,

@@ -7,7 +7,7 @@ import {
   setPageData,
   restore
 } from '@redux/newId/yezhu-addedit';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 @DetailWrapper(
   state => state.newIdYezhuAddEdit,

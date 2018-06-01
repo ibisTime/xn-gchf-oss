@@ -12,7 +12,6 @@ import {
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
-import { getUserId, getUserDetail } from 'api/user';
 
 @DetailWrapper(
   state => state.daifaDaifaAddEdit,

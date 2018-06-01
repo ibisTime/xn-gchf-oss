@@ -60,7 +60,7 @@ class HStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/hetong/staff/addedit?staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+          this.props.history.push(`/hetong/wugong/contract?staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
         }
       }
     };
@@ -80,7 +80,7 @@ class HStaff extends React.Component {
             } else if (selectedRowKeys.length > 1) {
               showWarnMsg('请选择一条记录');
             } else {
-              this.props.history.push(`/hetong/staff/addedit?staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+              this.props.history.push(`/hetong/wugong/contract?staffCode=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
             }
           }
         }]

@@ -7,7 +7,7 @@ import {
   setPageData,
   restore
 } from '@redux/newProj/project-addedit';
-import { getQueryString, showSucMsg, getUserId, getUserKind } from 'common/js/util';
+import { getQueryString, showSucMsg, getUserId, getUserKind, moneyFormat } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import fetch from 'common/js/fetch';
 import { getBankNameByCode, getBankCodeByName } from 'api/project';
@@ -110,6 +110,10 @@ class ProjectAddedit extends React.Component {
       _keys: ['companyCard', 'subbranch'],
       required: true
     }, {
+      field: 'accountName',
+      title: '户名',
+      required: true
+    }, {
       field: 'bankcardNumber',
       title: '银行账户',
       _keys: ['companyCard', 'bankcardNumber'],
@@ -182,35 +186,9 @@ class ProjectAddedit extends React.Component {
       _keys: ['companyCard', 'bankcardNumber'],
       required: true
     }, {
-      field: 'salaryCreateDatetimes',
-      title: '工资条形成时间',
-      date28: true,
-      formatter: (v, d) => {
-        return '每月' + d.salaryCreateDatetime + '多少号';
-      },
-      required: true
-    }, {
-      field: 'salaryDatetimes',
-      title: '薪资发放时间',
-      date28: true,
-      formatter: (v, d) => {
-        return '每月' + d.salaryDatetime + '多少号';
-      },
-      required: true
-    }, {
-      field: 'lastMonthSalary',
-      title: '上月实际发薪金额',
-      _keys: ['report', 'lastMonthSalary'],
-      required: true
-    }, {
       field: 'leavingDays',
       title: '累计请假人次',
       _keys: ['report', 'leavingDays'],
-      required: true
-    }, {
-      field: 'nextMonthSalary',
-      title: '下月预计发薪金额',
-      _keys: ['report', 'nextMonthSalary'],
       required: true
     }, {
       field: 'staffIn',
@@ -241,6 +219,36 @@ class ProjectAddedit extends React.Component {
       field: 'workingDays',
       title: '累计出工人次',
       _keys: ['report', 'workingDays'],
+      required: true
+    }, {
+      field: 'salaryCreateDatetimes',
+      title: '工资条形成时间',
+      date28: true,
+      formatter: (v, d) => {
+        return '每月' + d.salaryCreateDatetime + '多少号';
+      },
+      required: true
+    }, {
+      field: 'salaryDatetimes',
+      title: '薪资发放时间',
+      date28: true,
+      formatter: (v, d) => {
+        return '每月' + d.salaryDatetime + '多少号';
+      },
+      required: true
+    }, {
+      field: 'lastMonthSalary',
+      title: '上月实际发薪金额',
+      formatter: (d, v) => {
+        return moneyFormat(v.report.lastMonthSalary);
+      },
+      required: true
+    }, {
+      field: 'nextMonthSalary',
+      title: '下月预计发薪金额',
+      formatter: (d, v) => {
+        return moneyFormat(v.report.nextMonthSalary);
+      },
       required: true
     }];
     if (getUserKind() === 'O') {

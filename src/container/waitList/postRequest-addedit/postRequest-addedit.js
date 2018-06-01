@@ -1,6 +1,6 @@
 import React from 'react';
 import fetch from 'common/js/fetch';
-import { getQueryString, showWarnMsg, showSucMsg, formatDate, getUserName, isUndefined, getUserId } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg, formatDate, getUserName, isUndefined, getUserId, moneyFormat } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import XLSX from 'xlsx';
 import { Button, Card, Upload, Icon } from 'antd';
@@ -82,7 +82,7 @@ class PostRequestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.status === '4' ? (d.supplyAmount) / 1000 : (d.factAmount) / 1000, '', ''];
+        return [i + 1, d.code, d.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.status === '4' ? moneyFormat(d.supplyAmount) : moneyFormat(d.factAmount), '', ''];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);

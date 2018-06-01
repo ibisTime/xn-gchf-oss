@@ -114,19 +114,19 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/bumenConstruct/bumenConstruct'))
   },
   {
-    path: '/newProj/addCompany',
+    path: '/newProj/companyConstruct/addCompany',
     component: asyncComponent(() => import('container/newProj/addCompany/addCompany'))
   },
   {
-    path: '/newProj/addBumen',
+    path: '/newProj/companyConstruct/addBumen',
     component: asyncComponent(() => import('container/newProj/addBumen/addBumen'))
   },
   {
-    path: '/newProj/project/edit',
+    path: '/projectManage/project/edit',
     component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
   },
   {
-    path: '/newProj/project/weekday',
+    path: '/staff/allStaff/weekday',
     component: asyncComponent(() => import('container/newProj/project-weekday/project-weekday'))
   },
   {
@@ -134,7 +134,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-check/project-check'))
   },
   {
-    path: '/newProj/project/quit',
+    path: '/staff/allStaff/quit',
     component: asyncComponent(() => import('container/newProj/project-quit/project-quit'))
   },
   {
@@ -158,7 +158,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-kaoqin/project-kaoqin'))
   },
   {
-    path: '/newProj/project/salary',
+    path: '/projectManage/project/salary',
     component: asyncComponent(() => import('container/newProj/project-salary/project-salary'))
   },
   {
@@ -166,11 +166,11 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-detail/project-detail'))
   },
   {
-    path: '/newProj/project/salary/edit',
+    path: '/projectManage/project/salary/edit',
     component: asyncComponent(() => import('container/newProj/project-salary-edit/project-salary-edit'))
   },
   {
-    path: '/newProj/project/salary/check',
+    path: '/projectManage/project/salary/check',
     component: asyncComponent(() => import('container/newProj/project-salary-check/project-salary-check'))
   },
   {
@@ -218,7 +218,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/hetong/wugong-edit/wugong-edit'))
   },
   {
-    path: '/hetong/staff/addedit',
+    path: '/hetong/wugong/contract',
     component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
   },
   {
@@ -230,7 +230,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/people/wugong/wugong'))
   },
   {
-    path: '/people/wugong/addedit',
+    path: '/staff/allStaff/entry',
     component: asyncComponent(() => import('container/people/wugong-addedit/wugong-addedit'))
   },
   {
@@ -262,6 +262,14 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/idCardQuery/idCardQuery'))
   },
   {
+    path: '/staff/allStaffNotice',
+    component: asyncComponent(() => import('container/staff/allStaff-notice/allStaff-notice'))
+  },
+  {
+    path: '/staff/allStaffNotice/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-noticeAddedit/allStaff-noticeAddedit'))
+  },
+  {
     path: '/staff/allStafferror',
     component: asyncComponent(() => import('container/staff/allStaff-error/allStaff-error'))
   },
@@ -273,7 +281,7 @@ const ROUTES = [
     path: '/staff/allStafferror/history/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-errHistoryAddedit/allStaff-errHistoryAddedit'))
   },
-   {
+  {
     path: '/staff/allStaff/error/Edit',
     component: asyncComponent(() => import('container/staff/allStaff-errorEdit/allStaff-errorEdit'))
   },

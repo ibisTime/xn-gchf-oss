@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -11,7 +10,7 @@ import {
   setSearchData
 } from '@redux/people/history';
 import { listWrapper } from 'common/js/build-list';
-import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg, getUserKind, getUserId } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -28,8 +27,8 @@ class History extends React.Component {
     this.state = {
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if(getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({'companyCode': data.companyCode});
       });
     }
@@ -124,7 +123,7 @@ class History extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if(getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         searchParams: { projectCode: this.projectCode, updater: '' },

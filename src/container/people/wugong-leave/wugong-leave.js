@@ -8,7 +8,7 @@ import {
   setPageData,
   restore
 } from '@redux/people/wugong-leave';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, getUserId, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getUserDetail } from 'api/user';
 
@@ -28,7 +28,7 @@ class PWugongLeave extends React.Component {
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   componentDidMount() {
-    getUserDetail(cookies.get('userId')).then(data => {
+    getUserDetail(getUserId()).then(data => {
       this.getUserDetail(data.departmentCode);
     });
   }

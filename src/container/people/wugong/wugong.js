@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -11,7 +10,7 @@ import {
   setSearchData
 } from '@redux/people/wugong';
 import { listWrapper } from 'common/js/build-list';
-import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getQueryString, showWarnMsg, showSucMsg, getUserId, getUserKind } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -19,8 +18,10 @@ import { getUserDetail } from 'api/user';
     ...state.peopleWugong,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class PWugong extends React.Component {
   constructor(props) {
@@ -30,13 +31,15 @@ class PWugong extends React.Component {
       code: '',
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
-      });
-    }
     this.projectCode = getQueryString('code', this.props.location.search);
   }
+  componentDidMount() {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    }
+  };
   render() {
     const fields = [{
       field: 'projectCode',
@@ -96,7 +99,7 @@ class PWugong extends React.Component {
         }
       }
     }];
-    if(cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       buttons.unshift({
         code: 'break',
         name: '请假',
@@ -124,7 +127,7 @@ class PWugong extends React.Component {
         }
       });
     }
-    if(cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         searchParams: { projectCode: this.projectCode, updater: '', companyCode: this.state.companyCode },
@@ -132,7 +135,7 @@ class PWugong extends React.Component {
         rowKey: 'staffCode',
         buttons: buttons
       }) : null;
-    }else {
+    } else {
       return this.props.buildList({
         fields,
         searchParams: { projectCode: this.projectCode, updater: '' },

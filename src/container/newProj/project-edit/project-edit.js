@@ -100,13 +100,6 @@ class ProjectEdit extends React.Component {
       key: 'code',
       code: this.code,
       detailCode: 631358,
-      // beforeSubmit: (param) => {
-      //   param.companyCode = this.state.companyCode;
-      //   getBankNameByCode(param.bankName).then(data => {
-      //     param.bankCode = data.bankCode;
-      //   });
-      //   return param;
-      // },
       buttons: [{
         title: '保存',
         check: true,

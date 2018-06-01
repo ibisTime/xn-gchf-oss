@@ -9,7 +9,7 @@ import {
   setPageData,
   restore
 } from '@redux/staff/allStaff-addedit';
-import { getQueryString, showSucMsg, formatDate } from 'common/js/util';
+import { getQueryString, showSucMsg, formatDate, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail } from 'api/user';
@@ -28,13 +28,13 @@ class AllStaffAddEdit extends React.Component {
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         console.log(data.companyCode);
         this.setState({ companyCode: data.companyCode });
       });
@@ -127,7 +127,7 @@ class AllStaffAddEdit extends React.Component {
       field: 'idStartDates',
       title: '证件有效时间',
       formatter: (v, d) => {
-        return formatDate(d.idStartDate) + '——' + formatDate(d.idEndDate);
+        return formatDate(d.idStartDate) + '---' + formatDate(d.idEndDate);
       }
     }, {
       field: 'updateName',

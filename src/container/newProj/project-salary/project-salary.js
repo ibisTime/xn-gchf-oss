@@ -12,7 +12,7 @@ import {
   setSearchData
 } from '@redux/newProj/project-salary';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, moneyFormat } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, moneyFormat, getUserKind, getUserId } from 'common/js/util';
 import ModalDetail from 'common/js/build-modal-detail';
 import fetch from 'common/js/fetch';
 import { getUserDetail } from 'api/user';
@@ -22,8 +22,10 @@ import { getUserDetail } from 'api/user';
     ...state.newProjProjectSalary,
     parentCode: state.menu.subMenuCode
   }),
-  { setTableData, clearSearchParam, doFetching, setBtnList,
-    cancelFetching, setPagination, setSearchParam, setSearchData }
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class Salary extends React.Component {
   constructor(props) {
@@ -32,13 +34,15 @@ class Salary extends React.Component {
       visible: false,
       companyCode: ''
     };
-    if(cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
-        this.setState({'companyCode': data.companyCode});
-      });
-    }
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
+  componentDidMount() {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    }
+  };
   render() {
     const fields = [{
       title: '员工姓名',
@@ -108,20 +112,20 @@ class Salary extends React.Component {
         title: '通过',
         check: true,
         handler: (param) => {
-            param.approver = cookies.get('userId');
-            param.result = '1';
-            this.props.doFetching();
-            fetch(631443, param).then(() => {
-              showSucMsg('操作成功');
-              this.props.cancelFetching();
-              this.setState({ visible: false });
-            }).catch(this.props.cancelFetching);
+          param.approver = getUserId();
+          param.result = '1';
+          this.props.doFetching();
+          fetch(631443, param).then(() => {
+            showSucMsg('操作成功');
+            this.props.cancelFetching();
+            this.setState({ visible: false });
+          }).catch(this.props.cancelFetching);
         }
       }, {
         title: '不通过',
         check: true,
         handler: (param) => {
-          param.approver = cookies.get('userId');
+          param.approver = getUserId();
           param.result = '0';
           this.props.doFetching();
           fetch(631443, param).then(() => {
@@ -132,7 +136,7 @@ class Salary extends React.Component {
         }
       }]
     };
-    if(cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.companyCode ? (
         <div>
           {
@@ -149,7 +153,7 @@ class Salary extends React.Component {
                     showWarnMsg('请选择一条记录');
                   } else {
                     if (selectedRows[0].status === '0') {
-                      this.props.history.push(`/newProj/project/salary/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+                      this.props.history.push(`/projectManage/project/salary/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
                     } else {
                       showWarnMsg('该状态的工资条不可修改');
                     }
@@ -163,10 +167,10 @@ class Salary extends React.Component {
                     showWarnMsg('请选择记录');
                   } else {
                     // if (selectedRows[0].status === '0') {
-                      this.codeList = selectedRowKeys;
-                      this.setState({ visible: true });
+                    this.codeList = selectedRowKeys;
+                    this.setState({ visible: true });
                     // } else {
-                      // showWarnMsg('该状态的工资条不可审核');
+                    // showWarnMsg('该状态的工资条不可审核');
                     // }
                   }
                 }
@@ -182,7 +186,7 @@ class Salary extends React.Component {
                     let tableData = [];
                     let title = [];
                     fields.map((item) => {
-                      if(item.title !== '关键字') {
+                      if (item.title !== '关键字') {
                         title.push(item.title);
                       }
                     });
@@ -190,7 +194,7 @@ class Salary extends React.Component {
                     data.list.map((item) => {
                       let temp = [];
                       this.props.searchData.status.map((v) => {
-                        if(v.dkey === item.status) {
+                        if (v.dkey === item.status) {
                           item.status = v.dvalue;
                         }
                       });
@@ -234,8 +238,8 @@ class Salary extends React.Component {
             options={options} />
         </div>
       ) : null;
-    }else {
-      return(
+    } else {
+      return (
         <div>
           {
             this.props.buildList({
@@ -249,7 +253,7 @@ class Salary extends React.Component {
                     let tableData = [];
                     let title = [];
                     fields.map((item) => {
-                      if(item.title !== '关键字') {
+                      if (item.title !== '关键字') {
                         title.push(item.title);
                       }
                     });
@@ -257,7 +261,7 @@ class Salary extends React.Component {
                     data.list.map((item) => {
                       let temp = [];
                       this.props.searchData.status.map((v) => {
-                        if(v.dkey === item.status) {
+                        if (v.dkey === item.status) {
                           item.status = v.dvalue;
                         }
                       });

@@ -60,11 +60,6 @@ class ProjectSalaryEdit extends React.Component {
       view: this.view,
       detailCode: 631447,
       editCode: 631442
-      // beforeSubmit: (param) => {
-      //   param.tax *= 1000;
-      //   param.cutAmount *= 1000;
-      //   return param;
-      // }
     });
   }
 }

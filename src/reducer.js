@@ -68,6 +68,8 @@ import { staffAllStaffErrHistory } from './redux/staff/allStaff-errHistory';
 import { staffAllStaffErrorEdit } from './redux/staff/allStaff-errorEdit';
 import { staffAllStaffHistory } from './redux/staff/allStaff-history';
 import { staffAllStaffDetail } from './redux/staff/allStaff-detail';
+import { staffAllStaffNotice } from './redux/staff/allStaff-notice';
+import { StaffAllStaffNoticeAddEdit } from './redux/staff/allStaff-noticeAddedit';
 import { staffAllStaffErrorAddEdit } from './redux/staff/allStaff-errorAddedit';
 import { staffAllStaffWages } from './redux/staff/allStaff-wages';
 import { staffBankCard } from './redux/staff/bankCard';
@@ -155,6 +157,8 @@ export default combineReducers({
   staffAllStaffErrorEdit,
   staffAllStaffHistory,
   staffAllStaffDetail,
+  staffAllStaffNotice,
+  StaffAllStaffNoticeAddEdit,
   staffBaogong,
   staffBankCard,
   staffBankCardAddEdit,

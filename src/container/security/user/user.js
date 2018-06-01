@@ -53,6 +53,7 @@ class User extends React.Component {
     }, {
       title: '关键字',
       field: 'keyword',
+      placeholder: '用户名/手机号',
       search: true,
       hidden: true
     }];

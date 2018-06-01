@@ -23,21 +23,12 @@ class PWugongAddedit extends React.Component {
       departmentCode: '',
       companyCode: ''
     };
-    // if(cookies.get('loginKind') === 'O') {
-    //   getUserDetail(cookies.get('userId')).then((data) => {
-    //     this.setState({'companyCode': data.companyCode, 'departmentCode': data.departmentCode});
-    //   });
-    // }
     this.code = getQueryString('code', this.props.location.search);
-    this.view = !!getQueryString('v', this.props.location.search);
-    this.break = !!getQueryString('break', this.props.location.search);
-    this.leave = !!getQueryString('leave', this.props.location.search);
-    this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   componentDidMount() {
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'projectCodeList': data.projectCodeList });
+        this.setState({ projectCodeList: data.projectCodeList });
       });
     };
     if (getUserKind() === 'O') {
@@ -49,24 +40,13 @@ class PWugongAddedit extends React.Component {
   }
   render() {
     const fieldso = [{
-      field: 'projectCode',
-      title: '项目编号',
-      value: this.projectCode,
+      field: 'staffCode',
+      value: this.code,
       hidden: true
     }, {
-      field: 'staffCode',
-      title: '员工姓名',
-      type: 'select',
-      listCode: '631416',
-      params: {
-        projectCode: this.projectCode,
-        updater: '',
-        companyCode: '',
-        kind: 'O'
-      },
-      keyName: 'code',
-      valueName: 'name',
-      required: true
+      field: 'name',
+      title: '姓名',
+      readonly: true
     }, {
       field: 'type',
       title: '员工类别',
@@ -86,6 +66,18 @@ class PWugongAddedit extends React.Component {
       field: 'joinDatetime',
       title: '入职时间',
       type: 'date',
+      required: true
+    }, {
+      field: 'projectCode',
+      title: '所属工程',
+      type: 'select',
+      listCode: '631357',
+      params: {
+        companyCode: this.state.companyCode,
+        updater: ''
+      },
+      keyName: 'code',
+      valueName: 'name',
       required: true
     }, {
       field: 'upUser',
@@ -107,7 +99,8 @@ class PWugongAddedit extends React.Component {
     }, {
       field: 'contractDatetime',
       title: '签约时间',
-      type: 'date'
+      type: 'date',
+      required: true
     }, {
       field: 'contentPic',
       title: '合同照片',
@@ -117,78 +110,13 @@ class PWugongAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    const fields = [{
-      field: 'projectCode',
-      title: '项目编号',
-      value: this.projectCode,
-      hidden: true
-    }, {
-      field: 'staffCode',
-      title: '员工',
-      type: 'select',
-      listCode: '631406',
-      params: {
-        projectCode: '',
-        updater: ''
-      },
-      keyName: 'staffCode',
-      valueName: 'staffName',
-      required: true
-    }, {
-      field: 'type',
-      title: '员工类别',
-      type: 'select',
-      key: 'staff_type',
-      required: true
-    }, {
-      field: 'position',
-      title: '职位',
-      required: true
-    }, {
-      field: 'salary',
-      title: '薪酬',
-      required: true
-    }, {
-      field: 'joinDatetime',
-      title: '入职时间',
-      type: 'date',
-      required: true
-    }, {
-      field: 'upUser',
-      title: '上级',
-      type: 'select',
-      listCode: '631086',
-      params: {
-        type: cookies.get('loginKind'),
-        companyCode: this.state.companyCode
-      },
-      keyName: 'userId',
-      valueName: 'realName',
-      required: true
-    }, {
-      field: 'couAmount',
-      title: '迟到/早退每小时扣款金额',
-      amount: true,
-      required: true
-    }];
     if (cookies.get('loginKind') === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
         fields: fieldso,
-        key: 'id',
         code: this.code,
-        view: this.view,
         detailCode: 631417,
-        addCode: 631460
+        editCode: 631460
       }) : null;
-    } else {
-      return this.props.buildDetail({
-        fields,
-        key: 'id',
-        code: this.code,
-        view: this.view,
-        detailCode: 631417,
-        addCode: 631460
-      });
     }
   }
 }

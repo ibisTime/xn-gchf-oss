@@ -79,8 +79,7 @@ class Account extends React.Component {
       field: 'status',
       title: '状态',
       key: 'account_status',
-      type: 'select',
-      search: true
+      type: 'select'
     }, {
       field: 'createDatetime',
       title: '创建时间',
@@ -88,7 +87,9 @@ class Account extends React.Component {
     }, {
       field: 'keyword',
       title: '关键字',
-      search: true
+      placeholder: '户名/银行/关联工程',
+      search: true,
+      hidden: true
     }];
     const fields = [{
       field: 'projectCode',
@@ -123,8 +124,7 @@ class Account extends React.Component {
       field: 'status',
       title: '状态',
       key: 'account_status',
-      type: 'select',
-      search: true
+      type: 'select'
     }, {
       field: 'createDatetime',
       title: '创建时间',
@@ -132,7 +132,9 @@ class Account extends React.Component {
     }, {
       field: 'keyword',
       title: '关键字',
-      search: true
+      placeholder: '户名/银行/关联工程',
+      search: true,
+      hidden: true
     }];
     if (getUserKind() === 'P') {
       return this.props.buildList({

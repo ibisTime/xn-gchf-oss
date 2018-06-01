@@ -1,8 +1,12 @@
 import { getUserName } from 'common/js/util';
 import fetch from 'common/js/fetch';
 
-export function downLoad(messageCode) {
-  return fetch(631444, { messageCode });
+export function downLoad() {
+  return fetch(631446);
+}
+
+export function downLoadO(messageCode) {
+  return fetch(631446, { messageCode });
 }
 
 // 详情页查询数据

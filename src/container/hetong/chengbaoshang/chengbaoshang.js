@@ -78,7 +78,9 @@ class Chengbaoshang extends React.Component {
     }, {
       field: 'keyword',
       search: true,
-      title: '关键字'
+      title: '关键字',
+      placeholder: '承包商名字/手机号',
+      hidden: true
     }];
     const fields = [{
       field: 'companyName',
@@ -112,7 +114,9 @@ class Chengbaoshang extends React.Component {
     }, {
       field: 'keyword',
       search: true,
-      title: '关键字'
+      title: '关键字',
+      placeholder: '承包商名字/手机号',
+      hidden: true
     }];
     if (getUserKind() === 'P') {
       return this.props.buildList({

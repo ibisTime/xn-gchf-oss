@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import { Modal } from 'antd';
 import {
   setTableData,
@@ -12,7 +11,7 @@ import {
   setSearchData
 } from '@redux/daifa/daifa';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getUserKind, getUserId } from 'common/js/util';
+import { showWarnMsg, showSucMsg, getUserKind, getUserId, moneyFormat } from 'common/js/util';
 import ModalDetail from 'common/js/build-modal-detail';
 import { getUserDetail } from 'api/user';
 
@@ -80,19 +79,19 @@ class Daifa extends React.Component {
       field: 'totalAmounts',
       title: '本月累计发薪',
       formatter: (v, d) => {
-        return d.totalAmount / 1000;
+        return moneyFormat(d.totalAmount);
       }
     }, {
       title: '共计扣款',
       field: 'totalCutAmounts',
       formatter: (v, d) => {
-        return d.totalCutAmount / 1000;
+        return moneyFormat(d.totalCutAmount);
       }
     }, {
       title: '共计税费',
       field: 'totalTaxs',
       formatter: (v, d) => {
-        return d.totalTax / 1000;
+        return moneyFormat(d.totalTax);
       }
     }, {
       field: 'status',
@@ -129,7 +128,7 @@ class Daifa extends React.Component {
       }, {
         field: 'sender',
         hidden: true,
-        value: cookies.get('userId')
+        value: getUserId()
       }, {
         field: 'title',
         title: '标题',

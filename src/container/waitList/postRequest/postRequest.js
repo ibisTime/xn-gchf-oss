@@ -10,9 +10,8 @@ import {
   setSearchData
 } from '@redux/waitList/postRequest';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg } from 'common/js/util';
+import { showWarnMsg, getUserId, getUserKind, moneyFormat } from 'common/js/util';
 import { getUserDetail } from 'api/user';
-import cookies from 'browser-cookies';
 
 @listWrapper(
   state => ({
@@ -33,12 +32,14 @@ class PostRequest extends React.Component {
     };
   };
   componentDidMount() {
-    getUserDetail(cookies.get('userId')).then((data) => {
-      this.setState({
-        subbranch: data.subbranch,
-        bankName: data.bankName
+    if (getUserKind() === 'B') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({
+          subbranch: data.subbranch,
+          bankName: data.bankName
+        });
       });
-    });
+    };
   }
   render() {
     const fields = [{
@@ -61,19 +62,19 @@ class PostRequest extends React.Component {
       field: 'totalAmounts',
       title: '本月累计发薪',
       formatter: (v, d) => {
-        return d.totalAmount / 1000;
+        return moneyFormat(d.totalAmount);
       }
     }, {
       title: '共计扣款',
       field: 'totalCutAmounts',
       formatter: (v, d) => {
-        return d.totalCutAmount / 1000;
+        return moneyFormat(d.totalCutAmount);
       }
     }, {
       title: '共计税费',
       field: 'totalTaxs',
       formatter: (v, d) => {
-        return d.totalTax / 1000;
+        return moneyFormat(d.totalTax);
       }
     }, {
       title: '状态',
@@ -89,25 +90,13 @@ class PostRequest extends React.Component {
       field: 'handleDatetime',
       type: 'datetime'
     }];
-    if (cookies.get('loginKind') === 'P') {
+    if (getUserKind() === 'P' || getUserKind() === 'S' || getUserKind() === 'O') {
       return this.props.buildList({
         fields,
         searchParams: {
           statusList: [1, 2]
         },
-        pageCode: 631435,
-        btnEvent: {
-          detail: (selectedRowKeys, selectedRows) => {
-            if (!selectedRowKeys.length) {
-              showWarnMsg('请选择记录');
-            } else if (selectedRowKeys.length > 1) {
-              showWarnMsg('请选择一条记录');
-            } else {
-              let url = `${this.props.location.pathname}/addedit?v=1&code=${selectedRowKeys[0]}&status=${selectedRows[0].status}`;
-              this.props.history.push(url);
-            }
-          }
-        }
+        pageCode: 631435
       });
     } else {
       return this.state.subbranch && this.state.bankName
@@ -118,19 +107,7 @@ class PostRequest extends React.Component {
             subbranch: this.state.subbranch,
             bankName: this.state.bankName
           },
-          pageCode: 631435,
-          btnEvent: {
-            detail: (selectedRowKeys, selectedRows) => {
-              if (!selectedRowKeys.length) {
-                showWarnMsg('请选择记录');
-              } else if (selectedRowKeys.length > 1) {
-                showWarnMsg('请选择一条记录');
-              } else {
-                let url = `${this.props.location.pathname}/addedit?v=1&code=${selectedRowKeys[0]}&status=${selectedRows[0].status}`;
-                this.props.history.push(url);
-              }
-            }
-          }
+          pageCode: 631435
         })
         : null;
     }

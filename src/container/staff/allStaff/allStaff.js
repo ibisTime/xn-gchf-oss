@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import {
   setTableData,
   setPagination,
@@ -66,7 +65,8 @@ class AllStaff extends React.Component {
       title: '证件号'
     }, {
       field: 'keyword',
-      title: '关键字查询(输入名字或者证件号)',
+      title: '关键字查询',
+      placeholder: '名字/证件号',
       hidden: true,
       search: true
     }];
@@ -77,11 +77,7 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          // if (cookies.get('loginKind') === 'O') {
-          //   this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRows[0].Staff.code}`);
-          // }else {
           this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
-          // }
         }
       },
       history: (selectedRowKeys, selectedRows) => {
@@ -90,11 +86,7 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          // if (cookies.get('loginKind') === 'O') {
-          //   this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRows[0].Staff.code}`);
-          // }else {
           this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRowKeys[0]}`);
-          // }
         }
       },
       detailAdd: (selectedRowKeys, selectedRows) => {
@@ -107,12 +99,13 @@ class AllStaff extends React.Component {
         }
       },
       addWorkers: (selectedRowKeys, selectedRows) => {
+        console.log(selectedRowKeys, selectedRows);
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/people/wugong/addedit?projectCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/entry?code=${selectedRowKeys[0]}`);
         }
       },
       weekday: (selectedRowKeys, selectedRows) => {
@@ -121,7 +114,7 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/newProj/project/weekday?code=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/weekday?code=${selectedRowKeys[0]}`);
         }
       },
       quit: (selectedRowKeys, selectedRows) => {
@@ -131,11 +124,11 @@ class AllStaff extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           console.log(selectedRows);
-          this.props.history.push(`/newProj/project/quit?code=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/quit?code=${selectedRowKeys[0]}`);
         }
       }
     };
-    if (getUserKind === 'O') {
+    if (getUserKind() === 'O') {
       return this.props.buildList({
         fields,
         btnEvent,

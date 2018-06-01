@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import {
   initStates,
   doFetching,
@@ -8,7 +7,7 @@ import {
   setPageData,
   restore
 } from '@redux/people/wugong-break';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, getUserId } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getUserDetail } from 'api/user';
 
@@ -28,7 +27,7 @@ class PWugongBreak extends React.Component {
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   componentDidMount() {
-    getUserDetail(cookies.get('userId')).then(data => {
+    getUserDetail(getUserId()).then(data => {
       this.getUserDetail(data.departmentCode);
     });
   }

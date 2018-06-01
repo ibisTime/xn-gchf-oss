@@ -5,7 +5,7 @@ import MoneyLine from 'component/money-line/money-line';
 import ThirtyPie from 'component/thirty-pie/thirty-pie';
 import fetch, { fetchImg } from 'common/js/fetch';
 import { formatDate, getUserKind, moneyFormat, isUndefined, getUserId } from 'common/js/util';
-import { getProject, getProjectList, getPagePayCode, getPageChecks } from 'api/project';
+import { getProject, getProjectList, getPagePayCode, getPageChecks, getPageabnormal } from 'api/project';
 import { getUserDetail } from 'api/user';
 
 const Panel = Collapse.Panel;
@@ -23,6 +23,29 @@ const checkDict = {
   2: '已打卡待结算',
   3: '已结算'
 };
+const abnormalColumns = [{
+  title: '工程名称',
+  dataIndex: 'projectName'
+}, {
+  title: '员工名称',
+  dataIndex: 'staffName'
+}, {
+  title: '发放工资月份',
+  dataIndex: 'month',
+  render: (v) => formatDate(v)
+}, {
+  title: '应发工资',
+  dataIndex: 'shouldAmount',
+  render: (v) => moneyFormat(v)
+}, {
+  title: '发放工资',
+  dataIndex: 'factAmount',
+  render: (v) => moneyFormat(v)
+}, {
+  title: '状态',
+  dataIndex: 'status',
+  render: (v) => orderDict[v]
+}];
 const payColumns = [{
   title: '员工名称',
   dataIndex: 'name',
@@ -81,6 +104,7 @@ class Home extends React.Component {
       workingDays: 0,
       leavingDays: 0,
       payData: [],
+      abnormalData: [],
       checkData: [],
       payPagination: {
         current: 1,
@@ -94,6 +118,13 @@ class Home extends React.Component {
         total: 0,
         hasMore: true
       },
+      abnormalPagination: {
+        current: 1,
+        pageSize: 5,
+        total: 0,
+        hasMore: true
+      },
+      abnormalLoading: true,
       payLoading: true,
       checkLoading: true,
       options: [],
@@ -269,27 +300,40 @@ class Home extends React.Component {
         this.getPageChecks(1, 10);
       }
       this.setState({ activeKey: [2] });
+    } else if (key === '3') {
+      let { abnormalPagination, abnormalData } = this.state;
+      if (!abnormalData.length && abnormalPagination.hasMore) {
+        this.getPageabnormal(1, 10);
+      }
+      this.setState({ activeKey: [3] });
     } else {
       this.setState({ activeKey: [] });
     }
   }
   handleTableChange = (pagination, filters, sorter, isPay) => {
     let pager;
-    if (isPay) {
+    if (isPay === '1') {
       pager = { ...this.state.payPagination };
-    } else {
+    } else if (isPay === '2') {
       pager = { ...this.state.checkPagination };
+    } else {
+      pager = { ...this.state.abnormalPagination };
     }
     pager.current = pagination.current;
-    if (isPay) {
+    if (isPay === '1') {
       this.setState({
         payPagination: pager,
         payLoading: true
       });
-    } else {
+    } else if (isPay === '2') {
       this.setState({
         checkPagination: pager,
         checkLoading: true
+      });
+    } else {
+      this.setState({
+        abnormalPagination: pager,
+        abnormalLoading: true
       });
     }
     this.getPagePay(pagination.current, pagination.pageSize);
@@ -332,6 +376,25 @@ class Home extends React.Component {
       this.setState({ checkLoading: false });
     });
   }
+  // 分页查询异常信息
+  getPageabnormal(start, limit) {
+    this.setState({ abnormalLoading: true });
+    getPageabnormal(start, limit, this.code).then((data) => {
+      let { abnormalPagination } = this.state;
+      this.setState({
+        abnormalPagination: {
+          ...abnormalPagination,
+          current: start,
+          total: data.totalCount,
+          hasMore: data.totalPage > data.pageNO
+        },
+        abnormalLoading: false,
+        abnormalData: data.list
+      });
+    }).catch(() => {
+      this.setState({ abnormalLoading: false });
+    });
+  }
   initPageData() {
     this.setState({
       payPagination: {
@@ -350,6 +413,14 @@ class Home extends React.Component {
       },
       checkData: [],
       checkLoading: false,
+      abnormalPagination: {
+        current: 1,
+        pageSize: 10,
+        total: 0,
+        hasMore: true
+      },
+      abnormalData: [],
+      abnormalLoading: false,
       activeKey: []
     });
   }
@@ -391,8 +462,8 @@ class Home extends React.Component {
   }
   render() {
     const { staffIn, staffOut, leavingDays, workingDays,
-      totalSalary, lastMonthSalary, payData, payLoading,
-      payPagination, checkData, checkLoading, checkPagination } = this.state;
+      totalSalary, lastMonthSalary, payData, payLoading, abnormalLoading, abnormalData,
+      payPagination, checkData, checkLoading, checkPagination, abnormalPagination } = this.state;
     return (
       <div>
         <div id="container" className="map-containter"></div>
@@ -424,11 +495,11 @@ class Home extends React.Component {
                     pagination={payPagination}
                     loading={payLoading}
                     onChange={(pagination, filters, sorter) => {
-                      this.handleTableChange(pagination, filters, sorter, 0);
+                      this.handleTableChange(pagination, filters, sorter, 1);
                     }}
                     size="small" />
                 </Panel>
-                <Panel header="项目考勤及工资计算" key="2">
+                <Panel header="项目考勤" key="2">
                   <Table
                     columns={checkColumns}
                     dataSource={checkData}
@@ -436,7 +507,19 @@ class Home extends React.Component {
                     pagination={checkPagination}
                     loading={checkLoading}
                     onChange={(pagination, filters, sorter) => {
-                      this.handleTableChange(pagination, filters, sorter, 0);
+                      this.handleTableChange(pagination, filters, sorter, 2);
+                    }}
+                    size="small" />
+                </Panel>
+                <Panel header="异常事件" key="3">
+                  <Table
+                    columns={abnormalColumns}
+                    dataSource={abnormalData}
+                    rowKey={record => record.code}
+                    pagination={abnormalPagination}
+                    loading={abnormalLoading}
+                    onChange={(pagination, filters, sorter) => {
+                      this.handleTableChange(pagination, filters, sorter, 3);
                     }}
                     size="small" />
                 </Panel>

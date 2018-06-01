@@ -19,27 +19,27 @@ class ProjectWeekday extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectCodeList: []
+      companyCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
     getUserDetail(getUserId()).then((data) => {
       console.log(data);
-      this.setState({ projectCodeList: data.projectCodeList });
+      this.setState({ companyCode: data.companyCode });
     });
   };
   render() {
     const fields = [{
       title: '项目名称',
       field: 'projectCode',
-      listCode: '631466',
+      listCode: '631357',
       params: {
-        projectCodeList: this.state.projectCodeList,
-        statusList: [0, 1]
+        kind: 'O',
+        companyCode: this.state.companyCode
       },
-      keyName: 'projectCode',
-      valueName: 'projectName',
+      keyName: 'code',
+      valueName: 'name',
       search: true,
       type: 'select',
       required: true
@@ -62,10 +62,10 @@ class ProjectWeekday extends React.Component {
       title: '备注',
       field: 'remark'
     }];
-    return this.state.projectCodeList ? this.props.buildDetail({
+    return this.props.buildDetail({
       fields,
       addCode: 631461
-    }) : null;
+    });
   }
 }
 

@@ -11,6 +11,7 @@ import {
   setSearchData
 } from '@redux/staff/bankCard';
 import { listWrapper } from 'common/js/build-list';
+import { getUserId, getUserKind } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -32,13 +33,13 @@ class BankCard extends React.Component {
     };
   }
   componentDidMount() {
-    if (cookies.get('loginKind') === 'S') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
-    if (cookies.get('loginKind') === 'O') {
-      getUserDetail(cookies.get('userId')).then((data) => {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
     };
@@ -73,10 +74,11 @@ class BankCard extends React.Component {
     }, {
       field: 'keyword',
       title: '关键字',
+      placeholder: '银行/姓名/卡号',
       search: true,
       hidden: true
     }];
-    if (cookies.get('loginKind') === 'O') {
+    if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
         pageCode: 631425,
@@ -84,7 +86,7 @@ class BankCard extends React.Component {
           companyCode: this.state.companyCode
         }
       }) : null;
-    } else if (cookies.get('loginKind') === 'S') {
+    } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({
         fields,
         pageCode: 631425,
