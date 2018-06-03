@@ -35,7 +35,6 @@ class Wugong extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'O' || getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
-        console.log(data);
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
@@ -80,12 +79,6 @@ class Wugong extends React.Component {
           kind: 'O'
         },
         buttons: [{
-          code: 'add',
-          name: '合同录入',
-          handler: (selectedRowKeys, selectedRows) => {
-            this.props.history.push(`/hetong/wugong/contract`);
-          }
-        }, {
           code: 'edit',
           name: '修改',
           handler: (selectedRowKeys, selectedRows) => {
@@ -119,12 +112,6 @@ class Wugong extends React.Component {
           projectCodeList: this.state.projectCodeList
         },
         buttons: [{
-          code: 'add',
-          name: '合同录入',
-          handler: (selectedRowKeys, selectedRows) => {
-            this.props.history.push(`/hetong/wugong/contract`);
-          }
-        }, {
           code: 'edit',
           name: '修改',
           handler: (selectedRowKeys, selectedRows) => {

@@ -84,7 +84,7 @@ class AllStaffAddEdit extends React.Component {
         <p>工资所属月份：{this.state.data.month}</p>
         <Divider>异常处理报告</Divider>
         {list(this.state.errordata.length)}
-        <Form onSubmit={this.handleSubmit} className="login-form">
+        <Form onSubmit={this.handleSubmit}>
           <FormItem>
             {getFieldDecorator('handleNote', {
               rules: [{ required: true, message: '必填字段' }]

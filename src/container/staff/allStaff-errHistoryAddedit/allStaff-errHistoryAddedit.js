@@ -42,16 +42,6 @@ class AllStaffErrHistoryAddEdit extends React.Component {
       }
     });
   }
-  sendInfo(handleNote) {
-    this.setState({ loading: true });
-    senderrInfo(this.code, handleNote, getUserId()).then(() => {
-      showSucMsg('发送成功！');
-      this.props.form.resetFields();
-      getUserErrorInfo(this.code).then(errordata => {
-        this.setState({ errordata, loading: false });
-      }).catch(() => this.setState({ loading: false }));
-    }).catch(() => this.setState({ loading: false }));
-  };
   render() {
     var list = (length) => {
       var res = [];
@@ -87,15 +77,7 @@ class AllStaffErrHistoryAddEdit extends React.Component {
         </div>
         <Form onSubmit={this.handleSubmit}>
           <FormItem>
-            {getFieldDecorator('handleNote', {
-              rules: [{ required: true, message: '必填字段' }]
-            })(
-              <TextArea placeholder="输入最新沟通情况" autosize={{ minRows: 2, maxRows: 6 }} style={{ width: 400 }} />
-            )}
-          </FormItem>
-          <FormItem>
-            <Button type="primary" htmlType="submit" style={{ marginRight: 10 }}>处理异常</Button>
-            <Button onClick={this.goBack.bind(this)}>返回</Button>
+            <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20, marginLeft: 30 }}>返回</Button>
           </FormItem>
         </Form>
       </Spin>

@@ -28,7 +28,6 @@ class RoleMenu extends React.Component {
   componentDidMount() {
     getCompany().then((companyData) => {
       this.getTree(companyData);
-      console.log(this.getTree(companyData));
       this.setState({
         fetching: false
       });
@@ -99,11 +98,9 @@ class RoleMenu extends React.Component {
     } else {
       this.setState({ selectKey: key });
     }
-    if (!this.state.stopGetTree1) {
-      getBumen(key).then(bumenData => {
-        this.getTree1(bumenData, key);
-      });
-    }
+    getBumen(key).then(bumenData => {
+      this.getTree1(bumenData, key);
+    });
   }
   findCheckItem(arr, key) {
     if (this.findCheckItem[key]) {
@@ -144,17 +141,17 @@ class RoleMenu extends React.Component {
     });
   }
   addCompany = () => {
-    this.props.history.push(`/newProj/addCompany`);
+    this.props.history.push(`/newId/companyConstruct/addCompany`);
   }
   editCompany = () => {
     if (this.state.selectKey !== '') {
-      this.props.history.push(`/newProj/addCompany?code=${this.state.selectKey}`);
+      this.props.history.push(`/newId/companyConstruct/addCompany?code=${this.state.selectKey}`);
     } else {
       showWarnMsg('请选择一家公司');
     }
   }
   deleteCompany = () => {
-    if (this.state.selectKey !== '') {
+    if (this.state.selectKey !== '' && this.state.selectKey.slice(0, 1) === 'C') {
       Modal.confirm({
         okText: '确认',
         cancelText: '取消',
@@ -163,6 +160,12 @@ class RoleMenu extends React.Component {
           this.setState({ fetching: true });
           deleteCompany1(this.state.selectKey).then(() => {
             showSucMsg('操作成功');
+            getCompany().then((companyData) => {
+              this.getTree(companyData);
+              this.setState({
+                fetching: false
+              });
+            }).catch(() => this.setState({ fetching: false }));
             this.setState({ fetching: false });
           }).catch(this.props.cancelFetching);
         }

@@ -48,6 +48,18 @@ class PWugongAddedit extends React.Component {
       title: '姓名',
       readonly: true
     }, {
+      field: 'projectCode',
+      title: '所属工程',
+      type: 'select',
+      listCode: '631357',
+      params: {
+        companyCode: this.state.companyCode,
+        updater: ''
+      },
+      keyName: 'code',
+      valueName: 'name',
+      required: true
+    }, {
       field: 'type',
       title: '员工类别',
       type: 'select',
@@ -66,18 +78,6 @@ class PWugongAddedit extends React.Component {
       field: 'joinDatetime',
       title: '入职时间',
       type: 'date',
-      required: true
-    }, {
-      field: 'projectCode',
-      title: '所属工程',
-      type: 'select',
-      listCode: '631357',
-      params: {
-        companyCode: this.state.companyCode,
-        updater: ''
-      },
-      keyName: 'code',
-      valueName: 'name',
       required: true
     }, {
       field: 'upUser',

@@ -29,8 +29,10 @@ import { dailiManageMap } from './redux/dailiManage/map';
 import { newProjCompanyConstruct } from './redux/newProj/companyConstruct';
 import { newProjBumenConstruct } from './redux/newProj/bumenConstruct';
 import { newProjAddCompany } from './redux/newProj/addCompany';
+import { newIdAddCompany } from './redux/newId/addCompany';
 import { newProjAddBumen } from './redux/newProj/addBumen';
 import { newProjProject } from './redux/newProj/project';
+import { newProjKaoqin } from './redux/newProj/kaoqin';
 import { newprojProjectAddEdit } from './redux/newProj/project-addedit';
 import { newProjProjectDetail } from './redux/newProj/project-detail';
 import { newprojProjectEdit } from './redux/newProj/project-edit';
@@ -42,7 +44,7 @@ import { newProjProjectLeijifaxin } from './redux/newProj/project-leijifaxin';
 import { newProjProjectSalary } from './redux/newProj/project-salary';
 import { newProjProjectSalaryEdit } from './redux/newProj/project-salary-edit';
 import { newProjProjectSalaryCheck } from './redux/newProj/project-salary-check';
-import { newProjKaoqin } from './redux/newProj/project-kaoqin';
+import { newProjProjectKaoqin } from './redux/newProj/project-kaoqin';
 import { newProjProjectWeekday } from './redux/newProj/project-weekday';
 import { newProjProjectQuit } from './redux/newProj/project-quit';
 import { yewuManageAccount } from './redux/yewuManage/account';
@@ -118,6 +120,7 @@ export default combineReducers({
   newProjCompanyConstruct,
   newProjBumenConstruct,
   newProjAddCompany,
+  newIdAddCompany,
   newProjAddBumen,
   newProjProject,
   newprojProjectAddEdit,
@@ -134,6 +137,7 @@ export default combineReducers({
   newProjProjectSalaryEdit,
   newProjProjectSalaryCheck,
   newProjKaoqin,
+  newProjProjectKaoqin,
   yewuManageAccount,
   yewuManageAccountAddEdit,
   hetongChengbaoshang,

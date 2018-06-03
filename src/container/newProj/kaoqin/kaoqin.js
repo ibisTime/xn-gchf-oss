@@ -11,14 +11,14 @@ import {
   doFetching,
   cancelFetching,
   setSearchData
-} from '@redux/newProj/project-kaoqin';
+} from '@redux/newProj/kaoqin';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, getUserId, getUserKind } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
-    ...state.newProjProjectKaoqin,
+    ...state.newProjKaoqin,
     parentCode: state.menu.subMenuCode
   }),
   {
@@ -26,7 +26,7 @@ import { getUserDetail } from 'api/user';
     cancelFetching, setPagination, setSearchParam, setSearchData
   }
 )
-class ProjectKaoqin extends React.Component {
+class Kaoqin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,8 +45,19 @@ class ProjectKaoqin extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'projectName',
-      title: '工程名称'
+      field: 'projectCode',
+      title: '工程名称',
+      type: 'select',
+      listCode: '631357',
+      params: getUserKind() === 'O'
+      ? {
+        updater: '',
+        kind: 'O',
+        companyCode: this.state.companyCode
+      } : {projectCodeList: this.state.projectCodeList},
+      keyName: 'code',
+      valueName: 'name',
+      search: true
     }, {
       field: 'staffName',
       title: '员工姓名'
@@ -97,8 +108,13 @@ class ProjectKaoqin extends React.Component {
       hidden: true
     }];
     const fieldso = [{
-      field: 'projectName',
-      title: '工程名称'
+      field: 'projectCode',
+      title: '工程名称',
+      type: 'select',
+      search: true,
+      listCode: '631357',
+      keyName: 'code',
+      valueName: 'name'
     }, {
       field: 'staffName',
       title: '员工姓名'
@@ -151,7 +167,7 @@ class ProjectKaoqin extends React.Component {
     if (getUserKind() === 'O' || getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({
         fields,
-        searchParams: { projectCode: this.code },
+        searchParams: { projectCodeList: this.state.projectCodeList },
         pageCode: 631395,
         buttons: [{
           code: 'export',
@@ -219,7 +235,6 @@ class ProjectKaoqin extends React.Component {
     } else {
       return this.props.buildList({
         fields: fieldso,
-        searchParams: { projectCode: this.code },
         pageCode: 631395,
         buttons: [{
           code: 'export',
@@ -265,4 +280,4 @@ class ProjectKaoqin extends React.Component {
   }
 }
 
-export default ProjectKaoqin;
+export default Kaoqin;

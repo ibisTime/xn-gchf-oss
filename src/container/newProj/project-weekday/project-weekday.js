@@ -33,17 +33,17 @@ class ProjectWeekday extends React.Component {
     const fields = [{
       title: '项目名称',
       field: 'projectCode',
-      listCode: '631357',
+      listCode: '631466',
       params: {
-        kind: 'O',
-        companyCode: this.state.companyCode
+        staffCode: this.code,
+        projectCodeList: this.state.projectCodeList,
+        statusList: [0, 1]
       },
-      keyName: 'code',
-      valueName: 'name',
+      keyName: 'projectCode',
+      valueName: 'projectName',
       search: true,
       type: 'select',
       required: true
-
     }, {
       field: 'staffCode',
       value: this.code,

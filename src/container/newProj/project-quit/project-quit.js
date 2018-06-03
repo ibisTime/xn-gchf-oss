@@ -18,26 +18,28 @@ class ProjectQuit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: ''
+      projectCodeList: ''
     };
     this.code = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
     getUserDetail(getUserId()).then((data) => {
-      this.setState({ companyCode: data.companyCode });
+      console.log(data);
+      this.setState({ projectCodeList: data.projectCodeList });
     });
   };
   render() {
     const fields = [{
       title: '项目名称',
       field: 'projectCode',
-      listCode: '631357',
+      listCode: '631466',
       params: {
-        companyCode: this.state.companyCode,
-        kind: 'O'
+        staffCode: this.code,
+        projectCodeList: this.state.projectCodeList,
+        statusList: [0, 1]
       },
-      keyName: 'code',
-      valueName: 'name',
+      keyName: 'projectCode',
+      valueName: 'projectName',
       search: true,
       type: 'select',
       required: true
@@ -55,10 +57,10 @@ class ProjectQuit extends React.Component {
       title: '备注',
       field: 'remark'
     }];
-    return this.props.buildDetail({
+    return this.state.projectCodeList ? this.props.buildDetail({
       fields,
       addCode: 631462
-    });
+    }) : null;
   }
 }
 

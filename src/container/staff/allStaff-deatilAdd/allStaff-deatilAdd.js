@@ -75,16 +75,6 @@ class AllStaffAddEditAdd extends React.Component {
       search: true,
       required: true
     }, {
-      field: 'name',
-      title: '技能名称'
-    }, {
-      field: 'score',
-      title: '技能评分'
-    }, {
-      field: 'skillPdf',
-      title: '技能证书',
-      type: 'img'
-    }, {
       field: 'pict1',
       title: '免冠照片',
       type: 'img',
@@ -102,6 +92,26 @@ class AllStaffAddEditAdd extends React.Component {
       type: 'img',
       single: true,
       required: true
+    }, {
+      field: 'name1',
+      title: '技能名称1'
+    }, {
+      field: 'score1',
+      title: '技能评分'
+    }, {
+      field: 'pdf1',
+      title: '技能证书',
+      type: 'img'
+    }, {
+      field: 'name2',
+      title: '技能名称2'
+    }, {
+      field: 'score2',
+      title: '技能评分'
+    }, {
+      field: 'pdf2',
+      title: '技能证书',
+      type: 'img'
     }];
     return this.props.buildDetail({
       fields,
@@ -115,6 +125,15 @@ class AllStaffAddEditAdd extends React.Component {
             param.bankName = data[0].bankName;
             param.updater = getUserId();
             param.code = this.code;
+            param.skillList = [{
+              name: param.name1,
+              score: param.score1,
+              pdf: param.pdf1
+            }, {
+              name: param.name2,
+              score: param.score2,
+              pdf: param.pdf2
+            }];
             this.props.doFetching();
             fetch(631413, param).then(() => {
               showSucMsg('操作成功');

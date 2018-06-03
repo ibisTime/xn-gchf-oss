@@ -110,6 +110,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/companyConstruct/companyConstruct'))
   },
   {
+    path: '/newProj/kaoqin',
+    component: asyncComponent(() => import('container/newProj/kaoqin/kaoqin'))
+  },
+  {
     path: '/newProj/bumenConstruct',
     component: asyncComponent(() => import('container/newProj/bumenConstruct/bumenConstruct'))
   },
@@ -154,7 +158,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-leijifaxin/project-leijifaxin'))
   },
   {
-    path: '/newProj/kaoqin',
+    path: '/projectManage/project/kaoqin',
     component: asyncComponent(() => import('container/newProj/project-kaoqin/project-kaoqin'))
   },
   {
@@ -364,6 +368,10 @@ const ROUTES = [
   {
     path: '/newId/companyConstruct',
     component: asyncComponent(() => import('container/newId/companyConstruct/companyConstruct'))
+  },
+  {
+    path: '/newId/companyConstruct/addCompany',
+    component: asyncComponent(() => import('container/newId/addCompany/addCompany'))
   },
   {
     path: '/newId/supervise/addedit',

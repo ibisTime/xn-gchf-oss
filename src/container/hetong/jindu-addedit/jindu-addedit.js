@@ -54,8 +54,7 @@ class JinduAddEdit extends React.Component {
       field: 'picture',
       title: '工程进度图片',
       type: 'img',
-      single: true,
-      required: true
+      single: true
     }, {
       field: 'datetime',
       title: '进度时间',
@@ -93,19 +92,11 @@ class JinduAddEdit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
-    if (!this.code) {
-      return this.state.companyCode ? this.props.buildDetail({
-        fields: fieldso,
-        code: this.code,
-        editCode: 631380
-      }) : null;
-    } else {
-      return this.props.buildDetail({
-        fields,
-        code: this.code,
-        editCode: 631380
-      });
-    }
+    return this.state.companyCode ? this.props.buildDetail({
+      fields: fieldso,
+      code: this.code,
+      editCode: 631380
+    }) : null;
   }
 }
 
