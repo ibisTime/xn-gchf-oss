@@ -35,7 +35,6 @@ class AllStaffAddEditAdd extends React.Component {
     };
     if (getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        console.log(data.companyCode);
         this.setState({ companyCode: data.companyCode });
       });
     };
@@ -94,22 +93,12 @@ class AllStaffAddEditAdd extends React.Component {
       required: true
     }, {
       field: 'name1',
-      title: '技能名称1'
+      title: '技能名称'
     }, {
       field: 'score1',
       title: '技能评分'
     }, {
       field: 'pdf1',
-      title: '技能证书',
-      type: 'img'
-    }, {
-      field: 'name2',
-      title: '技能名称2'
-    }, {
-      field: 'score2',
-      title: '技能评分'
-    }, {
-      field: 'pdf2',
       title: '技能证书',
       type: 'img'
     }];
@@ -119,7 +108,6 @@ class AllStaffAddEditAdd extends React.Component {
         title: '保存',
         check: true,
         handler: (param) => {
-          console.log(param);
           getBankNameByCode(param.bankName).then(data => {
             param.bankCode = data[0].bankCode;
             param.bankName = data[0].bankName;
@@ -129,10 +117,6 @@ class AllStaffAddEditAdd extends React.Component {
               name: param.name1,
               score: param.score1,
               pdf: param.pdf1
-            }, {
-              name: param.name2,
-              score: param.score2,
-              pdf: param.pdf2
             }];
             this.props.doFetching();
             fetch(631413, param).then(() => {

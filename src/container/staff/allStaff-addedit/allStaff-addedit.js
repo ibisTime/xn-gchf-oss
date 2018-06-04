@@ -44,11 +44,13 @@ class AllStaffAddEdit extends React.Component {
     const fields = [{
       field: 'name',
       title: '姓名',
-      required: true
+      required: true,
+      readonly: true
     }, {
       field: 'idAddress',
       title: '身份证上籍贯',
-      required: true
+      required: true,
+      readonly: true
     }, {
       field: 'mobile',
       title: '联系方式',
@@ -57,7 +59,7 @@ class AllStaffAddEdit extends React.Component {
       field: 'idNo',
       title: '证件号',
       required: true,
-      listCode: '631416'
+      readonly: true
     }, {
       field: 'pict1',
       title: '免冠照片',
@@ -75,18 +77,32 @@ class AllStaffAddEdit extends React.Component {
       title: '身份证正反面照片',
       single: true,
       type: 'img',
+      required: true,
+      readonly: true
+    }, {
+      field: 'name1',
+      title: '技能名称',
+      formatter: (v, d) => {
+        return d.skillList[1].name;
+      }
+    }, {
+      field: 'score1',
+      title: '技能评分',
+      formatter: (v, d) => {
+        return d.skillList[1].score;
+      }
+    }, {
+      field: 'pdf1',
+      title: '技能证书',
+      type: 'img',
+      formatter: (v, d) => {
+        return d.skillList[1].pdf;
+      },
       required: true
-    },
-    // {
-    //   field: 'contentPic',
-    //   title: '合同照片',
-    //   type: 'img',
-    //   single: true,
-    //   required: true
-    // },
-    {
+    }, {
       field: 'updateName',
-      title: '更新人'
+      title: '更新人',
+      readonly: true
     }];
     const fieldos = [{
       field: 'name',
@@ -125,26 +141,6 @@ class AllStaffAddEdit extends React.Component {
         return d.bankCard.bankcardNumber;
       }
     }, {
-      field: 'name1',
-      title: '技能名称',
-      formatter: (v, d) => {
-        return d.skillList[2].name;
-      }
-    }, {
-      field: 'score1',
-      title: '技能评分',
-      formatter: (v, d) => {
-        return d.skillList[2].score;
-      }
-    }, {
-      field: 'pdf1',
-      title: '技能证书',
-      type: 'img',
-      formatter: (v, d) => {
-        return d.skillList[2].pdf;
-      },
-      required: true
-    }, {
       field: 'pict1',
       title: '免冠照片',
       type: 'img',
@@ -178,6 +174,26 @@ class AllStaffAddEdit extends React.Component {
       formatter: (v, d) => {
         return formatDate(d.idStartDate) + '---' + formatDate(d.idEndDate);
       }
+    }, {
+      field: 'name1',
+      title: '技能名称',
+      formatter: (v, d) => {
+        return d.skillList[1].name;
+      }
+    }, {
+      field: 'score1',
+      title: '技能评分',
+      formatter: (v, d) => {
+        return d.skillList[1].score;
+      }
+    }, {
+      field: 'pdf1',
+      title: '技能证书',
+      type: 'img',
+      formatter: (v, d) => {
+        return d.skillList[1].pdf;
+      },
+      required: true
     }, {
       field: 'updateName',
       title: '更新人'

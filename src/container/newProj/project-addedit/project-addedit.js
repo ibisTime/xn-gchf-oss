@@ -124,14 +124,20 @@ class ProjectAddedit extends React.Component {
       type: 'date',
       required: true
     }, {
-      field: 'salaryCreateDatetime',
-      title: '工资条形成时间(每月多少号)',
+      field: 'salaryCreateDatetimes',
+      title: '工资条形成时间',
       date28: true,
+      formatter: (v, d) => {
+        return '每月' + d.salaryCreateDatetime + '号';
+      },
       required: true
     }, {
-      field: 'salaryDatetime',
-      title: '薪资发放时间(每月多少号)',
+      field: 'salaryDatetimes',
+      title: '薪资发放时间',
       date28: true,
+      formatter: (v, d) => {
+        return '每月' + d.salaryDatetime + '号';
+      },
       required: true
     }, {
       field: 'remark',
@@ -225,7 +231,7 @@ class ProjectAddedit extends React.Component {
       title: '工资条形成时间',
       date28: true,
       formatter: (v, d) => {
-        return '每月' + d.salaryCreateDatetime + '多少号';
+        return '每月' + d.salaryCreateDatetime + '号';
       },
       required: true
     }, {
@@ -233,7 +239,7 @@ class ProjectAddedit extends React.Component {
       title: '薪资发放时间',
       date28: true,
       formatter: (v, d) => {
-        return '每月' + d.salaryDatetime + '多少号';
+        return '每月' + d.salaryDatetime + '号';
       },
       required: true
     }, {

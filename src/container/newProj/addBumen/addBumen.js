@@ -9,6 +9,7 @@ import {
 } from '@redux/security/menu-addedit';
 import { getQueryString } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
+import { getBumen } from 'api/company';
 
 @DetailWrapper(
   state => state.securityMenuAddEdit,
@@ -17,10 +18,19 @@ import { DetailWrapper } from 'common/js/build-detail';
 class AddBumen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      bumenStructure: []
+    };
     this.companyCode = getQueryString('companyCode', this.props.location.search);
     this.bumenCode = getQueryString('bumenCode', this.props.location.search);
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+  }
+  componentDidMount() {
+    getBumen(this.companyCode).then(data => {
+      console.log(data);
+      this.setState({ bumenStructure: data });
+    });
   }
   render() {
     if (this.bumenCode.slice(0, 1) === 'C' || this.code.slice(0, 1) === 'D') {

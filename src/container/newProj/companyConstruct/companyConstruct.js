@@ -27,6 +27,7 @@ class RoleMenu extends React.Component {
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
         getCompany(data.projectCodeList, 'S').then((companyData) => {
+          console.log(companyData);
           this.getTree(companyData[0]);
           this.setState({
             fetching: false
@@ -36,6 +37,7 @@ class RoleMenu extends React.Component {
     } else {
       getUserDetail(getUserId()).then((data) => {
         getCompanyDetail(data.companyCode).then((data) => {
+          console.log(data);
           this.getTree(data);
           this.setState({
             fetching: false
@@ -105,9 +107,11 @@ class RoleMenu extends React.Component {
     } else {
       this.setState({ selectKey: key });
     }
-    getBumen(key).then(bumenData => {
-      this.getTree1(bumenData, key);
-    });
+    if (!this.state.stopGetTree1) {
+      getBumen(key).then(bumenData => {
+        this.getTree1(bumenData, key);
+      });
+    }
   }
   findCheckItem(arr, key) {
     if (this.findCheckItem[key]) {
@@ -184,25 +188,6 @@ class RoleMenu extends React.Component {
           this.setState({ fetching: true });
           deleteBumen1(this.state.selectKey).then(() => {
             showSucMsg('操作成功');
-            if (getUserKind() === 'S') {
-              getUserDetail(getUserId()).then((data) => {
-                getCompany(data.projectCodeList, 'S').then((companyData) => {
-                  this.getTree(companyData[0]);
-                  this.setState({
-                    fetching: false
-                  });
-                }).catch(() => this.setState({ fetching: false }));
-              });
-            } else {
-              getUserDetail(getUserId()).then((data) => {
-                getCompanyDetail(data.companyCode).then((data) => {
-                  this.getTree(data);
-                  this.setState({
-                    fetching: false
-                  });
-                }).catch(() => this.setState({ fetching: false }));
-              });
-            }
             this.setState({ fetching: false });
           }).catch(this.setState({ fetching: false }));
         }

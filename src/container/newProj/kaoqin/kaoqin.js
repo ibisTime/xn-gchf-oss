@@ -210,7 +210,7 @@ class Kaoqin extends React.Component {
         },
         {
           code: 'daka',
-          name: '打卡',
+          name: '手工打卡',
           handler: (selectedRowKeys, selectedRows) => {
             if (!selectedRowKeys.length) {
               showWarnMsg('请选择记录');

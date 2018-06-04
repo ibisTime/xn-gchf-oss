@@ -104,15 +104,6 @@ class AllStaffError extends React.Component {
         } else {
           this.props.history.push(`/staff/allStafferror/addedit?v=1&code=${selectedRowKeys[0]}`);
         }
-      },
-      Transformation: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/staff/allStaff/error/Edit?v=1&code=${selectedRowKeys[0]}`);
-        }
       }
     };
     if (getUserKind() === 'O') {
@@ -144,9 +135,6 @@ class AllStaffError extends React.Component {
         buttons: [{
           code: 'detail',
           name: '详情'
-        }, {
-          code: 'Transformation',
-          name: '转化为正常'
         }],
         pageCode: 631445
       }) : null;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Timeline, Button, Card, Input, Divider, Table, Icon, Spin, Form, Checkbox } from 'antd';
 import fetch from 'common/js/fetch';
-import { getQueryString, showSucMsg, formatDate } from 'common/js/util';
+import { getQueryString, showSucMsg, formatDate, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail, getUserErrorInfo, getUserWagesInfo, senderrInfo } from 'api/user';
@@ -34,6 +34,9 @@ class AllStaffAddEdit extends React.Component {
   goBack() {
     this.props.history.go(-1);
   };
+  Transformation() {
+    this.props.history.push(`/staff/allStaff/error/Edit?code=${this.code}`);
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -74,6 +77,26 @@ class AllStaffAddEdit extends React.Component {
       return res;
     };
     const { getFieldDecorator } = this.props.form;
+    if (getUserKind() === 'S') {
+      return (
+        <Spin spinning={this.state.loading}>
+          <h3 style={{ textAlign: 'center' }}>异常处理</h3>
+          <p>姓名：{this.state.data.staffName}</p>
+          <p>所属工程：{this.state.data.projectName}</p>
+          <p>应发工资：{this.state.data.factAmount / 1000}</p>
+          <p>实发工资：{this.state.data.payAmount / 1000}</p>
+          <p>工资所属月份：{this.state.data.month}</p>
+          <Divider>异常处理报告</Divider>
+          {list(this.state.errordata.length)}
+          <Form onSubmit={this.handleSubmit}>
+            <FormItem>
+              <Button onClick={this.Transformation.bind(this)} style={{ marginTop: 20 }}>转化为正常</Button>
+              <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20, marginLeft: 30 }}>返回</Button>
+            </FormItem>
+          </Form>
+        </Spin>
+      );
+    }
     return (
       <Spin spinning={this.state.loading}>
         <h3 style={{ textAlign: 'center' }}>异常处理</h3>
