@@ -24,10 +24,16 @@ class RoleMenu extends React.Component {
     this.name = getQueryString('name');
   }
   componentDidMount() {
+    this.reSetData();
+  }
+  res = {
+    'key': 'company'
+  }
+  reSetData() {
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
         getCompany(data.projectCodeList, 'S').then((companyData) => {
-          console.log(companyData);
+          console.log(companyData[0]);
           this.getTree(companyData[0]);
           this.setState({
             fetching: false
@@ -37,7 +43,6 @@ class RoleMenu extends React.Component {
     } else {
       getUserDetail(getUserId()).then((data) => {
         getCompanyDetail(data.companyCode).then((data) => {
-          console.log(data);
           this.getTree(data);
           this.setState({
             fetching: false
@@ -45,9 +50,6 @@ class RoleMenu extends React.Component {
         }).catch(() => this.setState({ fetching: false }));
       });
     }
-  }
-  res = {
-    'key': 'company'
   }
   getTree(data) {
     let result = [];
@@ -99,6 +101,7 @@ class RoleMenu extends React.Component {
     this.setState({ stopGetTree1: true });
   }
   onSelect = (checkedKeys, event) => {
+    console.log(checkedKeys);
     const { treeData } = this.state;
     this.checkNode = '';
     let key = event.node.props.eventKey;
@@ -111,24 +114,6 @@ class RoleMenu extends React.Component {
       getBumen(key).then(bumenData => {
         this.getTree1(bumenData, key);
       });
-    }
-  }
-  findCheckItem(arr, key) {
-    if (this.findCheckItem[key]) {
-      this.checkNode = this.findCheckItem[key];
-      return;
-    }
-    for (let i = 0; i < arr.length; i++) {
-      if (this.checkNode) {
-        return;
-      }
-      if (arr[i].key === key) {
-        this.findCheckItem[key] = this.checkNode;
-        this.checkNode = arr[i];
-        break;
-      } else if (arr[i].children) {
-        this.findCheckItem(arr[i].children, key);
-      }
     }
   }
   getChildrenKeys(arr, childrenKeys) {
@@ -188,7 +173,13 @@ class RoleMenu extends React.Component {
           this.setState({ fetching: true });
           deleteBumen1(this.state.selectKey).then(() => {
             showSucMsg('操作成功');
-            this.setState({ fetching: false });
+            this.setState({
+              expandedKeys: [],
+              checkedKeys: [],
+              selectKey: '',
+              stopGetTree1: false
+            });
+            this.reSetData();
           }).catch(this.setState({ fetching: false }));
         }
       });

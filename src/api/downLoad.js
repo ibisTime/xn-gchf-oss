@@ -1,8 +1,8 @@
 import { getUserName } from 'common/js/util';
 import fetch from 'common/js/fetch';
 
-export function downLoad() {
-  return fetch(631446);
+export function downLoad(messageCode) {
+  return fetch(631446, { messageCode });
 }
 
 export function downLoadO(messageCode) {

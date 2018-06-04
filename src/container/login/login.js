@@ -22,14 +22,14 @@ class Login extends React.Component {
     //     : window.location.port === '2506' ? '银行端'
     //     : window.location.port === '2507' ? '业主端'
     //     : window.location.port === '2508' ? '平台端' : '平台端';
-    // this.typeName = window.location.origin === 'http://47.96.161.183:2505' ? '监管端'
-    //   : window.location.origin === 'http://47.96.161.183:2506' ? '银行端'
-    //     : window.location.origin === 'http://47.96.161.183:2507' ? '业主端'
-    //       : window.location.origin === 'http://47.96.161.183:2508' ? '平台端' : '平台端';
-    this.typeName = window.location.origin === 'https://jmgod.hichengdai.com' ? '监管端'
-      : window.location.origin === 'http://jmbank.hichengdai.com' ? '银行端'
-        : window.location.origin === 'https://jmcompany.hichengdai.com' ? '业主端'
-          : window.location.origin === 'https://jmadmin.hichengdai.com' ? '平台端' : '平台端';
+    this.typeName = window.location.origin === 'http://47.96.161.183:2505' ? '监管端'
+      : window.location.origin === 'http://47.96.161.183:2506' ? '银行端'
+        : window.location.origin === 'http://47.96.161.183:2507' ? '业主端'
+          : window.location.origin === 'http://47.96.161.183:2508' ? '平台端' : '平台端';
+    // this.typeName = window.location.origin === 'https://jmgod.hichengdai.com' ? '监管端'
+    //   : window.location.origin === 'http://jmbank.hichengdai.com' ? '银行端'
+    //     : window.location.origin === 'https://jmcompany.hichengdai.com' ? '业主端'
+    //       : window.location.origin === 'https://jmadmin.hichengdai.com' ? '平台端' : '平台端';
     this.onChange = this.onChange.bind(this);
     if (cookies.get('loginName') && cookies.get('loginName') !== null && cookies.get('loginName') !== undefined) {
       this.initName = cookies.get('loginName');
@@ -49,14 +49,14 @@ class Login extends React.Component {
         // : window.location.port === '2506' ? 'B'
         // : window.location.port === '2507' ? 'O'
         // : window.location.port === '2508' ? 'P' : 'P';
-        // this.type = window.location.origin === 'http://47.96.161.183:2505' ? 'S'
-        //   : window.location.origin === 'http://47.96.161.183:2506' ? 'B'
-        //     : window.location.origin === 'http://47.96.161.183:2507' ? 'O'
-        //       : window.location.origin === 'http://47.96.161.183:2508' ? 'P' : 'O';
-        this.type = window.location.origin === 'https://jmgod.hichengdai.com' ? 'S'
-          : window.location.origin === 'http://jmbank.hichengdai.com' ? 'B'
-            : window.location.origin === 'https://jmcompany.hichengdai.com' ? 'O'
-              : window.location.origin === 'https://jmadmin.hichengdai.com' ? 'P' : 'O';
+        this.type = window.location.origin === 'http://47.96.161.183:2505' ? 'S'
+          : window.location.origin === 'http://47.96.161.183:2506' ? 'B'
+            : window.location.origin === 'http://47.96.161.183:2507' ? 'O'
+              : window.location.origin === 'http://47.96.161.183:2508' ? 'P' : 'O';
+        // this.type = window.location.origin === 'https://jmgod.hichengdai.com' ? 'S'
+        //   : window.location.origin === 'http://jmbank.hichengdai.com' ? 'B'
+        //     : window.location.origin === 'https://jmcompany.hichengdai.com' ? 'O'
+        //       : window.location.origin === 'https://jmadmin.hichengdai.com' ? 'P' : 'O';
         this.setState({ loading: true });
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户

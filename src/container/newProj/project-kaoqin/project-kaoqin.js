@@ -206,14 +206,11 @@ class ProjectKaoqin extends React.Component {
                 cancelText: '取消',
                 content: '确定打卡？',
                 onOk: () => {
-                  setTimeout(() => {
-                    this.props.getPageDate();
-                  }, 1000);
-                  // this.props.doFetching();
-                  // fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
-                  //   showSucMsg('操作成功');
-                  //   this.props.cancelFetching();
-                  // }).catch(this.props.cancelFetching);
+                  this.props.doFetching();
+                  fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
+                    showSucMsg('操作成功');
+                    this.props.getPageData();
+                  }).catch(this.props.cancelFetching);
                 }
               });
             }

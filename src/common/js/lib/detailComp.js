@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Form, Select, Input, Button, Tooltip, Icon, Spin, Upload,
-  Modal, Cascader, DatePicker, TimePicker, Row, Col
+  Modal, Cascader, DatePicker, TimePicker, Row, Col, Table
 } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -1129,6 +1129,12 @@ export default class DetailComp extends React.Component {
       rules.push({
         pattern: /(^[1-9]$)|(^[1][0-9]$)|(^[2][0-8]$)/,
         message: '请输入1-28之间的整数'
+      });
+    }
+    if (item.date100) {
+      rules.push({
+        pattern: /[1-9]\d?|100/,
+        message: '请输入1-100之间的整数'
       });
     }
     return rules;

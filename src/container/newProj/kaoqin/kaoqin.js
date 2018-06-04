@@ -225,6 +225,7 @@ class Kaoqin extends React.Component {
                   this.props.doFetching();
                   fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
                     showSucMsg('操作成功');
+                    this.props.getPageData();
                   }).catch(this.props.cancelFetching);
                 }
               });

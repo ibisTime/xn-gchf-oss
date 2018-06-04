@@ -81,10 +81,12 @@ const checkColumns = [{
   dataIndex: 'staffMobile'
 }, {
   title: '上班时间',
-  dataIndex: 'startDatetime'
+  dataIndex: 'startDatetime',
+  render: (v) => formatDate(v)
 }, {
   title: '下班时间',
-  dataIndex: 'endDatetime'
+  dataIndex: 'endDatetime',
+  render: (v) => formatDate(v)
 }, {
   title: '出工状态',
   dataIndex: 'status',

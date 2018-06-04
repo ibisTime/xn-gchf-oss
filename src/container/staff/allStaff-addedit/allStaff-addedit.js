@@ -80,25 +80,34 @@ class AllStaffAddEdit extends React.Component {
       required: true,
       readonly: true
     }, {
-      field: 'name1',
-      title: '技能名称',
-      formatter: (v, d) => {
-        return d.skillList[1].name;
+      title: '技能列表',
+      field: 'skillList',
+      type: 'o2m',
+      options: {
+        add: true,
+        edit: true,
+        delete: true,
+        scroll: { x: 600 },
+        fields: [
+          {
+            title: '技能名称',
+            field: 'name',
+            nowrap: true,
+            width: 80
+          },
+          {
+            title: '技能证书',
+            field: 'pdf',
+            type: 'img',
+            single: true
+          },
+          {
+            title: '技能分数',
+            field: 'score',
+            date100: true
+          }
+        ]
       }
-    }, {
-      field: 'score1',
-      title: '技能评分',
-      formatter: (v, d) => {
-        return d.skillList[1].score;
-      }
-    }, {
-      field: 'pdf1',
-      title: '技能证书',
-      type: 'img',
-      formatter: (v, d) => {
-        return d.skillList[1].pdf;
-      },
-      required: true
     }, {
       field: 'updateName',
       title: '更新人',
@@ -175,25 +184,33 @@ class AllStaffAddEdit extends React.Component {
         return formatDate(d.idStartDate) + '---' + formatDate(d.idEndDate);
       }
     }, {
-      field: 'name1',
-      title: '技能名称',
-      formatter: (v, d) => {
-        return d.skillList[1].name;
+      title: '技能列表',
+      field: 'skillList',
+      type: 'o2m',
+      options: {
+        add: true,
+        edit: true,
+        delete: true,
+        scroll: { x: 600 },
+        fields: [
+          {
+            title: '技能名称',
+            field: 'name',
+            nowrap: true,
+            width: 80
+          },
+          {
+            title: '技能证书',
+            field: 'pdf',
+            type: 'img',
+            single: true
+          },
+          {
+            title: '技能分数',
+            field: 'score'
+          }
+        ]
       }
-    }, {
-      field: 'score1',
-      title: '技能评分',
-      formatter: (v, d) => {
-        return d.skillList[1].score;
-      }
-    }, {
-      field: 'pdf1',
-      title: '技能证书',
-      type: 'img',
-      formatter: (v, d) => {
-        return d.skillList[1].pdf;
-      },
-      required: true
     }, {
       field: 'updateName',
       title: '更新人'
