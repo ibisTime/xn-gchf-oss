@@ -186,7 +186,17 @@ class PostRequestAddedit extends React.Component {
           <Button onClick={this.handleExport}>点击下载</Button>
           <p>下载次数{this.state.backDownload}</p>
         </Card>
-        <Button onClick={this.goBack.bind(this)} style={{ marginTop: 40 }}>返回</Button>
+        <Card title={this.state.title + '工资反馈'} style={{ width: 500, marginTop: 20 }}>
+          <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>
+          <p>上传文件</p>
+          <Upload {...props}>
+            <Button>
+              <Icon type="upload" /> 选择文件
+            </Button>
+          </Upload>
+          <Button style={{ marginTop: 10 }} onClick={this.postRequest1}>上传</Button>
+        </Card>
+        <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20 }}>返回</Button>
       </div>
     );
   }

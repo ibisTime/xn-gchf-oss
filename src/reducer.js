@@ -21,6 +21,7 @@ import { publicBannerAddEdit } from './redux/public/banner-addedit';
 import { publicAboutusAddEdit } from './redux/public/aboutus-addedit';
 import { publicTimeAddEdit } from './redux/public/time-addedit';
 import { waitListPostRequest } from './redux/waitList/postRequest';
+import { waitListFeedBack } from './redux/waitList/feedback';
 import { waitListAlreadyQuest } from './redux/waitList/alreadyQuest';
 import { waitListAlreadyQuestAddedit } from './redux/waitList/alreadyQuest-addedit';
 import { generalTextParam } from './redux/general/text-param';
@@ -80,6 +81,7 @@ import { staffBaogong } from './redux/staff/baogong';
 import { daifaDaifa } from './redux/daifa/daifa';
 import { mapMap } from './redux/map/map';
 import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
+import { daifaDaifaEdit } from './redux/daifa/daifa-edit';
 import { newIdBank } from './redux/newId/bank';
 import { newIdOperation } from './redux/newId/operation';
 import { newIdOperationAddEdit } from './redux/newId/operation-addedit';
@@ -112,6 +114,7 @@ export default combineReducers({
   publicAboutusAddEdit,
   publicTimeAddEdit,
   waitListPostRequest,
+  waitListFeedBack,
   mapMap,
   waitListAlreadyQuest,
   waitListAlreadyQuestAddedit,
@@ -170,6 +173,7 @@ export default combineReducers({
   staffAllStaffErrorAddEdit,
   daifaDaifa,
   daifaDaifaAddEdit,
+  daifaDaifaEdit,
   newIdBank,
   newIdOperation,
   newIdOperationAddEdit,

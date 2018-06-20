@@ -1127,8 +1127,8 @@ export default class DetailComp extends React.Component {
     }
     if (item.date28) {
       rules.push({
-        pattern: /(^[1-9]$)|(^[1][0-9]$)|(^[2][0-8]$)/,
-        message: '请输入1-28之间的整数'
+        pattern: /^([12][0-9]|30|[1-9])$/,
+        message: '请输入1-30之间的整数'
       });
     }
     if (item.date100) {

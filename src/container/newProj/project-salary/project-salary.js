@@ -32,70 +32,58 @@ class Salary extends React.Component {
     super(props);
     this.state = {
       visible: false,
-      companyCode: ''
+      companyCode: '',
+      projectCodeList: ''
     };
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   componentDidMount() {
-    if (getUserKind() === 'O') {
-      getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'companyCode': data.companyCode });
+    getUserDetail(getUserId()).then((data) => {
+      this.setState({
+        companyCode: data.companyCode,
+        projectCodeList: data.projectCodeList
       });
-    }
+    });
   };
   render() {
     const fields = [{
       title: '员工姓名',
       field: 'staffName'
     }, {
+      field: 'upUserName',
+      title: '隶属上级'
+    }, {
       title: '所属月份',
       field: 'month',
       search: true
     }, {
-      title: '应发工资',
-      field: 'shouldAmount',
-      amount: true
-    }, {
-      title: '迟到天数',
-      field: 'delayDays'
-    }, {
-      title: '早退天数',
-      field: 'earlyDays'
+      title: '当月天数',
+      field: 'monthDays'
     }, {
       title: '请假天数',
       field: 'leavingDays'
+    }, {
+      title: '迟到/早退天数',
+      field: 'delayDayss',
+      formatter: (v, d) => {
+        return d.delayDays + d.earlyDays;
+      }
     }, {
       title: '税费',
       field: 'tax',
       amount: true
     }, {
       title: '扣款金额',
-      field: 'cutAmount',
+      field: 'cutAmount1',
       amount: true
     }, {
-      title: '扣款说明',
-      field: 'cutNote'
-    }, {
-      title: '实际工资',
-      field: 'factAmount',
+      title: '发放奖金',
+      field: 'awardAmount',
       amount: true
     }, {
       title: '发放金额',
-      field: 'payAmount',
+      field: 'factAmount',
       amount: true
-    }, {
-      title: '最近一次发放时间',
-      field: 'payDatetime',
-      type: 'datetime'
-    }, {
-      title: '状态',
-      field: 'status',
-      type: 'select',
-      key: 'salay_status',
-      search: true
-    }, {
-      title: '备注',
-      field: 'remark'
     }];
     const options = {
       fields: [{
@@ -105,8 +93,7 @@ class Salary extends React.Component {
         hidden: true
       }, {
         field: 'approveNote',
-        title: '审核备注',
-        required: true
+        title: '审核备注'
       }],
       buttons: [{
         title: '通过',
@@ -178,49 +165,23 @@ class Salary extends React.Component {
                 code: 'export',
                 name: '导出',
                 handler: (selectedRowKeys, selectedRows) => {
-                  fetch(631445, {
+                  fetch(631446, {
                     projectCode: this.projectCode,
                     companyCode: this.state.companyCode,
                     kind: 'O'
                   }).then((data) => {
-                    let tableData = [];
-                    let title = [];
-                    fields.map((item) => {
-                      if (item.title !== '关键字') {
-                        title.push(item.title);
-                      }
+                    let payroll1 = [
+                      ['员工姓名', '隶属上级', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '税费', '扣款金额', '发放奖金', '实际工资']
+                    ];
+                    let payroll2 = data.map((d, i) => {
+                      return [d.staffName, d.upUserName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.tax), moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
                     });
-                    tableData.push(title);
-                    data.list.map((item) => {
-                      let temp = [];
-                      this.props.searchData.status.map((v) => {
-                        if (v.dkey === item.status) {
-                          item.status = v.dvalue;
-                        }
-                      });
-                      temp.push(
-                        item.amount ? moneyFormat(item.amount) : '',
-                        item.cutAmount ? moneyFormat(item.cutAmount) : '',
-                        item.cutNote,
-                        item.delayDays,
-                        item.earlyDays,
-                        item.leavingDays,
-                        item.shouldAmount ? moneyFormat(item.shouldAmount) : '',
-                        item.factAmount ? moneyFormat(item.factAmount) : '',
-                        item.tax ? moneyFormat(item.tax) : '',
-                        item.month,
-                        item.payDatetime ? dateTimeFormat(item.payDatetime) : '',
-                        item.payAmount ? moneyFormat(item.payAmount) : '',
-                        item.status,
-                        item.remark
-                      );
-                      tableData.push(temp);
-                    });
-                    const ws = XLSX.utils.aoa_to_sheet(tableData);
+                    payroll1 = payroll1.concat(payroll2);
+                    const ws = XLSX.utils.aoa_to_sheet(payroll1);
                     const wb = XLSX.utils.book_new();
                     XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
                     XLSX.writeFile(wb, 'sheetjs.xlsx');
-                  });
+                  }, () => { });
                 }
               }],
               searchParams: {
@@ -242,57 +203,34 @@ class Salary extends React.Component {
       return (
         <div>
           {
-            this.props.buildList({
+            this.state.projectCodeList ? this.props.buildList({
               fields,
               singleSelect: false,
               buttons: [{
                 code: 'export',
                 name: '导出',
                 handler: (selectedRowKeys, selectedRows) => {
-                  fetch(631445, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
-                    let tableData = [];
-                    let title = [];
-                    fields.map((item) => {
-                      if (item.title !== '关键字') {
-                        title.push(item.title);
-                      }
+                  fetch(631446, {
+                    projectCodeList: this.state.projectCodeList,
+                    companyCode: this.state.companyCode
+                  }).then((data) => {
+                    let payroll1 = [
+                      ['员工姓名', '隶属上级', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '税费', '扣款金额', '发放奖金', '实际工资']
+                    ];
+                    let payroll2 = data.map((d, i) => {
+                      return [d.staffName, d.upUserName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.tax), moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
                     });
-                    tableData.push(title);
-                    data.list.map((item) => {
-                      let temp = [];
-                      this.props.searchData.status.map((v) => {
-                        if (v.dkey === item.status) {
-                          item.status = v.dvalue;
-                        }
-                      });
-                      temp.push(
-                        item.amount !== undefined ? moneyFormat(item.amount) : '',
-                        item.cutAmount !== undefined ? moneyFormat(item.cutAmount) : '',
-                        item.cutNote,
-                        item.delayDays !== undefined ? item.delayDays : '',
-                        item.earlyDays !== undefined ? item.earlyDays : '',
-                        item.leavingDays !== undefined ? item.leavingDays : '',
-                        item.shouldAmount !== undefined ? moneyFormat(item.shouldAmount) : '',
-                        item.factAmount !== undefined ? moneyFormat(item.factAmount) : '',
-                        item.tax !== undefined ? moneyFormat(item.tax) : '',
-                        item.month,
-                        item.payDatetime ? dateTimeFormat(item.payDatetime) : '',
-                        item.payAmount !== undefined ? moneyFormat(item.payAmount) : '',
-                        item.status,
-                        item.remark
-                      );
-                      tableData.push(temp);
-                    });
-                    const ws = XLSX.utils.aoa_to_sheet(tableData);
+                    payroll1 = payroll1.concat(payroll2);
+                    const ws = XLSX.utils.aoa_to_sheet(payroll1);
                     const wb = XLSX.utils.book_new();
                     XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
                     XLSX.writeFile(wb, 'sheetjs.xlsx');
-                  });
+                  }, () => { });
                 }
               }],
               searchParams: { projectCode: this.projectCode },
               pageCode: 631445
-            })
+            }) : null
           }
           <ModalDetail
             title='审核'

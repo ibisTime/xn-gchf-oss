@@ -124,20 +124,14 @@ class ProjectAddedit extends React.Component {
       type: 'date',
       required: true
     }, {
-      field: 'salaryCreateDatetimes',
+      field: 'salaryCreateDatetime',
       title: '工资条形成时间',
       date28: true,
-      formatter: (v, d) => {
-        return '每月' + d.salaryCreateDatetime + '号';
-      },
       required: true
     }, {
-      field: 'salaryDatetimes',
+      field: 'salaryDatetime',
       title: '薪资发放时间',
       date28: true,
-      formatter: (v, d) => {
-        return '每月' + d.salaryDatetime + '号';
-      },
       required: true
     }, {
       field: 'remark',

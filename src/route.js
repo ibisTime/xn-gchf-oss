@@ -98,6 +98,14 @@ const ROUTES = [
     component: asyncComponent(() => import('container/waitList/alreadyQuest-addedit/alreadyQuest-addedit'))
   },
   {
+    path: '/waitList/feedback',
+    component: asyncComponent(() => import('container/waitList/feedback/feedback'))
+  },
+  {
+    path: '/waitList/feedback/addedit',
+    component: asyncComponent(() => import('container/waitList/feedback-addedit/feedback-addedit'))
+  },
+  {
     path: '/general/textParam',
     component: asyncComponent(() => import('container/general/text-param/text-param'))
   },
@@ -330,12 +338,36 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/baogong/baogong'))
   },
   {
+    path: '/staff/jiandang',
+    component: asyncComponent(() => import('container/staff/archives/jiandang'))
+  },
+  {
+    path: '/staff/jiandang/mianguanRead',
+    component: asyncComponent(() => import('container/staff/archives/mianguanRead'))
+  },
+  {
+    path: '/staff/jiandang/idInfoRead',
+    component: asyncComponent(() => import('container/staff/archives/idInfoRead'))
+  },
+  {
+    path: '/staff/jiandang/salaryCard',
+    component: asyncComponent(() => import('container/staff/archives/salaryCard'))
+  },
+  {
+    path: '/staff/jiandang/ruzhiInfo',
+    component: asyncComponent(() => import('container/staff/archives/ruzhiInfo'))
+  },
+  {
     path: '/daifa/daifa',
     component: asyncComponent(() => import('container/daifa/daifa/daifa'))
   },
   {
     path: '/daifa/daifa/addedit',
     component: asyncComponent(() => import('container/daifa/daifa-addedit/daifa-addedit'))
+  },
+    {
+    path: '/daifa/daifa/addedit/edit',
+    component: asyncComponent(() => import('container/daifa/daifa-edit/daifa-edit'))
   },
   {
     path: '/newId/bank',

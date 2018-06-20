@@ -1,92 +1,201 @@
 import React from 'react';
-import fetch from 'common/js/fetch';
 import cookies from 'browser-cookies';
+import XLSX from 'xlsx';
 import {
-  initStates,
+  setTableData,
+  setPagination,
+  setBtnList,
+  setSearchParam,
+  clearSearchParam,
   doFetching,
   cancelFetching,
-  setSelectData,
-  setPageData,
-  restore
+  setSearchData
 } from '@redux/daifa/daifa-addedit';
-import { getQueryString, showSucMsg } from 'common/js/util';
-import { DetailWrapper } from 'common/js/build-detail';
-import { getBankNameByCode } from 'api/project';
+import { listWrapper } from 'common/js/build-list';
+import { showWarnMsg, showSucMsg, getUserKind, getUserId, getQueryString, dateTimeFormat, moneyFormat } from 'common/js/util';
+import { getUserDetail } from 'api/user';
+import ModalDetail from 'common/js/build-modal-detail';
+import fetch from 'common/js/fetch';
 
-@DetailWrapper(
-  state => state.daifaDaifaAddEdit,
-  { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
+@listWrapper(
+  state => ({
+    ...state.daifaDaifaAddEdit
+  }),
+  {
+    setTableData, clearSearchParam, doFetching, setBtnList,
+    cancelFetching, setPagination, setSearchParam, setSearchData
+  }
 )
 class DaifaAddEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: ''
+      visible: false,
+      companyCode: '',
+      projectCodeList: ''
     };
     this.code = getQueryString('code', this.props.location.search);
-    this.view = !!getQueryString('v', this.props.location.search);
   }
+  componentDidMount() {
+    getUserDetail(getUserId()).then((data) => {
+      this.setState({
+        companyCode: data.companyCode,
+        projectCodeList: data.projectCodeList
+      });
+    });
+  };
   render() {
     const fields = [{
-      field: 'code',
-      title: '编号',
-      hidden: true
+      title: '员工姓名',
+      field: 'staffName'
     }, {
-      field: 'projectCode',
-      title: '项目编号',
-      hidden: true
-    }, {
-      field: 'projectName',
-      title: '项目名称'
-    }, {
-      field: 'bankNames',
-      title: '开户行',
-      formatter: (v, d) => {
-        return d.bankName + d.subbranch;
-      }
-    }, {
-      field: 'bankcardNumber',
-      title: '账户'
-    }, {
-      field: 'totalAmounts',
-      title: '本月累计发薪',
-      formatter: (v, d) => {
-        return d.totalAmount / 1000;
-      }
-    }, {
-      title: '共计扣款',
-      field: 'totalCutAmounts',
-      formatter: (v, d) => {
-        return d.totalCutAmount / 1000;
-      }
-    }, {
-      title: '共计税费',
-      field: 'totalTaxs',
-      formatter: (v, d) => {
-        return d.totalTax / 1000;
-      }
-    }, {
-      title: '领薪人数',
-      field: 'number'
+      field: 'upUserName',
+      title: '隶属上级'
     }, {
       title: '所属月份',
-      field: 'month'
+      field: 'month',
+      search: true
     }, {
-      field: 'status',
-      title: '状态',
-      type: 'select',
-      key: 'message_status'
+      title: '当月天数',
+      field: 'monthDays'
     }, {
-      field: 'createDatetime',
-      title: '创建时间',
-      type: 'datetime'
+      title: '请假天数',
+      field: 'leavingDays'
+    }, {
+      title: '迟到/早退天数',
+      field: 'delayDayss',
+      formatter: (v, d) => {
+        return d.delayDays + d.earlyDays;
+      }
+    }, {
+      title: '税费',
+      field: 'tax',
+      amount: true
+    }, {
+      title: '扣款金额',
+      field: 'cutAmount1',
+      amount: true
+    }, {
+      title: '发放奖金',
+      field: 'awardAmount',
+      amount: true
+    }, {
+      title: '发放金额',
+      field: 'factAmount',
+      amount: true
     }];
-    return this.props.buildDetail({
-      fields,
-      code: this.code,
-      view: this.view,
-      detailCode: 631437
-    });
+    const options = {
+      fields: [{
+        field: 'codeList',
+        title: '编号',
+        value: this.codeList,
+        hidden: true
+      }, {
+        field: 'approveNote',
+        title: '审核备注'
+      }],
+      buttons: [{
+        title: '通过',
+        check: true,
+        handler: (param) => {
+          param.approver = getUserId();
+          param.result = '1';
+          this.props.doFetching();
+          fetch(631443, param).then(() => {
+            showSucMsg('操作成功');
+            this.props.cancelFetching();
+            this.setState({ visible: false });
+          }).catch(this.props.cancelFetching);
+        }
+      }, {
+        title: '不通过',
+        check: true,
+        handler: (param) => {
+          param.approver = getUserId();
+          param.result = '0';
+          this.props.doFetching();
+          fetch(631443, param).then(() => {
+            showSucMsg('操作成功');
+            this.props.cancelFetching();
+            this.setState({ visible: false });
+          }).catch(this.props.cancelFetching);
+        }
+      }]
+    };
+    if (getUserKind() === 'O') {
+      return this.state.companyCode ? (
+        <div>
+          {
+            this.props.buildList({
+              fields,
+              singleSelect: false,
+              buttons: [{
+                code: 'edit',
+                name: '修改',
+                handler: (selectedRowKeys, selectedRows) => {
+                  if (!selectedRowKeys.length) {
+                    showWarnMsg('请选择记录');
+                  } else if (selectedRowKeys.length > 1) {
+                    showWarnMsg('请选择一条记录');
+                  } else {
+                    if (selectedRows[0].status === '0') {
+                      this.props.history.push(`/daifa/daifa/addedit/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+                    } else {
+                      showWarnMsg('该状态的工资条不可修改');
+                    }
+                  }
+                }
+              }, {
+                code: 'check',
+                name: '审核',
+                handler: (selectedRowKeys, selectedRows) => {
+                  if (!selectedRowKeys.length) {
+                    showWarnMsg('请选择记录');
+                  } else {
+                    // if (selectedRows[0].status === '0') {
+                    this.codeList = selectedRowKeys;
+                    this.setState({ visible: true });
+                    // } else {
+                    // showWarnMsg('该状态的工资条不可审核');
+                    // }
+                  }
+                }
+              }],
+              searchParams: {
+                messageCode: this.code,
+                companyCode: this.state.companyCode,
+                kind: 'O'
+              },
+              pageCode: 631445
+            })
+          }
+          <ModalDetail
+            title='审核'
+            visible={this.state.visible}
+            hideModal={() => this.setState({ visible: false })}
+            options={options} />
+        </div>
+      ) : null;
+    } else {
+      return (
+        <div>
+          {
+            this.state.projectCodeList ? this.props.buildList({
+              fields,
+              singleSelect: false,
+              buttons: [],
+              searchParams: { messageCode: this.code },
+              pageCode: 631445
+            }) : null
+          }
+          <ModalDetail
+            title='审核'
+            visible={this.state.visible}
+            hideModal={() => this.setState({ visible: false })}
+            options={options} />
+        </div>
+      );
+    }
   }
 }
 

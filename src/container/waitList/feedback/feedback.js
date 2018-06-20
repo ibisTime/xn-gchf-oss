@@ -10,7 +10,7 @@ import { getUserDetail } from 'api/user';
 import { handle } from 'api/downLoad';
 import { getDictList } from 'api/dict';
 
-class PostRequest extends React.Component {
+class FeedBack extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ class PostRequest extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'B') {
       getUserDetail(getUserId()).then((data) => {
-        handle(data.bankName, data.subbranch, 1).then(data => {
+        handle(data.bankName, data.subbranch, 2).then(data => {
           this.setState({
             data: data
           });
@@ -38,7 +38,7 @@ class PostRequest extends React.Component {
     };
   }
   lookDetail(code) {
-    this.props.history.push(`/waitList/postRequest/addedit?code=${code}`);
+    this.props.history.push(`/waitList/feedback/addedit?code=${code}`);
   };
   render() {
     const { data, statusDict } = this.state;
@@ -56,10 +56,10 @@ class PostRequest extends React.Component {
                 </div>
                 <p style={{ display: 'inline-block', color: 'red' }}>{ statusDict[v.status] || '' }</p>
             </Card>)
-          : <Card key={1} style={{ width: '80%' }}><p>暂时没有待处理信息</p></Card>
+          : <Card key={1} style={{ width: '80%' }}><p>暂时没有待反馈信息</p></Card>
       }</div>
     );
   }
 }
 
-export default PostRequest;
+export default FeedBack;

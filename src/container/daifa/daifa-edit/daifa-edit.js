@@ -7,17 +7,17 @@ import {
   setSelectData,
   setPageData,
   restore
-} from '@redux/newProj/project-salary-edit';
+} from '@redux/daifa/daifa-edit';
 import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId } from 'api/user';
 
 @DetailWrapper(
-  state => state.newProjProjectSalaryEdit,
+  state => state.daifaDaifaEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
 )
-class ProjectSalaryEdit extends React.Component {
+class DaifaEdit extends React.Component {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
@@ -73,4 +73,4 @@ class ProjectSalaryEdit extends React.Component {
   }
 }
 
-export default ProjectSalaryEdit;
+export default DaifaEdit;
