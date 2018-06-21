@@ -61,7 +61,7 @@
   min-height: 280px;
 }
 .home-header.ant-layout-header {
-  background: none;
+  background: rgb(38, 86, 130);
 }
 .home-header .ant-menu-dark.ant-menu-horizontal > .ant-menu-item .ant-dropdown-trigger {
   color: #fff;

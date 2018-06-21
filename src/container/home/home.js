@@ -7,6 +7,7 @@ import fetch, { fetchImg } from 'common/js/fetch';
 import { formatDate, getUserKind, moneyFormat, isUndefined, getUserId } from 'common/js/util';
 import { getProject, getProjectList, getPagePayCode, getPageChecks, getPageabnormal } from 'api/project';
 import { getUserDetail } from 'api/user';
+import './home.css';
 
 const Panel = Collapse.Panel;
 const orderDict = {
@@ -93,6 +94,19 @@ const checkColumns = [{
   render: (v) => checkDict[v]
 }];
 
+const Box = ({ title, children, className, center }) => {
+  return (
+    <div className={`box-wrapper ${className}`}>
+      <div className="box-title">
+        <i className="box-tip"></i>{title}
+      </div>
+      <div className={`box-content ${center ? 'center-content' : ''}`}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -138,9 +152,8 @@ class Home extends React.Component {
     this.getProjectList();
   }
   camera() {
-    let videos = document.querySelectorAll('video');
-    this.video0 = videos[0];
-    this.video1 = videos[1];
+    // let videos = document.querySelectorAll('video');
+    // this.video = videos[0];
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({
@@ -164,16 +177,16 @@ class Home extends React.Component {
     }
   }
   playVideo(stream) {
-    if (this.video0.srcObject) {
-      this.video0.srcObject = stream;
-      this.video1.srcObject = stream;
+    if (this.video.srcObject) {
+      this.video.srcObject = stream;
+      // this.video1.srcObject = stream;
     } else {
-      this.video0.src = (window.URL || window.webkitURL).createObjectURL(stream);
-      this.video1.src = (window.URL || window.webkitURL).createObjectURL(stream);
+      this.video.src = (window.URL || window.webkitURL).createObjectURL(stream);
+      // this.video1.src = (window.URL || window.webkitURL).createObjectURL(stream);
     }
     setTimeout(() => {
-      this.video0.play();
-      this.video1.play();
+      this.video.play();
+      // this.video1.play();
     }, 300);
   }
   closeVideo() {
@@ -467,119 +480,106 @@ class Home extends React.Component {
       totalSalary, lastMonthSalary, payData, payLoading, abnormalLoading, abnormalData,
       payPagination, checkData, checkLoading, checkPagination, abnormalPagination } = this.state;
     return (
-      <div>
-        <div id="container" className="map-containter"></div>
-        <div className="map-search-wrap">
-          <Input.Search
-            placeholder="查找项目"
-            style={{ width: 200 }}
-            onSearch={this.onSearch}
-            onChange={this.onChange}
-            onFocus={this.handleFocus}
-          />
-          <div className="ant-select-dropdown ant-select-dropdown--single ant-select-dropdown-placement-bottomLeft" style={{ width: '200px' }}>
-            <div style={{ overflow: 'auto' }}>
-              <ul className="ant-select-dropdown-menu ant-select-dropdown-menu-vertical  ant-select-dropdown-menu-root">
-                {this.state.options}
-              </ul>
-            </div>
-          </div>
-        </div>
-        {this.state.chosed ? (
-          <div>
-            <div className="map-left-wrapper">
-              <Collapse accordion onChange={this.collapseChange} style={{ background: 'rgba(16, 42, 123, 0.5)', borderRadius: 0, border: '1px solid #8faffe' }}>
-                <Panel header="本月工资详情" key="1">
-                  <Table
-                    columns={payColumns}
-                    dataSource={payData}
-                    rowKey={record => record.code}
-                    pagination={payPagination}
-                    loading={payLoading}
-                    onChange={(pagination, filters, sorter) => {
-                      this.handleTableChange(pagination, filters, sorter, 1);
-                    }}
-                    size="small" />
-                </Panel>
-                <Panel header="项目考勤" key="2">
-                  <Table
-                    columns={checkColumns}
-                    dataSource={checkData}
-                    rowKey={record => record.code}
-                    pagination={checkPagination}
-                    loading={checkLoading}
-                    onChange={(pagination, filters, sorter) => {
-                      this.handleTableChange(pagination, filters, sorter, 2);
-                    }}
-                    size="small" />
-                </Panel>
-                <Panel header="异常事件" key="3">
-                  <Table
-                    columns={abnormalColumns}
-                    dataSource={abnormalData}
-                    rowKey={record => record.code}
-                    pagination={abnormalPagination}
-                    loading={abnormalLoading}
-                    onChange={(pagination, filters, sorter) => {
-                      this.handleTableChange(pagination, filters, sorter, 3);
-                    }}
-                    size="small" />
-                </Panel>
-              </Collapse>
-            </div>
-            <div className="map-right-wrapper">
-              <div className="map-right-top">
-                <div className="map-right-head"><i className="map-rb-h-split"></i>监控视频</div>
-                <div className="map-right-top-info">
-                  <div className="map-rt-top-item">
-                    <video style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'fill'
-                    }}></video>
-                  </div>
-                  <div className="map-rt-top-item">
-                    <video style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'fill'
-                    }}></video>
+      <div className="home-wrapper">
+        <table className="home-table">
+          <tbody>
+            <tr>
+              <td colSpan='2' rowSpan='2' style={{position: 'relative'}}>
+                <div id='container' className="home-map-wrapper"></div>
+                <Input.Search
+                  className="home-search"
+                  placeholder="查找项目"
+                  enterButton="搜索"
+                  prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  onSearch={this.onSearch}
+                  onChange={this.onChange}
+                  onFocus={this.handleFocus}
+                />
+                <div className="ant-select-dropdown ant-select-dropdown--single ant-select-dropdown-placement-bottomLeft" style={{ width: 312 }}>
+                  <div style={{ overflow: 'auto' }}>
+                    <ul className="ant-select-dropdown-menu ant-select-dropdown-menu-vertical  ant-select-dropdown-menu-root">
+                      {this.state.options}
+                    </ul>
                   </div>
                 </div>
-              </div>
-              <div className="map-right-bottom">
-                <div className="map-right-head"><i className="map-rb-h-split"></i>数据统计</div>
-                <div className="map-right-cont">
-                  <div className="map-rb-top">
-                    <div className="map-rb-top-item">
-                      <div className="map-rb-item-title"><Icon type="caret-right" />目前累计人数</div>
-                      <div className="map-rbt-item-content">
-                        <AccumulatePie data={staffIn} />
-                      </div>
-                    </div>
-                    <div className="map-rb-top-item">
-                      <div className="map-rb-item-title"><Icon type="caret-right" />累计发薪金额</div>
-                      <div className="map-rbt-item-content map-rbt-item-content1">
-                        <MoneyLine />
-                      </div>
-                      <div className="map-rbt-item-btm"><span>累计：{totalSalary}元</span><span>上月：{lastMonthSalary}元</span></div>
-                    </div>
-                  </div>
-                  <div className="map-rb-bottom">
-                    <div className="map-rb-item-title"><Icon type="caret-right" />30日累计人员情况</div>
-                    <div className="map-rb-chart">
-                      <ThirtyPie
-                        staffIn={staffIn}
-                        staffOut={staffOut}
-                        leavingDays={leavingDays}
-                        workingDays={workingDays} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : null}
+              </td>
+              <td className="pl18 pb18 w274">
+                <Box title="监控视频">
+                  <video style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'fill'
+                  }} ref={(video) => this.video = video}></video>
+                </Box>
+              </td>
+            </tr>
+            <tr>
+              <td className="pl18 w274">
+                <Box title="目前累计人数" className="person-box" center={true}>
+                  <AccumulatePie data={staffIn} />
+                </Box>
+              </td>
+            </tr>
+            <tr>
+              <td className="pt18">
+                <Box title="其他情况" className="other-box">
+                  <Collapse accordion onChange={this.collapseChange} className="home-collapse">
+                    <Panel header="本月工资详情" key="1">
+                      <Table
+                        columns={payColumns}
+                        dataSource={payData}
+                        rowKey={record => record.code}
+                        pagination={payPagination}
+                        loading={payLoading}
+                        onChange={(pagination, filters, sorter) => {
+                          this.handleTableChange(pagination, filters, sorter, 1);
+                        }}
+                        size="small" />
+                    </Panel>
+                    <Panel header="项目考勤" key="2">
+                      <Table
+                        columns={checkColumns}
+                        dataSource={checkData}
+                        rowKey={record => record.code}
+                        pagination={checkPagination}
+                        loading={checkLoading}
+                        onChange={(pagination, filters, sorter) => {
+                          this.handleTableChange(pagination, filters, sorter, 2);
+                        }}
+                        size="small" />
+                    </Panel>
+                    <Panel header="异常事件" key="3">
+                      <Table
+                        columns={abnormalColumns}
+                        dataSource={abnormalData}
+                        rowKey={record => record.code}
+                        pagination={abnormalPagination}
+                        loading={abnormalLoading}
+                        onChange={(pagination, filters, sorter) => {
+                          this.handleTableChange(pagination, filters, sorter, 3);
+                        }}
+                        size="small" />
+                    </Panel>
+                  </Collapse>
+                </Box>
+              </td>
+              <td className="pt18 pl18">
+                <Box title="30日累计人员情况" className="other-box ljry-box" center={true}>
+                  <ThirtyPie
+                    staffIn={staffIn}
+                    staffOut={staffOut}
+                    leavingDays={leavingDays}
+                    workingDays={workingDays} />
+                </Box>
+              </td>
+              <td className="pl18 pt18 w274">
+                <Box title="累计发薪金额" className="other-box" center={true}>
+                  <MoneyLine />
+                </Box>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
