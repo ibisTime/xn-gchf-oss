@@ -62,24 +62,17 @@ app.use('/getIdInfo', function (req, res) {
 app.use('/getfeature', function (req, res) {
   var url = 'http://118.31.17.181/getfeature';
   var _body = req.body;
-  var param = 'code=' + _body.code + '&json=' + encodeURIComponent(_body.json);
-  axios.post(url, param).then((response) => {
-    var ret = response.data
-    if (typeof ret === 'string') {
-      var reg = /^\w+\(({[^()]+})\)$/
-      var matches = ret.match(reg)
-      if (matches) {
-        ret = JSON.parse(matches[1])
-      }
-    }
-    res.json(ret)
+  for (var key in _body) {}
+  console.log(key)
+  axios.post(url, key).then((response) => {
+    res.send(response.data)
   }).catch((e) => {
     res.json({ errorInfo: 'error', errorCode: 1 });
   });
-  var now = new Date();
-  let time = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() +
-    ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-  console.log(time + ': ' + 'code=' + _body.code + '&json=' + _body.json);
+  // var now = new Date();
+  // let time = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() +
+  //   ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+  // console.log(time + ': ' + key);
 });
 
 app.listen(9091, function () {

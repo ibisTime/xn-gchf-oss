@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import './mianguanRead.css';
 import Photo from './touxiang.png';
+import { getQueryString, getUserId } from 'common/js/util';
+import { mianguanPicture } from 'api/user';
 
 class mianguanRead extends React.Component {
   constructor(props) {
@@ -19,7 +21,8 @@ class mianguanRead extends React.Component {
     this.getFeat = this.getFeat.bind(this);
     this.handleShotClick = this.handleShotClick.bind(this);
     this.next = this.next.bind(this);
-    this.submitBtn = this.submitBtn.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.code = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
   // 获取媒体方法（旧方法）
@@ -92,9 +95,10 @@ class mianguanRead extends React.Component {
   };
   getFeat() {
       console.log(this.canvas.toDataURL('image/jpeg'));
-    axios.post('/getfeature', this.canvas.toDataURL('image/jpeg'))
+      let base64 = this.canvas.toDataURL('image/jpeg');
+    axios.post('/getfeature', encodeURIComponent(base64))
         .then((rs) => {
-            var result = /getFaceFeature\({data:([^]+)}\)/.exec(rs);
+            var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
             if (!result || result[1] === 'NOFACE') {
                 alert('请对准人脸');
                 return;
@@ -102,7 +106,6 @@ class mianguanRead extends React.Component {
             this.setState({
                 feat: result[1]
             });
-            console.log(result);
         });
   }
   handleShotClick() {
@@ -118,7 +121,7 @@ class mianguanRead extends React.Component {
         shot: true
     });
   };
-  submitBtn (e) {
+  handleSubmit(e) {
     e.preventDefault();
     var info = {};
     if (this.state.feat) {
@@ -130,12 +133,10 @@ class mianguanRead extends React.Component {
     };
 };
 upload(info) {
-    info.idKind = 1;
-    axios.post('/api', {
-        code: 631411,
-        json: JSON.stringify(info)
-    }).then(rs => {
-        if (rs.errorCode === '0') {
+    info.code = this.code;
+    info.updater = getUserId();
+    mianguanPicture(info).then(rs => {
+        if (rs.isSuccess) {
             alert('提交成功');
             this.props.history.push(`/staff/jiandang/salaryCard`);
         } else {
@@ -171,7 +172,7 @@ upload(info) {
                                     onClick={ this.handleShotClick }>{this.state.shot ? '拍摄' : '取消'}</button>
                                 </div>
                                 <div>
-                                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.submitBtn }>下一步</button>
+                                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
                                 </div>
                                 </div>
                             </div>

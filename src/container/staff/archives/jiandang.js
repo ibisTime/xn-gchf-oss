@@ -158,7 +158,7 @@ class Jiandang extends React.Component {
                         if(res.code) {
                             showSucMsg('建档成功');
                             setTimeout(() => {
-                                this.props.history.push(`/staff/jiandang/mianguanRead`);
+                                this.props.history.push(`/staff/jiandang/mianguanRead?code=${res.code}`);
                             }, 300);
                         }else {
                             showWarnMsg('建档失败');
