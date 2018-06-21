@@ -43,17 +43,19 @@ class FeedBack extends React.Component {
   render() {
     const { data, statusDict } = this.state;
     return (
-      <div>
+      <div style={{ width: '100%', padding: '38px' }}>
       { data.length
          ? data.map((v, i) =>
-            <Card key={v.code} style={{ width: '80%', padding: 0 }}>
+            <Card key={v.code} style={{ width: '100%', padding: '0px', borderColor: 'rgb(206,234,252)', boxShadow: '0px 0px 30px rgba(0,204,255,0.9) inset' }}>
+              <div style={{ marginBottom: '18px' }}>
                 <span>发件人：</span>
                 <i style={{ fontStyle: 'normal' }}>{ v.sendName }</i>
                 <i style={{ fontStyle: 'normal', marginLeft: 20 }}>{ dateTimeFormat(v.sendDatetime) }</i>
-                <div style={{ width: '100%' }}>
+              </div>
+              <div style={{ width: '100%', marginBottom: '20px' }}>
                 <i style={{ display: 'inline-block', whiteSpace: 'nowrap', fontStyle: 'normal' }}>{ v.title }</i>
-                <Button type="primary" style={{ marginLeft: '70%' }} onClick={ () => { this.lookDetail(v.code); } }>查看</Button>
-                </div>
+                <Button type="primary" style={{ float: 'right', borderRadius: '15px', width: '82px', height: '31px' }} onClick={ () => { this.lookDetail(v.code); } }>查看</Button>
+              </div>
                 <p style={{ display: 'inline-block', color: 'red' }}>{ statusDict[v.status] || '' }</p>
             </Card>)
           : <Card key={1} style={{ width: '80%' }}><p>暂时没有待反馈信息</p></Card>
