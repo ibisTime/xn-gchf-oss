@@ -1,27 +1,34 @@
 import React from 'react';
 import axios from 'axios';
 import './jiandang.css';
+import { Form, Input, Button } from 'antd';
+import { formItemLayout, tailFormItemLayout } from 'common/js/config';
+import { jiandang, getUserId } from 'api/user';
+import { showWarnMsg, showSucMsg } from 'common/js/util';
+import Avatar from './touxiang.png';
 
-class jiandang extends React.Component {
+const FormItem = Form.Item;
+
+class Jiandang extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'realName': '姓名',
-            'sex': '性别',
-            'idNation': '民族',
-            'birthday': '出生日期',
-            'idNo': '身份证号码',
-            'idAddress': '地址',
-            'idStartDate': '有效开始日期',
-            'idEndDate': '有效截止日期',
-            'idPolice': '签发机关',
-            'idPic': '头像',
+            'realName': '',
+            'sex': '',
+            'idNation': '',
+            'birthday': '',
+            'idNo': '',
+            'idAddress': '',
+            'idStartDate': '',
+            'idEndDate': '',
+            'idPolice': '',
+            'idPic': '',
             'spanText': '',
             'spanTi': ''
         };
         this.openVideo = this.openVideo.bind(this);
         this.getCard = this.getCard.bind(this);
-        this.submitBtn = this.submitBtn.bind(this);
+        // this.submitBtn = this.submitBtn.bind(this);
         this.cut = this.cut.bind(this);
         // this.getFeat = this.getFeat.bind(this);
         this.upload = this.upload.bind(this);
@@ -95,18 +102,35 @@ class jiandang extends React.Component {
                 alert('身份证信息读取失败，请把身份证放置准确后再次读取');
                 return;
             }
-            for (var k in this.state) {
-                if (k === 'idPic') {
-                    var val = /^data:image/.test(data[k]) ? data[k] : 'data:image/bmp;base64,' + data[k];
-                    document.getElementById('idPicImg').setAttribute('src', val);
-                    document.getElementById('idPicImg').style.display = 'block';
-                    document.getElementById('idPicSlib').style.display = 'none';
-                    document.getElementById('leftInner').className = 'active';
-                    this.idPic = val;
-                } else {
-                    document.getElementById(k).value(data[k]);
-                }
-            }
+            data = data.data;
+            this.setState({
+                realName: data.realName,
+                sex: data.sex,
+                idNation: data.idNation,
+                birthday: data.birthday,
+                idNo: data.idNo,
+                idAddress: data.idAddress,
+                idStartDate: data.idStartDate,
+                idEndDate: data.idEndDate,
+                idPolice: data.idPolice
+            });
+            let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
+            this.setState({
+                idPic: val,
+                isIdpic: true
+            });
+            // for (var k in this.state) {
+            //     if (k === 'idPic') {
+            //         var val = /^data:image/.test(data[k]) ? data[k] : 'data:image/bmp;base64,' + data[k];
+            //         document.getElementById('idPicImg').setAttribute('src', val);
+            //         document.getElementById('idPicImg').style.display = 'block';
+            //         document.getElementById('idPicSlib').style.display = 'none';
+            //         document.getElementById('leftInner').className = 'active';
+            //         this.idPic = val;
+            //     } else {
+            //         document.getElementById(k).value(data[k]);
+            //     }
+            // }
         }).catch(() => {
             document.getElementById('getCard').setAttribute('disabled', false);
             this.setState({ spanText: '读取身份证' });
@@ -114,39 +138,65 @@ class jiandang extends React.Component {
         });
     };
     // 提交
-    submitBtn (e) {
+    handleSubmit = (e) => {
         e.preventDefault();
-        var params = [
-            { realName: this.state.realName },
-            { sex: this.state.sex },
-            { idNation: this.state.idNation },
-            { birthday: this.state.birthday },
-            { idNo: this.state.idNo },
-            { idAddress: this.state.idAddress },
-            { idStartDate: this.state.idStartDate },
-            { idEndDate: this.state.idEndDate },
-            { idPolice: this.state.idPolice }
-        ];
-        var info = {};
-        for (var i = 0; i < params.length; i++) {
-            var val = params[i].value;
-            if (val === 'undefined' || val === '') {
-                alert(params[i].name + '不能为空');
-                return;
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                jiandang(
+                    values.birthday,
+                    values.idAddress,
+                    values.idEndDate,
+                    values.idNation,
+                    values.idNo,
+                    this.state.idPic,
+                    values.idPolice,
+                    values.idStartDate,
+                    values.realName,
+                    this.state.sex,
+                    getUserId()
+                    ).then((res) => {
+                        if(res.code) {
+                            showSucMsg('建档成功');
+                            setTimeout(() => {
+                                this.props.history.push(`/staff/jiandang/mianguanRead`);
+                            }, 300);
+                        }else {
+                            showWarnMsg('建档失败');
+                        }
+                    });
             }
-            info[params[i].name] = params[i].value;
-        }
-        if (this.state.idPic) {
-            // info.feat = this.feat;
-            info.idPic = this.state.idPic;
-            info.pic1 = this.canvas.toDataURL('image/jpeg');
-            this.upload(info);
-        } else if (!this.state.idPic) {
-            alert('请先读取身份证信息');
-        } else {
-            alert('请进行人脸信息采集');
-        }
-    };
+        });
+        // var params = [
+        //     { realName: this.state.realName },
+        //     { sex: this.state.sex },
+        //     { idNation: this.state.idNation },
+        //     { birthday: this.state.birthday },
+        //     { idNo: this.state.idNo },
+        //     { idAddress: this.state.idAddress },
+        //     { idStartDate: this.state.idStartDate },
+        //     { idEndDate: this.state.idEndDate },
+        //     { idPolice: this.state.idPolice }
+        // ];
+        // var info = {};
+        // for (var i = 0; i < params.length; i++) {
+        //     var val = params[i].value;
+        //     if (val === 'undefined' || val === '') {
+        //         alert(params[i].name + '不能为空');
+        //         return;
+        //     }
+        //     info[params[i].name] = params[i].value;
+        // }
+        // if (this.state.idPic) {
+        //     // info.feat = this.feat;
+        //     info.idPic = this.state.idPic;
+        //     info.pic1 = this.canvas.toDataURL('image/jpeg');
+        //     this.upload(info);
+        // } else if (!this.state.idPic) {
+        //     alert('请先读取身份证信息');
+        // } else {
+        //     alert('请进行人脸信息采集');
+        // }
+    }
     // 截取图像
     cut() {
         document.getElementById('userImg').style.display = 'none';
@@ -184,7 +234,7 @@ class jiandang extends React.Component {
             });
             if (rs.errorCode === '0') {
                 alert('建档成功');
-                this.props.history.push(`/staff/jiandang/mianguanRead`);
+                this.props.history.push(`/staff/J/mianguanRead`);
             } else {
                 alert(rs.errorInfo || '建档失败');
             }
@@ -245,6 +295,8 @@ class jiandang extends React.Component {
         });
     };
   render() {
+    const { idPic } = this.state;
+    const { getFieldDecorator } = this.props.form;
     return (
         <div className="SectionContainer">
         <div className="section">
@@ -254,12 +306,15 @@ class jiandang extends React.Component {
                         <div className="left-top">
                             <div className="head-wrap"><i></i>身份证头像</div>
                             <div className="left-cont">
-                                <div className="left-inner" id="leftInner">
-                                    <div id="idPicSlib">
-                                        <div className="img"><img src="./touxiang.png"/></div>
+                                <div className={idPic ? 'active' : 'left-inner'} id="leftInner">
+                                {
+                                idPic
+                                    ? <img className="idImg" id="idPicImg" src={idPic} style={{ margin: '0 100px' }}/>
+                                    : <div id="idPicSlib">
+                                        <div className="img"><img src={Avatar}/></div>
                                         <div>上传身份证</div>
-                                    </div>
-                                    <img className="idImg" id="idPicImg" src=""/>
+                                      </div>
+                                }
                                 </div>
                             </div>
                             <button id="getCard" className="ant-btn ant-btn-primary ant-btn-lg" onClick={ this.getCard }><span>{ this.state.spanText || '读取身份证' }</span></button>
@@ -268,105 +323,110 @@ class jiandang extends React.Component {
                     <div className="right-wrapper">
                         <div className="head-wrap"><i></i>人脸信息采集</div>
                         <div className="right-bottom">
-                            <form className="ant-form ant-form-horizontal" id="formId">
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="realName" className="ant-form-item-required">姓名</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="realName" name="realName" className="ant-input ant-input-lg" onChange={ this.inputValueName }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="sex" className="ant-form-item-required">性别</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="sex" name="sex" className="ant-input ant-input-lg" onChange={ this.inputValueSex }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="idNation" className="ant-form-item-required">民族</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="idNation" name="idNation" className="ant-input ant-input-lg" onChange={ this.inputValueidNation }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="birthday" className="ant-form-item-required">出生日期</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="birthday" name="birthday" className="ant-input ant-input-lg" onChange={ this.inputValuebirthday }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="idNo" className="ant-form-item-required">身份证号码</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="idNo" name="idNo" className="ant-input ant-input-lg" onChange={ this.inputValueidNo }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="idAddress" className="ant-form-item-required">地址</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="idAddress" name="idAddress" className="ant-input ant-input-lg" onChange={ this.inputValueidAddress }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="idStartDate" className="ant-form-item-required">有效开始日期</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="idStartDate" name="idStartDate" className="ant-input ant-input-lg" onChange={ this.inputValueidStartDate }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="idEndDate" className="ant-form-item-required">有效截止日期</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="idEndDate" name="idEndDate" className="ant-input ant-input-lg" onChange={ this.inputValueidEndDate }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-label ant-col-xs-24 ant-col-sm-6">
-                                        <label htmlFor="idPolice" className="ant-form-item-required">签发机关</label>
-                                    </div>
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-sm-14">
-                                        <div className="ant-form-item-control ">
-                                            <input type="text" id="idPolice" name="idPolice" className="ant-input ant-input-lg" onChange={ this.inputValueidPolice }/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="ant-row ant-form-item">
-                                    <div className="ant-form-item-control-wrapper ant-col-xs-24 ant-col-xs-offset-0 ant-col-sm-14 ant-col-sm-offset-6">
-                                        <div className="ant-form-item-control ">
-                                        <button id="submitBtn" className="ant-btn ant-btn-primary ant-btn-lg" onClick={this.submitBtn}><span>{ this.state.spanTi || '下一步' }</span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            <Form className="ant-form ant-form-horizontal" id="formId" onSubmit={this.submitBtn}>
+                                <FormItem label="姓名" {...formItemLayout}>
+                                    {getFieldDecorator('realName', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.realName
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="性别" {...formItemLayout}>
+                                    {getFieldDecorator('sex', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.sex
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="民族" {...formItemLayout}>
+                                    {getFieldDecorator('idNation', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.idNation
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="出生日期" {...formItemLayout}>
+                                    {getFieldDecorator('birthday', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.birthday
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="身份证号码" {...formItemLayout}>
+                                    {getFieldDecorator('idNo', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.idNo
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="地址" {...formItemLayout}>
+                                    {getFieldDecorator('idAddress', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.idAddress
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="有效开始日期" {...formItemLayout}>
+                                    {getFieldDecorator('idStartDate', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.idStartDate
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="有效截止日期" {...formItemLayout}>
+                                    {getFieldDecorator('idEndDate', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.idEndDate
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem label="签发机关" {...formItemLayout}>
+                                    {getFieldDecorator('idPolice', {
+                                        rules: [{
+                                            required: true,
+                                            message: '必填字段'
+                                        }],
+                                        initialValue: this.state.idPolice
+                                    })(
+                                        <Input />
+                                    )}
+                                </FormItem>
+                                <FormItem key='btns' {...tailFormItemLayout}>
+                                    <Button type="primary" htmlType="submit" onClick={this.handleSubmit} >下一步</Button>
+                                </FormItem>
+                            </Form>
                         </div>
                     </div>
                 </div>
@@ -377,4 +437,4 @@ class jiandang extends React.Component {
   }
 }
 
-export default jiandang;
+export default Form.create()(Jiandang);

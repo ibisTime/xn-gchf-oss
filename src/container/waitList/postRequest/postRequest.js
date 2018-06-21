@@ -43,10 +43,10 @@ class PostRequest extends React.Component {
   render() {
     const { data, statusDict } = this.state;
     return (
-      <div style={{ width: '100%', padding: '38px' }}>
+       <div style={{ width: '100%' }}>
       { data.length
          ? data.map((v, i) =>
-            <Card key={v.code} style={{ width: '100%', padding: '0px', borderColor: 'rgb(206,234,252)', boxShadow: '0px 0px 30px rgba(51,204,504,0.9) inset' }}>
+            <Card key={v.code} style={{ width: '100%', padding: '0px', borderColor: 'rgb(153,212,255)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset', marginBottom: '10px' }}>
                 <div style={{ marginBottom: '18px' }}>
                   <span>发件人：</span>
                   <i style={{ fontStyle: 'normal' }}>{ v.sendName }</i>
@@ -58,7 +58,7 @@ class PostRequest extends React.Component {
                 </div>
                 <p style={{ display: 'inline-block', color: 'red' }}>{ statusDict[v.status] || '' }</p>
             </Card>)
-          : <Card key={1} style={{ width: '80%' }}><p>暂时没有待处理信息</p></Card>
+          : <Card key={1} style={{ width: '80%', margin: '38px' }}><p>暂时没有待处理信息</p></Card>
       }</div>
     );
   }

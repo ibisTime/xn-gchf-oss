@@ -52,3 +52,27 @@ export function getjinduO(companyCode, projectCode) {
 export function getjindu(companyCode, projectCode) {
   return fetch(631386, { companyCode, projectCode });
 }
+
+export function jiandang(birthday,
+  idAddress,
+  idEndDate,
+  idNation,
+  idNo,
+  idPic,
+  idPolice,
+  idStartDate,
+  realName,
+  sex,
+  updater) {
+  return fetch(631410, { birthday,
+    idAddress,
+    idEndDate,
+    idNation,
+    idNo,
+    idPic,
+    idPolice,
+    idStartDate,
+    realName,
+    sex,
+    updater });
+}

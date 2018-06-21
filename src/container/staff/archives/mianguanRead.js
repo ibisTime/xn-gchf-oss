@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './mianguanRead.css';
+import Photo from './touxiang.png';
 
 class mianguanRead extends React.Component {
   constructor(props) {
@@ -8,13 +9,15 @@ class mianguanRead extends React.Component {
     this.state = {
         'text': '',
         'mediaStreamTrack': '',
-        'feat': ''
+        'feat': '',
+        'vedio': true,
+        'imgFlag': true,
+        'shot': true
     };
     this.openVideo = this.openVideo.bind(this);
     this.cutImg = this.cutImg.bind(this);
     this.getFeat = this.getFeat.bind(this);
-    // this.clickImg = this.clickImg.bind(this);
-    // this.kaoqin = this.kaoqin.bind(this);
+    this.handleShotClick = this.handleShotClick.bind(this);
     this.next = this.next.bind(this);
     this.submitBtn = this.submitBtn.bind(this);
   }
@@ -70,8 +73,12 @@ class mianguanRead extends React.Component {
   };
   // 截取图像
   cutImg() {
-    document.getElementById('userImg').style.display = 'none';
-    document.getElementById('canvas').style.display = 'display';
+    this.setState({
+        vedio: false,
+        imgFlag: false,
+        shot: false
+    });
+    this.context = this.canvas.getContext('2d');
     this.context.drawImage(this.video, 0, 0, 285, 285);
   };
   getPixelRatio() {
@@ -84,6 +91,7 @@ class mianguanRead extends React.Component {
     return (window.devicePixelRatio || 1) / backingStore;
   };
   getFeat() {
+      console.log(this.canvas.toDataURL('image/jpeg'));
     axios.post('/getfeature', this.canvas.toDataURL('image/jpeg'))
         .then((rs) => {
             var result = /getFaceFeature\({data:([^]+)}\)/.exec(rs);
@@ -96,6 +104,19 @@ class mianguanRead extends React.Component {
             });
             console.log(result);
         });
+  }
+  handleShotClick() {
+    this.state.shot === true ? this.shot() : this.cancel();
+  }
+  shot() {
+    this.cutImg();
+    this.getFeat();
+  }
+  cancel() {
+    this.setState({
+        vedio: true,
+        shot: true
+    });
   };
   submitBtn (e) {
     e.preventDefault();
@@ -133,17 +154,21 @@ upload(info) {
                 <div className="head-wrap"><i></i>免冠照读取</div>
                     <div className="clearfix">
                         <div className="inner-box">
-                            <div className="img-wrap left-img" style={{ display: 'none' }}>
+                            <div className="img-wrap left-img" style={{ display: this.state.vedio ? 'block' : 'none', margin: '0 auto' }}>
                                 <video id="video" className="video"></video>
                             </div>
-                            <div className="img-wrap right-img" style={{ border: '1px solid #4c98de', display: 'block', margin: '0 auto' }}>
-                                <img src="./user.png" className="userImg" id="userImg"/>
+                            <div className="img-wrap right-img" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
+                                <img src={Photo} className="userImg" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
                                 <canvas id="canvas" className="inner-item" width="285" height="285"></canvas>
                             </div>
                             <div style={{ paddingTop: 20 }}>
                                 <div className="btn-item" style={{ textAlign: 'center' }}>
                                 <div>
-                                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 285, marginBottom: 20, backgroundColor: '#4c98de', color: '#fff' }} id="cut" onClick={ () => { this.cutImg(); this.getFeat(); } }>截取图像</button>
+                                <button
+                                    className="ant-btn ant-btn-primary ant-btn-lg"
+                                    style={{ width: 285, marginBottom: 20, backgroundColor: '#4c98de', color: '#fff' }}
+                                    id="cut"
+                                    onClick={ this.handleShotClick }>{this.state.shot ? '拍摄' : '取消'}</button>
                                 </div>
                                 <div>
                                 <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.submitBtn }>下一步</button>

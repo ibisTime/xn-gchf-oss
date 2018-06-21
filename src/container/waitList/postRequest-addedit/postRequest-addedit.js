@@ -179,12 +179,16 @@ class PostRequestAddedit extends React.Component {
     };
     return (
       <div>
-        <Card title={this.state.title} style={{ width: 500 }}>
+        <Card style={{ width: '100%', borderColor: 'rgba(153,212,255,0.6)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset' }}>
+          <p style={{ fontSize: '16px' }}>{this.state.title}</p>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.bankName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
-          <Button onClick={this.handleExport}>点击下载</Button>
-          <p>下载次数{this.state.backDownload}</p>
+          <div style={{ width: '92px', height: '92px', border: '1px solid #99d4ff', borderRadius: '4px', display: 'inline-block', padding: '22px 25px', margin: '0 26px 26px 0' }}>
+           <img src={require('./gongzidan.png')} ></img>
+          </div>
+          <Button onClick={this.handleExport} type="primary" style={{ marginBottom: '12px', position: 'relative', top: '-20px', left: '0px' }}>点击下载</Button>
+          <span style={{ position: 'relative', left: '-70px', top: '20px', fontSize: '12px', color: '#999' }}>下载次数{this.state.backDownload}</span>
         </Card>
         <Button onClick={this.goBack.bind(this)} style={{ marginTop: 40 }}>返回</Button>
       </div>
