@@ -231,7 +231,7 @@ html {
   position: fixed;
   left: 50px;
   width: 58.3333%;
-  bottom: 80px;
+  bottom: 50px;
   z-index: 2;
 }
 .map-left-wrapper .ant-collapse {

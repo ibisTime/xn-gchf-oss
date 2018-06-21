@@ -52,3 +52,38 @@ export function getjinduO(companyCode, projectCode) {
 export function getjindu(companyCode, projectCode) {
   return fetch(631386, { companyCode, projectCode });
 }
+
+// 建档
+export function jiandang(birthday,
+  idAddress,
+  idEndDate,
+  idNation,
+  idNo,
+  idPic,
+  idPolice,
+  idStartDate,
+  realName,
+  sex,
+  updater) {
+  return fetch(631410, { birthday,
+    idAddress,
+    idEndDate,
+    idNation,
+    idNo,
+    idPic,
+    idPolice,
+    idStartDate,
+    realName,
+    sex,
+    updater });
+}
+
+// 免冠照片
+export function mianguanPicture(info) {
+  return fetch(631411, {
+    code: info.code,
+    feat: info.feat,
+    pict1: info.pic1,
+    updater: info.updater
+  });
+}
