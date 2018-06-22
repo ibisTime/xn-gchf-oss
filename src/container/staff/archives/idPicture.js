@@ -5,7 +5,8 @@ import idPic1 from './idzhengmian.png';
 import idPic2 from './idfanmian.png';
 import idPic3 from './shouchizhengjian.png';
 import { getQueryString, getUserId } from 'common/js/util';
-import { mianguanPicture } from 'api/user';
+import { idPicture3 } from 'api/user';
+import { showSucMsg } from '../../../common/js/util';
 
 class mianguanRead extends React.Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class mianguanRead extends React.Component {
         'video1': false,
         'video2': false,
         'video3': false,
-        'imgFlag': true,
         'shot': true,
         'pic1': '',
         'pic2': '',
@@ -46,7 +46,7 @@ class mianguanRead extends React.Component {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
   };
   // 打开摄像头
-  openVideo1(argument) {
+  openVideo1() {
     console.log(this.state);
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -84,7 +84,7 @@ class mianguanRead extends React.Component {
         });
     }
   };
-  openVideo2(argument) {
+  openVideo2() {
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
@@ -121,7 +121,7 @@ class mianguanRead extends React.Component {
         });
     }
   };
-  openVideo3(argument) {
+  openVideo3() {
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
@@ -160,13 +160,15 @@ class mianguanRead extends React.Component {
   };
   // 截取图像
   cutImg(index) {
-    //   console.log(index);
-    let currentCanvas = index === '1' ? this.canvas1 : index === '2' ? this.canvas2 : this.canvas3;
-    let currentVideo = index === '1' ? this.video1 : index === '2' ? this.video2 : this.video3;
-    // console.log(currentCanvas);
-    // console.log(currentVideo);
+    this.setState({
+        video1: false,
+        video2: false,
+        video3: false
+    });
+    let currentCanvas = this[`canvas${index}`];
+    let currentVideo = this[`video${index}`];
     this.context = currentCanvas.getContext('2d');
-    this.context.drawImage(currentVideo, 0, 0, 285, 285);
+    this.context.drawImage(currentVideo, 0, 0, 260, 213);
     this.getBase64(currentCanvas, index);
   };
   getPixelRatio() {
@@ -180,22 +182,21 @@ class mianguanRead extends React.Component {
   };
   getBase64(canvas, index) {
     let base64 = canvas.toDataURL('image/jpeg');
-    if(index === 1) {
-        this.setState({
-            pic1: base64
-        });
-    }
-    if(index === 2) {
-        this.setState({
-            pic2: base64
-        });
-    }
-    if(index === 1) {
-        this.setState({
-            pic3: base64
-        });
-    }
+    // this.uploadByBase64(base64).then((res) => {
+    //     console.log(res);
+    // });
+    console.log(base64, index);
+    this.setState({ [`pic${index}`]: base64 });
   }
+//   uploadByBase64(base64) {
+//     base64 = base64.substr(base64.indexOf('base64,') + 7);
+//     https://up-z2.qbox.me
+//     return request.post('http://up-z2.qiniu.com/putb64/-1/key/' + key)
+//       .set('Content-Type', 'application/octet-stream')
+//       .set('Authorization', `UpToken ${this.token}`)
+//       .send(base64)
+//       .promise();
+//   }
   handleShotClick() {
       let currentVideo = this.state.video1 ? '1' : this.state.video2 ? '2' : '3';
       this.cutImg(currentVideo);
@@ -206,24 +207,21 @@ class mianguanRead extends React.Component {
         this.setState({
             video1: true,
             video2: false,
-            video3: false,
-            imgFlag: false
+            video3: false
         });
         this.openVideo1();
     } else if(index === 2) {
         this.setState({
             video1: false,
             video2: true,
-            video3: false,
-            imgFlag: false
+            video3: false
         });
         this.openVideo2();
     } else {
         this.setState({
             video1: false,
             video2: false,
-            video3: true,
-            imgFlag: false
+            video3: true
         });
         this.openVideo3();
     }
@@ -236,26 +234,20 @@ class mianguanRead extends React.Component {
   };
   handleSubmit(e) {
     e.preventDefault();
-    var info = {};
-    if (this.state.feat) {
-        info.feat = this.state.feat;
-        info.pic1 = this.canvas.toDataURL('image/jpeg');
-        this.upload(info);
-    } else if (!this.state.feat) {
-        alert('请重新拍摄');
+    var info = {
+        pic1: this.state.pic1,
+        pic2: this.state.pic2,
+        pic3: this.state.pic3,
+        updater: getUserId(),
+        code: this.code
     };
-};
-upload(info) {
-    info.code = this.code;
-    info.updater = getUserId();
-    mianguanPicture(info).then(rs => {
-        if (rs.isSuccess) {
-            alert('提交成功');
-            this.props.history.push(`/staff/jiandang/salaryCard`);
-        } else {
-            alert(rs.errorInfo || '提交失败');
+    idPicture3(info).then((res) => {
+        if(res.isSuccess) {
+            showSucMsg('提交成功');
+            this.props.history.push(`/staff/jiandang/ruzhiInfo?code=${this.code}`);
         }
     });
+    console.log(this.state);
 };
 
   render() {
@@ -276,8 +268,8 @@ upload(info) {
                                 style={{ border: '1px solid #4c98de', display: this.state.video1 ? 'none' : 'inline-block', margin: '0 58px 0 70px' }}
                                 onClick={ () => { this.shot(1); } }
                             >
-                                <img src={idPic1} className="userImg" id="userImg" />
-                                <canvas ref={canvas => this.canvas1 = canvas} style={{ display: this.state.video1 ? 'none' : 'inline-block' }} className="inner-item" width="285" height="285"></canvas>
+                                <img src={idPic1} className="userImg" id="userImg" style={{ display: this.state.pic1 ? 'none' : 'inline-block' }}/>
+                                <canvas ref={canvas => this.canvas1 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
                             <div className="img-wrap left-img" style={{ display: this.state.video2 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
                                 <video ref={video => this.video2 = video} className="video"></video>
@@ -287,8 +279,8 @@ upload(info) {
                                 style={{ border: '1px solid #4c98de', display: this.state.video2 ? 'none' : 'inline-block', margin: '0 58px 0 0' }}
                                 onClick={ () => { this.shot(2); } }
                             >
-                                <img src={idPic2} className="userImg" id="userImg"/>
-                                <canvas ref={canvas => this.canvas2 = canvas} className="inner-item" width="285" height="285"></canvas>
+                                <img src={idPic2} className="userImg" id="userImg" style={{ display: this.state.pic2 ? 'none' : 'inline-block' }}/>
+                                <canvas ref={canvas => this.canvas2 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
                             <div className="img-wrap left-img" style={{ display: this.state.video3 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
                                 <video ref={video => this.video3 = video} className="video"></video>
@@ -298,8 +290,8 @@ upload(info) {
                                 style={{ border: '1px solid #4c98de', display: this.state.video3 ? 'none' : 'inline-block', margin: '0 0 0 0' }}
                                 onClick={ () => { this.shot(3); } }
                             >
-                                <img src={idPic3} className="userImg" id="userImg" />
-                                <canvas ref={canvas => this.canvas3 = canvas} className="inner-item" width="285" height="285"></canvas>
+                                <img src={idPic3} className="userImg" id="userImg" style={{ display: this.state.pic3 ? 'none' : 'inline-block' }}/>
+                                <canvas ref={canvas => this.canvas3 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
                             <div style={{ paddingTop: 20 }}>
                                 <div className="btn-item" style={{ textAlign: 'center' }}>

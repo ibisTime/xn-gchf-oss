@@ -87,3 +87,14 @@ export function mianguanPicture(info) {
     updater: info.updater
   });
 }
+
+// 身份证照片*3
+export function idPicture3(info) {
+  return fetch(631414, {
+    code: info.code,
+    pict2: info.pic1,
+    pict3: info.pic2,
+    pict4: info.pic3,
+    updater: info.updater
+  });
+}

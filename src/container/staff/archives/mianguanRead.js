@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './mianguanRead.css';
 import Photo from './touxiang.png';
-import { getQueryString, getUserId } from 'common/js/util';
+import { getQueryString, getUserId, showWarnMsg } from 'common/js/util';
 import { mianguanPicture } from 'api/user';
 
 class mianguanRead extends React.Component {
@@ -96,11 +96,12 @@ class mianguanRead extends React.Component {
   getFeat() {
       console.log(this.canvas.toDataURL('image/jpeg'));
       let base64 = this.canvas.toDataURL('image/jpeg');
+    //   jsonp('http://127.0.0.1:5121/getfeature', encodeURIComponent(base64))
     axios.post('/getfeature', encodeURIComponent(base64))
         .then((rs) => {
             var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
             if (!result || result[1] === 'NOFACE') {
-                alert('请对准人脸');
+                showWarnMsg('请对准人脸');
                 return;
             };
             this.setState({
@@ -138,7 +139,7 @@ upload(info) {
     mianguanPicture(info).then(rs => {
         if (rs.isSuccess) {
             alert('提交成功');
-            this.props.history.push(`/staff/jiandang/salaryCard`);
+            this.props.history.push(`/staff/jiandang/salaryCard?code=${this.code}`);
         } else {
             alert(rs.errorInfo || '提交失败');
         }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import originJsonp from 'jsonp';
 import './jiandang.css';
 import { Form, Input, Button } from 'antd';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
@@ -8,6 +9,19 @@ import { showWarnMsg, showSucMsg } from 'common/js/util';
 import Avatar from './touxiang.png';
 
 const FormItem = Form.Item;
+function jsonp(url, data, option) {
+    return new Promise((resolve, reject) => {
+        originJsonp(url, {
+            name: 'getinfo'
+        }, (err, data) => {
+        if(!err) {
+            resolve(data);
+        } else {
+            reject(err);
+        }
+        });
+    });
+}
 
 class Jiandang extends React.Component {
     constructor(props) {
@@ -95,43 +109,33 @@ class Jiandang extends React.Component {
         e.preventDefault();
         document.getElementById('getCard').setAttribute('disabled', true);
         this.setState({ spanText: '读取中...' });
-        axios.get('http://127.0.0.1:8018/getIdInfo').then((data) => {
+        jsonp('http://127.0.0.1:9081/readidcard')
+        .then((data) => {
+            console.log(data);
             document.getElementById('getCard').setAttribute('disabled', false);
             this.setState({ spanText: '读取身份证' });
             if (!data) {
                 alert('身份证信息读取失败，请把身份证放置准确后再次读取');
                 return;
             }
-            data = data.data;
             this.setState({
-                realName: data.realName,
-                sex: data.sex,
-                idNation: data.idNation,
-                birthday: data.birthday,
-                idNo: data.idNo,
-                idAddress: data.idAddress,
-                idStartDate: data.idStartDate,
-                idEndDate: data.idEndDate,
-                idPolice: data.idPolice
+                realName: data.m_name,
+                sex: data.m_sex,
+                idNation: data.m_nation,
+                birthday: data.m_birth,
+                idNo: data.m_idcode,
+                idAddress: data.m_addr,
+                idStartDate: data.StartDate,
+                idEndDate: data.EndDate,
+                idPolice: data.m_depart
             });
-            let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
+            // let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
             this.setState({
-                idPic: val,
+                idPic: '123',
                 isIdpic: true
             });
-            // for (var k in this.state) {
-            //     if (k === 'idPic') {
-            //         var val = /^data:image/.test(data[k]) ? data[k] : 'data:image/bmp;base64,' + data[k];
-            //         document.getElementById('idPicImg').setAttribute('src', val);
-            //         document.getElementById('idPicImg').style.display = 'block';
-            //         document.getElementById('idPicSlib').style.display = 'none';
-            //         document.getElementById('leftInner').className = 'active';
-            //         this.idPic = val;
-            //     } else {
-            //         document.getElementById(k).value(data[k]);
-            //     }
-            // }
-        }).catch(() => {
+        }).catch((e) => {
+            alert(e);
             document.getElementById('getCard').setAttribute('disabled', false);
             this.setState({ spanText: '读取身份证' });
             alert('身份证信息读取失败，请把身份证放置准确后再次读取');
@@ -166,36 +170,6 @@ class Jiandang extends React.Component {
                     });
             }
         });
-        // var params = [
-        //     { realName: this.state.realName },
-        //     { sex: this.state.sex },
-        //     { idNation: this.state.idNation },
-        //     { birthday: this.state.birthday },
-        //     { idNo: this.state.idNo },
-        //     { idAddress: this.state.idAddress },
-        //     { idStartDate: this.state.idStartDate },
-        //     { idEndDate: this.state.idEndDate },
-        //     { idPolice: this.state.idPolice }
-        // ];
-        // var info = {};
-        // for (var i = 0; i < params.length; i++) {
-        //     var val = params[i].value;
-        //     if (val === 'undefined' || val === '') {
-        //         alert(params[i].name + '不能为空');
-        //         return;
-        //     }
-        //     info[params[i].name] = params[i].value;
-        // }
-        // if (this.state.idPic) {
-        //     // info.feat = this.feat;
-        //     info.idPic = this.state.idPic;
-        //     info.pic1 = this.canvas.toDataURL('image/jpeg');
-        //     this.upload(info);
-        // } else if (!this.state.idPic) {
-        //     alert('请先读取身份证信息');
-        // } else {
-        //     alert('请进行人脸信息采集');
-        // }
     }
     // 截取图像
     cut() {

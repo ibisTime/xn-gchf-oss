@@ -62,6 +62,7 @@ app.use('/getIdInfo', function (req, res) {
 app.use('/getfeature', function (req, res) {
   var url = 'http://118.31.17.181/getfeature';
   var _body = req.body;
+  console.log(_body)
   for (var key in _body) {}
   console.log(key)
   axios.post(url, key).then((response) => {

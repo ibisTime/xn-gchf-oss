@@ -105,12 +105,14 @@ html, body {
     display: inline-block;
     vertical-align: middle;
     width: 25%;
-    height: 100%;
+    height: 75%;
     text-align: center;
 }
 .comparison-mains .video {
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    width: 260px;
+    height: 213px;
     object-fit: fill;
 }
 .comparison-mains .btn-wrap {

@@ -64,6 +64,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
+    "jsonp": "^0.2.1",
     "uglifyjs-webpack-plugin": "^1.0.0-rc.0",
     "xlsx": "^0.12.9"
   },
