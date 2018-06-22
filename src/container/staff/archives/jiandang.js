@@ -95,7 +95,7 @@ class Jiandang extends React.Component {
         e.preventDefault();
         document.getElementById('getCard').setAttribute('disabled', true);
         this.setState({ spanText: '读取中...' });
-        axios.get('/getIdInfo').then((data) => {
+        axios.get('http://127.0.0.1:8018/getIdInfo').then((data) => {
             document.getElementById('getCard').setAttribute('disabled', false);
             this.setState({ spanText: '读取身份证' });
             if (!data) {

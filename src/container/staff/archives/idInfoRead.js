@@ -116,7 +116,7 @@ class mianguanRead extends React.Component {
     }).then(rs => {
         if (rs.errorCode === '0') {
             alert('提交成功');
-            this.props.history.push(`/staff/jiandang/salaryCard`);
+            this.props.history.push(`/staff/jiandang/idPicture`);
         } else {
             alert(rs.errorInfo || '提交失败');
         }

@@ -358,6 +358,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/archives/ruzhiInfo'))
   },
   {
+    path: '/staff/jiandang/idPicture',
+    component: asyncComponent(() => import('container/staff/archives/idPicture'))
+  },
+  {
     path: '/daifa/daifa',
     component: asyncComponent(() => import('container/daifa/daifa/daifa'))
   },

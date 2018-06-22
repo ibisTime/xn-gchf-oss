@@ -50,7 +50,7 @@ class mianguanRead extends React.Component {
             } else {
                 this.video.src = (window.URL || window.webkitURL).createObjectURL(stream);
             }
-            setTimeout(function() {
+            setTimeout(() => {
                 this.video.play();
             }, 300);
         }).catch(function(err) {
@@ -66,7 +66,7 @@ class mianguanRead extends React.Component {
             } else {
                 this.video.src = (window.URL || window.webkitURL).createObjectURL(stream);
             }
-            setTimeout(function() {
+            setTimeout(() => {
                 this.video.play();
             }, 300);
         }, function(err) {

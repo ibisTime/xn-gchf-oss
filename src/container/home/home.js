@@ -152,8 +152,6 @@ class Home extends React.Component {
     this.getProjectList();
   }
   camera() {
-    // let videos = document.querySelectorAll('video');
-    // this.video = videos[0];
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({
@@ -179,14 +177,11 @@ class Home extends React.Component {
   playVideo(stream) {
     if (this.video.srcObject) {
       this.video.srcObject = stream;
-      // this.video1.srcObject = stream;
     } else {
       this.video.src = (window.URL || window.webkitURL).createObjectURL(stream);
-      // this.video1.src = (window.URL || window.webkitURL).createObjectURL(stream);
     }
     setTimeout(() => {
       this.video.play();
-      // this.video1.play();
     }, 300);
   }
   closeVideo() {
