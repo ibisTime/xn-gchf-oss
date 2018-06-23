@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 // app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+// app.use(bodyParser.urlencoded({
+//   extended: true
+// }));
+app.use(bodyParser.json({limit: '200mb'}));
+app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 app.use('/api', function (req, res) {
   // var url = 'http://121.43.101.148:3701/forward-service/api';
   // var url = 'http://121.43.101.148:4001/forward-service/api';

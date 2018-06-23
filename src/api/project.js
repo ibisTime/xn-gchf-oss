@@ -59,6 +59,13 @@ export function getProjectList(kind, projectCodeList) {
   return fetch(631357, { updater: '', kind, projectCodeList });
 }
 
+export function getProjectListForO(knd, companyCode) {
+  return fetch(631357, { updater: '',
+  kind: 'O',
+  companyCode
+});
+}
+
 export function getProjectStatus() {
   return fetch(631006, { parentKey: 'project_status' });
 }

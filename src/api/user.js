@@ -98,3 +98,8 @@ export function idPicture3(info) {
     updater: info.updater
   });
 }
+
+// 获取特征值
+export function getFeatInfo(pict1) {
+  return fetch(631093, { pict1 });
+}

@@ -1,9 +1,26 @@
 import React from 'react';
+import { Base64 } from 'js-base64';
 import axios from 'axios';
+import originJsonp from 'jsonp';
 import './mianguanRead.css';
 import Photo from './touxiang.png';
-import { getQueryString, getUserId, showWarnMsg } from 'common/js/util';
-import { mianguanPicture } from 'api/user';
+import { getQueryString, getUserId, showWarnMsg, showSucMsg } from 'common/js/util';
+import { mianguanPicture, getFeatInfo } from 'api/user';
+// import { resolve } from 'dns';
+
+function jsonp(url, data, option) {
+    return new Promise((resolve, reject) => {
+        originJsonp(url + '?' + data, {
+            name: 'getFaceFeature'
+        }, (err, data) => {
+        if(!err) {
+            resolve(data);
+        } else {
+            reject(err);
+        }
+        });
+    });
+}
 
 class mianguanRead extends React.Component {
   constructor(props) {
@@ -82,7 +99,8 @@ class mianguanRead extends React.Component {
         shot: false
     });
     this.context = this.canvas.getContext('2d');
-    this.context.drawImage(this.video, 0, 0, 285, 285);
+    // this.context.scale(0.5, 0.5);
+    this.context.drawImage(this.video, 0, 0, 1024, 768);
   };
   getPixelRatio() {
     var backingStore = this.context.backingStorePixelRatio ||
@@ -94,20 +112,32 @@ class mianguanRead extends React.Component {
     return (window.devicePixelRatio || 1) / backingStore;
   };
   getFeat() {
-      console.log(this.canvas.toDataURL('image/jpeg'));
       let base64 = this.canvas.toDataURL('image/jpeg');
-    //   jsonp('http://127.0.0.1:5121/getfeature', encodeURIComponent(base64))
-    axios.post('/getfeature', encodeURIComponent(base64))
-        .then((rs) => {
-            var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
-            if (!result || result[1] === 'NOFACE') {
-                showWarnMsg('请对准人脸');
-                return;
-            };
-            this.setState({
-                feat: result[1]
-            });
+    //   console.log(base64);
+      getFeatInfo(base64).then((res) => {
+        var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(res);
+        if (!result || result[1] === 'NOFACE') {
+            showWarnMsg('请对准人脸');
+            return;
+        };
+        this.setState({
+            feat: result[1]
         });
+      });
+    //   jsonp('http://118.31.17.181/getfeature', Base64.encode(base64))
+    // // axios.post('http://118.31.17.181/getfeature', encodeURIComponent(base64), {
+    // //     withCredentials: true
+    // // })
+    //     .then((rs) => {
+    //         var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
+    //         if (!result || result[1] === 'NOFACE') {
+    //             showWarnMsg('请对准人脸');
+    //             return;
+    //         };
+    //         this.setState({
+    //             feat: result[1]
+    //         });
+    //     });
   }
   handleShotClick() {
     this.state.shot === true ? this.shot() : this.cancel();
@@ -130,7 +160,7 @@ class mianguanRead extends React.Component {
         info.pic1 = this.canvas.toDataURL('image/jpeg');
         this.upload(info);
     } else if (!this.state.feat) {
-        alert('请重新拍摄');
+        showWarnMsg('请重新拍摄');
     };
 };
 upload(info) {
@@ -138,10 +168,10 @@ upload(info) {
     info.updater = getUserId();
     mianguanPicture(info).then(rs => {
         if (rs.isSuccess) {
-            alert('提交成功');
-            this.props.history.push(`/staff/jiandang/salaryCard?code=${this.code}`);
+            showSucMsg('提交成功');
+            this.props.history.push(`/staff/jiandang/idPicture?code=${this.code}`);
         } else {
-            alert(rs.errorInfo || '提交失败');
+            showWarnMsg(rs.errorInfo || '提交失败');
         }
     });
 };
@@ -161,7 +191,7 @@ upload(info) {
                             </div>
                             <div className="img-wrap right-img" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
                                 <img src={Photo} className="userImg" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
-                                <canvas id="canvas" className="inner-item" width="285" height="285"></canvas>
+                                <canvas id="canvas" className="inner-item" style={{ width: '512px', height: '384px' }} width="1024" height="768"></canvas>
                             </div>
                             <div style={{ paddingTop: 20 }}>
                                 <div className="btn-item" style={{ textAlign: 'center' }}>

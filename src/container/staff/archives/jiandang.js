@@ -42,19 +42,7 @@ class Jiandang extends React.Component {
         };
         this.openVideo = this.openVideo.bind(this);
         this.getCard = this.getCard.bind(this);
-        // this.submitBtn = this.submitBtn.bind(this);
-        this.cut = this.cut.bind(this);
-        // this.getFeat = this.getFeat.bind(this);
         this.upload = this.upload.bind(this);
-        this.inputValueName = this.inputValueName.bind(this);
-        this.inputValueSex = this.inputValueSex.bind(this);
-        this.inputValueidNation = this.inputValueidNation.bind(this);
-        this.inputValuebirthday = this.inputValuebirthday.bind(this);
-        this.inputValueidNo = this.inputValueidNo.bind(this);
-        this.inputValueidAddress = this.inputValueidAddress.bind(this);
-        this.inputValueidStartDate = this.inputValueidStartDate.bind(this);
-        this.inputValueidEndDate = this.inputValueidEndDate.bind(this);
-        this.inputValueidPolice = this.inputValueidPolice.bind(this);
       }
     componentDidMount() {
     // 获取媒体方法（旧方法）
@@ -111,11 +99,10 @@ class Jiandang extends React.Component {
         this.setState({ spanText: '读取中...' });
         jsonp('http://127.0.0.1:9081/readidcard')
         .then((data) => {
-            console.log(data);
             document.getElementById('getCard').setAttribute('disabled', false);
             this.setState({ spanText: '读取身份证' });
-            if (!data) {
-                alert('身份证信息读取失败，请把身份证放置准确后再次读取');
+            if (data.ResultCode !== '0') {
+                showWarnMsg('身份证信息读取失败，请把身份证放置准确后再次读取');
                 return;
             }
             this.setState({
@@ -127,18 +114,20 @@ class Jiandang extends React.Component {
                 idAddress: data.m_addr,
                 idStartDate: data.StartDate,
                 idEndDate: data.EndDate,
-                idPolice: data.m_depart
-            });
-            // let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
-            this.setState({
-                idPic: '123',
+                idPolice: data.m_depart,
+                idPic: data.pic,
                 isIdpic: true
             });
+            // let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
+            // this.setState({
+            //     idPic: '123',
+            //     isIdpic: true
+            // });
         }).catch((e) => {
             alert(e);
             document.getElementById('getCard').setAttribute('disabled', false);
             this.setState({ spanText: '读取身份证' });
-            alert('身份证信息读取失败，请把身份证放置准确后再次读取');
+            showWarnMsg('身份证信息读取失败，请把身份证放置准确后再次读取');
         });
     };
     // 提交
@@ -171,12 +160,6 @@ class Jiandang extends React.Component {
             }
         });
     }
-    // 截取图像
-    cut() {
-        document.getElementById('userImg').style.display = 'none';
-        document.getElementById('canvas').style.display = 'display';
-        this.context.drawImage(this.video, 0, 0, 200, 150);
-    };
     // 获取特征值
     // getFeat() {
     //     document.getElementById('getFeat').setAttribute('disabled', true).getElementsByTagName('span').innerHTML = '获取中...';
@@ -207,67 +190,14 @@ class Jiandang extends React.Component {
                 spanTi: '提交'
             });
             if (rs.errorCode === '0') {
-                alert('建档成功');
+                showSucMsg('建档成功');
                 this.props.history.push(`/staff/J/mianguanRead`);
             } else {
-                alert(rs.errorInfo || '建档失败');
+                showWarnMsg(rs.errorInfo || '建档失败');
             }
         });
     };
-    inputValueName() {
-        let value = document.getElementById('realName').value;
-        this.setState({
-            name: value
-        });
-    };
-    inputValueSex() {
-        let value = document.getElementById('sex').value;
-        this.setState({
-            sex: value
-        });
-    };
-    inputValueidNation() {
-        let value = document.getElementById('idNation').value;
-        this.setState({
-            idNation: value
-        });
-    };
-    inputValuebirthday() {
-        let value = document.getElementById('birthday').value;
-        this.setState({
-            birthday: value
-        });
-    };
-    inputValueidNo() {
-        let value = document.getElementById('idNo').value;
-        this.setState({
-            idNo: value
-        });
-    };
-    inputValueidAddress() {
-        let value = document.getElementById('idAddress').value;
-        this.setState({
-            idAddress: value
-        });
-    };
-    inputValueidStartDate() {
-        let value = document.getElementById('idStartDate').value;
-        this.setState({
-            idStartDate: value
-        });
-    };
-    inputValueidEndDate() {
-        let value = document.getElementById('idEndDate').value;
-        this.setState({
-            idEndDate: value
-        });
-    };
-    inputValueidPolice() {
-        let value = document.getElementById('idPolice').value;
-        this.setState({
-            idPolice: value
-        });
-    };
+
   render() {
     const { idPic } = this.state;
     const { getFieldDecorator } = this.props.form;
