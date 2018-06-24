@@ -165,6 +165,19 @@ class Map extends React.Component {
         } else {
           this.props.history.push(`/hetong/jindu/info?start=1&projectCode=${selectedRowKeys[0]}`);
         }
+      },
+      addBumen: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          if(selectedRows[0].status !== '5') {
+            this.props.history.push(`/projectManage/project/addBumen?code=${selectedRows[0].code}`);
+          }else {
+            showWarnMsg('该项目已结束，不能新增部门');
+          }
+        }
       }
     };
     const fields = [{

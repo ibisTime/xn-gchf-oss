@@ -48,6 +48,7 @@ import { newProjProjectSalaryCheck } from './redux/newProj/project-salary-check'
 import { newProjProjectKaoqin } from './redux/newProj/project-kaoqin';
 import { newProjProjectWeekday } from './redux/newProj/project-weekday';
 import { newProjProjectQuit } from './redux/newProj/project-quit';
+import { newProjProjectAddBumen } from './redux/newProj/project-addBumen';
 import { yewuManageAccount } from './redux/yewuManage/account';
 import { yewuManageAccountAddEdit } from './redux/yewuManage/account-addedit';
 import { hetongChengbaoshang } from './redux/hetong/chengbaoshang';
@@ -141,6 +142,7 @@ export default combineReducers({
   newProjProjectSalaryCheck,
   newProjKaoqin,
   newProjProjectKaoqin,
+  newProjProjectAddBumen,
   yewuManageAccount,
   yewuManageAccountAddEdit,
   hetongChengbaoshang,

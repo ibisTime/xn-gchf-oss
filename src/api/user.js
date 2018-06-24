@@ -103,3 +103,13 @@ export function idPicture3(info) {
 export function getFeatInfo(pict1) {
   return fetch(631093, { pict1 });
 }
+
+// 入职
+export function ruzhi(info) {
+  return fetch(631460, {
+    departmentCode: info.departmentCode,
+    projectCode: info.projectCode,
+    staffCode: info.staffCode,
+    type: info.type
+  });
+}

@@ -17,3 +17,7 @@ export function getDictList({ parentKey, bizType = 631006 }) {
     return data;
   });
 }
+
+export function getDict(parentKey) {
+  return fetch(631006, { parentKey });
+}

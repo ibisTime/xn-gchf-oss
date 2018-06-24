@@ -203,7 +203,7 @@ upload(info) {
                                     onClick={ this.handleShotClick }>{this.state.shot ? '拍摄' : '取消'}</button>
                                 </div>
                                 <div>
-                                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
+                                    <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
                                 </div>
                                 </div>
                             </div>

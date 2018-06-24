@@ -138,6 +138,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/project-edit/project-edit'))
   },
   {
+    path: '/projectManage/project/addBumen',
+    component: asyncComponent(() => import('container/newProj/project-addBumen/project-addBumen'))
+  },
+  {
     path: '/staff/allStaff/weekday',
     component: asyncComponent(() => import('container/newProj/project-weekday/project-weekday'))
   },

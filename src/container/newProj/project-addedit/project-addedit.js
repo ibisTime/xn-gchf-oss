@@ -30,6 +30,7 @@ class ProjectAddedit extends React.Component {
     this.code = getQueryString('code', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    console.log(this.code);
   }
   componentDidMount() {
     if (getUserKind() === 'S') {
@@ -254,17 +255,37 @@ class ProjectAddedit extends React.Component {
     if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
         fields: this.view ? fieldos : fields,
-        key: 'code',
         code: this.projectCode,
         view: this.view,
-        beforeSubmit: (params) => {
-          for (let i = 0; i < this.props.selectData.bankCode.length; i++) {
-            if (params.bankCode === this.props.selectData.bankCode[i].bankCode) {
-              params.bankName = this.props.selectData.bankCode[i].bankName;
+        // beforeSubmit: (params) => {
+        //   for (let i = 0; i < this.props.selectData.bankCode.length; i++) {
+        //     if (params.bankCode === this.props.selectData.bankCode[i].bankCode) {
+        //       params.bankName = this.props.selectData.bankCode[i].bankName;
+        //     }
+        //   }
+        //   return params;
+        // },
+        buttons: [{
+          title: '保存',
+          handler: (param) => {
+            for (let i = 0; i < this.props.selectData.bankCode.length; i++) {
+              if (param.bankCode === this.props.selectData.bankCode[i].bankCode) {
+                param.bankName = this.props.selectData.bankCode[i].bankName;
+              }
             }
-          }
-          return params;
-        },
+            this.props.doFetching();
+            fetch(this.code ? 631352 : 631350, param).then((res) => {
+              console.log(res);
+              showSucMsg('操作成功');
+              this.props.cancelFetching();
+              setTimeout(() => {
+                this.props.history.push(`/projectManage/project/addBumen?code=${res.code}`);
+              }, 1000);
+            }).catch(this.props.cancelFetching);
+          },
+          check: true,
+          type: 'primary'
+        }],
         editCode: 631352,
         detailCode: 631358,
         addCode: 631350

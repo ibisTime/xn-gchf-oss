@@ -27,10 +27,19 @@ export function getCompany() {
  * 列表查部门
  * @param companyCode
  */
-export function getBumen(companyCode) {
-  return fetch(631036, { companyCode });
+export function getBumen(info) {
+  return fetch(631036, {
+    parentCode: info.parentCode || '',
+    projectCode: info.projectCode || ''
+  });
 }
 
+export function getBumen1(info) {
+  return fetch(631036, {
+    parentCode: info.parentCode || '',
+    projectCode: info.projectCode || ''
+  });
+}
 /**
  * 删除公司
  * @param code

@@ -10,6 +10,7 @@ import {
 import { getQueryString } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBumen } from 'api/company';
+import { getUserDetail, getUserId } from 'api/user';
 
 @DetailWrapper(
   state => state.securityMenuAddEdit,
@@ -19,25 +20,27 @@ class AddBumen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bumenStructure: []
+      bumenStructure: [],
+      companyCode: ''
     };
-    this.companyCode = getQueryString('companyCode', this.props.location.search);
+    this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.bumenCode = getQueryString('bumenCode', this.props.location.search);
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   componentDidMount() {
-    getBumen(this.companyCode).then(data => {
-      console.log(data);
-      this.setState({ bumenStructure: data });
+    getUserDetail(getUserId()).then((res) => {
+      this.setState({
+        companyCode: res.companyCode
+      });
     });
+    // getBumen(this.companyCode).then(data => {
+    //   console.log(data);
+    //   this.setState({ bumenStructure: data });
+    // });
   }
   render() {
     const fields = [{
-      field: 'companyCode',
-      value: this.companyCode,
-      hidden: true
-    }, {
       field: 'name',
       title: '部门名',
       required: true
@@ -48,7 +51,7 @@ class AddBumen extends React.Component {
       listCode: '631086',
       params: {
         type: 'O',
-        companyCode: this.companyCode
+        companyCode: this.state.companyCode
       },
       keyName: 'userId',
       valueName: 'loginName',
@@ -64,13 +67,13 @@ class AddBumen extends React.Component {
       type: 'select',
       listCode: '631036',
       params: {
-        companyCode: this.companyCode
+        projectCode: this.projectCode
       },
       keyName: 'code',
       valueName: 'name'
     }];
 
-    return this.props.buildDetail({
+    return this.state.companyCode ? this.props.buildDetail({
       fields,
       key: 'code',
       code: this.code,
@@ -79,10 +82,10 @@ class AddBumen extends React.Component {
       editCode: 631032,
       detailCode: 631037,
       beforeSubmit: (param) => {
-        param.companyCode = this.companyCode;
+        param.projectCode = this.projectCode;
         return param;
       }
-    });
+    }) : null;
   }
 }
 
