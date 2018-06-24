@@ -26,6 +26,7 @@ class RuzhiInfo extends React.Component {
     this.handleProjectChange = this.handleProjectChange.bind(this);
     this.handleDepartmentChange1 = this.handleDepartmentChange1.bind(this);
     this.handleDepartmentChange2 = this.handleDepartmentChange2.bind(this);
+    this.handleDepartmentChange3 = this.handleDepartmentChange3.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.code = getQueryString('code', this.props.location.search);
@@ -34,14 +35,51 @@ class RuzhiInfo extends React.Component {
     getUserDetail(getUserId()).then((res) => {
       this.companyCode = res.companyCode;
       getProjectListForO(res.companyCode).then((data) => {
-        console.log(data);
         this.projectList = data.map((item) => ({
           code: item.code,
           name: item.name
         }));
         this.setState({
-          projectList: this.projectList
+          projectList: this.projectList,
+          selectProj: this.projectList[0].code
         });
+        // getBumen({projectCode: this.state.projectList[0].code || ''}).then((res1) => {
+        //   let data = [];
+        //   res1.map((item) => {
+        //     if(!item.parentCode) {
+        //       data.push(item);
+        //     }
+        //   });
+        //   this.department1 = data.map((item1) => ({
+        //     code: item1.code,
+        //     name: item1.name
+        //   }));
+        //   this.setState({
+        //     department1: this.department1
+        //   });
+        //   getBumen({parentCode: this.department1[0].code || ''}).then((res2) => {
+        //   if(!res2.length) {
+        //     this.department2 = res2.map((item2) => ({
+        //       code: item2.code,
+        //       name: item2.name
+        //     }));
+        //     this.setState({
+        //       department2: this.department2
+        //     });
+        //     getBumen({parentCode: this.department2[0].code || ''}).then((res3) => {
+        //   if(!res.length) {
+        //     this.department3 = res3.map((item3) => ({
+        //     code: item3.code,
+        //     name: item3.name
+        //   }));
+        //   this.setState({
+        //     department3: this.department3
+        //   });
+        //   }
+        // });
+        //   }
+        // });
+        // });
       });
     });
     getDict('staff_type').then((res) => {
@@ -127,6 +165,13 @@ class RuzhiInfo extends React.Component {
       });
     });
   }
+  // 三级部门change事件
+  handleDepartmentChange3(value) {
+    this.setState({
+      selectDepart: value
+    });
+    // value = 选中的项目code
+  }
   // 员工source change事件
   handleTypeChange(value) {
     this.setState({
@@ -139,10 +184,10 @@ class RuzhiInfo extends React.Component {
       departmentCode: this.state.selectDepart,
       projectCode: this.state.selectProj,
       staffCode: this.code,
-      type: this.state.selectSource
+      type: this.state.selectSource || '1'
     };
     ruzhi(info).then((res) => {
-      if(res.isSuccess) {
+      if(res.code) {
         showSucMsg('入职成功！');
       } else {
         showWarnMsg('入职失败！');
@@ -159,10 +204,10 @@ class RuzhiInfo extends React.Component {
                   <div style={{ border: '1xp solid red', width: 300, height: 800, paddingTop: '10%', margin: '0 auto' }}>
                   <div style={{ fontWeight: 700, marginBottom: 10 }}>入职信息</div>
                     <InputGroup compact style={{ marginBottom: 20 }}>
-                    <Select defaultValue={this.state.projectList[0].code || ''} style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 24 }} onChange={this.handleProjectChange}>
+                    <Select style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 24 }} onChange={this.handleProjectChange}>
                       {this.state.projectList.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>)}
                     </Select>
-                    <Select defaultValue={this.state.department1[0] ? this.state.department1[0].code : ''} style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 20 }} onChange={ this.handleDepartmentChange1 }>
+                    <Select style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 20 }} onChange={ this.handleDepartmentChange1 }>
                       {this.state.department1.length ? this.state.department1.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>) : ''}
                     </Select>
                     <Select style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 20 }} onChange={ this.handleDepartmentChange2 }>

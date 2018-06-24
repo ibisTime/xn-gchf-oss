@@ -1,6 +1,6 @@
 import React from 'react';
 import cookies from 'browser-cookies';
-import AddBumen from 'container/newProj/project-addBumen/project-addBumen';
+// import AddBumen from 'container/newProj/project-addBumen/project-addBumen';
 import { Form, Spin, Button, Tree, Modal } from 'antd';
 import { getCompany, getBumen, deleteCompany1, deleteBumen1, getCompanyDetail } from 'api/company';
 import { setRoleMenus, getUserDetail } from 'api/user';
@@ -206,7 +206,6 @@ class ProjectAddBumen extends React.Component {
             <button type="button" className="ant-btn" onClick={this.deleteBumen}><span>删除部门</span></button>
           </div>
         }
-        <AddBumen/>
         <Form className="detail-form-wrapper" onSubmit={this.handleSubmit}>
           <FormItem key='treeMenu' {...formItemLayout} >
             {this.state.treeData.length ? (
