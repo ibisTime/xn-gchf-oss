@@ -39,14 +39,11 @@ class ProjectEdit extends React.Component {
     }, {
       field: 'chargeUser',
       title: '负责人',
-      type: 'select',
-      listCode: '631086',
-      params: {
-        companyCode: this.state.companyCode,
-        type: 'O'
-      },
-      keyName: 'userId',
-      valueName: 'loginName',
+      required: true
+    }, {
+      field: 'chargeMobile',
+      title: '负责人手机号',
+      mobile: true,
       required: true
     }, {
       field: 'quyu',
@@ -85,11 +82,15 @@ class ProjectEdit extends React.Component {
       required: true
     }, {
       field: 'salaryDatetime',
-      title: '薪资发放时间(每月多少号)',
+      title: '薪资发放时间',
+      type: 'date28',
+      date28: true,
       required: true
     }, {
       field: 'salaryCreateDatetime',
-      title: '工资条形成时间(每月多少号)',
+      title: '工资条形成时间',
+      type: 'date28',
+      date28: true,
       required: true
     }, {
       field: 'remark',
@@ -109,9 +110,9 @@ class ProjectEdit extends React.Component {
             param.bankCode = data[0].bankCode;
             param.bankName = data[0].bankName;
             this.props.doFetching();
-            console.log(param);
-            console.log(this.props.pageData);
-            param = { address: this.props.pageData.address, area: this.props.pageData.area, attendanceEndtime: this.props.pageData.attendanceEndtime, attendanceStarttime: this.props.pageData.attendanceStarttime, chargeUser: this.props.pageData.chargeUser, city: this.props.pageData.city, code: this.code, latitude: this.props.pageData.latitude, longitude: this.props.pageData.longitude, name: this.props.pageData.name, province: this.props.pageData.province, salaryCreateDatetime: this.props.pageData.salaryCreateDatetime, salaryDatetime: this.props.pageData.salaryDatetime, startDatetime: this.props.pageData.startDatetime, updater: this.props.pageData.updater };
+            // console.log(param);
+            // console.log(this.props.pageData);
+            param = { address: this.props.pageData.address, area: this.props.pageData.area, attendanceEndtime: this.props.pageData.attendanceEndtime, attendanceStarttime: this.props.pageData.attendanceStarttime, chargeUser: this.props.pageData.chargeUser, chargeMobile: this.props.pageData.chargeMobile, city: this.props.pageData.city, code: this.code, latitude: this.props.pageData.latitude, longitude: this.props.pageData.longitude, name: this.props.pageData.name, province: this.props.pageData.province, salaryCreateDatetime: this.props.pageData.salaryCreateDatetime, salaryDatetime: this.props.pageData.salaryDatetime, startDatetime: this.props.pageData.startDatetime, updater: this.props.pageData.updater };
             fetch(631352, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();

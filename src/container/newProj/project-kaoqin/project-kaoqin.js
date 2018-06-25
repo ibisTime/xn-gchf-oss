@@ -12,6 +12,7 @@ import {
   cancelFetching,
   setSearchData
 } from '@redux/newProj/project-kaoqin';
+import ModalDetail from 'common/js/build-modal-detail';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, getUserId, getUserKind } from 'common/js/util';
 import { getUserDetail } from 'api/user';
@@ -31,7 +32,9 @@ class ProjectKaoqin extends React.Component {
     super(props);
     this.state = {
       projectCodeList: '',
-      companyCode: ''
+      companyCode: '',
+      showShangban: false,
+      showXiaban: false
     };
     this.code = getQueryString('code', this.props.location.search);
   }
@@ -148,75 +151,123 @@ class ProjectKaoqin extends React.Component {
       search: true,
       hidden: true
     }];
+    const shangbanOptions = {
+        fields: [{
+          field: 'startDatetime',
+          title: '上班时间',
+          type: 'datetime',
+          required: true
+        }],
+        addCode: 631390,
+        beforeSubmit: (param) => {
+          param.code = this.kaoqinCode;
+          return param;
+        }
+      };
+      const xiabanOptions = {
+        fields: [{
+          field: 'endDatetime',
+          title: '下班时间',
+          type: 'datetime',
+          required: true
+        }],
+        addCode: 631391,
+        beforeSubmit: (param) => {
+          param.code = this.kaoqinCode;
+          return param;
+        }
+      };
     if (getUserKind() === 'O' || getUserKind() === 'S') {
-      return this.state.projectCodeList ? this.props.buildList({
-        fields,
-        searchParams: { projectCode: this.code },
-        pageCode: 631395,
-        buttons: [{
-          code: 'export',
-          name: '导出',
-          handler: (selectedRowKeys, selectedRows) => {
-            fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
-              let tableData = [];
-              let title = [];
-              fields.map((item) => {
-                if (item.title !== '关键字') {
-                  title.push(item.title);
-                }
-              });
-              tableData.push(title);
-              data.list.map((item) => {
-                let temp = [];
-                this.props.searchData.status.map((v) => {
-                  if (v.dkey === item.status) {
-                    item.status = v.dvalue;
-                  }
+      return this.state.projectCodeList ? (
+        <div>
+         {this.props.buildList({
+            fields,
+            searchParams: { projectCode: this.code },
+            pageCode: 631395,
+            buttons: [{
+              code: 'export',
+              name: '导出',
+              handler: (selectedRowKeys, selectedRows) => {
+                fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+                  let tableData = [];
+                  let title = [];
+                  fields.map((item) => {
+                    if (item.title !== '关键字') {
+                      title.push(item.title);
+                    }
+                  });
+                  tableData.push(title);
+                  data.list.map((item) => {
+                    let temp = [];
+                    this.props.searchData.status.map((v) => {
+                      if (v.dkey === item.status) {
+                        item.status = v.dvalue;
+                      }
+                    });
+                    temp.push(item.projectName,
+                      item.staffName,
+                      item.staffMobile,
+                      item.startDatetime,
+                      item.endDatetime,
+                      item.status,
+                      item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
+                      item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
+                      item.remark
+                    );
+                    tableData.push(temp);
+                  });
+                  const ws = XLSX.utils.aoa_to_sheet(tableData);
+                  const wb = XLSX.utils.book_new();
+                  XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+                  XLSX.writeFile(wb, 'sheetjs.xlsx');
                 });
-                temp.push(item.projectName,
-                  item.staffName,
-                  item.staffMobile,
-                  item.startDatetime,
-                  item.endDatetime,
-                  item.status,
-                  item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
-                  item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
-                  item.remark
-                );
-                tableData.push(temp);
-              });
-              const ws = XLSX.utils.aoa_to_sheet(tableData);
-              const wb = XLSX.utils.book_new();
-              XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-              XLSX.writeFile(wb, 'sheetjs.xlsx');
-            });
-          }
-        },
-        {
-          code: 'daka',
-          name: '手工打卡',
-          handler: (selectedRowKeys, selectedRows) => {
-            if (!selectedRowKeys.length) {
-              showWarnMsg('请选择记录');
-            } else if (selectedRowKeys.length > 1) {
-              showWarnMsg('请选择一条记录');
-            } else {
-              Modal.confirm({
-                okText: '确认',
-                cancelText: '取消',
-                content: '确定打卡？',
-                onOk: () => {
-                  this.props.doFetching();
-                  fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
-                    showSucMsg('操作成功');
-                    this.props.getPageData();
-                  }).catch(this.props.cancelFetching);
+              }
+            },
+            {
+              code: 'shangbandaka',
+              name: '上班打卡',
+              handler: (selectedRowKeys, selectedRows) => {
+                if (!selectedRowKeys.length) {
+                  showWarnMsg('请选择记录');
+                } else if (selectedRowKeys.length > 1) {
+                  showWarnMsg('请选择一条记录');
+                } else {
+                  this.setState({
+                    showShangban: true
+                  });
+                  this.kaoqinCode = selectedRows[0].code;
                 }
-              });
-            }
-          }
-        }]
-      }) : null;
+              }
+            },
+            {
+              code: 'xiabandaka',
+              name: '下班打卡',
+              handler: (selectedRowKeys, selectedRows) => {
+                if (!selectedRowKeys.length) {
+                  showWarnMsg('请选择记录');
+                } else if (selectedRowKeys.length > 1) {
+                  showWarnMsg('请选择一条记录');
+                } else {
+                  this.setState({
+                    showXiaban: true
+                  });
+                  this.kaoqinCode = selectedRows[0].code;
+                }
+              }
+            }]
+          })}
+          <ModalDetail
+          title='上班时间'
+          visible={this.state.showShangban}
+          hideModal={() => this.setState({ showShangban: false })}
+          options={shangbanOptions} />
+          <ModalDetail
+          title='下班时间'
+          visible={this.state.showXiaban}
+          hideModal={() => this.setState({ showXiaban: false })}
+          options={xiabanOptions} />
+        </div>
+      ) : null;
     } else {
       return this.props.buildList({
         fields: fieldso,

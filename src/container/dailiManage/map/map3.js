@@ -212,15 +212,7 @@ class Map extends React.Component {
       type: 'datetime'
     }, {
       field: 'chargeUser',
-      title: '负责人',
-      type: 'select',
-      search: true,
-      listCode: 631086,
-      params: {
-        type: 'O'
-      },
-      keyName: 'userId',
-      valueName: 'realName'
+      title: '负责人'
     }, {
       field: 'chargeMobile',
       title: '负责人手机号'

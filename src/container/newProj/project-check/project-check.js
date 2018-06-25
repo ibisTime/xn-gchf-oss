@@ -44,7 +44,7 @@ class ProjectCheck extends React.Component {
       title: '项目名称',
       required: true
     }, {
-      field: 'chargeName',
+      field: 'chargeUser',
       title: '负责人'
     }, {
       field: 'quyus',

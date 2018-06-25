@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Form, Select, Input, Button, Tooltip, Icon, Spin, Upload,
-  Modal, Cascader, DatePicker, TimePicker, Row, Col, Table
+  Modal, Cascader, DatePicker, TimePicker, Row, Col, Table, Divider
 } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -347,6 +347,23 @@ export default class DetailComp extends React.Component {
       }
     });
   }
+  getChooseMap(item) {
+    // let address = '';
+    // let addr = this.props.form.getFieldValue(item.lnglat).join('');
+    // address = address + addr + this.props.form.getFieldValue(item.field);
+    // let geocoder = new AMap.Geocoder();
+    // // 地理编码,返回地理编码结果
+    // geocoder.getLocation(address, (status, result) => {
+    //   if (status === 'complete' && result.info === 'OK') {
+    //     this.props.form.setFieldsValue({
+    //       [item.lnglatTo[0]]: result.geocodes[0].location.lng,
+    //       [item.lnglatTo[1]]: result.geocodes[0].location.lat
+    //     });
+    //   } else {
+    //     showErrMsg('经纬度获取失败');
+    //   }
+    // });
+  }
   getItemByType(type, item) {
     const { getFieldDecorator } = this.props.form;
     let rules = this.getRules(item);
@@ -386,6 +403,12 @@ export default class DetailComp extends React.Component {
         return this.getImportComp(item, initVal, rules, getFieldDecorator);
       case 'lnglat':
         return this.getLngLatComp(item, initVal, rules, getFieldDecorator);
+      case 'chooseMap':
+        return this.getChooseMapComp(item, initVal, rules, getFieldDecorator);
+      case 'date28':
+        return this.getDate28Comp(item, initVal, rules, getFieldDecorator);
+      case 'line':
+        return this.getLineComp(item, initVal, rules, getFieldDecorator);
       default:
         return this.getInputComp(item, initVal, rules, getFieldDecorator);
     }
@@ -600,7 +623,7 @@ export default class DetailComp extends React.Component {
     }));
   }
   // 获取经纬度
-  getLngLatComp(item, initVal, rules, getFieldDecorator) {
+getLngLatComp(item, initVal, rules, getFieldDecorator) {
     return (
       <FormItem
         className={item.hidden ? 'hidden' : ''}
@@ -623,6 +646,82 @@ export default class DetailComp extends React.Component {
                   <Button onClick={() => {
                     this.getLngLat(item);
                   }}>获取经纬度</Button>
+                </Col>
+              </Row>
+            )
+        }
+      </FormItem>
+    );
+  }
+  // 划线
+  getLineComp(item, initVal, rules, getFieldDecorator) {
+    return (
+      <FormItem
+        className={item.hidden ? 'hidden' : ''}
+        key={item.field}
+        {...formItemLayout}
+        >
+        {
+          item.readonly ? <div className="readonly-text" style={item.style ? item.style : {}}>{initVal}</div>
+            : (
+              <Row gutter={8}>
+              <Divider orientation="left">{item.title}</Divider>
+              </Row>
+            )
+        }
+      </FormItem>
+  );
+}
+  // 每月28天
+  getDate28Comp(item, initVal, rules, getFieldDecorator) {
+    return (
+      <FormItem
+        className={item.hidden ? 'hidden' : ''}
+        key={item.field}
+        {...formItemLayout}
+        label={this.getLabel(item)}>
+        {
+          item.readonly ? <div className="readonly-text" style={item.style ? item.style : {}}>{initVal}</div>
+            : (
+              <Row gutter={8}>
+                <Col span={16}>
+                  {getFieldDecorator(item.field, {
+                    rules,
+                    initialValue: initVal
+                  })(
+                    <div><span>每月</span><Input style={{ width: '50px' }} initialValue={initVal} ype={item.hidden ? 'hidden' : 'text'}/><span>日</span></div>
+                  )}
+                </Col>
+              </Row>
+            )
+        }
+      </FormItem>
+    );
+  }
+  // 插标选择地址
+  getChooseMapComp(item, initVal, rules, getFieldDecorator) {
+    return (
+      <FormItem
+        className={item.hidden ? 'hidden' : ''}
+        key={item.field}
+        {...formItemLayout}
+        label={this.getLabel(item)}>
+        {
+          item.readonly ? <div className="readonly-text" style={item.style ? item.style : {}}>{initVal}</div>
+            : (
+              <Row gutter={8}>
+                <Col span={16}>
+                  {getFieldDecorator(item.field, {
+                    rules,
+                    initialValue: initVal
+                  })(
+                    <Input type={item.hidden ? 'hidden' : 'text'}/>
+                  )}
+                </Col>
+                <Col span={8}>
+                  <Button onClick={() => {
+                    this.getChooseMap(item);
+                  }}>选择地址</Button>
                 </Col>
               </Row>
             )
@@ -1127,8 +1226,8 @@ export default class DetailComp extends React.Component {
     }
     if (item.date28) {
       rules.push({
-        pattern: /^([12][0-9]|30|[1-9])$/,
-        message: '请输入1-30之间的整数'
+        pattern: /^([1-9]|[1][0-9]|[2][0-8])$/,
+        message: '请输入1-28之间的整数'
       });
     }
     if (item.date100) {

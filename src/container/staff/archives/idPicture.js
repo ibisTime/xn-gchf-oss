@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Button } from 'antd';
 import './idPicture.css';
 import idPic1 from './idzhengmian.png';
 import idPic2 from './idfanmian.png';
@@ -253,58 +254,57 @@ class mianguanRead extends React.Component {
   render() {
     const url = './touxiang.png';
     return (
-      <div className="SectionContainer" style={{ border: '2px solid #096dd9' }}>
-        <div className="section">
+      <div className="SectionContainer1" style={{ border: '2px solid #096dd9' }}>
+        <div className="section1">
             <div style={{ verticalAlign: 'middle', width: '100%' }}>
-                <div className="comparison-main comparison-mains">
-                <div className="head-wrap"><i></i>证件照读取</div>
-                    <div className="clearfix">
-                        <div className="inner-box">
-                            <div className="img-wrap left-img" style={{ display: this.state.video1 ? 'inline-block' : 'none', margin: '0 58px 0 70px' }}>
-                                <video ref={video => this.video1 = video} className="video"></video>
+                <div className="comparison-main1 comparison-mains1">
+                <div className="head-wrap1"><i></i>证件照读取</div>
+                    <div className="clearfix1">
+                        <div className="inner-box1">
+                            <div className="img-wrap1 left-img" style={{ display: this.state.video1 ? 'inline-block' : 'none', margin: '0 58px 0 70px' }}>
+                                <video ref={video => this.video1 = video} className="video1"></video>
                             </div>
                             <div
-                                className="img-wrap right-img"
+                                className="img-wrap1 right-img1"
                                 style={{ border: '1px solid #4c98de', display: this.state.video1 ? 'none' : 'inline-block', margin: '0 58px 0 70px' }}
                                 onClick={ () => { this.shot(1); } }
                             >
-                                <img src={idPic1} className="userImg" id="userImg" style={{ display: this.state.pic1 ? 'none' : 'inline-block' }}/>
+                                <img src={idPic1} className="userImg1" id="userImg" style={{ display: this.state.pic1 ? 'none' : 'inline-block' }}/>
                                 <canvas ref={canvas => this.canvas1 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
-                            <div className="img-wrap left-img" style={{ display: this.state.video2 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
-                                <video ref={video => this.video2 = video} className="video"></video>
+                            <div className="img-wrap1 left-img" style={{ display: this.state.video2 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
+                                <video ref={video => this.video2 = video} className="video1"></video>
                             </div>
                             <div
-                                className="img-wrap right-img"
+                                className="img-wrap1 right-img1"
                                 style={{ border: '1px solid #4c98de', display: this.state.video2 ? 'none' : 'inline-block', margin: '0 58px 0 0' }}
                                 onClick={ () => { this.shot(2); } }
                             >
-                                <img src={idPic2} className="userImg" id="userImg" style={{ display: this.state.pic2 ? 'none' : 'inline-block' }}/>
+                                <img src={idPic2} className="userImg1" id="userImg" style={{ display: this.state.pic2 ? 'none' : 'inline-block' }}/>
                                 <canvas ref={canvas => this.canvas2 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
-                            <div className="img-wrap left-img" style={{ display: this.state.video3 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
-                                <video ref={video => this.video3 = video} className="video"></video>
+                            <div className="img-wrap1 left-img" style={{ display: this.state.video3 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
+                                <video ref={video => this.video3 = video} className="video1"></video>
                             </div>
                             <div
-                                className="img-wrap right-img"
+                                className="img-wrap1 right-img1"
                                 style={{ border: '1px solid #4c98de', display: this.state.video3 ? 'none' : 'inline-block', margin: '0 0 0 0' }}
                                 onClick={ () => { this.shot(3); } }
                             >
-                                <img src={idPic3} className="userImg" id="userImg" style={{ display: this.state.pic3 ? 'none' : 'inline-block' }}/>
+                                <img src={idPic3} className="userImg1" id="userImg" style={{ display: this.state.pic3 ? 'none' : 'inline-block' }}/>
                                 <canvas ref={canvas => this.canvas3 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
                             <div style={{ paddingTop: 20 }}>
                                 <div className="btn-item" style={{ textAlign: 'center' }}>
                                 <div>
-                                <button
-                                    className="ant-btn ant-btn-primary ant-btn-lg"
+                                <Button
                                     style={{ width: 285, marginBottom: 20, backgroundColor: '#4c98de', color: '#fff' }}
                                     id="cut"
                                     // onClick={ () => { this.handleShotClick(1); } }>{this.state.shot ? '拍摄' : '取消'}</button>
-                                    onClick={ this.handleShotClick }>拍摄</button>
+                                    onClick={ this.handleShotClick }>拍摄</Button>
                                 </div>
                                 <div>
-                                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
+                                <Button style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</Button>
                                 </div>
                                 </div>
                             </div>

@@ -116,7 +116,7 @@ class mianguanRead extends React.Component {
     //   console.log(base64);
       getFeatInfo(base64).then((res) => {
         var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(res);
-        if (!result || result[1] === 'NOFACE') {
+        if (!result || result[1] === 'error') {
             showWarnMsg('请对准人脸');
             return;
         };

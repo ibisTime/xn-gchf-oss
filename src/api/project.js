@@ -68,7 +68,7 @@ export function getProjectList(kind, projectCodeList) {
   return fetch(631357, { updater: '', kind, projectCodeList });
 }
 
-export function getProjectListForO(knd, companyCode) {
+export function getProjectListForO(companyCode) {
   return fetch(631357, { updater: '',
   kind: 'O',
   companyCode

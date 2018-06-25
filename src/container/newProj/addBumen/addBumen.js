@@ -47,14 +47,6 @@ class AddBumen extends React.Component {
     }, {
       field: 'leader',
       title: '负责人',
-      type: 'select',
-      listCode: '631086',
-      params: {
-        type: 'O',
-        companyCode: this.state.companyCode
-      },
-      keyName: 'userId',
-      valueName: 'loginName',
       required: true
     }, {
       field: 'leadeMobile',

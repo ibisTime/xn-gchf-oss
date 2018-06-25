@@ -58,7 +58,7 @@ class PostRequest extends React.Component {
                 </div>
                 <p style={{ display: 'inline-block', color: 'red' }}>{ statusDict[v.status] || '' }</p>
             </Card>)
-          : <Card key={1} style={{ width: '80%', margin: '38px' }}><p>暂时没有待处理信息</p></Card>
+          : <Card key={1} style={{ width: '80%' }}><p>暂时没有待处理信息</p></Card>
       }</div>
     );
   }

@@ -29,7 +29,7 @@ class Login extends React.Component {
     this.typeName = window.location.origin === 'https://jmgod.hichengdai.com' ? '监管端'
       : window.location.origin === 'http://jmbank.hichengdai.com' ? '银行端'
         : window.location.origin === 'https://jmcompany.hichengdai.com' ? '业主端'
-          : window.location.origin === 'https://jmadmin.hichengdai.com' ? '平台端' : '业主端';
+          : window.location.origin === 'https://jmadmin.hichengdai.com' ? '平台端' : '平台端';
     this.onChange = this.onChange.bind(this);
     if (cookies.get('loginName') && cookies.get('loginName') !== null && cookies.get('loginName') !== undefined) {
       this.initName = cookies.get('loginName');
@@ -56,7 +56,7 @@ class Login extends React.Component {
         this.type = window.location.origin === 'https://jmgod.hichengdai.com' ? 'S'
           : window.location.origin === 'http://jmbank.hichengdai.com' ? 'B'
             : window.location.origin === 'https://jmcompany.hichengdai.com' ? 'O'
-              : window.location.origin === 'https://jmadmin.hichengdai.com' ? 'P' : 'O';
+              : window.location.origin === 'https://jmadmin.hichengdai.com' ? 'P' : 'P';
         this.setState({ loading: true });
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户

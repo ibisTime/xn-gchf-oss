@@ -36,16 +36,16 @@ class Yezhu extends React.Component {
       field: 'status',
       type: 'select',
       key: 'user_status'
-    }, {
-      title: '角色',
-      field: 'roleCode',
-      type: 'select',
-      listCode: '631046',
-      params: {
-        updater: ''
-      },
-      keyName: 'code',
-      valueName: 'name'
+    // }, {
+    //   title: '角色',
+    //   field: 'roleCode',
+    //   type: 'select',
+    //   listCode: '631046',
+    //   params: {
+    //     updater: ''
+    //   },
+    //   keyName: 'code',
+    //   valueName: 'name'
     }, {
       title: '备注',
       field: 'remark'

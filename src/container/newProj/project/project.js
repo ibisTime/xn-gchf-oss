@@ -63,7 +63,7 @@ class project extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           if(selectedRows[0].status === '0') {
-            this.props.history.push(`/projectManage/project/edit?code=${selectedRowKeys[0]}`);
+            this.props.history.push(`/projectManage/project/edit?code=${selectedRowKeys[0].code}`);
           }else {
             showWarnMsg('该状态无法进行审核');
           }
