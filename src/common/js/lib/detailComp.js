@@ -689,7 +689,7 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
                     rules,
                     initialValue: initVal
                   })(
-                    <div><span>每月</span><Input style={{ width: '50px' }} initialValue={initVal} ype={item.hidden ? 'hidden' : 'text'}/><span>日</span></div>
+                    <div><span>每月</span><Input style={{ width: '50px' }} type={item.hidden ? 'hidden' : 'text'}/><span>日</span></div>
                   )}
                 </Col>
               </Row>

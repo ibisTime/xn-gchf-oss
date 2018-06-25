@@ -41,24 +41,6 @@ class AllStaffAddEditAdd extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'mobile',
-      title: '联系方式',
-      search: true,
-      required: true
-    }, {
-      field: 'contacts',
-      title: '紧急联系人',
-      required: true
-    }, {
-      field: 'contactsMobile',
-      title: '紧急联系人联系方式',
-      required: true
-    }, {
-      field: 'bankcardNumber',
-      title: '银行卡号',
-      search: true,
-      required: true
-    }, {
       field: 'bankCode',
       title: '开户行',
       listCode: '631116',
@@ -66,31 +48,24 @@ class AllStaffAddEditAdd extends React.Component {
       valueName: 'bankName',
       type: 'select',
       _keys: ['companyCard', 'subbranch'],
-      search: true,
       required: true
     }, {
       field: 'subbranch',
       title: '开户支行',
-      search: true,
       required: true
     }, {
-      field: 'pict1',
-      title: '免冠照片',
-      type: 'img',
-      single: true,
+      field: 'bankcardNumber',
+      title: '银行卡号',
       required: true
     }, {
-      field: 'pict2',
-      title: '手持身份张照片',
-      type: 'img',
-      single: true,
-      required: true
+      field: 'mobile',
+      title: '联系方式'
     }, {
-      field: 'pict3',
-      title: '身份证正反面照片+签名',
-      type: 'img',
-      single: true,
-      required: true
+      field: 'contacts',
+      title: '紧急联系人'
+    }, {
+      field: 'contactsMobile',
+      title: '紧急联系人联系方式'
     }, {
       title: '技能列表',
       field: 'skillList',

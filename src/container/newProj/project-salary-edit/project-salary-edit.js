@@ -26,42 +26,51 @@ class ProjectSalaryEdit extends React.Component {
   render() {
     const fields = [{
       title: '员工姓名',
-      field: 'staffName'
-    }, {
-      field: 'upUserName',
-      title: '隶属上级'
+      field: 'staffName',
+      readonly: true
     }, {
       title: '所属月份',
       field: 'month',
-      search: true
+      readonly: true
     }, {
       title: '当月天数',
-      field: 'monthDays'
+      field: 'monthDays',
+      readonly: true
     }, {
       title: '请假天数',
-      field: 'leavingDays'
+      field: 'leavingDays',
+      readonly: true
     }, {
-      title: '迟到天数',
-      field: 'delayDays'
+      title: '迟到小时',
+      field: 'delayDays',
+      readonly: true
     }, {
-      title: '早退天数',
-      field: 'earlyDays'
+      title: '早退小时',
+      field: 'earlyDays',
+      readonly: true
     }, {
       title: '税费',
       field: 'tax',
-      amount: true
-    }, {
-      title: '扣款金额',
-      field: 'cutAmount1',
-      amount: true
-    }, {
-      title: '发放奖金',
-      field: 'awardAmount',
-      amount: true
+      readonly: true
     }, {
       title: '发放金额',
       field: 'factAmount',
-      amount: true
+      amount: true,
+      readonly: true
+    }, {
+      title: '奖励金额',
+      field: 'awardAmount',
+      amount: true,
+      required: true
+    }, {
+      title: '扣款金额',
+      field: 'cutAmount2',
+      amount: true,
+      required: true
+    }, {
+      title: '扣款说明',
+      field: 'cutNote',
+      required: true
     }];
     return this.props.buildDetail({
       fields,

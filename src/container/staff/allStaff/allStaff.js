@@ -129,15 +129,16 @@ class AllStaff extends React.Component {
       }
     };
     if (getUserKind() === 'O') {
-      return this.props.buildList({
+      return this.state.companyCode ? this.props.buildList({
         fields,
         btnEvent,
         searchParams: {
           updater: '',
-          kind: 'O'
+          kind: 'O',
+          companyCode: this.state.companyCode
         },
         pageCode: 631415
-      });
+      }) : null;
     } else {
       return this.props.buildList({
         fields,

@@ -1,32 +1,42 @@
 import React from 'react';
-import { Input, Select, Button } from 'antd';
+import { Input, Select, Button, Form, DatePicker, Icon, Upload, Modal, TreeSelect } from 'antd';
+import moment from 'moment';
 import { getProjectListForO, getBumen } from 'api/project';
 import { getUserDetail, getUserId, ruzhi } from 'api/user';
 import { getDict } from 'api/dict';
-import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+import { getQiniuToken } from 'api/general';
+import { getQueryString, showErrMsg, showWarnMsg, showSucMsg, formatImg } from 'common/js/util';
+import { UPLOAD_URL } from 'common/js/config';
+import locale from 'common/js/lib/date-locale';
 import './ruzhiInfo.css';
 
 const InputGroup = Input.Group;
 const Option = Select.Option;
+const FormItem = Form.Item;
+const { TreeNode } = TreeSelect;
 
+const rule0 = {
+  required: true,
+  message: '必填字段'
+};
 class RuzhiInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       projectList: [],
-      department1: {},
-      department2: {},
-      department3: {},
+      department1: [],
+      department2: [],
+      department3: [],
       selectProj: '',
       selectDepart: '',
       selectSource: '',
-      source: {},
-      type: ''
+      source: [],
+      type: '',
+      token: '',
+      previewImage: '',
+      previewVisible: false
     };
     this.handleProjectChange = this.handleProjectChange.bind(this);
-    this.handleDepartmentChange1 = this.handleDepartmentChange1.bind(this);
-    this.handleDepartmentChange2 = this.handleDepartmentChange2.bind(this);
-    this.handleDepartmentChange3 = this.handleDepartmentChange3.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.code = getQueryString('code', this.props.location.search);
@@ -43,43 +53,6 @@ class RuzhiInfo extends React.Component {
           projectList: this.projectList,
           selectProj: this.projectList[0].code
         });
-        // getBumen({projectCode: this.state.projectList[0].code || ''}).then((res1) => {
-        //   let data = [];
-        //   res1.map((item) => {
-        //     if(!item.parentCode) {
-        //       data.push(item);
-        //     }
-        //   });
-        //   this.department1 = data.map((item1) => ({
-        //     code: item1.code,
-        //     name: item1.name
-        //   }));
-        //   this.setState({
-        //     department1: this.department1
-        //   });
-        //   getBumen({parentCode: this.department1[0].code || ''}).then((res2) => {
-        //   if(!res2.length) {
-        //     this.department2 = res2.map((item2) => ({
-        //       code: item2.code,
-        //       name: item2.name
-        //     }));
-        //     this.setState({
-        //       department2: this.department2
-        //     });
-        //     getBumen({parentCode: this.department2[0].code || ''}).then((res3) => {
-        //   if(!res.length) {
-        //     this.department3 = res3.map((item3) => ({
-        //     code: item3.code,
-        //     name: item3.name
-        //   }));
-        //   this.setState({
-        //     department3: this.department3
-        //   });
-        //   }
-        // });
-        //   }
-        // });
-        // });
       });
     });
     getDict('staff_type').then((res) => {
@@ -92,85 +65,9 @@ class RuzhiInfo extends React.Component {
         source: this.source
       });
     });
-    // setTimeout(() => {
-    //   const projectOptions = this.state.projectList.map((item) => <Option key={item.code}>{item.name}</Option>);
-    // }, 300);
-    // getProjectList()
-  }
-  // 项目change事件
-  handleProjectChange(value) {
-    // value = 选中的项目code
-    this.setState({
-      department1: {},
-      department2: {},
-      department3: {},
-      selectProj: value
-    });
-    getBumen({projectCode: value}).then((res) => {
-      let data = [];
-      res.map((item) => {
-        if(!item.parentCode) {
-          data.push(item);
-        }
-      });
-      this.department1 = data.map((item) => ({
-        code: item.code,
-        name: item.name
-      }));
-      this.setState({
-        department1: this.department1
-      });
-    });
-  }
-  // 一级部门change事件
-  handleDepartmentChange1(value) {
-    // value = 选中的项目code
-    this.setState({
-      department2: {},
-      department3: {}
-    });
-    getBumen({parentCode: value}).then((res) => {
-      if(!res.length) {
-        this.setState({
-          selectDepart: value
-        });
-      }
-      this.department2 = res.map((item) => ({
-        code: item.code,
-        name: item.name
-      }));
-      this.setState({
-        department2: this.department2
-      });
-    });
-  }
-  // 二级部门change事件
-  handleDepartmentChange2(value) {
-    this.setState({
-      department3: {}
-    });
-    // value = 选中的项目code
-    getBumen({parentCode: value}).then((res) => {
-      if(!res.length) {
-        this.setState({
-          selectDepart: value
-        });
-      }
-      this.department3 = res.map((item) => ({
-        code: item.code,
-        name: item.name
-      }));
-      this.setState({
-        department3: this.department3
-      });
-    });
-  }
-  // 三级部门change事件
-  handleDepartmentChange3(value) {
-    this.setState({
-      selectDepart: value
-    });
-    // value = 选中的项目code
+    getQiniuToken().then(data => {
+      this.setState({ token: data.uploadToken });
+    }).catch(() => {});
   }
   // 员工source change事件
   handleTypeChange(value) {
@@ -180,59 +77,243 @@ class RuzhiInfo extends React.Component {
   }
   // 最终提交
   handleSubmit() {
-    let info = {
-      departmentCode: this.state.selectDepart,
-      projectCode: this.state.selectProj,
-      staffCode: this.code,
-      type: this.state.selectSource || '1'
-    };
-    ruzhi(info).then((res) => {
-      if(res.code) {
-        showSucMsg('入职成功！');
-      } else {
-        showWarnMsg('入职失败！');
+    // let info = {
+    //   departmentCode: this.state.selectDepart,
+    //   projectCode: this.state.selectProj,
+    // };
+    this.props.form.validateFieldsAndScroll((err, params) => {
+      if (!err) {
+        console.log(params);
+        let format = 'YYYY-MM-DD';
+        params.joinDatetime = params.joinDatetime.format(format);
+        params.contractDatetime = params.contractDatetime.format(format);
+        params.staffCode = this.code;
+        params.updater = getUserId();
+        ruzhi(params).then((res) => {
+          if(res.code) {
+            showSucMsg('入职成功！');
+            this.props.history.push(`/staff/allStaff`);
+          } else {
+            showWarnMsg('入职失败！');
+          }
+        });
       }
     });
   }
+  setUploadFileUrl(fileList) {
+    fileList.forEach(f => {
+      if (!f.url && f.status === 'done' && f.response) {
+        f.url = formatImg(f.response.key);
+      }
+    });
+  }
+  normFile = (e) => {
+    if (e) {
+      return e.fileList.map(v => {
+        if (v.status === 'done') {
+          return v.key || v.response.key;
+        } else if (v.status === 'error') {
+          showErrMsg('文件上传失败');
+        }
+        return '';
+      }).filter(v => v).join('||');
+    }
+    return '';
+  }
+  handleCancel = () => this.setState({ previewVisible: false })
+  handlePreview = (file) => {
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true
+    });
+  }
+  // 项目change事件
+  handleProjectChange(projectCode) {
+    this.props.form.setFieldsValue({ departmentCode: '' });
+    getBumen({ projectCode }).then((data) => {
+      this.getTree(data);
+    });
+  }
+  // 生成tree
+  getTree(data) {
+    let result = {};
+    data.forEach(v => {
+      v.parentCode = v.parentCode === '' ? 'ROOT' : v.parentCode;
+      if (!result[v.parentCode]) {
+        result[v.parentCode] = [];
+      }
+      let obj = {
+          title: v.name,
+          key: v.code
+      };
+      result[v.parentCode].push(obj);
+    });
+    this.result = result;
+    let tree = [];
+    if (data.length) {
+      this.getTreeNode(result['ROOT'], tree);
+    }
+    this.setState({ treeData: tree });
+  }
+  // 生成treeNode
+  getTreeNode(arr, children) {
+    arr.forEach(a => {
+      if (this.result[a.key]) {
+        a.children = [];
+        children.push(a);
+        this.getTreeNode(this.result[a.key], a.children);
+      } else {
+        children.push(a);
+      }
+    });
+  }
+  // 生成treeSelect结构
+  renderTreeNodes = (data) => {
+    if (!data) return null;
+    return data.map((item) => {
+      if (item.children) {
+        return (
+          <TreeNode title={item.title} key={item.key} value={item.key}>
+            {this.renderTreeNodes(item.children)}
+          </TreeNode>
+        );
+      }
+      return <TreeNode title={item.title} key={item.key} value={item.key}/>;
+    });
+  }
   render() {
-    return this.state.projectList.length ? (
+    const { previewVisible, previewImage, token, source } = this.state;
+    const { getFieldDecorator } = this.props.form;
+    const imgProps = {
+      action: UPLOAD_URL,
+      multiple: true,
+      data: { token },
+      defaultFileList: [],
+      showUploadList: {
+        showPreviewIcon: true,
+        showRemoveIcon: true
+      },
+      onChange: ({ fileList }) => this.setUploadFileUrl(fileList, true),
+      onPreview: this.handlePreview,
+      listType: 'picture-card',
+      accept: 'image/*'
+    };
+    return (
       <div className='SectionContainer' style={{ border: '2px solid #096dd9' }}>
         <div className='section'>
           <div style={{ display: 'table-cell', verticalAlign: 'middle', width: '100%' }}>
               <div className="comparison-main comparison-mains">
                 <div className="head-wrap"><i></i>入职信息</div>
-                  <div style={{ border: '1xp solid red', width: 300, height: 800, paddingTop: '10%', margin: '0 auto' }}>
-                  <div style={{ fontWeight: 700, marginBottom: 10 }}>入职信息</div>
-                    <InputGroup compact style={{ marginBottom: 20 }}>
-                    <Select style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 24 }} onChange={this.handleProjectChange}>
-                      {this.state.projectList.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>)}
-                    </Select>
-                    <Select style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 20 }} onChange={ this.handleDepartmentChange1 }>
-                      {this.state.department1.length ? this.state.department1.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>) : ''}
-                    </Select>
-                    <Select style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 20 }} onChange={ this.handleDepartmentChange2 }>
-                      {this.state.department2.length ? this.state.department2.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>) : ''}
-                    </Select>
-                    <Select style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 20 }} onChange={ this.handleDepartmentChange3 }>
-                      {this.state.department3.length ? this.state.department3.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>) : ''}
-                    </Select>
-                  </InputGroup>
-                  <div style={{ fontWeight: 700, marginBottom: 10 }}>员工来源</div>
-                  <InputGroup compact>
-                    <Select defaultValue={this.state.source[0].type || ''} style={{ width: 300, display: 'block', margin: '0 auto', border: '1px solid #509CFA', borderRadius: 5, marginBottom: 20 }} onChange={ this.handleTypeChange }>
-                      {this.state.source.length ? this.state.source.map((item) => <Option key={item.type} value={item.type}>{item.name}</Option>) : ''}
-                    </Select>
-                  </InputGroup>
-                  <div>
-                    <Button type="primary" style={{ width: 300 }} onClick={ this.handleSubmit }>完成</Button>
+                  <div style={{ width: 300, padding: '30px 0', margin: '0 auto' }}>
+                    <Form>
+                      <div style={{ fontWeight: 700, marginBottom: 10 }}>入职信息</div>
+                      <FormItem>
+                        {getFieldDecorator('projectCode', {
+                          rules: [rule0]
+                        })(
+                          <Select placeholder="请选择项目" onChange={this.handleProjectChange}>
+                            {this.state.projectList.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>)}
+                          </Select>
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('departmentCode', {
+                          rules: [rule0]
+                        })(
+                          <TreeSelect
+                            style={{ width: '100%' }}
+                            dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                            placeholder="请选择"
+                            allowClear
+                            treeDefaultExpandAll
+                          >
+                            {this.renderTreeNodes(this.state.treeData)}
+                          </TreeSelect>
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('position', {
+                          rules: [rule0]
+                        })(
+                          <Input placeholder="请输入职位"/>
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('salary', {
+                          rules: [rule0]
+                        })(
+                          <Input placeholder="请输入薪酬"/>
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('joinDatetime', {
+                          rules: [rule0]
+                        })(
+                          <DatePicker
+                            allowClear={false}
+                            locale={locale}
+                            placeholder="请选择入职时间"
+                            format='YYYY-MM-DD' />
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('cutAmount', {
+                          rules: [rule0]
+                        })(
+                          <Input placeholder="请输入迟到/早退每小时扣款金额"/>
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('contractDatetime', {
+                          rules: [rule0]
+                        })(
+                          <DatePicker
+                            allowClear={false}
+                            locale={locale}
+                            placeholder="请选择签约时间"
+                            format='YYYY-MM-DD' />
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('contentPic', {
+                          rules: [rule0],
+                          initialValue: '',
+                          getValueFromEvent: this.normFile
+                        })(
+                          <Upload {...imgProps}>
+                            { this.props.form.getFieldValue('contentPic') ? null : (
+                            <div>
+                              <Icon type="plus" />
+                              <div className="ant-upload-text">合同照片</div>
+                            </div>
+                            )}
+                          </Upload>)}
+                      </FormItem>
+                      <div style={{ fontWeight: 700, marginBottom: 10 }}>员工来源</div>
+                      <FormItem>
+                        {getFieldDecorator('type', {
+                          rules: [rule0],
+                          initialValue: source.length ? source[0].type : ''
+                        })(
+                          <Select placeholder="请选择来源" onChange={ this.handleTypeChange }>
+                            {source.map((item) => <Option key={item.type} value={item.type}>{item.name}</Option>)}
+                          </Select>
+                        )}
+                      </FormItem>
+                      <div>
+                        <Button type="primary" style={{ width: 300 }} onClick={ this.handleSubmit }>完成</Button>
+                      </div>
+                    </Form>
                   </div>
-                  </div>
-                  </div>
+                </div>
               </div>
           </div>
+          <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+            <img alt="图片" style={{ width: '100%' }} src={previewImage} />
+          </Modal>
       </div>
-    ) : null;
+    );
   }
 }
 
-export default RuzhiInfo;
+export default Form.create()(RuzhiInfo);

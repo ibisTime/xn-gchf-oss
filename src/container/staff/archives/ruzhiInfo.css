@@ -71,22 +71,7 @@ html, body {
     height: 100%;
     object-fit: fill;
 }
-.comparison-mains .btn-wrap {
-    display: inline-block;
-    vertical-align: middle;
-    width: 210px;
-    height: 100%;
-    text-align: center;
-}
-.comparison-mains .btn-inner {
-    padding-top: 82px;
-}
-.comparison-mains .btn-inner .btn-item+.btn-item {
-    margin-top: 50px;
-}
-.comparison-mains .btn-wrap .ant-btn {
-    width: 120px;
-}
+
 [disabled] {
     cursor: not-allowed !important;
 }
