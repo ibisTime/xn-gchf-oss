@@ -5,21 +5,21 @@ html, body {
 *, :after, :before {
     box-sizing: border-box;
 }
-.comparison-mains .clearfix {
+.comparison-mains2 .clearfix {
     zoom: 1;
 }
-.comparison-mains .clearfix:after, .clearfix:before {
+.comparison-mains2 .clearfix:after, .clearfix:before {
     content: " ";
     display: table;
 }
 
-.SectionContainer {
+.SectionContainer2 {
     height: 100%;
     width: 100%;
     position: relative;
     /* z-index: 0; */
 }
-.section {
+.section2 {
     width: 100%;
     display: table;
     height: 100vh;
@@ -27,14 +27,14 @@ html, body {
     padding-top: 0px;
     padding-bottom: 0px;
 }
-.comparison-mains .comparison-main {
+.comparison-mains2 .comparison-main2 {
     margin: auto auto;
     padding: 0 60px;
     width: 904px;
-    height: 700px;
+    height: 1000px;
     border: 2px solid rgba(85, 134, 193, 0.6);
 }
-.comparison-mains .head-wrap {
+.comparison-mains2 .head-wrap2 {
     width: 100%;
     position: relative;
     padding-left: 19px;
@@ -45,7 +45,7 @@ html, body {
     color: #fff;
     background: rgba(16, 42, 123, 0.7);
 }
-.comparison-mains .head-wrap i {
+.comparison-mains2 .head-wrap2 i {
     position: absolute;
     left: 9px;
     top: 9px;
@@ -54,19 +54,19 @@ html, body {
     border-radius: 2px;
     background: #3db0f2;
 }
-.comparison-mains .inner-box {
+.comparison-mains2 .inner-box {
     margin-top: 120px;
     height: 285px;
     font-size: 0;
 }
-.comparison-mains .img-wrap {
+.comparison-mains2 .img-wrap {
     display: inline-block;
     vertical-align: middle;
     width: 33%;
     height: 100%;
     text-align: center;
 }
-.comparison-mains .video {
+.comparison-mains2 .video {
     width: 100%;
     height: 100%;
     object-fit: fill;
@@ -76,15 +76,15 @@ html, body {
     cursor: not-allowed !important;
 }
 
-.comparison-mains .right-img {
+.comparison-mains2 .right-img {
     position: relative;
     background: rgb(216,219,229);
 }
-.comparison-mains .canvas {
+.comparison-mains2 .canvas {
     display: none;
     margin: 0 auto;
 }
-.comparison-mains .userImg {
+.comparison-mains2 .userImg {
     position: absolute;
     top: 50%;
     left: 50%;

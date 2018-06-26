@@ -199,11 +199,11 @@ class RuzhiInfo extends React.Component {
       accept: 'image/*'
     };
     return (
-      <div className='SectionContainer' style={{ border: '2px solid #096dd9' }}>
-        <div className='section'>
+      <div className='SectionContainer2' style={{ border: '2px solid #096dd9' }}>
+        <div className='section2'>
           <div style={{ display: 'table-cell', verticalAlign: 'middle', width: '100%' }}>
-              <div className="comparison-main comparison-mains">
-                <div className="head-wrap"><i></i>入职信息</div>
+              <div className="comparison-main2 comparison-mains2">
+                <div className="head-wrap2"><i></i>入职信息</div>
                   <div style={{ width: 300, padding: '30px 0', margin: '0 auto' }}>
                     <Form>
                       <div style={{ fontWeight: 700, marginBottom: 10 }}>入职信息</div>
