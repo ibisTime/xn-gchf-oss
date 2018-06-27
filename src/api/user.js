@@ -64,7 +64,8 @@ export function jiandang(birthday,
   idStartDate,
   realName,
   sex,
-  updater) {
+  updater,
+  companyCode) {
   return fetch(631410, { birthday,
     idAddress,
     idEndDate,
@@ -75,7 +76,8 @@ export function jiandang(birthday,
     idStartDate,
     realName,
     sex,
-    updater });
+    updater,
+    companyCode});
 }
 
 // 免冠照片

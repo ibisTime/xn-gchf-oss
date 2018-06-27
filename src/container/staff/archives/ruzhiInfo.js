@@ -92,7 +92,7 @@ class RuzhiInfo extends React.Component {
         ruzhi(params).then((res) => {
           if(res.code) {
             showSucMsg('入职成功！');
-            this.props.history.push(`/staff/allStaff`);
+            this.props.history.push(`/staff/jiandang`);
           } else {
             showWarnMsg('入职失败！');
           }
@@ -242,7 +242,7 @@ class RuzhiInfo extends React.Component {
                         {getFieldDecorator('salary', {
                           rules: [rule0]
                         })(
-                          <Input placeholder="请输入薪酬"/>
+                          <Input placeholder="请输入日薪"/>
                         )}
                       </FormItem>
                       <FormItem>

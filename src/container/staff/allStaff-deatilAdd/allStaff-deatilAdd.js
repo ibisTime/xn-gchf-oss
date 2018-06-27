@@ -104,8 +104,12 @@ class AllStaffAddEditAdd extends React.Component {
         handler: (param) => {
           console.log(param);
           getBankNameByCode(param.bankName).then(data => {
-            param.bankCode = data[0].bankCode;
-            param.bankName = data[0].bankName;
+            data.map((item) => {
+              console.log(item);
+              if(item.bankCode === param.bankCode) {
+                param.bankName = item.bankName;
+              }
+            });
             param.updater = getUserId();
             param.code = this.code;
             this.props.doFetching();

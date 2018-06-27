@@ -4,7 +4,7 @@ import originJsonp from 'jsonp';
 import './jiandang.css';
 import { Form, Input, Button } from 'antd';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
-import { jiandang, getUserId } from 'api/user';
+import { jiandang, getUserId, getUserDetail } from 'api/user';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
 import Avatar from './touxiang.png';
 
@@ -46,13 +46,16 @@ class Jiandang extends React.Component {
       }
     componentDidMount() {
     // 获取媒体方法（旧方法）
-        navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
-        this.canvas = document.getElementById('canvas');
-        // this.context = this.canvas.getContext('2d');
-        this.video = document.getElementById('video');
-        // this.feat = '';
-        this.mediaStreamTrack = '';
-        this.openVideo();
+        getUserDetail(getUserId()).then((data) => {
+            this.companyCode = data.companyCode;
+            navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
+            this.canvas = document.getElementById('canvas');
+            // this.context = this.canvas.getContext('2d');
+            this.video = document.getElementById('video');
+            // this.feat = '';
+            this.mediaStreamTrack = '';
+            this.openVideo();
+        });
     };
     // 打开摄像头
     openVideo(argument) {
@@ -146,7 +149,8 @@ class Jiandang extends React.Component {
                     values.idStartDate,
                     values.realName,
                     this.state.sex,
-                    getUserId()
+                    getUserId(),
+                    this.companyCode
                     ).then((res) => {
                         if(res.code) {
                             showSucMsg('建档成功');
@@ -177,6 +181,7 @@ class Jiandang extends React.Component {
     // 提交建档数据
     upload(info) {
         info.idKind = 1;
+        info.companyCode = this.companyCode;
         document.getElementById('submitBtn')[0].setAttribute('disabled', true);
         this.state({
             spanTi: '提交中...'

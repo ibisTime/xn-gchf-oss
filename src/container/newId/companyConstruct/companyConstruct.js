@@ -167,7 +167,7 @@ class RoleMenu extends React.Component {
               });
             }).catch(() => this.setState({ fetching: false }));
             this.setState({ fetching: false });
-          }).catch(this.props.cancelFetching);
+          }).catch(() => this.setState({ fetching: false }));
         }
       });
     } else {

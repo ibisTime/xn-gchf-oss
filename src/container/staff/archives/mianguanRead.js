@@ -177,24 +177,23 @@ upload(info) {
 };
 
   render() {
-    const url = './touxiang.png';
     return (
-      <div className="SectionContainer" style={{ border: '2px solid #096dd9' }}>
-        <div className="section">
+      <div className="SectionContainer3" style={{ border: '2px solid #096dd9' }}>
+        <div className="section3">
             <div style={{ verticalAlign: 'middle', width: '100%' }}>
-                <div className="comparison-main comparison-mains">
-                <div className="head-wrap"><i></i>免冠照读取</div>
-                    <div className="clearfix">
-                        <div className="inner-box">
-                            <div className="img-wrap left-img" style={{ display: this.state.vedio ? 'block' : 'none', margin: '0 auto' }}>
-                                <video id="video" className="video"></video>
+                <div className="comparison-main3 comparison-mains3">
+                <div className="head-wrap3"><i></i>免冠照读取</div>
+                    <div className="clearfix3">
+                        <div className="inner-box3">
+                            <div className="img-wrap3 left-img" style={{ display: this.state.vedio ? 'block' : 'none', margin: '0 auto' }}>
+                                <video id="video" className="video3"></video>
                             </div>
-                            <div className="img-wrap right-img" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
-                                <img src={Photo} className="userImg" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
+                            <div className="img-wrap3 right-img3" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
+                                <img src={Photo} className="userImg3" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
                                 <canvas id="canvas" className="inner-item" style={{ width: '512px', height: '384px' }} width="1024" height="768"></canvas>
                             </div>
                             <div style={{ paddingTop: 20 }}>
-                                <div className="btn-item" style={{ textAlign: 'center' }}>
+                                <div className="btn-item3" style={{ textAlign: 'center' }}>
                                 <div>
                                 <button
                                     className="ant-btn ant-btn-primary ant-btn-lg"

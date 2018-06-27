@@ -57,14 +57,14 @@ class AllStaffAddEdit extends React.Component {
         '籍贯: ' + this.state.data.idAddress,
         '生日: ' + formatDate(this.state.data.birthday),
         '签发机关: ' + this.state.data.idPolice,
-        '联系方式: ' + this.state.data.mobile,
+        '联系方式: ' + this.state.data.contactsMobile,
         '证件有效时间: ' + formatDate(this.state.data.idStartDate) + '——' + formatDate(this.state.data.idEndDate)
       ];
       var dataP = [
-        formatImg(this.state.data.pic1),
-        formatImg(this.state.data.pic2),
-        formatImg(this.state.data.pic3),
-        formatImg(this.state.data.idPic)
+        formatImg(this.state.data.pict1),
+        formatImg(this.state.data.pict2),
+        formatImg(this.state.data.pict3),
+        formatImg(this.state.data.pict4)
       ];
       var columns = [{
         title: '员工姓名',
@@ -115,15 +115,15 @@ class AllStaffAddEdit extends React.Component {
           key: l,
           staffName: this.state.data.salaryList[l].staffName,
           month: this.state.data.salaryList[l].month,
-          shouldAmount: this.state.data.salaryList[l].shouldAmount / 1000,
+          shouldAmount: this.state.data.salaryList[l].shouldAmount,
           delayDays: this.state.data.salaryList[l].delayDays,
           earlyDays: this.state.data.salaryList[l].earlyDays,
           leavingDays: this.state.data.salaryList[l].leavingDays,
           tax: this.state.data.salaryList[l].tax,
-          cutAmount: this.state.data.salaryList[l].cutAmount / 1000,
+          cutAmount: this.state.data.salaryList[l].cutAmount,
           cutNote: this.state.data.salaryList[l].cutNote,
-          factAmount: this.state.data.salaryList[l].factAmount / 1000,
-          payAmount: this.state.data.salaryList[l].payAmount / 1000,
+          factAmount: this.state.data.salaryList[l].factAmount,
+          payAmount: this.state.data.salaryList[l].payAmount,
           payDatetime: this.state.data.salaryList[l].payDatetime,
           status: this.state.data.salaryList[l].status,
           remark: this.state.data.salaryList[l].remark
@@ -164,13 +164,13 @@ class AllStaffAddEdit extends React.Component {
           key: l,
           projectName: (employList[l] && employList[l].projectName) || '',
           staffName: this.state.data.name,
-          joinDatetime: (employList[l] && employList[l].joinDatetime) || '',
+          joinDatetime: (employList[l] && formatDate(employList[l].joinDatetime)) || '',
           leavingDays: (employList[l] && employList[l].leavingDays) || '',
           position: (employList[l] && employList[l].position) || '',
           totalLeavingDays: (employList[l] && employList[l].totalLeavingDays) || '',
-          cutAmount: (employList[l] && employList[l].cutAmount / 1000) || '',
+          cutAmount: (employList[l] && employList[l].cutAmount) || '',
           status: (employList[l] && employList[l].status) || '',
-          updateDatetime: (employList[l] && employList[l].updateDatetime) || ''
+          updateDatetime: (employList[l] && formatDate(employList[l].updateDatetime)) || ''
         };
       };
     }

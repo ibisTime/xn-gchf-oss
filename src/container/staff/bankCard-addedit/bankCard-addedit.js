@@ -101,7 +101,12 @@ class BankCardAddEdit extends React.Component {
       detailCode: 631427,
       editCode: 631422,
       beforeSubmit: (param) => {
-        param.bankName = this.props.selectData.bankCode.filter(v => v.bankCode === param.bankCode)[0].bankName;
+        // param.bankName = this.props.selectData.bankCode.filter(v => v.bankCode === param.bankCode)[0].bankName;
+           this.props.selectData.bankCode.map((item) => {
+            if(item.bankCode === param.bankName) {
+              param.bankName = item.bankName;
+            }
+          });
         return param;
       }
     });

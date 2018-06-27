@@ -81,14 +81,14 @@ class ProjectEdit extends React.Component {
       type: 'date',
       required: true
     }, {
+        field: 'salaryCreateDatetime',
+        title: '工资条形成时间',
+        type: 'date28',
+        date28: true,
+        required: true
+    }, {
       field: 'salaryDatetime',
       title: '薪资发放时间',
-      type: 'date28',
-      date28: true,
-      required: true
-    }, {
-      field: 'salaryCreateDatetime',
-      title: '工资条形成时间',
       type: 'date28',
       date28: true,
       required: true

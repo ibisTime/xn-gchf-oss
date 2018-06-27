@@ -5,10 +5,10 @@ html, body {
 *, :after, :before {
     box-sizing: border-box;
 }
-.comparison-mains .clearfix {
+.comparison-mains .clearfix3 {
     zoom: 1;
 }
-.comparison-mains .clearfix:after, .clearfix:before {
+.comparison-mains .clearfix3:after, .clearfix3:before {
     content: " ";
     display: table;
 }
@@ -55,13 +55,13 @@ html, body {
     -webkit-appearance: button;
 }
 
-.SectionContainer {
+.SectionContainer3 {
     height: 950px;
     width: 100%;
     position: relative;
     /* z-index: 0; */
 }
-.section {
+.section3 {
     width: 100%;
     display: table;
     height: 100vh;
@@ -69,14 +69,14 @@ html, body {
     padding-top: 0px;
     padding-bottom: 0px;
 }
-.comparison-mains .comparison-main {
+.comparison-mains3 .comparison-main3 {
     margin: auto auto;
     padding: 0 60px;
     width: 904px;
     height: 700px;
     border: 2px solid rgba(85, 134, 193, 0.6);
 }
-.comparison-mains .head-wrap {
+.comparison-mains3 .head-wrap3 {
     width: 100%;
     position: relative;
     padding-left: 19px;
@@ -87,7 +87,7 @@ html, body {
     color: #fff;
     background: rgba(16, 42, 123, 0.7);
 }
-.comparison-mains .head-wrap i {
+.comparison-mains3 .head-wrap3 i {
     position: absolute;
     left: 9px;
     top: 9px;
@@ -96,52 +96,52 @@ html, body {
     border-radius: 2px;
     background: #3db0f2;
 }
-.comparison-mains .inner-box {
+.comparison-mains3 .inner-box3 {
     margin-top: 60px;
     height: 285px;
     font-size: 0;
 }
-.comparison-mains .img-wrap {
+.comparison-mains3 .img-wrap3 {
     display: inline-block;
     vertical-align: middle;
     width: 512px;
     height: 384px;
     text-align: center;
 }
-.comparison-mains .video {
+.comparison-mains3 .video3 {
     width: 100%;
     height: 100%;
     object-fit: fill;
 }
-.comparison-mains .btn-wrap {
+.comparison-mains3 .btn-wrap {
     display: inline-block;
     vertical-align: middle;
     width: 210px;
     height: 100%;
     text-align: center;
 }
-.comparison-mains .btn-inner {
+.comparison-mains3 .btn-inner {
     padding-top: 82px;
 }
-.comparison-mains .btn-inner .btn-item+.btn-item {
+.comparison-mains3 .btn-inner .btn-item3+.btn-item3 {
     margin-top: 50px;
 }
-.comparison-mains .btn-wrap .ant-btn {
+.comparison-mains3 .btn-wrap .ant-btn {
     width: 120px;
 }
 [disabled] {
     cursor: not-allowed !important;
 }
 
-.comparison-mains .right-img {
+.comparison-mains3 .right-img3 {
     position: relative;
     background: rgb(216,219,229);
 }
-.comparison-mains .canvas {
+.comparison-mains3 .canvas {
     display: none;
     margin: 0 auto;
 }
-.comparison-mains .userImg {
+.comparison-mains3 .userImg3 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -151,7 +151,4 @@ html, body {
     -moz-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
-}
-.inner-item {
-
 }

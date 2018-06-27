@@ -684,14 +684,16 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
           item.readonly ? <div className="readonly-text" style={item.style ? item.style : {}}>{initVal}</div>
             : (
               <Row gutter={8}>
-                <Col span={16}>
+                <span style={{ float: 'left' }}>每月</span>
+                <Col span={3}>
                   {getFieldDecorator(item.field, {
                     rules,
                     initialValue: initVal
                   })(
-                    <div><span>每月</span><Input style={{ width: '50px' }} type={item.hidden ? 'hidden' : 'text'}/><span>日</span></div>
+                    <Input style={{ width: '50px' }} type={item.hidden ? 'hidden' : 'text'}/>
                   )}
                 </Col>
+                <span>日</span>
               </Row>
             )
         }

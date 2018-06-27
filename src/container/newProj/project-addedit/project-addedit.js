@@ -185,20 +185,6 @@ class ProjectAddedit extends React.Component {
       },
       required: true
     }, {
-      field: 'quyus',
-      title: '详细地址',
-      formatter: (v, d) => {
-        return d.province + d.city + d.area + d.address + '';
-      },
-      required: true
-    }, {
-      field: 'quyus',
-      title: '详细地址',
-      formatter: (v, d) => {
-        return d.province + d.city + d.area + d.address + '';
-      },
-      required: true
-    }, {
       field: 'attendanceStarttimes',
       title: '上下班时间',
       type: 'time',
@@ -294,14 +280,6 @@ class ProjectAddedit extends React.Component {
         fields: this.view ? fieldos : fields,
         code: this.projectCode,
         view: this.view,
-        // beforeSubmit: (params) => {
-        //   for (let i = 0; i < this.props.selectData.bankCode.length; i++) {
-        //     if (params.bankCode === this.props.selectData.bankCode[i].bankCode) {
-        //       params.bankName = this.props.selectData.bankCode[i].bankName;
-        //     }
-        //   }
-        //   return params;
-        // },
         buttons: !this.view ? [{
           title: '保存',
           handler: (param) => {
