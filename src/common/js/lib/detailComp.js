@@ -202,11 +202,11 @@ export default class DetailComp extends React.Component {
       }
       let code = this.props.code ? this.options.editCode : this.options.addCode;
       this.props.doFetching();
-      fetch(code, params).then(() => {
+      fetch(code, params).then((data) => {
         showSucMsg('操作成功');
         this.props.cancelFetching();
         if (this.options.onOk) {
-          this.options.onOk();
+          this.options.onOk(data);
         } else {
           setTimeout(() => {
             this.props.history.go(-1);
@@ -940,7 +940,7 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
           initialValue: initVal,
           getValueFromEvent: this.normFile
         })(
-          this.options.code && !initValue.length && item.required
+          this.options.code && !this.props.isLoaded
             ? <div></div>
             : (
               <Upload {...this.getUploadProps(item, initValue, isImg)}>

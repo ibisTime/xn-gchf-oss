@@ -1,5 +1,4 @@
 import React from 'react';
-import fetch from 'common/js/fetch';
 import {
   initStates,
   doFetching,
@@ -54,6 +53,7 @@ class JinduAddEdit extends React.Component {
       field: 'picture',
       title: '工程进度图片',
       single: true,
+      required: true,
       type: 'img'
     }, {
       field: 'datetime',
@@ -66,7 +66,8 @@ class JinduAddEdit extends React.Component {
     }];
     return this.state.companyCode ? this.props.buildDetail({
       fields,
-      code: this.code,
+      // code: this.code,
+      addCode: 631380,
       editCode: 631380
     }) : null;
   }

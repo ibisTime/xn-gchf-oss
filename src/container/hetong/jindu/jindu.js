@@ -68,7 +68,11 @@ class Jindu extends React.Component {
     this.props.history.go(-1);
   };
   addjindu() {
-    this.props.history.push(`/hetong/jindu/addedit?code=${this.state.code}`);
+    if(this.state.code) {
+      this.props.history.push(`/hetong/jindu/addedit?code=${this.state.code}`);
+    } else {
+      this.props.history.push(`/hetong/jindu/addedit?code=${this.state.code}`);
+    }
   }
   handleClick = (e) => {
     if (getUserKind() === 'O') {

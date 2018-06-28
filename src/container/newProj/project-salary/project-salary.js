@@ -50,9 +50,6 @@ class Salary extends React.Component {
       title: '员工姓名',
       field: 'staffName'
     }, {
-      field: 'upUserName',
-      title: '隶属上级'
-    }, {
       title: '所属月份',
       field: 'month',
       search: true
@@ -171,10 +168,10 @@ class Salary extends React.Component {
                     kind: 'O'
                   }).then((data) => {
                     let payroll1 = [
-                      ['员工姓名', '隶属上级', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '税费', '扣款金额', '发放奖金', '实际工资']
+                      ['员工姓名', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '税费', '扣款金额', '发放奖金', '实际工资']
                     ];
                     let payroll2 = data.map((d, i) => {
-                      return [d.staffName, d.upUserName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.tax), moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
+                      return [d.staffName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.tax), moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
                     });
                     payroll1 = payroll1.concat(payroll2);
                     const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -182,6 +179,12 @@ class Salary extends React.Component {
                     XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
                     XLSX.writeFile(wb, 'sheetjs.xlsx');
                   }, () => { });
+                }
+              }, {
+                code: 'goback',
+                name: '返回',
+                handler: (selectedRowKeys, selectedRows) => {
+                  this.props.history.go(-1);
                 }
               }],
               searchParams: {

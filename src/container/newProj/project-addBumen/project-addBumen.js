@@ -172,7 +172,12 @@ class ProjectAddBumen extends React.Component {
     });
   }
   addBumen = () => {
-    this.props.history.push(`/newProj/companyConstruct/addBumen?projectCode=${this.code}`);
+    console.log();
+    if(this.state.selectKey[0] === 'D') {
+      this.props.history.push(`/newProj/companyConstruct/addBumen?projectCode=${this.code}&upperBumen=${this.state.selectKey}`);
+    } else {
+      this.props.history.push(`/newProj/companyConstruct/addBumen?projectCode=${this.code}`);
+    }
   }
   editBumen = () => {
     console.log(this.state.selectKey[0]);

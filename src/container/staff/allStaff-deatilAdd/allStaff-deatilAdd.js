@@ -47,15 +47,17 @@ class AllStaffAddEditAdd extends React.Component {
       keyName: 'bankCode',
       valueName: 'bankName',
       type: 'select',
-      _keys: ['companyCard', 'subbranch'],
+      _keys: ['bankCard', 'bankName'],
       required: true
     }, {
       field: 'subbranch',
       title: '开户支行',
+      _keys: ['bankCard', 'subbranch'],
       required: true
     }, {
       field: 'bankcardNumber',
       title: '银行卡号',
+      _keys: ['bankCard', 'bankcardNumber'],
       required: true
     }, {
       field: 'mobile',
@@ -98,6 +100,9 @@ class AllStaffAddEditAdd extends React.Component {
     }];
     return this.props.buildDetail({
       fields,
+      code: this.code,
+      addCode: 631413,
+      detailCode: 631419,
       buttons: [{
         title: '保存',
         check: true,
@@ -106,13 +111,21 @@ class AllStaffAddEditAdd extends React.Component {
           getBankNameByCode(param.bankName).then(data => {
             data.map((item) => {
               console.log(item);
-              if(item.bankCode === param.bankCode) {
-                param.bankName = item.bankName;
+              if(this.code) {
+                if(item.bankName === param.bankCode || item.bankCode === param.bankCode) {
+                  param.bankCode = item.bankCode;
+                  param.bankName = item.bankName;
+                }
+              } else {
+                if(item.bankCode === param.bankCode) {
+                  param.bankName = item.bankName;
+                }
               }
             });
             param.updater = getUserId();
             param.code = this.code;
             this.props.doFetching();
+            console.log(param);
             fetch(631413, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();

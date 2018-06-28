@@ -3,24 +3,75 @@
   <component name="ChangeListManager">
     <list default="true" id="e080e660-c086-40ba-9e59-45752f881dfd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/js/build-modal-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/build-modal-detail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/js/lib/detailComp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/lib/detailComp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/hetong/jindu-addedit/jindu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/jindu-addedit/jindu-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/hetong/jindu/jindu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/jindu/jindu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/hetong/wugong-edit/wugong-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/wugong-edit/wugong-edit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/home/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/companyConstruct/companyConstruct.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/companyConstruct/companyConstruct.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/newProj/addBumen/addBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/addBumen/addBumen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-addBumen/project-addBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-addBumen/project-addBumen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-check/project-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-check/project-check.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/bankCard-addedit/bankCard-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/bankCard-addedit/bankCard-addedit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/staff/idCardQuery/idCardQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/idCardQuery/idCardQuery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/waitList/alreadyQuest-addedit/alreadyQuest-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/alreadyQuest-addedit/alreadyQuest-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/daifa/daifa-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/daifa/daifa-edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/finance/ledger-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/ledger-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/general/text-param-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/general/text-param-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/hetong/chengbaoshang-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/chengbaoshang-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/hetong/jindu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/jindu-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/hetong/wugong-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/wugong-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/hetong/wugong-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/wugong-edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/modal/build-modal-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/modal/build-modal-detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newId/addCompany.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/addCompany.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newId/bank-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/bank-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newId/operation-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/operation-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newId/supervise-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/supervise-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newId/yezhu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/yezhu-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/addBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/addBumen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/addCompany.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/addCompany.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-check.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-end.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-end.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-quit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-quit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-salary-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-salary-check.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-salary-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-salary-edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-stop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-stop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-weekday.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-weekday.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/people/wugong-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/wugong-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/people/wugong-break.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/wugong-break.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/people/wugong-leave.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/wugong-leave.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/public/aboutus-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/public/aboutus-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/public/banner-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/public/banner-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/public/time-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/public/time-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/dict-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/dict-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/menu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/menu-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/role-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/role-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/sysParam-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/sysParam-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/user-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/user-changeMobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-changeMobile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/user-resetPwd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-resetPwd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/user-setBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-setBumen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/security/user-setRole.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-setRole.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-addeditAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-addeditAdd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-errorAddedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-errorAddedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-errorEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-errorEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-noticeAddedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-noticeAddedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/staff/bankCard-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/bankCard-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/waitList/alreadyQuest-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/waitList/alreadyQuest-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/yewuManage/account-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/yewuManage/account-addedit.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,20 +85,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
+      <file leaf-file-name="project-kaoqin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="42" column="3" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/container/login/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-333">
-              <caret line="17" selection-start-line="17" selection-end-line="19" selection-end-column="9" />
+            <state relative-caret-position="-377">
+              <caret line="183" column="7" selection-start-line="183" selection-start-column="7" selection-end-line="183" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -55,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="project-addedit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js">
+      <file leaf-file-name="allStaff-deatilAdd.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2681">
-              <caret line="308" column="16" lean-forward="true" selection-start-line="308" selection-start-column="16" selection-end-line="308" selection-end-column="16" />
+            <state relative-caret-position="521">
+              <caret line="142" column="7" lean-forward="true" selection-start-line="137" selection-start-column="8" selection-end-line="142" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -70,8 +112,8 @@
       <file leaf-file-name="detailComp.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/js/lib/detailComp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="696" column="20" lean-forward="true" selection-start-line="696" selection-start-column="20" selection-end-line="696" selection-end-column="20" />
+            <state relative-caret-position="986">
+              <caret line="373" column="20" selection-start-line="373" selection-start-column="20" selection-end-line="373" selection-end-column="20" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -79,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="idCardQuery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/staff/idCardQuery/idCardQuery.js">
+      <file leaf-file-name="daifa-addedit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1669">
-              <caret line="130" column="8" lean-forward="true" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
+            <state relative-caret-position="404">
+              <caret line="145" column="31" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -91,25 +133,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".eslintignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.eslintignore">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="project-addBumen.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/newProj/project-addBumen/project-addBumen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="176" column="101" selection-start-line="176" selection-start-column="91" selection-end-line="176" selection-end-column="101" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addBumen.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/container/newProj/addBumen/addBumen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="route.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/route.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="192" column="41" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="41" />
+            <state relative-caret-position="216">
+              <caret line="372" column="31" selection-start-line="372" selection-start-column="11" selection-end-line="372" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jindu.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/hetong/jindu/jindu.js">
+      <file leaf-file-name="project-salary.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="85" column="16" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="16" />
+            <state relative-caret-position="181">
+              <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -117,26 +178,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/user.js">
+      <file leaf-file-name="daifa-edit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="51" column="24" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="24" />
+            <state relative-caret-position="209">
+              <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
               <folding>
-                <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="project-kaoqin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js">
+      <file leaf-file-name="daifa.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/daifa/daifa/daifa.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="118" column="8" lean-forward="true" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1794">
+              <caret line="13" column="69" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -145,37 +203,41 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>right-img</find>
-      <find>userImg</find>
-      <find>inner-item</find>
-      <find>btn-item</find>
-      <find>getMarkerTmpl</find>
-      <find>getProjectList</find>
-      <find>createMarker</find>
-      <find>staff/ban</find>
-      <find>getOwnerBtns</find>
-      <find>getU</find>
-      <find>jian</find>
-      <find>getBankNameByCode</find>
-      <find>newId/companyConstruct</find>
-      <find>projectManage/project/added</find>
-      <find>projectManage/project/edit</find>
-      <find>addW</find>
-      <find>/hetong/jindu/addedit</find>
-      <find>type: 'img',</find>
-      <find>hetongJinduAddEdit</find>
-      <find>fields</find>
-      <find>this.state.data.pic1</find>
-      <find>login</find>
-      <find>his.state.data.idPic</find>
-      <find>dataIndex</find>
+      <find>staffIn</find>
+      <find>: action.payload};</find>
+      <find>pageData: action.payload};</find>
+      <find>addjindu</find>
+      <find>this.set</find>
+      <find>handleClick</find>
+      <find>getFile</find>
+      <find>/staff/allStaff/detailadd</find>
+      <find>/staff/bankCard/addedit</find>
       <find>projectManage/project/kaoqin</find>
-      <find>cutAmount</find>
-      <find>/ 1000</find>
-      <find>getjindu</find>
-      <find>projectManage/project/addedit</find>
-      <find>Date28</find>
+      <find>/projectManage/project/salary</find>
+      <find>projectManage/project/edit</find>
+      <find>project/che</find>
+      <find>/waitList/alreadyQuest</find>
+      <find>alrea</find>
+      <find>downLoad</find>
+      <find>showS</find>
+      <find>companyConstruct</find>
+      <find>/newProj/companyConstruct</find>
+      <find>pageD</find>
+      <find>props</find>
+      <find>Modal</find>
+      <find>check: true</find>
+      <find>onO</find>
+      <find>handleCancel</find>
+      <find>/daifa/daifa/addedit/edit</find>
+      <find>projectManage/project/salary</find>
+      <find>/daifa/daifa/addedit</find>
+      <find>shangbanOptions</find>
+      <find>after</find>
     </findStrings>
+    <replaceStrings>
+      <replace>: action.payload, isLoaded: true};</replace>
+      <replace>pageData: action.payload, isLoaded: true};</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -186,26 +248,40 @@
         <option value="$PROJECT_DIR$/src/component/dashboard/dashboard.js" />
         <option value="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.css" />
         <option value="$PROJECT_DIR$/src/api/project.js" />
-        <option value="$PROJECT_DIR$/src/container/home/home.js" />
         <option value="$PROJECT_DIR$/src/common/js/lib/listComp.js" />
         <option value="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js" />
         <option value="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.js" />
         <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" />
         <option value="$PROJECT_DIR$/src/api/user.js" />
         <option value="$PROJECT_DIR$/src/container/staff/bankCard-addedit/bankCard-addedit.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js" />
         <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/src/container/newId/companyConstruct/companyConstruct.js" />
-        <option value="$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js" />
         <option value="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" />
         <option value="$PROJECT_DIR$/src/redux/hetong/jindu-addedit.js" />
-        <option value="$PROJECT_DIR$/src/container/hetong/jindu-addedit/jindu-addedit.js" />
         <option value="$PROJECT_DIR$/src/container/login/login.js" />
+        <option value="$PROJECT_DIR$/src/component/money-line/money-line.js" />
+        <option value="$PROJECT_DIR$/src/container/daifa/daifa/daifa.js" />
         <option value="$PROJECT_DIR$/src/container/staff/idCardQuery/idCardQuery.js" />
         <option value="$PROJECT_DIR$/src/route.js" />
+        <option value="$PROJECT_DIR$/src/container/hetong/wugong-edit/wugong-edit.js" />
+        <option value="$PROJECT_DIR$/src/redux/common.js" />
         <option value="$PROJECT_DIR$/src/container/hetong/jindu/jindu.js" />
+        <option value="$PROJECT_DIR$/src/container/hetong/jindu-addedit/jindu-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/home/home.js" />
+        <option value="$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js" />
+        <option value="$PROJECT_DIR$/src/container/newProj/project-check/project-check.js" />
+        <option value="$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.js" />
+        <option value="$PROJECT_DIR$/src/container/waitList/alreadyQuest-addedit/alreadyQuest-addedit.js" />
         <option value="$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js" />
         <option value="$PROJECT_DIR$/src/common/js/lib/detailComp.js" />
+        <option value="$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js" />
+        <option value="$PROJECT_DIR$/src/common/js/build-modal-detail.js" />
+        <option value="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js" />
+        <option value="$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js" />
+        <option value="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/newProj/project-addBumen/project-addBumen.js" />
+        <option value="$PROJECT_DIR$/src/container/newProj/addBumen/addBumen.js" />
       </list>
     </option>
   </component>
@@ -223,7 +299,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="29" />
     <option name="y" value="60" />
     <option name="width" value="1382" />
@@ -300,7 +376,52 @@
               <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
               <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+              <item name="money-line" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+              <item name="thirty-pie" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="container" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="daifa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="daifa" type="462c0819:PsiDirectoryNode" />
+              <item name="daifa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="daifa" type="462c0819:PsiDirectoryNode" />
+              <item name="daifa-addedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="daifa" type="462c0819:PsiDirectoryNode" />
+              <item name="daifa-edit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
@@ -375,6 +496,38 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="container" type="462c0819:PsiDirectoryNode" />
               <item name="newProj" type="462c0819:PsiDirectoryNode" />
+              <item name="addBumen" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="newProj" type="462c0819:PsiDirectoryNode" />
+              <item name="addCompany" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="newProj" type="462c0819:PsiDirectoryNode" />
+              <item name="companyConstruct" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="newProj" type="462c0819:PsiDirectoryNode" />
+              <item name="project-addBumen" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="newProj" type="462c0819:PsiDirectoryNode" />
               <item name="project-addedit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -406,6 +559,14 @@
               <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="newProj" type="462c0819:PsiDirectoryNode" />
+              <item name="project-salary" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
               <item name="staff" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -422,7 +583,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="container" type="462c0819:PsiDirectoryNode" />
               <item name="staff" type="462c0819:PsiDirectoryNode" />
-              <item name="allStaff-deatilAdd" type="462c0819:PsiDirectoryNode" />
+              <item name="allStaff-addedit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
@@ -430,7 +591,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="container" type="462c0819:PsiDirectoryNode" />
               <item name="staff" type="462c0819:PsiDirectoryNode" />
-              <item name="archives" type="462c0819:PsiDirectoryNode" />
+              <item name="allStaff-deatilAdd" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
@@ -460,6 +621,29 @@
               <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
               <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="waitList" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="waitList" type="462c0819:PsiDirectoryNode" />
+              <item name="alreadyQuest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="waitList" type="462c0819:PsiDirectoryNode" />
+              <item name="alreadyQuest-addedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="redux" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -468,6 +652,20 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="redux" type="462c0819:PsiDirectoryNode" />
               <item name="hetong" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="redux" type="462c0819:PsiDirectoryNode" />
+              <item name="modal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="redux" type="462c0819:PsiDirectoryNode" />
+              <item name="yewuManage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -514,18 +712,19 @@
       <workItem from="1524204903856" duration="2077000" />
       <workItem from="1530022907974" duration="522000" />
       <workItem from="1530028239952" duration="711000" />
-      <workItem from="1530063273087" duration="16589000" />
+      <workItem from="1530063273087" duration="17315000" />
+      <workItem from="1530149843733" duration="17382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19899000" />
+    <option name="totallyTimeSpent" value="38007000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="29" y="60" width="1382" height="744" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="797" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17872648" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17152777" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -551,95 +750,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/login/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="48" column="50" lean-forward="true" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="3" selection-start-line="84" selection-start-column="3" selection-end-line="84" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="3" lean-forward="true" selection-start-line="84" selection-start-column="3" selection-end-line="84" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-674" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/idPicture.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/home/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="213" column="56" selection-start-line="213" selection-start-column="41" selection-end-line="213" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/lib/listComp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="250" column="14" selection-start-line="250" selection-start-column="2" selection-end-line="250" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/mianguanRead.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="125" column="39" selection-start-line="125" selection-start-column="31" selection-end-line="125" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/container/staff/archives/mianguanRead.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="750">
@@ -662,11 +772,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/staff/bankCard/bankCard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-950">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-950" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/project.js">
@@ -675,26 +781,6 @@
           <caret line="54" column="33" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="33" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/bankCard-addedit/bankCard-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -736,49 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="89" column="30" selection-start-line="89" selection-start-column="30" selection-end-line="89" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="109" column="11" selection-start-line="100" selection-start-column="9" selection-end-line="109" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/demo/credit-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="67" column="20" selection-start-line="63" selection-start-column="6" selection-end-line="67" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/hetong/wugong-edit/wugong-edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-16">
@@ -786,37 +829,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/hetong/jindu-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/hetong/jindu-addedit/jindu-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="42" column="3" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
+        <state relative-caret-position="630">
+          <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.eslintignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js">
+    <entry file="file://$PROJECT_DIR$/src/api/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="118" column="8" lean-forward="true" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
+        <state relative-caret-position="750">
+          <caret line="51" column="24" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/login/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="73" column="32" lean-forward="true" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/money-line/money-line.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/thirty-pie/thirty-pie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -825,45 +880,254 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/staff/idCardQuery/idCardQuery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1669">
-          <caret line="130" column="8" lean-forward="true" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
+        <state relative-caret-position="-69">
+          <caret line="170" column="76" selection-start-line="170" selection-start-column="76" selection-end-line="170" selection-end-column="76" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/hetong/wugong-edit/wugong-edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-577">
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/demo/credit-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/hetong/wugong-addedit.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/modal/build-modal-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/hetong/jindu-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="28" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/hetong/jindu/jindu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="85" column="16" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="16" />
+        <state relative-caret-position="217">
+          <caret line="108" column="37" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="37" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/user.js">
+    <entry file="file://$PROJECT_DIR$/src/container/hetong/jindu-addedit/jindu-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="24" />
+        <state relative-caret-position="285">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/home/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="247" column="52" selection-start-line="247" selection-start-column="52" selection-end-line="247" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/yewuManage/account-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="19" column="66" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2129">
+          <caret line="67" column="20" selection-start-line="63" selection-start-column="6" selection-end-line="67" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/bankCard-addedit/bankCard-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="109" column="11" selection-start-line="100" selection-start-column="9" selection-end-line="109" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-check/project-check.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="122" column="20" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/downLoad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/waitList/alreadyQuest-addedit/alreadyQuest-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="104" selection-start-line="104" selection-end-line="106" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/companyConstruct/companyConstruct.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2059">
+          <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="371" column="48" selection-start-line="371" selection-start-column="43" selection-end-line="371" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/build-modal-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="192" column="41" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="41" />
+        <state relative-caret-position="216">
+          <caret line="372" column="31" selection-start-line="372" selection-start-column="11" selection-end-line="372" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js">
+    <entry file="file://$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2681">
-          <caret line="308" column="16" lean-forward="true" selection-start-line="308" selection-start-column="16" selection-end-line="308" selection-end-column="16" />
+        <state relative-caret-position="209">
+          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/daifa/daifa/daifa.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1794">
+          <caret line="13" column="69" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-377">
+          <caret line="183" column="7" selection-start-line="183" selection-start-column="7" selection-end-line="183" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="142" column="7" lean-forward="true" selection-start-line="137" selection-start-column="8" selection-end-line="142" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="145" column="31" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -872,18 +1136,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/js/lib/detailComp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="696" column="20" lean-forward="true" selection-start-line="696" selection-start-column="20" selection-end-line="696" selection-end-column="20" />
+        <state relative-caret-position="986">
+          <caret line="373" column="20" selection-start-line="373" selection-start-column="20" selection-end-line="373" selection-end-column="20" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/login/login.js">
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/project-addBumen/project-addBumen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-333">
-          <caret line="17" selection-start-line="17" selection-end-line="19" selection-end-column="9" />
+        <state relative-caret-position="386">
+          <caret line="176" column="101" selection-start-line="176" selection-start-column="91" selection-end-line="176" selection-end-column="101" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/newProj/addBumen/addBumen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

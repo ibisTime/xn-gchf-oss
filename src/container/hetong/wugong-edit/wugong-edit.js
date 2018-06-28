@@ -1,6 +1,4 @@
 import React from 'react';
-import fetch from 'common/js/fetch';
-import cookies from 'browser-cookies';
 import {
   initStates,
   doFetching,

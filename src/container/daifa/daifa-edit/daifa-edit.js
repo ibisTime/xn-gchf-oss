@@ -28,9 +28,6 @@ class DaifaEdit extends React.Component {
       title: '员工姓名',
       field: 'staffName'
     }, {
-      field: 'upUserName',
-      title: '隶属上级'
-    }, {
       title: '所属月份',
       field: 'month',
       search: true

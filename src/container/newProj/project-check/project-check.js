@@ -118,6 +118,12 @@ class ProjectCheck extends React.Component {
           }).catch(this.props.cancelFetching);
         },
         check: true
+      }, {
+        title: '返回',
+        check: true,
+        handler: (selectedRowKeys, selectedRows) => {
+          this.props.history.go(-1);
+        }
       }]
     }) : null;
   }

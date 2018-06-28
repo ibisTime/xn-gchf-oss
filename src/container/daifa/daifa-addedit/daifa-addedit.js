@@ -49,9 +49,6 @@ class DaifaAddEdit extends React.Component {
       title: '员工姓名',
       field: 'staffName'
     }, {
-      field: 'upUserName',
-      title: '隶属上级'
-    }, {
       title: '所属月份',
       field: 'month',
       search: true
@@ -62,7 +59,7 @@ class DaifaAddEdit extends React.Component {
       title: '请假天数',
       field: 'leavingDays'
     }, {
-      title: '迟到/早退天数',
+      title: '迟到/早退小时数',
       field: 'delayDayss',
       formatter: (v, d) => {
         return d.delayDays + d.earlyDays;
@@ -130,8 +127,8 @@ class DaifaAddEdit extends React.Component {
               fields,
               singleSelect: false,
               buttons: [{
-                code: 'edit',
-                name: '修改',
+                code: 'detail',
+                name: '详情',
                 handler: (selectedRowKeys, selectedRows) => {
                   if (!selectedRowKeys.length) {
                     showWarnMsg('请选择记录');
@@ -139,26 +136,17 @@ class DaifaAddEdit extends React.Component {
                     showWarnMsg('请选择一条记录');
                   } else {
                     if (selectedRows[0].status === '0') {
-                      this.props.history.push(`/daifa/daifa/addedit/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
+                      this.props.history.push(`/daifa/daifa/addedit/edit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
                     } else {
                       showWarnMsg('该状态的工资条不可修改');
                     }
                   }
                 }
               }, {
-                code: 'check',
-                name: '审核',
-                handler: (selectedRowKeys, selectedRows) => {
-                  if (!selectedRowKeys.length) {
-                    showWarnMsg('请选择记录');
-                  } else {
-                    // if (selectedRows[0].status === '0') {
-                    this.codeList = selectedRowKeys;
-                    this.setState({ visible: true });
-                    // } else {
-                    // showWarnMsg('该状态的工资条不可审核');
-                    // }
-                  }
+                code: 'goback',
+                name: '返回',
+                handler: (param) => {
+                  this.props.history.go(-1);
                 }
               }],
               searchParams: {

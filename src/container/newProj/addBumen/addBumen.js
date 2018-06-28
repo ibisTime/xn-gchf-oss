@@ -27,6 +27,7 @@ class AddBumen extends React.Component {
     this.bumenCode = getQueryString('bumenCode', this.props.location.search);
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.upperBumen = getQueryString('upperBumen', this.props.location.search);
   }
   componentDidMount() {
     getUserDetail(getUserId()).then((res) => {
@@ -62,7 +63,8 @@ class AddBumen extends React.Component {
         projectCode: this.projectCode
       },
       keyName: 'code',
-      valueName: 'name'
+      valueName: 'name',
+      value: this.upperBumen
     }];
 
     return this.state.companyCode ? this.props.buildDetail({

@@ -288,7 +288,7 @@ class Home extends React.Component {
       <div class="map-marker-content">
         <div class="map-marker-info">
           <div>${item.name}</div>
-          <div>负责人：${item.chargeName}</div>
+          <div>负责人：${item.chargeUser}</div>
           <div>地址：${item.province + item.city + item.area + item.address}</div>
           <div>上班时间：${item.attendanceStarttime + ' ～ ' + item.attendanceEndtime}</div>
           <div>开始日期：${formatDate(item.startDatetime, 'yyyy-MM-dd')}</div>

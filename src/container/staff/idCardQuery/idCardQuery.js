@@ -1,7 +1,7 @@
 import React from 'react';
 import { Timeline, Button, Card, Input, Divider, List, Avatar, Table } from 'antd';
 import fetch from 'common/js/fetch';
-import { getQueryString, showSucMsg, showWarnMsg, formatDate, getUserKind, getUserId, formatImg } from 'common/js/util';
+import { getQueryString, showSucMsg, showWarnMsg, formatDate, getUserKind, getUserId, formatImg, moneyFormat } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserDetail, query, query1 } from 'api/user';
@@ -115,15 +115,15 @@ class AllStaffAddEdit extends React.Component {
           key: l,
           staffName: this.state.data.salaryList[l].staffName,
           month: this.state.data.salaryList[l].month,
-          shouldAmount: this.state.data.salaryList[l].shouldAmount,
+          shouldAmount: moneyFormat(this.state.data.salaryList[l].shouldAmount),
           delayDays: this.state.data.salaryList[l].delayDays,
           earlyDays: this.state.data.salaryList[l].earlyDays,
           leavingDays: this.state.data.salaryList[l].leavingDays,
-          tax: this.state.data.salaryList[l].tax,
-          cutAmount: this.state.data.salaryList[l].cutAmount,
+          tax: moneyFormat(this.state.data.salaryList[l].tax),
+          cutAmount: moneyFormat(this.state.data.salaryList[l].cutAmount),
           cutNote: this.state.data.salaryList[l].cutNote,
-          factAmount: this.state.data.salaryList[l].factAmount,
-          payAmount: this.state.data.salaryList[l].payAmount,
+          factAmount: moneyFormat(this.state.data.salaryList[l].factAmount),
+          payAmount: moneyFormat(this.state.data.salaryList[l].payAmount),
           payDatetime: this.state.data.salaryList[l].payDatetime,
           status: this.state.data.salaryList[l].status,
           remark: this.state.data.salaryList[l].remark
@@ -168,7 +168,7 @@ class AllStaffAddEdit extends React.Component {
           leavingDays: (employList[l] && employList[l].leavingDays) || '',
           position: (employList[l] && employList[l].position) || '',
           totalLeavingDays: (employList[l] && employList[l].totalLeavingDays) || '',
-          cutAmount: (employList[l] && employList[l].cutAmount) || '',
+          cutAmount: (employList[l] && moneyFormat(employList[l].cutAmount)) || '',
           status: (employList[l] && employList[l].status) || '',
           updateDatetime: (employList[l] && formatDate(employList[l].updateDatetime)) || ''
         };

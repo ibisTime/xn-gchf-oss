@@ -134,6 +134,12 @@ class ProjectEdit extends React.Component {
             }, 1000);
           }).catch(this.props.cancelFetching);
         }
+      }, {
+        title: '返回',
+        check: true,
+        handler: (selectedRowKeys, selectedRows) => {
+          this.props.history.go(-1);
+        }
       }]
     });
   }

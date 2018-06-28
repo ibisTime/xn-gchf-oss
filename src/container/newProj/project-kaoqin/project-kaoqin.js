@@ -152,31 +152,37 @@ class ProjectKaoqin extends React.Component {
       hidden: true
     }];
     const shangbanOptions = {
-        fields: [{
-          field: 'startDatetime',
-          title: '上班时间',
-          type: 'datetime',
-          required: true
-        }],
-        addCode: 631390,
-        beforeSubmit: (param) => {
-          param.code = this.kaoqinCode;
-          return param;
-        }
-      };
-      const xiabanOptions = {
-        fields: [{
-          field: 'endDatetime',
-          title: '下班时间',
-          type: 'datetime',
-          required: true
-        }],
-        addCode: 631391,
-        beforeSubmit: (param) => {
-          param.code = this.kaoqinCode;
-          return param;
-        }
-      };
+      fields: [{
+        field: 'startDatetime',
+        title: '上班时间',
+        type: 'datetime',
+        required: true
+      }],
+      addCode: 631390,
+      beforeSubmit: (param) => {
+        param.code = this.kaoqinCode;
+        return param;
+      },
+      onOk: () => {
+        this.props.getPageData();
+      }
+    };
+    const xiabanOptions = {
+      fields: [{
+        field: 'endDatetime',
+        title: '下班时间',
+        type: 'datetime',
+        required: true
+      }],
+      addCode: 631391,
+      beforeSubmit: (param) => {
+        param.code = this.kaoqinCode;
+        return param;
+      },
+      onOk: () => {
+        this.props.getPageData();
+      }
+    };
     if (getUserKind() === 'O' || getUserKind() === 'S') {
       return this.state.projectCodeList ? (
         <div>
@@ -184,7 +190,7 @@ class ProjectKaoqin extends React.Component {
             fields,
             searchParams: { projectCode: this.code },
             pageCode: 631395,
-            buttons: [{
+            buttons: getUserKind() === 'O' ? [{
               code: 'export',
               name: '导出',
               handler: (selectedRowKeys, selectedRows) => {
@@ -254,8 +260,58 @@ class ProjectKaoqin extends React.Component {
                   this.kaoqinCode = selectedRows[0].code;
                 }
               }
-            }]
-          })}
+            }, {
+                code: 'goback',
+                name: '返回',
+                handler: (selectedRowKeys, selectedRows) => {
+                  this.props.history.go(-1);
+                }
+            }] : [{
+              code: 'export',
+              name: '导出',
+              handler: (selectedRowKeys, selectedRows) => {
+                fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+                  let tableData = [];
+                  let title = [];
+                  fields.map((item) => {
+                    if (item.title !== '关键字') {
+                      title.push(item.title);
+                    }
+                  });
+                  tableData.push(title);
+                  data.list.map((item) => {
+                    let temp = [];
+                    this.props.searchData.status.map((v) => {
+                      if (v.dkey === item.status) {
+                        item.status = v.dvalue;
+                      }
+                    });
+                    temp.push(item.projectName,
+                        item.staffName,
+                        item.staffMobile,
+                        item.startDatetime,
+                        item.endDatetime,
+                        item.status,
+                        item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
+                        item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
+                        item.remark
+                    );
+                    tableData.push(temp);
+                  });
+                  const ws = XLSX.utils.aoa_to_sheet(tableData);
+                  const wb = XLSX.utils.book_new();
+                  XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
+                  XLSX.writeFile(wb, 'sheetjs.xlsx');
+                });
+              }
+            }, {
+                code: 'goback',
+                name: '返回',
+                handler: (selectedRowKeys, selectedRows) => {
+                  this.props.history.go(-1);
+                }
+              }]
+         })}
           <ModalDetail
           title='上班时间'
           visible={this.state.showShangban}

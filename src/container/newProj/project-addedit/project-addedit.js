@@ -30,7 +30,6 @@ class ProjectAddedit extends React.Component {
     this.code = getQueryString('projectCode', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
-    console.log(this.code);
   }
   componentDidMount() {
     if (getUserKind() === 'S') {
@@ -44,6 +43,7 @@ class ProjectAddedit extends React.Component {
     }
   }
   render() {
+    // 新增
     const fields = [{
       field: 'name',
       title: '项目名称',
@@ -160,6 +160,97 @@ class ProjectAddedit extends React.Component {
       field: 'remark',
       title: '备注'
     }];
+    // 修改
+    const fieldsedit = [{
+      field: 'name',
+      title: '项目名称',
+      required: true
+    }, {
+      field: 'chargeUser',
+      title: '负责人',
+      required: true
+    }, {
+      field: 'chargeMobile',
+      title: '负责人手机号',
+      mobile: true,
+      required: true
+    }, {
+      field: 'quyu',
+      title: '地区',
+      type: 'citySelect',
+      required: true
+    }, {
+      field: 'address',
+      title: '详细地址',
+      type: 'lnglat',
+      lnglat: 'quyu',
+      lnglatTo: ['longitude', 'latitude'],
+      required: true
+    }, {
+      field: 'longitude',
+      title: '经度',
+      required: true
+    }, {
+      field: 'latitude',
+      title: '纬度',
+      required: true
+    }, {
+      field: 'attendanceStarttime',
+      title: '上班时间',
+      type: 'time',
+      required: true
+    }, {
+      field: 'attendanceEndtime',
+      title: '下班时间',
+      type: 'time',
+      required: true
+    }, {
+      field: 'code1',
+      title: '开户行',
+      // type: this.view ? null : 'select',
+      type: this.view ? null : 'select',
+      listCode: '631106',
+      keyName: 'code',
+      valueName: 'bankSubbranchName',
+      _keys: ['companyCard', 'bankSubbranch'],
+      required: true
+    // }, {
+    //   field: 'companyCode',
+    //   formatter: (v, d) => {
+    //     return this.state.companyCode;
+    //   },
+    //   hidden: true
+    }, {
+      field: 'accountName',
+      title: '户名',
+      _keys: ['companyCard', 'accountName'],
+      required: true
+    }, {
+      field: 'bankcardNumber',
+      title: '银行账户',
+      _keys: ['companyCard', 'bankcardNumber'],
+      required: true
+    }, {
+      field: 'startDatetime',
+      title: '项目开始时间',
+      type: 'date',
+      required: true
+    }, {
+      field: 'salaryCreateDatetime',
+      title: '工资条形成时间',
+      type: 'date28',
+      date28: true,
+      required: true
+    }, {
+      field: 'salaryDatetime',
+      title: '薪资发放时间',
+      type: 'date28',
+      date28: true,
+      required: true
+    }, {
+      field: 'remark',
+      title: '备注'
+    }];
     // 详情
     const fieldos = [{
       field: 'name',
@@ -193,17 +284,19 @@ class ProjectAddedit extends React.Component {
       },
       required: true
     }, {
-      field: 'bankCodes',
+      field: 'code1',
       title: '开户行',
-      formatter: (v, d) => {
-        return d.companyCard.bankName + d.companyCard.subbranch;
-      }
+      type: this.view ? null : 'select',
+      listCode: '631106',
+      keyName: 'code',
+      valueName: 'bankSubbranchName',
+      _keys: ['companyCard', 'bankSubbranch'],
+      required: true
     }, {
-      field: 'companyCode',
-      formatter: (v, d) => {
-        return this.state.companyCode;
-      },
-      hidden: true
+      field: 'accountName',
+      title: '户名',
+      _keys: ['companyCard', 'accountName'],
+      required: true
     }, {
       field: 'bankcardNumber',
       title: '银行账户',
@@ -277,17 +370,29 @@ class ProjectAddedit extends React.Component {
     }];
     if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildDetail({
-        fields: this.view ? fieldos : fields,
+        fields: this.view ? fieldos : this.code ? fieldsedit : fields,
         code: this.projectCode,
         view: this.view,
         buttons: !this.view ? [{
           title: '保存',
           handler: (param) => {
+            console.log(param);
+            console.log(this.props.selectData.code1);
             for (let i = 0; i < this.props.selectData.code1.length; i++) {
-              if (param.code1 === this.props.selectData.code1[i].code) {
-                param.bankName = this.props.selectData.code1[i].bankName;
-                param.bankCode = this.props.selectData.code1[i].bankCode;
-                param.subbranch = this.props.selectData.code1[i].subbranchName;
+              if(this.code) {
+                // 修改的时候匹配文字
+                if (param.code1 === this.props.selectData.code1[i].bankSubbranchName) {
+                  param.bankName = this.props.selectData.code1[i].bankName;
+                  param.bankCode = this.props.selectData.code1[i].bankCode;
+                  param.subbranch = this.props.selectData.code1[i].subbranchName;
+                }
+              } else {
+                // 详情的时候匹配code
+                if (param.code1 === this.props.selectData.code1[i].code) {
+                  param.bankName = this.props.selectData.code1[i].bankName;
+                  param.bankCode = this.props.selectData.code1[i].bankCode;
+                  param.subbranch = this.props.selectData.code1[i].subbranchName;
+                }
               }
             }
             this.props.doFetching();
@@ -306,7 +411,17 @@ class ProjectAddedit extends React.Component {
           },
           check: true,
           type: 'primary'
-        }] : [],
+        }, {
+          title: '返回',
+          handler: (param) => {
+            this.props.history.go(-1);
+          }
+        }] : [ {
+          title: '返回',
+          handler: (param) => {
+            this.props.history.go(-1);
+          }
+        }],
         editCode: 631352,
         detailCode: 631358,
         addCode: 631350

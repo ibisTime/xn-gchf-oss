@@ -21,7 +21,7 @@ export default class ModalDetail extends DetailComp {
     super(props);
     this.props.restore();
   }
-  handleCancel = () => {
+  handleCancelModal = () => {
     let { hideModal } = this.props;
     hideModal && hideModal();
   }
@@ -34,25 +34,32 @@ export default class ModalDetail extends DetailComp {
       fetching,
       options = {}
     } = this.props;
+    if (options.onOk) {
+      let onOk = options.onOk;
+      options.onOk = (data) => {
+        onOk((data, this.props.form.getFieldsValue()));
+        this.handleCancelModal();
+      };
+    }
     options = {
+      onOk: this.handleCancelModal,
       ...options,
       okText,
-      cancelText,
-      onOk: this.handleCancel
+      cancelText
     };
     if (options.buttons) {
       options.buttons = options.buttons.map(v => ({
         ...v,
         handler: (params) => {
-          v.handler(params, this.props.doFetching, this.props.cancelFetching, this.handleCancel);
+          v.handler(params, this.props.doFetching, this.props.cancelFetching, this.handleCancelModal);
         }
       }));
       options.buttons.push({
         title: cancelText || '取消',
-        handler: this.handleCancel
+        handler: this.handleCancelModal
       });
     } else {
-      options.onCancel = this.handleCancel;
+      options.onCancel = this.handleCancelModal;
     }
     return (
       <Modal
@@ -60,7 +67,7 @@ export default class ModalDetail extends DetailComp {
         destroyOnClose
         visible={visible}
         title={title}
-        onCancel={this.handleCancel}
+        onCancel={this.handleCancelModal}
         style={{minWidth: 820}}
         footer={null}>
         {this.buildDetail(options)}

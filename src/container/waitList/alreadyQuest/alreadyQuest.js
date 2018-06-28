@@ -48,17 +48,7 @@ class AlreadyQuest extends React.Component {
   render() {
     const fields = [{
       title: '发件人',
-      field: 'sender',
-      listCode: '631436',
-      params: {
-        statusList: [1, 2],
-        subbranch: this.state.subbranch,
-        bankName: this.state.bankName
-      },
-      keyName: 'sender',
-      valueName: 'sendName',
-      search: true,
-      type: 'select'
+      field: 'sendName'
     }, {
       title: '标题',
       field: 'title'

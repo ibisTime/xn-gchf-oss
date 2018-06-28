@@ -103,8 +103,13 @@ class AlreadyQuestAddedit extends React.Component {
         ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.companyCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
+        return [i + 1, d.code, d.bankCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
       });
+      // let payroll2 = data.map((d, i) => {
+      //   d.map((item, j) => {
+      //     return [j + 1, d.code, d.bankCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
+      //   });
+      // });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
       const wb = XLSX.utils.book_new();
