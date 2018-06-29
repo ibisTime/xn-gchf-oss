@@ -41,11 +41,11 @@ class ProjectSalaryEdit extends React.Component {
       field: 'leavingDays',
       readonly: true
     }, {
-      title: '迟到小时',
+      title: '迟到小时数',
       field: 'delayDays',
       readonly: true
     }, {
-      title: '早退小时',
+      title: '早退小时数',
       field: 'earlyDays',
       readonly: true
     }, {

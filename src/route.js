@@ -407,7 +407,11 @@ const ROUTES = [
   },
   {
     path: '/newId/companyConstruct',
-    component: asyncComponent(() => import('container/newId/companyConstruct/companyConstruct'))
+    component: asyncComponent(() => import('container/newId/companyConstruct1/companyConstruct1'))
+  },
+  {
+    path: 'newId/companyConstruct/addedit',
+    component: asyncComponent(() => import('container/newId/addCompany/addCompany'))
   },
   {
     path: '/newId/companyConstruct/addCompany',

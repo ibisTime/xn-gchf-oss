@@ -38,10 +38,10 @@ class DaifaEdit extends React.Component {
       title: '请假天数',
       field: 'leavingDays'
     }, {
-      title: '迟到天数',
+      title: '迟到小时数',
       field: 'delayDays'
     }, {
-      title: '早退天数',
+      title: '早退小时数',
       field: 'earlyDays'
     }, {
       title: '税费',

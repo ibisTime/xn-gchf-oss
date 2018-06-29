@@ -381,7 +381,7 @@ class ProjectAddedit extends React.Component {
             for (let i = 0; i < this.props.selectData.code1.length; i++) {
               if(this.code) {
                 // 修改的时候匹配文字
-                if (param.code1 === this.props.selectData.code1[i].bankSubbranchName) {
+                if (param.code1 === this.props.selectData.code1[i].code || param.code1 === this.props.selectData.code1[i].bankSubbranchName) {
                   param.bankName = this.props.selectData.code1[i].bankName;
                   param.bankCode = this.props.selectData.code1[i].bankCode;
                   param.subbranch = this.props.selectData.code1[i].subbranchName;

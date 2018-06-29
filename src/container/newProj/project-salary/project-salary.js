@@ -60,11 +60,11 @@ class Salary extends React.Component {
       title: '请假天数',
       field: 'leavingDays'
     }, {
-      title: '迟到/早退天数',
-      field: 'delayDayss',
-      formatter: (v, d) => {
-        return d.delayDays + d.earlyDays;
-      }
+      title: '迟到小时数',
+      field: 'delayDays'
+    }, {
+      title: '早退小时数',
+      field: 'earlyDays'
     }, {
       title: '税费',
       field: 'tax',
@@ -81,6 +81,11 @@ class Salary extends React.Component {
       title: '发放金额',
       field: 'factAmount',
       amount: true
+    }, {
+      title: '状态',
+      field: 'status',
+      type: 'select',
+      key: 'salary_status'
     }];
     const options = {
       fields: [{

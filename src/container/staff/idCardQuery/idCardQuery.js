@@ -76,10 +76,10 @@ class AllStaffAddEdit extends React.Component {
         title: '应发工资',
         dataIndex: 'shouldAmount'
       }, {
-        title: '迟到天数',
+        title: '迟到小时',
         dataIndex: 'delayDays'
       }, {
-        title: '早退天数',
+        title: '早退小时',
         dataIndex: 'earlyDays'
       }, {
         title: '请假天数',
@@ -148,7 +148,7 @@ class AllStaffAddEdit extends React.Component {
         title: '累积请假天数',
         dataIndex: 'totalLeavingDays'
       }, {
-        title: '迟到/每小时扣款金额',
+        title: '迟到/早退每小时扣款金额',
         dataIndex: 'cutAmount'
       }, {
         title: '状态',

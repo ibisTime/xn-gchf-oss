@@ -207,31 +207,32 @@ class Kaoqin extends React.Component {
               XLSX.writeFile(wb, 'sheetjs.xlsx');
             });
           }
-        },
-        {
-          code: 'daka',
-          name: '手工打卡',
-          handler: (selectedRowKeys, selectedRows) => {
-            if (!selectedRowKeys.length) {
-              showWarnMsg('请选择记录');
-            } else if (selectedRowKeys.length > 1) {
-              showWarnMsg('请选择一条记录');
-            } else {
-              Modal.confirm({
-                okText: '确认',
-                cancelText: '取消',
-                content: '确定打卡？',
-                onOk: () => {
-                  this.props.doFetching();
-                  fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
-                    showSucMsg('操作成功');
-                    this.props.getPageData();
-                  }).catch(this.props.cancelFetching);
-                }
-              });
-            }
-          }
-        }]
+        }
+        // {
+        //   code: 'daka',
+        //   name: '手工打卡',
+        //   handler: (selectedRowKeys, selectedRows) => {
+        //     if (!selectedRowKeys.length) {
+        //       showWarnMsg('请选择记录');
+        //     } else if (selectedRowKeys.length > 1) {
+        //       showWarnMsg('请选择一条记录');
+        //     } else {
+        //       Modal.confirm({
+        //         okText: '确认',
+        //         cancelText: '取消',
+        //         content: '确定打卡？',
+        //         onOk: () => {
+        //           this.props.doFetching();
+        //           fetch(631390, { projectCode: selectedRows[0].projectCode, staffCode: selectedRows[0].staffCode }).then(() => {
+        //             showSucMsg('操作成功');
+        //             this.props.getPageData();
+        //           }).catch(this.props.cancelFetching);
+        //         }
+        //       });
+        //     }
+        //   }
+        // }
+        ]
       }) : null;
     } else {
       return this.props.buildList({

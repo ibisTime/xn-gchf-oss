@@ -91,6 +91,7 @@ import { newIdYezhu } from './redux/newId/yezhu';
 import { newIdYezhuAddEdit } from './redux/newId/yezhu-addedit';
 import { newIdSupervise } from './redux/newId/supervise';
 import { newIdSuperviseAddEdit } from './redux/newId/supervise-addedit';
+import { newIdCompanyConstruct1 } from './redux/newId/companyConstruct1';
 
 export default combineReducers({
   user,
@@ -183,5 +184,6 @@ export default combineReducers({
   newIdYezhu,
   newIdYezhuAddEdit,
   newIdSupervise,
-  newIdSuperviseAddEdit
+  newIdSuperviseAddEdit,
+  newIdCompanyConstruct1
 });

@@ -77,8 +77,7 @@ class AllStaffAddEdit extends React.Component {
       title: '身份证正反面照片',
       single: true,
       type: 'img',
-      required: true,
-      readonly: true
+      required: true
     }, {
       title: '技能列表',
       field: 'skillList',
@@ -131,6 +130,10 @@ class AllStaffAddEdit extends React.Component {
         return formatDate(d.birthday);
       }
     }, {
+      field: 'mobile',
+      title: '联系方式',
+      required: true
+    }, {
       field: 'idNo',
       title: '证件号',
       required: true
@@ -166,15 +169,7 @@ class AllStaffAddEdit extends React.Component {
       single: true,
       type: 'img',
       required: true
-    },
-    // {
-    //   field: 'contentPic',
-    //   title: '合同照片',
-    //   type: 'img',
-    //   single: true,
-    //   required: true
-    // },
-    {
+    }, {
       field: 'idPolice',
       title: '签发机关'
     }, {

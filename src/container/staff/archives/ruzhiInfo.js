@@ -89,6 +89,8 @@ class RuzhiInfo extends React.Component {
         params.contractDatetime = params.contractDatetime.format(format);
         params.staffCode = this.code;
         params.updater = getUserId();
+        params.cutAmount *= 1000;
+        params.salary *= 1000;
         ruzhi(params).then((res) => {
           if(res.code) {
             showSucMsg('入职成功！');

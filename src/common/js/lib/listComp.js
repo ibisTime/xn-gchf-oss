@@ -219,7 +219,7 @@ export default class ListComponent extends React.Component {
           : this.goDetail(true);
         break;
       case 'delete':
-        btnEvent.detail
+        btnEvent.delete
           ? btnEvent.delete(this.state.selectedRowKeys, this.state.selectedRows)
           : this.delete();
         break;

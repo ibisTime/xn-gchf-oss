@@ -5,7 +5,7 @@ import MoneyLine from 'component/money-line/money-line';
 import ThirtyPie from 'component/thirty-pie/thirty-pie';
 import fetch, { fetchImg } from 'common/js/fetch';
 import { formatDate, getUserKind, moneyFormat, isUndefined, getUserId } from 'common/js/util';
-import { getProject, getProjectList, getPagePayCode, getPageChecks, getPageabnormal } from 'api/project';
+import { getProject, getProjectList, getPagePayCode, getPageChecks, getPageabnormal, getTotalSalary } from 'api/project';
 import { getUserDetail } from 'api/user';
 import './home.css';
 
@@ -144,7 +144,9 @@ class Home extends React.Component {
       payLoading: true,
       checkLoading: true,
       options: [],
-      activeKey: []
+      activeKey: [],
+      seclectProjcode: '',
+      moneyLine: []
     };
   }
   componentDidMount() {
@@ -231,7 +233,11 @@ class Home extends React.Component {
   // marker点击事件
   markerClick = (e) => {
     this.code = e.target.content.code;
+    this.setState({
+      seclectProjcode: this.code
+    });
     this.getDetail(e.target.content.code);
+    this.getSalary(e.target.content.code);
     let point = e.target.getPosition();
     if (this.marker) {
       this.marker.setMap(null);
@@ -282,6 +288,23 @@ class Home extends React.Component {
         this.setState(nextState);
       });
     }
+  }
+  // 获取项目详情
+  getSalary(code) {
+    let projectCode = code;
+    let moneyLine = [];
+    console.log(projectCode);
+    getTotalSalary(projectCode).then((data) => {
+      console.log(data);
+      moneyLine = data.map((item) => ({
+        month: item.month,
+        value: item.totalSalary
+      }));
+      this.setState({
+        moneyLine: moneyLine
+      });
+      console.log(moneyLine);
+    });
   }
   getMarkerTmpl(item) {
     return `
@@ -473,7 +496,7 @@ class Home extends React.Component {
   render() {
     const { staffIn, staffOut, leavingDays, workingDays,
       totalSalary, lastMonthSalary, payData, payLoading, abnormalLoading, abnormalData,
-      payPagination, checkData, checkLoading, checkPagination, abnormalPagination } = this.state;
+      payPagination, checkData, checkLoading, checkPagination, abnormalPagination, moneyLine } = this.state;
     return (
       <div className="home-wrapper">
         <table className="home-table">
@@ -569,7 +592,7 @@ class Home extends React.Component {
               </td>
               <td className="pl18 pt18 w274">
                 <Box title="累计发薪金额" className="other-box" center={true}>
-                  <MoneyLine />
+                  <MoneyLine moneyLine={moneyLine}/>
                 </Box>
               </td>
             </tr>

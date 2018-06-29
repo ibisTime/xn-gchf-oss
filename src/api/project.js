@@ -126,3 +126,13 @@ export function getPageabnormal(start, limit, projectCode, status) {
     status: '5'
   });
 }
+
+/**
+ * 查询累积发薪
+ * @param projectCode
+ */
+export function getTotalSalary(projectCode) {
+  return fetch(631448, {
+    projectCode
+  });
+}

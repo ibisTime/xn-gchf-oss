@@ -58,10 +58,10 @@ class AllStaffWages extends React.Component {
       title: '扣款说明',
       field: 'cutNote'
     }, {
-      title: '迟到天数',
+      title: '迟到小时数',
       field: 'delayDays'
     }, {
-      title: '早退天数',
+      title: '早退小时数',
       field: 'earlyDays'
     }, {
       title: '请假天数',

@@ -39,6 +39,7 @@ export function getBumen(companyCode) {
  * @param code
  */
 export function deleteCompany1(code) {
+  console.log(1);
   return fetch(631021, { code });
 }
 
