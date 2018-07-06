@@ -86,7 +86,7 @@ class RuzhiInfo extends React.Component {
         console.log(params);
         let format = 'YYYY-MM-DD';
         params.joinDatetime = params.joinDatetime.format(format);
-        params.contractDatetime = params.contractDatetime.format(format);
+        // params.contractDatetime = params.contractDatetime.format(format);
         params.staffCode = this.code;
         params.updater = getUserId();
         params.cutAmount *= 1000;
@@ -264,32 +264,6 @@ class RuzhiInfo extends React.Component {
                         })(
                           <Input placeholder="请输入迟到/早退每小时扣款金额"/>
                         )}
-                      </FormItem>
-                      <FormItem>
-                        {getFieldDecorator('contractDatetime', {
-                          rules: [rule0]
-                        })(
-                          <DatePicker
-                            allowClear={false}
-                            locale={locale}
-                            placeholder="请选择签约时间"
-                            format='YYYY-MM-DD' />
-                        )}
-                      </FormItem>
-                      <FormItem>
-                        {getFieldDecorator('contentPic', {
-                          rules: [rule0],
-                          initialValue: '',
-                          getValueFromEvent: this.normFile
-                        })(
-                          <Upload {...imgProps}>
-                            { this.props.form.getFieldValue('contentPic') ? null : (
-                            <div>
-                              <Icon type="plus" />
-                              <div className="ant-upload-text">合同照片</div>
-                            </div>
-                            )}
-                          </Upload>)}
                       </FormItem>
                       <div style={{ fontWeight: 700, marginBottom: 10 }}>员工来源</div>
                       <FormItem>

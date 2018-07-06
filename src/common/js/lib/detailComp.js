@@ -16,16 +16,16 @@ import { UPLOAD_URL, PIC_PREFIX, formItemLayout, tailFormItemLayout } from '../c
 import { listWrapper } from 'common/js/build-list';
 import fetch from 'common/js/fetch';
 import cityData from 'common/js/lib/city';
-import ModalDetail from 'common/js/build-modal-detail';
 import locale from './date-locale';
 
 moment.locale('zh-cn');
 const { Item: FormItem } = Form;
 const { Option } = Select;
 const { TextArea } = Input;
-const { RangePicker } = DatePicker;
+const { RangePicker, MonthPicker } = DatePicker;
 const DATE_FORMAT = 'YYYY-MM-DD';
 const DATETIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+const MONTH_FORMAT = 'YYYY-MM';
 const TIME_FORMAT = 'HH:mm';
 const TIME_FORMAT1 = 'HH:mm:ss';
 const imgUploadBtn = (
@@ -162,8 +162,8 @@ export default class DetailComp extends React.Component {
         v.cFields.forEach((f, i) => {
           values[f] = mid[i];
         });
-      } else if (v.type === 'date' || v.type === 'datetime') {
-        let format = v.type === 'date' ? DATE_FORMAT : DATETIME_FORMAT;
+      } else if (v.type === 'date' || v.type === 'datetime' || v.type === 'month') {
+        let format = v.type === 'date' ? DATE_FORMAT : v.type === 'month' ? MONTH_FORMAT : DATETIME_FORMAT;
         if (v.rangedate) {
           let bDate = values[v.field] ? [...values[v.field]] : [];
           if (bDate.length) {
@@ -383,8 +383,12 @@ export default class DetailComp extends React.Component {
       case 'date':
       case 'datetime':
         return item.rangedate
-          ? this.getRangeDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime')
-          : this.getDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime');
+          ? this.getRangeDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', false)
+          : this.getDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', false);
+      case 'month':
+        return item.rangedate
+            ? this.getRangeDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', true)
+            : this.getDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', true);
       case 'time':
         return this.getTimeComp(item, initVal, rules, getFieldDecorator);
       case 'img':
@@ -766,10 +770,10 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
       </FormItem>
     );
   }
-  getDateItem(item, initVal, rules, getFieldDecorator, isTime = false) {
-    let format = isTime ? DATETIME_FORMAT : DATE_FORMAT;
+  getDateItem(item, initVal, rules, getFieldDecorator, isTime = false, isMonth) {
+    let format = isTime ? DATETIME_FORMAT : isMonth ? MONTH_FORMAT : DATE_FORMAT;
     let places = isTime ? '选择时间' : '选择日期';
-    return (
+    return !isMonth ? (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
         {
           item.readonly ? <div className="readonly-text">{initVal}</div>
@@ -786,6 +790,23 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
             )
         }
       </FormItem>
+    ) : (
+        <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
+          {
+            item.readonly ? <div className="readonly-text">{initVal}</div>
+                : getFieldDecorator(item.field, {
+                  rules,
+                  initialValue: initVal || null
+                })(
+                <MonthPicker
+                    allowClear={false}
+                    locale={locale}
+                    placeholder={places}
+                    format={format}
+                    showTime={false} />
+                )
+          }
+        </FormItem>
     );
   }
   getRangeDateItem(item, initVal, rules, getFieldDecorator, isTime = false) {

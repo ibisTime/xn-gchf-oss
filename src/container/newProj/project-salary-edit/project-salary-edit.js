@@ -33,8 +33,8 @@ class ProjectSalaryEdit extends React.Component {
       field: 'month',
       readonly: true
     }, {
-      title: '当月天数',
-      field: 'monthDays',
+      title: '正常考勤天数',
+      field: 'attendanceDays',
       readonly: true
     }, {
       title: '请假天数',
@@ -42,42 +42,48 @@ class ProjectSalaryEdit extends React.Component {
       readonly: true
     }, {
       title: '迟到小时数',
-      field: 'delayDays',
+      field: 'delayHours',
       readonly: true
     }, {
       title: '早退小时数',
-      field: 'earlyDays',
+      field: 'earlyHours',
       readonly: true
     }, {
-      title: '税费',
-      field: 'tax',
+      title: '应发工资',
+      field: 'shouldAmount',
+      amount: true,
       readonly: true
     }, {
-      title: '发放金额',
+      title: '实发工资',
       field: 'factAmount',
       amount: true,
       readonly: true
     }, {
       title: '奖励金额',
       field: 'awardAmount',
-      amount: true,
-      required: true
+      amount: true
     }, {
-      title: '扣款金额',
-      field: 'cutAmount2',
-      amount: true,
-      required: true
+      title: '扣减金额',
+      field: 'cutAmount',
+      amount: true
     }, {
-      title: '扣款说明',
-      field: 'cutNote',
-      required: true
+      title: '税费',
+      field: 'tax',
+      amount: true
+    }, {
+      title: '修改原因',
+      field: 'applyNote'
     }];
     return this.props.buildDetail({
       fields,
       code: this.code,
       view: this.view,
       detailCode: 631447,
-      editCode: 631442
+      editCode: 631442,
+      beforeSubmit: (params) => {
+        params.applyUser = getUserId();
+        return params;
+      }
     });
   }
 }

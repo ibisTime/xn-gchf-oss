@@ -136,3 +136,13 @@ export function getTotalSalary(projectCode) {
     projectCode
   });
 }
+
+/**
+ * 批量删除工资条
+ * @param salaryCodeList
+ */
+export function deleteSalaryMany(salaryCodeList) {
+  return fetch(631441, {
+    salaryCodeList
+  });
+}

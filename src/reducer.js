@@ -66,12 +66,14 @@ import { peopleWugongLeave } from './redux/people/wugong-leave';
 import { peopleHistory } from './redux/people/history';
 import { staffAllStaff } from './redux/staff/allStaff';
 import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
+import { staffAllStaffLeaveRecords } from './redux/staff/allStaff-leaveRecords';
 import { staffAllStaffAddEditAdd } from './redux/staff/allStaff-addeditAdd';
 import { staffAllStaffError } from './redux/staff/allStaff-error';
 import { staffAllStaffErrHistory } from './redux/staff/allStaff-errHistory';
 import { staffAllStaffErrorEdit } from './redux/staff/allStaff-errorEdit';
 import { staffAllStaffHistory } from './redux/staff/allStaff-history';
 import { staffAllStaffDetail } from './redux/staff/allStaff-detail';
+import { staffLeaveRecordsDetail } from './redux/staff/leaveRecords-detail';
 import { staffAllStaffNotice } from './redux/staff/allStaff-notice';
 import { StaffAllStaffNoticeAddEdit } from './redux/staff/allStaff-noticeAddedit';
 import { staffAllStaffErrorAddEdit } from './redux/staff/allStaff-errorAddedit';
@@ -161,12 +163,14 @@ export default combineReducers({
   peopleHistory,
   staffAllStaff,
   staffAllStaffAddEdit,
+  staffAllStaffLeaveRecords,
   staffAllStaffAddEditAdd,
   staffAllStaffError,
   staffAllStaffErrHistory,
   staffAllStaffErrorEdit,
   staffAllStaffHistory,
   staffAllStaffDetail,
+  staffLeaveRecordsDetail,
   staffAllStaffNotice,
   StaffAllStaffNoticeAddEdit,
   staffBaogong,

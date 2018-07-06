@@ -16,6 +16,7 @@ import { logout } from 'common/js/fetch';
 import { getUserKind, clearUser } from 'common/js/util';
 import asyncComponent from '../async-component/async-component';
 import EditPwd from 'component/edit-pwd/edit-pwd';
+import ContactWithUs from 'component/contactWithUs/contactWithUs';
 import ROUTES from 'src/route';
 import './dashboard.css';
 import logo from './logo.png';
@@ -34,6 +35,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       editPwdVisible: false,
+      contactWithUsVisible: false,
       home: true
     };
     this.handleTopMenuClick = this.handleTopMenuClick.bind(this);
@@ -97,6 +99,7 @@ class Dashboard extends React.Component {
   getHeader() {
     const userShow = (
       <Menu>
+        <Menu.Item><a href="#" onClick={() => this.setContactWithUsVisible(true)}>联系我们</a></Menu.Item>
         <Menu.Item><a href="#" onClick={() => this.setEditPwdVisible(true)}>修改密码</a></Menu.Item>
         <Menu.Item><a href="#" onClick={this.logout}>退出</a></Menu.Item>
       </Menu>
@@ -126,6 +129,7 @@ class Dashboard extends React.Component {
           </Item>
         </Menu>
         <EditPwd editPwdVisible={this.state.editPwdVisible} setEditPwdVisible={this.setEditPwdVisible}/>
+        <ContactWithUs contactWithUsVisible={this.state.contactWithUsVisible} setContactWithUsVisible={this.setContactWithUsVisible}/>
       </Header>
     );
   }
@@ -183,6 +187,9 @@ class Dashboard extends React.Component {
   }
   setEditPwdVisible = (editPwdVisible) => {
     this.setState({ editPwdVisible });
+  }
+  setContactWithUsVisible = (contactWithUsVisible) => {
+    this.setState({ contactWithUsVisible });
   }
   render() {
     const innerCls = this.props.topMenuCode ? '' : 'hidden';

@@ -270,6 +270,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
   },
   {
+    path: '/staff/allStaff/leaveRecords',
+    component: asyncComponent(() => import('container/staff/allStaff-leaveRecords/allStaff-leaveRecords'))
+  },
+  {
     path: '/staff/allStaff/detailadd',
     component: asyncComponent(() => import('container/staff/allStaff-deatilAdd/allStaff-deatilAdd'))
   },
@@ -328,6 +332,10 @@ const ROUTES = [
   {
     path: '/staff/allStaff/detail',
     component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
+  },
+  {
+    path: '/staff/allStaff/leaveRecords-detail',
+    component: asyncComponent(() => import('container/staff/leaveRecords-detail/leaveRecords-detail'))
   },
   {
     path: '/staff/bankCard',

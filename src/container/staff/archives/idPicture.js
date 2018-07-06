@@ -261,7 +261,12 @@ class mianguanRead extends React.Component {
                 <div className="head-wrap1"><i></i>证件照读取</div>
                     <div className="clearfix1">
                         <div className="inner-box1">
-                            <div className="img-wrap1 left-img" style={{ display: this.state.video1 ? 'inline-block' : 'none', margin: '0 58px 0 70px' }}>
+                          <div className="title">
+                            <span>身份证正面照</span>
+                            <span>身份证反面照</span>
+                            <span>手持身份证照</span>
+                          </div>
+                          <div className="img-wrap1 left-img" style={{ display: this.state.video1 ? 'inline-block' : 'none', margin: '0 58px 0 70px' }}>
                                 <video ref={video => this.video1 = video} className="video1"></video>
                             </div>
                             <div

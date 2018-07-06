@@ -11,7 +11,7 @@ import {
 } from '@redux/map/map';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, getUserKind, getUserId } from 'common/js/util';
-import cookies from 'browser-cookies';
+import ModalDetail from 'common/js/build-modal-detail';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
@@ -166,6 +166,18 @@ class Map extends React.Component {
           this.props.history.push(`/hetong/jindu/info?start=1&projectCode=${selectedRowKeys[0]}`);
         }
       },
+      makeSalary: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.setState({
+            showMakeSalary: true
+          });
+          this.projectCode = selectedRowKeys[0];
+        }
+      },
       addBumen: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
@@ -231,6 +243,22 @@ class Map extends React.Component {
       hidden: true,
       search: true
     }];
+    const makeSalaryOptions = {
+      fields: [{
+        field: 'month',
+        title: '生成工资月份',
+        type: 'month',
+        required: true
+      }],
+      addCode: 631440,
+      beforeSubmit: (param) => {
+        param.projectCode = this.projectCode;
+        return param;
+      },
+      onOk: () => {
+        this.props.getPageData();
+      }
+    };
     if (getUserKind() === 'P') {
       return this.props.buildList({
         fields,
@@ -241,15 +269,21 @@ class Map extends React.Component {
         pageCode: 631356
       });
     } else if (getUserKind() === 'O') {
-      return this.state.companyCode ? this.props.buildList({
-        fields,
-        btnEvent,
-        searchParams: {
-          companyCode: this.state.companyCode,
-          kind: 'O'
-        },
-        pageCode: 631356
-      }) : null;
+      return this.state.companyCode ? (<div>{ this.props.buildList({
+              fields,
+              btnEvent,
+              searchParams: {
+                companyCode: this.state.companyCode,
+                kind: 'O'
+              },
+              pageCode: 631356
+          }
+          )}<ModalDetail
+              title='生成工资月份'
+              visible={this.state.showMakeSalary}
+              hideModal={() => this.setState({ showMakeSalary: false })}
+              options={makeSalaryOptions} />
+            </div>) : null;
     } else {
       return this.state.projectCodeList ? this.props.buildList({
         fields,

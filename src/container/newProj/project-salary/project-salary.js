@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import XLSX from 'xlsx';
 import {
   setTableData,
@@ -16,7 +15,7 @@ import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, moneyFormat, g
 import ModalDetail from 'common/js/build-modal-detail';
 import fetch from 'common/js/fetch';
 import { getUserDetail } from 'api/user';
-
+import { deleteSalaryMany } from 'api/project';
 @listWrapper(
   state => ({
     ...state.newProjProjectSalary,
@@ -54,31 +53,35 @@ class Salary extends React.Component {
       field: 'month',
       search: true
     }, {
-      title: '当月天数',
-      field: 'monthDays'
+      title: '正常考勤天数',
+      field: 'attendanceDays'
     }, {
       title: '请假天数',
       field: 'leavingDays'
     }, {
       title: '迟到小时数',
-      field: 'delayDays'
+      field: 'delayHours'
     }, {
       title: '早退小时数',
-      field: 'earlyDays'
+      field: 'earlyHours'
     }, {
       title: '税费',
       field: 'tax',
       amount: true
     }, {
       title: '扣款金额',
-      field: 'cutAmount1',
+      field: 'cutAmount',
       amount: true
     }, {
       title: '发放奖金',
       field: 'awardAmount',
       amount: true
     }, {
-      title: '发放金额',
+      title: '应发工资',
+      field: 'shouldAmount',
+      amount: true
+    }, {
+      title: '实发工资',
       field: 'factAmount',
       amount: true
     }, {
@@ -86,6 +89,9 @@ class Salary extends React.Component {
       field: 'status',
       type: 'select',
       key: 'salary_status'
+    }, {
+      title: '备注',
+      field: 'factAmountRemark'
     }];
     const options = {
       fields: [{
@@ -108,6 +114,7 @@ class Salary extends React.Component {
             showSucMsg('操作成功');
             this.props.cancelFetching();
             this.setState({ visible: false });
+            this.props.getPageData();
           }).catch(this.props.cancelFetching);
         }
       }, {
@@ -121,9 +128,26 @@ class Salary extends React.Component {
             showSucMsg('操作成功');
             this.props.cancelFetching();
             this.setState({ visible: false });
+            this.props.getPageData();
           }).catch(this.props.cancelFetching);
         }
       }]
+    };
+    const makeSalaryOptions = {
+      fields: [{
+        field: 'month',
+        title: '生成工资月份',
+        type: 'month',
+        required: true
+      }],
+      addCode: 631440,
+      beforeSubmit: (param) => {
+        param.projectCode = this.projectCode;
+        return param;
+      },
+      onOk: () => {
+        this.props.getPageData();
+      }
     };
     if (getUserKind() === 'O') {
       return this.state.companyCode ? (
@@ -133,6 +157,14 @@ class Salary extends React.Component {
               fields,
               singleSelect: false,
               buttons: [{
+                code: 'makeSalary',
+                name: '生成工资条',
+                handler: (selectedRowKeys, selectedRows) => {
+                    this.setState({
+                      showMakeSalary: true
+                    });
+                }
+              }, {
                 code: 'edit',
                 name: '修改',
                 handler: (selectedRowKeys, selectedRows) => {
@@ -164,6 +196,21 @@ class Salary extends React.Component {
                   }
                 }
               }, {
+                code: 'delete',
+                name: '删除',
+                handler: (selectedRowKeys, selectedRows) => {
+                  if (!selectedRowKeys.length) {
+                    showWarnMsg('请选择记录');
+                  } else {
+                    deleteSalaryMany(selectedRowKeys).then((res) => {
+                      if(res.isSuccess) {
+                        showSucMsg('操作成功');
+                        this.props.getPageData();
+                      }
+                    });
+                  }
+                }
+              }, {
                 code: 'export',
                 name: '导出',
                 handler: (selectedRowKeys, selectedRows) => {
@@ -173,10 +220,10 @@ class Salary extends React.Component {
                     kind: 'O'
                   }).then((data) => {
                     let payroll1 = [
-                      ['员工姓名', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '税费', '扣款金额', '发放奖金', '实际工资']
+                      ['员工姓名', '所属月份', '正常考勤天数', '请假天数', '迟到小时数', '早退小时数', '税费', '扣款金额', '发放奖金', '应发工资', '实发工资']
                     ];
                     let payroll2 = data.map((d, i) => {
-                      return [d.staffName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.tax), moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
+                      return [d.staffName, d.month, d.attendanceDays, d.leavingDays, d.delayHours, d.earlyHours, moneyFormat(d.tax), moneyFormat(d.cutAmount), moneyFormat(d.awardAmount), moneyFormat(d.factAmount), moneyFormat(d.factAmount)];
                     });
                     payroll1 = payroll1.concat(payroll2);
                     const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -205,6 +252,11 @@ class Salary extends React.Component {
             visible={this.state.visible}
             hideModal={() => this.setState({ visible: false })}
             options={options} />
+          <ModalDetail
+              title='生成工资月份'
+              visible={this.state.showMakeSalary}
+              hideModal={() => this.setState({ showMakeSalary: false })}
+              options={makeSalaryOptions} />
         </div>
       ) : null;
     } else {

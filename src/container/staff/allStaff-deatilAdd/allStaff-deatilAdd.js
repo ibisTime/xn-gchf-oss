@@ -41,6 +41,34 @@ class AllStaffAddEditAdd extends React.Component {
   }
   render() {
     const fields = [{
+      title: '项目名称',
+      field: 'projectCode',
+      listCode: '631466',
+      params: {
+        staffCode: this.code,
+        projectCodeList: this.state.projectCodeList,
+        statusList: [0, 1]
+      },
+      keyName: 'projectCode',
+      valueName: 'projectName',
+      search: true,
+      _keys: ['ccontract', 'projectCode'],
+      type: 'select',
+      required: true
+    }, {
+      field: 'contentPic',
+      title: '合同照片',
+      type: 'img',
+      single: true,
+      _keys: ['ccontract', 'contentPic'],
+      required: true
+    }, {
+      field: 'contractDatetime',
+      title: '签约时间',
+      type: 'date',
+      _keys: ['ccontract', 'contractDatetime'],
+      required: true
+    }, {
       field: 'bankCode',
       title: '开户行',
       listCode: '631116',

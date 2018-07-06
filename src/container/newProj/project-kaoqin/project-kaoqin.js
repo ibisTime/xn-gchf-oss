@@ -1,6 +1,5 @@
 import React from 'react';
 import fetch from 'common/js/fetch';
-import { Modal } from 'antd';
 import XLSX from 'xlsx';
 import {
   setTableData,
@@ -160,7 +159,7 @@ class ProjectKaoqin extends React.Component {
       }],
       addCode: 631390,
       beforeSubmit: (param) => {
-        param.code = this.kaoqinCode;
+        param.codeList = this.kaoqinCode;
         return param;
       },
       onOk: () => {
@@ -176,7 +175,7 @@ class ProjectKaoqin extends React.Component {
       }],
       addCode: 631391,
       beforeSubmit: (param) => {
-        param.code = this.kaoqinCode;
+        param.codeList = this.kaoqinCode;
         return param;
       },
       onOk: () => {
@@ -190,6 +189,7 @@ class ProjectKaoqin extends React.Component {
             fields,
             searchParams: { projectCode: this.code },
             pageCode: 631395,
+            singleSelect: false,
             buttons: getUserKind() === 'O' ? [{
               code: 'export',
               name: '导出',
@@ -235,13 +235,11 @@ class ProjectKaoqin extends React.Component {
               handler: (selectedRowKeys, selectedRows) => {
                 if (!selectedRowKeys.length) {
                   showWarnMsg('请选择记录');
-                } else if (selectedRowKeys.length > 1) {
-                  showWarnMsg('请选择一条记录');
                 } else {
                   this.setState({
                     showShangban: true
                   });
-                  this.kaoqinCode = selectedRows[0].code;
+                  this.kaoqinCode = selectedRowKeys;
                 }
               }
             },
@@ -251,13 +249,11 @@ class ProjectKaoqin extends React.Component {
               handler: (selectedRowKeys, selectedRows) => {
                 if (!selectedRowKeys.length) {
                   showWarnMsg('请选择记录');
-                } else if (selectedRowKeys.length > 1) {
-                  showWarnMsg('请选择一条记录');
                 } else {
                   this.setState({
                     showXiaban: true
                   });
-                  this.kaoqinCode = selectedRows[0].code;
+                  this.kaoqinCode = selectedRowKeys;
                 }
               }
             }, {

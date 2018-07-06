@@ -100,6 +100,18 @@ html, body {
     margin-top: 120px;
     height: 285px;
     font-size: 0;
+
+}
+.comparison-mains1 .inner-box1 .title{
+    padding: 0 5%;
+    margin-bottom: 14px;
+}
+
+.comparison-mains1 .inner-box1 span {
+    width: 33.3%;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
 }
 .comparison-mains1 .img-wrap1 {
     display: inline-block;

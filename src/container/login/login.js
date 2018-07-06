@@ -57,6 +57,7 @@ class Login extends React.Component {
 
         // this.type = window.location.origin === 'http://120.26.6.213:2505' ? 'S'
         //     : window.location.origin === 'http://120.26.6.213:2506' ? 'B'
+        //         // : window.location.origin === 'http://120.26.6.213:2507' ? 'O'
         //         : window.location.origin === 'https://dev.jmcompany.hichengdai.com' ? 'O'
         //             : window.location.origin === 'http://120.26.6.213:2508' ? 'P' : 'O';
         this.type = window.location.origin === 'http://47.96.161.183:2505' ? 'S'

@@ -49,7 +49,7 @@ class DaifaEdit extends React.Component {
       amount: true
     }, {
       title: '扣款金额',
-      field: 'cutAmount1',
+      field: 'cutAmount',
       amount: true
     }, {
       title: '发放奖金',

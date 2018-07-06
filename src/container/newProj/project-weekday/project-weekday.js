@@ -52,12 +52,12 @@ class ProjectWeekday extends React.Component {
       title: '开始时间',
       field: 'startDatetime',
       required: true,
-      type: 'datetime'
+      type: 'date'
     }, {
-      title: '结束时间',
-      field: 'endDatetime',
+      title: '请假天数',
+      field: 'leaveDays',
       required: true,
-      type: 'datetime'
+      number: true
     }, {
       title: '备注',
       field: 'remark'
