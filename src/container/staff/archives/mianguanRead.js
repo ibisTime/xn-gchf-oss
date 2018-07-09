@@ -113,7 +113,6 @@ class mianguanRead extends React.Component {
   };
   getFeat() {
       let base64 = this.canvas.toDataURL('image/jpeg');
-    //   console.log(base64);
       getFeatInfo(base64).then((res) => {
         var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(res);
         if (!result || result[1] === 'error' || result[1] === 'NOFACE') {
@@ -185,10 +184,12 @@ upload(info) {
                 <div className="head-wrap3"><i></i>免冠照读取</div>
                     <div className="clearfix3">
                         <div className="inner-box3">
-                            <div className="img-wrap3 left-img" style={{ display: this.state.vedio ? 'block' : 'none', margin: '0 auto' }}>
+                            <div className="img-wrap3 left-img video-box" style={{ display: this.state.vedio ? 'block' : 'none', margin: '0 auto' }}>
+                                <div className="border"></div>
                                 <video id="video" className="video3"></video>
                             </div>
-                            <div className="img-wrap3 right-img3" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
+                            <div className="img-wrap3 right-img3 img-box" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
+                                <div className="border"></div>
                                 <img src={Photo} className="userImg3" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
                                 <canvas id="canvas" className="inner-item" style={{ width: '512px', height: '384px' }} width="1024" height="768"></canvas>
                             </div>

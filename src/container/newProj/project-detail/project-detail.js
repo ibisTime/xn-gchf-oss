@@ -66,6 +66,11 @@ class ProjectDetail extends React.Component {
       _keys: ['report', 'totalSalary'],
       amount: true
     }, {
+      field: 'salaryDelayDays',
+      title: '薪资发放可延迟天数',
+      readonly: true,
+      required: true
+    }, {
       title: '备注',
       field: 'remark',
       _keys: ['report', 'remark']

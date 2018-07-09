@@ -68,13 +68,19 @@ class AllStaffAddEdit extends React.Component {
       required: true
     }, {
       field: 'pict2',
-      title: '手持身份证照片',
+      title: '身份证正面照片',
       single: true,
       type: 'img',
       required: true
     }, {
       field: 'pict3',
-      title: '身份证正反面照片',
+      title: '身份证反面照片',
+      single: true,
+      type: 'img',
+      required: true
+    }, {
+      field: 'pict4',
+      title: '手持身份证照片',
       single: true,
       type: 'img',
       required: true
@@ -159,13 +165,19 @@ class AllStaffAddEdit extends React.Component {
       required: true
     }, {
       field: 'pict2',
-      title: '手持身份证照片',
+      title: '身份证正面照片',
       type: 'img',
       single: true,
       required: true
     }, {
       field: 'pict3',
-      title: '身份证正反面照片',
+      title: '身份证反面照片',
+      single: true,
+      type: 'img',
+      required: true
+    }, {
+      field: 'pict4',
+      title: '手持身份证照片',
       single: true,
       type: 'img',
       required: true

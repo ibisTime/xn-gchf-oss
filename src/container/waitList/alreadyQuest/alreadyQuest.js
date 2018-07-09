@@ -110,6 +110,7 @@ class AlreadyQuest extends React.Component {
         ? this.props.buildList({
           fields,
           searchParams: {
+            statusList: ['1', '2', '3'],
             companyCode: this.state.companyCode,
             kind: 'O'
           },
@@ -120,7 +121,7 @@ class AlreadyQuest extends React.Component {
       return this.state.projectCodeList ? this.props.buildList({
         fields,
         searchParams: {
-          status: 3,
+          statusList: ['1', '2', '3'],
           projectCodeList: this.state.companyCode
         },
         pageCode: 631435
@@ -129,7 +130,7 @@ class AlreadyQuest extends React.Component {
       return this.props.buildList({
         fields,
         searchParams: {
-          status: 3
+          statusList: ['1', '2', '3']
         },
         pageCode: 631435
       });

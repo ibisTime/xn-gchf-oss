@@ -96,7 +96,7 @@ export function getPagePayCode(start, limit, projectCode) {
     start,
     limit,
     projectCode,
-    month: new Date().getMonth()
+    month: new Date().getMonth() + 1
   });
 }
 /**
@@ -123,7 +123,7 @@ export function getPageabnormal(start, limit, projectCode, status) {
     start,
     limit,
     projectCode,
-    status: '5'
+    statusList: ['4', '5', '6', '7']
   });
 }
 

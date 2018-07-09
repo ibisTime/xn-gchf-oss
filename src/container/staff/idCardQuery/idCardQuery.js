@@ -5,13 +5,16 @@ import { getQueryString, showSucMsg, showWarnMsg, formatDate, getUserKind, getUs
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserDetail, query, query1 } from 'api/user';
+import { getDict } from 'api/dict';
 
 class AllStaffAddEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       projectCodeList: '',
-      data: ''
+      data: '',
+      salaryStatus: [],
+      staffStatus: []
     };
   }
   componentDidMount() {
@@ -20,6 +23,20 @@ class AllStaffAddEdit extends React.Component {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
     };
+    getDict('salary_status').then((res) => {
+      res.map((item) => {
+        this.state.salaryStatus[item.dkey] = item.dvalue;
+      });
+    });
+    getDict('staff_status').then((res) => {
+      res.map((item) => {
+        this.state.staffStatus[item.dkey] = item.dvalue;
+        // this.staffStatus.push({
+        //   key: item.dkey,
+        //   value: item.dvalue
+        // });
+      });
+    });
   }
   clickQuery() {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
@@ -77,10 +94,10 @@ class AllStaffAddEdit extends React.Component {
         dataIndex: 'shouldAmount'
       }, {
         title: '迟到小时',
-        dataIndex: 'delayDays'
+        dataIndex: 'delayHours'
       }, {
         title: '早退小时',
-        dataIndex: 'earlyDays'
+        dataIndex: 'earlyHours'
       }, {
         title: '请假天数',
         dataIndex: 'leavingDays'
@@ -101,7 +118,7 @@ class AllStaffAddEdit extends React.Component {
         dataIndex: 'payAmount'
       }, {
         title: '最后一次发放时间',
-        dataIndex: 'payDatetime'
+        dataIndex: 'latePayDatetime'
       }, {
         title: '状态',
         dataIndex: 'status'
@@ -116,16 +133,16 @@ class AllStaffAddEdit extends React.Component {
           staffName: this.state.data.salaryList[l].staffName,
           month: this.state.data.salaryList[l].month,
           shouldAmount: moneyFormat(this.state.data.salaryList[l].shouldAmount),
-          delayDays: this.state.data.salaryList[l].delayDays,
-          earlyDays: this.state.data.salaryList[l].earlyDays,
+          delayHours: this.state.data.salaryList[l].delayHours,
+          earlyHours: this.state.data.salaryList[l].earlyHours,
           leavingDays: this.state.data.salaryList[l].leavingDays,
           tax: moneyFormat(this.state.data.salaryList[l].tax),
           cutAmount: moneyFormat(this.state.data.salaryList[l].cutAmount),
           cutNote: this.state.data.salaryList[l].cutNote,
           factAmount: moneyFormat(this.state.data.salaryList[l].factAmount),
           payAmount: moneyFormat(this.state.data.salaryList[l].payAmount),
-          payDatetime: this.state.data.salaryList[l].payDatetime,
-          status: this.state.data.salaryList[l].status,
+          latePayDatetime: formatDate(this.state.data.salaryList[l].latePayDatetime),
+          status: this.state.salaryStatus[this.state.data.salaryList[l].status],
           remark: this.state.data.salaryList[l].remark
         };
       };
@@ -169,7 +186,7 @@ class AllStaffAddEdit extends React.Component {
           position: (employList[l] && employList[l].position) || '',
           totalLeavingDays: (employList[l] && employList[l].totalLeavingDays) || '',
           cutAmount: (employList[l] && moneyFormat(employList[l].cutAmount)) || '',
-          status: (employList[l] && employList[l].status) || '',
+          status: (employList[l] && this.state.staffStatus[employList[l].status]) || '',
           updateDatetime: (employList[l] && formatDate(employList[l].updateDatetime)) || ''
         };
       };
@@ -199,7 +216,7 @@ class AllStaffAddEdit extends React.Component {
         <div style={{ marginBottom: 50 }}>
           <Table columns={columns} dataSource={dataTab} bordered />
         </div>
-        <Divider orientation="left">目前所在项目信息信息</Divider>
+        <Divider orientation="left">目前所在项目信息</Divider>
         <div>
           <Table columns={columnsDown} dataSource={dataDownTab} bordered />
         </div>

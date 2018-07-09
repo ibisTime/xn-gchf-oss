@@ -282,3 +282,6 @@ html {
 .vhide {
   visibility: hidden;
 }
+.ant-table-bordered.ant-table-empty .ant-table-placeholder {
+    z-index: 0;
+}

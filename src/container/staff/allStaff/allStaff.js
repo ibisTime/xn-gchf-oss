@@ -118,9 +118,9 @@ class AllStaff extends React.Component {
         }
       },
       leaveRecords: (selectedRowKeys, selectedRows) => {
-        // if (!selectedRowKeys.length) {
-        //   showWarnMsg('请选择记录');
-        if (selectedRowKeys.length > 1) {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
           this.props.history.push(`/staff/allStaff/leaveRecords?staffCode=${selectedRowKeys[0]}`);

@@ -69,7 +69,7 @@ class AllStaffError extends React.Component {
       title: '工资条编号',
       hidden: true
     }, {
-      field: 'factAmount',
+      field: 'shouldAmount',
       title: '应发工资',
       formatter: (v, data) => {
         return moneyFormat(v);
@@ -115,7 +115,7 @@ class AllStaffError extends React.Component {
           type: '1',
           companyCode: this.state.companyCode,
           kind: 'O',
-          status: 4
+          statusList: ['4', '6', '7']
         },
         buttons: [{
           code: 'detail',
@@ -130,7 +130,7 @@ class AllStaffError extends React.Component {
         searchParams: {
           projectCodeList: this.state.projectCodeList,
           kind: 'S',
-          status: 4
+          statusList: ['4', '6', '7']
         },
         buttons: [{
           code: 'detail',
@@ -142,7 +142,7 @@ class AllStaffError extends React.Component {
       return this.props.buildList({
         fields,
         btnEvent,
-        searchParams: { staffCode: this.staffCode, type: 'P', status: 4 },
+        searchParams: { staffCode: this.staffCode, type: 'P', statusList: ['4', '6', '7'] },
         buttons: [{
           code: 'detail',
           name: '详情'

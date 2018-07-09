@@ -190,6 +190,22 @@ class Map extends React.Component {
             showWarnMsg('该项目已结束，不能新增部门');
           }
         }
+      },
+      salaryDelayDays: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          if(selectedRows[0].status === '3') {
+            this.setState({
+              showSalaryDelayDays: true
+            });
+            this.projectCode = selectedRowKeys[0];
+          }else {
+            showWarnMsg('该项目未处于在建状态，不能设置薪资发放可延迟天数');
+          }
+        }
       }
     };
     const fields = [{
@@ -259,6 +275,21 @@ class Map extends React.Component {
         this.props.getPageData();
       }
     };
+    const salaryDelayDaysOptions = {
+      fields: [{
+        field: 'salaryDelayDays',
+        title: '薪资发放可延迟天数',
+        required: true
+      }],
+      addCode: 631472,
+      beforeSubmit: (param) => {
+        param.projectCode = this.projectCode;
+        return param;
+      },
+      onOk: () => {
+        this.props.getPageData();
+      }
+    };
     if (getUserKind() === 'P') {
       return this.props.buildList({
         fields,
@@ -285,14 +316,20 @@ class Map extends React.Component {
               options={makeSalaryOptions} />
             </div>) : null;
     } else {
-      return this.state.projectCodeList ? this.props.buildList({
+      return this.state.projectCodeList ? (<div>{ this.props.buildList({
         fields,
         btnEvent,
         searchParams: {
           projectCodeList: this.state.projectCodeList
         },
         pageCode: 631356
-      }) : null;
+      }
+      )}<ModalDetail
+        title='薪资发放可延迟天数'
+        visible={this.state.showSalaryDelayDays}
+        hideModal={() => this.setState({ showSalaryDelayDays: false })}
+        options={salaryDelayDaysOptions} />
+        </div>) : null;
     }
   }
 }

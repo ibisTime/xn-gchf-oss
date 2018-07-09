@@ -93,6 +93,11 @@ class ProjectEdit extends React.Component {
       date28: true,
       required: true
     }, {
+      field: 'salaryDelayDays',
+      title: '薪资发放可延迟天数',
+      readonly: true,
+      required: true
+    }, {
       field: 'remark',
       title: '备注'
     }];

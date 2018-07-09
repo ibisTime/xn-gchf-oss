@@ -73,6 +73,11 @@ class ProjectCheck extends React.Component {
       },
       required: true
     }, {
+      field: 'salaryDelayDays',
+      title: '薪资发放可延迟天数',
+      readonly: true,
+      required: true
+    }, {
       field: 'approveNote',
       title: '审核备注',
       readonly: false

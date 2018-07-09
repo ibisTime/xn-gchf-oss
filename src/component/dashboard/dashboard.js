@@ -20,6 +20,8 @@ import ContactWithUs from 'component/contactWithUs/contactWithUs';
 import ROUTES from 'src/route';
 import './dashboard.css';
 import logo from './logo.png';
+import contract from './contract.png';
+import help from './help.png';
 
 const { SubMenu, Item } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -36,7 +38,9 @@ class Dashboard extends React.Component {
     this.state = {
       editPwdVisible: false,
       contactWithUsVisible: false,
-      home: true
+      home: true,
+      contact: false,
+      help: false
     };
     this.handleTopMenuClick = this.handleTopMenuClick.bind(this);
     this.handleSubMenuClick = this.handleSubMenuClick.bind(this);
@@ -99,7 +103,6 @@ class Dashboard extends React.Component {
   getHeader() {
     const userShow = (
       <Menu>
-        <Menu.Item><a href="#" onClick={() => this.setContactWithUsVisible(true)}>联系我们</a></Menu.Item>
         <Menu.Item><a href="#" onClick={() => this.setEditPwdVisible(true)}>修改密码</a></Menu.Item>
         <Menu.Item><a href="#" onClick={this.logout}>退出</a></Menu.Item>
       </Menu>
@@ -127,9 +130,17 @@ class Dashboard extends React.Component {
               </a>
             </Dropdown>
           </Item>
+          <div className="con-help-icon">
+            <img src={contract} className="contract" alt="" onClick={(event) => this.setContactWithUsVisible(true, event, 1)}/>
+            <img src={help} className="help" alt="" onClick={(event) => this.setContactWithUsVisible(true, event, 2)}/>
+          </div>
         </Menu>
         <EditPwd editPwdVisible={this.state.editPwdVisible} setEditPwdVisible={this.setEditPwdVisible}/>
-        <ContactWithUs contactWithUsVisible={this.state.contactWithUsVisible} setContactWithUsVisible={this.setContactWithUsVisible}/>
+        <ContactWithUs contactWithUsVisible={this.state.contactWithUsVisible}
+                       setContactWithUsVisible={this.setContactWithUsVisible}
+                       contact={this.state.contact}
+                       help={this.state.help}
+                       kind={this.loginKind}/>
       </Header>
     );
   }
@@ -188,8 +199,9 @@ class Dashboard extends React.Component {
   setEditPwdVisible = (editPwdVisible) => {
     this.setState({ editPwdVisible });
   }
-  setContactWithUsVisible = (contactWithUsVisible) => {
-    this.setState({ contactWithUsVisible });
+  setContactWithUsVisible = (contactWithUsVisible, e, index) => {
+    e.stopPropagation();
+    this.setState({ contactWithUsVisible, contact: index === 1, help: index !== 1 });
   }
   render() {
     const innerCls = this.props.topMenuCode ? '' : 'hidden';

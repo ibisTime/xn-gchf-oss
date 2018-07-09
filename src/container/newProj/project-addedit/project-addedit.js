@@ -354,6 +354,11 @@ class ProjectAddedit extends React.Component {
       },
       required: true
     }, {
+      field: 'salaryDelayDays',
+      title: '薪资发放可延迟天数',
+      readonly: true,
+      required: true
+    }, {
       field: 'lastMonthSalary',
       title: '上月实际发薪金额',
       formatter: (d, v) => {

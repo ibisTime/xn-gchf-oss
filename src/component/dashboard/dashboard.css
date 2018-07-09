@@ -72,3 +72,18 @@
 .dashboard-layout .home-header .ant-menu-dark.ant-menu-horizontal {
   background: none;
 }
+.con-help-icon {
+  display: inline-block;
+  float: right;
+}
+.con-help-icon img:hover {
+  cursor: pointer;
+}
+.contract {
+  margin-right: 22px;
+  z-index: 33;
+}
+.help {
+  margin-right: 30px;
+  z-index: 33;
+}

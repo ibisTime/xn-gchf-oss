@@ -40,7 +40,6 @@ class ProjectKaoqin extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        console.log(data);
         this.setState({ 'projectCodeList': data.projectCodeList, companyCode: data.companyCode });
       });
     };

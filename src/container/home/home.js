@@ -14,9 +14,11 @@ const orderDict = {
   0: '待人工复核',
   1: '已审核待提交',
   2: '已提交待发放',
-  3: '已发放',
+  3: '正常发放',
   4: '部分发放',
-  5: '补发'
+  5: '已补发',
+  6: '延迟发放',
+  7: '部分且延迟发放'
 };
 const checkDict = {
   0: '待上班打卡',
@@ -40,7 +42,7 @@ const abnormalColumns = [{
   render: (v) => moneyFormat(v)
 }, {
   title: '发放工资',
-  dataIndex: 'factAmount',
+  dataIndex: 'payAmount',
   render: (v) => moneyFormat(v)
 }, {
   title: '状态',

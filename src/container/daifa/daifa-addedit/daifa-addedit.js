@@ -53,17 +53,17 @@ class DaifaAddEdit extends React.Component {
       field: 'month',
       search: true
     }, {
-      title: '当月天数',
-      field: 'monthDays'
+      title: '正常考勤天数',
+      field: 'attendanceDays'
     }, {
       title: '请假天数',
       field: 'leavingDays'
     }, {
       title: '迟到小时数',
-      field: 'delayDays'
+      field: 'delayHours'
     }, {
       title: '早退小时数',
-      field: 'earlyDays'
+      field: 'earlyHours'
     }, {
       title: '税费',
       field: 'tax',
@@ -77,7 +77,11 @@ class DaifaAddEdit extends React.Component {
       field: 'awardAmount',
       amount: true
     }, {
-      title: '发放金额',
+      title: '应发工资',
+      field: 'shouldAmount',
+      amount: true
+    }, {
+      title: '实发工资',
       field: 'factAmount',
       amount: true
     }, {
@@ -85,6 +89,9 @@ class DaifaAddEdit extends React.Component {
       field: 'status',
       type: 'select',
       key: 'salary_status'
+    }, {
+      title: '备注',
+      field: 'factAmountRemark'
     }];
     const options = {
       fields: [{
@@ -140,11 +147,7 @@ class DaifaAddEdit extends React.Component {
                   } else if (selectedRowKeys.length > 1) {
                     showWarnMsg('请选择一条记录');
                   } else {
-                    if (selectedRows[0].status === '0') {
-                      this.props.history.push(`/daifa/daifa/addedit/edit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
-                    } else {
-                      showWarnMsg('该状态的工资条不可修改');
-                    }
+                    this.props.history.push(`/daifa/daifa/addedit/edit?v=1&code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
                   }
                 }
               }, {

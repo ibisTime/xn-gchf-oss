@@ -1,6 +1,4 @@
-import {
-  getUserName
-} from 'common/js/util';
+import { getUserName, getUserId } from 'common/js/util';
 import fetch from 'common/js/fetch';
 
 export function downLoad(messageCode) {
@@ -24,6 +22,7 @@ export function detailDate(code) {
 
 export function downNum(code, backDownload, download) {
   return fetch(631431, {
+    userId: getUserId(),
     code,
     backDownload,
     download

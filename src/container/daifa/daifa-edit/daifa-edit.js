@@ -32,17 +32,17 @@ class DaifaEdit extends React.Component {
       field: 'month',
       search: true
     }, {
-      title: '当月天数',
-      field: 'monthDays'
+      title: '正常考勤天数',
+      field: 'attendanceDays'
     }, {
       title: '请假天数',
       field: 'leavingDays'
     }, {
       title: '迟到小时数',
-      field: 'delayDays'
+      field: 'delayHours'
     }, {
       title: '早退小时数',
-      field: 'earlyDays'
+      field: 'earlyHours'
     }, {
       title: '税费',
       field: 'tax',
@@ -56,9 +56,21 @@ class DaifaEdit extends React.Component {
       field: 'awardAmount',
       amount: true
     }, {
-      title: '发放金额',
+      title: '应发工资',
+      field: 'shouldAmount',
+      amount: true
+    }, {
+      title: '实发工资',
       field: 'factAmount',
       amount: true
+    }, {
+      title: '状态',
+      field: 'status',
+      type: 'select',
+      key: 'salary_status'
+    }, {
+      title: '备注',
+      field: 'factAmountRemark'
     }];
     return this.props.buildDetail({
       fields,
