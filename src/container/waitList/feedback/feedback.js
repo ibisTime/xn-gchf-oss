@@ -58,7 +58,10 @@ class FeedBack extends React.Component {
               </div>
                 <p style={{ display: 'inline-block', color: 'red' }}>{ statusDict[v.status] || '' }</p>
             </Card>)
-          : <Card key={1} style={{ width: '80%' }}><p>暂时没有待反馈信息</p></Card>
+          : <div style={{ width: '100%', height: '500px', textAlign: 'center' }} >
+              <img src={require('./noInfo.png')} alt="" style={{ width: '261px', height: '168px', margin: '15% auto 34px' }} />
+              <p style={{ fontSize: '14px', color: '#939599' }}>暂无信息</p>
+            </div>
       }</div>
     );
   }
