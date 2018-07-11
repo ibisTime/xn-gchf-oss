@@ -55,9 +55,9 @@ class PostRequestAddedit extends React.Component {
   downNum(flag) {
     let { backDownload, download } = this.state;
     if (flag) {
-      backDownload += 1;
-    } else {
       download += 1;
+    } else {
+      backDownload += 1;
     }
     downNum(this.code, backDownload, download).then((data) => {
       this.setState({
@@ -79,10 +79,10 @@ class PostRequestAddedit extends React.Component {
         ['项目编号', data[0].projectCode],
         ['扣款账户', data[0].companyCard.bankcardNumber],
         ['代付工资信息'],
-        ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
+        ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, d.status === '4' ? moneyFormat(d.supplyAmount) : moneyFormat(d.factAmount), '', ''];
+        return [i + 1, d.code, d.staffName, d.staffIdNo, d.bankCard.bankName, d.bankCard.subbranch, d.bankCard.bankcardNumber, d.status === '4' ? moneyFormat(d.supplyAmount) : moneyFormat(d.factAmount), '', ''];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -141,9 +141,9 @@ class PostRequestAddedit extends React.Component {
     this.state.data.forEach((d, i) => {
       if (i > 4 && d.length) {
         payList.push({
-          bankcardNumber: d[4],
-          latePayDatetime: formatDate(d[7]),
-          payAmount: d[6] * 1000,
+          bankcardNumber: d[6],
+          latePayDatetime: formatDate(d[9]),
+          payAmount: d[8] * 1000,
           code: d[1]
         });
       }
@@ -188,7 +188,7 @@ class PostRequestAddedit extends React.Component {
            <img src={require('./gongzidan.png')} ></img>
           </div>
           <Button onClick={this.handleExport} type="primary" style={{ marginBottom: '12px', position: 'relative', top: '-20px', left: '0px' }}>点击下载</Button>
-          <span style={{ position: 'relative', left: '-70px', top: '20px', fontSize: '12px', color: '#999' }}>下载次数{this.state.backDownload}</span>
+          <span style={{ position: 'relative', left: '-70px', top: '20px', fontSize: '12px', color: '#999' }}>下载次数{this.state.download}</span>
           <div style={{ border: '0.5px solid #e6e6e6', height: '0px', marginBottom: '26px' }}></div>
           <p style={{ fontSize: '16px' }}>{this.state.title + '工资反馈'}</p>
           <p>反馈时间：{formatDate(this.state.handleDatetime)}</p>

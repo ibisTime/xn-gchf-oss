@@ -161,6 +161,8 @@ class Jiandang extends React.Component {
                             showWarnMsg('建档失败');
                         }
                     });
+            } else {
+              console.log(111111);
             }
         });
     }

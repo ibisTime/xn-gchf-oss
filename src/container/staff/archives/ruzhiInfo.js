@@ -244,8 +244,9 @@ class RuzhiInfo extends React.Component {
                         {getFieldDecorator('salary', {
                           rules: [rule0]
                         })(
-                          <Input placeholder="请输入日薪"/>
+                          <Input style={{ width: '280px' }} placeholder="请输入日薪"/>
                         )}
+                        <span>元</span>
                       </FormItem>
                       <FormItem>
                         {getFieldDecorator('joinDatetime', {
@@ -262,8 +263,9 @@ class RuzhiInfo extends React.Component {
                         {getFieldDecorator('cutAmount', {
                           rules: [rule0]
                         })(
-                          <Input placeholder="请输入迟到/早退每小时扣款金额"/>
+                          <Input style={{ width: '280px' }} placeholder="请输入迟到/早退每小时扣款金额"/>
                         )}
+                        <span>元</span>
                       </FormItem>
                       <div style={{ fontWeight: 700, marginBottom: 10 }}>员工来源</div>
                       <FormItem>

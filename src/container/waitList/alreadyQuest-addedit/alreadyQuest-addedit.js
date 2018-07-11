@@ -79,10 +79,10 @@ class AlreadyQuestAddedit extends React.Component {
         ['项目编号', data[0].projectCode],
         ['扣款账户', data[0].companyCard.bankName],
         ['代付工资信息'],
-        ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
+        ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, moneyFormat(d.factAmount), moneyFormat(d.payAmount), formatDate(d.latePayDatetime)];
+        return [i + 1, d.code, d.bankCard.staffName, d.staffIdNo, d.bankCard.bankName, d.bankCard.subbranch, d.bankCard.bankcardNumber, moneyFormat(d.factAmount), moneyFormat(d.payAmount), formatDate(d.latePayDatetime)];
       });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -99,10 +99,10 @@ class AlreadyQuestAddedit extends React.Component {
         ['项目编号', data[0].projectCode],
         ['扣款账户', data[0].companyCard.bankName],
         ['代付工资信息'],
-        ['序号', '工资条编号', '真实姓名', '开户行', '卡号', '应发金额', '已发金额', '发放时间']
+        ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
-        return [i + 1, d.code, d.bankCard.staffName, d.bankCard.bankName, d.bankCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
+        return [i + 1, d.code, d.bankCard.staffName, d.staffIdNo, d.bankCard.bankName, d.bankCard.subbranch, d.bankCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
       });
       // let payroll2 = data.map((d, i) => {
       //   d.map((item, j) => {

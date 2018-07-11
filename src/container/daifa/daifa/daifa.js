@@ -82,12 +82,6 @@ class Daifa extends React.Component {
         return moneyFormat(d.totalAmount);
       }
     }, {
-      title: '共计扣款',
-      field: 'totalCutAmounts',
-      formatter: (v, d) => {
-        return moneyFormat(d.totalCutAmount);
-      }
-    }, {
       title: '共计税费',
       field: 'totalTaxs',
       formatter: (v, d) => {
@@ -132,11 +126,6 @@ class Daifa extends React.Component {
       }, {
         field: 'title',
         title: '标题',
-        required: true,
-        maxlength: 30
-      }, {
-        field: 'content',
-        title: '内容',
         required: true,
         maxlength: 30
       }, {

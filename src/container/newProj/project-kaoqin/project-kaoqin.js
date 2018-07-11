@@ -52,9 +52,6 @@ class ProjectKaoqin extends React.Component {
       field: 'staffName',
       title: '员工姓名'
     }, {
-      field: 'staffMobile',
-      title: '员工手机号'
-    }, {
       field: 'startDatetime',
       title: '上班时间',
       type: 'datetime'
@@ -103,9 +100,6 @@ class ProjectKaoqin extends React.Component {
     }, {
       field: 'staffName',
       title: '员工姓名'
-    }, {
-      field: 'staffMobile',
-      title: '员工手机号'
     }, {
       field: 'startDatetime',
       title: '上班时间',
@@ -197,7 +191,7 @@ class ProjectKaoqin extends React.Component {
                   let tableData = [];
                   let title = [];
                   fields.map((item) => {
-                    if (item.title !== '关键字') {
+                    if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间') {
                       title.push(item.title);
                     }
                   });
@@ -211,7 +205,6 @@ class ProjectKaoqin extends React.Component {
                     });
                     temp.push(item.projectName,
                       item.staffName,
-                      item.staffMobile,
                       item.startDatetime ? dateTimeFormat(item.startDatetime) : '',
                       item.endDatetime ? dateTimeFormat(item.endDatetime) : '',
                       item.status,
@@ -269,7 +262,7 @@ class ProjectKaoqin extends React.Component {
                   let tableData = [];
                   let title = [];
                   fields.map((item) => {
-                    if (item.title !== '关键字') {
+                    if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间') {
                       title.push(item.title);
                     }
                   });
@@ -283,7 +276,6 @@ class ProjectKaoqin extends React.Component {
                     });
                     temp.push(item.projectName,
                         item.staffName,
-                        item.staffMobile,
                         item.startDatetime ? dateTimeFormat(item.startDatetime) : '',
                         item.endDatetime ? dateTimeFormat(item.endDatetime) : '',
                         item.status,
@@ -332,10 +324,11 @@ class ProjectKaoqin extends React.Component {
               let tableData = [];
               let title = [];
               fields.map((item) => {
-                if (item.title !== '关键字') {
+                if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间') {
                   title.push(item.title);
                 }
               });
+              console.log(title);
               tableData.push(title);
               data.list.map((item) => {
                 let temp = [];
@@ -346,7 +339,6 @@ class ProjectKaoqin extends React.Component {
                 });
                 temp.push(item.projectName,
                   item.staffName,
-                  item.staffMobile,
                   item.startDatetime ? dateTimeFormat(item.startDatetime) : '',
                   item.endDatetime ? dateTimeFormat(item.endDatetime) : '',
                   item.status,

@@ -89,14 +89,6 @@ class AccountAddEdit extends React.Component {
       title: '开户行',
       required: true
     }, {
-      field: 'updateName',
-      title: '更新人',
-      required: true
-    }, {
-      field: 'createDatetime',
-      title: '创建时间',
-      type: 'datetime'
-    }, {
       field: 'status',
       title: '状态',
       key: 'account_status',

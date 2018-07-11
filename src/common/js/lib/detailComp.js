@@ -956,7 +956,7 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
   }
   getFileComp(item, initVal, rules, getFieldDecorator, isImg) {
     let initValue = this.getFileInitVal(initVal);
-    console.log(initVal);
+    // console.log(initVal);
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
         {getFieldDecorator(item.field, {
@@ -976,7 +976,7 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
     );
   }
   getImgComp(item, initVal, rules, getFieldDecorator) {
-    console.log(initVal);
+    // console.log(initVal);
     return this.getFileComp(item, initVal, rules, getFieldDecorator, true);
   }
   getUploadProps(item, initValue, isImg) {

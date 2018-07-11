@@ -16,6 +16,7 @@ import ModalDetail from 'common/js/build-modal-detail';
 import fetch from 'common/js/fetch';
 import { getUserDetail } from 'api/user';
 import { deleteSalaryMany } from 'api/project';
+import './project-salary.css';
 @listWrapper(
   state => ({
     ...state.newProjProjectSalary,
@@ -71,11 +72,13 @@ class Salary extends React.Component {
     }, {
       title: '扣款金额',
       field: 'cutAmount',
-      amount: true
+      amount: true,
+      className: 'red'
     }, {
       title: '发放奖金',
       field: 'awardAmount',
-      amount: true
+      amount: true,
+      className: 'blue'
     }, {
       title: '应发工资',
       field: 'shouldAmount',
@@ -166,7 +169,7 @@ class Salary extends React.Component {
                 }
               }, {
                 code: 'edit',
-                name: '修改',
+                name: '手工调整',
                 handler: (selectedRowKeys, selectedRows) => {
                   if (!selectedRowKeys.length) {
                     showWarnMsg('请选择记录');
@@ -176,7 +179,7 @@ class Salary extends React.Component {
                     if (selectedRows[0].status === '0') {
                       this.props.history.push(`/projectManage/project/salary/edit?code=${selectedRowKeys[0]}&projectCode=${this.projectCode}`);
                     } else {
-                      showWarnMsg('该状态的工资条不可修改');
+                      showWarnMsg('该状态的工资条不可调整');
                     }
                   }
                 }

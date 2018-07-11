@@ -38,7 +38,7 @@ const abnormalColumns = [{
   render: (v) => formatDate(v)
 }, {
   title: '应发工资',
-  dataIndex: 'shouldAmount',
+  dataIndex: 'factAmount',
   render: (v) => moneyFormat(v)
 }, {
   title: '发放工资',

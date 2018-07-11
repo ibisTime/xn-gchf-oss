@@ -50,15 +50,6 @@ class BankCardAddEdit extends React.Component {
       title: '开户支行',
       required: true
     }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime',
-      required: true
-    }, {
-      field: 'updateName',
-      title: '更新人',
-      readonly: true
-    }, {
       field: 'remark',
       title: '备注'
     }];

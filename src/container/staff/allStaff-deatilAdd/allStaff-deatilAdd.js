@@ -41,34 +41,6 @@ class AllStaffAddEditAdd extends React.Component {
   }
   render() {
     const fields = [{
-      title: '项目名称',
-      field: 'projectCode',
-      listCode: '631466',
-      params: {
-        staffCode: this.code,
-        projectCodeList: this.state.projectCodeList,
-        statusList: [0, 1]
-      },
-      keyName: 'projectCode',
-      valueName: 'projectName',
-      search: true,
-      _keys: ['ccontract', 'projectCode'],
-      type: 'select',
-      required: true
-    }, {
-      field: 'contentPic',
-      title: '合同照片',
-      type: 'img',
-      single: true,
-      _keys: ['ccontract', 'contentPic'],
-      required: true
-    }, {
-      field: 'contractDatetime',
-      title: '签约时间',
-      type: 'date',
-      _keys: ['ccontract', 'contractDatetime'],
-      required: true
-    }, {
       field: 'bankCode',
       title: '开户行',
       listCode: '631116',
@@ -87,6 +59,31 @@ class AllStaffAddEditAdd extends React.Component {
       title: '银行卡号',
       _keys: ['bankCard', 'bankcardNumber'],
       required: true
+    }, {
+      title: '项目名称',
+      field: 'projectCode',
+      listCode: '631466',
+      params: {
+        staffCode: this.code,
+        projectCodeList: this.state.projectCodeList,
+        statusList: [0, 1]
+      },
+      keyName: 'projectCode',
+      valueName: 'projectName',
+      search: true,
+      _keys: ['ccontract', 'projectCode'],
+      type: 'select'
+    }, {
+      field: 'contentPic',
+      title: '合同照片',
+      type: 'img',
+      single: true,
+      _keys: ['ccontract', 'contentPic']
+    }, {
+      field: 'contractDatetime',
+      title: '签约时间',
+      type: 'date',
+      _keys: ['ccontract', 'contractDatetime']
     }, {
       field: 'mobile',
       title: '联系方式'
@@ -135,10 +132,10 @@ class AllStaffAddEditAdd extends React.Component {
         title: '保存',
         check: true,
         handler: (param) => {
-          console.log(param);
+          // console.log(param);
           getBankNameByCode(param.bankName).then(data => {
             data.map((item) => {
-              console.log(item);
+              // console.log(item);
               if(this.code) {
                 if(item.bankName === param.bankCode || item.bankCode === param.bankCode) {
                   param.bankCode = item.bankCode;
@@ -153,7 +150,12 @@ class AllStaffAddEditAdd extends React.Component {
             param.updater = getUserId();
             param.code = this.code;
             this.props.doFetching();
-            console.log(param);
+            if(param.projectCode === '') {
+              param.projectCode = null;
+            }
+            if(param.contentPic === '') {
+              param.contentPic = null;
+            }
             fetch(631413, param).then(() => {
               showSucMsg('操作成功');
               this.props.cancelFetching();

@@ -69,7 +69,7 @@ class AllStaffError extends React.Component {
       title: '工资条编号',
       hidden: true
     }, {
-      field: 'shouldAmount',
+      field: 'factAmount',
       title: '应发工资',
       formatter: (v, data) => {
         return moneyFormat(v);
