@@ -81,6 +81,7 @@ import { staffAllStaffWages } from './redux/staff/allStaff-wages';
 import { staffBankCard } from './redux/staff/bankCard';
 import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
 import { staffBaogong } from './redux/staff/baogong';
+import { staffHistoryDetail } from './redux/staff/history-detail';
 import { daifaDaifa } from './redux/daifa/daifa';
 import { mapMap } from './redux/map/map';
 import { daifaDaifaAddEdit } from './redux/daifa/daifa-addedit';
@@ -178,6 +179,7 @@ export default combineReducers({
   staffBankCardAddEdit,
   staffAllStaffWages,
   staffAllStaffErrorAddEdit,
+  staffHistoryDetail,
   daifaDaifa,
   daifaDaifaAddEdit,
   daifaDaifaEdit,

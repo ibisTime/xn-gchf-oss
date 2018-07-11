@@ -326,6 +326,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/allStaff-history/allStaff-history'))
   },
   {
+    path: '/staff/allStaff/history-detail',
+    component: asyncComponent(() => import('container/staff/history-detail/history-detail'))
+  },
+  {
     path: '/staff/allStaff/history/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-detail/allStaff-detail'))
   },

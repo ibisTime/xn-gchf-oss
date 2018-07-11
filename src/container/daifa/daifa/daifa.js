@@ -54,18 +54,18 @@ class Daifa extends React.Component {
       title: '项目编号',
       hidden: true
     }, {
-      field: 'projectCode',
-      title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: '',
-        kind: 'O',
-        companyCode: this.state.companyCode
-      },
-      keyName: 'code',
-      valueName: 'name'
+      field: 'projectName',
+      title: '工程名称'
+      // type: 'select',
+      // search: true,
+      // listCode: '631357',
+      // params: {
+      //   updater: '',
+      //   kind: 'O',
+      //   companyCode: this.state.companyCode
+      // },
+      // keyName: 'code',
+      // valueName: 'name'
     }, {
       field: 'bankNames',
       title: '开户行',
@@ -143,7 +143,10 @@ class Daifa extends React.Component {
         field: 'sendNote',
         title: '发送说明'
       }],
-      addCode: 631430
+      addCode: 631430,
+      onOk: () => {
+        this.props.getPageData();
+      }
     };
     if (getUserKind() === 'O') {
       return this.state.companyCode ? (

@@ -211,6 +211,9 @@ class ProjectAddBumen extends React.Component {
       showWarnMsg('请选择一家公司');
     }
   }
+  goBack = () => {
+    this.props.history.go(-1);
+  }
   render() {
     return this.state.companyName && this.state.projectName ? (
       <Spin spinning={this.state.fetching}>
@@ -219,6 +222,7 @@ class ProjectAddBumen extends React.Component {
             <button type="button" className="ant-btn" onClick={this.addBumen}><span>新增部门</span></button>
             <button type="button" className="ant-btn" onClick={this.editBumen}><span>修改部门</span></button>
             <button type="button" className="ant-btn" onClick={this.deleteBumen}><span>删除部门</span></button>
+            <button type="button" className="ant-btn" onClick={this.goBack}><span>返回</span></button>
           </div>
         }
         <Form className="detail-form-wrapper" onSubmit={this.handleSubmit}>

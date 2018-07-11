@@ -61,7 +61,7 @@ class AllStaffAddEdit extends React.Component {
       var res = [];
       if (!length) {
         res.push(
-          <p>没有异常记录!</p>
+          <p>没有异常处理记录!</p>
         );
       } else {
         for (let i = 0; i < length; i++) {

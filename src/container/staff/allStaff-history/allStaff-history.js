@@ -162,7 +162,25 @@ class AllStaffHistory extends React.Component {
         searchParams: {
           staffCode: this.staffCode
         },
-        buttons: [],
+        buttons: [{
+          code: 'detail',
+          name: '详情',
+          handler: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              this.props.history.push(`/staff/allStaff/history-detail?v=1&code=${selectedRowKeys[0]}`);
+            }
+          }
+        }, {
+          code: 'goBack',
+          name: '返回',
+          handler: () => {
+            this.props.history.go(-1);
+          }
+        }],
         pageCode: 631465
       }) : null;
     } else if (getUserKind() === 'S') {
@@ -172,7 +190,25 @@ class AllStaffHistory extends React.Component {
           staffCode: this.staffCode,
           projectCodeList: this.state.projectCodeList
         },
-        buttons: [],
+        buttons: [{
+          code: 'detail',
+          name: '详情',
+          handler: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+              showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+              showWarnMsg('请选择一条记录');
+            } else {
+              this.props.history.push(`/staff/allStaff/history-detail?v=1&code=${selectedRowKeys[0]}`);
+            }
+          }
+        }, {
+          code: 'goBack',
+          name: '返回',
+          handler: () => {
+            this.props.history.go(-1);
+          }
+        }],
         pageCode: 631465
       }) : null;
     } else {

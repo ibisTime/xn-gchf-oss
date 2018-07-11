@@ -13,6 +13,7 @@ import { listWrapper } from 'common/js/build-list';
 import { getUserDetail } from 'api/user';
 import cookies from 'browser-cookies';
 import { getUserKind, getUserId, moneyFormat } from 'common/js/util';
+require('./alreadyQuest.css');
 
 @listWrapper(
   state => ({
@@ -33,6 +34,7 @@ class AlreadyQuest extends React.Component {
       projectCodeList: '',
       companyCode: ''
     };
+    this.userKind = getUserKind();
   };
   componentDidMount() {
     getUserDetail(getUserId()).then((data) => {
@@ -44,55 +46,136 @@ class AlreadyQuest extends React.Component {
       });
       console.log(data);
     });
+    if(this.userKind === 'B') {
+      this.params = {
+        status: 3,
+            subbranch: this.state.subbranch,
+          bankName: this.state.bankName
+      };
+    } else if(this.userKind === 'O') {
+      this.params = {
+        statusList: ['1', '2', '3'],
+        companyCode: this.state.companyCode,
+        kind: 'O'
+      };
+    } else if(this.userKind === 'S') {
+      this.params = {
+        statusList: ['1', '2', '3'],
+        projectCodeList: this.state.companyCode
+      };
+    } else {
+      this.params = {
+        statusList: ['1', '2', '3']
+      };
+    }
   }
   render() {
     const fields = [{
       title: '发件人',
-      field: 'sendName'
+      field: 'sendName',
+      className: this.userKind === 'B' ? 'haha' : '',
+      rowClassName: this.userKind === 'B' ? 'title' : ''
     }, {
       title: '标题',
-      field: 'title'
+      field: 'title',
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       field: 'bankNames',
       title: '开户行',
       formatter: (v, d) => {
         return d.bankName + d.subbranch;
-      }
+      },
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       field: 'bankcardNumber',
-      title: '账户'
+      title: '账户',
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       field: 'totalAmounts',
       title: '本月累计发薪',
       formatter: (v, d) => {
         return moneyFormat(d.totalAmount);
-      }
+      },
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       title: '共计扣款',
       field: 'totalCutAmounts',
       formatter: (v, d) => {
         return moneyFormat(d.totalCutAmount);
-      }
+      },
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       title: '共计税费',
       field: 'totalTaxs',
       formatter: (v, d) => {
         return moneyFormat(d.totalTax);
-      }
+      },
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       title: '状态',
       field: 'status',
       key: 'message_status',
-      type: 'select'
+      type: 'select',
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       title: '请求时间',
       field: 'sendDatetime',
-      type: 'datetime'
+      type: 'datetime',
+      className: this.userKind === 'B' ? 'haha' : ''
     }, {
       title: '完成时间',
       field: 'handleDatetime',
-      type: 'datetime'
+      type: 'datetime',
+      className: this.userKind === 'B' ? 'haha' : ''
     }];
+
+    // var columnsDown = [{
+    //   title: '发件人',
+    //   dataIndex: 'sendName'
+    // }, {
+    //   title: '标题',
+    //   dataIndex: 'title'
+    // }, {
+    //   title: '开户行',
+    //   dataIndex: 'bankNames'
+    // }, {
+    //   title: '账户',
+    //   dataIndex: 'bankcardNumber'
+    // }, {
+    //   title: '本月累计发薪',
+    //   dataIndex: 'totalAmounts'
+    // }, {
+    //   title: '共计扣款',
+    //   dataIndex: 'totalCutAmounts'
+    // }, {
+    //   title: '共计税费',
+    //   dataIndex: 'totalTaxs'
+    // }, {
+    //   title: '状态',
+    //   dataIndex: 'status'
+    // }, {
+    //   title: '请求时间',
+    //   dataIndex: 'sendDatetime'
+    // }, {
+    //   title: '完成时间',
+    //   dataIndex: 'handleDatetime'
+    // }];
+    // var dataDownTab = [];
+    // var employList = this.state.data.employList;
+    // for (let l = 0; l < employList.length; l++) {
+    //   dataDownTab[l] = {
+    //     key: l,
+    //     projectName: (employList[l] && employList[l].projectName) || '',
+    //     staffName: this.state.data.name,
+    //     joinDatetime: (employList[l] && formatDate(employList[l].joinDatetime)) || '',
+    //     leavingDays: (employList[l] && employList[l].leavingDays) || '',
+    //     position: (employList[l] && employList[l].position) || '',
+    //     totalLeavingDays: (employList[l] && employList[l].totalLeavingDays) || '',
+    //     cutAmount: (employList[l] && moneyFormat(employList[l].cutAmount)) || '',
+    //     status: (employList[l] && this.state.staffStatus[employList[l].status]) || '',
+    //     updateDatetime: (employList[l] && formatDate(employList[l].updateDatetime)) || ''
+    //   };
+    // };
     if (getUserKind() === 'B') {
       return this.state.subbranch && this.state.bankName
         ? this.props.buildList({
@@ -102,7 +185,8 @@ class AlreadyQuest extends React.Component {
             subbranch: this.state.subbranch,
             bankName: this.state.bankName
           },
-          pageCode: 631435
+          pageCode: 631435,
+          className: 'tableClass'
         })
         : null;
     } else if (getUserKind() === 'O') {

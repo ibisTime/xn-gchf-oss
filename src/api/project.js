@@ -68,10 +68,11 @@ export function getProjectList(kind, projectCodeList, companyCode) {
   return fetch(631357, { updater: '', kind, projectCodeList, companyCode: companyCode || '' });
 }
 
-export function getProjectListForO(companyCode) {
+export function getProjectListForO(info) {
   return fetch(631357, { updater: '',
   kind: 'O',
-  companyCode
+  companyCode: info.companyCode || '',
+  status: info.status
 });
 }
 

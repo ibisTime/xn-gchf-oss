@@ -162,6 +162,7 @@ class AllStaffAddEdit extends React.Component {
       field: 'pict1',
       title: '免冠照片',
       type: 'img',
+      xx: true,
       required: true
     }, {
       field: 'pict2',
@@ -246,6 +247,11 @@ class AllStaffAddEdit extends React.Component {
               }, 1000);
             }).catch(this.props.cancelFetching);
           });
+        }
+      }, {
+        title: '返回',
+        handler: (param) => {
+          this.props.history.go(-1);
         }
       }]
     });

@@ -51,7 +51,8 @@ export default class ListComponent extends React.Component {
       f.search && searchFields.push(f);
       let obj = {
         title: f.title,
-        dataIndex: f.field
+        dataIndex: f.field,
+        className: f.className || ''
       };
       if (f.type === 'datetime') {
         obj.render = dateTimeFormat;
@@ -94,6 +95,7 @@ export default class ListComponent extends React.Component {
     });
     this.first = false;
     this.columns = columns;
+    this.tableClass = this.options.className || '';
     return this.getPageComponent(searchFields);
   }
   onSelectChange = (selectedRowKeys, selectedRows) => {
@@ -322,6 +324,7 @@ export default class ListComponent extends React.Component {
             bordered
             rowSelection={rowSelection}
             columns={this.columns}
+            className={this.tableClass}
             rowKey={record => record[this.options.rowKey]}
             dataSource={this.props.tableList}
             pagination={this.props.pagination}

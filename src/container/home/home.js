@@ -300,7 +300,7 @@ class Home extends React.Component {
       console.log(data);
       moneyLine = data.map((item) => ({
         month: item.month,
-        value: item.totalSalary
+        value: moneyFormat(item.totalSalary)
       }));
       this.setState({
         moneyLine: moneyLine
@@ -347,31 +347,34 @@ class Home extends React.Component {
   }
   handleTableChange = (pagination, filters, sorter, isPay) => {
     let pager;
-    if (isPay === '1') {
+    if (isPay === 1) {
       pager = { ...this.state.payPagination };
-    } else if (isPay === '2') {
+    } else if (isPay === 2) {
       pager = { ...this.state.checkPagination };
     } else {
       pager = { ...this.state.abnormalPagination };
     }
     pager.current = pagination.current;
-    if (isPay === '1') {
+    // debugger;
+    if (isPay === 1) {
       this.setState({
         payPagination: pager,
         payLoading: true
       });
-    } else if (isPay === '2') {
+      this.getPagePay(pagination.current, pagination.pageSize);
+    } else if (isPay === 2) {
       this.setState({
         checkPagination: pager,
         checkLoading: true
       });
+      this.getPageChecks(pagination.current, pagination.pageSize);
     } else {
       this.setState({
         abnormalPagination: pager,
         abnormalLoading: true
       });
+      this.getPageabnormal(pagination.current, pagination.pageSize);
     }
-    this.getPagePay(pagination.current, pagination.pageSize);
   }
   // 分页查询本月工资详情
   getPagePay(start, limit) {

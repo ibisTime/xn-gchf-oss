@@ -218,10 +218,12 @@ export default class DetailComp extends React.Component {
   onCancel = () => {
     this.options.onCancel ? this.options.onCancel() : this.props.history.go(-1);
   }
-  normFile = (e) => {
+  normFile = (e, item) => {
     if (e) {
       return e.fileList.map(v => {
         if (v.status === 'done') {
+          // item.xx && console.log(v.thumbUrl);
+          // item.xx && item.xx(v.thumbUrl);
           return v.key || v.response.key;
         } else if (v.status === 'error') {
           showErrMsg('文件上传失败');
@@ -954,12 +956,13 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
   }
   getFileComp(item, initVal, rules, getFieldDecorator, isImg) {
     let initValue = this.getFileInitVal(initVal);
+    console.log(initVal);
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
         {getFieldDecorator(item.field, {
           rules,
           initialValue: initVal,
-          getValueFromEvent: this.normFile
+          getValueFromEvent: (e) => this.normFile(e, item)
         })(
           this.options.code && !this.props.isLoaded
             ? <div></div>
@@ -973,6 +976,7 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
     );
   }
   getImgComp(item, initVal, rules, getFieldDecorator) {
+    console.log(initVal);
     return this.getFileComp(item, initVal, rules, getFieldDecorator, true);
   }
   getUploadProps(item, initValue, isImg) {
@@ -1153,6 +1157,7 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
         : btn;
   }
   setUploadFileUrl(fileList, isImg) {
+    console.log(fileList);
     let format = isImg ? formatImg : formatFile;
     fileList.forEach(f => {
       if (!f.url && f.status === 'done' && f.response) {

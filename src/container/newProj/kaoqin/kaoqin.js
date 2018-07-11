@@ -38,25 +38,14 @@ class Kaoqin extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        console.log(data);
         this.setState({ 'projectCodeList': data.projectCodeList, companyCode: data.companyCode });
       });
     };
   }
   render() {
     const fields = [{
-      field: 'projectCode',
+      field: 'projectName',
       title: '工程名称',
-      type: 'select',
-      listCode: '631357',
-      params: getUserKind() === 'O'
-      ? {
-        updater: '',
-        kind: 'O',
-        companyCode: this.state.companyCode
-      } : {projectCodeList: this.state.projectCodeList},
-      keyName: 'code',
-      valueName: 'name',
       search: true
     }, {
       field: 'staffName',
@@ -108,13 +97,9 @@ class Kaoqin extends React.Component {
       hidden: true
     }];
     const fieldso = [{
-      field: 'projectCode',
+      field: 'projectName',
       title: '工程名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      keyName: 'code',
-      valueName: 'name'
+      search: true
     }, {
       field: 'staffName',
       title: '员工姓名'
@@ -192,8 +177,8 @@ class Kaoqin extends React.Component {
                 temp.push(item.projectName,
                   item.staffName,
                   item.staffMobile,
-                  item.startDatetime,
-                  item.endDatetime,
+                  item.startDatetime ? dateTimeFormat(item.startDatetime) : '',
+                  item.endDatetime ? dateTimeFormat(item.endDatetime) : '',
                   item.status,
                   item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
                   item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
@@ -261,8 +246,8 @@ class Kaoqin extends React.Component {
                 temp.push(item.projectName,
                   item.staffName,
                   item.staffMobile,
-                  item.startDatetime,
-                  item.endDatetime,
+                  item.startDatetime ? dateTimeFormat(item.startDatetime) : '',
+                  item.endDatetime ? dateTimeFormat(item.endDatetime) : '',
                   item.status,
                   item.settleDatetime ? dateTimeFormat(item.settleDatetime) : '',
                   item.createDatetime ? dateTimeFormat(item.createDatetime) : '',
