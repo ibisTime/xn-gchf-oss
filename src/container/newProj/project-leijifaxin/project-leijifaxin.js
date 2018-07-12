@@ -57,9 +57,6 @@ class Leijifaxin extends React.Component {
       title: '共计扣款',
       field: 'totalCutAmount',
       amount: true
-    }, {
-      title: '共计税费',
-      field: 'totalTax'
     }];
     if (getUserKind() === 'O') {
       return this.state.projectCodeList ? this.props.buildList({

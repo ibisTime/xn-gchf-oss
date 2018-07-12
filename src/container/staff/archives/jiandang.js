@@ -121,6 +121,7 @@ class Jiandang extends React.Component {
                 idPic: data.pic,
                 isIdpic: true
             });
+            console.log(this.state);
             // let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
             // this.setState({
             //     idPic: '123',
@@ -162,7 +163,7 @@ class Jiandang extends React.Component {
                         }
                     });
             } else {
-              console.log(111111);
+              document.getElementById('getCard').removeAttribute('disabled');
             }
         });
     }

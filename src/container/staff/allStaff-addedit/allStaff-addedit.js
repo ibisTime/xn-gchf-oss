@@ -13,7 +13,7 @@ import { getQueryString, showSucMsg, formatDate, getUserKind } from 'common/js/u
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail } from 'api/user';
-
+// 不用
 @DetailWrapper(
   state => state.staffAllStaffAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }

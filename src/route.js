@@ -185,10 +185,10 @@ const ROUTES = [
     path: '/projectManage/project/salary/edit',
     component: asyncComponent(() => import('container/newProj/project-salary-edit/project-salary-edit'))
   },
-  {
-    path: '/projectManage/project/salary/check',
-    component: asyncComponent(() => import('container/newProj/project-salary-check/project-salary-check'))
-  },
+  // {
+  //   path: '/projectManage/project/salary/check',
+  //   component: asyncComponent(() => import('container/newProj/project-salary-check/project-salary-check'))
+  // },
   {
     path: '/projectManage/project/addedit',
     component: asyncComponent(() => import('container/newProj/project-addedit/project-addedit'))
@@ -265,10 +265,10 @@ const ROUTES = [
     path: '/staff/allStaff',
     component: asyncComponent(() => import('container/staff/allStaff/allStaff'))
   },
-  {
-    path: '/staff/allStaff/addedit',
-    component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
-  },
+  // {
+  //   path: '/staff/allStaff/addedit',
+  //   component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
+  // },
   {
     path: '/staff/allStaff/leaveRecords',
     component: asyncComponent(() => import('container/staff/allStaff-leaveRecords/allStaff-leaveRecords'))
@@ -372,6 +372,9 @@ const ROUTES = [
   {
     path: '/staff/jiandang/ruzhiInfo',
     component: asyncComponent(() => import('container/staff/archives/ruzhiInfo'))
+  },
+  { path: '/staff/allStaff/addBankCard',
+    component: asyncComponent(() => import('container/staff/allStaff-addBankCard/allStaff-addBankCard'))
   },
   {
     path: '/staff/jiandang/idPicture',

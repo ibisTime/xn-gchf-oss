@@ -49,7 +49,8 @@ class AlreadyQuestAddedit extends React.Component {
         sendDatetime: data.sendDatetime,
         download: data.download,
         backDownload: data.backDownload,
-        title: data.title
+        title: data.title,
+        accountName: data.companyCard.accountName
       });
     });
   }
@@ -77,6 +78,7 @@ class AlreadyQuestAddedit extends React.Component {
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[0].projectCode],
+        ['扣款帐户户名', data[0].companyCard.accountName],
         ['扣款账户', data[0].companyCard.bankName],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
@@ -97,6 +99,7 @@ class AlreadyQuestAddedit extends React.Component {
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[0].projectCode],
+        ['扣款帐户户名', data[0].companyCard.accountName],
         ['扣款账户', data[0].companyCard.bankName],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
@@ -122,7 +125,7 @@ class AlreadyQuestAddedit extends React.Component {
         <Card style={{ width: '100%', borderColor: 'rgba(153,212,255,0.6)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset' }}>
           <p style={{ fontSize: '16px' }}>{this.state.title + '工资'}</p>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
-          <p>代发账户户名：{this.state.bankName}</p>
+          <p>代发账户户名：{this.state.accountName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
           <div style={{ width: '92px', height: '92px', border: '1px solid #99d4ff', borderRadius: '4px', display: 'inline-block', padding: '22px 25px', margin: '0 26px 26px 0' }}>
            <img src={require('./gongzidan.png')} ></img>

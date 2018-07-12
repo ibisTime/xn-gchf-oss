@@ -49,8 +49,12 @@ class AlreadyQuest extends React.Component {
   }
   render() {
     const fields = [{
-      title: '发件人',
-      field: 'sendName',
+      title: '公司名称',
+      field: 'companyName',
+      className: this.userKind === 'B' ? 'haha' : ''
+    }, {
+      title: '项目名称',
+      field: 'projectName',
       className: this.userKind === 'B' ? 'haha' : ''
     }, {
       title: '标题',
@@ -72,13 +76,6 @@ class AlreadyQuest extends React.Component {
       title: '本月累计发薪',
       formatter: (v, d) => {
         return moneyFormat(d.totalAmount);
-      },
-      className: this.userKind === 'B' ? 'haha' : ''
-    }, {
-      title: '共计税费',
-      field: 'totalTaxs',
-      formatter: (v, d) => {
-        return moneyFormat(d.totalTax);
       },
       className: this.userKind === 'B' ? 'haha' : ''
     }, {

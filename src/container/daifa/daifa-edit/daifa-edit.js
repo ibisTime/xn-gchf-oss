@@ -44,10 +44,6 @@ class DaifaEdit extends React.Component {
       title: '早退小时数',
       field: 'earlyHours'
     }, {
-      title: '税费',
-      field: 'tax',
-      amount: true
-    }, {
       title: '扣款金额',
       field: 'cutAmount',
       amount: true

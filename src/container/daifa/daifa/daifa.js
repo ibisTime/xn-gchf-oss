@@ -82,12 +82,6 @@ class Daifa extends React.Component {
         return moneyFormat(d.totalAmount);
       }
     }, {
-      title: '共计税费',
-      field: 'totalTaxs',
-      formatter: (v, d) => {
-        return moneyFormat(d.totalTax);
-      }
-    }, {
       field: 'status',
       title: '状态',
       type: 'select',

@@ -65,17 +65,15 @@ class DaifaAddEdit extends React.Component {
       title: '早退小时数',
       field: 'earlyHours'
     }, {
-      title: '税费',
-      field: 'tax',
-      amount: true
-    }, {
       title: '扣款金额',
       field: 'cutAmount',
-      amount: true
+      amount: true,
+      className: 'red'
     }, {
       title: '发放奖金',
       field: 'awardAmount',
-      amount: true
+      amount: true,
+      className: 'blue'
     }, {
       title: '应发工资',
       field: 'shouldAmount',
@@ -137,7 +135,6 @@ class DaifaAddEdit extends React.Component {
           {
             this.props.buildList({
               fields,
-              singleSelect: false,
               buttons: [{
                 code: 'detail',
                 name: '详情',

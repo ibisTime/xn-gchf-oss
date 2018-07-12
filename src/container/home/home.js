@@ -64,10 +64,6 @@ const payColumns = [{
   dataIndex: 'cutAmount',
   render: (v) => moneyFormat(v)
 }, {
-  title: '税费',
-  dataIndex: 'tax',
-  render: (v) => moneyFormat(v)
-}, {
   title: '实际发放工资',
   dataIndex: 'factAmount',
   render: (v) => moneyFormat(v)

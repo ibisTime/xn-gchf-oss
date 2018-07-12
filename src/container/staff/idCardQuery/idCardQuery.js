@@ -20,7 +20,7 @@ class AllStaffAddEdit extends React.Component {
   componentDidMount() {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'projectCodeList': data.projectCodeList });
+        this.setState({ 'projectCodeList': data.projectCodeList, 'companyCode': data.companyCode });
       });
     };
     getDict('salary_status').then((res) => {
@@ -101,9 +101,6 @@ class AllStaffAddEdit extends React.Component {
       }, {
         title: '请假天数',
         dataIndex: 'leavingDays'
-      }, {
-        title: '税费',
-        dataIndex: 'tax'
       }, {
         title: '扣款金额',
         dataIndex: 'cutAmount'

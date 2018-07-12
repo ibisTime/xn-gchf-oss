@@ -41,25 +41,6 @@ class AllStaffAddEditAdd extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'bankCode',
-      title: '开户行',
-      listCode: '631116',
-      keyName: 'bankCode',
-      valueName: 'bankName',
-      type: 'select',
-      _keys: ['bankCard', 'bankName'],
-      required: true
-    }, {
-      field: 'subbranch',
-      title: '开户支行',
-      _keys: ['bankCard', 'subbranch'],
-      required: true
-    }, {
-      field: 'bankcardNumber',
-      title: '银行卡号',
-      _keys: ['bankCard', 'bankcardNumber'],
-      required: true
-    }, {
       title: '项目名称',
       field: 'projectCode',
       listCode: '631466',

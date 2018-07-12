@@ -66,10 +66,6 @@ class Salary extends React.Component {
       title: '早退小时数',
       field: 'earlyHours'
     }, {
-      title: '税费',
-      field: 'tax',
-      amount: true
-    }, {
       title: '扣款金额',
       field: 'cutAmount',
       amount: true,
@@ -223,10 +219,10 @@ class Salary extends React.Component {
                     kind: 'O'
                   }).then((data) => {
                     let payroll1 = [
-                      ['员工姓名', '所属月份', '正常考勤天数', '请假天数', '迟到小时数', '早退小时数', '税费', '扣款金额', '发放奖金', '应发工资', '实发工资']
+                      ['员工姓名', '所属月份', '正常考勤天数', '请假天数', '迟到小时数', '早退小时数', '扣款金额', '发放奖金', '应发工资', '实发工资']
                     ];
                     let payroll2 = data.map((d, i) => {
-                      return [d.staffName, d.month, d.attendanceDays, d.leavingDays, d.delayHours, d.earlyHours, moneyFormat(d.tax), moneyFormat(d.cutAmount), moneyFormat(d.awardAmount), moneyFormat(d.factAmount), moneyFormat(d.factAmount)];
+                      return [d.staffName, d.month, d.attendanceDays, d.leavingDays, d.delayHours, d.earlyHours, moneyFormat(d.cutAmount), moneyFormat(d.awardAmount), moneyFormat(d.factAmount), moneyFormat(d.factAmount)];
                     });
                     payroll1 = payroll1.concat(payroll2);
                     const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -278,10 +274,10 @@ class Salary extends React.Component {
                     companyCode: this.state.companyCode
                   }).then((data) => {
                     let payroll1 = [
-                      ['员工姓名', '隶属上级', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '税费', '扣款金额', '发放奖金', '实际工资']
+                      ['员工姓名', '隶属上级', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '扣款金额', '发放奖金', '实际工资']
                     ];
                     let payroll2 = data.map((d, i) => {
-                      return [d.staffName, d.upUserName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.tax), moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
+                      return [d.staffName, d.upUserName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
                     });
                     payroll1 = payroll1.concat(payroll2);
                     const ws = XLSX.utils.aoa_to_sheet(payroll1);

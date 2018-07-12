@@ -67,10 +67,6 @@ class AllStaffWages extends React.Component {
       title: '请假天数',
       field: 'leavingDays'
     }, {
-      title: '税费',
-      field: 'tax',
-      amount: true
-    }, {
       title: '所属月份',
       field: 'month'
     }, {

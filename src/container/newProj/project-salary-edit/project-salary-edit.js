@@ -67,10 +67,6 @@ class ProjectSalaryEdit extends React.Component {
       field: 'cutAmount',
       amount: true
     }, {
-      title: '税费',
-      field: 'tax',
-      amount: true
-    }, {
       title: '修改原因',
       field: 'applyNote'
     }];
@@ -82,6 +78,7 @@ class ProjectSalaryEdit extends React.Component {
       editCode: 631442,
       beforeSubmit: (params) => {
         params.applyUser = getUserId();
+        params.tax = '0';
         return params;
       }
     });

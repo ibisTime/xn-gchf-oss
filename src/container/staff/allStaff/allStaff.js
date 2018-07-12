@@ -48,11 +48,14 @@ class AllStaff extends React.Component {
       field: 'name',
       title: '姓名'
     }, {
-      field: 'sex',
-      title: '性别'
+      field: 'idNo',
+      title: '证件号'
     }, {
-      field: 'idNation',
-      title: '民族'
+      field: 'mobile',
+      title: '手机号'
+    }, {
+      field: 'remark',
+      title: '备注'
     }, {
       field: 'birthdays',
       title: '生日',
@@ -60,9 +63,6 @@ class AllStaff extends React.Component {
       formatter: (v, d) => {
         return formatDate(d.birthday);
       }
-    }, {
-      field: 'idNo',
-      title: '证件号'
     }, {
       field: 'keyword',
       title: '关键字查询',
@@ -132,8 +132,21 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          console.log(selectedRows);
           this.props.history.push(`/staff/allStaff/quit?code=${selectedRowKeys[0]}`);
+        }
+      },
+      addBankCard: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          console.log(selectedRows[0].bankCard);
+          if(selectedRows[0].bankCard === undefined) {
+            this.props.history.push(`/staff/allStaff/addBankCard?code=${selectedRowKeys[0]}&name=${selectedRows[0].name}`);
+          } else {
+            showWarnMsg('该员工已有工资卡，无法新增');
+          }
         }
       }
     };

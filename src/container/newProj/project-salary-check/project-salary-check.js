@@ -12,7 +12,7 @@ import { getQueryString, showSucMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId } from 'api/user';
-
+// 不用
 @DetailWrapper(
   state => state.newProjProjectSalaryCheck,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }

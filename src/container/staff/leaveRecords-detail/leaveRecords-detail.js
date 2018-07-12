@@ -49,9 +49,7 @@ class LeaveRecordsDetail extends React.Component {
       fields,
       code: this.code,
       view: true,
-      addCode: 631410,
-      detailCode: 631469,
-      editCode: 631412
+      addCode: 631410
     });
   }
 }
