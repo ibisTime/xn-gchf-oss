@@ -81,10 +81,7 @@ class BankCard extends React.Component {
     if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
-        pageCode: 631425,
-        searchParams: {
-          companyCode: this.state.companyCode
-        }
+        pageCode: 631425
       }) : null;
     } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({

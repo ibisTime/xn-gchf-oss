@@ -265,10 +265,10 @@ const ROUTES = [
     path: '/staff/allStaff',
     component: asyncComponent(() => import('container/staff/allStaff/allStaff'))
   },
-  // {
-  //   path: '/staff/allStaff/addedit',
-  //   component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
-  // },
+  {
+    path: '/staff/allStaff/addedit',
+    component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
+  },
   {
     path: '/staff/allStaff/leaveRecords',
     component: asyncComponent(() => import('container/staff/allStaff-leaveRecords/allStaff-leaveRecords'))
