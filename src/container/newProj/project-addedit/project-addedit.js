@@ -253,9 +253,11 @@ class ProjectAddedit extends React.Component {
     }];
     // 详情
     const fieldos = [{
+      field: 'companyName',
+      title: '公司名称'
+    }, {
       field: 'name',
-      title: '项目名称',
-      required: true
+      title: '项目名称'
     }, {
       field: 'chargeUser',
       title: '负责人',
@@ -266,23 +268,20 @@ class ProjectAddedit extends React.Component {
         type: 'O'
       },
       keyName: 'userId',
-      valueName: 'loginName',
-      required: true
+      valueName: 'loginName'
     }, {
       field: 'quyus',
       title: '详细地址',
       formatter: (v, d) => {
         return d.province + d.city + d.area + d.address + '';
-      },
-      required: true
+      }
     }, {
       field: 'attendanceStarttimes',
       title: '上下班时间',
       type: 'time',
       formatter: (v, d) => {
         return d.attendanceStarttime + '--' + d.attendanceEndtime;
-      },
-      required: true
+      }
     }, {
       field: 'code1',
       title: '开户行',
@@ -290,88 +289,73 @@ class ProjectAddedit extends React.Component {
       listCode: '631106',
       keyName: 'code',
       valueName: 'bankSubbranchName',
-      _keys: ['companyCard', 'bankSubbranch'],
-      required: true
+      _keys: ['companyCard', 'bankSubbranch']
     }, {
       field: 'accountName',
       title: '户名',
-      _keys: ['companyCard', 'accountName'],
-      required: true
+      _keys: ['companyCard', 'accountName']
     }, {
       field: 'bankcardNumber',
       title: '银行账户',
-      _keys: ['companyCard', 'bankcardNumber'],
-      required: true
+      _keys: ['companyCard', 'bankcardNumber']
     }, {
       field: 'leavingDays',
       title: '累计请假人次',
-      _keys: ['report', 'leavingDays'],
-      required: true
+      _keys: ['report', 'leavingDays']
     }, {
       field: 'staffIn',
       title: '累计入职人数',
-      _keys: ['report', 'staffIn'],
-      required: true
+      _keys: ['report', 'staffIn']
     }, {
       field: 'staffOn',
       title: '目前在职人数',
-      _keys: ['report', 'staffOn'],
-      required: true
+      _keys: ['report', 'staffOn']
     }, {
       field: 'staffOut',
       title: '累计离职人数',
-      _keys: ['report', 'staffOut'],
-      required: true
+      _keys: ['report', 'staffOut']
     }, {
       field: 'todayDays',
       title: '今日上工人数',
-      _keys: ['report', 'todayDays'],
-      required: true
+      _keys: ['report', 'todayDays']
     }, {
       field: 'totalSalary',
       title: '累计发薪金额',
-      _keys: ['report', 'totalSalary'],
-      required: true
+      _keys: ['report', 'totalSalary']
     }, {
       field: 'workingDays',
       title: '累计出工人次',
-      _keys: ['report', 'workingDays'],
-      required: true
+      _keys: ['report', 'workingDays']
     }, {
       field: 'salaryCreateDatetimes',
       title: '工资条形成时间',
       date28: true,
       formatter: (v, d) => {
         return '每月' + d.salaryCreateDatetime + '号';
-      },
-      required: true
+      }
     }, {
       field: 'salaryDatetimes',
       title: '薪资发放时间',
       date28: true,
       formatter: (v, d) => {
         return '每月' + d.salaryDatetime + '号';
-      },
-      required: true
+      }
     }, {
       field: 'salaryDelayDays',
       title: '薪资发放可延迟天数',
-      readonly: true,
-      required: true
+      readonly: true
     }, {
       field: 'lastMonthSalary',
       title: '上月实际发薪金额',
       formatter: (d, v) => {
         return moneyFormat(v.report.lastMonthSalary);
-      },
-      required: true
+      }
     }, {
       field: 'nextMonthSalary',
       title: '下月预计发薪金额',
       formatter: (d, v) => {
         return moneyFormat(v.report.nextMonthSalary);
-      },
-      required: true
+      }
     }];
     if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildDetail({

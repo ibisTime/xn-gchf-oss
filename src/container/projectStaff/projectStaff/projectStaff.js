@@ -8,14 +8,14 @@ import {
   doFetching,
   cancelFetching,
   setSearchData
-} from '@redux/staff/allStaff';
+} from '@redux/projectStaff/projectStaff';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getUserKind, getUserId, formatDate } from 'common/js/util';
 import { getUserDetail } from 'api/user';
 
 @listWrapper(
   state => ({
-    ...state.staffAllStaff,
+    ...state.projectStaff,
     parentCode: state.menu.subMenuCode
   }),
   {
@@ -23,7 +23,7 @@ import { getUserDetail } from 'api/user';
     cancelFetching, setPagination, setSearchParam, setSearchData
   }
 )
-class AllStaff extends React.Component {
+class ProjectStaff extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,76 +45,52 @@ class AllStaff extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'name',
+      field: 'staffName',
       title: '姓名'
     }, {
       field: 'idNo',
-      title: '证件号'
+      title: '证件号',
+      formatter: (v, d) => {
+        return d.staff.idNo;
+      }
     }, {
       field: 'mobile',
-      title: '手机号'
+      title: '手机号',
+      formatter: (v, d) => {
+        return d.staff.mobile;
+      }
+    }, {
+      field: 'projectName',
+      title: '所在工程'
+    }, {
+      field: 'departmentName',
+      title: '部门'
+    }, {
+      field: 'position',
+      title: '职位'
+    }, {
+      field: 'status',
+      title: '状态',
+      key: 'staff_status',
+      type: 'select'
     }, {
       field: 'remark',
       title: '备注'
     }, {
-      field: 'birthdays',
-      title: '生日',
-      type: 'datetime',
-      formatter: (v, d) => {
-        return formatDate(d.birthday);
-      }
-    }, {
       field: 'keyword',
       title: '关键字查询',
-      placeholder: '名字/证件号',
+      placeholder: '名字/手机号',
       hidden: true,
       search: true
     }];
     const btnEvent = {
-      error: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/staff/allStaff/error?staffCode=${selectedRowKeys[0]}`);
-        }
-      },
-      history: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/staff/allStaff/history?staffCode=${selectedRowKeys[0]}`);
-        }
-      },
-      skill: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/staff/allStaff/skill?staffCode=${selectedRowKeys[0]}`);
-        }
-      },
-      // addWorkers: (selectedRowKeys, selectedRows) => {
-      //   console.log(selectedRowKeys, selectedRows);
-      //   if (!selectedRowKeys.length) {
-      //     showWarnMsg('请选择记录');
-      //   } else if (selectedRowKeys.length > 1) {
-      //     showWarnMsg('请选择一条记录');
-      //   } else {
-      //     this.props.history.push(`/staff/allStaff/entry?code=${selectedRowKeys[0]}`);
-      //   }
-      // },
       weekday: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/staff/allStaff/weekday?code=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/weekday?code=${selectedRows[0].staffCode}`);
         }
       },
       leaveRecords: (selectedRowKeys, selectedRows) => {
@@ -123,7 +99,7 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/staff/allStaff/leaveRecords?staffCode=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/leaveRecords?staffCode=${selectedRows[0].staffCode}`);
         }
       },
       quit: (selectedRowKeys, selectedRows) => {
@@ -132,7 +108,16 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/staff/allStaff/quit?code=${selectedRowKeys[0]}`);
+          this.props.history.push(`/staff/allStaff/quit?code=${selectedRows[0].staffCode}`);
+        }
+      },
+      detail: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/projectStaff/projectStaff/addedit?v=1&code=${selectedRowKeys[0]}`);
         }
       },
       addBankCard: (selectedRowKeys, selectedRows) => {
@@ -141,12 +126,20 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          console.log(selectedRows[0].bankCard);
-          if(selectedRows[0].bankCard === undefined) {
-            this.props.history.push(`/staff/allStaff/addBankCard?code=${selectedRowKeys[0]}&name=${selectedRows[0].name}`);
+          if(selectedRows[0].staff.bankCard) {
+            this.props.history.push(`/projectStaff/projectStaff/addBankCard?staffCode=${selectedRows[0].staffCode}&code=${selectedRows[0].staff.bankCard.code || ''}&name=${selectedRows[0].staff.name}`);
           } else {
-            showWarnMsg('该员工已有工资卡，无法新增');
+            this.props.history.push(`/projectStaff/projectStaff/addBankCard?staffCode=${selectedRows[0].staffCode}&name=${selectedRows[0].staff.name}`);
           }
+        }
+      },
+      skill: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/staff/allStaff/skill?staffCode=${selectedRows[0].staffCode}`);
         }
       }
     };
@@ -159,7 +152,7 @@ class AllStaff extends React.Component {
           kind: 'O',
           companyCode: this.state.companyCode
         },
-        pageCode: 631415
+        pageCode: 631465
       }) : null;
     } else {
       return this.props.buildList({
@@ -168,10 +161,10 @@ class AllStaff extends React.Component {
         searchParams: {
           updater: ''
         },
-        pageCode: 631415
+        pageCode: 631465
       });
     }
   }
 }
 
-export default AllStaff;
+export default ProjectStaff;

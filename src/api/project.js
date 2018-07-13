@@ -56,7 +56,7 @@ export function getBankNameByCode() {
   return fetch(631116);
 }
 
-export function buquanxinxi(...param) {
+export function luru(param) {
   return fetch(631413, { ...param });
 }
 
@@ -146,4 +146,11 @@ export function deleteSalaryMany(salaryCodeList) {
   return fetch(631441, {
     salaryCodeList
   });
+}
+
+/**
+ * 列表查支行
+ */
+export function getZhiHang() {
+  return fetch(631106, {});
 }

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Input, Select, Button, Form, DatePicker, Icon, Upload, Modal, TreeSelect } from 'antd';
-import moment from 'moment';
+import { Input, Select, Button, Form, DatePicker, Modal, TreeSelect } from 'antd';
 import { getProjectListForO, getBumen } from 'api/project';
-import { getUserDetail, getUserId, ruzhi } from 'api/user';
+import { getUserDetail, getUserId, ruzhi, getStaffDetail } from 'api/user';
 import { getDict } from 'api/dict';
 import { getQiniuToken } from 'api/general';
 import { getQueryString, showErrMsg, showWarnMsg, showSucMsg, formatImg } from 'common/js/util';
@@ -34,12 +33,14 @@ class RuzhiInfo extends React.Component {
       type: '',
       token: '',
       previewImage: '',
-      previewVisible: false
+      previewVisible: false,
+      staffCode: ''
     };
     this.handleProjectChange = this.handleProjectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.code = getQueryString('code', this.props.location.search);
+    this.idNo = getQueryString('idNo', this.props.location.search);
   }
   componentDidMount() {
     getUserDetail(getUserId()).then((res) => {
@@ -68,6 +69,11 @@ class RuzhiInfo extends React.Component {
     getQiniuToken().then(data => {
       this.setState({ token: data.uploadToken });
     }).catch(() => {});
+    getStaffDetail(this.idNo).then((res) => {
+      this.setState({
+        staffCode: res.bankCard.staffCode
+      });
+    });
   }
   // 员工source change事件
   handleTypeChange(value) {
@@ -87,7 +93,7 @@ class RuzhiInfo extends React.Component {
         let format = 'YYYY-MM-DD';
         params.joinDatetime = params.joinDatetime.format(format);
         // params.contractDatetime = params.contractDatetime.format(format);
-        params.staffCode = this.code;
+        params.staffCode = this.code || this.state.staffCode;
         params.updater = getUserId();
         params.cutAmount *= 1000;
         params.salary *= 1000;
@@ -225,7 +231,7 @@ class RuzhiInfo extends React.Component {
                           <TreeSelect
                             style={{ width: '100%' }}
                             dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                            placeholder="请选择"
+                            placeholder="请选择部门"
                             allowClear
                             treeDefaultExpandAll
                           >
@@ -273,9 +279,9 @@ class RuzhiInfo extends React.Component {
                           rules: [rule0],
                           initialValue: source.length ? source[0].type : ''
                         })(
-                          <Select placeholder="请选择来源" onChange={ this.handleTypeChange }>
-                            {source.map((item) => <Option key={item.type} value={item.type}>{item.name}</Option>)}
-                          </Select>
+                            <Select placeholder="请选择来源" onChange={ this.handleTypeChange }>
+                              {source.map((item) => <Option key={item.type} value={item.type}>{item.name}</Option>)}
+                            </Select>
                         )}
                       </FormItem>
                       <div>

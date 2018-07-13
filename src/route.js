@@ -274,8 +274,12 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/allStaff-leaveRecords/allStaff-leaveRecords'))
   },
   {
-    path: '/staff/allStaff/detailadd',
-    component: asyncComponent(() => import('container/staff/allStaff-deatilAdd/allStaff-deatilAdd'))
+    path: '/staff/allStaff/skill',
+    component: asyncComponent(() => import('container/staff/allStaff-skill/allStaff-skill'))
+  },
+  {
+    path: '/staff/allStaff/skill-addedit',
+    component: asyncComponent(() => import('container/staff/skill-addedit/skill-addedit'))
   },
   {
     path: '/staff/idCardQuery',
@@ -370,7 +374,11 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/archives/salaryCard'))
   },
   {
-    path: '/staff/jiandang/ruzhiInfo',
+    path: '/staff/jiandang/luru',
+    component: asyncComponent(() => import('container/staff/archives/luru'))
+  },
+  {
+    path: '/staff/ruzhiInfo',
     component: asyncComponent(() => import('container/staff/archives/ruzhiInfo'))
   },
   { path: '/staff/allStaff/addBankCard',
@@ -439,6 +447,18 @@ const ROUTES = [
   {
     path: '/projectManage/project',
     component: asyncComponent(() => import('container/dailiManage/map/map3'))
+  },
+  {
+    path: '/projectStaff/projectStaff',
+    component: asyncComponent(() => import('container/projectStaff/projectStaff/projectStaff'))
+  },
+  {
+    path: '/projectStaff/projectStaff/addedit',
+    component: asyncComponent(() => import('container/projectStaff/projectStaff-addedit/projectStaff-addedit'))
+  },
+  {
+    path: '/projectStaff/projectStaff/addBankCard',
+    component: asyncComponent(() => import('container/projectStaff/projectStaff-addBankCard/projectStaff-addBankCard'))
   }
 ];
 

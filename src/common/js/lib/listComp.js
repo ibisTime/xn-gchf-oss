@@ -8,6 +8,7 @@ import { getOwnerBtns } from 'api/menu';
 import { getDictList } from 'api/dict';
 import fetch from 'common/js/fetch';
 import locale from './date-locale';
+import { PIC_PREFIX } from 'common/js/config';
 
 moment.locale('zh-cn');
 const FormItem = Form.Item;
@@ -58,7 +59,9 @@ export default class ListComponent extends React.Component {
         obj.render = dateTimeFormat;
       } else if (f.type === 'date') {
         obj.render = dateFormat;
-      } else if (f.type === 'select') {
+      } else if (f.type === 'img') {
+        obj.render = (value) => <img style={{ width: '200px' }} src={PIC_PREFIX + value}/>;
+      }else if (f.type === 'select') {
         if (f.key) {
           f.keyName = f.keyName || 'dkey';
           f.valueName = f.valueName || 'dvalue';

@@ -4,7 +4,7 @@ import originJsonp from 'jsonp';
 import './jiandang.css';
 import { Form, Input, Button } from 'antd';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
-import { jiandang, getUserId, getUserDetail } from 'api/user';
+import { jiandang, getUserId, getUserDetail, getStaffDetail } from 'api/user';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
 import Avatar from './touxiang.png';
 
@@ -38,7 +38,8 @@ class Jiandang extends React.Component {
             'idPolice': '',
             'idPic': '',
             'spanText': '',
-            'spanTi': ''
+            'spanTi': '',
+            'next': false
         };
         this.openVideo = this.openVideo.bind(this);
         this.getCard = this.getCard.bind(this);
@@ -122,18 +123,25 @@ class Jiandang extends React.Component {
                 idPic: data.pic,
                 isIdpic: true
             });
-            console.log(this.state.realName);
-          this.props.form.setFieldsValue({
-            realName: this.state.realName,
-            sex: this.state.sex,
-            idNation: this.state.idNation,
-            birthday: this.state.birthday,
-            idNo: this.state.idNo,
-            idAddress: this.state.idAddress,
-            idStartDate: this.state.idStartDate,
-            idEndDate: this.state.idEndDate,
-            idPolice: this.state.idPolice
-          });
+            // 重置input的值
+            this.props.form.setFieldsValue({
+              realName: this.state.realName,
+              sex: this.state.sex,
+              idNation: this.state.idNation,
+              birthday: this.state.birthday,
+              idNo: this.state.idNo,
+              idAddress: this.state.idAddress,
+              idStartDate: this.state.idStartDate,
+              idEndDate: this.state.idEndDate,
+              idPolice: this.state.idPolice
+            });
+            getStaffDetail(this.state.idNo).then((res) => {
+              if(res.pic1 || res.pict1) {
+                this.setState({
+                  next: true
+                });
+              }
+            });
             // let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
             // this.setState({
             //     idPic: '123',
@@ -150,6 +158,9 @@ class Jiandang extends React.Component {
     // 提交
     handleSubmit = (e) => {
         e.preventDefault();
+        if(this.state.next) {
+          this.props.history.push(`/staff/jiandang/mianguanRead1?pict1=true&idNo=${this.state.idNo}`);
+        }
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 jiandang(

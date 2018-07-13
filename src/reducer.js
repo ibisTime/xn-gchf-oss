@@ -67,7 +67,8 @@ import { peopleHistory } from './redux/people/history';
 import { staffAllStaff } from './redux/staff/allStaff';
 import { staffAllStaffAddEdit } from './redux/staff/allStaff-addedit';
 import { staffAllStaffLeaveRecords } from './redux/staff/allStaff-leaveRecords';
-import { staffAllStaffAddEditAdd } from './redux/staff/allStaff-addeditAdd';
+import { staffAllStaffSkill } from './redux/staff/allStaff-skill';
+import { staffSkillAddEdit } from './redux/staff/skill-addedit';
 import { staffAllStaffError } from './redux/staff/allStaff-error';
 import { staffAllStaffErrHistory } from './redux/staff/allStaff-errHistory';
 import { staffAllStaffErrorEdit } from './redux/staff/allStaff-errorEdit';
@@ -96,6 +97,9 @@ import { newIdYezhuAddEdit } from './redux/newId/yezhu-addedit';
 import { newIdSupervise } from './redux/newId/supervise';
 import { newIdSuperviseAddEdit } from './redux/newId/supervise-addedit';
 import { newIdCompanyConstruct1 } from './redux/newId/companyConstruct1';
+import { projectStaff } from './redux/projectStaff/projectStaff';
+import { projectStaffAddEdit } from './redux/projectStaff/projectStaff-addedit';
+import { projectStaffAddBankCard } from './redux/projectStaff/projectStaff-addBankCard';
 
 export default combineReducers({
   user,
@@ -166,7 +170,8 @@ export default combineReducers({
   staffAllStaff,
   staffAllStaffAddEdit,
   staffAllStaffLeaveRecords,
-  staffAllStaffAddEditAdd,
+  staffAllStaffSkill,
+  staffSkillAddEdit,
   staffAllStaffError,
   staffAllStaffErrHistory,
   staffAllStaffErrorEdit,
@@ -193,5 +198,8 @@ export default combineReducers({
   newIdYezhuAddEdit,
   newIdSupervise,
   newIdSuperviseAddEdit,
-  newIdCompanyConstruct1
+  newIdCompanyConstruct1,
+  projectStaff,
+  projectStaffAddEdit,
+  projectStaffAddBankCard
 });

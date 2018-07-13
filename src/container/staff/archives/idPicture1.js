@@ -6,7 +6,7 @@ import idPic1 from './idzhengmian.png';
 import idPic2 from './idfanmian.png';
 import idPic3 from './shouchizhengjian.png';
 import { getQueryString, getUserId } from 'common/js/util';
-import { idPicture3 } from 'api/user';
+import { idPicture3, getStaffDetail } from 'api/user';
 import { showSucMsg } from '../../../common/js/util';
 
 class mianguanRead extends React.Component {
@@ -22,7 +22,8 @@ class mianguanRead extends React.Component {
         'shot': true,
         'pic1': '',
         'pic2': '',
-        'pic3': ''
+        'pic3': '',
+        'next': false
     };
     // this.openVideo = this.openVideo.bind(this);
     this.cutImg = this.cutImg.bind(this);
@@ -31,17 +32,25 @@ class mianguanRead extends React.Component {
     this.next = this.next.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.code = getQueryString('code', this.props.location.search);
+    this.idNo = getQueryString('idNo', this.props.location.search);
   }
   componentDidMount() {
   // 获取媒体方法（旧方法）
       navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
-    //   this.canvas1 = document.getElementById('canvas1');
-    //   this.canvas2 = document.getElementById('canvas2');
       this.context = this.canvas1.getContext('2d');
-    //   this.video1 = document.getElementById('video1');
-    //   this.video2 = document.getElementById('video2');
       this.mediaStreamTrack = '';
-    //   this.openVideo();
+      getStaffDetail(this.idNo).then((res) => {
+        this.setState({
+          pic1: res.pic1 || res.pict1,
+          pic2: res.pic2 || res.pict2,
+          pic3: res.pic3 || res.pict3
+        });
+        if(res.contacts) {
+          this.setState({
+            next: true
+          });
+        }
+      });
   };
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
@@ -235,6 +244,9 @@ class mianguanRead extends React.Component {
   };
   handleSubmit(e) {
     e.preventDefault();
+    if(this.state.next) {
+      this.props.history.push(`/staff/jiandang/luru1?idNo=${this.idNo}`);
+    }
     var info = {
         pic1: this.state.pic1,
         pic2: this.state.pic2,
@@ -274,7 +286,7 @@ class mianguanRead extends React.Component {
                                 style={{ border: '1px solid #4c98de', display: this.state.video1 ? 'none' : 'inline-block', margin: '0 58px 0 70px' }}
                                 onClick={ () => { this.shot(1); } }
                             >
-                                <img src={idPic1} className="userImg1" id="userImg" style={{ display: this.state.pic1 ? 'none' : 'inline-block' }}/>
+                                <img src={this.state.pic1} className="userImg1" id="userImg" style={{ display: this.state.pic1 ? 'none' : 'inline-block' }}/>
                                 <canvas ref={canvas => this.canvas1 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
                             <div className="img-wrap1 left-img" style={{ display: this.state.video2 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
@@ -285,7 +297,7 @@ class mianguanRead extends React.Component {
                                 style={{ border: '1px solid #4c98de', display: this.state.video2 ? 'none' : 'inline-block', margin: '0 58px 0 0' }}
                                 onClick={ () => { this.shot(2); } }
                             >
-                                <img src={idPic2} className="userImg1" id="userImg" style={{ display: this.state.pic2 ? 'none' : 'inline-block' }}/>
+                                <img src={this.state.pic2} className="userImg1" id="userImg" style={{ display: this.state.pic2 ? 'none' : 'inline-block' }}/>
                                 <canvas ref={canvas => this.canvas2 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
                             <div className="img-wrap1 left-img" style={{ display: this.state.video3 ? 'inline-block' : 'none', margin: '0 58px 0 0' }}>
@@ -296,7 +308,7 @@ class mianguanRead extends React.Component {
                                 style={{ border: '1px solid #4c98de', display: this.state.video3 ? 'none' : 'inline-block', margin: '0 0 0 0' }}
                                 onClick={ () => { this.shot(3); } }
                             >
-                                <img src={idPic3} className="userImg1" id="userImg" style={{ display: this.state.pic3 ? 'none' : 'inline-block' }}/>
+                                <img src={this.state.pic3} className="userImg1" id="userImg" style={{ display: this.state.pic3 ? 'none' : 'inline-block' }}/>
                                 <canvas ref={canvas => this.canvas3 = canvas} className="inner-item" width="260" height="213"></canvas>
                             </div>
                             <div style={{ paddingTop: 20 }}>
