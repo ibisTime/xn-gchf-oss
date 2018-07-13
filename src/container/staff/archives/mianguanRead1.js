@@ -52,7 +52,7 @@ class mianguanRead extends React.Component {
       this.context = this.canvas.getContext('2d');
       this.video = document.getElementById('video');
       this.mediaStreamTrack = '';
-      this.openVideo();
+    //   this.openVideo();
       getStaffDetail(this.idNo).then((res) => {
         this.setState({
           pict1: res.pict1 || res.pic1
@@ -168,6 +168,7 @@ class mianguanRead extends React.Component {
     e.preventDefault();
     if(this.state.next) {
       this.props.history.push(`/staff/jiandang/idPicture1?idNo=${this.idNo}`);
+      return;
     }
     var info = {};
     // if (this.state.feat) {
@@ -201,14 +202,14 @@ upload(info) {
                 <div className="head-wrap3"><i></i>免冠照读取</div>
                     <div className="clearfix3">
                         <div className="inner-box3">
-                            <div className="img-wrap3 right-img3 img-box" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
+                            <div className="img-wrap3 right-img3 img-box" style={{ border: '1px solid #4c98de', display: 'block', margin: '0 auto' }}>
                                 <div className="border"></div>
-                                <img src={this.state.pict1} className="userImg3" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
+                                <img src={this.state.pict1} className="haveUserImg" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
                                 <canvas id="canvas" className="inner-item" style={{ width: '512px', height: '384px' }} width="1024" height="768"></canvas>
                             </div>
                             <div style={{ paddingTop: 20 }}>
                                 <div>
-                                    <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
+                                    <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ position: 'absolute', top: '55%', left: '50%', width: '250px', transform: 'translate(-50%, -50%)' }} id="cut" onClick={ this.handleSubmit }>下一步</button>
                                 </div>
                             </div>
                         </div>

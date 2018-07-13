@@ -160,6 +160,7 @@ class Jiandang extends React.Component {
         e.preventDefault();
         if(this.state.next) {
           this.props.history.push(`/staff/jiandang/mianguanRead1?pict1=true&idNo=${this.state.idNo}`);
+          return;
         }
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -269,7 +270,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.realName,
                                         value: this.state.realName
                                     })(
-                                        <Input value={this.state.realName}/>
+                                        <Input value={this.state.realName} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="性别" {...formItemLayout}>
@@ -281,7 +282,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.sex,
                                         value: this.state.sex
                                     })(
-                                        <Input value={this.state.sex}/>
+                                        <Input value={this.state.sex} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="民族" {...formItemLayout}>
@@ -293,7 +294,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.idNation,
                                         value: this.state.idNation
                                     })(
-                                        <Input value={this.state.idNation}/>
+                                        <Input value={this.state.idNation} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="出生日期" {...formItemLayout}>
@@ -305,7 +306,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.birthday,
                                         value: this.state.birthday
                                     })(
-                                        <Input value={this.state.birthday}/>
+                                        <Input value={this.state.birthday} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="身份证号码" {...formItemLayout}>
@@ -317,7 +318,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.idNo,
                                         value: this.state.idNo
                                     })(
-                                        <Input value={this.state.idNo}/>
+                                        <Input value={this.state.idNo} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="地址" {...formItemLayout}>
@@ -329,7 +330,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.idAddress,
                                         value: this.state.idAddress
                                     })(
-                                        <Input value={this.state.idAddress}/>
+                                        <Input value={this.state.idAddress} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="有效开始日期" {...formItemLayout}>
@@ -341,7 +342,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.idStartDate,
                                         value: this.state.idStartDate
                                     })(
-                                        <Input value={this.state.idStartDate}/>
+                                        <Input value={this.state.idStartDate} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="有效截止日期" {...formItemLayout}>
@@ -353,7 +354,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.idEndDate,
                                         value: this.state.idEndDate
                                     })(
-                                        <Input value={this.state.idEndDate}/>
+                                        <Input value={this.state.idEndDate} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem label="签发机关" {...formItemLayout}>
@@ -365,7 +366,7 @@ class Jiandang extends React.Component {
                                         initialValue: this.state.idPolice,
                                         value: this.state.idPolice
                                     })(
-                                        <Input value={this.state.idPolice}/>
+                                        <Input value={this.state.idPolice} disabled/>
                                     )}
                                 </FormItem>
                                 <FormItem key='btns' {...tailFormItemLayout}>
