@@ -50,114 +50,46 @@ class AllStaffHistory extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'code',
-      title: '编号',
-      hidden: true
-    }, {
-      field: 'projectCode',
-      title: '项目编号',
-      hidden: true
-    }, {
-      field: 'projectCode',
-      title: '项目名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: ''
-      },
-      keyName: 'code',
-      valueName: 'name'
-    }, {
-      field: 'joinDatetime',
-      title: '入职时间',
-      type: 'date'
-    }, {
-      field: 'leavingDatetime',
-      title: '离职时间',
-      type: 'date'
-    }, {
-      field: 'name',
-      title: '姓名',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.name : '';
-      }
-    }, {
-      field: 'mobile',
-      title: '手机号',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.mobile : '';
-      }
+      field: 'staffName',
+      title: '姓名'
     }, {
       field: 'idNo',
       title: '证件号',
-      formatter: (v, data) => {
-        return data.staff.idNo;
-      }
-    }];
-    const fieldso = [{
-      field: 'code',
-      title: '编号'
-    }, {
-      field: 'projectCode',
-      title: '项目编号'
-    }, {
-      field: 'projectCode',
-      title: '项目名称',
-      type: 'select',
-      search: true,
-      listCode: '631357',
-      params: {
-        updater: '',
-        companyCode: this.state.companyCode,
-        kind: 'O'
-      },
-      keyName: 'code',
-      valueName: 'name'
-    }, {
-      field: 'joinDatetime',
-      title: '入职时间',
-      type: 'date'
-    }, {
-      field: 'leavingDatetime',
-      title: '离职时间',
-      type: 'date'
-    }, {
-      field: 'name',
-      title: '姓名',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.name : '';
+      formatter: (v, d) => {
+        return d.staff.idNo;
       }
     }, {
       field: 'mobile',
       title: '手机号',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.mobile : '';
+      formatter: (v, d) => {
+        return d.staff.mobile;
       }
     }, {
-      field: 'idType',
-      title: '证件类型',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.idType : '';
-      },
-      key: 'id_type'
+      field: 'projectName',
+      title: '所在工程'
     }, {
-      field: 'idNo',
-      title: '姓名',
-      formatter: (v, data) => {
-        return data.staff ? data.staff.idNo : '';
-      }
+      field: 'departmentName',
+      title: '部门'
+    }, {
+      field: 'position',
+      title: '职位'
+    }, {
+      field: 'status',
+      title: '状态',
+      key: 'staff_status',
+      type: 'select'
     }, {
       field: 'remark',
       title: '备注'
     }, {
       field: 'keyword',
-      title: '关键字',
-      search: true,
-      hidden: true
+      title: '关键字查询',
+      placeholder: '名字/手机号',
+      hidden: true,
+      search: true
     }];
-    if (getUserKind() === 'O') {
-      return this.state.companyCode ? this.props.buildList({
+    if (getUserKind() === 'P') {
+      return this.props.buildList({
         fields,
         searchParams: {
           staffCode: this.staffCode
@@ -182,7 +114,7 @@ class AllStaffHistory extends React.Component {
           }
         }],
         pageCode: 631465
-      }) : null;
+      });
     } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({
         fields,

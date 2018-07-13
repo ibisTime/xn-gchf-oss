@@ -22,6 +22,7 @@ class ProjectWeekday extends React.Component {
       companyCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
+    this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   componentDidMount() {
     getUserDetail(getUserId()).then((data) => {
@@ -33,17 +34,8 @@ class ProjectWeekday extends React.Component {
     const fields = [{
       title: '项目名称',
       field: 'projectCode',
-      listCode: '631466',
-      params: {
-        staffCode: this.code,
-        projectCodeList: this.state.projectCodeList,
-        statusList: [0, 1]
-      },
-      keyName: 'projectCode',
-      valueName: 'projectName',
-      search: true,
-      type: 'select',
-      required: true
+      value: this.projectCode,
+      hidden: true
     }, {
       field: 'staffCode',
       value: this.code,

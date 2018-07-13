@@ -43,6 +43,24 @@ class HistoryDetail extends React.Component {
       field: 'staffName',
       title: '姓名'
     }, {
+      field: 'idNo',
+      title: '证件号',
+      formatter: (v, d) => {
+        return d.staff.idNo;
+      }
+    }, {
+      field: 'mobile',
+      title: '手机号',
+      formatter: (v, d) => {
+        return d.staff.mobile;
+      }
+    }, {
+      field: 'projectName',
+      title: '所在工程'
+    }, {
+      field: 'departmentName',
+      title: '部门'
+    }, {
       field: 'position',
       title: '职位'
     }, {
@@ -53,6 +71,20 @@ class HistoryDetail extends React.Component {
       field: 'cutAmount',
       title: '迟到早退每小时扣款金额',
       formatter: moneyFormat
+    }, {
+      field: 'status',
+      title: '状态',
+      key: 'staff_status',
+      type: 'select'
+    }, {
+      field: 'remark',
+      title: '备注'
+    }, {
+      field: 'keyword',
+      title: '关键字查询',
+      placeholder: '名字/手机号',
+      hidden: true,
+      search: true
     }];
     return this.props.buildDetail({
       fields,

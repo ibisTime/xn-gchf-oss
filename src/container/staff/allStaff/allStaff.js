@@ -148,6 +148,15 @@ class AllStaff extends React.Component {
             showWarnMsg('该员工已有工资卡，无法新增');
           }
         }
+      },
+      rejiandang: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/staff/jiandang/mianguanRead2?idNo=${selectedRows[0].idNo}&code=${selectedRows[0].code}`);
+        }
       }
     };
     if (getUserKind() === 'O') {

@@ -5,7 +5,7 @@ import originJsonp from 'jsonp';
 import './mianguanRead.css';
 import Photo from './touxiang.png';
 import { getQueryString, getUserId, showWarnMsg, showSucMsg } from 'common/js/util';
-import { mianguanPicture, getFeatInfo } from 'api/user';
+import { mianguanPicture, getFeatInfo, getStaffDetail } from 'api/user';
 // import { resolve } from 'dns';
 
 function jsonp(url, data, option) {
@@ -22,7 +22,7 @@ function jsonp(url, data, option) {
     });
 }
 
-class mianguanRead extends React.Component {
+class mianguanRead2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,9 @@ class mianguanRead extends React.Component {
         'feat': '',
         'vedio': true,
         'imgFlag': true,
-        'shot': true
+        'shot': true,
+        'pict1': '',
+        'next': false
     };
     this.openVideo = this.openVideo.bind(this);
     this.cutImg = this.cutImg.bind(this);
@@ -40,8 +42,10 @@ class mianguanRead extends React.Component {
     this.next = this.next.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.code = getQueryString('code', this.props.location.search);
-    this.ruzhi = getQueryString('ruzhi', this.props.location.search);
+    this.pict1 = getQueryString('pict1', this.props.location.search);
     this.idNo = getQueryString('idNo', this.props.location.search);
+    this.ruzhi = getQueryString('ruzhi', this.props.location.search);
+    this.code = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
   // 获取媒体方法（旧方法）
@@ -51,6 +55,26 @@ class mianguanRead extends React.Component {
       this.video = document.getElementById('video');
       this.mediaStreamTrack = '';
       this.openVideo();
+      getStaffDetail(this.idNo).then((res) => {
+        if(res.pic2 || res.pict2) {
+          this.setState({
+            next: true
+          });
+        }
+        if(res.pict1) {
+          this.setState({
+            pict1: res.pict1,
+            vedio: false,
+            shot: false
+          });
+        } else {
+          this.setState({
+            vedio: true,
+            shot: true
+          });
+          // this.openVideo();
+        }
+      });
   };
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
@@ -154,6 +178,7 @@ class mianguanRead extends React.Component {
   };
   handleSubmit(e) {
     e.preventDefault();
+    // this.props.history.push(`/staff/jiandang/idPicture2?ruzhi=${this.ruzhi}&idNo=${this.idNo}&code=${this.code}`);
     var info = {};
     // if (this.state.feat) {
     //     info.feat = this.state.feat;
@@ -164,59 +189,59 @@ class mianguanRead extends React.Component {
     //     showWarnMsg('请重新拍摄');
     // };
 };
-upload(info) {
-    info.code = this.code;
-    info.updater = getUserId();
-    mianguanPicture(info).then(rs => {
-        if (rs.isSuccess) {
-            showSucMsg('提交成功');
-            this.props.history.push(`/staff/jiandang/idPicture?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
-        } else {
-            showWarnMsg(rs.errorInfo || '提交失败');
-        }
-    });
-};
+  upload(info) {
+      info.code = this.code;
+      info.updater = getUserId();
+      mianguanPicture(info).then(rs => {
+          if (rs.isSuccess) {
+              showSucMsg('提交成功');
+              this.props.history.push(`/staff/jiandang/idPicture2?ruzhi=${this.ruzhi}&idNo=${this.idNo}&code=${this.code}`);
+          } else {
+              showWarnMsg(rs.errorInfo || '提交失败');
+          }
+      });
+  };
 
   render() {
     return (
-      <div className="SectionContainer3" style={{ border: '2px solid #096dd9' }}>
-        <div className="section3">
+        <div className="SectionContainer3" style={{ border: '2px solid #096dd9' }}>
+          <div className="section3">
             <div style={{ verticalAlign: 'middle', width: '100%' }}>
-                <div className="comparison-main3 comparison-mains3">
+              <div className="comparison-main3 comparison-mains3">
                 <div className="head-wrap3"><i></i>免冠照读取</div>
-                    <div className="clearfix3">
-                        <div className="inner-box3">
-                            <div className="img-wrap3 left-img video-box" style={{ display: this.state.vedio ? 'block' : 'none', margin: '0 auto' }}>
-                                <div className="border"></div>
-                                <video id="video" className="video3"></video>
-                            </div>
-                            <div className="img-wrap3 right-img3 img-box" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
-                                <div className="border"></div>
-                                <img src={Photo} className="userImg3" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
-                                <canvas id="canvas" className="inner-item" style={{ width: '512px', height: '384px' }} width="1024" height="768"></canvas>
-                            </div>
-                            <div style={{ paddingTop: 20 }}>
-                                <div className="btn-item3" style={{ textAlign: 'center' }}>
-                                <div>
-                                <button
-                                    className="ant-btn ant-btn-primary ant-btn-lg"
-                                    style={{ width: 285, marginBottom: 20, backgroundColor: '#4c98de', color: '#fff' }}
-                                    id="cut"
-                                    onClick={ this.handleShotClick }>{this.state.shot ? '拍摄' : '取消'}</button>
-                                </div>
-                                <div>
-                                    <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
+                <div className="clearfix3">
+                  <div className="inner-box3">
+                    <div className="img-wrap3 left-img video-box" style={{ display: this.state.vedio ? 'block' : 'none', margin: '0 auto' }}>
+                      <div className="border"></div>
+                      <video id="video" className="video3"></video>
                     </div>
+                    <div className="img-wrap3 right-img3 img-box" style={{ border: '1px solid #4c98de', display: this.state.vedio ? 'none' : 'block', margin: '0 auto' }}>
+                      <div className="border"></div>
+                      <img src={this.state.pict1} className="haveUserImg" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
+                      <canvas id="canvas" className="inner-item" style={{ width: '512px', height: '384px' }} width="1024" height="768"></canvas>
+                    </div>
+                    <div style={{ paddingTop: 20 }}>
+                      <div className="btn-item3" style={{ textAlign: 'center' }}>
+                        <div>
+                          <button
+                              className="ant-btn ant-btn-primary ant-btn-lg"
+                              style={{ width: 285, marginBottom: 20, backgroundColor: '#4c98de', color: '#fff' }}
+                              id="cut"
+                              onClick={ this.handleShotClick }>{this.state.shot ? '拍摄' : '取消'}</button>
+                        </div>
+                        <div>
+                          <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-      </div>
     );
   }
 }
 
-export default mianguanRead;
+export default mianguanRead2;

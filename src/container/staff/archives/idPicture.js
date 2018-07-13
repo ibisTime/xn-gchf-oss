@@ -31,17 +31,14 @@ class mianguanRead extends React.Component {
     this.next = this.next.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.code = getQueryString('code', this.props.location.search);
+    this.ruzhi = getQueryString('ruzhi', this.props.location.search);
+    this.idNo = getQueryString('idNo', this.props.location.search);
   }
   componentDidMount() {
   // 获取媒体方法（旧方法）
       navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
-    //   this.canvas1 = document.getElementById('canvas1');
-    //   this.canvas2 = document.getElementById('canvas2');
       this.context = this.canvas1.getContext('2d');
-    //   this.video1 = document.getElementById('video1');
-    //   this.video2 = document.getElementById('video2');
       this.mediaStreamTrack = '';
-    //   this.openVideo();
   };
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
@@ -245,7 +242,7 @@ class mianguanRead extends React.Component {
     idPicture3(info).then((res) => {
         if(res.isSuccess) {
             showSucMsg('提交成功');
-            this.props.history.push(`/staff/jiandang/luru?code=${this.code}`);
+            this.props.history.push(`/staff/jiandang/luru?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
         }
     });
     console.log(this.state);

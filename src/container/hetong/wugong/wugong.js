@@ -64,12 +64,8 @@ class Wugong extends React.Component {
       title: '签约时间',
       type: 'date'
     }, {
-      field: 'updateName',
-      title: '更新人'
-    }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime'
+      field: 'remark',
+      title: '备注'
     }];
     if (getUserKind() === 'O') {
       return this.state.projectCodeList ? this.props.buildList({
@@ -79,6 +75,12 @@ class Wugong extends React.Component {
           kind: 'O'
         },
         buttons: [{
+          code: 'add',
+          name: '新增',
+          handler: (selectedRowKeys, selectedRows) => {
+            this.props.history.push(`/hetong/wugong/addedit`);
+          }
+        }, {
           code: 'edit',
           name: '修改',
           handler: (selectedRowKeys, selectedRows) => {
@@ -112,18 +114,6 @@ class Wugong extends React.Component {
           projectCodeList: this.state.projectCodeList
         },
         buttons: [{
-          code: 'edit',
-          name: '修改',
-          handler: (selectedRowKeys, selectedRows) => {
-            if (!selectedRowKeys.length) {
-              showWarnMsg('请选择记录');
-            } else if (selectedRowKeys.length > 1) {
-              showWarnMsg('请选择一条记录');
-            } else {
-              this.props.history.push(`/hetong/wugong/edit?code=${selectedRowKeys[0]}`);
-            }
-          }
-        }, {
           code: 'detail',
           name: '详情',
           handler: (selectedRowKeys, selectedRows) => {

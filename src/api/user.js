@@ -110,6 +110,10 @@ export function getFeatInfo(pict1) {
 export function ruzhi(info) {
   return fetch(631460, info);
 }
+// 重新入职
+export function reruzhi(info) {
+  return fetch(631463, info);
+}
 
 // 详情查务工人员
 export function getStaffDetail(code) {

@@ -159,7 +159,7 @@ class Jiandang extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if(this.state.next) {
-          this.props.history.push(`/staff/jiandang/mianguanRead1?pict1=true&idNo=${this.state.idNo}`);
+          this.props.history.push(`/staff/jiandang/mianguanRead1?ruzhi=1&pict1=true&idNo=${this.state.idNo}`);
           return;
         }
         this.props.form.validateFieldsAndScroll((err, values) => {
@@ -181,7 +181,7 @@ class Jiandang extends React.Component {
                         if(res.code) {
                             showSucMsg('建档成功');
                             setTimeout(() => {
-                                this.props.history.push(`/staff/jiandang/mianguanRead?code=${res.code}`);
+                                this.props.history.push(`/staff/jiandang/mianguanRead?ruzhi=1&code=${res.code}&idNo=${this.state.idNo}`);
                             }, 300);
                         }else {
                             showWarnMsg('建档失败');

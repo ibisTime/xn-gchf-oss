@@ -53,7 +53,7 @@ class RuzhiInfo extends React.Component {
   }
   // 最终提交
   handleSubmit() {
-    this.props.history.push(`/staff/ruzhiInfo?ruzhi=${this.ruzhi}&idNo=${this.idNo}`);
+    this.props.history.push(`/staff/allStaff?ruzhi=${this.ruzhi}&idNo=${this.idNo}`);
   }
   setUploadFileUrl(fileList) {
     fileList.forEach(f => {
@@ -122,40 +122,40 @@ class RuzhiInfo extends React.Component {
                       {getFieldDecorator('mobile', {
                         rules: [rule1]
                       })(
-                          <Input placeholder="请输入本人手机号" disabled/>
+                          <Input placeholder="请输入本人手机号"/>
                       )}
                     </FormItem>
                     <FormItem>
                       {getFieldDecorator('contacts', {
                         rules: [rule0]
                       })(
-                          <Input placeholder="请输入紧急联系人姓名" disabled/>
+                          <Input placeholder="请输入紧急联系人姓名"/>
                       )}
                     </FormItem>
                     <FormItem>
                       {getFieldDecorator('contactsMobile', {
                         rules: [rule1]
                       })(
-                          <Input placeholder="请输入紧急联系人手机号" disabled/>
+                          <Input placeholder="请输入紧急联系人手机号"/>
                       )}
                     </FormItem>
                     <div style={{ fontWeight: 700, marginBottom: 10 }}>银行卡信息（选填）</div>
                     <FormItem>
                       {getFieldDecorator('subbranch')(
-                          <Select placeholder="请选择开户行" allowClear disabled>
+                          <Select placeholder="请选择开户行" allowClear>
                             {this.state.zhihang.map((item) => <Option key={item.code} value={item.code}>{item.bankSubbranchName}</Option>)}
                           </Select>
                       )}
                     </FormItem>
                     <FormItem>
                       {getFieldDecorator('bankcardNumber')(
-                          <Input placeholder="请输入银行卡号" disabled/>
+                          <Input placeholder="请输入银行卡号"/>
                       )}
                     </FormItem>
                     <div style={{ fontWeight: 700, marginBottom: 10 }}>备注（选填）</div>
                     <FormItem>
                       {getFieldDecorator('remark')(
-                          <Input placeholder="请输入备注" disabled/>
+                          <Input placeholder="请输入备注"/>
                       )}
                     </FormItem>
                     <div>

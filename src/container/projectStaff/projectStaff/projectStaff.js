@@ -90,7 +90,7 @@ class ProjectStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/staff/allStaff/weekday?code=${selectedRows[0].staffCode}`);
+          this.props.history.push(`/staff/allStaff/weekday?code=${selectedRows[0].staffCode}&projectCode=${selectedRows[0].projectCode}`);
         }
       },
       leaveRecords: (selectedRowKeys, selectedRows) => {
@@ -108,7 +108,7 @@ class ProjectStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/staff/allStaff/quit?code=${selectedRows[0].staffCode}`);
+          this.props.history.push(`/staff/allStaff/quit?code=${selectedRows[0].staffCode}&projectCode=${selectedRows[0].projectCode}`);
         }
       },
       detail: (selectedRowKeys, selectedRows) => {
@@ -140,6 +140,15 @@ class ProjectStaff extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           this.props.history.push(`/staff/allStaff/skill?staffCode=${selectedRows[0].staffCode}`);
+        }
+      },
+      reruzhi: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/staff/ruzhiInfo?code=${selectedRows[0].code}&reruzhi=1&staffCode=${selectedRows[0].staffCode}`);
         }
       }
     };

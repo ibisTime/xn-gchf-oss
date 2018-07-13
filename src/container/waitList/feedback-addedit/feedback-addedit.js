@@ -141,7 +141,7 @@ class PostRequestAddedit extends React.Component {
     let param = {};
     let payList = [];
     this.state.data.forEach((d, i) => {
-      if (i > 4 && d.length) {
+      if (i > 5 && d.length) {
         payList.push({
           bankcardNumber: d[6],
           latePayDatetime: formatDate(d[9]),

@@ -9,7 +9,7 @@ import {
   setPageData,
   restore
 } from '@redux/hetong/wugong-addedit';
-import { getQueryString, showSucMsg } from 'common/js/util';
+import { getQueryString, showSucMsg, getUserKind } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail } from 'api/user';
@@ -21,8 +21,18 @@ import { getUserId, getUserDetail } from 'api/user';
 class WugongAddEdit extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      companyCode: ''
+    };
     this.code = getQueryString('code', this.props.location.search);
     this.projectCode = getQueryString('projectCode', this.props.location.search);
+  }
+  componentDidMount() {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ 'companyCode': data.companyCode });
+      });
+    };
   }
   render() {
     const fields = [{
@@ -32,7 +42,8 @@ class WugongAddEdit extends React.Component {
       listCode: '631357',
       params: {
         kind: 'O',
-        updater: ''
+        updater: '',
+        companyCode: this.state.companyCode
       },
       keyName: 'code',
       valueName: 'name',
@@ -56,19 +67,24 @@ class WugongAddEdit extends React.Component {
       title: '签约时间',
       type: 'date',
       required: true
+    }, {
+      field: 'remark',
+      title: '备注'
     }];
-    return this.props.buildDetail({
+    return this.state.companyCode ? this.props.buildDetail({
       fields,
       code: this.code,
       view: this.view,
       addCode: 631400,
+      editCode: 631402,
+      detailCode: 631407,
       onOk: () => {
         this.props.cancelFetching();
         setTimeout(() => {
           this.props.history.go(-1);
         }, 1000);
       }
-    });
+    }) : null;
   }
 }
 

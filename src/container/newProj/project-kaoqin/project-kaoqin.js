@@ -187,7 +187,7 @@ class ProjectKaoqin extends React.Component {
               code: 'export',
               name: '导出',
               handler: (selectedRowKeys, selectedRows) => {
-                fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+                fetch(631395, { projectCode: this.code, limit: 10000, start: 1 }).then((data) => {
                   let tableData = [];
                   let title = [];
                   fields.map((item) => {
@@ -258,7 +258,7 @@ class ProjectKaoqin extends React.Component {
               code: 'export',
               name: '导出',
               handler: (selectedRowKeys, selectedRows) => {
-                fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+                fetch(631395, { projectCode: this.code, limit: 10000, start: 1 }).then((data) => {
                   let tableData = [];
                   let title = [];
                   fields.map((item) => {
@@ -320,7 +320,7 @@ class ProjectKaoqin extends React.Component {
           code: 'export',
           name: '导出',
           handler: (selectedRowKeys, selectedRows) => {
-            fetch(631395, { projectCode: this.projectCode, limit: 10000, start: 1 }).then((data) => {
+            fetch(631395, { projectCode: this.code, limit: 10000, start: 1 }).then((data) => {
               let tableData = [];
               let title = [];
               fields.map((item) => {

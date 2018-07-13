@@ -98,6 +98,13 @@ class ProjectStaffAddedit extends React.Component {
         return d.staff.pict3;
       }
     }, {
+      field: 'pict4',
+      title: '手持身份证照片',
+      type: 'img',
+      formatter: (v, d) => {
+        return d.staff.pict4;
+      }
+    }, {
       field: 'status',
       title: '状态',
       key: 'staff_status',

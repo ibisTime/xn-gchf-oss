@@ -98,12 +98,6 @@ class AllStaffLeaveRecords extends React.Component {
             this.props.history.push(`/staff/allStaff/leaveRecords-detail?code=${selectedRowKeys[0]}`);
           }
         }
-      }, {
-        code: 'goBack',
-        name: '返回',
-        handler: () => {
-          this.props.history.go(-1);
-        }
       }],
       searchParams: {
         staffCode: this.staffCode

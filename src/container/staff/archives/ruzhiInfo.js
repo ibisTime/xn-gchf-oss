@@ -1,12 +1,15 @@
 import React from 'react';
+import fetch from 'common/js/fetch';
 import { Input, Select, Button, Form, DatePicker, Modal, TreeSelect } from 'antd';
 import { getProjectListForO, getBumen } from 'api/project';
-import { getUserDetail, getUserId, ruzhi, getStaffDetail } from 'api/user';
+import { getUserDetail, getUserId, ruzhi, reruzhi, getStaffDetail } from 'api/user';
 import { getDict } from 'api/dict';
 import { getQiniuToken } from 'api/general';
-import { getQueryString, showErrMsg, showWarnMsg, showSucMsg, formatImg } from 'common/js/util';
+import { getQueryString, showErrMsg, showWarnMsg, showSucMsg, formatImg, dateFormat, moneyFormat } from 'common/js/util';
 import { UPLOAD_URL } from 'common/js/config';
 import locale from 'common/js/lib/date-locale';
+import Moment from 'moment';
+
 import './ruzhiInfo.css';
 
 const InputGroup = Input.Group;
@@ -34,13 +37,18 @@ class RuzhiInfo extends React.Component {
       token: '',
       previewImage: '',
       previewVisible: false,
-      staffCode: ''
+      staffCode: '',
+      companyCode: '',
+      defaultProject: '',
+      departmentList: []
     };
     this.handleProjectChange = this.handleProjectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.code = getQueryString('code', this.props.location.search);
     this.idNo = getQueryString('idNo', this.props.location.search);
+    this.reruzhi = getQueryString('reruzhi', this.props.location.search);
+    this.staffCode = getQueryString('staffCode', this.props.location.search);
   }
   componentDidMount() {
     getUserDetail(getUserId()).then((res) => {
@@ -52,12 +60,12 @@ class RuzhiInfo extends React.Component {
         }));
         this.setState({
           projectList: this.projectList,
-          selectProj: this.projectList[0].code
+          selectProj: this.projectList[0].code,
+          companyCode: res.companyCode
         });
       });
     });
     getDict('staff_type').then((res) => {
-      console.log(res);
       this.source = res.map((item) => ({
         type: item.dkey,
         name: item.dvalue
@@ -69,11 +77,42 @@ class RuzhiInfo extends React.Component {
     getQiniuToken().then(data => {
       this.setState({ token: data.uploadToken });
     }).catch(() => {});
-    getStaffDetail(this.idNo).then((res) => {
-      this.setState({
-        staffCode: res.bankCard.staffCode
+    if(this.idNo) {
+      getStaffDetail(this.idNo).then((res) => {
+        this.setState({
+          staffCode: res.bankCard.staffCode
+        });
       });
-    });
+    }
+    if(this.reruzhi) {
+      fetch(631467, { code: this.code }).then((data) => {
+        data.joinDatetime = dateFormat(data.joinDatetime);
+        var formatTime = Moment(data.joinDatetime);// 参数换成毫秒的变量就OK
+        this.props.form.setFieldsValue({
+          projectCode: data.projectName,
+          departmentCode: data.departmentName,
+          position: data.position,
+          joinDatetime: formatTime,
+          cutAmount: data.cutAmount / 1000,
+          salary: data.salary / 1000
+          // type: data.type
+        });
+        this.state.projectList.map((item) => {
+          console.log(item);
+          if(data.projectName === item.name) {
+            getBumen({ projectCode: item.code }).then((data) => {
+              this.setState({
+                departmentList: data
+              });
+              this.getTree(data);
+            });
+          }
+        });
+      });
+      this.setState({
+        defaultProject: <Option>123</Option>
+      });
+    }
   }
   // 员工source change事件
   handleTypeChange(value) {
@@ -92,19 +131,57 @@ class RuzhiInfo extends React.Component {
         console.log(params);
         let format = 'YYYY-MM-DD';
         params.joinDatetime = params.joinDatetime.format(format);
-        // params.contractDatetime = params.contractDatetime.format(format);
-        params.staffCode = this.code || this.state.staffCode;
         params.updater = getUserId();
         params.cutAmount *= 1000;
         params.salary *= 1000;
-        ruzhi(params).then((res) => {
-          if(res.code) {
-            showSucMsg('入职成功！');
-            this.props.history.push(`/staff/jiandang`);
-          } else {
-            showWarnMsg('入职失败！');
-          }
-        });
+        if(this.reruzhi) {
+          params.code = this.code;
+          this.state.projectList.map((item) => {
+            console.log(item);
+            if(params.projectCode === item.name) {
+              params.projectCode = item.code;
+              // console.log(params);
+              // console.log(this.state.departmentList);
+              this.state.departmentList.map((v) => {
+                if(params.departmentCode === v.name) {
+                  params.departmentCode = v.code;
+                }
+              });
+              // console.log(params);
+              reruzhi(params).then((res) => {
+                if(res.isSuccess) {
+                  showSucMsg('重新入职成功！');
+                  this.props.history.push(`/projectStaff/projectStaff`);
+                } else {
+                  showWarnMsg('重新入职失败！');
+                }
+              });
+
+            //   getBumen({ projectCode: item.code }).then((data) => {
+            //     params.departmentCode = data[0].code;
+                // reruzhi(params).then((res) => {
+                //   if(res.isSuccess) {
+                //     showSucMsg('入职成功！');
+                //     this.props.history.push(`/staff/jiandang`);
+                //   } else {
+                //     showWarnMsg('入职失败！');
+                //   }
+                // });
+              // });
+            }
+          });
+        } else {
+          params.staffCode = this.code || this.state.staffCode;
+          params.companyCode = this.state.companyCode;
+          ruzhi(params).then((res) => {
+            if(res.code) {
+              showSucMsg('入职成功！');
+              this.props.history.push(`/staff/jiandang`);
+            } else {
+              showWarnMsg('入职失败！');
+            }
+          });
+        }
       }
     });
   }
@@ -215,15 +292,29 @@ class RuzhiInfo extends React.Component {
                   <div style={{ width: 300, padding: '30px 0', margin: '0 auto' }}>
                     <Form>
                       <div style={{ fontWeight: 700, marginBottom: 10 }}>入职信息</div>
-                      <FormItem>
-                        {getFieldDecorator('projectCode', {
-                          rules: [rule0]
-                        })(
-                          <Select placeholder="请选择项目" onChange={this.handleProjectChange}>
-                            {this.state.projectList.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>)}
-                          </Select>
-                        )}
-                      </FormItem>
+                      {
+                        this.reruzhi
+                            ? (<FormItem>
+                              {getFieldDecorator('projectCode', {
+                                rules: [rule0]
+                              })(
+                                  <Select placeholder="请选择项目" onChange={this.handleProjectChange} disabled>
+                                    {this.state.projectList.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>)}
+                                  </Select>
+                              )}
+                            </FormItem>)
+                            : (
+                                <FormItem>
+                                  {getFieldDecorator('projectCode', {
+                                    rules: [rule0]
+                                  })(
+                                      <Select placeholder="请选择项目" onChange={this.handleProjectChange} defaultValue={this.defaultProject}>
+                                        {this.state.projectList.map((item) => <Option key={item.code} value={item.code}>{item.name}</Option>)}
+                                      </Select>
+                                  )}
+                                </FormItem>
+                            )
+                      }
                       <FormItem>
                         {getFieldDecorator('departmentCode', {
                           rules: [rule0]

@@ -30,6 +30,8 @@ class RuzhiInfo extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.code = getQueryString('code', this.props.location.search);
+    this.ruzhi = getQueryString('ruzhi', this.props.location.search);
+    this.idNo = getQueryString('idNo', this.props.location.search);
   }
   componentDidMount() {
     getZhiHang().then(data => {
@@ -58,7 +60,11 @@ class RuzhiInfo extends React.Component {
         luru(params).then((res) => {
           if(res.isSuccess) {
             showSucMsg('建档成功！');
-            this.props.history.push(`/staff/jiandang`);
+            if(this.ruzhi) {
+              this.props.history.push(`/staff/ruzhiInfo?idNo=${this.idNo}`);
+            } else {
+              this.props.history.push(`/staff/jiandang`);
+            }
           } else {
             showWarnMsg('建档失败！');
           }
