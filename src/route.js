@@ -362,8 +362,16 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/archives/jiandang'))
   },
   {
+    path: '/staff/jiandang1',
+    component: asyncComponent(() => import('container/staff/archives/jiandang1'))
+  },
+  {
     path: '/staff/jiandang/mianguanRead',
     component: asyncComponent(() => import('container/staff/archives/mianguanRead'))
+  },
+  {
+    path: '/staff/jiandang/mianguanRead1',
+    component: asyncComponent(() => import('container/staff/archives/mianguanRead1'))
   },
   {
     path: '/staff/jiandang/idInfoRead',
@@ -378,6 +386,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/staff/archives/luru'))
   },
   {
+    path: '/staff/jiandang/luru1',
+    component: asyncComponent(() => import('container/staff/archives/luru1'))
+  },
+  {
     path: '/staff/ruzhiInfo',
     component: asyncComponent(() => import('container/staff/archives/ruzhiInfo'))
   },
@@ -387,6 +399,10 @@ const ROUTES = [
   {
     path: '/staff/jiandang/idPicture',
     component: asyncComponent(() => import('container/staff/archives/idPicture'))
+  },
+  {
+    path: '/staff/jiandang/idPicture1',
+    component: asyncComponent(() => import('container/staff/archives/idPicture1'))
   },
   {
     path: '/daifa/daifa',
