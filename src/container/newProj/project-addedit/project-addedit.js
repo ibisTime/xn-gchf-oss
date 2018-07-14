@@ -321,7 +321,8 @@ class ProjectAddedit extends React.Component {
     }, {
       field: 'totalSalary',
       title: '累计发薪金额',
-      _keys: ['report', 'totalSalary']
+      _keys: ['report', 'totalSalary'],
+      amount: true
     }, {
       field: 'workingDays',
       title: '累计出工人次',

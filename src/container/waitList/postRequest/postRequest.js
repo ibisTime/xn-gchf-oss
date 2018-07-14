@@ -49,7 +49,7 @@ class PostRequest extends React.Component {
             <Card key={v.code} style={{ width: '100%', padding: '0px', borderColor: 'rgb(153,212,255)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset', marginBottom: '10px' }}>
                 <div style={{ marginBottom: '18px' }}>
                   <span>发件人：</span>
-                  <i style={{ fontStyle: 'normal' }}>{ v.sendName }</i>
+                  <i style={{ fontStyle: 'normal' }}>{ v.sendCompanyProject }</i>
                   <i style={{ fontStyle: 'normal', marginLeft: 20 }}>{ dateTimeFormat(v.sendDatetime) }</i>
                 </div>
                 <div style={{ width: '100%', marginBottom: '20px' }}>

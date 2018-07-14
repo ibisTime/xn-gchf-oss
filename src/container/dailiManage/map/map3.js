@@ -29,20 +29,23 @@ class Map extends React.Component {
     super(props);
     this.state = {
       companyCode: '',
-      projectCodeList: ''
+      projectCodeList: '',
+      userKind: ''
     };
   }
   componentDidMount() {
-    if (getUserKind() === 'S') {
+    let userKind = getUserKind();
+    this.setState({ userKind });
+    if (userKind === 'S') {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
-    };
-    if (getUserKind() === 'O') {
+    }
+    if (userKind === 'O') {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'companyCode': data.companyCode });
       });
-    };
+    }
   }
   render() {
     var btnEvent = {
@@ -209,6 +212,10 @@ class Map extends React.Component {
       }
     };
     const fields = [{
+      field: 'companyName',
+      title: '公司名称',
+      hidden: this.state.userKind !== 'S'
+    }, {
       field: 'projectCode',
       formatter: (v, d) => {
         return d.name;
@@ -291,16 +298,16 @@ class Map extends React.Component {
       }
     };
     if (getUserKind() === 'P') {
-      return this.props.buildList({
+      return this.state.userKind ? this.props.buildList({
         fields,
         btnEvent,
         searchParams: {
           companyCode: ''
         },
         pageCode: 631356
-      });
+      }) : null;
     } else if (getUserKind() === 'O') {
-      return this.state.companyCode ? (<div>{ this.props.buildList({
+      return this.state.companyCode && this.state.userKind ? (<div>{ this.props.buildList({
               fields,
               btnEvent,
               searchParams: {
@@ -316,7 +323,7 @@ class Map extends React.Component {
               options={makeSalaryOptions} />
             </div>) : null;
     } else {
-      return this.state.projectCodeList ? (<div>{ this.props.buildList({
+      return this.state.projectCodeList && this.state.userKind ? (<div>{ this.props.buildList({
         fields,
         btnEvent,
         searchParams: {

@@ -255,6 +255,13 @@ export default class ListComponent extends React.Component {
   }
   getOwnerBtns() {
     getOwnerBtns(this.props.parentCode).then(data => {
+      for (let i = 0; i < data.length - 1; i++) {
+        for (let j = i + 1; j < data.length; j++) {
+          if (+data[i].orderNo > +data[j].orderNo) {
+            [data[i], data[j]] = [data[j], data[i]];
+          }
+        }
+      }
       this.props.setBtnList(data);
     }).catch(() => {});
   }
@@ -325,6 +332,7 @@ export default class ListComponent extends React.Component {
         <div className="table-wrapper">
           <Table
             bordered
+            locale={{emptyText: '暂无数据'}}
             rowSelection={rowSelection}
             columns={this.columns}
             className={this.tableClass}

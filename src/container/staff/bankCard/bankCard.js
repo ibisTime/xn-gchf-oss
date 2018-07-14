@@ -53,6 +53,12 @@ class BankCard extends React.Component {
       field: 'staffName',
       title: '真实姓名'
     }, {
+      field: 'companyName',
+      title: '公司名称'
+    }, {
+      field: 'projectName',
+      title: '项目名称'
+    }, {
       field: 'bankNames',
       title: '开户行',
       formatter: (v, d) => {
@@ -61,13 +67,6 @@ class BankCard extends React.Component {
     }, {
       field: 'bankcardNumber',
       title: '银行账户'
-    }, {
-      field: 'updateName',
-      title: '更新人'
-    }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime'
     }, {
       field: 'remark',
       title: '备注'

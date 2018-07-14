@@ -122,9 +122,6 @@ class Daifa extends React.Component {
         title: '标题',
         required: true,
         maxlength: 30
-      }, {
-        field: 'sendNote',
-        title: '发送说明'
       }],
       addCode: 631430,
       onOk: () => {

@@ -63,6 +63,12 @@ class BankCardAddEdit extends React.Component {
       title: '真实姓名',
       readonly: true
     }, {
+      field: 'companyName',
+      title: '公司名称'
+    }, {
+      field: 'projectName',
+      title: '项目名称'
+    }, {
       field: 'bankName',
       title: '银行名称',
       formatter: (v, d) => {
@@ -72,15 +78,6 @@ class BankCardAddEdit extends React.Component {
       field: 'subbranch',
       title: '开户支行',
       required: true
-    }, {
-      field: 'updateDatetime',
-      title: '更新时间',
-      type: 'datetime',
-      readonly: true
-    }, {
-      field: 'updateName',
-      title: '更新人',
-      readonly: true
     }, {
       field: 'remark',
       title: '备注'

@@ -35,7 +35,8 @@ class PostRequestAddedit extends React.Component {
       sendDatetime: '',
       fileList: [],
       backDownload: '',
-      title: ''
+      title: '',
+      companyName: ''
     };
   }
   componentDidMount() {
@@ -49,7 +50,8 @@ class PostRequestAddedit extends React.Component {
         download: data.download,
         backDownload: data.backDownload,
         title: data.title,
-        accountName: data.companyCard.accountName
+        accountName: data.companyCard.accountName,
+        companyName: data.companyCard.companyName
       });
     });
   }
@@ -90,7 +92,7 @@ class PostRequestAddedit extends React.Component {
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-      XLSX.writeFile(wb, 'sheetjs.xlsx');
+      XLSX.writeFile(wb, this.state.projectName + '-' + this.state.title + '.xlsx');
     }, () => { });
   }
   goBack() {
@@ -183,6 +185,8 @@ class PostRequestAddedit extends React.Component {
       <div>
         <Card style={{ width: '100%', borderColor: 'rgba(153,212,255,0.6)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset' }}>
           <p style={{ fontSize: '16px' }}>{this.state.title + '工资'}</p>
+          <p>公司名称：{this.state.companyName}</p>
+          <p>项目名称：{this.state.projectName}</p>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.accountName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>

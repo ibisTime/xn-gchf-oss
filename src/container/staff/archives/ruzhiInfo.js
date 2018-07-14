@@ -1,7 +1,7 @@
 import React from 'react';
 import fetch from 'common/js/fetch';
 import { Input, Select, Button, Form, DatePicker, Modal, TreeSelect } from 'antd';
-import { getProjectListForO, getBumen } from 'api/project';
+import { getProjectListForO, getBumen, getZhiHang } from 'api/project';
 import { getUserDetail, getUserId, ruzhi, reruzhi, getStaffDetail } from 'api/user';
 import { getDict } from 'api/dict';
 import { getQiniuToken } from 'api/general';
@@ -40,7 +40,9 @@ class RuzhiInfo extends React.Component {
       staffCode: '',
       companyCode: '',
       defaultProject: '',
-      departmentList: []
+      departmentList: [],
+      zhihang: [],
+      bank: []
     };
     this.handleProjectChange = this.handleProjectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -65,6 +67,11 @@ class RuzhiInfo extends React.Component {
         });
       });
     });
+    getZhiHang().then((res) => {
+      this.setState({
+        zhihang: res
+      });
+    });
     getDict('staff_type').then((res) => {
       this.source = res.map((item) => ({
         type: item.dkey,
@@ -80,7 +87,7 @@ class RuzhiInfo extends React.Component {
     if(this.idNo) {
       getStaffDetail(this.idNo).then((res) => {
         this.setState({
-          staffCode: res.bankCard.staffCode
+          staffCode: res.code
         });
       });
     }
@@ -134,6 +141,15 @@ class RuzhiInfo extends React.Component {
         params.updater = getUserId();
         params.cutAmount *= 1000;
         params.salary *= 1000;
+        console.log(params.subbranch);
+        console.log(this.state.bank);
+        this.state.zhihang.map((item) => {
+          if(params.subbranch === item.code) {
+            params.bankCode = item.bankCode;
+            params.bankName = item.bankName;
+            params.subbranch = item.subbranchName;
+          };
+        });
         if(this.reruzhi) {
           params.code = this.code;
           this.state.projectList.map((item) => {
@@ -364,6 +380,20 @@ class RuzhiInfo extends React.Component {
                         )}
                         <span>元</span>
                       </FormItem>
+                      <div style={{ fontWeight: 700, marginBottom: 10 }}>银行卡信息（选填）</div>
+                      <FormItem>
+                        {getFieldDecorator('subbranch')(
+                            <Select placeholder="请选择开户行" allowClear>
+                              {this.state.zhihang.map((item) => <Option key={item.code} value={item.code}>{item.bankSubbranchName}</Option>)}
+                            </Select>
+                        )}
+                      </FormItem>
+                      <FormItem>
+                        {getFieldDecorator('bankcardNumber')(
+                            <Input placeholder="请输入银行卡号"/>
+                        )}
+                      </FormItem>
+
                       <div style={{ fontWeight: 700, marginBottom: 10 }}>员工来源</div>
                       <FormItem>
                         {getFieldDecorator('type', {

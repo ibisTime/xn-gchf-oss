@@ -13,7 +13,6 @@ import { getQueryString, showSucMsg, formatDate, getUserKind } from 'common/js/u
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail } from 'api/user';
-// 不用
 @DetailWrapper(
   state => state.staffAllStaffAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
@@ -140,24 +139,20 @@ class AllStaffAddEdit extends React.Component {
       title: '联系方式',
       required: true
     }, {
+      field: 'contacts',
+      title: '紧急联系人',
+      required: true
+    }, {
+      field: 'contactsMobile',
+      title: '紧急联系人联系方式',
+      required: true
+    }, {
       field: 'idNo',
       title: '证件号',
       required: true
     }, {
       field: 'idAddress',
       title: '身份证上籍贯'
-    }, {
-      field: 'bankName1',
-      title: '开户行',
-      formatter: (v, d) => {
-        return d.bankCard.bankName + d.bankCard.subbranch;
-      }
-    }, {
-      field: 'bankcardNumber1',
-      title: '银行账户',
-      formatter: (v, d) => {
-        return d.bankCard.bankcardNumber;
-      }
     }, {
       field: 'pict1',
       title: '免冠照片',

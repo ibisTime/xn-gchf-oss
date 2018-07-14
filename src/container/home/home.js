@@ -291,9 +291,7 @@ class Home extends React.Component {
   getSalary(code) {
     let projectCode = code;
     let moneyLine = [];
-    console.log(projectCode);
     getTotalSalary(projectCode).then((data) => {
-      console.log(data);
       moneyLine = data.map((item) => ({
         month: item.month,
         value: moneyFormat(item.totalSalary)
@@ -301,7 +299,6 @@ class Home extends React.Component {
       this.setState({
         moneyLine: moneyLine
       });
-      console.log(moneyLine);
     });
   }
   getMarkerTmpl(item) {

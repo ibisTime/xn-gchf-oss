@@ -162,7 +162,13 @@ function createMenus(newList, result) {
 
 function sortSubMenus(result) {
   for (let key in result.top2SubObj) {
-    result.top2SubObj[key].sort((a, b) => +a.orderNo > +b.orderNo);
+    for (let i = 0; i < result.top2SubObj[key].length - 1; i++) {
+      for (let j = i + 1; j < result.top2SubObj[key].length; j++) {
+        if (+result.top2SubObj[key][i].orderNo > +result.top2SubObj[key][j].orderNo) {
+          [result.top2SubObj[key][i], result.top2SubObj[key][j]] = [result.top2SubObj[key][j], result.top2SubObj[key][i]];
+        }
+      }
+    }
   }
 }
 

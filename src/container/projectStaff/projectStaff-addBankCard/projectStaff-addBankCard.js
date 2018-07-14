@@ -26,6 +26,7 @@ class ProjectStaffAddBankCard extends React.Component {
     this.code = getQueryString('code', this.props.location.search);
     this.name = getQueryString('name', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
   componentDidMount() {
     if (getUserKind() === 'S') {
@@ -65,6 +66,7 @@ class ProjectStaffAddBankCard extends React.Component {
         params.staffName = this.name;
         params.staffCode = this.staffCode;
         params.companyCode = this.state.companyCode;
+        params.projectCode = this.projectCode;
         for (let i = 0; i < this.props.selectData.bankSubbranchName.length; i++) {
           console.log(params.bankName);
           console.log(this.props.selectData.bankSubbranchName[i]);

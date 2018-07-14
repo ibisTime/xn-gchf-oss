@@ -32,6 +32,8 @@ class ProjectStaff extends React.Component {
     };
   }
   componentDidMount() {
+    let userKind = getUserKind();
+    this.setState({ userKind });
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
@@ -45,6 +47,10 @@ class ProjectStaff extends React.Component {
   }
   render() {
     const fields = [{
+      field: 'companyName',
+      title: '公司名称',
+      hidden: this.state.userKind !== 'S'
+    }, {
       field: 'staffName',
       title: '姓名'
     }, {
@@ -127,9 +133,9 @@ class ProjectStaff extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           if(selectedRows[0].staff.bankCard) {
-            this.props.history.push(`/projectStaff/projectStaff/addBankCard?staffCode=${selectedRows[0].staffCode}&code=${selectedRows[0].staff.bankCard.code || ''}&name=${selectedRows[0].staff.name}`);
+            this.props.history.push(`/projectStaff/projectStaff/addBankCard?staffCode=${selectedRows[0].staffCode}&code=${selectedRows[0].staff.bankCard.code || ''}&name=${selectedRows[0].staff.name}&projectCode=${selectedRows[0].projectCode}`);
           } else {
-            this.props.history.push(`/projectStaff/projectStaff/addBankCard?staffCode=${selectedRows[0].staffCode}&name=${selectedRows[0].staff.name}`);
+            this.props.history.push(`/projectStaff/projectStaff/addBankCard?staffCode=${selectedRows[0].staffCode}&name=${selectedRows[0].staff.name}&projectCode=${selectedRows[0].projectCode}`);
           }
         }
       },
@@ -153,7 +159,7 @@ class ProjectStaff extends React.Component {
       }
     };
     if (getUserKind() === 'O') {
-      return this.state.companyCode ? this.props.buildList({
+      return this.state.companyCode && this.state.userKind ? this.props.buildList({
         fields,
         btnEvent,
         searchParams: {
@@ -164,14 +170,14 @@ class ProjectStaff extends React.Component {
         pageCode: 631465
       }) : null;
     } else {
-      return this.props.buildList({
+      return this.state.userKind ? this.props.buildList({
         fields,
         btnEvent,
         searchParams: {
           updater: ''
         },
         pageCode: 631465
-      });
+      }) : null;
     }
   }
 }

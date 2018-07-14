@@ -117,7 +117,6 @@ export function reruzhi(info) {
 
 // 详情查务工人员
 export function getStaffDetail(code) {
-  console.log(code);
   return fetch(631418, {
     idNo: code
   });

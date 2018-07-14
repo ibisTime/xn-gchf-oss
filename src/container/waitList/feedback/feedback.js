@@ -49,7 +49,7 @@ class FeedBack extends React.Component {
             <Card key={v.code} style={{ width: '100%', height: '132px', padding: '0px', borderColor: 'rgb(206,234,252)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset', marginBottom: '10px' }}>
               <div style={{ marginBottom: '10px' }}>
                 <span style={{ fontSize: '14px' }}>发件人：</span>
-                <i style={{ fontStyle: 'normal' }}>{ v.sendName }</i>
+                <i style={{ fontStyle: 'normal' }}>{ v.sendCompanyProject }</i>
                 <i style={{ fontStyle: 'normal', marginLeft: 20, color: '#999' }}>{ dateTimeFormat(v.sendDatetime) }</i>
               </div>
               <div style={{ width: '100%', marginBottom: '10px' }}>

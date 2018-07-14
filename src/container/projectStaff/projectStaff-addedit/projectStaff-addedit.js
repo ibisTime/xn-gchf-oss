@@ -57,6 +57,18 @@ class ProjectStaffAddedit extends React.Component {
         return d.staff.mobile;
       }
     }, {
+      field: 'contacts',
+      title: '紧急联系人',
+      formatter: (v, d) => {
+        return d.staff.contacts;
+      }
+    }, {
+      field: 'contactsMobile',
+      title: '紧急联系人手机号',
+      formatter: (v, d) => {
+        return d.staff.contactsMobile;
+      }
+    }, {
       field: 'companyName',
       title: '公司名'
     }, {

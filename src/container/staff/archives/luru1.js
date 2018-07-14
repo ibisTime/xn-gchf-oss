@@ -39,8 +39,8 @@ class RuzhiInfo extends React.Component {
         mobile: res.mobile,
         contacts: res.contacts,
         contactsMobile: res.contactsMobile,
-        bankcardNumber: res.bankCard.bankcardNumber,
-        subbranch: res.bankCard.bankSubbranchName,
+        // bankcardNumber: res.bankCard.bankcardNumber,
+        // subbranch: res.bankCard.bankSubbranchName,
         remark: res.remark
       });
     });
@@ -83,7 +83,6 @@ class RuzhiInfo extends React.Component {
     });
   }
   mobileChange = (e) => {
-    console.log(e.target);
     this.setState({
       mobile: e.target.value
     });
@@ -137,19 +136,6 @@ class RuzhiInfo extends React.Component {
                         rules: [rule1]
                       })(
                           <Input placeholder="请输入紧急联系人手机号" disabled/>
-                      )}
-                    </FormItem>
-                    <div style={{ fontWeight: 700, marginBottom: 10 }}>银行卡信息（选填）</div>
-                    <FormItem>
-                      {getFieldDecorator('subbranch')(
-                          <Select placeholder="请选择开户行" allowClear disabled>
-                            {this.state.zhihang.map((item) => <Option key={item.code} value={item.code}>{item.bankSubbranchName}</Option>)}
-                          </Select>
-                      )}
-                    </FormItem>
-                    <FormItem>
-                      {getFieldDecorator('bankcardNumber')(
-                          <Input placeholder="请输入银行卡号" disabled/>
                       )}
                     </FormItem>
                     <div style={{ fontWeight: 700, marginBottom: 10 }}>备注（选填）</div>

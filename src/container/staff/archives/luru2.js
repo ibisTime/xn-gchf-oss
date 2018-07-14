@@ -35,12 +35,11 @@ class RuzhiInfo extends React.Component {
       this.setState({ zhihang: data });
     }).catch(() => {});
     getStaffDetail(this.idNo).then((res) => {
+      console.log(res);
       this.props.form.setFieldsValue({
         mobile: res.mobile,
         contacts: res.contacts,
         contactsMobile: res.contactsMobile,
-        bankcardNumber: res.bankCard.bankcardNumber,
-        subbranch: res.bankCard.bankSubbranchName,
         remark: res.remark
       });
     });
@@ -53,7 +52,34 @@ class RuzhiInfo extends React.Component {
   }
   // 最终提交
   handleSubmit() {
-    this.props.history.push(`/staff/allStaff?ruzhi=${this.ruzhi}&idNo=${this.idNo}`);
+    this.props.form.validateFieldsAndScroll((err, params) => {
+      if (!err) {
+        console.log(params);
+        params.code = this.code;
+        params.updater = getUserId();
+        console.log(params.subbranch);
+        console.log(this.state.zhihang);
+        if(params.subbranch) {
+          this.state.zhihang.map((item) => {
+            if(params.subbranch === item.code || params.subbranch === item.bankSubbranchName) {
+              params.bankName = item.bankName;
+              params.bankCode = item.bankCode;
+            }
+            if(params.subbranch === item.bankSubbranchName) {
+              params.subbranch = item.code;
+            }
+          });
+        }
+        luru(params).then((res) => {
+          if(res.isSuccess) {
+            showSucMsg('重新建档成功！');
+            this.props.history.push(`/staff/allStaff`);
+          } else {
+            showWarnMsg('重新建档失败！');
+          }
+        });
+      }
+    });
   }
   setUploadFileUrl(fileList) {
     fileList.forEach(f => {
@@ -137,19 +163,6 @@ class RuzhiInfo extends React.Component {
                         rules: [rule1]
                       })(
                           <Input placeholder="请输入紧急联系人手机号"/>
-                      )}
-                    </FormItem>
-                    <div style={{ fontWeight: 700, marginBottom: 10 }}>银行卡信息（选填）</div>
-                    <FormItem>
-                      {getFieldDecorator('subbranch')(
-                          <Select placeholder="请选择开户行" allowClear>
-                            {this.state.zhihang.map((item) => <Option key={item.code} value={item.code}>{item.bankSubbranchName}</Option>)}
-                          </Select>
-                      )}
-                    </FormItem>
-                    <FormItem>
-                      {getFieldDecorator('bankcardNumber')(
-                          <Input placeholder="请输入银行卡号"/>
                       )}
                     </FormItem>
                     <div style={{ fontWeight: 700, marginBottom: 10 }}>备注（选填）</div>
