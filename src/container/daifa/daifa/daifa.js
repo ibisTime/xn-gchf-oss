@@ -54,18 +54,12 @@ class Daifa extends React.Component {
       title: '项目编号',
       hidden: true
     }, {
+      field: 'companyName',
+      title: '公司名称',
+      hidden: getUserKind() === 'O'
+    }, {
       field: 'projectName',
       title: '工程名称'
-      // type: 'select',
-      // search: true,
-      // listCode: '631357',
-      // params: {
-      //   updater: '',
-      //   kind: 'O',
-      //   companyCode: this.state.companyCode
-      // },
-      // keyName: 'code',
-      // valueName: 'name'
     }, {
       field: 'bankNames',
       title: '开户行',

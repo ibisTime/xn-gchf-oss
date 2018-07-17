@@ -1,6 +1,5 @@
 import React from 'react';
-import { Timeline, Button, Card, Input, Divider, List, Avatar, Table } from 'antd';
-import fetch from 'common/js/fetch';
+import { Button, Input, Divider, List, Avatar, Table } from 'antd';
 import { getQueryString, showSucMsg, showWarnMsg, formatDate, getUserKind, getUserId, formatImg, moneyFormat } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
@@ -22,7 +21,7 @@ class AllStaffAddEdit extends React.Component {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList, 'companyCode': data.companyCode });
       });
-    };
+    }
     getDict('salary_status').then((res) => {
       res.map((item) => {
         this.state.salaryStatus[item.dkey] = item.dvalue;
@@ -31,10 +30,6 @@ class AllStaffAddEdit extends React.Component {
     getDict('staff_status').then((res) => {
       res.map((item) => {
         this.state.staffStatus[item.dkey] = item.dvalue;
-        // this.staffStatus.push({
-        //   key: item.dkey,
-        //   value: item.dvalue
-        // });
       });
     });
   }
