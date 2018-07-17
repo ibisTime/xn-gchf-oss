@@ -62,7 +62,7 @@ class BankCard extends React.Component {
       field: 'bankNames',
       title: '开户行',
       formatter: (v, d) => {
-        return d.bankName + d.subbranch;
+        return d.bankName && d.subbranch ? d.bankName + d.subbranch : '';
       }
     }, {
       field: 'bankcardNumber',
@@ -80,7 +80,10 @@ class BankCard extends React.Component {
     if (getUserKind() === 'O') {
       return this.state.companyCode ? this.props.buildList({
         fields,
-        pageCode: 631425
+        pageCode: 631425,
+        searchParams: {
+          companyCode: this.state.companyCode
+        }
       }) : null;
     } else if (getUserKind() === 'S') {
       return this.state.projectCodeList ? this.props.buildList({

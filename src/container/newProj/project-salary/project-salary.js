@@ -134,19 +134,43 @@ class Salary extends React.Component {
     };
     const makeSalaryOptions = {
       fields: [{
+        field: 'projectCode',
+        title: '项目',
+        type: 'select',
+        search: true,
+        listCode: '631357',
+        params: {
+          updater: '',
+          kind: 'O',
+          companyCode: this.state.companyCode
+        },
+        keyName: 'code',
+        valueName: 'name',
+        required: true
+      }, {
         field: 'month',
         title: '生成工资月份',
         type: 'month',
         required: true
       }],
       addCode: 631440,
-      beforeSubmit: (param) => {
-        param.projectCode = this.projectCode;
-        return param;
-      },
-      onOk: () => {
-        this.props.getPageData();
-      }
+      buttons: [{
+        title: '确认',
+        check: true,
+        handler: (params, doFetching, cancelFetching, handleCancelModal) => {
+          doFetching();
+          fetch(631440, params).then((res) => {
+            cancelFetching();
+            if (res.salaryNumber !== '0') {
+              showSucMsg('操作成功');
+            } else {
+              showWarnMsg('该条件下没有可生成的工资条');
+            }
+            this.props.getPageData();
+            handleCancelModal();
+          }).catch(cancelFetching);
+        }
+      }]
     };
     if (getUserKind() === 'O') {
       return this.state.companyCode ? (

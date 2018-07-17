@@ -70,10 +70,10 @@ class BankCardAddEdit extends React.Component {
       title: '项目名称'
     }, {
       field: 'bankName',
-      title: '银行名称',
-      formatter: (v, d) => {
-        return d.bankName + '(' + d.bankcardNumber + ')';
-      }
+      title: '银行名称'
+    }, {
+      field: 'bankcardNumber',
+      title: '银行卡号'
     }, {
       field: 'subbranch',
       title: '开户支行',

@@ -143,6 +143,7 @@ class RuzhiInfo extends React.Component {
         params.salary *= 1000;
         console.log(params.subbranch);
         console.log(this.state.bank);
+        params.staffCode = this.state.staffCode || '';
         this.state.zhihang.map((item) => {
           if(params.subbranch === item.code) {
             params.bankCode = item.bankCode;

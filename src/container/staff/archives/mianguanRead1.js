@@ -62,6 +62,8 @@ class mianguanRead extends React.Component {
           this.setState({
             next: true
           });
+        } else {
+          this.code = res.code;
         }
       });
   };
@@ -170,7 +172,7 @@ class mianguanRead extends React.Component {
     if(this.state.next) {
       this.props.history.push(`/staff/jiandang/idPicture1?ruzhi=${this.ruzhi}&idNo=${this.idNo}`);
     } else {
-      this.props.history.push(`/staff/jiandang/idPicture?ruzhi=${this.ruzhi}&code=${this.code}`);
+      this.props.history.push(`/staff/jiandang/idPicture?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
     }
     // var info = {};
     // if (this.state.feat) {

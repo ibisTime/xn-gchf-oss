@@ -50,6 +50,8 @@ class mianguanRead extends React.Component {
           this.setState({
             next: true
           });
+        } else {
+          this.code = res.code;
         }
       });
   };
@@ -259,7 +261,7 @@ class mianguanRead extends React.Component {
     idPicture3(info).then((res) => {
         if(res.isSuccess) {
             showSucMsg('提交成功');
-            this.props.history.push(`/staff/jiandang/luru?ruzhi=${this.ruzhi}&code=${this.code}`);
+            this.props.history.push(`/staff/jiandang/luru?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
         }
     });
     console.log(this.state);

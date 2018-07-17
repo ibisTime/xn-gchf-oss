@@ -99,7 +99,7 @@ class Jiandang extends React.Component {
     // 获取身份证信息
     getCard (e) {
         e.preventDefault();
-        document.getElementById('getCard').setAttribute('disabled', true);
+        document.getElementById('nextBtn').setAttribute('disabled', true);
         this.setState({ spanText: '读取中...' });
         jsonp('http://127.0.0.1:9081/readidcard')
         .then((data) => {
@@ -141,6 +141,7 @@ class Jiandang extends React.Component {
                   next: true
                 });
               }
+              document.getElementById('nextBtn').removeAttribute('disabled');
             });
             // let val = /^data:image/.test(data.idPic) ? data.idPic : 'data:image/bmp;base64,' + data.idPic;
             // this.setState({
@@ -370,7 +371,7 @@ class Jiandang extends React.Component {
                                     )}
                                 </FormItem>
                                 <FormItem key='btns' {...tailFormItemLayout}>
-                                    <Button type="primary" htmlType="submit" onClick={this.handleSubmit} >下一步</Button>
+                                    <Button type="primary" htmlType="submit" id="nextBtn" onClick={this.handleSubmit} >下一步</Button>
                                 </FormItem>
                             </Form>
                         </div>

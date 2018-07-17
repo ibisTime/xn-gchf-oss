@@ -34,6 +34,7 @@ class AlreadyQuestAddedit extends React.Component {
       download: '',
       projectName: '',
       sendDatetime: '',
+      status: '',
       backDownload: '',
       title: '',
       companyName: ''
@@ -48,6 +49,7 @@ class AlreadyQuestAddedit extends React.Component {
         bankName: data.bankName,
         projectName: data.projectName,
         sendDatetime: data.sendDatetime,
+        status: data.status,
         download: data.download,
         backDownload: data.backDownload,
         title: data.title,
@@ -127,7 +129,7 @@ class AlreadyQuestAddedit extends React.Component {
         <Card style={{ width: '100%', borderColor: 'rgba(153,212,255,0.6)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset' }}>
           <p style={{ fontSize: '16px' }}>{this.state.title + '工资'}</p>
           <p>公司名称：{this.state.companyName}</p>
-          <p>项目名称：{this.state.projectName}</p>
+          <p style={{ marginRight: '20px' }}>项目名称：{this.state.projectName}</p>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.accountName}</p>
           <p>代发账户账号：{this.state.bankcardNumber}</p>
@@ -142,8 +144,13 @@ class AlreadyQuestAddedit extends React.Component {
           <div style={{ width: '92px', height: '92px', border: '1px solid #99d4ff', borderRadius: '4px', display: 'inline-block', padding: '22px 25px', marginRight: '26px' }}>
            <img src={require('./ziliao.png')} ></img>
           </div>
-          <Button onClick={this.handleExport1} type="primary" style={{ marginBottom: '12px', position: 'relative', top: '-20px', left: '0px' }}>点击下载</Button>
-          <span style={{ position: 'relative', left: '-70px', top: '20px', fontSize: '12px', color: '#999' }}>下载次数{this.state.backDownload}</span>
+          <div style={{ position: 'relative' }}>
+            { this.state.status !== '2'
+              ? <Button onClick={this.handleExport1} type="primary" style={{ position: 'absolute', top: '-77px', left: '116px' }}>点击下载</Button>
+                : ''
+            }
+            <span style={{ position: 'absolute', left: '132px', top: '-32px', fontSize: '12px', color: '#999' }}>下载次数{this.state.backDownload}</span>
+          </div>
         </Card>
         <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20 }}>返回</Button>
       </div>
