@@ -101,16 +101,15 @@ class RuzhiInfo extends React.Component {
           position: data.position,
           joinDatetime: formatTime,
           cutAmount: data.cutAmount / 1000,
-          salary: data.salary / 1000
+          salary: data.salary / 1000,
+          subbranch: data.bankCard.bankSubbranchName,
+          bankcardNumber: data.bankCard.bankcardNumber
           // type: data.type
         });
         this.state.projectList.map((item) => {
-          console.log(item);
           if(data.projectName === item.name) {
             getBumen({ projectCode: item.code }).then((data) => {
-              this.setState({
-                departmentList: data
-              });
+              this.setState({ departmentList: data });
               this.getTree(data);
             });
           }
@@ -135,17 +134,14 @@ class RuzhiInfo extends React.Component {
     // };
     this.props.form.validateFieldsAndScroll((err, params) => {
       if (!err) {
-        console.log(params);
         let format = 'YYYY-MM-DD';
         params.joinDatetime = params.joinDatetime.format(format);
         params.updater = getUserId();
         params.cutAmount *= 1000;
         params.salary *= 1000;
-        console.log(params.subbranch);
-        console.log(this.state.bank);
         params.staffCode = this.state.staffCode || '';
         this.state.zhihang.map((item) => {
-          if(params.subbranch === item.code) {
+          if(params.subbranch === item.code || params.subbranch === item.bankSubbranchName) {
             params.bankCode = item.bankCode;
             params.bankName = item.bankName;
             params.subbranch = item.subbranchName;
@@ -154,11 +150,8 @@ class RuzhiInfo extends React.Component {
         if(this.reruzhi) {
           params.code = this.code;
           this.state.projectList.map((item) => {
-            console.log(item);
             if(params.projectCode === item.name) {
               params.projectCode = item.code;
-              // console.log(params);
-              // console.log(this.state.departmentList);
               this.state.departmentList.map((v) => {
                 if(params.departmentCode === v.name) {
                   params.departmentCode = v.code;
@@ -173,18 +166,6 @@ class RuzhiInfo extends React.Component {
                   showWarnMsg('重新入职失败！');
                 }
               });
-
-            //   getBumen({ projectCode: item.code }).then((data) => {
-            //     params.departmentCode = data[0].code;
-                // reruzhi(params).then((res) => {
-                //   if(res.isSuccess) {
-                //     showSucMsg('入职成功！');
-                //     this.props.history.push(`/staff/jiandang`);
-                //   } else {
-                //     showWarnMsg('入职失败！');
-                //   }
-                // });
-              // });
             }
           });
         } else {
@@ -221,14 +202,14 @@ class RuzhiInfo extends React.Component {
       }).filter(v => v).join('||');
     }
     return '';
-  }
+  };
   handleCancel = () => this.setState({ previewVisible: false })
   handlePreview = (file) => {
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true
     });
-  }
+  };
   // 项目change事件
   handleProjectChange(projectCode) {
     this.props.form.setFieldsValue({ departmentCode: '' });

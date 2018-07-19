@@ -204,7 +204,7 @@ class PostRequestAddedit extends React.Component {
               <Icon type="upload" /> 选择文件
             </Button>
           </Upload>
-          <Button style={{ marginTop: 10 }} type="primary" onClick={this.postRequest1}>上传</Button>
+          <Button style={{ marginTop: 10 }} type="primary" onClick={this.postRequest1} >上传</Button>
         </Card>
         <Button onClick={this.goBack.bind(this)} style={{ marginTop: 20 }}>返回</Button>
       </div>

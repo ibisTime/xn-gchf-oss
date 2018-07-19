@@ -150,7 +150,8 @@ class Salary extends React.Component {
         params: {
           updater: '',
           kind: 'O',
-          companyCode: this.state.companyCode
+          companyCode: this.state.companyCode,
+          status: '3'
         },
         keyName: 'code',
         valueName: 'name',

@@ -28,13 +28,21 @@ class AllStaff extends React.Component {
     super(props);
     this.state = {
       pageCode: null,
-      searchParams: null
+      searchParams: null,
+      province: null,
+      city: null,
+      area: null
     };
   }
   componentDidMount() {
     if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'projectCodeList': data.projectCodeList });
+        this.setState({
+          projectCodeList: data.projectCodeList,
+          province: data.province,
+          city: data.city,
+          area: data.area
+        });
       });
     };
     if (getUserKind() === 'O') {
@@ -167,6 +175,18 @@ class AllStaff extends React.Component {
           updater: '',
           kind: 'O',
           companyCode: this.state.companyCode
+        },
+        pageCode: 631415
+      }) : null;
+    } else if(getUserKind() === 'S') {
+      return this.state.province && this.state.city && this.state.area ? this.props.buildList({
+        fields,
+        btnEvent,
+        searchParams: {
+          updater: '',
+          province: this.state.province,
+          city: this.state.city,
+          area: this.state.area
         },
         pageCode: 631415
       }) : null;
