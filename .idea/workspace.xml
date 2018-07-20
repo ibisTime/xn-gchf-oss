@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e080e660-c086-40ba-9e59-45752f881dfd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/lib/listComp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/lib/listComp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/menu-addedit/menu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/menu-addedit/menu-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/menu/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/menu/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/role/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/role/role.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" afterDir="false" />
-    </list>
+    <list default="true" id="e080e660-c086-40ba-9e59-45752f881dfd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -67,18 +56,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="role.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/security/role/role.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="menu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/menu.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -121,11 +98,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="allStaff.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="allStaff.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+            <state relative-caret-position="419">
+              <caret line="77" column="22" lean-forward="true" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/api/test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -136,6 +122,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -187,7 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/container/newProj/project-weekday/project-weekday.js" />
         <option value="$PROJECT_DIR$/src/container/newProj/project-quit/project-quit.js" />
         <option value="$PROJECT_DIR$/src/container/staff/allStaff-leaveRecords/allStaff-leaveRecords.js" />
         <option value="$PROJECT_DIR$/src/container/staff/leaveRecords-detail/leaveRecords-detail.js" />
@@ -238,6 +224,7 @@
         <option value="$PROJECT_DIR$/src/api/menu.js" />
         <option value="$PROJECT_DIR$/src/common/js/lib/listComp.js" />
         <option value="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" />
+        <option value="$PROJECT_DIR$/src/api/test.js" />
       </list>
     </option>
   </component>
@@ -282,145 +269,7 @@
               <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
               <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="hetong" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="newProj" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="newProj" type="462c0819:PsiDirectoryNode" />
-              <item name="project-salary" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="projectStaff" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="projectStaff" type="462c0819:PsiDirectoryNode" />
-              <item name="projectStaff-addBankCard" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
-              <item name="menu-addedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
-              <item name="role" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
-              <item name="role-menu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="staff" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="staff" type="462c0819:PsiDirectoryNode" />
-              <item name="allStaff" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="hetong" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="staff" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="waitList" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -503,12 +352,12 @@
       <workItem from="1531878659710" duration="3691000" />
       <workItem from="1531902038649" duration="2167000" />
       <workItem from="1531962225844" duration="10554000" />
-      <workItem from="1532048760794" duration="6744000" />
+      <workItem from="1532048760794" duration="7015000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268935000" />
+    <option name="totallyTimeSpent" value="269206000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1440" height="796" extended-state="0" />
@@ -545,13 +394,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/container/dailiManage/map/map3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="123" column="47" selection-start-line="123" selection-start-column="47" selection-end-line="123" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
@@ -903,8 +745,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+        <state relative-caret-position="419">
+          <caret line="77" column="22" lean-forward="true" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
         </state>
       </provider>
     </entry>
