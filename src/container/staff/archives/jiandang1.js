@@ -27,20 +27,19 @@ class Jiandang extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          realName: '',
-          sex: '',
-          idNation: '',
-          birthday: '',
-          idNo: '',
-          idAddress: '',
-          idStartDate: '',
-          idEndDate: '',
-          idPolice: '',
-          idPic: '',
-          spanText: '',
-          spanTi: '',
-          next: false,
-          new: false
+            'realName': '',
+            'sex': '',
+            'idNation': '',
+            'birthday': '',
+            'idNo': '',
+            'idAddress': '',
+            'idStartDate': '',
+            'idEndDate': '',
+            'idPolice': '',
+            'idPic': '',
+            'spanText': '',
+            'spanTi': '',
+            'next': false
         };
         this.openVideo = this.openVideo.bind(this);
         this.getCard = this.getCard.bind(this);
@@ -137,9 +136,6 @@ class Jiandang extends React.Component {
               idPolice: this.state.idPolice
             });
             getStaffDetail(this.state.idNo).then((res) => {
-              if(!res.idNo) {
-                this.setState({ new: true });
-              }
               if(res.pic1 || res.pict1) {
                 this.setState({
                   next: true
@@ -164,7 +160,6 @@ class Jiandang extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if(this.state.next) {
-          showSucMsg('您已建过档');
           this.props.history.push(`/staff/jiandang/mianguanRead1?ruzhi=1&pict1=true&idNo=${this.state.idNo}`);
           return;
         }
@@ -185,11 +180,7 @@ class Jiandang extends React.Component {
                     this.companyCode
                     ).then((res) => {
                         if(res.code) {
-                            if(this.state.new) {
-                              showSucMsg('建档成功');
-                            } else {
-                              showSucMsg('您已建过档');
-                            }
+                            showSucMsg('建档成功');
                             setTimeout(() => {
                                 this.props.history.push(`/staff/jiandang/mianguanRead?ruzhi=1&code=${res.code}&idNo=${this.state.idNo}`);
                             }, 300);

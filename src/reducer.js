@@ -58,6 +58,7 @@ import { hetongJinduAddEdit } from './redux/hetong/jindu-addedit';
 import { hetongWugong } from './redux/hetong/wugong';
 import { hetongWugongAddEdit } from './redux/hetong/wugong-addedit';
 import { hetongWugongEdit } from './redux/hetong/wugong-edit';
+import { hetongStaff } from './redux/hetong/staff';
 import { peopleWugong } from './redux/people/wugong';
 import { peopleWugongAddEdit } from './redux/people/wugong-addedit';
 import { peopleWugongBreak } from './redux/people/wugong-break';
@@ -80,6 +81,7 @@ import { staffAllStaffErrorAddEdit } from './redux/staff/allStaff-errorAddedit';
 import { staffAllStaffWages } from './redux/staff/allStaff-wages';
 import { staffBankCard } from './redux/staff/bankCard';
 import { staffBankCardAddEdit } from './redux/staff/bankCard-addedit';
+import { staffBaogong } from './redux/staff/baogong';
 import { staffHistoryDetail } from './redux/staff/history-detail';
 import { staffAllStaffAddBankCard } from './redux/staff/allStaff-addBankCard';
 import { daifaDaifa } from './redux/daifa/daifa';
@@ -98,8 +100,6 @@ import { newIdCompanyConstruct1 } from './redux/newId/companyConstruct1';
 import { projectStaff } from './redux/projectStaff/projectStaff';
 import { projectStaffAddEdit } from './redux/projectStaff/projectStaff-addedit';
 import { projectStaffAddBankCard } from './redux/projectStaff/projectStaff-addBankCard';
-import { waitListTextMessage } from './redux/waitList/textMessage';
-import { waitListTextMessageAddEdit } from './redux/waitList/textMessage-addedit';
 
 export default combineReducers({
   user,
@@ -161,6 +161,7 @@ export default combineReducers({
   hetongWugong,
   hetongWugongAddEdit,
   hetongWugongEdit,
+  hetongStaff,
   peopleWugong,
   peopleWugongAddEdit,
   peopleWugongBreak,
@@ -179,6 +180,7 @@ export default combineReducers({
   staffLeaveRecordsDetail,
   staffAllStaffNotice,
   StaffAllStaffNoticeAddEdit,
+  staffBaogong,
   staffBankCard,
   staffBankCardAddEdit,
   staffAllStaffWages,
@@ -199,7 +201,5 @@ export default combineReducers({
   newIdCompanyConstruct1,
   projectStaff,
   projectStaffAddEdit,
-  projectStaffAddBankCard,
-  waitListTextMessage,
-  waitListTextMessageAddEdit
+  projectStaffAddBankCard
 });
