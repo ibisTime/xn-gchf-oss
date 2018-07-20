@@ -7,7 +7,7 @@ import {
   setPageData,
   restore
 } from '@redux/security/menu-addedit';
-import { getQueryString, getUserKind } from 'common/js/util';
+import { getQueryString } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 
 @DetailWrapper(
@@ -17,15 +17,8 @@ import { DetailWrapper } from 'common/js/build-detail';
 class MenuAddEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userKind: ''
-    };
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
-  }
-  componentDidMount() {
-    let userKind = getUserKind();
-    this.setState({ userKind });
   }
   render() {
     const fields = [{
@@ -34,10 +27,7 @@ class MenuAddEdit extends React.Component {
       required: true,
       type: 'select',
       listCode: '631066',
-      params: {
-        type: 1,
-        roleType: this.state.userKind
-      },
+      params: { type: 1 },
       keyName: 'code',
       valueName: '{{code.DATA}} {{name.DATA}}'
     }, {
@@ -75,18 +65,14 @@ class MenuAddEdit extends React.Component {
       field: 'remark',
       maxlength: 250
     }];
-    return this.state.userKind ? this.props.buildDetail({
+    return this.props.buildDetail({
       fields,
       code: this.code,
       view: this.view,
       detailCode: 631067,
       addCode: 631060,
-      editCode: 631062,
-      beforeSubmit: (params) => {
-        params.roleType = this.state.userKind;
-        return params;
-      }
-    }) : null;
+      editCode: 631062
+    });
   }
 }
 

@@ -28,12 +28,18 @@ class Wugong extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectCodeList: ''
+      projectCodeList: '',
+      companyCode: ''
     };
     this.projectCode = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
-    if (getUserKind() === 'O' || getUserKind() === 'S') {
+    if (getUserKind() === 'O') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({ companyCode: data.companyCode, projectCodeList: data.projectCodeList });
+      });
+    };
+    if (getUserKind() === 'S') {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
@@ -68,7 +74,7 @@ class Wugong extends React.Component {
       title: '备注'
     }];
     if (getUserKind() === 'O') {
-      return this.state.projectCodeList ? this.props.buildList({
+      return this.state.companyCode ? this.props.buildList({
         fields,
         searchParams: {
           projectCodeList: this.state.projectCodeList,

@@ -106,6 +106,14 @@ const ROUTES = [
     component: asyncComponent(() => import('container/waitList/feedback-addedit/feedback-addedit'))
   },
   {
+    path: '/waitList/textMessage',
+    component: asyncComponent(() => import('container/waitList/textMessage/textMessage'))
+  },
+  {
+    path: '/waitList/textMessage/addedit',
+    component: asyncComponent(() => import('container/waitList/textMessage-addedit/textMessage-addedit'))
+  },
+  {
     path: '/general/textParam',
     component: asyncComponent(() => import('container/general/text-param/text-param'))
   },
@@ -238,10 +246,6 @@ const ROUTES = [
     component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
   },
   {
-    path: '/hetong/staff',
-    component: asyncComponent(() => import('container/hetong/staff/staff'))
-  },
-  {
     path: '/people/wugong',
     component: asyncComponent(() => import('container/people/wugong/wugong'))
   },
@@ -352,10 +356,6 @@ const ROUTES = [
   {
     path: '/staff/bankCard/addedit',
     component: asyncComponent(() => import('container/staff/bankCard-addedit/bankCard-addedit'))
-  },
-  {
-    path: '/staff/baogong',
-    component: asyncComponent(() => import('container/staff/baogong/baogong'))
   },
   {
     path: '/staff/jiandang',

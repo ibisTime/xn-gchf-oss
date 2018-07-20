@@ -1,10 +1,9 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import { Form, Select, DatePicker, Input, Button, Table } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { moneyFormat, dateTimeFormat, dateFormat, tempString,
-  showWarnMsg, showSucMsg, showDelConfirm, getUserKind } from 'common/js/util';
+  showWarnMsg, showSucMsg, showDelConfirm } from 'common/js/util';
 import { getOwnerBtns } from 'api/menu';
 import { getDictList } from 'api/dict';
 import fetch from 'common/js/fetch';
@@ -255,7 +254,7 @@ export default class ListComponent extends React.Component {
     }
   }
   getOwnerBtns() {
-    getOwnerBtns(this.props.parentCode, cookies.get('loginKind')).then(data => {
+    getOwnerBtns(this.props.parentCode).then(data => {
       for (let i = 0; i < data.length - 1; i++) {
         for (let j = i + 1; j < data.length; j++) {
           if (+data[i].orderNo > +data[j].orderNo) {

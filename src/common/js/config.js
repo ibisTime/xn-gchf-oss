@@ -10,7 +10,7 @@ export const SYS_USER = 'SYS_USER_ZXZX';
 export const SYS_USER_TG = 'SYS_USER_ZXZX_TG';
 
 // 系统根菜单编号
-export const ROOT_MENU_CODE = 'GCHFPSM201800000000000000';
+export const ROOT_MENU_CODE = 'GCHFSM201800000000000000';
 
 export const formItemLayout = {
   labelCol: {
@@ -32,5 +32,26 @@ export const tailFormItemLayout = {
       span: 16,
       offset: 8
     }
+  }
+};
+
+export const jiandangFormItemLayout = {
+  labelCol: {
+    xs: { span: 22 },
+    sm: { span: 4 }
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 20 }
+  }
+};
+export const ruzhiFormItemLayout = {
+  labelCol: {
+    xs: { span: 22 },
+    sm: { span: 8 }
+  },
+  wrapperCol: {
+    xs: { span: 18 },
+    sm: { span: 14 }
   }
 };

@@ -112,6 +112,10 @@ class AllStaffAddEdit extends React.Component {
           }
         ]
       }
+    }, {
+      field: 'updateName',
+      title: '更新人',
+      readonly: true
     }];
     const fieldos = [{
       field: 'name',
@@ -210,6 +214,9 @@ class AllStaffAddEdit extends React.Component {
           }
         ]
       }
+    }, {
+      field: 'updateName',
+      title: '更新人'
     }];
     return this.props.buildDetail({
       fields: this.view ? fieldos : fields,

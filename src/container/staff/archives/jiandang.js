@@ -3,7 +3,7 @@ import axios from 'axios';
 import originJsonp from 'jsonp';
 import './jiandang.css';
 import { Form, Input, Button } from 'antd';
-import { formItemLayout, tailFormItemLayout } from 'common/js/config';
+import { formItemLayout, tailFormItemLayout, jiandangFormItemLayout } from 'common/js/config';
 import { jiandang, getUserId, getUserDetail } from 'api/user';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
 import Avatar from './touxiang.png';
@@ -249,7 +249,7 @@ class Jiandang extends React.Component {
                         <div className="head-wrap"><i></i>人脸信息采集</div>
                         <div className="right-bottom">
                             <Form className="ant-form ant-form-horizontal" id="formId" onSubmit={this.submitBtn}>
-                                <FormItem label="姓名" {...formItemLayout}>
+                                <FormItem label="姓名" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('realName', {
                                         rules: [{
                                             required: true,
@@ -261,7 +261,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.realName}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="性别" {...formItemLayout}>
+                                <FormItem label="性别" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('sex', {
                                         rules: [{
                                             required: true,
@@ -273,7 +273,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.sex}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="民族" {...formItemLayout}>
+                                <FormItem label="民族" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('idNation', {
                                         rules: [{
                                             required: true,
@@ -285,7 +285,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.idNation}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="出生日期" {...formItemLayout}>
+                                <FormItem label="出生日期" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('birthday', {
                                         rules: [{
                                             required: true,
@@ -297,7 +297,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.birthday}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="身份证号码" {...formItemLayout}>
+                                <FormItem label="身份证号码" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('idNo', {
                                         rules: [{
                                             required: true,
@@ -309,7 +309,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.idNo}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="地址" {...formItemLayout}>
+                                <FormItem label="地址" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('idAddress', {
                                         rules: [{
                                             required: true,
@@ -321,7 +321,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.idAddress}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="有效开始日期" {...formItemLayout}>
+                                <FormItem label="有效开始日期" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('idStartDate', {
                                         rules: [{
                                             required: true,
@@ -333,7 +333,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.idStartDate}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="有效截止日期" {...formItemLayout}>
+                                <FormItem label="有效截止日期" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('idEndDate', {
                                         rules: [{
                                             required: true,
@@ -345,7 +345,7 @@ class Jiandang extends React.Component {
                                         <Input value={this.state.idEndDate}/>
                                     )}
                                 </FormItem>
-                                <FormItem label="签发机关" {...formItemLayout}>
+                                <FormItem label="签发机关" {...jiandangFormItemLayout}>
                                     {getFieldDecorator('idPolice', {
                                         rules: [{
                                             required: true,

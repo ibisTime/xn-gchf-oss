@@ -26,7 +26,7 @@ class Login extends React.Component {
         : window.location.origin === 'http://120.26.6.213:2506' ? '银行端'
             // : window.location.origin === 'http://120.26.6.213:2507' ? '业主端'
             : window.location.origin === 'https://dev.jmcompany.hichengdai.com' ? '业主端'
-                : window.location.origin === 'https://devoss.aijmu.com' ? '平台端' : '业主端';
+                : window.location.origin === 'https://devoss.aijmu.com' ? '平台端' : '平台端';
     // this.typeName = window.location.origin === 'http://47.96.161.183:2505' ? '监管端'
     //   : window.location.origin === 'http://47.96.161.183:2506' ? '银行端'
     //     : window.location.origin === 'https://dev.jmcomp.hichengdai.com' ? '业主端'
@@ -59,7 +59,7 @@ class Login extends React.Component {
             : window.location.origin === 'http://120.26.6.213:2506' ? 'B'
                 // : window.location.origin === 'http://120.26.6.213:2507' ? 'O'
                 : window.location.origin === 'https://dev.jmcompany.hichengdai.com' ? 'O'
-                    : window.location.origin === 'https://devoss.aijmu.com' ? 'P' : 'O';
+                    : window.location.origin === 'https://devoss.aijmu.com' ? 'P' : 'P';
         // this.type = window.location.origin === 'http://47.96.161.183:2505' ? 'S'
         //   : window.location.origin === 'http://47.96.161.183:2506' ? 'B'
         //     : window.location.origin === 'https://dev.jmcomp.hichengdai.com' ? 'O'

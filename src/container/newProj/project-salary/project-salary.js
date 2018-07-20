@@ -17,6 +17,8 @@ import fetch from 'common/js/fetch';
 import { getUserDetail } from 'api/user';
 import { deleteSalaryMany } from 'api/project';
 import './project-salary.css';
+import { getDict } from 'api/dict';
+
 @listWrapper(
   state => ({
     ...state.newProjProjectSalary,
@@ -33,7 +35,8 @@ class Salary extends React.Component {
     this.state = {
       visible: false,
       companyCode: '',
-      projectCodeList: ''
+      projectCodeList: '',
+      salaryStatus: []
     };
     this.projectCode = getQueryString('projectCode', this.props.location.search);
   }
@@ -42,6 +45,11 @@ class Salary extends React.Component {
       this.setState({
         companyCode: data.companyCode,
         projectCodeList: data.projectCodeList
+      });
+    });
+    getDict('salary_status').then((res) => {
+      res.map((item) => {
+        this.state.salaryStatus[item.dkey] = item.dvalue;
       });
     });
   };
@@ -142,7 +150,8 @@ class Salary extends React.Component {
         params: {
           updater: '',
           kind: 'O',
-          companyCode: this.state.companyCode
+          companyCode: this.state.companyCode,
+          status: '3'
         },
         keyName: 'code',
         valueName: 'name',
@@ -243,10 +252,10 @@ class Salary extends React.Component {
                     kind: 'O'
                   }).then((data) => {
                     let payroll1 = [
-                      ['员工姓名', '所属月份', '正常考勤天数', '请假天数', '迟到小时数', '早退小时数', '扣款金额', '发放奖金', '应发工资', '实发工资']
+                      ['员工姓名', '所属月份', '正常考勤天数', '请假天数', '迟到小时数', '早退小时数', '扣款金额', '发放奖金', '应发工资', '实发工资', '状态', '备注']
                     ];
                     let payroll2 = data.map((d, i) => {
-                      return [d.staffName, d.month, d.attendanceDays, d.leavingDays, d.delayHours, d.earlyHours, moneyFormat(d.cutAmount), moneyFormat(d.awardAmount), moneyFormat(d.factAmount), moneyFormat(d.factAmount)];
+                      return [d.staffName, d.month, d.attendanceDays, d.leavingDays, d.delayHours, d.earlyHours, moneyFormat(d.cutAmount), moneyFormat(d.awardAmount), moneyFormat(d.factAmount), moneyFormat(d.factAmount), this.state.salaryStatus[d.status], d.factAmountRemark];
                     });
                     payroll1 = payroll1.concat(payroll2);
                     const ws = XLSX.utils.aoa_to_sheet(payroll1);
@@ -298,10 +307,10 @@ class Salary extends React.Component {
                     companyCode: this.state.companyCode
                   }).then((data) => {
                     let payroll1 = [
-                      ['员工姓名', '隶属上级', '所属月份', '当月天数', '请假天数', '迟到/早退小时数', '扣款金额', '发放奖金', '实际工资']
+                      ['员工姓名', '所属月份', '正常考勤天数', '请假天数', '迟到小时数', '早退小时数', '扣款金额', '发放奖金', '应发工资', '实发工资', '状态', '备注']
                     ];
                     let payroll2 = data.map((d, i) => {
-                      return [d.staffName, d.upUserName, d.month, d.monthDays, d.leavingDays, d.earlyDays + d.delayDays, moneyFormat(d.cutAmount1), moneyFormat(d.awardAmount), moneyFormat(d.factAmount)];
+                      return [d.staffName, d.month, d.attendanceDays, d.leavingDays, d.delayHours, d.earlyHours, moneyFormat(d.cutAmount), moneyFormat(d.awardAmount), moneyFormat(d.factAmount), moneyFormat(d.factAmount), this.state.salaryStatus[d.status], d.factAmountRemark];
                     });
                     payroll1 = payroll1.concat(payroll2);
                     const ws = XLSX.utils.aoa_to_sheet(payroll1);

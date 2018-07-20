@@ -13,7 +13,7 @@ import { getQueryString, showSucMsg, formatDate, getUserKind } from 'common/js/u
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankNameByCode } from 'api/project';
 import { getUserId, getUserDetail } from 'api/user';
-import {moneyFormat} from '../../../common/js/util';
+import {dateTimeFormat, moneyFormat} from '../../../common/js/util';
 @DetailWrapper(
   state => state.projectStaffAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
@@ -121,6 +121,10 @@ class ProjectStaffAddedit extends React.Component {
       title: '状态',
       key: 'staff_status',
       type: 'select'
+    }, {
+      field: 'joinDatetime',
+      title: '入职时间',
+      type: 'date'
     }, {
       field: 'remark',
       title: '备注'

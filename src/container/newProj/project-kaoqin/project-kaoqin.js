@@ -15,6 +15,7 @@ import ModalDetail from 'common/js/build-modal-detail';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg, getQueryString, dateTimeFormat, getUserId, getUserKind } from 'common/js/util';
 import { getUserDetail } from 'api/user';
+import { getProject } from 'api/project';
 
 @listWrapper(
   state => ({
@@ -33,14 +34,26 @@ class ProjectKaoqin extends React.Component {
       projectCodeList: '',
       companyCode: '',
       showShangban: false,
-      showXiaban: false
+      showXiaban: false,
+      companyName: '',
+      projectName: ''
     };
     this.code = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'projectCodeList': data.projectCodeList, companyCode: data.companyCode });
+        this.setState({
+          projectCodeList: data.projectCodeList,
+          companyCode: data.companyCode,
+          companyName: data.companyName
+        });
+      });
+      getProject(this.code).then((res) => {
+        console.log(res.name);
+        this.setState({
+          projectName: res.name
+        });
       });
     };
   }
@@ -69,24 +82,18 @@ class ProjectKaoqin extends React.Component {
       title: '结算时间',
       type: 'date'
     }, {
+      field: 'createDatetime1',
+      title: '考勤生成时间',
+      type: 'datetime',
+      formatter: (v, d) => {
+        return dateTimeFormat(d.createDatetime);
+      }
+    }, {
       field: 'createDatetime',
       title: '考勤生成时间',
-      type: 'datetime'
-    }, {
-      field: 'dateStart',
-      title: '开始时间',
       search: true,
-      type: 'datetime',
+      type: 'date',
       hidden: true
-    }, {
-      field: 'dateEnd',
-      title: '结束时间',
-      search: true,
-      type: 'datetime',
-      hidden: true
-    }, {
-      field: 'remark',
-      title: '备注'
     }, {
       field: 'keyword',
       title: '关键字',
@@ -118,24 +125,18 @@ class ProjectKaoqin extends React.Component {
       title: '结算时间',
       type: 'date'
     }, {
+      field: 'createDatetime1',
+      title: '考勤生成时间',
+      type: 'datetime',
+      formatter: (v, d) => {
+        return dateTimeFormat(d.createDatetime);
+      }
+    }, {
       field: 'createDatetime',
       title: '考勤生成时间',
-      type: 'datetime'
-    }, {
-      field: 'dateStart',
-      title: '开始时间',
       search: true,
-      type: 'datetime',
+      type: 'date',
       hidden: true
-    }, {
-      field: 'dateEnd',
-      title: '结束时间',
-      search: true,
-      type: 'datetime',
-      hidden: true
-    }, {
-      field: 'remark',
-      title: '备注'
     }, {
       field: 'keyword',
       title: '关键字',
@@ -217,7 +218,7 @@ class ProjectKaoqin extends React.Component {
                   const ws = XLSX.utils.aoa_to_sheet(tableData);
                   const wb = XLSX.utils.book_new();
                   XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-                  XLSX.writeFile(wb, 'sheetjs.xlsx');
+                  XLSX.writeFile(wb, this.state.companyName + this.state.projectName + '考勤记录.xlsx');
                 });
               }
             },
@@ -288,7 +289,7 @@ class ProjectKaoqin extends React.Component {
                   const ws = XLSX.utils.aoa_to_sheet(tableData);
                   const wb = XLSX.utils.book_new();
                   XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-                  XLSX.writeFile(wb, 'sheetjs.xlsx');
+                  XLSX.writeFile(wb, this.state.companyName + this.state.projectName + '考勤记录.xlsx');
                 });
               }
             }, {
@@ -351,7 +352,7 @@ class ProjectKaoqin extends React.Component {
               const ws = XLSX.utils.aoa_to_sheet(tableData);
               const wb = XLSX.utils.book_new();
               XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-              XLSX.writeFile(wb, 'sheetjs.xlsx');
+              XLSX.writeFile(wb, this.state.companyName + this.state.projectName + '考勤记录.xlsx');
             });
           }
         }]
