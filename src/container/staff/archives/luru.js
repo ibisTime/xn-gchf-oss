@@ -59,14 +59,14 @@ class RuzhiInfo extends React.Component {
         }
         luru(params).then((res) => {
           if(res.isSuccess) {
-            showSucMsg('提交成功！');
+            showSucMsg('建档成功！');
             if(this.ruzhi) {
               this.props.history.push(`/staff/ruzhiInfo?idNo=${this.idNo}`);
             } else {
               this.props.history.push(`/staff/jiandang`);
             }
           } else {
-            showWarnMsg('提交失败！');
+            showWarnMsg('建档失败！');
           }
         });
       }
@@ -137,7 +137,7 @@ class RuzhiInfo extends React.Component {
                     <div style={{ fontWeight: 700, marginBottom: 10 }}>联系方式（必填）</div>
                     <FormItem onChange={(e) => { this.mobileChange(e); }}>
                       {getFieldDecorator('mobile', {
-                        rules: [rule0, rule1]
+                        rules: [rule1]
                       })(
                           <Input placeholder="请输入本人手机号"/>
                       )}
@@ -151,7 +151,7 @@ class RuzhiInfo extends React.Component {
                     </FormItem>
                     <FormItem>
                       {getFieldDecorator('contactsMobile', {
-                        rules: [rule0, rule1]
+                        rules: [rule1]
                       })(
                           <Input placeholder="请输入紧急联系人手机号"/>
                       )}

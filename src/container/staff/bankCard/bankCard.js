@@ -66,7 +66,7 @@ class BankCard extends React.Component {
       }
     }, {
       field: 'bankcardNumber',
-      title: '银行账号'
+      title: '银行账户'
     }, {
       field: 'remark',
       title: '备注'

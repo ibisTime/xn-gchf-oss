@@ -121,11 +121,7 @@ class Map extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if (selectedRows[0].status === '3' || selectedRows[0].status === '4') {
-            this.props.history.push(`/projectManage/project/addedit?projectCode=${selectedRowKeys[0]}`);
-          } else {
-            showWarnMsg('只有在建和停工的项目可以修改');
-          }
+          this.props.history.push(`/projectManage/project/addedit?projectCode=${selectedRowKeys[0]}`);
         }
       },
       checkPro: (selectedRowKeys, selectedRows) => {

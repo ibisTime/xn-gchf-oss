@@ -34,16 +34,20 @@ class BankCardAddEdit extends React.Component {
       title: '真实姓名',
       readonly: true
     }, {
-      field: 'bankSubbranchName',
-      title: '开户行',
+      field: 'bankCode',
+      title: '银行名称',
       type: 'select',
-      listCode: '631106',
-      keyName: 'code',
-      valueName: 'bankSubbranchName',
+      listCode: '631116',
+      keyName: 'bankCode',
+      valueName: 'bankName',
       required: true
     }, {
       field: 'bankcardNumber',
       title: '银行卡号',
+      required: true
+    }, {
+      field: 'subbranch',
+      title: '开户支行',
       required: true
     }, {
       field: 'remark',
@@ -65,11 +69,14 @@ class BankCardAddEdit extends React.Component {
       field: 'projectName',
       title: '项目名称'
     }, {
-      field: 'bankSubbranchName',
-      title: '开户行'
+      field: 'bankName',
+      title: '银行名称'
     }, {
       field: 'bankcardNumber',
-      title: '银行卡号',
+      title: '银行卡号'
+    }, {
+      field: 'subbranch',
+      title: '开户支行',
       required: true
     }, {
       field: 'remark',
@@ -81,17 +88,14 @@ class BankCardAddEdit extends React.Component {
       view: this.view,
       detailCode: 631427,
       editCode: 631422,
-      beforeSubmit: (params) => {
-        for (let i = 0; i < this.props.selectData.bankSubbranchName.length; i++) {
-          console.log(params.bankName);
-          console.log(this.props.selectData.bankSubbranchName[i]);
-          if (params.bankSubbranchName === this.props.selectData.bankSubbranchName[i].bankSubbranchName || params.bankSubbranchName === this.props.selectData.bankSubbranchName[i].code) {
-            params.bankName = this.props.selectData.bankSubbranchName[i].bankName;
-            params.bankCode = this.props.selectData.bankSubbranchName[i].bankCode;
-            params.subbranch = this.props.selectData.bankSubbranchName[i].subbranchName;
-          }
-        }
-        return params;
+      beforeSubmit: (param) => {
+        // param.bankName = this.props.selectData.bankCode.filter(v => v.bankCode === param.bankCode)[0].bankName;
+           this.props.selectData.bankCode.map((item) => {
+            if(item.bankCode === param.bankCode) {
+              param.bankName = item.bankName;
+            }
+          });
+        return param;
       }
     });
   }

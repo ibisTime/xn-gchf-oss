@@ -34,24 +34,3 @@ export const tailFormItemLayout = {
     }
   }
 };
-
-export const jiandangFormItemLayout = {
-  labelCol: {
-    xs: { span: 22 },
-    sm: { span: 4 }
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 20 }
-  }
-};
-export const ruzhiFormItemLayout = {
-  labelCol: {
-    xs: { span: 22 },
-    sm: { span: 8 }
-  },
-  wrapperCol: {
-    xs: { span: 18 },
-    sm: { span: 14 }
-  }
-};

@@ -301,14 +301,3 @@
 .comparison-main .canvas {
     background: rgb(216,219,229);
 }
-
-.ant-form-item-children {
-    width: 60%;
-}
-
-.comparison-main .ant-input {
-    width: 80%;
-}
-.ant-form-explain {
-    display: inline-block;
-}
