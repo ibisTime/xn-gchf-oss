@@ -10,7 +10,7 @@ export const SYS_USER = 'SYS_USER_ZXZX';
 export const SYS_USER_TG = 'SYS_USER_ZXZX_TG';
 
 // 系统根菜单编号
-export const ROOT_MENU_CODE = 'GCHFSM201800000000000000';
+export const ROOT_MENU_CODE = 'GCHFPSM201800000000000000';
 
 export const formItemLayout = {
   labelCol: {

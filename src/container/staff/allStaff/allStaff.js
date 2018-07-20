@@ -62,9 +62,6 @@ class AllStaff extends React.Component {
       field: 'mobile',
       title: '手机号'
     }, {
-      field: 'remark',
-      title: '备注'
-    }, {
       field: 'birthdays',
       title: '生日',
       type: 'datetime',
@@ -77,6 +74,9 @@ class AllStaff extends React.Component {
       placeholder: '名字/证件号',
       hidden: true,
       search: true
+    }, {
+      field: 'remark',
+      title: '备注'
     }];
     const btnEvent = {
       error: (selectedRowKeys, selectedRows) => {
