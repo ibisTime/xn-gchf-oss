@@ -6,7 +6,7 @@ import { getUserDetail, getUserId, ruzhi, reruzhi, getStaffDetail } from 'api/us
 import { getDict } from 'api/dict';
 import { getQiniuToken } from 'api/general';
 import { getQueryString, showErrMsg, showWarnMsg, showSucMsg, formatImg, dateFormat, moneyFormat } from 'common/js/util';
-import { UPLOAD_URL, ruzhiFormItemLayout } from 'common/js/config';
+import { UPLOAD_URL } from 'common/js/config';
 import locale from 'common/js/lib/date-locale';
 import Moment from 'moment';
 
@@ -306,12 +306,12 @@ class RuzhiInfo extends React.Component {
           <div style={{ verticalAlign: 'middle', width: '100%' }}>
               <div className="comparison-main2 comparison-mains2">
                 <div className="head-wrap2"><i></i>入职信息</div>
-                  <div style={{ width: 600, padding: '30px 0', margin: '0 auto' }}>
+                  <div style={{ width: 300, padding: '30px 0', margin: '0 auto' }}>
                     <Form>
-                      <div style={{ fontWeight: 700, marginBottom: 10, textAlign: 'center' }}>入职信息</div>
+                      <div style={{ fontWeight: 700, marginBottom: 10 }}>入职信息</div>
                       {
                         this.reruzhi
-                            ? (<FormItem label="项目" {...ruzhiFormItemLayout}>
+                            ? (<FormItem>
                               {getFieldDecorator('projectCode', {
                                 rules: [rule0]
                               })(
@@ -321,7 +321,7 @@ class RuzhiInfo extends React.Component {
                               )}
                             </FormItem>)
                             : (
-                                <FormItem label="项目" {...ruzhiFormItemLayout}>
+                                <FormItem>
                                   {getFieldDecorator('projectCode', {
                                     rules: [rule0]
                                   })(
@@ -332,7 +332,7 @@ class RuzhiInfo extends React.Component {
                                 </FormItem>
                             )
                       }
-                      <FormItem label="部门" {...ruzhiFormItemLayout}>
+                      <FormItem>
                         {getFieldDecorator('departmentCode', {
                           rules: [rule0]
                         })(
@@ -347,14 +347,14 @@ class RuzhiInfo extends React.Component {
                           </TreeSelect>
                         )}
                       </FormItem>
-                      <FormItem label="职位" {...ruzhiFormItemLayout}>
+                      <FormItem>
                         {getFieldDecorator('position', {
                           rules: [rule0]
                         })(
                           <Input placeholder="请输入职位"/>
                         )}
                       </FormItem>
-                      <FormItem label="日薪" {...ruzhiFormItemLayout}>
+                      <FormItem>
                         {getFieldDecorator('salary', {
                           rules: [rule0]
                         })(
@@ -362,7 +362,7 @@ class RuzhiInfo extends React.Component {
                         )}
                         <span>元</span>
                       </FormItem>
-                      <FormItem label="入职时间" {...ruzhiFormItemLayout}>
+                      <FormItem>
                         {getFieldDecorator('joinDatetime', {
                           rules: [rule0]
                         })(
@@ -373,7 +373,7 @@ class RuzhiInfo extends React.Component {
                             format='YYYY-MM-DD' />
                         )}
                       </FormItem>
-                      <FormItem label="迟到/早退每小时扣款金额" {...ruzhiFormItemLayout}>
+                      <FormItem>
                         {getFieldDecorator('cutAmount', {
                           rules: [rule0]
                         })(
@@ -381,22 +381,22 @@ class RuzhiInfo extends React.Component {
                         )}
                         <span>元</span>
                       </FormItem>
-                      <div style={{ fontWeight: 700, marginBottom: 10, textAlign: 'center' }}>银行卡信息（选填）</div>
-                      <FormItem label="开户行" {...ruzhiFormItemLayout}>
+                      <div style={{ fontWeight: 700, marginBottom: 10 }}>银行卡信息（选填）</div>
+                      <FormItem>
                         {getFieldDecorator('subbranch')(
                             <Select placeholder="请选择开户行" allowClear>
                               {this.state.zhihang.map((item) => <Option key={item.code} value={item.code}>{item.bankSubbranchName}</Option>)}
                             </Select>
                         )}
                       </FormItem>
-                      <FormItem label="银行卡号" {...ruzhiFormItemLayout}>
+                      <FormItem>
                         {getFieldDecorator('bankcardNumber')(
                             <Input placeholder="请输入银行卡号"/>
                         )}
                       </FormItem>
 
-                      <div style={{ fontWeight: 700, marginBottom: 10, textAlign: 'center' }}>员工来源</div>
-                      <FormItem label="来源" {...ruzhiFormItemLayout}>
+                      <div style={{ fontWeight: 700, marginBottom: 10 }}>员工来源</div>
+                      <FormItem>
                         {getFieldDecorator('type', {
                           rules: [rule0],
                           initialValue: source.length ? source[0].type : ''
@@ -406,7 +406,7 @@ class RuzhiInfo extends React.Component {
                             </Select>
                         )}
                       </FormItem>
-                      <div style={{ textAlign: 'center' }}>
+                      <div>
                         <Button type="primary" style={{ width: 300 }} onClick={ this.handleSubmit }>完成</Button>
                       </div>
                     </Form>

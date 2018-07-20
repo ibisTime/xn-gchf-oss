@@ -32,19 +32,14 @@ class Kaoqin extends React.Component {
     super(props);
     this.state = {
       projectCodeList: '',
-      companyCode: '',
-      companyName: ''
+      companyCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
   }
   componentDidMount() {
     if (getUserKind() === 'S' || getUserKind() === 'O') {
       getUserDetail(getUserId()).then((data) => {
-        this.setState({
-          projectCodeList: data.projectCodeList,
-          companyCode: data.companyCode,
-          companyName: data.companyName
-        });
+        this.setState({ 'projectCodeList': data.projectCodeList, companyCode: data.companyCode });
       });
     };
   }
@@ -74,18 +69,24 @@ class Kaoqin extends React.Component {
       title: '结算时间',
       type: 'date'
     }, {
-      field: 'createDatetime1',
-      title: '考勤生成时间',
-      type: 'datetime',
-      formatter: (v, d) => {
-        return dateTimeFormat(d.createDatetime);
-      }
-    }, {
       field: 'createDatetime',
       title: '考勤生成时间',
+      type: 'datetime'
+    }, {
+      field: 'dateStart',
+      title: '开始时间',
       search: true,
-      type: 'date',
+      type: 'datetime',
       hidden: true
+    }, {
+      field: 'dateEnd',
+      title: '结束时间',
+      search: true,
+      type: 'datetime',
+      hidden: true
+    }, {
+      field: 'remark',
+      title: '备注'
     }, {
       field: 'keyword',
       title: '关键字',
@@ -118,18 +119,24 @@ class Kaoqin extends React.Component {
       title: '结算时间',
       type: 'date'
     }, {
-      field: 'createDatetime1',
-      title: '考勤生成时间',
-      type: 'datetime',
-      formatter: (v, d) => {
-        return dateTimeFormat(d.createDatetime);
-      }
-    }, {
       field: 'createDatetime',
       title: '考勤生成时间',
+      type: 'datetime'
+    }, {
+      field: 'dateStart',
+      title: '开始时间',
       search: true,
-      type: 'date',
+      type: 'datetime',
       hidden: true
+    }, {
+      field: 'dateEnd',
+      title: '结束时间',
+      search: true,
+      type: 'datetime',
+      hidden: true
+    }, {
+      field: 'remark',
+      title: '备注'
     }, {
       field: 'keyword',
       title: '关键字',
@@ -176,7 +183,6 @@ class Kaoqin extends React.Component {
             fields,
             searchParams: { projectCodeList: this.state.projectCodeList },
             pageCode: 631395,
-            singleSelect: false,
             buttons: getUserKind() === 'O' ? [{
               code: 'export',
               name: '导出',
@@ -211,7 +217,7 @@ class Kaoqin extends React.Component {
                   const ws = XLSX.utils.aoa_to_sheet(tableData);
                   const wb = XLSX.utils.book_new();
                   XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-                  XLSX.writeFile(wb, this.state.companyName + '考勤记录.xlsx');
+                  XLSX.writeFile(wb, 'sheetjs.xlsx');
                 });
               }
             },
@@ -276,7 +282,7 @@ class Kaoqin extends React.Component {
                   const ws = XLSX.utils.aoa_to_sheet(tableData);
                   const wb = XLSX.utils.book_new();
                   XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-                  XLSX.writeFile(wb, this.state.companyName + '考勤记录.xlsx');
+                  XLSX.writeFile(wb, 'sheetjs.xlsx');
                 });
               }
             }]
@@ -331,7 +337,7 @@ class Kaoqin extends React.Component {
               const ws = XLSX.utils.aoa_to_sheet(tableData);
               const wb = XLSX.utils.book_new();
               XLSX.utils.book_append_sheet(wb, ws, 'SheetJS');
-              XLSX.writeFile(wb, this.state.companyName + '考勤记录.xlsx');
+              XLSX.writeFile(wb, 'sheetjs.xlsx');
             });
           }
         }]
