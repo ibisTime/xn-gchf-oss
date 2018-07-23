@@ -82,7 +82,7 @@ class Kaoqin extends React.Component {
       }
     }, {
       field: 'createDatetime',
-      title: '考勤生成时间',
+      title: '考勤生成日期',
       search: true,
       type: 'date',
       hidden: true
@@ -126,7 +126,7 @@ class Kaoqin extends React.Component {
       }
     }, {
       field: 'createDatetime',
-      title: '考勤生成时间',
+      title: '考勤生成日期',
       search: true,
       type: 'date',
       hidden: true
@@ -185,7 +185,7 @@ class Kaoqin extends React.Component {
                   let tableData = [];
                   let title = [];
                   fields.map((item) => {
-                    if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间') {
+                    if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间' && item.title !== '考勤生成日期') {
                       title.push(item.title);
                     }
                   });
@@ -250,7 +250,7 @@ class Kaoqin extends React.Component {
                   let tableData = [];
                   let title = [];
                   fields.map((item) => {
-                    if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间') {
+                    if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间' && item.title !== '考勤生成日期') {
                       title.push(item.title);
                     }
                   });
@@ -305,7 +305,7 @@ class Kaoqin extends React.Component {
               let tableData = [];
               let title = [];
               fields.map((item) => {
-                if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间') {
+                if (item.title !== '关键字' && item.title !== '开始时间' && item.title !== '结束时间' && item.title !== '考勤生成日期') {
                   title.push(item.title);
                 }
               });

@@ -145,7 +145,7 @@ class AlreadyQuestAddedit extends React.Component {
            <img src={require('./ziliao.png')} ></img>
           </div>
           <div style={{ position: 'relative' }}>
-            { this.state.status !== '2'
+            { this.state.status === '3'
               ? <Button onClick={this.handleExport1} type="primary" style={{ position: 'absolute', top: '-77px', left: '116px' }}>点击下载</Button>
                 : ''
             }

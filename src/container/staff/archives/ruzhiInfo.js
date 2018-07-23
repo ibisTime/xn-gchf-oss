@@ -102,8 +102,8 @@ class RuzhiInfo extends React.Component {
           joinDatetime: formatTime,
           cutAmount: data.cutAmount / 1000,
           salary: data.salary / 1000,
-          subbranch: data.bankCard.bankSubbranchName,
-          bankcardNumber: data.bankCard.bankcardNumber
+          subbranch: data.bankCard ? data.bankCard.bankSubbranchName : '',
+          bankcardNumber: data.bankCard ? data.bankCard.bankcardNumber : ''
           // type: data.type
         });
         this.state.projectList.map((item) => {
