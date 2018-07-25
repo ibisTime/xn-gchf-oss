@@ -22,13 +22,16 @@ class RoleMenu extends React.Component {
     };
     this.code = getQueryString('code');
     this.name = getQueryString('name');
+    this.type = getQueryString('type');
     this.allMenuCode = cookies.get('roleCode');
   }
   componentDidMount() {
     Promise.all([
-      cookies.get('loginKind') === 'P' ? getMenuBtnList()
-        : getRoleMenuBtnList(this.allMenuCode),
-      getRoleMenuBtnList(this.code)
+      // cookies.get('loginKind') === 'P' ? getMenuBtnList()
+      //   : getRoleMenuBtnList(this.allMenuCode),
+      // getRoleMenuBtnList(this.code)
+      getMenuBtnList(this.type),
+      getRoleMenuBtnList(this.code, this.type)
     ]).then(([allData, checkData]) => {
       this.getTree(allData);
       let checkedKeys = checkData.map(v => v.code);

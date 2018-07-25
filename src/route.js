@@ -134,7 +134,7 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newProj/bumenConstruct/bumenConstruct'))
   },
   {
-    path: '/newProj/companyConstruct/addCompany',
+    path: '/newProj/companyConstruct/addProject',
     component: asyncComponent(() => import('container/newProj/addCompany/addCompany'))
   },
   {
@@ -457,16 +457,16 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newId/supervise/supervise'))
   },
   {
-    path: '/newId/companyConstruct',
-    component: asyncComponent(() => import('container/newId/companyConstruct1/companyConstruct1'))
+    path: '/newId/newProject',
+    component: asyncComponent(() => import('container/newId/newProject/newProject'))
   },
+  // {
+  //   path: 'newId/companyConstruct/addedit',
+  //   component: asyncComponent(() => import('container/newId/addProject/addProject'))
+  // },
   {
-    path: 'newId/companyConstruct/addedit',
-    component: asyncComponent(() => import('container/newId/addCompany/addCompany'))
-  },
-  {
-    path: '/newId/companyConstruct/addCompany',
-    component: asyncComponent(() => import('container/newId/addCompany/addCompany'))
+    path: '/newId/newProject/addProject',
+    component: asyncComponent(() => import('container/newId/addProject/addProject'))
   },
   {
     path: '/newId/supervise/addedit',

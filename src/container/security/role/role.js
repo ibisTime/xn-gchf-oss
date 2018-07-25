@@ -13,7 +13,7 @@ import {
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, getUserKind } from 'common/js/util';
 import XLSX from 'xlsx';
-import { Button, Upload } from 'antd';
+import {getUserId} from '../../../common/js/util';
 
 function makeCols(refstr) {
   var o = [];
@@ -42,8 +42,13 @@ class Role extends React.Component {
     this.type = getUserKind();
     this.state = {
       data: [],
-      cols: []
+      cols: [],
+      userKind: ''
     };
+  }
+  componentDidMount() {
+    let userKind = getUserKind();
+    this.setState({ userKind });
   }
   handleExport() {
     const ws = XLSX.utils.aoa_to_sheet(this.state.data);
@@ -93,16 +98,14 @@ class Role extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          this.props.history.push(`/security/role/menu?code=${selectedRowKeys[0]}&name=${selectedRows[0].name}`);
+          this.props.history.push(`/security/role/menu?code=${selectedRowKeys[0]}&name=${selectedRows[0].name}&type=${selectedRows[0].type}`);
         }
       }
     };
     return this.props.buildList({
       fields,
       btnEvent,
-      searchParams: cookies.get('loginKind') === 'P' ? {}
-      : {'type': cookies.get('loginKind') === 'O' ? 'O'
-      : cookies.get('loginKind') === 'B' ? 'B' : 'S'},
+      searchParams: cookies.get('loginKind') === 'P' ? { updater: '' } : { updater: getUserId() },
       pageCode: 631045,
       deleteCode: 631041
     });

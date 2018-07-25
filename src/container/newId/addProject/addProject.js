@@ -6,14 +6,15 @@ import {
   setSelectData,
   setPageData,
   restore
-} from '@redux/newId/yezhu-addedit';
-import { getQueryString, showWarnMsg, showSucMsg } from 'common/js/util';
+} from '@redux/newId/addProject';
+import { getQueryString } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
+
 @DetailWrapper(
-  state => state.newIdYezhuAddEdit,
+  state => state.securityMenuAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
 )
-class YezhuAddEdit extends React.Component {
+class AddProject extends React.Component {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
@@ -21,31 +22,21 @@ class YezhuAddEdit extends React.Component {
   }
   render() {
     const fields = [{
+      field: 'name',
       title: '项目名',
-      field: 'projectName'
+      required: true
     }, {
-      title: '登录名',
-      field: 'loginName'
-    }, {
-      title: '真实姓名',
-      field: 'realName'
-    }, {
-      title: '手机号',
-      field: 'mobile',
-      mobile: true
-    }, {
-      title: '备注',
-      field: 'remark'
+      field: 'remark',
+      title: '备注'
     }];
     return this.props.buildDetail({
       fields,
+      key: 'code',
       code: this.code,
-      key: 'userId',
       view: this.view,
-      detailCode: 631087,
-      addCode: 631070
+      addCode: 631350
     });
   }
 }
 
-export default YezhuAddEdit;
+export default AddProject;

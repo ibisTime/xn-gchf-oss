@@ -137,8 +137,8 @@ class RoleMenu extends React.Component {
       return <TreeNode {...item} />;
     });
   }
-  // addCompany = () => {
-  //   this.props.history.push(`/newProj/companyConstruct/addCompany`);
+  // addProject = () => {
+  //   this.props.history.push(`/newProj/companyConstruct/addProject`);
   // }
   editCompany = () => {
     if (this.state.selectKey !== '') {

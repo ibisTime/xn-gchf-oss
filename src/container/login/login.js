@@ -18,23 +18,8 @@ class Login extends React.Component {
     // this.state = {
     //   storePwd: true
     // };
-    // this.typeName = window.location.port === '2505' ? '监管端'
-    //     : window.location.port === '2506' ? '银行端'
-    //     : window.location.port === '2507' ? '业主端'
-    //     : window.location.port === '2508' ? '平台端' : '平台端';
-    // this.typeName = window.location.origin === 'http://120.26.6.213:2505' ? '监管端'
-    //     : window.location.origin === 'http://120.26.6.213:2506' ? '银行端'
-    //         // : window.location.origin === 'http://120.26.6.213:2507' ? '业主端'
-    //         : window.location.origin === 'https://dev.jmcompany.hichengdai.com' ? '业主端'
-    //             : window.location.origin === 'https://devoss.aijmu.com' ? '平台端' : '业主端';
-    // this.typeName = window.location.origin === 'http://47.96.161.183:2505' ? '监管端'
-    //   : window.location.origin === 'http://47.96.161.183:2506' ? '银行端'
-    //     : window.location.origin === 'https://dev.jmcomp.hichengdai.com' ? '业主端'
-    //       : window.location.origin === 'https://tstoss.aijmu.com' ? '平台端' : '业主端';
-    this.typeName = window.location.origin === 'http://god.jm60s.com' ? '监管端'
-      : window.location.origin === 'https://salary.jm60s.com' ? '银行端'
-        : window.location.origin === 'https://company.jm60s.com' ? '业主端'
-          : window.location.origin === 'https://oss.jm60s.com' ? '平台端' : '平台端';
+    this.typeName = window.location.origin === 'http://120.26.6.213:2505' ? '监管端' : '监管端';
+    // this.typeName = '平台端';
     // this.onChange = this.onChange.bind(this);
     // if (cookies.get('loginName') && cookies.get('loginName') !== null && cookies.get('loginName') !== undefined) {
     //   this.initName = cookies.get('loginName');
@@ -50,24 +35,8 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        // this.type = window.location.port === '2505' ? 'S'
-        // : window.location.port === '2506' ? 'B'
-        // : window.location.port === '2507' ? 'O'
-        // : window.location.port === '2508' ? 'P' : 'P';
-
-        // this.type = window.location.origin === 'http://120.26.6.213:2505' ? 'S'
-        //     : window.location.origin === 'http://120.26.6.213:2506' ? 'B'
-        //         // : window.location.origin === 'http://120.26.6.213:2507' ? 'O'
-        //         : window.location.origin === 'https://dev.jmcompany.hichengdai.com' ? 'O'
-        //             : window.location.origin === 'https://devoss.aijmu.com' ? 'P' : 'O';
-        // this.type = window.location.origin === 'http://47.96.161.183:2505' ? 'S'
-        //   : window.location.origin === 'http://47.96.161.183:2506' ? 'B'
-        //     : window.location.origin === 'https://dev.jmcomp.hichengdai.com' ? 'O'
-        //       : window.location.origin === 'https://tstoss.aijmu.com' ? 'P' : 'O';
-        this.type = window.location.origin === 'http://god.jm60s.com' ? 'S'
-          : window.location.origin === 'https://salary.jm60s.com' ? 'B'
-            : window.location.origin === 'https://company.jm60s.com' ? 'O'
-              : window.location.origin === 'https://oss.jm60s.com' ? 'P' : 'P';
+        // this.type = 'P';
+        this.type = window.location.origin === 'http://120.26.6.213:2505' ? 'S' : 'S';
         this.setState({ loading: true });
         // values.type = 'P'; // 平台用户
         // values.type = 'B'; // 银行用户

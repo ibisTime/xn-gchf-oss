@@ -1,6 +1,6 @@
 import { getRoleMenuList } from 'api/menu';
 import { getRealUrl } from 'common/js/util';
-import { ROOT_MENU_CODE } from 'common/js/config';
+import { ROOT_MENU_CODE, ROOT_S_MENU_CODE } from 'common/js/config';
 
 const SET_TOP_MENU_CODE = 'SET_TOP_MENU_CODE';
 const SET_SUB_MENU_CODE = 'SET_SUB_MENU_CODE';
@@ -126,7 +126,7 @@ function getFilterList(result, data) {
   data.forEach(v => {
     if (v.parentCode) {
       result.menus[v.code] = v;
-      if (v.parentCode === ROOT_MENU_CODE) {
+      if (v.parentCode === ROOT_MENU_CODE || v.parentCode === ROOT_S_MENU_CODE) {
         result.topMenuList.push(v);
         result.top2SubObj[v.code] = [];
       } else {

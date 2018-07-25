@@ -30,7 +30,7 @@ import { dailiManageMap } from './redux/dailiManage/map';
 import { newProjCompanyConstruct } from './redux/newProj/companyConstruct';
 import { newProjBumenConstruct } from './redux/newProj/bumenConstruct';
 import { newProjAddCompany } from './redux/newProj/addCompany';
-import { newIdAddCompany } from './redux/newId/addCompany';
+import { newIdAddProject } from './redux/newId/addProject';
 import { newProjAddBumen } from './redux/newProj/addBumen';
 import { newProjProject } from './redux/newProj/project';
 import { newProjKaoqin } from './redux/newProj/kaoqin';
@@ -94,7 +94,7 @@ import { newIdYezhu } from './redux/newId/yezhu';
 import { newIdYezhuAddEdit } from './redux/newId/yezhu-addedit';
 import { newIdSupervise } from './redux/newId/supervise';
 import { newIdSuperviseAddEdit } from './redux/newId/supervise-addedit';
-import { newIdCompanyConstruct1 } from './redux/newId/companyConstruct1';
+import { newIdNewProject } from './redux/newId/newProject';
 import { projectStaff } from './redux/projectStaff/projectStaff';
 import { projectStaffAddEdit } from './redux/projectStaff/projectStaff-addedit';
 import { projectStaffAddBankCard } from './redux/projectStaff/projectStaff-addBankCard';
@@ -133,7 +133,7 @@ export default combineReducers({
   newProjCompanyConstruct,
   newProjBumenConstruct,
   newProjAddCompany,
-  newIdAddCompany,
+  newIdAddProject,
   newProjAddBumen,
   newProjProject,
   newprojProjectAddEdit,
@@ -196,7 +196,7 @@ export default combineReducers({
   newIdYezhuAddEdit,
   newIdSupervise,
   newIdSuperviseAddEdit,
-  newIdCompanyConstruct1,
+  newIdNewProject,
   projectStaff,
   projectStaffAddEdit,
   projectStaffAddBankCard,

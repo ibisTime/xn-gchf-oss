@@ -14,6 +14,7 @@ import {
 } from '@redux/security/user';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
+import { getUserDetail } from '../../../api/user';
 
 @listWrapper(
   state => ({
@@ -26,11 +27,25 @@ import { showWarnMsg, showSucMsg } from 'common/js/util';
   }
 )
 class User extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      province: '',
+      city: '',
+      area: ''
+    };
+  }
+  componentDidMount() {
+    if(cookies.get('loginKind') === 'S') {
+      getUserDetail(getUserId()).then((res) => {
+        this.setState({ province: res.province, city: res.city, area: res.area });
+      });
+    }
+  }
   render() {
     const fields = [{
       title: '用户名',
-      field: 'loginName',
-      render: (v) => v + '1'
+      field: 'loginName'
     }, {
       title: '状态',
       field: 'status',
@@ -41,9 +56,6 @@ class User extends React.Component {
       field: 'roleCode',
       type: 'select',
       listCode: '631046',
-      params: {
-        updater: ''
-      },
       keyName: 'code',
       valueName: 'name'
     }, {
@@ -106,15 +118,28 @@ class User extends React.Component {
         }
       }
     };
-    return this.props.buildList({
-      fields,
-      btnEvent,
-      searchParams: cookies.get('loginKind') === 'P' ? { type: 'P', updater: '' }
-        : cookies.get('loginKind') === 'O' ? { 'type': 'O', updater: '' }
-          : cookies.get('loginKind') === 'B' ? { 'type': 'B', updater: '' } : { 'type': 's', updater: '' },
-      pageCode: 631085,
-      rowKey: 'userId'
-    });
+    if(cookies.get('loginKind') === 'P') {
+      return this.props.buildList({
+        fields,
+        btnEvent,
+        searchParams: { type: 'P', updater: '' },
+        pageCode: 631085,
+        rowKey: 'userId'
+      });
+    }else {
+      return this.state.province ? this.props.buildList({
+        fields,
+        btnEvent,
+        searchParams: {
+          province: this.state.province,
+          city: this.state.city,
+          area: this.state.area,
+          updater: ''
+        },
+        pageCode: 631085,
+        rowKey: 'userId'
+      }) : null;
+    }
   }
 }
 
