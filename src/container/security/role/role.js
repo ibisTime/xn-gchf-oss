@@ -105,7 +105,7 @@ class Role extends React.Component {
     return this.props.buildList({
       fields,
       btnEvent,
-      searchParams: cookies.get('loginKind') === 'P' ? { updater: '' } : { updater: getUserId() },
+      searchParams: { updater: getUserId() },
       pageCode: 631045,
       deleteCode: 631041
     });

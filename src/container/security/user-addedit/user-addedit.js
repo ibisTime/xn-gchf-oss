@@ -78,13 +78,18 @@ class UserAddEdit extends React.Component {
           params.province = this.state.province;
           params.city = this.state.city;
           params.area = this.state.area;
+          params.userRefree = getUserId();
           return params;
         }
       }) : null;
     }else {
       return this.props.buildDetail({
         fields,
-        addCode: 631070
+        addCode: 631070,
+        beforeSubmit: (params) => {
+          params.userRefree = getUserId();
+          return params;
+        }
       });
     }
   }

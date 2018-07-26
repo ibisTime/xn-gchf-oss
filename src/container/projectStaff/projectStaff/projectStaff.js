@@ -47,10 +47,6 @@ class ProjectStaff extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'companyName',
-      title: '公司名称',
-      hidden: this.state.userKind !== 'S'
-    }, {
       field: 'staffName',
       title: '姓名'
     }, {

@@ -28,7 +28,6 @@ class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyCode: '',
       projectCodeList: '',
       userKind: ''
     };
@@ -39,11 +38,6 @@ class Map extends React.Component {
     if (userKind === 'S') {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
-      });
-    }
-    if (userKind === 'O') {
-      getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'companyCode': data.companyCode });
       });
     }
   }
@@ -70,15 +64,6 @@ class Map extends React.Component {
           this.props.history.push(`/projectManage/project/kaoqin?code=${selectedRowKeys[0]}`);
         }
       },
-      tiqingshenhe: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/projectManage/project/edit?v=1&code=${selectedRowKeys[0]}`);
-        }
-      },
       wages: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
@@ -97,15 +82,6 @@ class Map extends React.Component {
           this.props.history.push(`/projectManage/project/addedit?v=1&projectCode=${selectedRowKeys[0]}`);
         }
       },
-      allWages: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/projectManage/project/leijifaxin?v=1&projectCode=${selectedRowKeys[0]}`);
-        }
-      },
       overTime: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
@@ -113,19 +89,6 @@ class Map extends React.Component {
           showWarnMsg('请选择一条记录');
         } else {
           this.props.history.push(`/projectManage/project/end?v=1&projectCode=${selectedRowKeys[0]}`);
-        }
-      },
-      editPro: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          if (selectedRows[0].status === '3' || selectedRows[0].status === '4') {
-            this.props.history.push(`/projectManage/project/addedit?projectCode=${selectedRowKeys[0]}`);
-          } else {
-            showWarnMsg('只有在建和停工的项目可以修改');
-          }
         }
       },
       checkPro: (selectedRowKeys, selectedRows) => {
@@ -173,18 +136,6 @@ class Map extends React.Component {
           this.props.history.push(`/hetong/jindu/info?start=1&projectCode=${selectedRowKeys[0]}`);
         }
       },
-      makeSalary: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.setState({
-            showMakeSalary: true
-          });
-          this.projectCode = selectedRowKeys[0];
-        }
-      },
       addBumen: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
@@ -216,10 +167,6 @@ class Map extends React.Component {
       }
     };
     const fields = [{
-      field: 'companyName',
-      title: '公司名称',
-      hidden: this.state.userKind !== 'S'
-    }, {
       field: 'projectCode',
       formatter: (v, d) => {
         return d.name;
@@ -230,8 +177,7 @@ class Map extends React.Component {
       listCode: '631357',
       params: {
         updater: '',
-        kind: 'O',
-        companyCode: this.state.companyCode
+        kind: 'O'
       },
       keyName: 'code',
       valueName: 'name'
@@ -239,7 +185,7 @@ class Map extends React.Component {
       field: 'provinces',
       title: '项目详细地址',
       formatter: (v, d) => {
-        return d.province + d.city + d.area + d.address;
+        return d.province ? d.province + d.city + d.area + d.address : '';
       }
     }, {
       field: 'startDatetime',
@@ -270,22 +216,6 @@ class Map extends React.Component {
       hidden: true,
       search: true
     }];
-    const makeSalaryOptions = {
-      fields: [{
-        field: 'month',
-        title: '生成工资月份',
-        type: 'month',
-        required: true
-      }],
-      addCode: 631440,
-      beforeSubmit: (param) => {
-        param.projectCode = this.projectCode;
-        return param;
-      },
-      onOk: () => {
-        this.props.getPageData();
-      }
-    };
     const salaryDelayDaysOptions = {
       fields: [{
         field: 'salaryDelayDays',
@@ -301,47 +231,20 @@ class Map extends React.Component {
         this.props.getPageData();
       }
     };
-    if (getUserKind() === 'P') {
-      return this.state.userKind ? this.props.buildList({
-        fields,
-        btnEvent,
-        searchParams: {
-          companyCode: ''
-        },
-        pageCode: 631356
-      }) : null;
-    } else if (getUserKind() === 'O') {
-      return this.state.companyCode && this.state.userKind ? (<div>{ this.props.buildList({
-              fields,
-              btnEvent,
-              searchParams: {
-                companyCode: this.state.companyCode,
-                kind: 'O'
-              },
-              pageCode: 631356
-          }
-          )}<ModalDetail
-              title='生成工资月份'
-              visible={this.state.showMakeSalary}
-              hideModal={() => this.setState({ showMakeSalary: false })}
-              options={makeSalaryOptions} />
-            </div>) : null;
-    } else {
-      return this.state.projectCodeList && this.state.userKind ? (<div>{ this.props.buildList({
-        fields,
-        btnEvent,
-        searchParams: {
-          projectCodeList: this.state.projectCodeList
-        },
-        pageCode: 631356
-      }
-      )}<ModalDetail
+    return this.state.projectCodeList && this.state.userKind ? (<div>{ this.props.buildList({
+          fields,
+          btnEvent,
+          searchParams: {
+            projectCodeList: this.state.projectCodeList
+          },
+          pageCode: 631356
+        }
+    )}<ModalDetail
         title='薪资发放可延迟天数'
         visible={this.state.showSalaryDelayDays}
         hideModal={() => this.setState({ showSalaryDelayDays: false })}
         options={salaryDelayDaysOptions} />
-        </div>) : null;
-    }
+    </div>) : null;
   }
 }
 

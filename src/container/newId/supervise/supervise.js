@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import { rock } from 'api/user';
 import { Modal } from 'antd';
 import {
@@ -14,6 +13,7 @@ import {
 } from '@redux/newId/supervise';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
+import {getUserId} from '../../../common/js/util';
 
 @listWrapper(
   state => ({
@@ -24,6 +24,14 @@ import { showWarnMsg, showSucMsg } from 'common/js/util';
     cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class Supervise extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { userId: '' };
+  }
+  componentDidMount() {
+    let userId = getUserId();
+    this.setState({ userId });
+  }
   render() {
     const fields = [{
       title: '登录名',
@@ -36,16 +44,6 @@ class Supervise extends React.Component {
       field: 'status',
       type: 'select',
       key: 'user_status'
-    // }, {
-    //   title: '角色',
-    //   field: 'roleCode',
-    //   type: 'select',
-    //   params: {
-    //     updater: ''
-    //   },
-    //   listCode: '631046',
-    //   keyName: 'code',
-    //   valueName: 'name'
     }, {
       title: '备注',
       field: 'remark'
@@ -107,16 +105,17 @@ class Supervise extends React.Component {
         this.props.history.push(`/security/user/setBumen?userId=${selectedRowKeys[0]}&loginName=${selectedRows[0].loginName}`);
       }
     };
-    return this.props.buildList({
+    return this.state.userId ? this.props.buildList({
       fields,
       btnEvent,
       searchParams: {
-        'type': 'S',
-        'updater': ''
+        type: 'S',
+        updater: '',
+        userRefree: this.state.userId
       },
       pageCode: 631085,
       rowKey: 'userId'
-    });
+    }) : null;
   }
 }
 

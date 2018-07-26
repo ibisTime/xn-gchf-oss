@@ -1,5 +1,4 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import { rock } from 'api/user';
 import {
   setTableData,
@@ -35,7 +34,8 @@ class Operation extends React.Component {
       field: 'bankCode'
     }, {
       title: '银行名',
-      field: 'bankName'
+      field: 'bankName',
+      search: true
     }];
     const btnEvent = {
       edit: (selectedRowKeys, selectedRows) => {

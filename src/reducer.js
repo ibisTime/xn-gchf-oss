@@ -26,10 +26,7 @@ import { waitListAlreadyQuest } from './redux/waitList/alreadyQuest';
 import { waitListAlreadyQuestAddedit } from './redux/waitList/alreadyQuest-addedit';
 import { generalTextParam } from './redux/general/text-param';
 import { generalTextParamAddEdit } from './redux/general/text-param-addedit';
-import { dailiManageMap } from './redux/dailiManage/map';
-import { newProjCompanyConstruct } from './redux/newProj/companyConstruct';
 import { newProjBumenConstruct } from './redux/newProj/bumenConstruct';
-import { newProjAddCompany } from './redux/newProj/addCompany';
 import { newIdAddProject } from './redux/newId/addProject';
 import { newProjAddBumen } from './redux/newProj/addBumen';
 import { newProjProject } from './redux/newProj/project';
@@ -130,9 +127,7 @@ export default combineReducers({
   waitListAlreadyQuestAddedit,
   generalTextParam,
   generalTextParamAddEdit,
-  newProjCompanyConstruct,
   newProjBumenConstruct,
-  newProjAddCompany,
   newIdAddProject,
   newProjAddBumen,
   newProjProject,

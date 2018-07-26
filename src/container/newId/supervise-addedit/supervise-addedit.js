@@ -9,6 +9,7 @@ import {
 } from '@redux/newId/supervise-addedit';
 import { getQueryString } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
+import {getUserId} from '../../../common/js/util';
 @DetailWrapper(
   state => state.newIdSuperviseAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
@@ -16,8 +17,13 @@ import { DetailWrapper } from 'common/js/build-detail';
 class SuperviseAddEdit extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { userId: '' };
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+  }
+  componentDidMount() {
+    let userId = getUserId();
+    this.setState({ userId });
   }
   render() {
     const fields = [{
@@ -61,14 +67,18 @@ class SuperviseAddEdit extends React.Component {
       value: 'S',
       hidden: true
     }];
-    return this.props.buildDetail({
+    return this.state.userId ? this.props.buildDetail({
       fields,
       code: this.code,
       key: 'userId',
       view: this.view,
       detailCode: 631087,
-      addCode: 631070
-    });
+      addCode: 631070,
+      beforeSubmit: (params) => {
+        params.userRefree = this.state.userId;
+        return params;
+      }
+    }) : null;
   }
 }
 

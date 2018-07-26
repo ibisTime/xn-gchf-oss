@@ -1,7 +1,5 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import { rock } from 'api/user';
-import { Modal } from 'antd';
 import {
   setTableData,
   setPagination,
@@ -14,6 +12,7 @@ import {
 } from '@redux/newId/yezhu';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
+import {getUserId} from '../../../common/js/util';
 
 @listWrapper(
   state => ({
@@ -24,6 +23,14 @@ import { showWarnMsg, showSucMsg } from 'common/js/util';
     cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class Yezhu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { userId: '' };
+  }
+  componentDidMount() {
+    let userId = getUserId();
+    this.setState({ userId });
+  }
   render() {
     const fields = [{
       title: '项目名',
@@ -34,13 +41,12 @@ class Yezhu extends React.Component {
     }, {
       title: '手机号',
       field: 'mobile'
+    }, {
+      title: '状态',
+      field: 'status',
+      type: 'select',
+      key: 'user_status'
     },
-    // , {
-    //   title: '状态',
-    //   field: 'status',
-    //   type: 'select',
-    //   key: 'user_status'
-    // },
       {
       title: '备注',
       field: 'remark'
@@ -50,15 +56,16 @@ class Yezhu extends React.Component {
       search: true,
       hidden: true
     }];
-    return this.props.buildList({
+    return this.state.userId ? this.props.buildList({
       fields,
       searchParams: {
-        'updater': '',
-        'type': 'O'
+        type: 'O',
+        updater: '',
+        userRefree: this.state.userId
       },
       pageCode: 631085,
       rowKey: 'userId'
-    });
+    }) : null;
   }
 }
 

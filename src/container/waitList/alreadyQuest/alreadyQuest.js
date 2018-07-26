@@ -31,8 +31,7 @@ class AlreadyQuest extends React.Component {
     this.state = {
       subbranch: '',
       bankName: '',
-      projectCodeList: '',
-      companyCode: ''
+      projectCodeList: ''
     };
     this.userKind = getUserKind();
   };
@@ -41,103 +40,55 @@ class AlreadyQuest extends React.Component {
       this.setState({
         subbranch: data.subbranch,
         bankName: data.bankName,
-        projectCodeList: data.projectCodeList,
-        companyCode: data.companyCode
+        projectCodeList: data.projectCodeList
       });
       console.log(data);
     });
   }
   render() {
     const fields = [{
-      title: '公司名称',
-      field: 'companyName',
-      className: this.userKind === 'B' ? 'haha' : ''
-    }, {
       title: '项目名称',
-      field: 'projectName',
-      className: this.userKind === 'B' ? 'haha' : ''
+      field: 'projectName'
     }, {
       title: '标题',
-      field: 'title',
-      className: this.userKind === 'B' ? 'haha' : ''
+      field: 'title'
     }, {
       field: 'bankNames',
       title: '开户行',
       formatter: (v, d) => {
         return d.bankName + d.subbranch;
-      },
-      className: this.userKind === 'B' ? 'haha' : ''
+      }
     }, {
       field: 'bankcardNumber',
-      title: '账户',
-      className: this.userKind === 'B' ? 'haha' : ''
+      title: '账户'
     }, {
       field: 'totalAmounts',
       title: '本月累计发薪',
       formatter: (v, d) => {
         return moneyFormat(d.totalAmount);
-      },
-      className: this.userKind === 'B' ? 'haha' : ''
+      }
     }, {
       title: '状态',
       field: 'status',
       key: 'message_status',
-      type: 'select',
-      className: this.userKind === 'B' ? 'haha' : ''
+      type: 'select'
     }, {
       title: '请求时间',
       field: 'sendDatetime',
-      type: 'datetime',
-      className: this.userKind === 'B' ? 'haha' : ''
+      type: 'datetime'
     }, {
       title: '完成时间',
       field: 'handleDatetime',
-      type: 'datetime',
-      className: this.userKind === 'B' ? 'haha' : ''
+      type: 'datetime'
     }];
-    if (getUserKind() === 'B') {
-      return this.state.subbranch && this.state.bankName
-        ? this.props.buildList({
-          fields,
-          searchParams: {
-            status: 3,
-            subbranch: this.state.subbranch,
-            bankName: this.state.bankName
-          },
-          pageCode: 631435,
-          className: 'tableClass'
-        })
-        : null;
-    } else if (getUserKind() === 'O') {
-      return this.state.companyCode
-        ? this.props.buildList({
-          fields,
-          searchParams: {
-            statusList: ['1', '2', '3'],
-            companyCode: this.state.companyCode,
-            kind: 'O'
-          },
-          pageCode: 631435
-        })
-        : null;
-    } else if (getUserKind() === 'S') {
-      return this.state.projectCodeList ? this.props.buildList({
-        fields,
-        searchParams: {
-          statusList: ['1', '2', '3'],
-          projectCodeList: this.state.companyCode
-        },
-        pageCode: 631435
-      }) : null;
-    } else {
-      return this.props.buildList({
-        fields,
-        searchParams: {
-          statusList: ['1', '2', '3']
-        },
-        pageCode: 631435
-      });
-    }
+    return this.state.projectCodeList ? this.props.buildList({
+      fields,
+      searchParams: {
+        statusList: ['1', '2', '3'],
+        projectCodeList: this.state.projectCodeList
+      },
+      pageCode: 631435
+    }) : null;
   }
 }
 

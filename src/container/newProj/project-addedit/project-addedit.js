@@ -253,9 +253,6 @@ class ProjectAddedit extends React.Component {
     }];
     // 详情
     const fieldos = [{
-      field: 'companyName',
-      title: '公司名称'
-    }, {
       field: 'name',
       title: '项目名称'
     }, {

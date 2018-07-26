@@ -11,6 +11,7 @@ import fetch from 'common/js/fetch';
 import { getQueryString, showSucMsg, showWarnMsg } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import { getBankCodeByName } from 'api/project';
+import {getUserId} from '../../../common/js/util';
 @DetailWrapper(
   state => state.newIdBankAddEdit,
   { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
@@ -18,8 +19,13 @@ import { getBankCodeByName } from 'api/project';
 class BankAddEdit extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { userId: '' };
     this.userId = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+  }
+  componentDidMount() {
+    let userId = getUserId();
+    this.setState({ userId });
   }
   render() {
     const fields = [{
@@ -82,26 +88,18 @@ class BankAddEdit extends React.Component {
       value: 'B',
       hidden: true
     }];
-    return this.props.buildDetail({
+    return this.state.userId ? this.props.buildDetail({
       fields,
       code: this.userId,
       key: 'userId',
       view: this.view,
       beforeSubmit: (param) => {
         param.loginName = param.bankName + param.subbranch;
+        param.userRefree = this.state.userId;
         getBankCodeByName(param.bankName).then(data => {
           param.bankCode = data[0].bankCode;
           param.bankName = data[0].bankName;
           this.props.doFetching();
-          console.log(param);
-          // param = {
-          //   subbranch: this.props.pageData.subbranch,
-          //   loginPwd: this.props.pageData.loginPwd,
-          //   realName: this.props.pageData.realName,
-          //   mobile: this.props.pageData.mobile,
-          //   remark: this.props.pageData.remark,
-          //   type: this.props.pageData.type
-          // };
           fetch(631070, param).then(() => {
             showSucMsg('操作成功');
             this.props.cancelFetching();
@@ -113,7 +111,7 @@ class BankAddEdit extends React.Component {
       },
       detailCode: 631087,
       addCode: 631070
-    });
+    }) : null;
   }
 }
 
