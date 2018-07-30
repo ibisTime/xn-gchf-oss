@@ -25,33 +25,24 @@ class AccountAddEdit extends React.Component {
   }
   render() {
     const fields = [{
+      field: 'code',
+      value: this.code,
+      hidden: true
+    }, {
       field: 'projectName',
       title: '工程名称',
       readonly: true
     }, {
+      field: 'bankSubbranch',
+      title: '开户行'
+    }, {
       field: 'accountName',
-      title: '户名'
-    }, {
-      field: 'bankNames',
-      title: '开户行',
-      formatter: (v, d) => {
-        return d.bankName + d.subbranch;
-      }
-    }, {
-      field: 'bankCode',
-      title: '银行代号'
+      title: '户名',
+      required: true
     }, {
       field: 'bankcardNumber',
-      title: '银行账户',
+      title: '银行卡号',
       required: true
-    }, {
-      field: 'updateName',
-      title: '更新人',
-      required: true
-    }, {
-      field: 'createDatetime',
-      title: '创建时间',
-      type: 'datetime'
     }, {
       field: 'status',
       title: '状态',

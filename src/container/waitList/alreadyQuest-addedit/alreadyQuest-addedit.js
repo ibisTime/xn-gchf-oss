@@ -83,7 +83,7 @@ class AlreadyQuestAddedit extends React.Component {
         ['项目信息'],
         ['项目编号', data[0].projectCode],
         ['扣款帐户户名', data[0].companyCard.accountName],
-        ['扣款账户', data[0].companyCard.bankName],
+        ['扣款账户', data[0].companyCard.bankcardNumber],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
@@ -104,7 +104,7 @@ class AlreadyQuestAddedit extends React.Component {
         ['项目信息'],
         ['项目编号', data[0].projectCode],
         ['扣款帐户户名', data[0].companyCard.accountName],
-        ['扣款账户', data[0].companyCard.bankName],
+        ['扣款账户', data[0].companyCard.bankcardNumber],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];

@@ -38,7 +38,11 @@ class AllStaffErrorEdit extends React.Component {
       fields,
       code: this.code,
       key: 'salaryCode',
-      editCode: 631451
+      editCode: 631451,
+      onOk: () => {
+        showSucMsg('操作成功');
+        this.props.history.push(`/staff/allStafferror}`);
+      }
     });
   }
 }
