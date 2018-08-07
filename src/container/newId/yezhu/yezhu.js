@@ -53,6 +53,7 @@ class Yezhu extends React.Component {
     }, {
       title: '关键字',
       field: 'keyword',
+      placeholder: '登录名/手机号',
       search: true,
       hidden: true
     }];

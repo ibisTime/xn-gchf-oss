@@ -6,6 +6,8 @@ import { securityRole } from './redux/security/role';
 import { securityRoleAddEdit } from './redux/security/role-addedit';
 import { securityMenu } from './redux/security/menu';
 import { securityMenuAddEdit } from './redux/security/menu-addedit';
+import { securityHelp } from './redux/security/help';
+import { securityHelpAddEdit } from './redux/security/help-addedit';
 import { securityUser } from './redux/security/user';
 import { securityUserAddEdit } from './redux/security/user-addedit';
 import { securityUserResetPwd } from './redux/security/user-resetPwd';
@@ -106,6 +108,8 @@ export default combineReducers({
   securityRoleAddEdit,
   securityMenu,
   securityMenuAddEdit,
+  securityHelp,
+  securityHelpAddEdit,
   securityUser,
   securityUserAddEdit,
   securityUserSetRole,

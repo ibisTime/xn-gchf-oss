@@ -36,7 +36,7 @@ class MenuAddEdit extends React.Component {
       listCode: '631066',
       params: {
         type: 1,
-        roleType: this.state.userKind
+        systemCode: this.state.userKind
       },
       keyName: 'code',
       valueName: '{{code.DATA}} {{name.DATA}}'
@@ -83,7 +83,7 @@ class MenuAddEdit extends React.Component {
       addCode: 631060,
       editCode: 631062,
       beforeSubmit: (params) => {
-        params.roleType = this.state.userKind;
+        params.systemCode = this.state.userKind;
         return params;
       }
     }) : null;

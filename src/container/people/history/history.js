@@ -74,9 +74,6 @@ class History extends React.Component {
       type: 'date',
       required: true
     }, {
-      field: 'upUser',
-      title: '上级'
-    }, {
       field: 'remark',
       title: '备注'
     }];
@@ -116,9 +113,6 @@ class History extends React.Component {
       title: '入职时间',
       type: 'date',
       required: true
-    }, {
-      field: 'upUser',
-      title: '上级'
     }, {
       field: 'remark',
       title: '备注'

@@ -34,6 +34,14 @@ const ROUTES = [
     component: asyncComponent(() => import('container/security/user-addedit/user-addedit'))
   },
   {
+    path: '/system/help',
+    component: asyncComponent(() => import('container/security/help/help'))
+  },
+  {
+    path: '/system/help/addedit',
+    component: asyncComponent(() => import('container/security/help-addedit/help-addedit'))
+  },
+  {
     path: '/system/sysPara',
     component: asyncComponent(() => import('container/security/sysParam/sysParam'))
   },

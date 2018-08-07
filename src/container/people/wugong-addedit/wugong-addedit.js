@@ -80,18 +80,6 @@ class PWugongAddedit extends React.Component {
       type: 'date',
       required: true
     }, {
-      field: 'upUser',
-      title: '上级',
-      type: 'select',
-      listCode: '631086',
-      params: {
-        type: cookies.get('loginKind'),
-        companyCode: this.state.companyCode
-      },
-      keyName: 'userId',
-      valueName: 'realName',
-      required: true
-    }, {
       field: 'cutAmount',
       title: '迟到/早退每小时扣款金额',
       amount: true,

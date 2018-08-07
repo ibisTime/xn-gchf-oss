@@ -4,9 +4,9 @@ import axios from 'axios';
 import originJsonp from 'jsonp';
 import './mianguanRead.css';
 import Photo from './touxiang.png';
+import Figure from './figure.png';
 import { getQueryString, getUserId, showWarnMsg, showSucMsg } from 'common/js/util';
 import { mianguanPicture, getFeatInfo, getStaffDetail } from 'api/user';
-// import { resolve } from 'dns';
 
 function jsonp(url, data, option) {
     return new Promise((resolve, reject) => {
@@ -190,29 +190,31 @@ class mianguanRead extends React.Component {
 
   render() {
     return (
-      <div className="SectionContainer3" style={{ border: '2px solid #096dd9' }}>
-        <div className="section3">
-            <div style={{ verticalAlign: 'middle', width: '100%' }}>
-                <div className="comparison-main3 comparison-mains3">
-                <div className="head-wrap3"><i></i>免冠照读取</div>
-                    <div className="clearfix3">
-                        <div className="inner-box3">
-                            <div className="img-wrap3 right-img3 img-box" style={{ border: '1px solid #4c98de', display: 'block', margin: '0 auto' }}>
-                                <div className="border"></div>
-                                <img src={this.state.pict1} className="haveUserImg" id="userImg" style={{ display: this.state.imgFlag ? 'block' : 'none' }}/>
-                                <canvas id="canvas" className="inner-item" style={{ width: '512px', height: '384px' }} width="1024" height="768"></canvas>
-                            </div>
-                            <div style={{ paddingTop: 20 }}>
-                                <div>
-                                    <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ position: 'absolute', top: '55%', left: '50%', width: '250px', transform: 'translate(-50%, -50%)' }} id="cut" onClick={ this.handleSubmit }>下一步</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div>
+          <div className="title"><i></i><span>人脸采集</span></div>
+          <div className="video-box" style={{ display: this.state.vedio ? 'block' : 'none' }} onClick={ this.handleShotClick }>
+            <div className="figure"><img src={Figure} alt=""/></div>
+            <video id="video" className="video3"></video>
+          </div>
+          <div className="img-box" style={{ display: this.state.vedio ? 'none' : 'block' }} onClick={ this.handleShotClick }>
+            <div className="border">
+              <span></span><span></span><span></span><span></span>
+              <img src={Photo} className="userImg3" id="userImg" style={{ display: this.state.imgFlag ? 'inline-block' : 'none' }}/>
             </div>
+            <div className="tips">
+              <span>点击拍摄</span>
+              <span>请保持正脸在线框之内</span>
+            </div>
+            <canvas id="canvas" className="inner-item" style={{ width: '340px', height: '410px' }} width="1020" height="1230"></canvas>
+          </div>
+          <div style={{ paddingTop: 20 }}>
+            <div className="btn-item3" style={{ textAlign: 'center' }}>
+              <div>
+                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
     );
   }
 }

@@ -1,9 +1,10 @@
 import { getUserName, getUserId } from 'common/js/util';
 import fetch from 'common/js/fetch';
 
-export function downLoad(messageCode) {
+export function downLoad(messageCode, projectCodeList) {
   return fetch(631446, {
-    messageCode
+    messageCode,
+    projectCodeList
   });
 }
 
@@ -30,10 +31,9 @@ export function downNum(code, backDownload, download) {
 }
 
 // 列表查询 待处理 待反馈
-export function handle(bankName, subbranch, status) {
+export function handle(projectCodeList, status) {
   return fetch(631436, {
-    bankName,
-    subbranch,
+    projectCodeList,
     status
   });
 }

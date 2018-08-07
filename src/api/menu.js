@@ -6,14 +6,14 @@ import {getUserKind} from '../common/js/util';
  * 获取当前菜单拥有的按钮列表
  * @param parentKey
  */
-export function getOwnerBtns(parentCode, roleType) {
+export function getOwnerBtns(parentCode, systemCode) {
   // 627056
   return fetch(631056, {
     parentCode,
     roleCode: getRoleCode(),
     type: 2,
     updater: '',
-    roleType
+    systemCode
   });
 }
 
@@ -21,8 +21,8 @@ export function getOwnerBtns(parentCode, roleType) {
  * 列表获取菜单和按钮
  */
 
-export function getMenuBtnList(roleType) {
-  return fetch(631066, {roleType});
+export function getMenuBtnList(systemCode) {
+  return fetch(631066, {systemCode});
 }
 
 /**
@@ -33,14 +33,14 @@ export function getRoleMenuList() {
     type: 1,
     roleCode: getRoleCode(),
     updater: '',
-    roleType: getUserKind() === 'S' ? 'S' : 'P'
+    systemCode: getUserKind() === 'S' ? 'S' : 'P'
   });
 }
 
 /**
  * 根据角色列表获取菜单和按钮getRoleMenuList
  */
-export function getRoleMenuBtnList(roleCode, roleType) {
+export function getRoleMenuBtnList(roleCode, systemCode) {
   roleCode = roleCode || getRoleCode();
-  return fetch(631056, { roleCode, roleType, updater: '' });
+  return fetch(631056, { roleCode, systemCode, updater: '' });
 }

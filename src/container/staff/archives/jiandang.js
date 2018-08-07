@@ -212,7 +212,7 @@ class Jiandang extends React.Component {
             });
             if (rs.errorCode === '0') {
                 showSucMsg('建档成功');
-                this.props.history.push(`/staff/J/mianguanRead`);
+                this.props.history.push(`/staff/jiandang/mianguanRead`);
             } else {
                 showWarnMsg(rs.errorInfo || '建档失败');
             }

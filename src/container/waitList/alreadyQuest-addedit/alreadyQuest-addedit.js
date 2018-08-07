@@ -12,6 +12,8 @@ import { DetailWrapper } from 'common/js/build-detail';
 import { Button, Card } from 'antd';
 import { downLoad, detailDate, downNum } from 'api/downLoad';
 import XLSX from 'xlsx';
+import { getUserDetail, getUserId } from '../../../api/user';
+import cookies from 'browser-cookies';
 
 @DetailWrapper(
   state => state.waitListAlreadyQuestAddedit,
@@ -36,11 +38,15 @@ class AlreadyQuestAddedit extends React.Component {
       sendDatetime: '',
       status: '',
       backDownload: '',
-      title: '',
-      companyName: ''
+      title: ''
     };
   };
   componentDidMount() {
+    if(cookies.get('loginKind') === 'S') {
+      getUserDetail(getUserId()).then((res) => {
+        this.setState({ projectCodeList: res.projectCodeList });
+      });
+    }
     detailDate(this.code).then((data) => {
       console.log(data);
       this.setState({
@@ -53,8 +59,7 @@ class AlreadyQuestAddedit extends React.Component {
         download: data.download,
         backDownload: data.backDownload,
         title: data.title,
-        accountName: data.companyCard.accountName,
-        companyName: data.companyCard.companyName
+        accountName: data.companyCard.accountName
       });
     });
   }
@@ -78,12 +83,12 @@ class AlreadyQuestAddedit extends React.Component {
   }
   handleExport1() {
     this.downNum(true);
-    downLoad(this.code).then((data) => {
+    downLoad(this.code, this.state.projectCodeList).then((data) => {
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[0].projectCode],
-        ['扣款帐户户名', data[0].companyCard.accountName],
-        ['扣款账户', data[0].companyCard.bankcardNumber],
+        ['扣款帐户户名', data[0].projectCard.accountName],
+        ['扣款账户', data[0].projectCard.bankcardNumber],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
@@ -103,19 +108,14 @@ class AlreadyQuestAddedit extends React.Component {
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[0].projectCode],
-        ['扣款帐户户名', data[0].companyCard.accountName],
-        ['扣款账户', data[0].companyCard.bankcardNumber],
+        ['扣款帐户户名', data[0].projectCard.accountName],
+        ['扣款账户', data[0].projectCard.bankcardNumber],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
       let payroll2 = data.map((d, i) => {
         return [i + 1, d.code, d.bankCard.staffName, d.staffIdNo, d.bankCard.bankName, d.bankCard.subbranch, d.bankCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
       });
-      // let payroll2 = data.map((d, i) => {
-      //   d.map((item, j) => {
-      //     return [j + 1, d.code, d.bankCard.staffName, d.companyCard.bankName, d.companyCard.bankcardNumber, moneyFormat(d.factAmount), '', ''];
-      //   });
-      // });
       payroll1 = payroll1.concat(payroll2);
       const ws = XLSX.utils.aoa_to_sheet(payroll1);
       const wb = XLSX.utils.book_new();
@@ -128,7 +128,6 @@ class AlreadyQuestAddedit extends React.Component {
       <div>
         <Card style={{ width: '100%', borderColor: 'rgba(153,212,255,0.6)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset' }}>
           <p style={{ fontSize: '16px' }}>{this.state.title + '工资'}</p>
-          <p>公司名称：{this.state.companyName}</p>
           <p style={{ marginRight: '20px' }}>项目名称：{this.state.projectName}</p>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.accountName}</p>

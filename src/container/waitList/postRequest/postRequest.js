@@ -20,22 +20,20 @@ class PostRequest extends React.Component {
     this.lookDetail = this.lookDetail.bind(this);
   };
   componentDidMount() {
-    if (getUserKind() === 'B') {
-      getUserDetail(getUserId()).then((data) => {
-        handle(data.bankName, data.subbranch, 1).then(data => {
-          this.setState({
-            data: data
-          });
+    getUserDetail(getUserId()).then((data) => {
+      handle(data.projectCodeList, 1).then(data => {
+        this.setState({
+          data: data
         });
       });
-      getDictList({ parentKey: 'message_status' }).then(data => {
-        let dict = {};
-        data.forEach(d => {
-          dict[d.dkey] = d.dvalue;
-        });
-        this.setState({ statusDict: dict });
+    });
+    getDictList({ parentKey: 'message_status' }).then(data => {
+      let dict = {};
+      data.forEach(d => {
+        dict[d.dkey] = d.dvalue;
       });
-    };
+      this.setState({ statusDict: dict });
+    });
   }
   lookDetail(code) {
     this.props.history.push(`/waitList/postRequest/addedit?code=${code}`);

@@ -28,7 +28,7 @@ import { showWarnMsg, showSucMsg } from 'common/js/util';
 class NewProject extends React.Component {
   render() {
     const fields = [{
-      title: '公司名称',
+      title: '项目名称',
       field: 'name'
     }, {
       title: '状态',

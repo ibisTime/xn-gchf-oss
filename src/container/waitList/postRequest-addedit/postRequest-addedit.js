@@ -3,8 +3,10 @@ import fetch from 'common/js/fetch';
 import { getQueryString, showWarnMsg, showSucMsg, formatDate, getUserName, isUndefined, getUserId, moneyFormat } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import XLSX from 'xlsx';
-import { Button, Card, Upload, Icon } from 'antd';
+import { Button, Card } from 'antd';
 import { downLoad, downNum, detailDate } from 'api/downLoad';
+import cookies from 'browser-cookies';
+import {getUserDetail} from '../../../api/user';
 
 function makeCols(refstr) {
   var o = [];
@@ -36,10 +38,15 @@ class PostRequestAddedit extends React.Component {
       fileList: [],
       backDownload: '',
       title: '',
-      companyName: ''
+      projectCodeList: ''
     };
   }
   componentDidMount() {
+    if(cookies.get('loginKind') === 'S') {
+      getUserDetail(getUserId()).then((res) => {
+        this.setState({ projectCodeList: res.projectCodeList });
+      });
+    }
     detailDate(this.code).then((data) => {
       this.setState({
         bankcardNumber: data.bankcardNumber,
@@ -50,8 +57,7 @@ class PostRequestAddedit extends React.Component {
         download: data.download,
         backDownload: data.backDownload,
         title: data.title,
-        accountName: data.companyCard.accountName,
-        companyName: data.companyCard.companyName
+        accountName: data.companyCard.accountName
       });
     });
   }
@@ -71,7 +77,7 @@ class PostRequestAddedit extends React.Component {
   }
   handleExport() {
     this.downNum(true);
-    downLoad(this.code).then((data) => {
+    downLoad(this.code, this.state.projectCodeList).then((data) => {
       console.log(data);
       if (!data || !data.length) {
         showWarnMsg('没有工资条信息！');
@@ -80,8 +86,8 @@ class PostRequestAddedit extends React.Component {
       let payroll1 = [
         ['项目信息'],
         ['项目编号', data[0].projectCode],
-        ['扣款帐户户名', data[0].companyCard.accountName],
-        ['扣款账户', data[0].companyCard.bankcardNumber],
+        ['扣款帐户户名', data[0].projectCard.accountName],
+        ['扣款账户', data[0].projectCard.bankcardNumber],
         ['代付工资信息'],
         ['序号', '工资条编号', '真实姓名', '身份证号', '开户行', '支行', '卡号', '应发金额', '已发金额', '发放时间']
       ];
@@ -185,7 +191,6 @@ class PostRequestAddedit extends React.Component {
       <div>
         <Card style={{ width: '100%', borderColor: 'rgba(153,212,255,0.6)', boxShadow: '0px 0px 30px rgba(153,212,255,0.6) inset' }}>
           <p style={{ fontSize: '16px' }}>{this.state.title}</p>
-          <p>公司名称：{this.state.companyName}</p>
           <p>项目名称：{this.state.projectName}</p>
           <p>请求时间：{formatDate(this.state.sendDatetime)}</p>
           <p>代发账户户名：{this.state.accountName}</p>
