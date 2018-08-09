@@ -57,7 +57,7 @@ class PostRequestAddedit extends React.Component {
         download: data.download,
         backDownload: data.backDownload,
         title: data.title,
-        accountName: data.companyCard.accountName
+        accountName: data.projectCard.accountName
       });
     });
   }

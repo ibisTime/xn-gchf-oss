@@ -37,6 +37,9 @@ class HelpAddedit extends React.Component {
       }, {
         dkey: 'B',
         dvalue: '银行端'
+      }, {
+        dkey: 'P',
+        dvalue: '平台端'
       }],
       keyName: 'dkey',
       valueName: 'dvalue',

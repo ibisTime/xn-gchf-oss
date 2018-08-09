@@ -33,17 +33,11 @@ class AllStaffLeaveRecords extends React.Component {
     this.staffCode = getQueryString('staffCode', this.props.location.search);
   }
   componentDidMount() {
-    // console.log(1);
-    // if (getUserKind() === 'S') {
-    //   getUserDetail(getUserId()).then((data) => {
-    //     this.setState({ 'projectCodeList': data.projectCodeList });
-    //   });
-    // };
-    // if (getUserKind() === 'O') {
-    //   getUserDetail(getUserId()).then((data) => {
-    //     this.setState({ 'companyCode': data.companyCode });
-    //   });
-    // };
+    if (getUserKind() === 'S') {
+      getUserDetail(getUserId()).then((data) => {
+        this.setState({'projectCodeList': data.projectCodeList});
+      });
+    }
   }
   render() {
     const fields = [{
@@ -67,24 +61,8 @@ class AllStaffLeaveRecords extends React.Component {
       field: 'updateDatetime',
       title: '更新时间',
       type: 'datetime'
-    }
-    // , {
-    //   field: 'updater',
-    //   title: '更新人'
-    // }
-    ];
-    const btnEvent = [{
-      detail: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`/staff/allStaff/detailadd?staffCode=${selectedRowKeys[0]}`);
-        }
-      }
     }];
-    return this.props.buildList({
+    return this.state.projectCodeList ? this.props.buildList({
       fields,
       buttons: [{
         code: 'detail',
@@ -98,12 +76,18 @@ class AllStaffLeaveRecords extends React.Component {
             this.props.history.push(`/staff/allStaff/leaveRecords-detail?code=${selectedRowKeys[0]}`);
           }
         }
+      }, {
+        code: 'back',
+        name: '返回',
+        handler: () => {
+          this.props.history.go(-1);
+        }
       }],
       searchParams: {
-        staffCode: this.staffCode
+        projectCodeList: this.state.projectCodeList
       },
       pageCode: 631468
-    });
+    }) : null;
   }
 }
 

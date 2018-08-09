@@ -38,12 +38,7 @@ class ProjectStaff extends React.Component {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
-    };
-    if (getUserKind() === 'O') {
-      getUserDetail(getUserId()).then((data) => {
-        this.setState({ 'companyCode': data.companyCode });
-      });
-    };
+    }
   }
   render() {
     const fields = [{
@@ -168,11 +163,12 @@ class ProjectStaff extends React.Component {
         pageCode: 631465
       }) : null;
     } else {
-      return this.state.userKind ? this.props.buildList({
+      return this.state.userKind && this.state.projectCodeList ? this.props.buildList({
         fields,
         btnEvent,
         searchParams: {
-          updater: ''
+          updater: '',
+          projectCodeList: this.state.projectCodeList
         },
         pageCode: 631465
       }) : null;

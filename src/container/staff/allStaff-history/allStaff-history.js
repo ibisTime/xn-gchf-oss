@@ -72,7 +72,9 @@ class AllStaffHistory extends React.Component {
       title: '部门'
     }, {
       field: 'position',
-      title: '职位'
+      title: '职位',
+      key: 'position_type',
+      type: 'select'
     }, {
       field: 'status',
       title: '状态',

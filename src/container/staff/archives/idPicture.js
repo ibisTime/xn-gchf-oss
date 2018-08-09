@@ -164,9 +164,33 @@ class IdPicture extends React.Component {
     let currentVideo = this[`video${index}`];
     this.context = currentCanvas.getContext('2d');
     if(index === '1' || index === '2') {
-      this.context.drawImage(currentVideo, 0, 0, 1020, 720);
+      // this.context.drawImage(currentVideo, 0, 0, 1020, 720);
+      this.context = currentCanvas.getContext('2d');
+      currentCanvas.width = 338 * 3;
+      currentCanvas.height = 238 * 3;
+      let scaleH = currentVideo.videoHeight / 238;
+      let scaleW = currentVideo.videoWidth / 338;
+      if (scaleH > scaleW) {
+        let sy = (currentVideo.videoHeight - 238 * scaleW) / 2;
+        this.context.drawImage(currentVideo, 0, sy, currentVideo.videoWidth, 238 * scaleW, 0, 0, 338 * 3, 238 * 3);
+      } else {
+        let sx = (currentVideo.videoWidth - scaleH * 338) / 2;
+        this.context.drawImage(currentVideo, sx, 0, scaleH * 338, currentVideo.videoHeight, 0, 0, 338 * 3, 238 * 3);
+      }
     } else {
-      this.context.drawImage(currentVideo, 0, 0, 1020, 1536);
+      // this.context.drawImage(currentVideo, 0, 0, 1020, 1536);
+      this.context = currentCanvas.getContext('2d');
+      currentCanvas.width = 340 * 3;
+      currentCanvas.height = 512 * 3;
+      let scaleH = currentVideo.videoHeight / 512;
+      let scaleW = currentVideo.videoWidth / 340;
+      if (scaleH > scaleW) {
+        let sy = (currentVideo.videoHeight - 512 * scaleW) / 2;
+        this.context.drawImage(currentVideo, 0, sy, currentVideo.videoWidth, 512 * scaleW, 0, 0, 340 * 3, 512 * 3);
+      } else {
+        let sx = (currentVideo.videoWidth - scaleH * 340) / 2;
+        this.context.drawImage(currentVideo, sx, 0, scaleH * 340, currentVideo.videoHeight, 0, 0, 340 * 3, 512 * 3);
+      }
     }
     this.getBase64(currentCanvas, index);
   };
@@ -252,18 +276,18 @@ class IdPicture extends React.Component {
 
   render() {
     return (
-        <div>
-          <div className="title"><i></i><span>证件采集</span></div>
+        <div className="id-total">
+          <div className="id-title"><i></i><span>证件采集</span></div>
           <div className="out">
             <div className="left">
               <div className="top">
-                <div className="video-box" style={{ display: this.state.video1 ? 'block' : 'none' }} onClick={ this.handleShotClick }>
+                <div className="id-video-box" style={{ display: this.state.video1 ? 'block' : 'none' }} onClick={ this.handleShotClick }>
                   <div className="border">
                     <span></span><span></span><span></span><span></span>
                   </div>
                   <video ref={video => this.video1 = video} className="id-video"></video>
                 </div>
-                <div className="img-box" style={{ display: this.state.video1 ? 'none' : 'block' }} onClick={ () => { this.shot(1); }}>
+                <div className="id-img-box" style={{ display: this.state.video1 ? 'none' : 'block' }} onClick={ () => { this.shot(1); }}>
                   <div className="border">
                     <span></span><span></span><span></span><span></span>
                     <img src={IDFRONT} className="userImg3" id="userImg"/>
@@ -276,13 +300,13 @@ class IdPicture extends React.Component {
                 </div>
               </div>
               <div className="bottom">
-                <div className="video-box" style={{ display: this.state.video2 ? 'block' : 'none' }} onClick={ this.handleShotClick }>
+                <div className="id-video-box" style={{ display: this.state.video2 ? 'block' : 'none' }} onClick={ this.handleShotClick }>
                   <div className="border">
                     <span></span><span></span><span></span><span></span>
                   </div>
                   <video ref={video => this.video2 = video} className="id-video"></video>
                 </div>
-                <div className="img-box" style={{ display: this.state.video2 ? 'none' : 'block' }} onClick={ () => { this.shot(2); }}>
+                <div className="id-img-box" style={{ display: this.state.video2 ? 'none' : 'block' }} onClick={ () => { this.shot(2); }}>
                   <div className="border">
                     <span></span><span></span><span></span><span></span>
                     <img src={IDBACK} className="userImg3" id="userImg"/>
@@ -296,11 +320,11 @@ class IdPicture extends React.Component {
               </div>
             </div>
             <div className="right">
-              <div className="video-box" style={{ display: this.state.video3 ? 'block' : 'none' }} onClick={ this.handleShotClick }>
+              <div className="id-video-box" style={{ display: this.state.video3 ? 'block' : 'none' }} onClick={ this.handleShotClick }>
                 <div className="figure"><img src={Figure} alt=""/></div>
                 <video ref={video => this.video3 = video} className="id-video"></video>
               </div>
-              <div className="img-box" style={{ display: this.state.video3 ? 'none' : 'block' }} onClick={ () => { this.shot(3); }}>
+              <div className="id-img-box" style={{ display: this.state.video3 ? 'none' : 'block' }} onClick={ () => { this.shot(3); }}>
                 <div className="border">
                   <span></span><span></span><span></span><span></span>
                   <img src={Hold} className="userImg3" id="userImg"/>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Collapse } from 'antd';
 import { getUserId } from 'common/js/util';
 import { getHelpList } from 'api/general';
+import cookies from 'browser-cookies';
 import './contactWithUs.css';
 import erweima from './erweima.jpeg';
 import close from './close.png';
@@ -21,7 +22,8 @@ class ContactWithUs extends React.Component {
   componentDidMount() {
     getHelpList({
       orderColumn: 'order_no',
-      orderDir: 'asc'
+      orderDir: 'asc',
+      kind: cookies.get('loginKind')
     }).then((res) => {
       let helpArr = [];
       res.map((item) => {

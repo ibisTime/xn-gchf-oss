@@ -10,6 +10,6 @@ export function getHelpList(info) {
   return fetch(631126, {
     orderColumn: info.orderColumn || '',
     orderDir: info.orderDir || '',
-    systemCode: 'S'
+    systemCode: info.kind
   });
 }

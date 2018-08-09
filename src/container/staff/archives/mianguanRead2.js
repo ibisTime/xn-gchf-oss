@@ -126,10 +126,22 @@ class mianguanRead2 extends React.Component {
         imgFlag: false,
         shot: false
     });
-    this.context = this.canvas.getContext('2d');
+    // this.context = this.canvas.getContext('2d');
     // this.context.scale(0.5, 0.5);
-    this.context.drawImage(this.video, 340, 0, 600, 790, 0, 0, 1020, 1350);
-    // this.context.drawImage(this.video, 0, 0, 1024, 768);
+    // this.context.drawImage(this.video, 340, 0, 600, 790, 0, 0, 1020, 1350);
+    // this.context.drawImage(this.video, 130, 0, 600, 720, 0, 0, 1520, 1850);
+    this.context = this.canvas.getContext('2d');
+    this.canvas.width = 338 * 3;
+    this.canvas.height = 408 * 3;
+    let scaleH = this.video.videoHeight / 408;
+    let scaleW = this.video.videoWidth / 338;
+    if (scaleH > scaleW) {
+      let sy = (this.video.videoHeight - 408 * scaleW) / 2;
+      this.context.drawImage(this.video, 0, sy, this.video.videoWidth, 408 * scaleW, 0, 0, 338 * 3, 408 * 3);
+    } else {
+      let sx = (this.video.videoWidth - scaleH * 338) / 2;
+      this.context.drawImage(this.video, sx, 0, scaleH * 338, this.video.videoHeight, 0, 0, 338 * 3, 408 * 3);
+    }
   };
   getPixelRatio() {
     var backingStore = this.context.backingStorePixelRatio ||
@@ -205,12 +217,13 @@ class mianguanRead2 extends React.Component {
     // if (this.state.feat) {
         info.feat = this.state.feat;
     //     info.feat = 'NOFACE';
-        if(this.state.reshot) {
-          info.pic1 = this.canvas.toDataURL('image/jpeg');
-        } else {
-          info.pic1 = this.state.pict1;
-        }
-        this.upload(info);
+    console.log(this.state.reshot);
+    if(this.state.reshot) {
+      info.pic1 = this.canvas.toDataURL('image/jpeg');
+    } else {
+      info.pic1 = this.state.pict1;
+    }
+    this.upload(info);
     // } else if (!this.state.feat) {
     //     showWarnMsg('请重新拍摄');
     // };

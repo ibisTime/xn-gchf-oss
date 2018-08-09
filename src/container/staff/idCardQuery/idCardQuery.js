@@ -13,7 +13,8 @@ class AllStaffAddEdit extends React.Component {
       projectCodeList: '',
       data: '',
       salaryStatus: [],
-      staffStatus: []
+      staffStatus: [],
+      positionType: []
     };
   }
   componentDidMount() {
@@ -30,6 +31,11 @@ class AllStaffAddEdit extends React.Component {
     getDict('staff_status').then((res) => {
       res.map((item) => {
         this.state.staffStatus[item.dkey] = item.dvalue;
+      });
+    });
+    getDict('position_type').then((res) => {
+      res.map((item) => {
+        this.state.positionType[item.dkey] = item.dvalue;
       });
     });
   }
@@ -175,7 +181,7 @@ class AllStaffAddEdit extends React.Component {
           staffName: this.state.data.name,
           joinDatetime: (employList[l] && formatDate(employList[l].joinDatetime)) || '',
           leavingDays: (employList[l] && employList[l].leavingDays) || '',
-          position: (employList[l] && employList[l].position) || '',
+          position: (employList[l] && this.state.positionType[employList[l].position]) || '',
           totalLeavingDays: (employList[l] && employList[l].totalLeavingDays) || '',
           cutAmount: (employList[l] && moneyFormat(employList[l].cutAmount)) || '',
           status: (employList[l] && this.state.staffStatus[employList[l].status]) || '',

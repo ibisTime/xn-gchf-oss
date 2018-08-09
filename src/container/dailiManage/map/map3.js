@@ -136,26 +136,14 @@ class Map extends React.Component {
           this.props.history.push(`/hetong/jindu/info?start=1&projectCode=${selectedRowKeys[0]}`);
         }
       },
-      addBumen: (selectedRowKeys, selectedRows) => {
-        if (!selectedRowKeys.length) {
-          showWarnMsg('请选择记录');
-        } else if (selectedRowKeys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          if(selectedRows[0].status !== '5') {
-            this.props.history.push(`/projectManage/project/addBumen?code=${selectedRows[0].code}`);
-          }else {
-            showWarnMsg('该项目已结束，不能新增部门');
-          }
-        }
-      },
+      // 发薪可延迟天数
       salaryDelayDays: (selectedRowKeys, selectedRows) => {
         if (!selectedRowKeys.length) {
           showWarnMsg('请选择记录');
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
-          if(selectedRows[0].status === '3') {
+          if(selectedRows[0].status === '2') {
             this.setState({
               showSalaryDelayDays: true
             });
@@ -181,13 +169,15 @@ class Map extends React.Component {
       },
       keyName: 'code',
       valueName: 'name'
-    }, {
-      field: 'provinces',
-      title: '项目详细地址',
-      formatter: (v, d) => {
-        return d.province ? d.province + d.city + d.area + d.address : '';
-      }
-    }, {
+    },
+    //   {
+    //   field: 'provinces',
+    //   title: '项目详细地址',
+    //   formatter: (v, d) => {
+    //     return d.province ? d.province + d.city + d.area: '';
+    //   }
+    // },
+      {
       field: 'startDatetime',
       title: '项目开始时间',
       type: 'datetime'

@@ -130,7 +130,7 @@ class Dashboard extends React.Component {
               </a>
             </Dropdown>
           </Item>
-          <div className="con-help-icon" style={{display: this.loginKind === 'S' ? 'block' : 'none'}}>
+          <div className="con-help-icon">
             <img src={contract} className="contract" alt="" onClick={(event) => this.setContactWithUsVisible(true, event, 1)}/>
             <img src={help} className="help" alt="" onClick={(event) => this.setContactWithUsVisible(true, event, 2)}/>
           </div>

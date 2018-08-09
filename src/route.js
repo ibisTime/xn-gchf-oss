@@ -241,10 +241,10 @@ const ROUTES = [
     path: '/hetong/wugong/contract',
     component: asyncComponent(() => import('container/hetong/wugong-addedit/wugong-addedit'))
   },
-  {
-    path: '/people/wugong',
-    component: asyncComponent(() => import('container/people/wugong/wugong'))
-  },
+  // {
+  //   path: '/people/wugong',
+  //   component: asyncComponent(() => import('container/people/wugong/wugong'))
+  // },
   {
     path: '/staff/allStaff/entry',
     component: asyncComponent(() => import('container/people/wugong-addedit/wugong-addedit'))
@@ -257,10 +257,10 @@ const ROUTES = [
     path: '/people/wugong/leave',
     component: asyncComponent(() => import('container/people/wugong-leave/wugong-leave'))
   },
-  {
-    path: '/people/history',
-    component: asyncComponent(() => import('container/people/history/history'))
-  },
+  // {
+  //   path: '/people/history',
+  //   component: asyncComponent(() => import('container/people/history/history'))
+  // },
   {
     path: '/staff/allStaff',
     component: asyncComponent(() => import('container/staff/allStaff/allStaff'))

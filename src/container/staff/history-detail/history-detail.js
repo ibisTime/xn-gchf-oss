@@ -31,12 +31,7 @@ class HistoryDetail extends React.Component {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
-    };
-    if (getUserKind() === 'O') {
-      getUserDetail(getUserId()).then((data) => {
-        this.setState({ companyCode: data.companyCode });
-      });
-    };
+    }
   }
   render() {
     const fields = [{
@@ -62,7 +57,9 @@ class HistoryDetail extends React.Component {
       title: '部门'
     }, {
       field: 'position',
-      title: '职位'
+      title: '职位',
+      type: 'select',
+      key: 'position_type'
     }, {
       field: 'salary',
       title: '日薪',

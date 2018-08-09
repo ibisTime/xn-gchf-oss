@@ -32,13 +32,7 @@ class ProjectStaffAddedit extends React.Component {
       getUserDetail(getUserId()).then((data) => {
         this.setState({ 'projectCodeList': data.projectCodeList });
       });
-    };
-    if (getUserKind() === 'O') {
-      getUserDetail(getUserId()).then((data) => {
-        console.log(data.companyCode);
-        this.setState({ companyCode: data.companyCode });
-      });
-    };
+    }
   }
   render() {
     const fields = [{
@@ -87,34 +81,6 @@ class ProjectStaffAddedit extends React.Component {
       field: 'cutAmount',
       title: '迟到早退每小时扣减金额',
       formatter: moneyFormat
-    }, {
-      field: 'pict1',
-      title: '免冠照片',
-      type: 'img',
-      formatter: (v, d) => {
-        return d.staff.pict1;
-      }
-    }, {
-      field: 'pict2',
-      title: '身份证正面照片',
-      type: 'img',
-      formatter: (v, d) => {
-        return d.staff.pict2;
-      }
-    }, {
-      field: 'pict3',
-      title: '身份证反面照片',
-      type: 'img',
-      formatter: (v, d) => {
-        return d.staff.pict3;
-      }
-    }, {
-      field: 'pict4',
-      title: '手持身份证照片',
-      type: 'img',
-      formatter: (v, d) => {
-        return d.staff.pict4;
-      }
     }, {
       field: 'status',
       title: '状态',

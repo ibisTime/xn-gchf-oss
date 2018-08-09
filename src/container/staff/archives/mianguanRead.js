@@ -101,9 +101,17 @@ class mianguanRead extends React.Component {
       shot: false
     });
     this.context = this.canvas.getContext('2d');
-    // this.context.scale(0.5, 0.5);
-    // this.context.drawImage(this.video, 340, 0, 600, 790, 0, 0, 1020, 1350);
-    this.context.drawImage(this.video, 340, 0, 600, 790, 0, 0, 1020, 1350);
+    this.canvas.width = 338 * 3;
+    this.canvas.height = 408 * 3;
+    let scaleH = this.video.videoHeight / 408;
+    let scaleW = this.video.videoWidth / 338;
+    if (scaleH > scaleW) {
+      let sy = (this.video.videoHeight - 408 * scaleW) / 2;
+      this.context.drawImage(this.video, 0, sy, this.video.videoWidth, 408 * scaleW, 0, 0, 338 * 3, 408 * 3);
+    } else {
+      let sx = (this.video.videoWidth - scaleH * 338) / 2;
+      this.context.drawImage(this.video, sx, 0, scaleH * 338, this.video.videoHeight, 0, 0, 338 * 3, 408 * 3);
+    }
   };
   getPixelRatio() {
     var backingStore = this.context.backingStorePixelRatio ||
@@ -193,7 +201,7 @@ class mianguanRead extends React.Component {
           <div className="title"><i></i><span>人脸采集</span></div>
           <div className="video-box" style={{ display: this.state.vedio ? 'block' : 'none' }} onClick={ this.handleShotClick }>
             <div className="figure"><img src={Figure} alt=""/></div>
-            <video id="video" className="video3"></video>
+            <video id="video" className="video3" width="338" height="408"></video>
           </div>
           <div className="img-box" style={{ display: this.state.vedio ? 'none' : 'block' }} onClick={ this.handleShotClick }>
             <div className="border">
@@ -204,7 +212,7 @@ class mianguanRead extends React.Component {
               <span>点击拍摄</span>
               <span>请保持正脸在线框之内</span>
             </div>
-            <canvas id="canvas" className="inner-item" style={{ width: '340px', height: '410px' }} width="1020" height="1230"></canvas>
+            <canvas id="canvas" className="inner-item"></canvas>
           </div>
           <div style={{ paddingTop: 20 }}>
             <div className="btn-item3" style={{ textAlign: 'center' }}>
