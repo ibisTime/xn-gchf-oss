@@ -321,7 +321,6 @@ class IdPicture extends React.Component {
             </div>
             <div className="right">
               <div className="id-video-box" style={{ display: this.state.video3 ? 'block' : 'none' }} onClick={ this.handleShotClick }>
-                <div className="figure"><img src={Figure} alt=""/></div>
                 <video ref={video => this.video3 = video} className="id-video"></video>
               </div>
               <div className="id-img-box" style={{ display: this.state.video3 ? 'none' : 'block' }} onClick={ () => { this.shot(3); }}>

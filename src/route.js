@@ -218,14 +218,6 @@ const ROUTES = [
     component: asyncComponent(() => import('container/hetong/chengbaoshang-addedit/chengbaoshang-addedit'))
   },
   {
-    path: '/hetong/jindu',
-    component: asyncComponent(() => import('container/hetong/jindu/jindu'))
-  },
-  {
-    path: '/hetong/jindu/addedit',
-    component: asyncComponent(() => import('container/hetong/jindu-addedit/jindu-addedit'))
-  },
-  {
     path: '/hetong/wugong',
     component: asyncComponent(() => import('container/hetong/wugong/wugong'))
   },

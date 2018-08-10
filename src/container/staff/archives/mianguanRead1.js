@@ -191,12 +191,12 @@ class mianguanRead extends React.Component {
   render() {
     return (
         <div>
-          <div className="title"><i></i><span>人脸采集</span></div>
-          <div className="video-box" style={{ display: this.state.vedio ? 'block' : 'none' }} onClick={ this.handleShotClick }>
+          <div className="mianguan-title"><i></i><span>人脸采集</span></div>
+          <div className="mianguan-video-box" style={{ display: this.state.vedio ? 'block' : 'none' }} onClick={ this.handleShotClick }>
             <div className="figure"><img src={Figure} alt=""/></div>
             <video id="video" className="video3"></video>
           </div>
-          <div className="img-box" style={{ display: this.state.vedio ? 'none' : 'block' }} onClick={ this.handleShotClick }>
+          <div className="mianguan-img-box" style={{ display: this.state.vedio ? 'none' : 'block' }} onClick={ this.handleShotClick }>
             <div className="border">
               <span></span><span></span><span></span><span></span>
               <img src={Photo} className="userImg3" id="userImg" style={{ display: this.state.imgFlag ? 'inline-block' : 'none' }}/>

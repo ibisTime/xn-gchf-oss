@@ -52,8 +52,6 @@ import { yewuManageAccount } from './redux/yewuManage/account';
 import { yewuManageAccountAddEdit } from './redux/yewuManage/account-addedit';
 import { hetongChengbaoshang } from './redux/hetong/chengbaoshang';
 import { hetongChengbaoshangAddEdit } from './redux/hetong/chengbaoshang-addedit';
-import { hetongJindu } from './redux/hetong/jindu';
-import { hetongJinduAddEdit } from './redux/hetong/jindu-addedit';
 import { hetongWugong } from './redux/hetong/wugong';
 import { hetongWugongAddEdit } from './redux/hetong/wugong-addedit';
 import { hetongWugongEdit } from './redux/hetong/wugong-edit';
@@ -155,8 +153,6 @@ export default combineReducers({
   yewuManageAccountAddEdit,
   hetongChengbaoshang,
   hetongChengbaoshangAddEdit,
-  hetongJindu,
-  hetongJinduAddEdit,
   hetongWugong,
   hetongWugongAddEdit,
   hetongWugongEdit,
