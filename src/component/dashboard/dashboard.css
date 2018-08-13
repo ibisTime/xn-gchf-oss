@@ -87,3 +87,6 @@
   margin-right: 30px;
   z-index: 33;
 }
+.ant-layout.ant-layout-has-sider {
+    z-index: 0;
+}

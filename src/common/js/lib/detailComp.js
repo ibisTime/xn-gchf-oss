@@ -68,6 +68,7 @@ export default class DetailComp extends React.Component {
     let _this = this;
     Object.keys(this.textareas).forEach(v => {
       let elem = document.getElementById(v);
+      if (!elem) return;
       _this.textareas[v].editor = new E(elem);
       _this.textareas[v].editor.customConfig.uploadFileName = 'file';
       _this.textareas[v].editor.customConfig.uploadImgMaxSize = 10 * 1024 * 1024;
