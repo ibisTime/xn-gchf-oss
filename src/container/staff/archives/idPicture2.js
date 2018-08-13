@@ -59,7 +59,6 @@ class IdPicture2 extends React.Component {
   };
   // 打开摄像头
   openVideo1() {
-    console.log(this.state);
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
@@ -225,7 +224,7 @@ class IdPicture2 extends React.Component {
     // this.uploadByBase64(base64).then((res) => {
     //     console.log(res);
     // });
-    console.log(base64, index);
+    // console.log(base64, index);
     this.setState({ [`pic${index}`]: base64 });
   }
 //   uploadByBase64(base64) {
@@ -242,7 +241,6 @@ class IdPicture2 extends React.Component {
       this.cutImg(currentVideo);
   }
   shot(index) {
-    console.log(index);
     if(index === 1) {
         this.setState({
             video1: true,
@@ -287,7 +285,6 @@ class IdPicture2 extends React.Component {
             this.props.history.push(`/staff/jiandang/luru2?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
         }
     });
-    console.log(this.state);
 };
 
   render() {
