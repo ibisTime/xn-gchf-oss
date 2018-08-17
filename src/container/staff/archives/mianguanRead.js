@@ -2,18 +2,21 @@ import React from 'react';
 import { Base64 } from 'js-base64';
 import axios from 'axios';
 import originJsonp from 'jsonp';
-import './mianguanRead.css';
-import Photo from './touxiang.png';
-import Figure from './figure.png';
+import { Select } from 'antd';
 import { getQueryString, getUserId, showWarnMsg, showSucMsg } from 'common/js/util';
 import { mianguanPicture, getFeatInfo } from 'api/user';
+import Photo from './touxiang.png';
+import Figure from './figure.png';
+import './mianguanRead.css';
+
+const {Option} = Select;
 
 function jsonp(url, data, option) {
   return new Promise((resolve, reject) => {
     originJsonp(url + '?' + data, {
       name: 'getFaceFeature'
     }, (err, data) => {
-      if(!err) {
+      if (!err) {
         resolve(data);
       } else {
         reject(err);
@@ -32,7 +35,8 @@ class mianguanRead extends React.Component {
       vedio: false,
       imgFlag: true,
       shot: false,
-      deviceId: ''
+      deviceId: '',
+      devices: []
     };
     this.cutImg = this.cutImg.bind(this);
     this.getFeat = this.getFeat.bind(this);
@@ -50,42 +54,40 @@ class mianguanRead extends React.Component {
     this.context = this.canvas.getContext('2d');
     this.video = document.getElementById('video');
     this.mediaStreamTrack = '';
-    // this.openVideo();
     this.getdeviceId();
-  };
+  }
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
-  };
+  }
   getdeviceId = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.enumerateDevices()
-          .then((devices) => {
-            this.deviceArr = [];
-            devices.forEach((device) => {
-              if(device.label.indexOf('SKT-SR800C-127A') !== -1) {
-                this.deviceArr.push(device.deviceId);
-              }
-            });
-            this.setState({ deviceId: this.deviceArr[1] });
-            this.openVideo(this.deviceArr[1]);
-          })
-          .catch(function(err) {
-            console.log(err.name + ': ' + err.message);
+        .then((devices) => {
+          this.deviceArr = [];
+          let tmpArr = devices.filter(device => device.kind === 'videoinput');
+          this.setState({
+            devices: tmpArr,
+            deviceId: tmpArr.length ? tmpArr[0].deviceId : ''
           });
+          if (tmpArr.length) {
+            this.openVideo(tmpArr[0].deviceId);
+          } else {
+            showWarnMsg('未发现摄像头');
+          }
+        }).catch(function(err) {
+          console.log(err.name + ': ' + err.message);
+        });
     }
   }
   // 打开摄像头
-  openVideo = (deviceId) => {
-    console.log(deviceId);
+  openVideo(deviceId) {
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({
-        video: { 'deviceId': deviceId },
+        video: { deviceId },
         audio: true
       }).then((stream) => {
-        // console.log(stream.getTracks());
         this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
-        // let videoTracks = stream.getVideoTracks();
         if (this.video.srcObject) {
           this.video.srcObject = stream;
         } else {
@@ -94,15 +96,10 @@ class mianguanRead extends React.Component {
         setTimeout(() => {
           this.video.play();
         }, 300);
-      }).catch(function(err) {
-        console.log(err);
-      });
+      }).catch((err) => showWarnMsg(JSON.stringify(err)));
     } else if (navigator.getMedia) { // 使用旧方法打开摄像头
-      navigator.getMedia({
-        video: true
-      }, (stream) => {
+      navigator.getMedia({ video: true }, (stream) => {
         this.mediaStreamTrack = stream.getTracks()[0];
-        console.log(this.mediaStreamTrack, stream.getTracks());
         if (this.video.srcObject) {
           this.video.srcObject = stream;
         } else {
@@ -111,11 +108,9 @@ class mianguanRead extends React.Component {
         setTimeout(() => {
           this.video.play();
         }, 300);
-      }, function(err) {
-        console.log(err);
-      });
+      }, (err) => showWarnMsg(JSON.stringify(err)));
     }
-  };
+  }
   // 截取图像
   cutImg() {
     this.setState({
@@ -135,40 +130,22 @@ class mianguanRead extends React.Component {
       let sx = (this.video.videoWidth - scaleH * 338) / 2;
       this.context.drawImage(this.video, sx, 0, scaleH * 338, this.video.videoHeight, 0, 0, 338 * 3, 408 * 3);
     }
-  };
-  getPixelRatio() {
-    var backingStore = this.context.backingStorePixelRatio ||
-        this.context.webkitBackingStorePixelRatio ||
-        this.context.mozBackingStorePixelRatio ||
-        this.context.msBackingStorePixelRatio ||
-        this.context.oBackingStorePixelRatio ||
-        this.context.backingStorePixelRatio || 1;
-    return (window.devicePixelRatio || 1) / backingStore;
-  };
+  }
+  ;
   getFeat() {
     let base64 = this.canvas.toDataURL('image/jpeg');
-    // getFeatInfo(base64).then((res) => {
-    //   var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(res);
-    //   if (!result || result[1] === 'error' || result[1] === 'NOFACE') {
-    //       showWarnMsg('请对准人脸');
-    //       return;
-    //   };
-    //   this.setState({
-    //       feat: result[1]
-    //   });
-    // });
-    // jsonp('http://118.31.17.181/getfeature', Base64.encode(base64))
-    // console.log(base64);
-    // axios.post('https://feat.aijmu.com/getfeature', encodeURIComponent(base64), {
     axios.post('https://feat.aijmu.com/getfeature', base64, {
       withCredentials: false
     }).then((rs) => {
       var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
       if (!result || result[1] === 'error' || result[1] === 'NOFACE') {
         showWarnMsg('请对准人脸');
-        this.setState({ feat: '' });
+        this.setState({
+          feat: ''
+        });
         return;
-      };
+      }
+      ;
       this.setState({
         feat: result[1]
       });
@@ -186,23 +163,18 @@ class mianguanRead extends React.Component {
       vedio: true,
       shot: true
     });
-  };
+  }
   handleSubmit(e) {
     e.preventDefault();
     var info = {};
-    // if (this.state.feat) {
     info.feat = this.state.feat;
-    //     info.feat = 'NOFACE';
     info.pic1 = this.canvas.toDataURL('image/jpeg');
     this.upload(info);
-    // } else if (!this.state.feat) {
-    //     showWarnMsg('请重新拍摄');
-    // };
-  };
+  }
   upload(info) {
     info.code = this.code;
     info.updater = getUserId();
-    if(info.feat) {
+    if (info.feat) {
       mianguanPicture(info).then(rs => {
         if (rs.isSuccess) {
           showSucMsg('提交成功');
@@ -214,20 +186,44 @@ class mianguanRead extends React.Component {
     } else {
       showWarnMsg('请拍摄免冠照');
     }
-  };
-
+  }
+  deviceChange = (v) => {
+    this.setState({deviceId: v});
+    if (v) {
+      this.cancel();
+      this.openVideo(v);
+    }
+  }
   render() {
     return (
-        <div>
+      <div>
           <div className="mianguan-title"><i></i><span>人脸采集</span></div>
-          <div className="mianguan-video-box" style={{ display: this.state.vedio ? 'block' : 'none' }} onClick={ this.handleShotClick }>
+          <div>
+            <label>摄像头</label>
+            <Select style={{
+              marginTop: 20,
+              marginLeft: 20,
+              width: 300
+            }} onChange={this.deviceChange}
+              value={this.state.deviceId}>
+              {this.state.devices.map(v => <Option value={v.deviceId}>{v.label}</Option>)}
+            </Select>
+          </div>
+          <div className="mianguan-video-box" style={{
+            display: this.state.vedio ? 'block' : 'none'
+          }} onClick={ this.handleShotClick }>
             <div className="figure"><img src={Figure} alt=""/></div>
             <video id="video" className="video3" width="338" height="408"></video>
           </div>
-          <div className="mianguan-img-box" style={{ display: this.state.vedio ? 'none' : 'block' }} onClick={ this.handleShotClick }>
+          <div className="mianguan-img-box" style={{
+            display: this.state.vedio ? 'none' : 'block',
+            marginTop: 40
+          }} onClick={ this.handleShotClick }>
             <div className="border">
               <span></span><span></span><span></span><span></span>
-              <img src={Photo} className="userImg3" id="userImg" style={{ display: this.state.imgFlag ? 'inline-block' : 'none' }}/>
+              <img src={Photo} className="userImg3" id="userImg" style={{
+                display: this.state.imgFlag ? 'inline-block' : 'none'
+              }}/>
             </div>
             <div className="tips">
               <span>点击拍摄</span>
@@ -235,15 +231,17 @@ class mianguanRead extends React.Component {
             </div>
             <canvas id="canvas" className="inner-item"></canvas>
           </div>
-          <div style={{ paddingTop: 20 }}>
-            <div className="btn-item3" style={{ textAlign: 'center' }}>
+          <div style={{paddingTop: 20}}>
+            <div className="btn-item3" style={{textAlign: 'center'}}>
               <div>
-                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
+                <button className="ant-btn ant-btn-primary ant-btn-lg"
+                  style={{width: 250}}
+                  onClick={this.handleSubmit}>下一步</button>
               </div>
             </div>
           </div>
         </div>
-    );
+      );
   }
 }
 
