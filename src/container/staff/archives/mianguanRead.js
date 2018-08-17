@@ -26,14 +26,14 @@ class mianguanRead extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'text': '',
-      'mediaStreamTrack': '',
-      'feat': '',
-      'vedio': false,
-      'imgFlag': true,
-      'shot': false
+      text: '',
+      mediaStreamTrack: '',
+      feat: '',
+      vedio: false,
+      imgFlag: true,
+      shot: false,
+      deviceId: ''
     };
-    this.openVideo = this.openVideo.bind(this);
     this.cutImg = this.cutImg.bind(this);
     this.getFeat = this.getFeat.bind(this);
     this.handleShotClick = this.handleShotClick.bind(this);
@@ -50,20 +50,42 @@ class mianguanRead extends React.Component {
     this.context = this.canvas.getContext('2d');
     this.video = document.getElementById('video');
     this.mediaStreamTrack = '';
-    this.openVideo();
+    // this.openVideo();
+    this.getdeviceId();
   };
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
   };
+  getdeviceId = () => {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.enumerateDevices()
+          .then((devices) => {
+            this.deviceArr = [];
+            devices.forEach((device) => {
+              if(device.label.indexOf('SKT-SR800C-127A') !== -1) {
+                this.deviceArr.push(device.deviceId);
+              }
+            });
+            this.setState({ deviceId: this.deviceArr[1] });
+            this.openVideo(this.deviceArr[1]);
+          })
+          .catch(function(err) {
+            console.log(err.name + ': ' + err.message);
+          });
+    }
+  }
   // 打开摄像头
-  openVideo(argument) {
+  openVideo = (deviceId) => {
+    console.log(deviceId);
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: { 'deviceId': deviceId },
         audio: true
       }).then((stream) => {
+        // console.log(stream.getTracks());
         this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
+        // let videoTracks = stream.getVideoTracks();
         if (this.video.srcObject) {
           this.video.srcObject = stream;
         } else {
@@ -80,6 +102,7 @@ class mianguanRead extends React.Component {
         video: true
       }, (stream) => {
         this.mediaStreamTrack = stream.getTracks()[0];
+        console.log(this.mediaStreamTrack, stream.getTracks());
         if (this.video.srcObject) {
           this.video.srcObject = stream;
         } else {
@@ -140,8 +163,6 @@ class mianguanRead extends React.Component {
     axios.post('https://feat.aijmu.com/getfeature', base64, {
       withCredentials: false
     }).then((rs) => {
-      // console.log(rs);
-      // console.log(rs.data);
       var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
       if (!result || result[1] === 'error' || result[1] === 'NOFACE') {
         showWarnMsg('请对准人脸');
