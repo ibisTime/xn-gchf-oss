@@ -1,9 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { Button, Select } from 'antd';
 import { getQueryString, getUserId, showSucMsg, showWarnMsg } from 'common/js/util';
 import { idPicture3 } from 'api/user';
-import Figure from './figure.png';
 import Hold from './hold.png';
 import IDFRONT from './id-front.png';
 import IDBACK from './id-back.png';
@@ -55,9 +53,7 @@ class IdPicture extends React.Component {
             devices: tmpArr,
             deviceId: tmpArr.length ? tmpArr[0].deviceId : ''
           });
-          if (tmpArr.length) {
-            this.openVideo(tmpArr[0].deviceId);
-          } else {
+          if (!tmpArr.length) {
             showWarnMsg('未发现摄像头');
           }
         }).catch(function(err) {

@@ -1,33 +1,33 @@
 import React from 'react';
-import axios from 'axios';
-import { Button } from 'antd';
+import { Button, Select } from 'antd';
 import './idPicture.css';
-import Figure from './figure.png';
 import Hold from './hold.png';
 import IDFRONT from './id-front.png';
 import IDBACK from './id-back.png';
-import { getQueryString, getUserId } from 'common/js/util';
+import { getQueryString, getUserId, showWarnMsg } from 'common/js/util';
 import { idPicture3, getStaffDetail } from 'api/user';
 import { showSucMsg } from '../../../common/js/util';
+
+const {Option} = Select;
 
 class IdPicture2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        'text': '',
-        'mediaStreamTrack': '',
-        'feat': '',
-        'video1': false,
-        'video2': false,
-        'video3': false,
-        'shot': true,
-        'pic1': '',
-        'pic2': '',
-        'pic3': ''
+      text: '',
+      mediaStreamTrack: '',
+      feat: '',
+      video1: false,
+      video2: false,
+      video3: false,
+      shot: true,
+      pic1: '',
+      pic2: '',
+      pic3: '',
+      deviceId: '',
+      devices: []
     };
-    // this.openVideo = this.openVideo.bind(this);
-    this.shot = this.shot.bind(this);
-    this.handleShotClick = this.handleShotClick.bind(this);
+    this.curIdx = 1;
     this.next = this.next.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.code = getQueryString('code', this.props.location.search);
@@ -36,33 +36,52 @@ class IdPicture2 extends React.Component {
   }
   componentDidMount() {
   // 获取媒体方法（旧方法）
-      navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
-      this.context = this.canvas1.getContext('2d');
-      this.mediaStreamTrack = '';
-      getStaffDetail(this.idNo).then((res) => {
-        if(res.pict1) {
-          this.setState({
-            pic1: res.pict2,
-            pic2: res.pict3,
-            pic3: res.pict4
-          });
-        }
-        if(res.contacts) {
-          this.setState({
-            next: true
-          });
-        }
-      });
+    navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
+    this.context = this.canvas1.getContext('2d');
+    this.mediaStreamTrack = '';
+    getStaffDetail(this.idNo).then((res) => {
+      if(res.pict1) {
+        this.setState({
+          pic1: res.pict2,
+          pic2: res.pict3,
+          pic3: res.pict4
+        });
+      }
+      if(res.contacts) {
+        this.setState({
+          next: true
+        });
+      }
+    });
+    this.getdeviceId();
   };
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
   };
+  getdeviceId = () => {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.enumerateDevices()
+          .then((devices) => {
+            this.deviceArr = [];
+            let tmpArr = devices.filter(device => device.kind === 'videoinput');
+            this.setState({
+              devices: tmpArr,
+              deviceId: tmpArr.length ? tmpArr[0].deviceId : ''
+            });
+            if (!tmpArr.length) {
+              showWarnMsg('未发现摄像头');
+            }
+          }).catch(function(err) {
+        console.log(err.name + ': ' + err.message);
+      });
+    }
+  }
   // 打开摄像头
-  openVideo1() {
+  openVideo1 = (deviceId) => {
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: { deviceId },
             audio: true
         }).then((stream) => {
             this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
@@ -95,11 +114,11 @@ class IdPicture2 extends React.Component {
         });
     }
   };
-  openVideo2() {
+  openVideo2(deviceId) {
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: { deviceId },
             audio: true
         }).then((stream) => {
             this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
@@ -132,11 +151,11 @@ class IdPicture2 extends React.Component {
         });
     }
   };
-  openVideo3() {
+  openVideo3(deviceId) {
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: { deviceId },
             audio: true
         }).then((stream) => {
             this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
@@ -221,49 +240,38 @@ class IdPicture2 extends React.Component {
   };
   getBase64(canvas, index) {
     let base64 = canvas.toDataURL('image/jpeg');
-    // this.uploadByBase64(base64).then((res) => {
-    //     console.log(res);
-    // });
-    // console.log(base64, index);
     this.setState({ [`pic${index}`]: base64 });
   }
-//   uploadByBase64(base64) {
-//     base64 = base64.substr(base64.indexOf('base64,') + 7);
-//     https://up-z2.qbox.me
-//     return request.post('http://up-z2.qiniu.com/putb64/-1/key/' + key)
-//       .set('Content-Type', 'application/octet-stream')
-//       .set('Authorization', `UpToken ${this.token}`)
-//       .send(base64)
-//       .promise();
-//   }
-  handleShotClick() {
+  handleShotClick = () => {
       let currentVideo = this.state.video1 ? '1' : this.state.video2 ? '2' : '3';
       this.cutImg(currentVideo);
   }
-  shot(index) {
+  shot = (index, deviceId) => {
+    deviceId = deviceId || this.state.deviceId;
     if(index === 1) {
-        this.setState({
-            video1: true,
-            video2: false,
-            video3: false
-        });
-        this.openVideo1();
+      this.setState({
+        video1: true,
+        video2: false,
+        video3: false
+      });
+      this.openVideo1(deviceId);
     } else if(index === 2) {
-        this.setState({
-            video1: false,
-            video2: true,
-            video3: false
-        });
-        this.openVideo2();
+      this.setState({
+        video1: false,
+        video2: true,
+        video3: false
+      });
+      this.openVideo2(deviceId);
     } else {
-        this.setState({
-            video1: false,
-            video2: false,
-            video3: true
-        });
-        this.openVideo3();
+      this.setState({
+        video1: false,
+        video2: false,
+        video3: true
+      });
+      this.openVideo3(deviceId);
     }
-  }
+    this.curIdx = index;
+  };
   cancel() {
     this.setState({
         vedio: true,
@@ -286,11 +294,27 @@ class IdPicture2 extends React.Component {
         }
     });
 };
-
+  deviceChange = (v) => {
+    this.setState({deviceId: v});
+    if (v) {
+      this.shot(this.curIdx, v);
+    }
+  }
   render() {
     return (
         <div className="id-total">
           <div className="id-title"><i></i><span>证件采集</span></div>
+          <div style={{textAlign: 'left', marginTop: -30}}>
+            <label>摄像头</label>
+            <Select style={{
+              marginBottom: 20,
+              marginLeft: 20,
+              width: 300
+            }} onChange={this.deviceChange}
+                    value={this.state.deviceId}>
+              {this.state.devices.map(v => <Option value={v.deviceId}>{v.label}</Option>)}
+            </Select>
+          </div>
           <div className="out">
             <div className="left">
               <div className="top">

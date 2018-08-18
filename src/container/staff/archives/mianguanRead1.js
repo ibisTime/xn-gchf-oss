@@ -1,12 +1,14 @@
 import React from 'react';
 import { Base64 } from 'js-base64';
-import axios from 'axios';
+import { Select } from 'antd';
 import originJsonp from 'jsonp';
 import './mianguanRead.css';
 import Photo from './touxiang.png';
 import Figure from './figure.png';
 import { getQueryString, getUserId, showWarnMsg, showSucMsg } from 'common/js/util';
 import { mianguanPicture, getFeatInfo, getStaffDetail } from 'api/user';
+
+const {Option} = Select;
 
 function jsonp(url, data, option) {
     return new Promise((resolve, reject) => {
@@ -26,14 +28,16 @@ class mianguanRead extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        'text': '',
-        'mediaStreamTrack': '',
-        'feat': '',
-        'vedio': true,
-        'imgFlag': true,
-        'shot': true,
-        'pict1': '',
-        'next': false
+      text: '',
+      mediaStreamTrack: '',
+      feat: '',
+      vedio: true,
+      imgFlag: true,
+      shot: true,
+      pict1: '',
+      next: false,
+      deviceId: '',
+      devices: []
     };
     this.openVideo = this.openVideo.bind(this);
     this.cutImg = this.cutImg.bind(this);
@@ -53,6 +57,7 @@ class mianguanRead extends React.Component {
       this.context = this.canvas.getContext('2d');
       this.video = document.getElementById('video');
       this.mediaStreamTrack = '';
+      this.getdeviceId();
     //   this.openVideo();
       getStaffDetail(this.idNo).then((res) => {
         this.setState({
@@ -67,15 +72,35 @@ class mianguanRead extends React.Component {
         }
       });
   };
+  getdeviceId = () => {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.enumerateDevices()
+          .then((devices) => {
+            this.deviceArr = [];
+            let tmpArr = devices.filter(device => device.kind === 'videoinput');
+            this.setState({
+              devices: tmpArr,
+              deviceId: tmpArr.length ? tmpArr[0].deviceId : ''
+            });
+            if (tmpArr.length) {
+              this.openVideo(tmpArr[0].deviceId);
+            } else {
+              showWarnMsg('未发现摄像头');
+            }
+          }).catch(function(err) {
+        console.log(err.name + ': ' + err.message);
+      });
+    }
+  }
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
   };
   // 打开摄像头
-  openVideo(argument) {
+  openVideo(deviceId) {
     // 使用新方法打开摄像头
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: { deviceId },
             audio: true
         }).then((stream) => {
             this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
@@ -187,11 +212,28 @@ class mianguanRead extends React.Component {
           }
       });
   };
-
+  deviceChange = (v) => {
+    this.setState({deviceId: v});
+    if (v) {
+      this.cancel();
+      this.openVideo(v);
+    }
+  }
   render() {
     return (
         <div>
           <div className="mianguan-title"><i></i><span>人脸采集</span></div>
+          <div>
+            <label>摄像头</label>
+            <Select style={{
+              marginTop: 20,
+              marginLeft: 20,
+              width: 300
+            }} onChange={this.deviceChange}
+                    value={this.state.deviceId}>
+              {this.state.devices.map(v => <Option value={v.deviceId}>{v.label}</Option>)}
+            </Select>
+          </div>
           <div className="mianguan-video-box" style={{ display: this.state.vedio ? 'block' : 'none' }} onClick={ this.handleShotClick }>
             <div className="figure"><img src={Figure} alt=""/></div>
             <video id="video" className="video3"></video>
