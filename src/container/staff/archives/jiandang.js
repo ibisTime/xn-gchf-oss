@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import originJsonp from 'jsonp';
 import './jiandang.css';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Spin } from 'antd';
 import { formItemLayout, tailFormItemLayout, jiandangFormItemLayout } from 'common/js/config';
 import { jiandang, getUserId, getUserDetail } from 'api/user';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
@@ -39,7 +39,8 @@ class Jiandang extends React.Component {
             'idPolice': '',
             'idPic': '',
             'spanText': '',
-            'spanTi': ''
+            'spanTi': '',
+            fetching: false
         };
         this.openVideo = this.openVideo.bind(this);
         this.upload = this.upload.bind(this);
@@ -202,113 +203,6 @@ class Jiandang extends React.Component {
       });
     });
   };
-    // 获取身份证信息
-    getCard = (e) => {
-        e.preventDefault();
-        document.getElementById('getCard').setAttribute('disabled', true);
-        this.setState({ spanText: '读取中...' });
-        jsonp('http://127.0.0.1:9081/readidcard')
-        .then((data) => {
-            console.log(1111 + JSON.stringify(data));
-            this.setState({ spanText: '读取身份证' });
-            if(data.resultCode === '-102') {
-                jsonp('http://127.0.0.1:8080/readidcard')
-                .then((res) => {
-                  this.setState({ spanText: '读取身份证' });
-                    console.log(res);
-                    this.setState({
-                        realName: res.m_name,
-                        sex: res.m_sex,
-                        idNation: res.m_nation,
-                        birthday: res.m_birth,
-                        idNo: res.m_idcode,
-                        idAddress: res.m_addr,
-                        idStartDate: res.m_termday.split('-')[0],
-                        idEndDate: res.m_termday.split('-')[1],
-                        idPolice: res.m_depart,
-                        idPic: res.pic,
-                        isIdpic: true
-                    });
-                  this.props.form.setFieldsValue({
-                    realName: this.state.realName,
-                    sex: this.state.sex,
-                    idNation: this.state.idNation,
-                    birthday: this.state.birthday,
-                    idNo: this.state.idNo,
-                    idAddress: this.state.idAddress,
-                    idStartDate: this.state.idStartDate,
-                    idEndDate: this.state.idEndDate,
-                    idPolice: this.state.idPolice
-                  });
-                }).catch(() => {
-                    this.setState({ spanText: '读取身份证' });
-                    showWarnMsg('身份证信息读取失败，请把身份证放置准确后再次读取');
-                    document.getElementById('getCard').removeAttribute('disabled');
-                });
-            }
-            this.setState({
-                realName: data.m_name,
-                sex: data.m_sex,
-                idNation: data.m_nation,
-                birthday: data.m_birth,
-                idNo: data.m_idcode,
-                idAddress: data.m_addr,
-                idStartDate: data.StartDate,
-                idEndDate: data.EndDate,
-                idPolice: data.m_depart,
-                idPic: data.pic,
-                isIdpic: true
-            });
-          this.props.form.setFieldsValue({
-            realName: this.state.realName,
-            sex: this.state.sex,
-            idNation: this.state.idNation,
-            birthday: this.state.birthday,
-            idNo: this.state.idNo,
-            idAddress: this.state.idAddress,
-            idStartDate: this.state.idStartDate,
-            idEndDate: this.state.idEndDate,
-            idPolice: this.state.idPolice
-          });
-        }).catch((e) => {
-            // this.setState({ spanText: '读取身份证' });
-            // showWarnMsg('身份证信息读取失败，请把身份证放置准确后再次读取');
-            // document.getElementById('getCard').removeAttribute('disabled');
-          jsonp('http://127.0.0.1:8080/readidcard')
-              .then((res) => {
-                this.setState({ spanText: '读取身份证' });
-                console.log(res);
-                this.setState({
-                  realName: res.m_name,
-                  sex: res.m_sex,
-                  idNation: res.m_nation,
-                  birthday: res.m_birth,
-                  idNo: res.m_idcode,
-                  idAddress: res.m_addr,
-                  idStartDate: res.m_termday.split('-')[0],
-                  idEndDate: res.m_termday.split('-')[1],
-                  idPolice: res.m_depart,
-                  idPic: res.pic,
-                  isIdpic: true
-                });
-                this.props.form.setFieldsValue({
-                  realName: this.state.realName,
-                  sex: this.state.sex,
-                  idNation: this.state.idNation,
-                  birthday: this.state.birthday,
-                  idNo: this.state.idNo,
-                  idAddress: this.state.idAddress,
-                  idStartDate: this.state.idStartDate,
-                  idEndDate: this.state.idEndDate,
-                  idPolice: this.state.idPolice
-                });
-              }).catch(() => {
-                this.setState({ spanText: '读取身份证' });
-                showWarnMsg('身份证信息读取失败，请把身份证放置准确后再次读取');
-                document.getElementById('getCard').removeAttribute('disabled');
-              });
-        });
-    };
     // 提交
     handleSubmit = (e) => {
         e.preventDefault();
@@ -385,150 +279,152 @@ class Jiandang extends React.Component {
     const { idPic } = this.state;
     const { getFieldDecorator } = this.props.form;
     return (
-        <div className="SectionContainer">
-        <div className="section">
-            <div style={{ display: 'table-cell', verticalAlign: 'middle', width: '100%' }}>
-                <div className="comparison-main">
-                    <div className="left-wrapper">
-                        <div className="left-top">
-                            <div className="head-wrap"><i></i>身份证头像</div>
-                            <div className="left-cont">
-                                <div className={idPic ? 'active' : 'left-inner'} id="leftInner">
-                                {
-                                idPic
-                                    ? <img className="idImg" id="idPicImg" src={idPic} style={{ margin: '0 100px' }}/>
-                                    : <div id="idPicSlib">
-                                        <div className="img"><img src={Avatar}/></div>
-                                        <div>上传身份证</div>
-                                      </div>
-                                }
+        <Spin spinning={this.state.fetching}>
+            <div className="SectionContainer">
+            <div className="section">
+                <div style={{ display: 'table-cell', verticalAlign: 'middle', width: '100%' }}>
+                    <div className="comparison-main">
+                        <div className="left-wrapper">
+                            <div className="left-top">
+                                <div className="head-wrap"><i></i>身份证头像</div>
+                                <div className="left-cont">
+                                    <div className={idPic ? 'active' : 'left-inner'} id="leftInner">
+                                    {
+                                    idPic
+                                        ? <img className="idImg" id="idPicImg" src={idPic} style={{ margin: '0 100px' }}/>
+                                        : <div id="idPicSlib">
+                                            <div className="img"><img src={Avatar}/></div>
+                                            <div>上传身份证</div>
+                                        </div>
+                                    }
+                                    </div>
                                 </div>
+                                <button id="getCard" className="ant-btn ant-btn-primary ant-btn-lg" onClick={ this.getCard }><span>{ this.state.spanText || '读取身份证' }</span></button>
                             </div>
-                            <button id="getCard" className="ant-btn ant-btn-primary ant-btn-lg" onClick={ this.getCard }><span>{ this.state.spanText || '读取身份证' }</span></button>
                         </div>
-                    </div>
-                    <div className="right-wrapper">
-                        <div className="head-wrap"><i></i>人脸信息采集</div>
-                        <div className="right-bottom">
-                            <Form className="ant-form ant-form-horizontal" id="formId" onSubmit={this.submitBtn}>
-                                <FormItem label="姓名" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('realName', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.realName,
-                                        value: this.state.realName
-                                    })(
-                                        <Input value={this.state.realName}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="性别" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('sex', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.sex,
-                                        value: this.state.sex
-                                    })(
-                                        <Input value={this.state.sex}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="民族" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('idNation', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.idNation,
-                                        value: this.state.idNation
-                                    })(
-                                        <Input value={this.state.idNation}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="出生日期" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('birthday', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.birthday,
-                                        value: this.state.birthday
-                                    })(
-                                        <Input value={this.state.birthday}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="身份证号码" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('idNo', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.idNo,
-                                        value: this.state.idNo
-                                    })(
-                                        <Input value={this.state.idNo}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="地址" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('idAddress', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.idAddress,
-                                        value: this.state.idAddress
-                                    })(
-                                        <Input value={this.state.idAddress}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="有效开始日期" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('idStartDate', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.idStartDate,
-                                        value: this.state.idStartDate
-                                    })(
-                                        <Input value={this.state.idStartDate}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="有效截止日期" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('idEndDate', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.idEndDate,
-                                        value: this.state.idEndDate
-                                    })(
-                                        <Input value={this.state.idEndDate}/>
-                                    )}
-                                </FormItem>
-                                <FormItem label="签发机关" {...jiandangFormItemLayout}>
-                                    {getFieldDecorator('idPolice', {
-                                        rules: [{
-                                            required: true,
-                                            message: '必填字段'
-                                        }],
-                                        initialValue: this.state.idPolice,
-                                        value: this.state.idPolice
-                                    })(
-                                        <Input value={this.state.idPolice}/>
-                                    )}
-                                </FormItem>
-                                <FormItem key='btns' {...tailFormItemLayout}>
-                                    <Button type="primary" htmlType="submit" onClick={this.handleSubmit} >下一步</Button>
-                                </FormItem>
-                            </Form>
+                        <div className="right-wrapper">
+                            <div className="head-wrap"><i></i>人脸信息采集</div>
+                            <div className="right-bottom">
+                                <Form className="ant-form ant-form-horizontal" id="formId" onSubmit={this.submitBtn}>
+                                    <FormItem label="姓名" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('realName', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.realName,
+                                            value: this.state.realName
+                                        })(
+                                            <Input value={this.state.realName}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="性别" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('sex', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.sex,
+                                            value: this.state.sex
+                                        })(
+                                            <Input value={this.state.sex}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="民族" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('idNation', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.idNation,
+                                            value: this.state.idNation
+                                        })(
+                                            <Input value={this.state.idNation}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="出生日期" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('birthday', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.birthday,
+                                            value: this.state.birthday
+                                        })(
+                                            <Input value={this.state.birthday}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="身份证号码" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('idNo', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.idNo,
+                                            value: this.state.idNo
+                                        })(
+                                            <Input value={this.state.idNo}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="地址" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('idAddress', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.idAddress,
+                                            value: this.state.idAddress
+                                        })(
+                                            <Input value={this.state.idAddress}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="有效开始日期" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('idStartDate', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.idStartDate,
+                                            value: this.state.idStartDate
+                                        })(
+                                            <Input value={this.state.idStartDate}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="有效截止日期" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('idEndDate', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.idEndDate,
+                                            value: this.state.idEndDate
+                                        })(
+                                            <Input value={this.state.idEndDate}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem label="签发机关" {...jiandangFormItemLayout}>
+                                        {getFieldDecorator('idPolice', {
+                                            rules: [{
+                                                required: true,
+                                                message: '必填字段'
+                                            }],
+                                            initialValue: this.state.idPolice,
+                                            value: this.state.idPolice
+                                        })(
+                                            <Input value={this.state.idPolice}/>
+                                        )}
+                                    </FormItem>
+                                    <FormItem key='btns' {...tailFormItemLayout}>
+                                        <Button type="primary" htmlType="submit" onClick={this.handleSubmit} >下一步</Button>
+                                    </FormItem>
+                                </Form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </Spin>
     );
   }
 }

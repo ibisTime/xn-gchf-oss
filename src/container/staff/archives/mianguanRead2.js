@@ -2,7 +2,7 @@ import React from 'react';
 import { Base64 } from 'js-base64';
 import axios from 'axios';
 import originJsonp from 'jsonp';
-import { Select } from 'antd';
+import { Select, Spin } from 'antd';
 import './mianguanRead.css';
 import Photo from './touxiang.png';
 import Figure from './figure.png';
@@ -39,7 +39,8 @@ class mianguanRead2 extends React.Component {
       next: false,
       reshot: false, // reshot为true则是重拍过的
       deviceId: '',
-      devices: []
+      devices: [],
+      fetching: false
     };
     this.openVideo = this.openVideo.bind(this);
     this.cutImg = this.cutImg.bind(this);
@@ -91,7 +92,8 @@ class mianguanRead2 extends React.Component {
             let tmpArr = devices.filter(device => device.kind === 'videoinput');
             this.setState({
               devices: tmpArr,
-              deviceId: tmpArr.length ? tmpArr[0].deviceId : ''
+              deviceId: tmpArr.length ? tmpArr[0].deviceId : '',
+              label: tmpArr.length ? tmpArr[0].label : ''
             });
             if (tmpArr.length) {
               this.openVideo(tmpArr[0].deviceId);
@@ -102,6 +104,25 @@ class mianguanRead2 extends React.Component {
         console.log(err.name + ': ' + err.message);
       });
     }
+  }
+  // 直接调取高拍仪服务进行拍照
+  getPicDirectly = (url) => {
+    this.mediaStreamTrack && this.mediaStreamTrack.stop();
+    this.setState({ fetching: true });
+    axios.post(url).then((rs) => {
+      let result = /"pic":"([^"]+)"}\)/.exec(rs.data);
+      let context = this.canvas.getContext('2d');
+      let canvas = this.canvas;
+      let img = new Image();
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);
+      };
+      img.src = result[1];
+      this.setState({ pict1: result[1] });
+      this.setState({ fetching: false });
+    }).catch(() => { showWarnMsg('网络异常'); this.setState({ fetching: false }); });
   }
   next() {
     this.props.history.push(`/staff/jiandang/idInfoRead`);
@@ -151,10 +172,13 @@ class mianguanRead2 extends React.Component {
         imgFlag: false,
         shot: false
     });
-    // this.context = this.canvas.getContext('2d');
-    // this.context.scale(0.5, 0.5);
-    // this.context.drawImage(this.video, 340, 0, 600, 790, 0, 0, 1020, 1350);
-    // this.context.drawImage(this.video, 130, 0, 600, 720, 0, 0, 1520, 1850);
+    if(this.state.label.toUpperCase().indexOf('E1100') !== -1) {
+      this.getPicDirectly('http://127.0.0.1:8080/getmainpic');
+      return;
+    } else if(this.state.label.toUpperCase().indexOf('S520-2') !== -1) {
+      this.getPicDirectly('http://127.0.0.1:8080/getauxpic');
+      return;
+    }
     this.context = this.canvas.getContext('2d');
     this.canvas.width = 338 * 3;
     this.canvas.height = 408 * 3;
@@ -178,44 +202,9 @@ class mianguanRead2 extends React.Component {
     return (window.devicePixelRatio || 1) / backingStore;
   };
   getFeat() {
-      let base64 = this.canvas.toDataURL('image/jpeg');
-      // getFeatInfo(base64).then((res) => {
-      //   var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(res);
-      //   if (!result || result[1] === 'error' || result[1] === 'NOFACE') {
-      //       showWarnMsg('请对准人脸');
-      //       return;
-      //   };
-      //   this.setState({
-      //       feat: result[1]
-      //   });
-      // });
-      // jsonp('http://118.31.17.181/getfeature', Base64.encode(base64))
-    // axios.post('https://feat.jm60s.com/getfeature', encodeURIComponent(base64), {
-    //     withCredentials: true
-    // }).then((rs) => {
-    //         var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
-    //         if (!result || result[1] === 'error' || result[1] === 'NOFACE') {
-    //             showWarnMsg('请对准人脸');
-    //             return;
-    //         };
-    //         this.setState({
-    //             feat: result[1]
-    //         });
-    //     });
-    axios.post('https://feat.aijmu.com/getfeature', base64, {
-      withCredentials: false
-    }).then((rs) => {
-      // console.log(rs);
-      // console.log(rs.data);
-      var result = /getFaceFeature\({"data":"([^]+)"}\)/.exec(rs.data);
-      if (!result || result[1] === 'error' || result[1] === 'NOFACE') {
-        showWarnMsg('请对准人脸');
-        this.setState({ feat: '' });
-        return;
-      };
-      this.setState({
-        feat: result[1]
-      });
+    let base64 = this.canvas.toDataURL('image/jpeg');
+    this.setState({
+      feat: 'NOFACE'
     });
   }
   handleShotClick() {
@@ -234,50 +223,50 @@ class mianguanRead2 extends React.Component {
         shot: true,
         feat: ''
     });
+    this.openVideo(this.state.deviceId);
   };
   handleSubmit(e) {
     e.preventDefault();
-    // this.props.history.push(`/staff/jiandang/idPicture2?ruzhi=${this.ruzhi}&idNo=${this.idNo}&code=${this.code}`);
     var info = {};
-    // if (this.state.feat) {
-        info.feat = this.state.feat;
-    //     info.feat = 'NOFACE';
-    console.log(this.state.reshot);
+    info.feat = this.state.feat;
     if(this.state.reshot) {
       info.pic1 = this.canvas.toDataURL('image/jpeg');
     } else {
       info.pic1 = this.state.pict1;
     }
     this.upload(info);
-    // } else if (!this.state.feat) {
-    //     showWarnMsg('请重新拍摄');
-    // };
 };
   upload(info) {
       info.code = this.code;
       info.updater = getUserId();
       if(info.feat) {
+        this.setState({ fetching: true });
         mianguanPicture(info).then(rs => {
+          this.setState({ fetching: false });
           if (rs.isSuccess) {
             showSucMsg('提交成功');
             this.props.history.push(`/staff/jiandang/idPicture2?ruzhi=${this.ruzhi}&idNo=${this.idNo}&code=${this.code}`);
           } else {
             showWarnMsg(rs.errorInfo || '提交失败');
           }
+        }).catch(() => {
+          this.setState({ fetching: false });
         });
       } else {
         showWarnMsg('请拍摄免冠照');
       }
   };
-  deviceChange = (v) => {
-    this.setState({deviceId: v});
-    if (v) {
+  deviceChange = (deviceId) => {
+    let device = this.state.devices.find(v => v.deviceId === deviceId);
+    this.setState({deviceId, label: device.label});
+    if (deviceId) {
       this.cancel();
-      this.openVideo(v);
+      this.openVideo(deviceId);
     }
   }
   render() {
     return (
+      <Spin spinning={this.state.fetching}>
         <div>
           <div className="mianguan-title"><i></i><span>人脸采集</span></div>
           <div>
@@ -319,6 +308,7 @@ class mianguanRead2 extends React.Component {
             </div>
           </div>
         </div>
+      </Spin>
     );
   }
 }
