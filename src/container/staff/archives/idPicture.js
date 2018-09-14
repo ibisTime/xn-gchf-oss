@@ -295,12 +295,14 @@ class IdPicture extends React.Component {
         updater: getUserId(),
         code: this.code
     };
+    this.setState({ fetching: true });
     idPicture3(info).then((res) => {
-        if(res.isSuccess) {
-            showSucMsg('提交成功');
-            this.props.history.push(`/staff/jiandang/luru?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
-        }
-    });
+      this.setState({ fetching: false });
+      if(res.isSuccess) {
+          showSucMsg('提交成功');
+          this.props.history.push(`/staff/jiandang/luru?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
+      }
+    }).catch(() => { this.setState({ fetching: false }); });
   }
   deviceChange = (deviceId) => {
     let device = this.state.devices.find(v => v.deviceId === deviceId);

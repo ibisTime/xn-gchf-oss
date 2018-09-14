@@ -42,7 +42,9 @@ class IdPicture2 extends React.Component {
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMeddia || navigator.msGetUserMedia;
     this.context = this.canvas1.getContext('2d');
     this.mediaStreamTrack = '';
+    this.setState({ fetching: true });
     getStaffDetail(this.idNo).then((res) => {
+      this.setState({ fetching: false });
       if(res.pict1) {
         this.setState({
           pic1: res.pict2,
@@ -55,7 +57,7 @@ class IdPicture2 extends React.Component {
           next: true
         });
       }
-    });
+    }).catch(() => { this.setState({ fetching: false }); });
     this.getdeviceId();
   };
   next() {
@@ -319,12 +321,14 @@ class IdPicture2 extends React.Component {
         updater: getUserId(),
         code: this.code
     };
+    this.setState({ fetching: true });
     idPicture3(info).then((res) => {
-        if(res.isSuccess) {
-            showSucMsg('提交成功');
-            this.props.history.push(`/staff/jiandang/luru2?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
-        }
-    });
+      this.setState({ fetching: false });
+      if(res.isSuccess) {
+          showSucMsg('提交成功');
+          this.props.history.push(`/staff/jiandang/luru2?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
+      }
+    }).catch(() => { this.setState({ fetching: false }); });
 };
   deviceChange = (deviceId) => {
     let device = this.state.devices.find(v => v.deviceId === deviceId);

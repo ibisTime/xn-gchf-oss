@@ -111,8 +111,7 @@ class Supervise extends React.Component {
       btnEvent,
       searchParams: {
         type: 'S',
-        updater: '',
-        userRefree: this.state.userId
+        updater: ''
       },
       pageCode: 631085,
       rowKey: 'userId'

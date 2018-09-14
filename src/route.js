@@ -349,10 +349,10 @@ const ROUTES = [
     path: '/staff/jiandang',
     component: asyncComponent(() => import('container/staff/archives/jiandang'))
   },
-  {
-    path: '/staff/jiandang1',
-    component: asyncComponent(() => import('container/staff/archives/jiandang1'))
-  },
+  // {
+  //   path: '/staff/jiandang1',
+  //   component: asyncComponent(() => import('container/staff/archives/jiandang1'))
+  // },
   {
     path: '/staff/jiandang/mianguanRead',
     component: asyncComponent(() => import('container/staff/archives/mianguanRead'))

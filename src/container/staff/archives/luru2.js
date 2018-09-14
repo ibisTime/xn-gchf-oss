@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Select, Button, Form, Modal, TreeSelect } from 'antd';
+import { Input, Select, Button, Form, Modal, TreeSelect, Spin } from 'antd';
 import { getProjectListForO, getZhiHang, luru } from 'api/project';
 import { getUserDetail, getUserId, ruzhi, getStaffDetail } from 'api/user';
 import { getDict } from 'api/dict';
@@ -22,7 +22,8 @@ class RuzhiInfo extends React.Component {
     super(props);
     this.state = {
       zhihang: [],
-      mobile: ''
+      mobile: '',
+      fetching: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
@@ -31,18 +32,19 @@ class RuzhiInfo extends React.Component {
     this.ruzhi = getQueryString('ruzhi', this.props.location.search);
   }
   componentDidMount() {
-    getZhiHang().then(data => {
-      this.setState({ zhihang: data });
-    }).catch(() => {});
-    getStaffDetail(this.idNo).then((res) => {
-      console.log(res);
+    this.setState({ fetching: true });
+    Promise.all([
+      getZhiHang(),
+      getStaffDetail(this.idNo)
+    ]).then(([res1, res2]) => {
       this.props.form.setFieldsValue({
-        mobile: res.mobile,
-        contacts: res.contacts,
-        contactsMobile: res.contactsMobile,
-        remark: res.remark
+        mobile: res2.mobile,
+        contacts: res2.contacts,
+        contactsMobile: res2.contactsMobile,
+        remark: res2.remark
       });
-    });
+      this.setState({ zhihang: res1, fetching: false });
+    }).catch(() => { this.setState({ fetching: false }); });
   }
   // 员工source change事件
   handleTypeChange(value) {
@@ -54,11 +56,8 @@ class RuzhiInfo extends React.Component {
   handleSubmit() {
     this.props.form.validateFieldsAndScroll((err, params) => {
       if (!err) {
-        console.log(params);
         params.code = this.code;
         params.updater = getUserId();
-        console.log(params.subbranch);
-        console.log(this.state.zhihang);
         if(params.subbranch) {
           this.state.zhihang.map((item) => {
             if(params.subbranch === item.code || params.subbranch === item.bankSubbranchName) {
@@ -70,14 +69,16 @@ class RuzhiInfo extends React.Component {
             }
           });
         }
+        this.setState({ fetching: true });
         luru(params).then((res) => {
+          this.setState({ fetching: false });
           if(res.isSuccess) {
             showSucMsg('重新建档成功！');
             this.props.history.push(`/staff/allStaff`);
           } else {
             showWarnMsg('重新建档失败！');
           }
-        });
+        }).catch(() => { this.setState({ fetching: false }); });
       }
     });
   }
@@ -136,6 +137,7 @@ class RuzhiInfo extends React.Component {
       message: '手机格式不对'
     };
     return (
+      <Spin spinning={this.state.fetching}>
         <div className='SectionContainer2' style={{ border: '2px solid #096dd9' }}>
           <div className='section2'>
             <div style={{ verticalAlign: 'middle', width: '100%' }}>
@@ -183,6 +185,7 @@ class RuzhiInfo extends React.Component {
             <img alt="图片" style={{ width: '100%' }} src={previewImage} />
           </Modal>
         </div>
+      </Spin>
     );
   }
 }

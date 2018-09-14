@@ -122,28 +122,13 @@ class User extends React.Component {
         }
       }
     };
-    if(cookies.get('loginKind') === 'P') {
-      return this.props.buildList({
-        fields,
-        btnEvent,
-        searchParams: { type: 'P', updater: '' },
-        pageCode: 631085,
-        rowKey: 'userId'
-      });
-    }else {
-      return this.state.province ? this.props.buildList({
-        fields,
-        btnEvent,
-        searchParams: {
-          province: this.state.province,
-          city: this.state.city,
-          area: this.state.area,
-          updater: ''
-        },
-        pageCode: 631085,
-        rowKey: 'userId'
-      }) : null;
-    }
+    return this.props.buildList({
+      fields,
+      btnEvent,
+      searchParams: { type: 'P', updater: '' },
+      pageCode: 631085,
+      rowKey: 'userId'
+    });
   }
 }
 

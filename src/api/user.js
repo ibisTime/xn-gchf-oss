@@ -26,11 +26,11 @@ export function getUserErrorInfo(salaryCode) {
 }
 
 export function query(idNo, projectCodeList) {
-  return fetch(631418, { idNo, projectCodeList });
+  return fetch(631520, { idNo, projectCodeList });
 }
 
 export function query1(idNo) {
-  return fetch(631418, { idNo });
+  return fetch(631520, { idNo });
 }
 
 export function senderrInfo(salaryCode, handleNote, handler) {
@@ -117,7 +117,7 @@ export function reruzhi(info) {
 
 // 详情查务工人员
 export function getStaffDetail(code) {
-  return fetch(631418, {
+  return fetch(631520, {
     idNo: code
   });
 }

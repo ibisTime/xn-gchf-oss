@@ -87,7 +87,6 @@ class mianguanRead extends React.Component {
   getPicDirectly = (url) => {
     this.mediaStreamTrack && this.mediaStreamTrack.stop();
     this.setState({ fetching: true });
-    debugger;
     axios.post(url).then((rs) => {
       let result = /"pic":"([^"]+)"}\)/.exec(rs.data);
       let context = this.canvas.getContext('2d');
@@ -198,14 +197,16 @@ class mianguanRead extends React.Component {
     info.code = this.code;
     info.updater = getUserId();
     if (info.feat) {
+      this.setState({ fetching: true });
       mianguanPicture(info).then(rs => {
+        this.setState({ fetching: false });
         if (rs.isSuccess) {
           showSucMsg('提交成功');
           this.props.history.push(`/staff/jiandang/idPicture?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
         } else {
           showWarnMsg(rs.errorInfo || '提交失败');
         }
-      });
+      }).catch(() => { this.setState({ fetching: false }); });
     } else {
       showWarnMsg('请拍摄免冠照');
     }
@@ -241,8 +242,7 @@ class mianguanRead extends React.Component {
               <video id="video" className="video3" width="338" height="408"></video>
             </div>
             <div className="mianguan-img-box" style={{
-              display: this.state.vedio ? 'none' : 'block',
-              marginTop: 40
+              display: this.state.vedio ? 'none' : 'block'
             }} onClick={ this.handleShotClick }>
               <div className="border">
                 <span></span><span></span><span></span><span></span>

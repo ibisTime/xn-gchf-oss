@@ -62,7 +62,9 @@ class mianguanRead2 extends React.Component {
       this.video = document.getElementById('video');
       this.mediaStreamTrack = '';
       this.getdeviceId();
+      this.setState({ fetching: true });
       getStaffDetail(this.idNo).then((res) => {
+        this.setState({ fetching: false });
         if(res.pic2 || res.pict2) {
           this.setState({
             next: true
@@ -82,7 +84,7 @@ class mianguanRead2 extends React.Component {
           });
           // this.openVideo();
         }
-      });
+      }).catch(() => { this.setState({ fetching: false }); });
   };
   getdeviceId = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {

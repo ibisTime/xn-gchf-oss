@@ -61,8 +61,7 @@ class Yezhu extends React.Component {
       fields,
       searchParams: {
         type: 'O',
-        updater: '',
-        userRefree: this.state.userId
+        updater: ''
       },
       pageCode: 631085,
       rowKey: 'userId'

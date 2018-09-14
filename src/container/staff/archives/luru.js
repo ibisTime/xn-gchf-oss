@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Select, Button, Form, DatePicker, Icon, Upload, Modal, TreeSelect } from 'antd';
+import { Input, Select, Button, Form, Spin, Modal, TreeSelect } from 'antd';
 import moment from 'moment';
 import { getProjectListForO, getZhiHang, luru } from 'api/project';
 import { getUserDetail, getUserId, ruzhi } from 'api/user';
@@ -24,19 +24,20 @@ class RuzhiInfo extends React.Component {
     super(props);
     this.state = {
       zhihang: [],
-      mobile: ''
+      mobile: '',
+      fetching: false
     };
-    // this.handleProjectChange = this.handleProjectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.code = getQueryString('code', this.props.location.search);
-    this.ruzhi = getQueryString('ruzhi', this.props.location.search);
     this.idNo = getQueryString('idNo', this.props.location.search);
   }
   componentDidMount() {
+    this.setState({ fetching: true });
     getZhiHang().then(data => {
+      this.setState({ fetching: false });
       this.setState({ zhihang: data });
-    }).catch(() => {});
+    }).catch(() => { this.setState({ fetching: false }); });
   }
   // 员工source change事件
   handleTypeChange(value) {
@@ -57,18 +58,16 @@ class RuzhiInfo extends React.Component {
             params.bankCode = item.bankCode;
           });
         }
+        this.setState({ fetching: true });
         luru(params).then((res) => {
+          this.setState({ fetching: false });
           if(res.isSuccess) {
             showSucMsg('提交成功！');
-            if(this.ruzhi) {
-              this.props.history.push(`/staff/ruzhiInfo?idNo=${this.idNo}`);
-            } else {
-              this.props.history.push(`/staff/jiandang`);
-            }
+            this.props.history.push(`/staff/jiandang`);
           } else {
             showWarnMsg('提交失败！');
           }
-        });
+        }).catch(() => { this.setState({ fetching: false }); });
       }
     });
   }
@@ -100,7 +99,6 @@ class RuzhiInfo extends React.Component {
     });
   }
   mobileChange = (e) => {
-    console.log(e.target);
     this.setState({
       mobile: e.target.value
     });
@@ -127,6 +125,7 @@ class RuzhiInfo extends React.Component {
       message: '手机格式不对'
     };
     return (
+      <Spin spinning={this.state.fetching}>
         <div className='SectionContainer2' style={{ border: '2px solid #096dd9' }}>
           <div className='section2'>
             <div style={{ verticalAlign: 'middle', width: '100%' }}>
@@ -174,6 +173,7 @@ class RuzhiInfo extends React.Component {
             <img alt="图片" style={{ width: '100%' }} src={previewImage} />
           </Modal>
         </div>
+      </Spin>
     );
   }
 }
