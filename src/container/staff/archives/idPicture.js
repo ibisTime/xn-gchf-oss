@@ -30,7 +30,6 @@ class IdPicture extends React.Component {
       fetching: false
     };
     this.curIdx = 1;
-    this.next = this.next.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.code = getQueryString('code', this.props.location.search);
     this.ruzhi = getQueryString('ruzhi', this.props.location.search);
@@ -43,8 +42,8 @@ class IdPicture extends React.Component {
     this.mediaStreamTrack = '';
     this.getdeviceId();
   }
-  next() {
-    this.props.history.push(`/staff/jiandang/idInfoRead`);
+  next = () => {
+    this.props.history.push(`/staff/jiandang/luru?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
   }
   getdeviceId = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -68,6 +67,9 @@ class IdPicture extends React.Component {
   // 直接调取高拍仪服务进行拍照
   getPicDirectly = (url, index) => {
     this.mediaStreamTrack && this.mediaStreamTrack.stop();
+    this.stream.getTracks().map((item) => {
+        item.stop();
+      });
     this.setState({ fetching: true });
     axios.post(url).then((rs) => {
       let result = /"pic":"([^"]+)"}\)/.exec(rs.data);
@@ -93,6 +95,7 @@ class IdPicture extends React.Component {
             video: { deviceId },
             audio: true
         }).then((stream) => {
+            this.stream = stream;
             this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
             if (this.video1.srcObject) {
                 this.video1.srcObject = stream;
@@ -109,6 +112,7 @@ class IdPicture extends React.Component {
         navigator.getMedia({
             video: true
         }, (stream) => {
+            this.stream = stream;
             this.mediaStreamTrack = stream.getTracks()[0];
             if (this.video1.srcObject) {
                 this.video1.srcObject = stream;
@@ -130,6 +134,7 @@ class IdPicture extends React.Component {
             video: { deviceId },
             audio: true
         }).then((stream) => {
+            this.stream = stream;
             this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
             if (this.video2.srcObject) {
                 this.video2.srcObject = stream;
@@ -146,6 +151,7 @@ class IdPicture extends React.Component {
         navigator.getMedia({
             video: true
         }, (stream) => {
+            this.stream = stream;
             this.mediaStreamTrack = stream.getTracks()[0];
             if (this.video2.srcObject) {
                 this.video2.srcObject = stream;
@@ -167,6 +173,7 @@ class IdPicture extends React.Component {
             video: { deviceId },
             audio: true
         }).then((stream) => {
+            this.stream = stream;
             this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
             if (this.video3.srcObject) {
                 this.video3.srcObject = stream;
@@ -183,6 +190,7 @@ class IdPicture extends React.Component {
         navigator.getMedia({
             video: true
         }, (stream) => {
+            this.stream = stream;
             this.mediaStreamTrack = stream.getTracks()[0];
             if (this.video3.srcObject) {
                 this.video3.srcObject = stream;
@@ -385,7 +393,8 @@ class IdPicture extends React.Component {
                 </div>
                 </div>
                 <div className="button">
-                <Button type="primary" style={{ width: 340, height: 46 }} id="cut" onClick={ this.handleSubmit }>下一步</Button>
+                    <Button type="primary" onClick={ this.handleSubmit }>下一步</Button>
+                    <Button onClick={ this.next }>跳过</Button>
                 </div>
             </div>
             </div>

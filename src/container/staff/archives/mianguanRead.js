@@ -44,7 +44,6 @@ class mianguanRead extends React.Component {
     this.cutImg = this.cutImg.bind(this);
     this.getFeat = this.getFeat.bind(this);
     this.handleShotClick = this.handleShotClick.bind(this);
-    this.next = this.next.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.code = getQueryString('code', this.props.location.search);
     this.ruzhi = getQueryString('ruzhi', this.props.location.search);
@@ -59,8 +58,8 @@ class mianguanRead extends React.Component {
     this.mediaStreamTrack = '';
     this.getdeviceId();
   }
-  next() {
-    this.props.history.push(`/staff/jiandang/idInfoRead`);
+  next = () => {
+    this.props.history.push(`/staff/jiandang/idPicture?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
   }
   getdeviceId = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -86,6 +85,9 @@ class mianguanRead extends React.Component {
   // 直接调取高拍仪服务进行拍照
   getPicDirectly = (url) => {
     this.mediaStreamTrack && this.mediaStreamTrack.stop();
+    this.stream.getTracks().map((item) => {
+      item.stop();
+    });
     this.setState({ fetching: true });
     axios.post(url).then((rs) => {
       let result = /"pic":"([^"]+)"}\)/.exec(rs.data);
@@ -110,6 +112,7 @@ class mianguanRead extends React.Component {
         video: { deviceId },
         audio: true
       }).then((stream) => {
+        this.stream = stream;
         this.mediaStreamTrack = typeof (stream.stop) === 'function' ? stream : stream.getTracks()[1];
         if (this.video.srcObject) {
           this.video.srcObject = stream;
@@ -122,6 +125,7 @@ class mianguanRead extends React.Component {
       }).catch((err) => showWarnMsg(JSON.stringify(err)));
     } else if (navigator.getMedia) { // 使用旧方法打开摄像头
       navigator.getMedia({ video: true }, (stream) => {
+        this.stream = stream;
         this.mediaStreamTrack = stream.getTracks()[0];
         if (this.video.srcObject) {
           this.video.srcObject = stream;
@@ -257,11 +261,10 @@ class mianguanRead extends React.Component {
               <canvas id="canvas" className="inner-item"></canvas>
             </div>
             <div style={{paddingTop: 20}}>
-              <div className="btn-item3" style={{textAlign: 'center'}}>
+              <div className="mianguan-btns" style={{ textAlign: 'center' }}>
                 <div>
-                  <button className="ant-btn ant-btn-primary ant-btn-lg"
-                    style={{width: 250}}
-                    onClick={this.handleSubmit}>下一步</button>
+                  <button className="ant-btn ant-btn-primary " onClick={ this.handleSubmit }>下一步</button>
+                  <button className="ant-btn " onClick={ this.next }>跳过</button>
                 </div>
               </div>
             </div>

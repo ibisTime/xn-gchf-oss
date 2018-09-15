@@ -131,24 +131,6 @@ html, body {
     object-fit: cover;
 }
 .mianguan-video-box .figure{
-    /*width: 250px;*/
-    /*height: 250px;*/
-    /*display: inline-block;*/
-    /*margin: 17% 14%;*/
-    /*position: absolute;*/
-    /*margin-bottom: 30px;*/
-    /*width: 300px;*/
-    /*height: 300px;*/
-    /*display: inline-block;*/
-    /*margin: 18% 7%;*/
-    /*position: absolute;*/
-    /*margin-bottom: 30px;*/
-    /*width: 280px;*/
-    /*height: 280px;*/
-    /*display: inline-block;*/
-    /*margin: 18% 9%;*/
-    /*position: absolute;*/
-    /*margin-bottom: 30px;*/
     width: 553px;
     height: 339px;
     display: inline-block;
@@ -158,4 +140,12 @@ html, body {
 }
 .mianguan-video-box .figure img {
     width: 100%;
+}
+.mianguan-btns button {
+    width: 100px;
+    height: 40px;
+    padding: 10px 20px;
+}
+.mianguan-btns button:first-child {
+    margin-right: 30px;
 }

@@ -61,7 +61,7 @@ class IdPicture2 extends React.Component {
     this.getdeviceId();
   };
   next() {
-    this.props.history.push(`/staff/jiandang/idInfoRead`);
+    this.props.history.push(`/staff/jiandang/luru2?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
   };
   getdeviceId = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -420,7 +420,8 @@ class IdPicture2 extends React.Component {
               </div>
             </div>
             <div className="button">
-              <Button type="primary" style={{ width: 340, height: 46 }} id="cut" onClick={ this.handleSubmit }>下一步</Button>
+              <Button type="primary" onClick={ this.handleSubmit }>下一步</Button>
+              <Button onClick={ this.next }>跳过</Button>
             </div>
           </div>
         </div>

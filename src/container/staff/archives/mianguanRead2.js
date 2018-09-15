@@ -46,7 +46,6 @@ class mianguanRead2 extends React.Component {
     this.cutImg = this.cutImg.bind(this);
     this.getFeat = this.getFeat.bind(this);
     this.handleShotClick = this.handleShotClick.bind(this);
-    this.next = this.next.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.code = getQueryString('code', this.props.location.search);
     this.pict1 = getQueryString('pict1', this.props.location.search);
@@ -126,8 +125,8 @@ class mianguanRead2 extends React.Component {
       this.setState({ fetching: false });
     }).catch(() => { showWarnMsg('网络异常'); this.setState({ fetching: false }); });
   }
-  next() {
-    this.props.history.push(`/staff/jiandang/idInfoRead`);
+  next = () => {
+    this.props.history.push(`/staff/jiandang/idPicture2?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);
   };
   // 打开摄像头
   openVideo(deviceId) {
@@ -303,9 +302,10 @@ class mianguanRead2 extends React.Component {
             <canvas id="canvas" className="inner-item" style={{ width: '340px', height: '410px' }} width="1020" height="1230"></canvas>
           </div>
           <div style={{ paddingTop: 20 }}>
-            <div className="btn-item3" style={{ textAlign: 'center' }}>
+            <div className="mianguan-btns" style={{ textAlign: 'center' }}>
               <div>
-                <button className="ant-btn ant-btn-primary ant-btn-lg" style={{ width: 250 }} id="cut" onClick={ this.handleSubmit }>下一步</button>
+                <button className="ant-btn ant-btn-primary " onClick={ this.handleSubmit }>下一步</button>
+                <button className="ant-btn " onClick={ this.next }>跳过</button>
               </div>
             </div>
           </div>

@@ -236,3 +236,12 @@ html, body {
     text-align: center;
     margin-top: 72px;
 }
+.button button {
+    width: 200px;
+    height: 40px;
+    padding: 10px 20px;
+}
+
+.button button:first-child {
+    margin-right: 30px;
+}
