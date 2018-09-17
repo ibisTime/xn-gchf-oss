@@ -123,7 +123,7 @@ class mianguanRead2 extends React.Component {
       img.src = result[1];
       this.setState({ pict1: result[1] });
       this.setState({ fetching: false });
-    }).catch(() => { showWarnMsg('网络异常'); this.setState({ fetching: false }); });
+    }).catch(() => { showWarnMsg('读取图像失败'); this.setState({ fetching: false }); });
   }
   next = () => {
     this.props.history.push(`/staff/jiandang/idPicture2?ruzhi=${this.ruzhi}&code=${this.code}&idNo=${this.idNo}`);

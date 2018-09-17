@@ -102,7 +102,7 @@ class mianguanRead extends React.Component {
       img.src = result[1];
       this.setState({ pict1: result[1] });
       this.setState({ fetching: false });
-    }).catch(() => { showWarnMsg('网络异常'); this.setState({ fetching: false }); });
+    }).catch(() => { showWarnMsg('读取图像失败'); this.setState({ fetching: false }); });
   }
   // 打开摄像头
   openVideo(deviceId) {
