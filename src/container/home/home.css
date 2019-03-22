@@ -34,7 +34,7 @@
   left: 40px;
 }
 .home-wrapper .home-collapse {
-  background: rgba(42, 71, 104);
+  background: rgba(42, 71, 104,0);
   border-radius: 0;
   border: none;
 }
@@ -56,10 +56,10 @@
   border-radius: 4px;
 }
 .other-box.box-wrapper {
-  background: rgba(42, 71, 104);
+  background: rgba(42, 71, 104,0);
 }
 .person-box.box-wrapper {
-  background: rgba(49, 86, 126);
+  background: rgba(49, 86, 126,0);
 }
 .ljry-box .box-content {
   padding-left: 20px;
@@ -72,7 +72,7 @@
   border-bottom: 2px solid #8faffe;
   font-size: 16px;
   color: #fff;
-  background-image: linear-gradient(top, rgb(56, 99, 147), rgb(38, 66, 117));
+  background-image: linear-gradient(to top, rgb(56, 99, 147), rgb(38, 66, 117));
 }
 .box-wrapper .box-title .box-tip {
   position: absolute;

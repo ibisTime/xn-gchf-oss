@@ -471,6 +471,24 @@ const ROUTES = [
   {
     path: '/projectStaff/projectStaff/addBankCard',
     component: asyncComponent(() => import('container/projectStaff/projectStaff-addBankCard/projectStaff-addBankCard'))
+  },
+  // 开设账号 -- 业主单位-- 项目管理
+  {
+    path: '/project/projectmanagement',
+    component: asyncComponent(() => import('container/newId/projectmanagement/projectmanagement'))
+  },
+  {
+    path: '/project/projectmanagement/addedit',
+    component: asyncComponent(() => import('container/newId/projectmanagement/projectmanagement-addedit'))
+  },
+  // 业务管理 -- 项目管理-- 项目参建单位
+  {
+    path: '/project/projectparticipants',
+    component: asyncComponent(() => import('container/projectmanagement/projectparticipants/projectparticipants'))
+  },
+  {
+    path: '/project/projectmanagement/addedit',
+    component: asyncComponent(() => import('container/newId/projectmanagement/projectmanagement-addedit'))
   }
 ];
 

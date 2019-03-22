@@ -97,7 +97,10 @@ import { projectStaffAddEdit } from './redux/projectStaff/projectStaff-addedit';
 import { projectStaffAddBankCard } from './redux/projectStaff/projectStaff-addBankCard';
 import { waitListTextMessage } from './redux/waitList/textMessage';
 import { waitListTextMessageAddEdit } from './redux/waitList/textMessage-addedit';
-
+// 开设账号 -- 业主单位--项目管理
+import { ProjectManageMent } from './redux/newId/projectmanagement';
+import { ProjectManageMentAddedit } from './redux/newId/projectmanagement-addedit';
+import { ProjectParticiPants } from './redux/projectmanagement/projectparticipants';
 export default combineReducers({
   user,
   menu,
@@ -196,5 +199,8 @@ export default combineReducers({
   projectStaffAddEdit,
   projectStaffAddBankCard,
   waitListTextMessage,
-  waitListTextMessageAddEdit
+  waitListTextMessageAddEdit,
+  ProjectManageMent,
+  ProjectManageMentAddedit,
+  ProjectParticiPants
 });
