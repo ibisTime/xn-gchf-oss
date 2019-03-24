@@ -445,14 +445,6 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newId/supervise/supervise'))
   },
   {
-    path: '/newId/newProject',
-    component: asyncComponent(() => import('container/newId/newProject/newProject'))
-  },
-  {
-    path: '/newId/newProject/addProject',
-    component: asyncComponent(() => import('container/newId/addProject/addProject'))
-  },
-  {
     path: '/newId/supervise/addedit',
     component: asyncComponent(() => import('container/newId/supervise-addedit/supervise-addedit'))
   },
@@ -483,12 +475,37 @@ const ROUTES = [
   },
   // 业务管理 -- 项目管理-- 项目参建单位
   {
-    path: '/project/projectparticipants',
-    component: asyncComponent(() => import('container/projectmanagement/projectparticipants/projectparticipants'))
+    path: '/project/projectparticipant',
+    component: asyncComponent(() => import('container/biz/project/participating/participating'))
   },
   {
-    path: '/project/projectmanagement/addedit',
-    component: asyncComponent(() => import('container/newId/projectmanagement/projectmanagement-addedit'))
+    path: '/project/projectparticipant/addedit',
+    component: asyncComponent(() => import('container/biz/project/participating/participating-addedit'))
+  },
+  // 业务管理 -- 项目管理-- 项目班组
+  {
+    path: '/project/class',
+    component: asyncComponent(() => import('container/biz/project/class/class'))
+  },
+  // 业务管理 -- 项目管理-- 项目班组-- 详情
+  {
+    path: '/project/class/addedit',
+    component: asyncComponent(() => import('container/biz/project/class/class-addedit'))
+  },
+  // 业务管理 -- 项目管理-- 项目人员
+  {
+    path: '/project/member',
+    component: asyncComponent(() => import('container/biz/project/member/member'))
+  },
+  // 业务管理 -- 项目管理-- 项目人员-- 详情
+  {
+    path: '/project/member/addedit',
+    component: asyncComponent(() => import('container/biz/project/member/member-addedit'))
+  },
+  // 业务管理 -- 项目管理-- 项目人员-- 上传平台
+  {
+    path: '/project/member/add',
+    component: asyncComponent(() => import('container/biz/project/member/member-add'))
   }
 ];
 

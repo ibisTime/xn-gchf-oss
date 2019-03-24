@@ -13,3 +13,8 @@ export function getHelpList(info) {
     systemCode: info.kind
   });
 }
+
+// 获取项目列表
+export function getProjectList() {
+  return fetch(631626);
+}

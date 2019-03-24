@@ -21,24 +21,29 @@ class OperationAddEdit extends React.Component {
   }
   render() {
       const fields = [{
-          title: '项目名称',
-          field: 'projectCode',
-          required: true,
-          search: true
+        title: '项目名称',
+        field: 'projectName',
+        required: true
       }, {
-          title: '密钥',
-          required: true,
-          field: 'secret'
+        title: '账号',
+        field: 'projectCode',
+        required: true
+      }, {
+        title: '密码',
+        required: true,
+        field: 'password'
+      }, {
+        title: '秘钥',
+        required: true,
+        field: 'secret'
       }];
     return this.props.buildDetail({
       fields,
       code: this.code,
       view: this.view,
-      key: 'userId',
       detailCode: 631627,
       editCode: 631622,
       addCode: 631620
-
     });
   }
 }

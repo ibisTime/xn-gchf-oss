@@ -29,7 +29,6 @@ import { waitListAlreadyQuestAddedit } from './redux/waitList/alreadyQuest-added
 import { generalTextParam } from './redux/general/text-param';
 import { generalTextParamAddEdit } from './redux/general/text-param-addedit';
 import { newProjBumenConstruct } from './redux/newProj/bumenConstruct';
-import { newIdAddProject } from './redux/newId/addProject';
 import { newProjAddBumen } from './redux/newProj/addBumen';
 import { newProjProject } from './redux/newProj/project';
 import { newProjKaoqin } from './redux/newProj/kaoqin';
@@ -91,16 +90,21 @@ import { newIdYezhu } from './redux/newId/yezhu';
 import { newIdYezhuAddEdit } from './redux/newId/yezhu-addedit';
 import { newIdSupervise } from './redux/newId/supervise';
 import { newIdSuperviseAddEdit } from './redux/newId/supervise-addedit';
-import { newIdNewProject } from './redux/newId/newProject';
 import { projectStaff } from './redux/projectStaff/projectStaff';
 import { projectStaffAddEdit } from './redux/projectStaff/projectStaff-addedit';
 import { projectStaffAddBankCard } from './redux/projectStaff/projectStaff-addBankCard';
 import { waitListTextMessage } from './redux/waitList/textMessage';
 import { waitListTextMessageAddEdit } from './redux/waitList/textMessage-addedit';
-// 开设账号 -- 业主单位--项目管理
 import { ProjectManageMent } from './redux/newId/projectmanagement';
 import { ProjectManageMentAddedit } from './redux/newId/projectmanagement-addedit';
-import { ProjectParticiPants } from './redux/projectmanagement/projectparticipants';
+// 开设账号 -- 业主单位--项目管理
+import { projectParticipating } from './redux/biz/project/participating';
+import { projectParticipatingAddEdit } from './redux/biz/project/participating-addedit';
+import { projectClass } from './redux/biz/project/class';
+import { projectClassAddEdit } from './redux/biz/project/class-addedit';
+import { projectMember } from './redux/biz/project/member';
+import { projectMemberAddEdit } from './redux/biz/project/member-addedit';
+
 export default combineReducers({
   user,
   menu,
@@ -133,7 +137,6 @@ export default combineReducers({
   generalTextParam,
   generalTextParamAddEdit,
   newProjBumenConstruct,
-  newIdAddProject,
   newProjAddBumen,
   newProjProject,
   newprojProjectAddEdit,
@@ -194,7 +197,6 @@ export default combineReducers({
   newIdYezhuAddEdit,
   newIdSupervise,
   newIdSuperviseAddEdit,
-  newIdNewProject,
   projectStaff,
   projectStaffAddEdit,
   projectStaffAddBankCard,
@@ -202,5 +204,10 @@ export default combineReducers({
   waitListTextMessageAddEdit,
   ProjectManageMent,
   ProjectManageMentAddedit,
-  ProjectParticiPants
+  projectParticipating,
+  projectParticipatingAddEdit,
+  projectClass,
+  projectClassAddEdit,
+  projectMember,
+  projectMemberAddEdit
 });

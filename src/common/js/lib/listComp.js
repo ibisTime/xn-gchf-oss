@@ -4,7 +4,8 @@ import { Form, Select, DatePicker, Input, Button, Table } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { moneyFormat, dateTimeFormat, dateFormat, tempString,
-  showWarnMsg, showSucMsg, showDelConfirm, getUserKind } from 'common/js/util';
+  showWarnMsg, showSucMsg, showDelConfirm, getUserKind, isUndefined } from 'common/js/util';
+import { getWorkbook } from 'common/js/xlsx-util';
 import { getOwnerBtns } from 'api/menu';
 import { getDictList } from 'api/dict';
 import fetch from 'common/js/fetch';
@@ -130,6 +131,7 @@ export default class ListComponent extends React.Component {
     this.first = false;
     this.columns = columns;
     this.tableClass = this.options.className || '';
+    this.searchFields = searchFields;
     return this.getPageComponent(searchFields);
   }
   renderSelect(value, f) {
@@ -192,14 +194,63 @@ export default class ListComponent extends React.Component {
       selectedRows
     });
   }
+  // 导出表单
+  handleExport() {
+    this.props.doFetching();
+    let startKey = 'start';
+    let limitKey = 'limit';
+    if (this.options.pagination) {
+      startKey = this.options.pagination.startKey;
+      limitKey = this.options.pagination.limitKey;
+    }
+    fetch(this.options.pageCode, {
+      [startKey]: 1,
+      [limitKey]: this.options.exportLimit || 1000000,
+      ...this.getRealSearchParams(this.props.searchParam),
+      ...this.options.searchParams
+    }).then(data => {
+      if (!data.list.length) {
+        this.props.cancelFetching();
+        showWarnMsg('暂无数据');
+      } else {
+        let titles = [];
+        let bodys = [];
+        data.list.forEach((d, i) => {
+          let temp = [];
+          this.options.fields.forEach(f => {
+            if (i === 0) {
+              titles.push(f.title);
+            }
+            temp.push(f.render(d[f.field], d));
+          });
+          bodys.push(temp);
+        });
+        let result = [titles].concat(bodys);
+        const wb = getWorkbook();
+        wb.getSheet(result, 'SheetJS');
+        wb.downloadXls('表格下载');
+        this.props.cancelFetching();
+      }
+    }).catch(this.props.cancelFetching);
+  }
   handleReset = () => {
+    let noClearFieldsMap = {};
+    let noClearFields = this.searchFields
+      .filter(f => f.noClear)
+      .forEach(f => noClearFieldsMap[f.field] = this.props.form.getFieldValue(f.field));
     this.props.form.resetFields();
     this.props.clearSearchParam();
+    this.props.form.setFieldsValue(noClearFieldsMap);
+    this.props.setSearchParam(noClearFieldsMap);
   }
   handleSubmit = (e) => {
     e.preventDefault();
     let values = this.props.form.getFieldsValue();
-    this.getPageData(1, values);
+    let start = 1;
+    if (this.options.pagination && !isUndefined(this.options.pagination.start)) {
+      start = this.options.pagination.start;
+    }
+    this.getPageData(start, values);
   }
   getRealSearchParams(params) {
     let result = {};
@@ -276,6 +327,11 @@ export default class ListComponent extends React.Component {
           ? btnEvent.delete(this.state.selectedRowKeys, this.state.selectedRows)
           : this.delete();
         break;
+      case 'export':
+        btnEvent.export
+          ? btnEvent.export(this.state.selectedRowKeys, this.state.selectedRows)
+          : this.handleExport();
+        break;
       default:
         btnEvent[url] && btnEvent[url](this.state.selectedRowKeys, this.state.selectedRows);
     }
@@ -327,7 +383,7 @@ export default class ListComponent extends React.Component {
     this.props.setBtnList(btns);
   }
   // 获取页面初始化数据
-  getPageData = (current = this.props.pagination.current, searchParam) => {
+  getPageData = (current, searchParam) => {
     if (searchParam) {
       this.props.setSearchParam(searchParam);
     } else {
@@ -341,12 +397,29 @@ export default class ListComponent extends React.Component {
       };
     }
     this.props.doFetching();
+    let startKey = 'start';
+    let limitKey = 'limit';
+    if (this.options.pagination) {
+      startKey = this.options.pagination.startKey;
+      limitKey = this.options.pagination.limitKey;
+      if (isUndefined(current)) {
+        if (!isUndefined(this.options.pagination.start)) {
+          current = this.options.pagination.start;
+        } else {
+          current = this.props.pagination.current;
+        }
+      }
+    } else {
+      current = !isUndefined(current) ? current : this.props.pagination.current;
+    }
+    if (this.options.beforeDetail) {
+      this.options.beforeDetail(searchParam);
+    }
     const { pagination } = this.props;
     fetch(this.options.pageCode, {
-      start: current,
-      limit: pagination.pageSize,
-      ...searchParam,
-      ...this.options.searchParams
+      [startKey]: current,
+      [limitKey]: pagination.pageSize,
+      ...searchParam
     }).then(data => {
       this.props.cancelFetching();
       this.props.setTableData(data.list);
@@ -355,6 +428,7 @@ export default class ListComponent extends React.Component {
         current,
         total: data.totalCount
       });
+      this.options.afterDetail && this.options.afterDetail(data);
     }).catch(this.props.cancelFetching);
   }
   getPageComponent(searchFields) {

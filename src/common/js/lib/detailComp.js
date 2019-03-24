@@ -267,6 +267,10 @@ export default class DetailComp extends React.Component {
     this.options.beforeDetail && this.options.beforeDetail(param);
     this.props.doFetching();
     fetch(this.options.detailCode, param).then(data => {
+      // 工程核发-业务管理-项目管理 的详情查询返回的是分页格式的数据
+      if (data && data.list) {
+        data = data.list[0];
+      }
       this.props.cancelFetching();
       this.props.setPageData(data);
     }).catch(this.props.cancelFetching);
