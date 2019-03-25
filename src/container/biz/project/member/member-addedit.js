@@ -101,6 +101,7 @@ class ProjectMemberAddEdit extends React.Component {
       title: '头像',
       field: 'headImage',
       type: 'img',
+      single: true,
       required: true
     }, {
       title: '政治面貌',
@@ -121,7 +122,8 @@ class ProjectMemberAddEdit extends React.Component {
       title: '文化程度',
       field: 'cultureLevelType',
       type: 'select',
-      key: 'culture_level_type'
+      key: 'culture_level_type',
+      required: true
     }, {
       title: '特长',
       field: 'Specialty'
@@ -153,11 +155,13 @@ class ProjectMemberAddEdit extends React.Component {
     }, {
       title: '正面照',
       field: 'positiveIDCardImage',
-      type: 'img'
+      type: 'img',
+      single: true
     }, {
       title: '反面照',
       field: 'negativeIDCardImage',
-      type: 'img'
+      type: 'img',
+      single: true
     }, {
       title: '证件有效期开始日期',
       field: 'startDate',

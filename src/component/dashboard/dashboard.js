@@ -130,7 +130,7 @@ class Dashboard extends React.Component {
               </a>
             </Dropdown>
           </Item>
-          <Item key="help">
+          <Item key="help" style={{float: 'right', paddingRight: 0}}>
             <img src={contract} className="contract" alt="" onClick={(event) => this.setContactWithUsVisible(true, event, 1)}/>
             <img src={help} className="help" alt="" onClick={(event) => this.setContactWithUsVisible(true, event, 2)}/>
           </Item>

@@ -51,6 +51,7 @@ class Operation extends React.Component {
     return this.props.buildList({
       fields,
       btnEvent,
+      rowKey: 'id',
       pageCode: 631115
     });
   }
