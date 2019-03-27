@@ -20,9 +20,6 @@ class ProjectMemberAddEdit extends React.Component {
     this.code = getQueryString('code', this.props.location.search);
     this.pCode = getQueryString('pcode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
-    setTimeout(() => {
-      console.log(this.code, this.pCode, this.view, this.props.pageData);
-    }, 3000);
   }
   render() {
     const fields = [{
@@ -83,7 +80,9 @@ class ProjectMemberAddEdit extends React.Component {
       field: 'bankLinkNumber'
     }, {
       title: '工资卡银行代码',
-      field: 'payRollTopBankCode'
+      field: 'payRollTopBankCode',
+      key: 'bank_code',
+      type: 'select'
     }, {
       title: '是否购买保险',
       field: 'hasBuyInsurance',

@@ -3,22 +3,21 @@ import cookies from 'browser-cookies';
 import { Form, Select, DatePicker, Input, Button, Table } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import { moneyFormat, dateTimeFormat, dateFormat, tempString,
+import { moneyFormat, dateTimeFormat, dateFormat, monthFormat, tempString,
   showWarnMsg, showSucMsg, showDelConfirm, getUserKind, isUndefined } from 'common/js/util';
 import { getWorkbook } from 'common/js/xlsx-util';
+import CSearchSelect from 'component/cSearchSelect/cSearchSelect';
 import { getOwnerBtns } from 'api/menu';
 import { getDictList } from 'api/dict';
 import fetch from 'common/js/fetch';
 import locale from './date-locale';
-import { PIC_PREFIX } from 'common/js/config';
+import { PIC_PREFIX, DATE_FORMAT, MONTH_FORMAT, DATETIME_FORMAT } from 'common/js/config';
 import cityData from 'common/js/lib/city';
 
 moment.locale('zh-cn');
 const FormItem = Form.Item;
 const Option = Select.Option;
-const { RangePicker } = DatePicker;
-const DATE_FORMAT = 'YYYY-MM-DD';
-const DATETIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+const { RangePicker, MonthPicker } = DatePicker;
 
 export default class ListComponent extends React.Component {
   constructor(props, context) {
@@ -75,6 +74,15 @@ export default class ListComponent extends React.Component {
             return f.nowrap ? <span style={{whiteSpace: 'nowrap'}}>{dateFormat(v)}</span> : dateFormat(v);
           };
           this.addRender(f, dateFormat);
+        }
+      } else if (f.type === 'month') {
+        if (f.render) {
+          obj.render = f.render;
+        } else {
+          obj.render = (v) => {
+            return f.nowrap ? <span style={{whiteSpace: 'nowrap'}}>{monthFormat(v)}</span> : monthFormat(v);
+          };
+          this.addRender(f, monthFormat);
         }
       } else if (f.type === 'select' || f.type === 'provSelect') {
         if (f.key) {
@@ -136,8 +144,14 @@ export default class ListComponent extends React.Component {
   }
   renderSelect(value, f) {
     let val = '';
-    if (value && f.data) {
-      let item = f.data.find(v => v[f.keyName] === value);
+    if (!isUndefined(value) && f.data) {
+      value += '';
+      let item = f.data.find(v => {
+        if (!isUndefined(v[f.keyName])) {
+          v[f.keyName] += '';
+        }
+        return v[f.keyName] === value;
+      });
       val = item
           ? item[f.valueName]
               ? item[f.valueName]
@@ -174,18 +188,18 @@ export default class ListComponent extends React.Component {
   }
   handleRowClick = (record) => {
     let { selectedRowKeys, selectedRows } = this.state;
-    let { rowKey } = this.options;
-    let idx = selectedRowKeys.findIndex(v => v === record[rowKey]);
     if (this.options.singleSelect) {
-      selectedRowKeys = [record[rowKey]];
+      selectedRowKeys = [this.getRowKey(record)];
       selectedRows = [record];
     } else {
+      let key = this.getRowKey(record);
+      let idx = selectedRowKeys.findIndex(v => v === key);
       if (idx > -1) {
         selectedRowKeys.splice(idx, 1);
-        let idx1 = selectedRows.findIndex(v => v[rowKey] === record[rowKey]);
+        let idx1 = selectedRows.findIndex(v => this.getRowKey(v) === key);
         selectedRows.splice(idx1, 1);
       } else {
-        selectedRowKeys.push(record[rowKey]);
+        selectedRowKeys.push(key);
         selectedRows.push(record);
       }
     }
@@ -255,8 +269,8 @@ export default class ListComponent extends React.Component {
   getRealSearchParams(params) {
     let result = {};
     this.options.fields.forEach(v => {
-      if (v.type === 'date' || v.type === 'datetime') {
-        let format = v.type === 'date' ? DATE_FORMAT : DATETIME_FORMAT;
+      if (v.type === 'date' || v.type === 'datetime' || v.type === 'month') {
+        let format = v.type === 'date' ? DATE_FORMAT : v.type === 'month' ? MONTH_FORMAT : DATETIME_FORMAT;
         if (v.rangedate) {
           let bDate = params[v.field] ? [...params[v.field]] : [];
           if (bDate.length) {
@@ -428,8 +442,19 @@ export default class ListComponent extends React.Component {
         current,
         total: data.totalCount
       });
-      this.options.afterDetail && this.options.afterDetail(data);
+      if (this.options.afterDetail && !this.options.afterDetail.runed) {
+        this.options.afterDetail.runed = true;
+        this.options.afterDetail(data);
+      }
     }).catch(this.props.cancelFetching);
+  }
+  getRowKey = (data) => {
+    if (this.options.rowKey instanceof Array) {
+      let key = '';
+      this.options.rowKey.forEach(k => key += data[k]);
+      return key;
+    }
+    return data[this.options.rowKey];
   }
   getPageComponent(searchFields) {
     const rowSelection = {
@@ -458,7 +483,7 @@ export default class ListComponent extends React.Component {
             rowSelection={rowSelection}
             columns={this.columns}
             className={this.tableClass}
-            rowKey={record => record[this.options.rowKey]}
+            rowKey={this.getRowKey}
             dataSource={this.props.tableList}
             pagination={this.props.pagination}
             loading={this.props.fetching}
@@ -473,13 +498,7 @@ export default class ListComponent extends React.Component {
     const { getFieldDecorator } = this.props.form;
     const children = [];
     fields.forEach(v => {
-      children.push(
-        <FormItem key={v.field} label={v.title}>
-          {getFieldDecorator(`${v.field}`, { initialValue: this.props.searchParam[v.field] })(
-            this.getItemByType(v.type, v)
-          )}
-        </FormItem>
-      );
+      children.push(this.getItemByType(v.type, v, getFieldDecorator));
     });
     children.push(
       <FormItem key='searchBtn'>
@@ -489,23 +508,39 @@ export default class ListComponent extends React.Component {
     );
     return children;
   }
-  getItemByType(type, item) {
+  getItemByType(type, item, getFieldDecorator) {
     switch(type) {
       case 'select':
-        return item.pageCode ? this.getSearchSelectItem(item) : this.getSelectItem(item);
+        return item.pageCode ? this.getSearchSelectItem(item, getFieldDecorator) : this.getSelectItem(item, getFieldDecorator);
       case 'date':
-        return item.rangedate ? this.getRangeDateItem(item) : this.getDateItem(item);
+        return item.rangedate ? this.getRangeDateItem(getFieldDecorator, item) : this.getDateItem(getFieldDecorator, item);
       case 'datetime':
-        return item.rangedate ? this.getRangeDateItem(item, true) : this.getDateItem(item, true);
+        return item.rangedate ? this.getRangeDateItem(getFieldDecorator, item, true) : this.getDateItem(getFieldDecorator, item, true);
+      case 'month':
+        return item.rangedate ? this.getRangeDateItem(getFieldDecorator, item, false, true) : this.getDateItem(getFieldDecorator, item, false, true);
       default:
-        return <Input style={{ width: 200 }} placeholder={item.placeholder} />;
+        return (
+          <FormItem key={item.field} label={item.title}>
+            {getFieldDecorator(`${item.field}`, { initialValue: this.props.searchParam[item.field] })(
+              <Input style={{ width: 200 }} placeholder={item.placeholder} />
+            )}
+          </FormItem>
+        );
     }
   }
-  getSelectItem(item) {
-    return <Select
+  getSelectItem(item, getFieldDecorator) {
+    return (
+      <FormItem key={item.field} label={item.title}>
+        {getFieldDecorator(`${item.field}`, { initialValue: this.props.searchParam[item.field] })(
+          <Select
             showSearch
             notFoundContent='暂无数据'
             optionFilterProp="children"
+            onChange={(v) => {
+              if (item.onChange) {
+                item.onChange(v, item.data);
+              }
+            }}
             filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             style={{ width: 200 }}
             placeholder="请选择">
@@ -514,51 +549,89 @@ export default class ListComponent extends React.Component {
                 {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
               </Option>
             )) : null}
-          </Select>;
+          </Select>
+        )}
+      </FormItem>
+    );
   }
-  getSearchSelectItem(item) {
-    return <Select
-            mode="combobox"
-            showArrow={false}
-            filterOption={false}
-            onSearch={v => this.searchSelectChange(v, item)}
-            optionLabelProp="children"
-            style={{ width: 200 }}
-            placeholder="请输入关键字搜索">
-            {item.data ? item.data.map(d => (
-              <Option key={d[item.keyName]} value={d[item.keyName]}>
-                {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
-              </Option>
-            )) : null}
-          </Select>;
+  getLabel(item) {
+    return (
+      <span className={item.required && item.type === 'textarea' && !item.normalArea ? 'ant-form-item-required' : ''}>
+        {item.title + (item.single ? '(单)' : '')}
+        {item.help
+          ? <Tooltip title={item.help}>
+            <Icon type="question-circle-o" />
+          </Tooltip> : null}
+      </span>
+    );
   }
-  getDateItem(item, isTime = false) {
-    let format = DATE_FORMAT;
-    let places = '选择日期';
-    if (isTime) {
-      format = DATETIME_FORMAT;
-      places = '选择时间';
-    }
-    return <DatePicker
-            allowClear={false}
-            locale={locale}
-            placeholder={places}
-            format={format}
-            showTime={isTime} />;
+  // 获取搜索框类型的控件
+  getSearchSelectItem(item, getFieldDecorator) {
+    const props = {
+      getFieldDecorator,
+      rules: [],
+      params: item.params,
+      pageCode: item.pageCode,
+      searchName: item.searchName,
+      inline: true,
+      field: item.field,
+      label: this.getLabel(item),
+      keyName: item.keyName,
+      valueName: item.valueName,
+      onChange: item.onChange,
+      getFieldValue: this.props.form.getFieldValue,
+      getFieldError: this.props.form.getFieldError,
+      resetFields: this.props.form.resetFields,
+      pagination: item.pagination,
+      isLoaded: true,
+      allowClear: false
+    };
+    return <CSearchSelect key={item.field} {...props} />;
   }
-  getRangeDateItem(item, isTime = false) {
+  getDateItem(getFieldDecorator, item, isTime = false, isMonth) {
+    let format = isTime ? DATETIME_FORMAT : isMonth ? MONTH_FORMAT : DATE_FORMAT;
+    let places = isTime ? '选择时间' : isMonth ? '选择月份' : '选择日期';
+    return (
+      <FormItem key={item.field} label={item.title}>
+        {getFieldDecorator(`${item.field}`, { initialValue: this.props.searchParam[item.field] })(
+          isMonth ? (
+            <MonthPicker
+              allowClear={false}
+              locale={locale}
+              placeholder={places}
+              format={format}
+              showTime={false} />
+          ) : (
+            <DatePicker
+              allowClear={false}
+              locale={locale}
+              placeholder={places}
+              format={format}
+              showTime={isTime} />
+          )
+        )}
+      </FormItem>
+    );
+  }
+  getRangeDateItem(getFieldDecorator, item, isTime = false) {
     let format = DATE_FORMAT;
     let places = ['开始日期', '结束日期'];
     if (isTime) {
       format = DATETIME_FORMAT;
       places = ['开始时间', '结束时间'];
     }
-    return <RangePicker
+    return (
+      <FormItem key={item.field} label={item.title}>
+        {getFieldDecorator(`${item.field}`, { initialValue: this.props.searchParam[item.field] })(
+          <RangePicker
             allowClear={false}
             locale={locale}
             placeholder={places}
             ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
             format={format}
-            showTime={isTime} />;
+            showTime={isTime} />
+        )}
+      </FormItem>
+    );
   }
 }

@@ -137,7 +137,9 @@ class ProjectMemberAdd extends DetailUtil {
           field: 'bankLinkNumber'
         }, {
           title: '工资卡银行代码',
-          field: 'payRollTopBankCode'
+          field: 'payRollTopBankCode',
+          key: 'bank_code',
+          type: 'select'
         }, {
           title: '是否购买保险',
           field: 'hasBuyInsurance',
@@ -236,7 +238,7 @@ class ProjectMemberAdd extends DetailUtil {
         if (params.workerList && params.workerList) {
           params.workerList.forEach(worker => {
             worker.issueCardPicUrl = formatImg(worker.issueCardPicUrl);
-            worker.headImage = formatImg(worker.issueCardPicUrl);
+            worker.headImage = formatImg(worker.headImage);
             worker.positiveIDCardImage = formatImg(worker.positiveIDCardImage);
             worker.negativeIDCardImage = formatImg(worker.negativeIDCardImage);
           });

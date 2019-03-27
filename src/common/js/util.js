@@ -331,6 +331,12 @@ export const getRules = (item) => {
       message: '请输入整数'
     });
   }
+  if (item.natural) {
+    rules.push({
+      pattern: /^\d+$/,
+      message: '请输入自然数'
+    });
+  }
   if (item.idCard) {
     rules.push({
       pattern: /^([1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3})|([1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X|x))$/,

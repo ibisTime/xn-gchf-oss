@@ -99,11 +99,19 @@ import { ProjectManageMent } from './redux/newId/projectmanagement';
 import { ProjectManageMentAddedit } from './redux/newId/projectmanagement-addedit';
 // 开设账号 -- 业主单位--项目管理
 import { projectParticipating } from './redux/biz/project/participating';
-import { projectParticipatingAddEdit } from './redux/biz/project/participating-addedit';
 import { projectClass } from './redux/biz/project/class';
-import { projectClassAddEdit } from './redux/biz/project/class-addedit';
 import { projectMember } from './redux/biz/project/member';
 import { projectMemberAddEdit } from './redux/biz/project/member-addedit';
+import { projectInout } from './redux/biz/project/inout';
+import { projectInoutAddEdit } from './redux/biz/project/inout-addedit';
+import { projectMemContract } from './redux/biz/project/memcontract';
+import { projectMemContractAddEdit } from './redux/biz/project/memcontract-addedit';
+import { projectAttence } from './redux/biz/project/attence';
+import { projectAttenceAddEdit } from './redux/biz/project/attence-addedit';
+import { projectWages } from './redux/biz/project/wages';
+import { projectWagesAddEdit } from './redux/biz/project/wages-addedit';
+import { companyInfo } from './redux/biz/company/info';
+import { companyInfoAddEdit } from './redux/biz/company/info-addedit';
 
 export default combineReducers({
   user,
@@ -205,9 +213,17 @@ export default combineReducers({
   ProjectManageMent,
   ProjectManageMentAddedit,
   projectParticipating,
-  projectParticipatingAddEdit,
   projectClass,
-  projectClassAddEdit,
   projectMember,
-  projectMemberAddEdit
+  projectMemberAddEdit,
+  projectInout,
+  projectInoutAddEdit,
+  projectMemContract,
+  projectMemContractAddEdit,
+  projectAttence,
+  projectAttenceAddEdit,
+  projectWages,
+  projectWagesAddEdit,
+  companyInfo,
+  companyInfoAddEdit
 });

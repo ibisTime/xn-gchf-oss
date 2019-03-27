@@ -103,6 +103,12 @@ export default class DetailCompDev extends React.Component {
           token = data.uploadToken;
         } else {
           selectData[this.fetchList[i - 2].field] = data;
+          if (this.fetchList[i - 2].type === 'o2m') {
+            pageData = {
+              ...pageData,
+              [this.fetchList[i - 2].field]: data
+            };
+          }
         }
       });
       this.setState({
@@ -117,7 +123,11 @@ export default class DetailCompDev extends React.Component {
           fields.forEach(f => {
             if (f.onChange) {
               let initVal = getRealValue({...f, pageData: this.state.pageData});
-              f.onChange(initVal);
+              if (f.type === 'select') {
+                f.onChange(initVal, selectData[f.field]);
+              } else {
+                f.onChange(initVal);
+              }
             }
           });
         }
@@ -394,6 +404,7 @@ export default class DetailCompDev extends React.Component {
       pagination: item.pagination,
       getFieldValue: this.props.form.getFieldValue,
       getFieldError: this.props.form.getFieldError,
+      resetFields: this.props.form.resetFields,
       isLoaded: !this.options.code || this.state.isLoaded
     };
     return <CSearchSelect key={item.field} {...props} />;

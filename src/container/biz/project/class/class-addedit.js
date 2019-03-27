@@ -20,7 +20,8 @@ class ProjectClassAddEdit extends DetailUtil {
     const fields = [{
       title: '班组编号',
       field: 'teamSysNo',
-      required: true
+      readonly: true,
+      hidden: !this.view
     }, {
       title: '班组名称',
       field: 'teamName',
@@ -61,6 +62,9 @@ class ProjectClassAddEdit extends DetailUtil {
       params: {
         projectCode: this.state.projectCode
       },
+      keyName: 'corpCode',
+      valueName: 'corpName',
+      searchName: 'corpName',
       pagination: {
         startKey: 'pageIndex',
         start: 0,

@@ -20,10 +20,16 @@ export default class CSearchSelect extends React.Component {
     this.initList();
   }
   initList() {
-    const { initVal, isLoaded } = this.props;
-    if (isLoaded && !this.hasInitVal) {
-      this.hasInitVal = true;
-      this.searchSelectChange(initVal, true);
+    const { initVal, isLoaded, field, resetFields } = this.props;
+    if (isLoaded) {
+      if (!this.hasInitVal) {
+        this.hasInitVal = true;
+        this.searchSelectChange(initVal, true);
+      } else if (this.paramFlag) {
+        this.paramFlag = false;
+        resetFields([field]);
+        this.searchSelectChange(initVal, true);
+      }
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -44,6 +50,7 @@ export default class CSearchSelect extends React.Component {
     if (errFlag) {
       this.prevErr = nowErr;
     }
+    this.paramFlag = paramFlag;
     return nextProps.field !== field || nextProps.rules.length !== rules.length ||
       nextProps.readonly !== readonly || nextProps.hidden !== hidden ||
       nextProps.initVal !== initVal || nextProps.inline !== inline ||
@@ -84,10 +91,11 @@ export default class CSearchSelect extends React.Component {
   }
   getSelectProps(onChange) {
     const props = {
-      allowClear: true,
+      allowClear: this.props.allowClear,
       mode: 'combobox',
       showArrow: false,
       filterOption: false,
+      style: { minWidth: 200 },
       onSearch: this.searchSelectChange,
       optionLabelProp: 'children',
       notFoundContent: this.state.selectFetch ? <Spin size="small"/> : '暂无数据',
@@ -207,7 +215,9 @@ CSearchSelect.propTypes = {
   getFieldValue: PropTypes.func.isRequired,
   getFieldDecorator: PropTypes.func.isRequired,
   getFieldError: PropTypes.func.isRequired,
-  pagination: PropTypes.object
+  resetFields: PropTypes.func.isRequired,
+  pagination: PropTypes.object,
+  allowClear: PropTypes.bool
 };
 
 CSearchSelect.defaultProps = {
@@ -216,8 +226,10 @@ CSearchSelect.defaultProps = {
   getFieldDecorator: noop,
   getFieldValue: noop,
   getFieldError: noop,
+  resetFields: noop,
   hidden: false,
   inline: false,
   keyName: 'dkey',
-  valueName: 'dvalue'
+  valueName: 'dvalue',
+  allowClear: true
 };

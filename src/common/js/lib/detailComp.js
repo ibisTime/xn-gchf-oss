@@ -12,7 +12,8 @@ import {
   formatFile, formatImg, isUndefined, dateTimeFormat, dateFormat, getUserId,
   tempString, moneyFormat, moneyParse, showSucMsg, showErrMsg, showWarnMsg
 } from 'common/js/util';
-import { UPLOAD_URL, PIC_PREFIX, formItemLayout, tailFormItemLayout } from '../config';
+import { UPLOAD_URL, PIC_PREFIX, formItemLayout, tailFormItemLayout,
+  DATE_FORMAT, DATETIME_FORMAT, MONTH_FORMAT } from '../config';
 import { listWrapper } from 'common/js/build-list';
 import fetch from 'common/js/fetch';
 import cityData from 'common/js/lib/city';
@@ -23,9 +24,6 @@ const { Item: FormItem } = Form;
 const { Option } = Select;
 const { TextArea } = Input;
 const { RangePicker, MonthPicker } = DatePicker;
-const DATE_FORMAT = 'YYYY-MM-DD';
-const DATETIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
-const MONTH_FORMAT = 'YYYY-MM';
 const TIME_FORMAT = 'HH:mm';
 const TIME_FORMAT1 = 'HH:mm:ss';
 const imgUploadBtn = (
@@ -634,7 +632,7 @@ export default class DetailComp extends React.Component {
     }));
   }
   // 获取经纬度
-getLngLatComp(item, initVal, rules, getFieldDecorator) {
+  getLngLatComp(item, initVal, rules, getFieldDecorator) {
     return (
       <FormItem
         className={item.hidden ? 'hidden' : ''}
@@ -681,8 +679,8 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
             )
         }
       </FormItem>
-  );
-}
+    );
+  }
   // 每月28天
   getDate28Comp(item, initVal, rules, getFieldDecorator) {
     return (
@@ -798,22 +796,22 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
         }
       </FormItem>
     ) : (
-        <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
-          {
-            item.readonly ? <div className="readonly-text">{initVal}</div>
-                : getFieldDecorator(item.field, {
-                  rules,
-                  initialValue: initVal || null
-                })(
-                <MonthPicker
-                    allowClear={false}
-                    locale={locale}
-                    placeholder={places}
-                    format={format}
-                    showTime={false} />
-                )
-          }
-        </FormItem>
+      <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
+        {
+          item.readonly ? <div className="readonly-text">{initVal}</div>
+            : getFieldDecorator(item.field, {
+              rules,
+              initialValue: initVal || null
+            })(
+            <MonthPicker
+                allowClear={false}
+                locale={locale}
+                placeholder={places}
+                format={format}
+                showTime={false} />
+            )
+        }
+      </FormItem>
     );
   }
   getRangeDateItem(item, initVal, rules, getFieldDecorator, isTime = false) {
@@ -857,8 +855,14 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
   }
   getSearchSelectItem(item, initVal, rules, getFieldDecorator) {
     let data;
-    if (item.readonly && item.data) {
-      data = item.data.filter(v => v[item.keyName] === initVal);
+    if (item.readonly && item.data && !isUndefined(initVal)) {
+      initVal += '';
+      data = item.data.filter(v => {
+        if (!isUndefined(v[item.keyName])) {
+          v[item.keyName] += '';
+        }
+        return v[item.keyName] === initVal;
+      });
     }
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
@@ -904,8 +908,14 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
   }
   getSelectComp(item, initVal, rules, getFieldDecorator) {
     let data;
-    if (item.readonly && item.data) {
-      data = item.data.filter(v => v[item.keyName] === initVal);
+    if (item.readonly && item.data && !isUndefined(initVal)) {
+      initVal += '';
+      data = item.data.filter(v => {
+        if (!isUndefined(v[item.keyName])) {
+          v[item.keyName] += '';
+        }
+        return v[item.keyName] === initVal;
+      });
     }
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
@@ -1162,7 +1172,6 @@ getLngLatComp(item, initVal, rules, getFieldDecorator) {
         : btn;
   }
   setUploadFileUrl(fileList, isImg) {
-    console.log(fileList);
     let format = isImg ? formatImg : formatFile;
     fileList.forEach(f => {
       if (!f.url && f.status === 'done' && f.response) {
