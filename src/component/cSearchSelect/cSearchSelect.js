@@ -110,7 +110,7 @@ export default class CSearchSelect extends React.Component {
     let value = '';
     const { list } = this.state;
     if (readonly && list && list.length && !isUndefined(initVal)) {
-      value = list.filter(v => v[keyName] === initVal);
+      value = list.filter(v => v[keyName] == initVal);
       value = value && value.length
         ? value[0][valueName] || tempString(valueName, value[0])
         : initVal;
@@ -165,6 +165,7 @@ export default class CSearchSelect extends React.Component {
     let layoutProps = inline ? {} : formItemLayout;
     let value = this.getReadonlyValue(initVal, readonly, keyName, valueName);
     !code && this.initList();
+    let _initVal = isUndefined(initVal) ? '' : (initVal + '');
     return (
       <FormItem key={field} label={label} {...layoutProps} className={hidden ? 'hidden' : ''}>
         {

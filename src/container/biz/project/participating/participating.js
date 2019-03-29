@@ -43,7 +43,18 @@ class Participating extends React.Component {
     const { isLoaded, projectCode } = this.state;
     const fields = [{
       title: '企业名称',
-      field: 'corpName',
+      field: 'corpName'
+    }, {
+      title: '企业名称',
+      field: 'corpCode',
+      pageCode: '631255',
+      params: {
+        uploadStatus: '2'
+      },
+      keyName: 'corpCode',
+      valueName: 'corpName',
+      type: 'select',
+      hidden: true,
       search: true
     }, {
       title: '社会信用代码',
@@ -57,12 +68,6 @@ class Participating extends React.Component {
       valueName: 'projectName',
       search: true,
       noClear: true
-    }, {
-      title: '企业类型',
-      field: 'corpType',
-      type: 'select',
-      key: 'project_corp_type',
-      search: true
     }, {
       title: '进场时间',
       field: 'entryTime',
@@ -118,9 +123,11 @@ class Participating extends React.Component {
         }
       },
       afterDetail: () => {
-        this.props.form.setFieldsValue({ projectCode });
-        let values = this.props.form.getFieldsValue();
-        this.props.setSearchParam(values);
+        if (isUndefined(this.props.searchParam.projectCode)) {
+          this.props.form.setFieldsValue({ projectCode });
+          let values = this.props.form.getFieldsValue();
+          this.props.setSearchParam(values);
+        }
       }
     }) : null;
   }

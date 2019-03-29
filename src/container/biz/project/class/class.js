@@ -49,12 +49,6 @@ class ProjectClass extends React.Component {
       field: 'teamName',
       search: true
     }, {
-      title: '班组长姓名',
-      field: 'teamLeaderName'
-    }, {
-      title: '班组长联系方式',
-      field: 'teamLeaderPhone'
-    }, {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
@@ -65,7 +59,18 @@ class ProjectClass extends React.Component {
       noClear: true
     }, {
       title: '所在企业',
-      field: 'corpName',
+      field: 'corpName'
+    }, {
+      title: '所在企业',
+      field: 'corpCode',
+      pageCode: '631255',
+      params: {
+        uploadStatus: '2'
+      },
+      keyName: 'corpCode',
+      valueName: 'corpName',
+      type: 'select',
+      hidden: true,
       search: true
     }, {
       title: '责任人姓名',
@@ -127,9 +132,11 @@ class ProjectClass extends React.Component {
         }
       },
       afterDetail: () => {
-        this.props.form.setFieldsValue({ projectCode });
-        let values = this.props.form.getFieldsValue();
-        this.props.setSearchParam(values);
+        if (isUndefined(this.props.searchParam.projectCode)) {
+          this.props.form.setFieldsValue({ projectCode });
+          let values = this.props.form.getFieldsValue();
+          this.props.setSearchParam(values);
+        }
       }
     }) : null;
   }

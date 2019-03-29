@@ -66,11 +66,13 @@ class CompanyInfoAddEdit extends React.Component {
       title: '法定代表人证件号码',
       field: 'legalManIdcardNumber'
     }, {
-      title: '注册资本',
-      field: 'regCapital'
+      title: '注册资本(元)',
+      field: 'regCapital',
+      'Z+': true
     }, {
-      title: '实收资本',
-      field: 'factRegCapital'
+      title: '实收资本(元)',
+      field: 'factRegCapital',
+      'Z+': true
     }, {
       title: '资本币种',
       field: 'capitalCurrencyType',

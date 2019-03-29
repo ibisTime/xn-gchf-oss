@@ -101,7 +101,6 @@ import { ProjectManageMentAddedit } from './redux/newId/projectmanagement-addedi
 import { projectParticipating } from './redux/biz/project/participating';
 import { projectClass } from './redux/biz/project/class';
 import { projectMember } from './redux/biz/project/member';
-import { projectMemberAddEdit } from './redux/biz/project/member-addedit';
 import { projectInout } from './redux/biz/project/inout';
 import { projectInoutAddEdit } from './redux/biz/project/inout-addedit';
 import { projectMemContract } from './redux/biz/project/memcontract';
@@ -215,7 +214,6 @@ export default combineReducers({
   projectParticipating,
   projectClass,
   projectMember,
-  projectMemberAddEdit,
   projectInout,
   projectInoutAddEdit,
   projectMemContract,

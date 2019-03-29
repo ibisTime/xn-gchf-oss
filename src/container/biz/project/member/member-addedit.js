@@ -1,28 +1,78 @@
 import React from 'react';
-import {
-  initStates,
-  doFetching,
-  cancelFetching,
-  setSelectData,
-  setPageData,
-  restore
-} from '@redux/biz/project/member-addedit';
-import { getQueryString } from 'common/js/util';
-import { DetailWrapper } from 'common/js/build-detail';
+import { Form } from 'antd';
+import { getQueryString, formatImg } from 'common/js/util';
+import DetailUtil from 'common/js/build-detail-dev';
 
-@DetailWrapper(
-  state => state.projectMemberAddEdit,
-  { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
-)
-class ProjectMemberAddEdit extends React.Component {
+@Form.create()
+class ProjectMemberAddEdit extends DetailUtil {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
     this.pCode = getQueryString('pcode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.state = {
+      ...this.state,
+      projectCode: ''
+    };
   }
   render() {
+    const _this = this;
     const fields = [{
+      title: '项目编码',
+      field: 'projectCode',
+      type: 'select',
+      listCode: '631626',
+      keyName: 'projectCode',
+      valueName: 'projectName',
+      onChange: (projectCode, data) => {
+        this.setState({ projectCode });
+      },
+      required: true
+    }, {
+      title: '所在班组',
+      field: 'teamSysNo',
+      type: 'select',
+      keyName: 'teamSysNo',
+      valueName: 'teamName',
+      searchName: 'teamName',
+      pageCode: this.state.projectCode ? 631910 : '',
+      params: {
+        projectCode: this.state.projectCode
+      },
+      pagination: {
+        startKey: 'pageIndex',
+        start: 0,
+        limitKey: 'pageSize'
+      },
+      onChange: (code, data) => {
+        let classInfo = data.find(v => (v.teamSysNo + '') === code);
+        if (classInfo) {
+          let pageData = _this.state.pageData || {};
+          _this.setState({
+            pageData: {
+              ...pageData,
+              corpCode: classInfo.corpCode,
+              corpName: classInfo.corpName,
+              teamName: classInfo.teamName
+            }
+          });
+        }
+      },
+      hidden: !this.state.projectCode,
+      required: true
+    }, {
+      field: 'corpCode',
+      hidden: true,
+      required: true
+    }, {
+      field: 'corpName',
+      hidden: true,
+      required: true
+    }, {
+      field: 'teamName',
+      hidden: true,
+      required: true
+    }, {
       title: '工人姓名',
       field: 'workerName',
       required: true
@@ -109,8 +159,8 @@ class ProjectMemberAddEdit extends React.Component {
       key: 'politics_type',
       required: true
     }, {
-      title: 'joinedTime',
-      field: '加入公会时间',
+      title: '加入公会时间',
+      field: 'joinedTime',
       type: 'datetime'
     }, {
       title: '手机号码',
@@ -170,7 +220,7 @@ class ProjectMemberAddEdit extends React.Component {
       field: 'expiryDate',
       type: 'date'
     }];
-    return this.props.buildDetail({
+    return this.buildDetail({
       fields,
       key: 'idCardNumber',
       code: this.code,
@@ -181,6 +231,13 @@ class ProjectMemberAddEdit extends React.Component {
         params.pageIndex = 0;
         params.pageSize = 1;
         params.projectCode = this.pCode;
+      },
+      beforeSubmit: (params) => {
+        params.issueCardPicUrl = formatImg(params.issueCardPicUrl);
+        params.headImage = formatImg(params.headImage);
+        params.positiveIDCardImage = formatImg(params.positiveIDCardImage);
+        params.negativeIDCardImage = formatImg(params.negativeIDCardImage);
+        return true;
       }
     });
   }

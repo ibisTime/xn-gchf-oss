@@ -76,7 +76,18 @@ class ProjectMemContract extends React.Component {
       noClear: true
     }, {
       title: '所在企业',
-      field: 'corpName',
+      field: 'corpName'
+    }, {
+      title: '所在企业',
+      field: 'corpCode',
+      pageCode: '631255',
+      params: {
+        uploadStatus: '2'
+      },
+      keyName: 'corpCode',
+      valueName: 'corpName',
+      type: 'select',
+      hidden: true,
       search: true
     }];
     return isLoaded ? this.props.buildList({
@@ -113,9 +124,11 @@ class ProjectMemContract extends React.Component {
         }
       },
       afterDetail: () => {
-        this.props.form.setFieldsValue({ projectCode });
-        let values = this.props.form.getFieldsValue();
-        this.props.setSearchParam(values);
+        if (isUndefined(this.props.searchParam.projectCode)) {
+          this.props.form.setFieldsValue({ projectCode });
+          let values = this.props.form.getFieldsValue();
+          this.props.setSearchParam(values);
+        }
       }
     }) : null;
   }

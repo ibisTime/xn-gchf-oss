@@ -213,12 +213,14 @@ export default class ListComponent extends React.Component {
     this.props.doFetching();
     let startKey = 'start';
     let limitKey = 'limit';
+    let start = 1;
     if (this.options.pagination) {
-      startKey = this.options.pagination.startKey;
-      limitKey = this.options.pagination.limitKey;
+      startKey = this.options.pagination.startKey || 'start';
+      limitKey = this.options.pagination.limitKey || 'limit';
+      start = isUndefined(this.options.pagination.start) ? 1 : this.options.pagination.start;
     }
     fetch(this.options.pageCode, {
-      [startKey]: 1,
+      [startKey]: start,
       [limitKey]: this.options.exportLimit || 1000000,
       ...this.getRealSearchParams(this.props.searchParam),
       ...this.options.searchParams
@@ -442,8 +444,8 @@ export default class ListComponent extends React.Component {
         current,
         total: data.totalCount
       });
-      if (this.options.afterDetail && !this.options.afterDetail.runed) {
-        this.options.afterDetail.runed = true;
+      if (this.options.afterDetail && !this.afterDetailRuned) {
+        this.afterDetailRuned = true;
         this.options.afterDetail(data);
       }
     }).catch(this.props.cancelFetching);

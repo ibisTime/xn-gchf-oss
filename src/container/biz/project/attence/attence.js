@@ -49,7 +49,7 @@ class ProjectAttence extends React.Component {
       search: true
     }, {
       title: '证件号',
-      field: 'idcardNumber'
+      field: 'idCardNumber'
     }, {
       title: '刷卡时间',
       field: 'date',
@@ -81,7 +81,18 @@ class ProjectAttence extends React.Component {
       noClear: true
     }, {
       title: '所在企业',
-      field: 'corpName',
+      field: 'corpName'
+    }, {
+      title: '所在企业',
+      field: 'corpCode',
+      pageCode: '631255',
+      params: {
+        uploadStatus: '2'
+      },
+      keyName: 'corpCode',
+      valueName: 'corpName',
+      type: 'select',
+      hidden: true,
       search: true
     }, {
       title: '所在班组',
@@ -90,7 +101,7 @@ class ProjectAttence extends React.Component {
     return isLoaded ? this.props.buildList({
       fields,
       pageCode: 631919,
-      rowKey: ['idcardNumber', 'date'],
+      rowKey: ['idCardNumber', 'date'],
       pagination: {
         startKey: 'pageIndex',
         limitKey: 'pageSize',
@@ -108,7 +119,7 @@ class ProjectAttence extends React.Component {
             showWarnMsg('请选择一条记录');
           } else {
             let date = dateFormat(items[0].date);
-            this.props.history.push(`/project/attence/addedit?v=1&code=${items[0].idcardNumber}&pcode=${items[0].projectCode}&date=${date}`);
+            this.props.history.push(`/project/attence/addedit?v=1&code=${items[0].idCardNumber}&pcode=${items[0].projectCode}&date=${date}`);
           }
         }
       },
@@ -125,12 +136,14 @@ class ProjectAttence extends React.Component {
         }
       },
       afterDetail: () => {
-        this.props.form.setFieldsValue({
-          projectCode,
-          date: this.nowDate
-        });
-        let values = this.props.form.getFieldsValue();
-        this.props.setSearchParam(values);
+        if (isUndefined(this.props.searchParam.projectCode)) {
+          this.props.form.setFieldsValue({
+            projectCode,
+            date: this.nowDate
+          });
+          let values = this.props.form.getFieldsValue();
+          this.props.setSearchParam(values);
+        }
       }
     }) : null;
   }

@@ -12,7 +12,7 @@ import {
 } from '@redux/biz/project/wages';
 import { listWrapper } from 'common/js/build-list';
 import { isUndefined, showWarnMsg, dateTimeFormat, dateFormat, monthFormat } from 'common/js/util';
-import { getProjectList, getParticipatingList, getClassList } from 'api/general';
+import { getProjectList, getParticipatingList, getClassList, getCompanyList } from 'api/general';
 
 @listWrapper(
     state => ({
@@ -29,21 +29,26 @@ class ProjectWages extends React.Component {
       isLoaded: false,
       projectCode: ''
     };
+    this.nowMonth = moment(new Date(), 'YYYY-MM');
   }
   componentDidMount() {
-    getProjectList().then((data) => {
-      if (!data.length) {
+    Promise.all([
+      getProjectList(),
+      getCompanyList()
+    ]).then(([projects, companys]) => {
+      if (!projects.length || !companys.list.length) {
         return Promise.reject();
       }
-      this.projectCode = data[0].projectCode;
-      return getParticipatingList(this.projectCode);
-    }).then((data) => {
-      if (!data.list.length) {
-        return Promise.reject();
-      }
-      this.corpCode = data.list[0].corpCode;
-      this.corpName = data.list[0].corpName;
-      return getClassList(this.projectCode, this.corpCode);
+      this.projectCode = projects[0].projectCode;
+      this.corpCode = companys.list[0].corpCode;
+      this.corpName = companys.list[0].corpName;
+      this.setState({
+        projectCode: this.projectCode,
+        corpCode: this.corpCode,
+        corpName: this.corpName,
+        payMonth: this.nowMonth
+      });
+      return getClassList(this.projectCode);
     }).then((data) => {
       if (!data.list.length) {
         return Promise.reject();
@@ -52,17 +57,12 @@ class ProjectWages extends React.Component {
       setTimeout(() => {
         this.setState({
           isLoaded: true,
-          projectCode: this.projectCode,
-          corpCode: this.corpCode,
-          corpName: this.corpName,
-          // teamSysNo: data.list[0].teamSysNo
-          teamSysNo: 1500151464
+          teamSysNo: data.list[0].teamSysNo
         });
       }, 100);
     }).catch(() => {
       this.setState({ isLoaded: true });
     });
-    this.nowMonth = moment(new Date(), 'YYYY-MM');
   }
   render() {
     const { isLoaded, projectCode, teamSysNo, corpCode, corpName } = this.state;
@@ -117,13 +117,9 @@ class ProjectWages extends React.Component {
     }, {
       title: '所在企业',
       field: 'corpCode',
-      type: 'select',
-      pageCode: 631907,
-      params: { projectCode },
-      pagination: {
-        startKey: 'pageIndex',
-        start: 0,
-        limitKey: 'pageSize'
+      pageCode: '631255',
+      params: {
+        uploadStatus: '2'
       },
       keyName: 'corpCode',
       valueName: 'corpName',
@@ -134,9 +130,9 @@ class ProjectWages extends React.Component {
         }
         this.setState({ corpCode: cCode });
       },
+      type: 'select',
       hidden: true,
-      search: true,
-      noClear: true
+      search: true
     }, {
       title: '所在企业',
       field: 'corpName'
@@ -150,7 +146,7 @@ class ProjectWages extends React.Component {
       pageCode: '631910',
       keyName: 'teamSysNo',
       valueName: 'teamName',
-      params: { projectCode, corpCode },
+      params: { projectCode },
       pagination: {
         startKey: 'pageIndex',
         limitKey: 'pageSize',
@@ -214,15 +210,17 @@ class ProjectWages extends React.Component {
         }
       },
       afterDetail: () => {
-        this.props.form.setFieldsValue({
-          projectCode,
-          corpCode,
-          corpName,
-          teamSysNo,
-          payMonth: this.nowMonth
-        });
-        let values = this.props.form.getFieldsValue();
-        this.props.setSearchParam(values);
+        if (isUndefined(this.props.searchParam.projectCode)) {
+          this.props.form.setFieldsValue({
+            projectCode,
+            corpCode,
+            corpName,
+            teamSysNo,
+            payMonth: this.nowMonth
+          });
+          let values = this.props.form.getFieldsValue();
+          this.props.setSearchParam(values);
+        }
       }
     }) : null;
   }

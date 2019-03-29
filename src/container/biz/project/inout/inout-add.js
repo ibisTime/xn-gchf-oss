@@ -69,7 +69,6 @@ class ProjectInoutAdd extends DetailUtil {
       field: 'workerList',
       type: 'o2m',
       options: {
-        rowKey: 'idCardNumber',
         add: true,
         edit: true,
         detail: true,

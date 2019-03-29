@@ -54,11 +54,6 @@ class ProjectMember extends React.Component {
       type: 'select',
       key: 'work_type'
     }, {
-      title: '工人类型',
-      field: 'workRole',
-      type: 'select',
-      key: 'work_role'
-    }, {
       title: '是否购买保险',
       field: 'hasBuyInsurance',
       type: 'select',
@@ -74,7 +69,18 @@ class ProjectMember extends React.Component {
       noClear: true
     }, {
       title: '所在企业',
-      field: 'corpName',
+      field: 'corpName'
+    }, {
+      title: '所在企业',
+      field: 'corpCode',
+      pageCode: '631255',
+      params: {
+        uploadStatus: '2'
+      },
+      keyName: 'corpCode',
+      valueName: 'corpName',
+      type: 'select',
+      hidden: true,
       search: true
     }, {
       title: '所在班组',
@@ -128,9 +134,11 @@ class ProjectMember extends React.Component {
         }
       },
       afterDetail: () => {
-        this.props.form.setFieldsValue({ projectCode });
-        let values = this.props.form.getFieldsValue();
-        this.props.setSearchParam(values);
+        if (isUndefined(this.props.searchParam.projectCode)) {
+          this.props.form.setFieldsValue({ projectCode });
+          let values = this.props.form.getFieldsValue();
+          this.props.setSearchParam(values);
+        }
       }
     }) : null;
   }

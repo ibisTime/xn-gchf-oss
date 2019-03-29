@@ -27,21 +27,6 @@ class ProjectClassAddEdit extends DetailUtil {
       field: 'teamName',
       required: true
     }, {
-      title: '班组长姓名',
-      field: 'teamLeaderName'
-    }, {
-      title: '班组长联系方式',
-      field: 'teamLeaderPhone',
-      mobile: true
-    }, {
-      title: '班组长证件类型',
-      field: 'teamLeaderIdcardType',
-      type: 'select',
-      key: 'legal_manid_card_type'
-    }, {
-      title: '班组长证件号码',
-      field: 'teamLeaderIdNumber'
-    }, {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',

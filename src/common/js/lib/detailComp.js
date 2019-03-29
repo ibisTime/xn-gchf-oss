@@ -10,7 +10,8 @@ import { getDictList } from 'api/dict';
 import { getQiniuToken } from 'api/general';
 import {
   formatFile, formatImg, isUndefined, dateTimeFormat, dateFormat, getUserId,
-  tempString, moneyFormat, moneyParse, showSucMsg, showErrMsg, showWarnMsg
+  tempString, moneyFormat, moneyParse, showSucMsg, showErrMsg, showWarnMsg,
+  getRules
 } from 'common/js/util';
 import { UPLOAD_URL, PIC_PREFIX, formItemLayout, tailFormItemLayout,
   DATE_FORMAT, DATETIME_FORMAT, MONTH_FORMAT } from '../config';
@@ -371,7 +372,7 @@ export default class DetailComp extends React.Component {
   }
   getItemByType(type, item) {
     const { getFieldDecorator } = this.props.form;
-    let rules = this.getRules(item);
+    let rules = getRules(item);
     let initVal = this.getRealValue(item);
     switch (type) {
       case 'o2m':
@@ -857,12 +858,7 @@ export default class DetailComp extends React.Component {
     let data;
     if (item.readonly && item.data && !isUndefined(initVal)) {
       initVal += '';
-      data = item.data.filter(v => {
-        if (!isUndefined(v[item.keyName])) {
-          v[item.keyName] += '';
-        }
-        return v[item.keyName] === initVal;
-      });
+      data = item.data.filter(v => v[item.keyName] == initVal);
     }
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
@@ -883,7 +879,7 @@ export default class DetailComp extends React.Component {
                 notFoundContent={this.state.fetching[item.field] ? <Spin size="small" /> : '暂无数据'}
                 placeholder="请输入关键字搜索">
                 {item.data ? item.data.map(d => (
-                  <Option key={d[item.keyName]} value={d[item.keyName]}>
+                  <Option key={d[item.keyName] + ''} value={d[item.keyName] + ''}>
                     {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
                   </Option>
                 )) : null}
@@ -910,12 +906,7 @@ export default class DetailComp extends React.Component {
     let data;
     if (item.readonly && item.data && !isUndefined(initVal)) {
       initVal += '';
-      data = item.data.filter(v => {
-        if (!isUndefined(v[item.keyName])) {
-          v[item.keyName] += '';
-        }
-        return v[item.keyName] === initVal;
-      });
+      data = item.data.filter(v => v[item.keyName] == initVal);
     }
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
@@ -936,7 +927,7 @@ export default class DetailComp extends React.Component {
                 style={{ width: '100%' }}
                 placeholder="请选择">
                 {item.data ? item.data.map(d => (
-                  <Option key={d[item.keyName]} value={d[item.keyName]}>
+                  <Option key={d[item.keyName] + ''} value={d[item.keyName] + ''}>
                     {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
                   </Option>
                 )) : null}
@@ -1214,70 +1205,5 @@ export default class DetailComp extends React.Component {
         }
       </FormItem>
     );
-  }
-  getRules(item) {
-    let rules = [];
-    if (item.required) {
-      rules.push({
-        required: true,
-        message: '必填字段'
-      });
-    }
-    if (item.maxlength) {
-      rules.push({
-        min: 1,
-        max: item.maxlength,
-        message: `请输入一个长度最多是${item.maxlength}的字符串`
-      });
-    }
-    if (item.email) {
-      rules.push({
-        type: 'email',
-        message: '请输入正确格式的电子邮件'
-      });
-    }
-    if (item.mobile) {
-      rules.push({
-        pattern: /^1[3|4|5|7|8]\d{9}$/,
-        message: '手机格式不对'
-      });
-    }
-    if (item['Z+']) {
-      rules.push({
-        pattern: /^[1-9]\d*$/,
-        message: '请输入正整数'
-      });
-    }
-    if (item.number) {
-      rules.push({
-        pattern: /^-?\d+(\.\d+)?$/,
-        message: '请输入合法的数字'
-      });
-    }
-    if (item.positive) {
-      rules.push({
-        pattern: /^\d+(\.\d+)?$/,
-        message: '请输入正数'
-      });
-    }
-    if (item.integer) {
-      rules.push({
-        pattern: /^-?\d+$/,
-        message: '请输入合法的整数'
-      });
-    }
-    if (item.date28) {
-      rules.push({
-        pattern: /^([1-9]|[1][0-9]|[2][0-8])$/,
-        message: '请输入1-28之间的整数'
-      });
-    }
-    if (item.date100) {
-      rules.push({
-        pattern: /[1-9]\d?|100/,
-        message: '请输入1-100之间的整数'
-      });
-    }
-    return rules;
   }
 }

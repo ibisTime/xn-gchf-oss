@@ -66,11 +66,11 @@ export default class CSelect extends React.Component {
     if (readonly && list && initVal) {
       if (multiple) {
         value = initVal.map(i => {
-          let obj = list.find(v => v[keyName] === i);
+          let obj = list.find(v => v[keyName] == i);
           return obj[valueName] || tempString(valueName, obj) || '';
         }).join('、');
       } else {
-        value = list.filter(v => v[keyName] === initVal);
+        value = list.filter(v => v[keyName] == initVal);
         value = value && value.length
           ? value[0][valueName] || tempString(valueName, value[0])
           : initVal;
@@ -83,17 +83,18 @@ export default class CSelect extends React.Component {
       onChange, initVal, inline, list, multiple, keyName, valueName } = this.props;
     let layoutProps = inline ? {} : formItemLayout;
     let value = this.getReadonlyValue(initVal, readonly, list, keyName, valueName, multiple);
+    let _initVal = isUndefined(initVal) ? '' : (initVal + '');
     return (
       <FormItem key={field} label={label} {...layoutProps} className={hidden ? 'hidden' : ''}>
         {
           readonly ? <div className="readonly-text">{value}</div>
             : getFieldDecorator(field, {
                 rules,
-                initialValue: initVal
+                initialValue: _initVal
               })(
               <Select {...this.getSelectProps(multiple, onChange)}>
                 {list && list.length ? list.map(d => (
-                  <Option key={d[keyName]} value={d[keyName]}>
+                  <Option key={d[keyName] + ''} value={d[keyName] + ''}>
                     {d[valueName] ? d[valueName] : tempString(valueName, d)}
                   </Option>
                 )) : null}
