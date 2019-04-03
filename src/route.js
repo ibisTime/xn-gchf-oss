@@ -349,6 +349,14 @@ const ROUTES = [
     path: '/staff/jiandang',
     component: asyncComponent(() => import('container/staff/archives/jiandang'))
   },
+  {
+    path: '/staff/jiandang-step2',
+    component: asyncComponent(() => import('container/staff/archives/jiandang-step2'))
+  },
+  {
+    path: '/staff/jiandang-step3',
+    component: asyncComponent(() => import('container/staff/archives/jiandang-step3'))
+  },
   // {
   //   path: '/staff/jiandang1',
   //   component: asyncComponent(() => import('container/staff/archives/jiandang1'))
@@ -478,9 +486,15 @@ const ROUTES = [
     path: '/project/projectparticipant',
     component: asyncComponent(() => import('container/biz/project/participating/participating'))
   },
+  // 业务管理 -- 项目管理-- 项目参建单位--详情
   {
     path: '/project/projectparticipant/addedit',
     component: asyncComponent(() => import('container/biz/project/participating/participating-addedit'))
+  },
+  // 业务管理 -- 项目管理-- 项目参建单位--上传
+  {
+    path: '/project/projectparticipant/up',
+    component: asyncComponent(() => import('container/biz/project/participating/participating-up'))
   },
   // 业务管理 -- 项目管理-- 项目班组
   {

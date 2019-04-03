@@ -4,16 +4,16 @@ import { getUserId } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
-class CompanyInfoUp extends DetailUtil {
+class ParticipatingUp extends DetailUtil {
   render() {
     const fields = [{
       field: 'userId',
       value: getUserId(),
       hidden: true
     }, {
-      title: '考勤列表',
+      title: '参建单位列表',
       field: 'codeList',
-      listCode: 631257,
+      listCode: 631647,
       params: {
         userId: getUserId(),
         uploadStatus: '0'
@@ -28,15 +28,12 @@ class CompanyInfoUp extends DetailUtil {
         }, {
           title: '统一社会信用代码',
           field: 'corpCode'
-        }, {
-          title: '注册地区编码',
-          field: 'areaCode'
         }]
       }
     }];
     return this.buildDetail({
       fields,
-      addCode: 631253,
+      addCode: 631634,
       beforeSubmit: (params) => {
         let codeList = params.codeList.map(v => v.code);
         params.codeList = codeList;
@@ -46,4 +43,4 @@ class CompanyInfoUp extends DetailUtil {
   }
 }
 
-export default CompanyInfoUp;
+export default ParticipatingUp;

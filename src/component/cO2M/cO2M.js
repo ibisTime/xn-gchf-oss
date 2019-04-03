@@ -189,18 +189,22 @@ export default class CO2M extends React.Component {
   }
   // 删除按钮点击
   deleteBtnClick = () => {
-    const { selectedRowKeys: keys, options, list, field, afterDelete } = this.props;
-    if (!keys.length || keys.length > 1) {
+    let { selectedRowKeys: keys, options, list, field, afterDelete } = this.props;
+    if (!keys.length) {
       showWarnMsg('请选择一条记录');
       return;
     }
-    let key = keys[0];
-    let keyName = options.rowKey || 'code';
-    let deleteItem = list.filter((v) => v[keyName] === key)[0];
-    let arr = list.filter((v) => v[keyName] !== key);
-    this.props.setO2MData(field, arr);
+    let deleteItems = [];
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      let keyName = options.rowKey || 'code';
+      let deleteItem = list.filter((v) => v[keyName] === key)[0];
+      list = list.filter((v) => v[keyName] !== key);
+      deleteItems.push(deleteItem);
+    }
+    this.props.setO2MData(field, list);
     this.props.setO2MSelect(field, []);
-    afterDelete && afterDelete(key, deleteItem);
+    afterDelete && afterDelete(keys, deleteItems);
   }
   // 详情按钮点击
   detailBtnClick = () => {

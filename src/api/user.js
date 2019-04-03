@@ -53,8 +53,8 @@ export function getjindu(companyCode, projectCode) {
   return fetch(631386, { companyCode, projectCode });
 }
 
-// 建档
-export function jiandang(birthday,
+// 建档，老的建档方法，已弃用
+export function oldjiandang(birthday,
   idAddress,
   idEndDate,
   idNation,
@@ -78,6 +78,27 @@ export function jiandang(birthday,
     sex,
     updater,
     companyCode});
+}
+// 建档
+export function jiandang(birthday, address, expiryDate, nation,
+  idCardNumber, headImageUrl, grantOrg, startDate, name, sex,
+  politicsType, cultureLevelType, userId) {
+  return fetch(631790, {
+    birthday,
+    address,
+    expiryDate,
+    nation,
+    idCardNumber,
+    headImageUrl,
+    grantOrg,
+    startDate,
+    name,
+    sex,
+    politicsType,
+    cultureLevelType,
+    userId,
+    idCardType: '01'
+  });
 }
 
 // 免冠照片

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, getUserId } from 'common/js/util';
 import { DetailWrapper } from 'common/js/build-detail';
 import DetailUtil from 'common/js/build-detail-dev';
 
@@ -9,11 +9,9 @@ class ParticipatingAddEdit extends DetailUtil {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
-    this.pCode = getQueryString('pcode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   render() {
-    let _this = this;
     const fields = [{
       title: '企业名称',
       field: 'corpCode',
@@ -24,24 +22,7 @@ class ParticipatingAddEdit extends DetailUtil {
       keyName: 'corpCode',
       valueName: 'corpName',
       type: 'select',
-      onChange: (code, data) => {
-        let cropInfo = data.find(v => v.corpCode == code);
-        if (cropInfo) {
-          let pageData = _this.state.pageData || {};
-          _this.setState({
-            pageData: {
-              ...pageData,
-              corpName: cropInfo.corpName
-            }
-          });
-        }
-      },
       required: true
-    }, {
-      title: '企业名称',
-      field: 'corpName',
-      required: true,
-      hidden: true
     }, {
       title: '企业类型',
       field: 'corpType',
@@ -73,26 +54,56 @@ class ParticipatingAddEdit extends DetailUtil {
       mobile: true
     }, {
       title: '项目经理证件类型',
-      field: 'pmIdcardType',
+      field: 'pmIDCardType',
       type: 'select',
       key: 'legal_manid_card_type'
     }, {
       title: '项目经理证件号码',
-      field: 'pmIdcardNumber'
+      field: 'pmIDCardNumber'
+    }, {
+      field: 'userId',
+      value: getUserId(),
+      hidden: true
     }];
+    if (this.view) {
+      fields.push({
+        field: 'banklist',
+        title: '银行卡',
+        type: 'o2m',
+        listCode: 631767,
+        params: {
+          userId: getUserId(),
+          businessSysNo: this.code
+        },
+        options: {
+          fields: [{
+            title: '银行支行名称',
+            field: 'bankName'
+          }, {
+            title: '银行卡号',
+            field: 'bankNumber'
+          }, {
+            title: '银行联号',
+            field: 'bankLinkNumber'
+          }, {
+            title: '状态',
+            field: 'status',
+            type: 'select',
+            key: 'bankcard_status'
+          }]
+        }
+      });
+    }
     return this.buildDetail({
       fields,
       code: this.code,
       view: this.view,
-      key: 'corpCode',
-      detailCode: 631907,
-      editCode: 631906,
-      addCode: 631905,
+      detailCode: 631646,
       beforeDetail: (params) => {
-        params.pageIndex = 0;
-        params.pageSize = 1;
-        params.projectCode = this.pCode;
-      }
+        params.userId = getUserId();
+      },
+      editCode: 631632,
+      addCode: 631630
     });
   }
 }

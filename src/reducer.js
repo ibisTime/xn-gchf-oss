@@ -97,8 +97,11 @@ import { waitListTextMessage } from './redux/waitList/textMessage';
 import { waitListTextMessageAddEdit } from './redux/waitList/textMessage-addedit';
 import { ProjectManageMent } from './redux/newId/projectmanagement';
 import { ProjectManageMentAddedit } from './redux/newId/projectmanagement-addedit';
+import { jiandangStep2 } from './redux/staff/jiandang-step2';
+import { jiandangStep3 } from './redux/staff/jiandang-step3';
 // 开设账号 -- 业主单位--项目管理
 import { projectParticipating } from './redux/biz/project/participating';
+import { projectParticipatingBank } from './redux/biz/project/participating-bank';
 import { projectClass } from './redux/biz/project/class';
 import { projectMember } from './redux/biz/project/member';
 import { projectInout } from './redux/biz/project/inout';
@@ -211,7 +214,10 @@ export default combineReducers({
   waitListTextMessageAddEdit,
   ProjectManageMent,
   ProjectManageMentAddedit,
+  jiandangStep2,
+  jiandangStep3,
   projectParticipating,
+  projectParticipatingBank,
   projectClass,
   projectMember,
   projectInout,
