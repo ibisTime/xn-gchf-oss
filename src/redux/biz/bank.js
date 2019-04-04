@@ -1,6 +1,6 @@
-import { commListState } from '../../common';
+import { commListState } from '../common';
 
-const PREFIX = 'PROJECT_PARTICIPATING_BANK_';
+const PREFIX = 'BIZ_BANK_';
 const SET_BUTTON_LIST = PREFIX + 'SET_BUTTON_LIST';
 const LOADING = PREFIX + 'LOADING';
 const CANCEL_LOADING = PREFIX + 'CANCEL_LOADING';
@@ -11,7 +11,7 @@ const SET_SEARCH_PARAM = PREFIX + 'SET_SEARCH_PARAM';
 
 const initState = { ...commListState };
 
-export function projectParticipatingBank(state = initState, action) {
+export function bizBank(state = initState, action) {
   switch(action.type) {
     case SET_BUTTON_LIST:
       return {...state, btnList: action.payload};

@@ -1,41 +1,17 @@
 import React from 'react';
-import {
-  initStates,
-  doFetching,
-  cancelFetching,
-  setSelectData,
-  setPageData,
-  restore
-} from '@redux/biz/project/wages-addedit';
-import { getQueryString } from 'common/js/util';
-import { DetailWrapper } from 'common/js/build-detail';
+import { Form } from 'antd';
+import { getQueryString, getUserId } from 'common/js/util';
+import DetailUtil from 'common/js/build-detail-dev';
 
-@DetailWrapper(
-  state => state.projectWagesAddEdit,
-  { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
-)
-class ProjectWagesAddEdit extends React.Component {
+@Form.create()
+class ProjectWagesAddEdit extends DetailUtil {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
-    this.pCode = getQueryString('pcode', this.props.location.search);
-    this.payMonth = getQueryString('mon', this.props.location.search);
-    this.teamSysNo = getQueryString('team', this.props.location.search);
-    this.corpCode = getQueryString('corp', this.props.location.search);
-    this.corpName = getQueryString('corpn', this.props.location.search);
+    this.view = !!getQueryString('v', this.props.location.search);
   }
   render() {
     const fields = [{
-      title: '工人姓名',
-      field: 'workerName'
-    }, {
-      title: '证件号',
-      field: 'idcardNumber'
-    }, {
-      title: '发放工资的月份',
-      field: 'balanceDate',
-      type: 'month'
-    }, {
       title: '出勤天数',
       field: 'days'
     }, {
@@ -55,29 +31,54 @@ class ProjectWagesAddEdit extends React.Component {
       type: 'select',
       key: 'is_not'
     }, {
-      title: '对应项目',
-      field: 'projectName'
+      title: '发放日期',
+      field: 'balanceDate',
+      type: 'date'
     }, {
-      title: '所在企业',
-      field: 'corpName'
+      title: '第三方工资单编号',
+      field: 'thirdPayRollCode'
     }, {
-      title: '所在班组',
-      field: 'teamName'
+      field: 'userId',
+      value: getUserId(),
+      hidden: true
     }];
-    return this.props.buildDetail({
+    if (this.view) {
+      fields.push({
+        title: '操作日志',
+        field: 'operationLogs',
+        type: 'o2m',
+        listCode: 631137,
+        params: {
+          userId: getUserId(),
+          refCode: this.code
+        },
+        options: {
+          noSelect: true,
+          fields: [{
+            title: '操作人',
+            field: 'operatorName'
+          }, {
+            title: '操作类型',
+            field: 'operate'
+          }, {
+            title: '操作时间',
+            field: 'operateDatetime',
+            type: 'datetime'
+          }, {
+            title: '备注',
+            field: 'remark'
+          }]
+        }
+      });
+    }
+    return this.buildDetail({
       fields,
-      key: 'idCardNumber',
       code: this.code,
-      view: true,
-      detailCode: 631921,
+      view: this.view,
+      detailCode: 631817,
+      editCode: 631810,
       beforeDetail: (params) => {
-        params.pageIndex = 0;
-        params.pageSize = 1;
-        params.projectCode = this.pCode;
-        params.payMonth = this.payMonth;
-        params.teamSysNo = this.teamSysNo;
-        params.corpCode = this.corpCode;
-        params.corpName = this.corpName;
+        params.userId = getUserId();
       }
     });
   }

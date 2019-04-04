@@ -10,8 +10,7 @@ import {
   setSearchData
 } from '@redux/biz/project/class';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, isUndefined } from 'common/js/util';
-import { getProjectList } from 'api/general';
+import { showWarnMsg, getUserId } from 'common/js/util';
 
 @listWrapper(
     state => ({
@@ -22,25 +21,7 @@ import { getProjectList } from 'api/general';
       cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class ProjectClass extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      projectCode: ''
-    };
-  }
-  componentDidMount() {
-    getProjectList().then((data) => {
-      if (data.length) {
-        this.setState({ projectCode: data[0].projectCode });
-      }
-      this.setState({ isLoaded: true });
-    }).catch(() => {
-      this.setState({ isLoaded: true });
-    });
-  }
   render() {
-    const { isLoaded, projectCode } = this.state;
     const fields = [{
       title: '班组编号',
       field: 'teamSysNo'
@@ -53,10 +34,9 @@ class ProjectClass extends React.Component {
       field: 'projectCode',
       type: 'select',
       listCode: '631626',
-      keyName: 'projectCode',
+      keyName: 'localProjectCode',
       valueName: 'projectName',
-      search: true,
-      noClear: true
+      search: true
     }, {
       title: '所在企业',
       field: 'corpName'
@@ -91,54 +71,45 @@ class ProjectClass extends React.Component {
       field: 'remark',
       type: 'textarea',
       normalArea: true
+    }, {
+      title: '状态',
+      field: 'uploadStatus',
+      type: 'select',
+      key: 'upload_status',
+      search: true
     }];
-    return isLoaded ? this.props.buildList({
+    return this.props.buildList({
       fields,
-      pageCode: 631910,
-      rowKey: 'teamSysNo',
-      pagination: {
-        startKey: 'pageIndex',
-        limitKey: 'pageSize',
-        start: 0
+      pageCode: 631665,
+      deleteCode: 631651,
+      searchParams: {
+        userId: getUserId()
       },
-      exportLimit: 50,
+      beforeDelete: (params) => {
+        params.userId = getUserId();
+      },
       btnEvent: {
+        // 上传平台
+        up: (keys, items) => {
+          this.props.history.push('/project/class/up');
+        },
+        // 导入
+        import: (keys, items) => {
+          this.props.history.push('/project/class/import');
+        },
         edit: (keys, items) => {
           if (!keys.length) {
             showWarnMsg('请选择记录');
           } else if (keys.length > 1) {
             showWarnMsg('请选择一条记录');
+          } else if (items[0].uploadStatus === '2') {
+            showWarnMsg('已上传不可修改');
           } else {
-            this.props.history.push(`/project/class/addedit?code=${keys[0]}&pcode=${items[0].projectCode}`);
+            this.props.history.push(`/project/class/addedit?code=${keys[0]}`);
           }
-        },
-        detail: (keys, items) => {
-          if (!keys.length) {
-            showWarnMsg('请选择记录');
-          } else if (keys.length > 1) {
-            showWarnMsg('请选择一条记录');
-          } else {
-            this.props.history.push(`/project/class/addedit?v=1&code=${keys[0]}&pcode=${items[0].projectCode}`);
-          }
-        }
-      },
-      beforeDetail: (params) => {
-        if (isLoaded && projectCode && !this.isBefored) {
-          this.isBefored = true;
-          // 这个页面是第一次加载，并且redux里“对应项目”没有值
-          if (isUndefined(this.props.searchParam.projectCode)) {
-            params.projectCode = projectCode;
-          }
-        }
-      },
-      afterDetail: () => {
-        if (isUndefined(this.props.searchParam.projectCode)) {
-          this.props.form.setFieldsValue({ projectCode });
-          let values = this.props.form.getFieldsValue();
-          this.props.setSearchParam(values);
         }
       }
-    }) : null;
+    });
   }
 }
 

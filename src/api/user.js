@@ -81,8 +81,9 @@ export function oldjiandang(birthday,
 }
 // 建档
 export function jiandang(birthday, address, expiryDate, nation,
-  idCardNumber, headImageUrl, grantOrg, startDate, name, sex,
-  politicsType, cultureLevelType, userId) {
+  idCardNumber, headImageUrl, grantOrg, startDate, name, gender,
+  politicsType, cultureLevelType, isJoined, joinedTime, specialty,
+  hasBadMedicalHistory, maritalStatus, userId) {
   return fetch(631790, {
     birthday,
     address,
@@ -93,9 +94,14 @@ export function jiandang(birthday, address, expiryDate, nation,
     grantOrg,
     startDate,
     name,
-    sex,
+    gender,
     politicsType,
     cultureLevelType,
+    isJoined,
+    joinedTime,
+    specialty,
+    hasBadMedicalHistory,
+    maritalStatus,
     userId,
     idCardType: '01'
   });

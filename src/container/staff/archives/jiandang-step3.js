@@ -48,7 +48,12 @@ class JiandangStep3 extends React.Component {
     }];
     return this.props.buildDetail({
       fields,
-      addCode: 631792,
+      code: this.code,
+      detailCode: 631806,
+      editCode: 631792,
+      beforeDetail: (params) => {
+        params.userId = getUserId();
+      },
       onOk: () => {
         this.props.history.push('/staff/jiandang');
       }

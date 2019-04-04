@@ -11,7 +11,7 @@ import {
   setSearchData
 } from '@redux/biz/project/attence';
 import { listWrapper } from 'common/js/build-list';
-import { isUndefined, showWarnMsg, dateTimeFormat, dateFormat } from 'common/js/util';
+import { isUndefined, showWarnMsg, dateTimeFormat, dateFormat, getUserId } from 'common/js/util';
 import { getProjectList } from 'api/general';
 
 @listWrapper(
@@ -23,26 +23,7 @@ import { getProjectList } from 'api/general';
       cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class ProjectAttence extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      projectCode: ''
-    };
-  }
-  componentDidMount() {
-    getProjectList().then((data) => {
-      if (data.length) {
-        this.setState({ projectCode: data[0].projectCode });
-      }
-      this.setState({ isLoaded: true });
-    }).catch(() => {
-      this.setState({ isLoaded: true });
-    });
-    this.nowDate = moment(new Date(), 'YYYY-MM-DD');
-  }
   render() {
-    const { isLoaded, projectCode } = this.state;
     const fields = [{
       title: '工人姓名',
       field: 'workerName',
@@ -53,23 +34,12 @@ class ProjectAttence extends React.Component {
     }, {
       title: '刷卡时间',
       field: 'date',
-      type: 'date',
-      render: dateTimeFormat,
-      search: true,
-      noClear: true
+      type: 'datetime'
     }, {
       title: '刷卡进出方向',
       field: 'direction',
       type: 'select',
       key: 'direction'
-    }, {
-      title: '通道的名称',
-      field: 'channel'
-    }, {
-      title: '通行方式',
-      field: 'attendType',
-      type: 'select',
-      key: 'attend_type'
     }, {
       title: '对应项目',
       field: 'projectCode',
@@ -77,8 +47,7 @@ class ProjectAttence extends React.Component {
       listCode: '631626',
       keyName: 'projectCode',
       valueName: 'projectName',
-      search: true,
-      noClear: true
+      search: true
     }, {
       title: '所在企业',
       field: 'corpName'
@@ -97,55 +66,45 @@ class ProjectAttence extends React.Component {
     }, {
       title: '所在班组',
       field: 'teamName'
+    }, {
+      title: '状态',
+      field: 'uploadStatus',
+      type: 'select',
+      key: 'upload_status',
+      search: true
     }];
-    return isLoaded ? this.props.buildList({
+    return this.props.buildList({
       fields,
-      pageCode: 631919,
-      rowKey: ['idCardNumber', 'date'],
-      pagination: {
-        startKey: 'pageIndex',
-        limitKey: 'pageSize',
-        start: 0
+      pageCode: 631725,
+      deleteCode: 631711,
+      searchParams: {
+        userId: getUserId()
       },
-      exportLimit: 50,
+      beforeDelete: (params) => {
+        params.userId = getUserId();
+      },
       btnEvent: {
-        add: () => {
-          this.props.history.push('/project/attence/add');
+        // 上传平台
+        up: (keys, items) => {
+          this.props.history.push('/project/attence/up');
         },
-        detail: (keys, items) => {
+        // 导入
+        import: (keys, items) => {
+          this.props.history.push('/project/attence/import');
+        },
+        edit: (keys, items) => {
           if (!keys.length) {
             showWarnMsg('请选择记录');
           } else if (keys.length > 1) {
             showWarnMsg('请选择一条记录');
+          } else if (items[0].uploadStatus === '2') {
+            showWarnMsg('已上传不可修改');
           } else {
-            let date = dateFormat(items[0].date);
-            this.props.history.push(`/project/attence/addedit?v=1&code=${items[0].idCardNumber}&pcode=${items[0].projectCode}&date=${date}`);
+            this.props.history.push(`/project/attence/addedit?code=${keys[0]}`);
           }
-        }
-      },
-      beforeDetail: (params) => {
-        if (isLoaded && projectCode && !this.isBefored) {
-          this.isBefored = true;
-          // 这个页面是第一次加载，并且redux里“对应项目”没有值
-          if (isUndefined(this.props.searchParam.projectCode)) {
-            params.projectCode = projectCode;
-          }
-          if (isUndefined(this.props.searchParam.date)) {
-            params.date = this.nowDate;
-          }
-        }
-      },
-      afterDetail: () => {
-        if (isUndefined(this.props.searchParam.projectCode)) {
-          this.props.form.setFieldsValue({
-            projectCode,
-            date: this.nowDate
-          });
-          let values = this.props.form.getFieldsValue();
-          this.props.setSearchParam(values);
         }
       }
-    }) : null;
+    });
   }
 }
 

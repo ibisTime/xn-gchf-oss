@@ -47,10 +47,9 @@ class Participating extends React.Component {
       field: 'projectCode',
       type: 'select',
       listCode: '631626',
-      keyName: 'projectCode',
+      keyName: 'localProjectCode',
       valueName: 'projectName',
-      search: true,
-      noClear: true
+      search: true
     }, {
       title: '进场时间',
       field: 'entryTime',
@@ -106,16 +105,7 @@ class Participating extends React.Component {
           } else if (keys.length > 1) {
             showWarnMsg('请选择一条记录');
           } else {
-            this.props.history.push(`/project/projectparticipant/bank?code=${keys[0]}`);
-          }
-        },
-        detail: (keys, items) => {
-          if (!keys.length) {
-            showWarnMsg('请选择记录');
-          } else if (keys.length > 1) {
-            showWarnMsg('请选择一条记录');
-          } else {
-            this.props.history.push(`/project/projectparticipant/addedit?v=1&code=${keys[0]}`);
+            this.props.history.push(`/project/projectparticipant/bank?code=${keys[0]}&type=001`);
           }
         }
       },

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
+import { getUserId } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
@@ -9,17 +10,22 @@ class ProjectWagesAdd extends DetailUtil {
     this.state = {
       ...this.state,
       projectCode: '',
-      corpCode: ''
+      corpCode: '',
+      isBackPay: false
     };
   }
   render() {
     let _this = this;
     const fields = [{
+      field: 'userId',
+      value: getUserId(),
+      hidden: true
+    }, {
       title: '项目编码',
       field: 'projectCode',
       type: 'select',
       listCode: '631626',
-      keyName: 'projectCode',
+      keyName: 'localProjectCode',
       valueName: 'projectName',
       onChange: (projectCode, data) => {
         this.setState({ projectCode });
@@ -29,28 +35,14 @@ class ProjectWagesAdd extends DetailUtil {
       title: '所属企业',
       field: 'corpCode',
       type: 'select',
-      pageCode: this.state.projectCode ? 631907 : '',
+      pageCode: 631645,
       params: {
-        projectCode: this.state.projectCode
-      },
-      pagination: {
-        startKey: 'pageIndex',
-        start: 0,
-        limitKey: 'pageSize'
+        // projectCode: this.state.projectCode,
+        userId: getUserId()
       },
       keyName: 'corpCode',
       valueName: 'corpName',
       onChange: (corpCode, data) => {
-        let cropInfo = data.find(v => (v.corpCode + '') === corpCode);
-        if (cropInfo) {
-          let pageData = _this.state.pageData || {};
-          _this.setState({
-            pageData: {
-              ...pageData,
-              corpName: cropInfo.corpName
-            }
-          });
-        }
         this.setState({ corpCode });
       },
       hidden: !this.state.projectCode,
@@ -59,24 +51,16 @@ class ProjectWagesAdd extends DetailUtil {
       title: '所在班组',
       field: 'teamSysNo',
       type: 'select',
-      keyName: 'teamSysNo',
+      keyName: 'code',
       valueName: 'teamName',
       searchName: 'teamName',
-      pageCode: this.state.corpCode ? 631910 : '',
+      pageCode: 631665,
       params: {
-        projectCode: this.state.projectCode,
-        corpCode: this.state.corpCode
-      },
-      pagination: {
-        startKey: 'pageIndex',
-        start: 0,
-        limitKey: 'pageSize'
+        // projectCode: this.state.projectCode,
+        corpCode: this.state.corpCode,
+        userId: getUserId()
       },
       hidden: !this.state.corpCode,
-      required: true
-    }, {
-      field: 'corpName',
-      hidden: true,
       required: true
     }, {
       title: '发放工资的年月',
@@ -156,24 +140,25 @@ class ProjectWagesAdd extends DetailUtil {
           field: 'isBackPay',
           type: 'select',
           key: 'is_not',
-          required: true
+          onChange: (v) => {
+            this.setState({ isBackPay: v === '1' });
+          }
         }, {
-          title: '发放日期',
-          field: 'balanceDate',
-          type: 'date',
-          required: true
+          title: '补发月份',
+          field: 'backPayMonth',
+          type: 'month',
+          required: this.state.isBackPay,
+          hidden: !this.state.isBackPay
         }, {
           title: '第三方工资单编号',
-          field: 'thirdPayRollCode',
-          required: true
+          field: 'thirdPayRollCode'
         }]
       }
     }];
     return this.buildDetail({
       fields,
-      code: this.code,
-      view: this.view,
-      addCode: 631920
+      view: false,
+      addCode: 631770
     });
   }
 }

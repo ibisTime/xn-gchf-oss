@@ -1,69 +1,82 @@
 import React from 'react';
-import {
-  initStates,
-  doFetching,
-  cancelFetching,
-  setSelectData,
-  setPageData,
-  restore
-} from '@redux/biz/project/inout-addedit';
-import { getQueryString } from 'common/js/util';
-import { DetailWrapper } from 'common/js/build-detail';
+import { Form } from 'antd';
+import { getQueryString, getUserId } from 'common/js/util';
+import DetailUtil from 'common/js/build-detail-dev';
 
-@DetailWrapper(
-  state => state.projectInoutAddEdit,
-  { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
-)
-class ProjectInoutAddEdit extends React.Component {
+@Form.create()
+class ProjectInoutAddEdit extends DetailUtil {
   constructor(props) {
     super(props);
-    this.idCardNumber = getQueryString('idcard', this.props.location.search);
-    this.pCode = getQueryString('pcode', this.props.location.search);
-    this.teamSysNo = getQueryString('teamno', this.props.location.search);
+    this.code = getQueryString('code', this.props.location.search);
+    this.view = !!getQueryString('v', this.props.location.search);
   }
   render() {
     const fields = [{
-      title: '工人姓名',
-      field: 'workerName'
-    }, {
-      title: '证件号',
-      field: 'idcardNumber'
+      title: '员工编号',
+      field: 'projectWorkerCode',
+      type: 'select',
+      pageCode: 631605,
+      keyName: 'code',
+      searchName: 'workerName',
+      valueName: '{{workerName.DATA}}-{{idCardNumber.DATA}}',
+      params: {
+        userId: getUserId()
+      },
+      required: true
     }, {
       title: '进退场日期',
       field: 'date',
-      type: 'datetime'
+      type: 'datetime',
+      required: true
     }, {
       title: '类型',
       field: 'type',
       type: 'select',
-      key: 'entry_exit_type'
+      key: 'entry_exit_type',
+      required: true
     }, {
-      title: '对应项目',
-      field: 'projectCode',
-      type: 'select',
-      listCode: '631626',
-      keyName: 'projectCode',
-      valueName: 'projectName',
-      search: true,
-      noClear: true
-    }, {
-      title: '所在企业',
-      field: 'corpName'
-    }, {
-      title: '所在班组',
-      field: 'teamSysNo'
+      field: 'userId',
+      value: getUserId(),
+      hidden: true
     }];
-    return this.props.buildDetail({
+    if (this.view) {
+      fields.push({
+        title: '操作日志',
+        field: 'operationLogs',
+        type: 'o2m',
+        listCode: 631137,
+        params: {
+          userId: getUserId(),
+          refCode: this.code
+        },
+        options: {
+          noSelect: true,
+          fields: [{
+            title: '操作人',
+            field: 'operatorName'
+          }, {
+            title: '操作类型',
+            field: 'operate'
+          }, {
+            title: '操作时间',
+            field: 'operateDatetime',
+            type: 'datetime'
+          }, {
+            title: '备注',
+            field: 'remark'
+          }]
+        }
+      });
+    }
+    return this.buildDetail({
       fields,
-      key: 'idCardNumber',
-      code: this.idCardNumber,
-      view: true,
-      detailCode: 631915,
+      code: this.code,
+      view: this.view,
+      detailCode: 631746,
+      addCode: 631730,
+      editCode: 631732,
       beforeDetail: (params) => {
-        params.pageIndex = 0;
-        params.pageSize = 1;
-        params.projectCode = this.pCode;
-        params.teamSysNo = this.teamSysNo;
+        params.userId = getUserId();
       }
     });
   }

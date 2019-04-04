@@ -1,33 +1,59 @@
 import React from 'react';
-import {
-  initStates,
-  doFetching,
-  cancelFetching,
-  setSelectData,
-  setPageData,
-  restore
-} from '@redux/biz/project/inout-addedit';
-import { getQueryString } from 'common/js/util';
-import { DetailWrapper } from 'common/js/build-detail';
+import { Form } from 'antd';
+import { getQueryString, getUserId } from 'common/js/util';
+import DetailUtil from 'common/js/build-detail-dev';
 
-@DetailWrapper(
-  state => state.projectInoutAddEdit,
-  { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
-)
-class ProjectInoutAddEdit extends React.Component {
+@Form.create()
+class ProjectAttenceAddEdit extends DetailUtil {
   constructor(props) {
     super(props);
-    this.idCardNumber = getQueryString('code', this.props.location.search);
-    this.pCode = getQueryString('pcode', this.props.location.search);
-    this.date = getQueryString('date', this.props.location.search);
+    this.state = {
+      ...this.state,
+      projectCode: ''
+    };
+    this.code = getQueryString('code', this.props.location.search);
+    this.view = !!getQueryString('v', this.props.location.search);
   }
   render() {
+    const _this = this;
     const fields = [{
-      title: '工人姓名',
-      field: 'workerName'
+      title: '对应项目',
+      field: 'projectCode',
+      type: 'select',
+      listCode: '631626',
+      keyName: 'localProjectCode',
+      valueName: 'projectName',
+      onChange: (projectCode, data) => {
+        if (!this.view) {
+          this.setState({ projectCode });
+        }
+      },
+      required: true
     }, {
-      title: '证件号',
-      field: 'idCardNumber'
+      title: '员工编号',
+      field: 'projectWorkerCode',
+      type: 'select',
+      pageCode: 631605,
+      keyName: 'code',
+      searchName: 'workerName',
+      valueName: '{{workerName.DATA}}-{{idCardNumber.DATA}}',
+      params: {
+        projectCode: this.state.projectCode,
+        userId: getUserId()
+      },
+      onChange: (code, data) => {
+        let info = data.find(v => (v.code + '') === code);
+        if (info) {
+          let pageData = _this.state.pageData || {};
+          _this.setState({
+            pageData: {
+              ...pageData,
+              teamSysNo: info.corpCode
+            }
+          });
+        }
+      },
+      required: true
     }, {
       title: '刷卡时间',
       field: 'date',
@@ -38,63 +64,54 @@ class ProjectInoutAddEdit extends React.Component {
       type: 'select',
       key: 'direction'
     }, {
-      title: '刷卡近照',
-      field: 'image',
-      type: 'img',
-      single: true
+      field: 'teamSysNo',
+      hidden: true
     }, {
-      title: '通道',
-      field: 'channel'
-    }, {
-      title: '通行方式',
-      field: 'attendType',
-      type: 'select',
-      key: 'attend_type'
-    }, {
-      title: '经度',
-      field: 'lng'
-    }, {
-      title: '纬度',
-      field: 'lat'
-    }, {
-      title: '通道的名称',
-      field: 'channel'
-    }, {
-      title: '通行方式',
-      field: 'attendType',
-      type: 'select',
-      key: 'attend_type'
-    }, {
-      title: '对应项目',
-      field: 'projectCode',
-      type: 'select',
-      listCode: '631626',
-      keyName: 'projectCode',
-      valueName: 'projectName',
-      search: true,
-      noClear: true
-    }, {
-      title: '所在企业',
-      field: 'corpName',
-      search: true
-    }, {
-      title: '所在班组',
-      field: 'teamName'
+      field: 'userId',
+      value: getUserId(),
+      hidden: true
     }];
-    return this.props.buildDetail({
+    if (this.view) {
+      fields.push({
+        title: '操作日志',
+        field: 'operationLogs',
+        type: 'o2m',
+        listCode: 631137,
+        params: {
+          userId: getUserId(),
+          refCode: this.code
+        },
+        options: {
+          noSelect: true,
+          fields: [{
+            title: '操作人',
+            field: 'operatorName'
+          }, {
+            title: '操作类型',
+            field: 'operate'
+          }, {
+            title: '操作时间',
+            field: 'operateDatetime',
+            type: 'datetime'
+          }, {
+            title: '备注',
+            field: 'remark'
+          }]
+        }
+      });
+    }
+    return this.buildDetail({
       fields,
-      key: 'idcardNumber',
-      code: this.idCardNumber,
-      view: true,
-      detailCode: 631919,
+      code: this.code,
+      view: this.view,
+      addCode: 631710,
+      editCode: 631712,
+      detailCode: 631726,
       beforeDetail: (params) => {
-        params.pageIndex = 0;
-        params.pageSize = 1;
-        params.projectCode = this.pCode;
-        params.date = this.date;
+        params.userId = getUserId();
       }
     });
   }
 }
 
-export default ProjectInoutAddEdit;
+export default ProjectAttenceAddEdit;

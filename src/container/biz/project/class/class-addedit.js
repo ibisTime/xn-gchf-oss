@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, getUserId } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
@@ -12,11 +12,9 @@ class ProjectClassAddEdit extends DetailUtil {
       projectCode: ''
     };
     this.code = getQueryString('code', this.props.location.search);
-    this.pCode = getQueryString('pcode', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
   }
   render() {
-    let _this = this;
     const fields = [{
       title: '班组编号',
       field: 'teamSysNo',
@@ -31,7 +29,7 @@ class ProjectClassAddEdit extends DetailUtil {
       field: 'projectCode',
       type: 'select',
       listCode: '631626',
-      keyName: 'projectCode',
+      keyName: 'localProjectCode',
       valueName: 'projectName',
       onChange: (projectCode, data) => {
         if (!this.view) {
@@ -43,39 +41,15 @@ class ProjectClassAddEdit extends DetailUtil {
       title: '所在企业',
       field: 'corpCode',
       type: 'select',
-      pageCode: this.state.projectCode ? 631907 : '',
+      pageCode: 631645,
       params: {
-        projectCode: this.state.projectCode
+        projectCode: this.state.projectCode,
+        userId: getUserId()
       },
       keyName: 'corpCode',
       valueName: 'corpName',
       searchName: 'corpName',
-      pagination: {
-        startKey: 'pageIndex',
-        start: 0,
-        limitKey: 'pageSize'
-      },
-      onChange: (code, data) => {
-        if (data) {
-          let company = data.find(v => v.corpCode === code);
-          if (company) {
-            let pageData = _this.state.pageData || {};
-            _this.setState({
-              pageData: {
-                ...pageData,
-                corpName: company.corpName
-              }
-            });
-          }
-        }
-      },
-      hidden: this.view || !this.state.projectCode,
       required: true
-    }, {
-      title: '所在企业',
-      field: 'corpName',
-      required: true,
-      hidden: !this.view
     }, {
       title: '所在企业统一社会信用代码',
       field: 'corpCode1',
@@ -106,23 +80,68 @@ class ProjectClassAddEdit extends DetailUtil {
       field: 'exitTime',
       type: 'datetime'
     }, {
+      title: '班组长姓名',
+      field: 'teamLeaderName'
+    }, {
+      title: '班组长联系电话',
+      field: 'teamLeaderPhone',
+      mobile: true
+    }, {
+      title: '班组长证件类型',
+      field: 'teamLeaderIdcardType',
+      key: 'legal_manid_card_type',
+      type: 'select'
+    }, {
+      title: '班组长证件号码',
+      field: 'teamLeaderIdNumber'
+    }, {
       title: '备注',
       field: 'remark',
       type: 'textarea',
       normalArea: true
+    }, {
+      field: 'userId',
+      value: getUserId(),
+      hidden: true
     }];
+    if (this.view) {
+      fields.push({
+        title: '操作日志',
+        field: 'operationLogs',
+        type: 'o2m',
+        listCode: 631137,
+        params: {
+          userId: getUserId(),
+          refCode: this.code
+        },
+        options: {
+          noSelect: true,
+          fields: [{
+            title: '操作人',
+            field: 'operatorName'
+          }, {
+            title: '操作类型',
+            field: 'operate'
+          }, {
+            title: '操作时间',
+            field: 'operateDatetime',
+            type: 'datetime'
+          }, {
+            title: '备注',
+            field: 'remark'
+          }]
+        }
+      });
+    }
     return this.buildDetail({
       fields,
       code: this.code,
       view: this.view,
-      key: 'teamSysNo',
-      detailCode: 631910,
-      editCode: 631909,
-      addCode: 631908,
+      detailCode: 631666,
+      editCode: 631652,
+      addCode: 631650,
       beforeDetail: (params) => {
-        params.pageIndex = 0;
-        params.pageSize = 1;
-        params.projectCode = this.pCode;
+        params.userId = getUserId();
       }
     });
   }

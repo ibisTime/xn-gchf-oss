@@ -22,6 +22,7 @@ import CMonth from 'component/cMonth/cMonth';
 import CCitySelect from 'component/cCitySelect/cCitySelect';
 import CCheckbox from 'component/cCheckbox/cCheckbox';
 import CTreeSelect from 'component/cTreeSelect/cTreeSelect';
+import CImport from 'component/cImport/cImport';
 
 const { Item: FormItem } = Form;
 const { Panel } = Collapse;
@@ -306,6 +307,8 @@ export default class DetailCompDev extends React.Component {
         return this.getCheckboxComp(item, initVal, rules, getFieldDecorator);
       case 'treeSelect':
         return this.getTreeSelectComp(item, initVal, rules, getFieldDecorator);
+      case 'import':
+        return this.getImportComp(item, initVal, getFieldDecorator);
       default:
         return this.getInputComp(item, initVal, rules, getFieldDecorator);
     }
@@ -550,6 +553,31 @@ export default class DetailCompDev extends React.Component {
     };
     return <CTreeSelect key={item.field} {...props} />;
   }
+  // import数据变动的回调
+  setImportData = (field, list) => {
+    this.setState(prevState => ({
+      pageData: {
+        ...prevState.pageData,
+        [field]: list
+      }
+    }));
+  }
+  // 获取导入类型的控件
+  getImportComp(item, list, getFieldDecorator) {
+    const props = {
+      list,
+      getFieldDecorator,
+      hidden: item.hidden,
+      inline: item.inline,
+      field: item.field,
+      title: item.title,
+      label: this.getLabel(item),
+      readonly: item.readonly,
+      options: item.options,
+      setImportData: this.setImportData
+    };
+    return <CImport key={item.field} {...props} />;
+  }
   // 获取o2m表格控件
   getTableItem(item, list) {
     return null;
@@ -639,7 +667,7 @@ export default class DetailCompDev extends React.Component {
         } else {
           values[v.field] = values[v.field] ? values[v.field].format(format) : values[v.field];
         }
-      } else if (v.type === 'o2m') {
+      } else if (v.type === 'o2m' || v.type === 'import') {
         values[v.field] = this.state.pageData ? this.state.pageData[v.field] : null;
       } else if (v.type === 'checkbox') {
         if (values[v.field] !== '' && values[v.field].push) {

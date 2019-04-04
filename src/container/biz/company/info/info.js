@@ -44,6 +44,9 @@ class CompanyInfo extends React.Component {
       fields,
       pageCode: 631255,
       deleteCode: 631252,
+      searchParams: {
+        userId: getUserId()
+      },
       btnEvent: {
         edit: (keys, items) => {
           if (!keys.length) {
@@ -57,9 +60,6 @@ class CompanyInfo extends React.Component {
           }
         },
         up: () => this.props.history.push('/company/info/up')
-      },
-      beforeDetail: (params) => {
-        params.userId = getUserId();
       }
     });
   }

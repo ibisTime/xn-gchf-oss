@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
 import { getQueryString, getUserId } from 'common/js/util';
-import { DetailWrapper } from 'common/js/build-detail';
 import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
@@ -34,7 +33,7 @@ class ParticipatingAddEdit extends DetailUtil {
       field: 'projectCode',
       type: 'select',
       listCode: '631626',
-      keyName: 'projectCode',
+      keyName: 'localProjectCode',
       valueName: 'projectName',
       required: true
     }, {
@@ -76,6 +75,7 @@ class ParticipatingAddEdit extends DetailUtil {
           businessSysNo: this.code
         },
         options: {
+          noSelect: true,
           fields: [{
             title: '银行支行名称',
             field: 'bankName'
@@ -90,6 +90,33 @@ class ParticipatingAddEdit extends DetailUtil {
             field: 'status',
             type: 'select',
             key: 'bankcard_status'
+          }]
+        }
+      });
+      fields.push({
+        title: '操作日志',
+        field: 'operationLogs',
+        type: 'o2m',
+        listCode: 631137,
+        params: {
+          userId: getUserId(),
+          refCode: this.code
+        },
+        options: {
+          noSelect: true,
+          fields: [{
+            title: '操作人',
+            field: 'operatorName'
+          }, {
+            title: '操作类型',
+            field: 'operate'
+          }, {
+            title: '操作时间',
+            field: 'operateDatetime',
+            type: 'datetime'
+          }, {
+            title: '备注',
+            field: 'remark'
           }]
         }
       });

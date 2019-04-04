@@ -99,21 +99,16 @@ import { ProjectManageMent } from './redux/newId/projectmanagement';
 import { ProjectManageMentAddedit } from './redux/newId/projectmanagement-addedit';
 import { jiandangStep2 } from './redux/staff/jiandang-step2';
 import { jiandangStep3 } from './redux/staff/jiandang-step3';
+import { bizBank } from './redux/biz/bank';
 // 开设账号 -- 业主单位--项目管理
 import { projectParticipating } from './redux/biz/project/participating';
-import { projectParticipatingBank } from './redux/biz/project/participating-bank';
 import { projectClass } from './redux/biz/project/class';
 import { projectMember } from './redux/biz/project/member';
 import { projectInout } from './redux/biz/project/inout';
-import { projectInoutAddEdit } from './redux/biz/project/inout-addedit';
 import { projectMemContract } from './redux/biz/project/memcontract';
-import { projectMemContractAddEdit } from './redux/biz/project/memcontract-addedit';
 import { projectAttence } from './redux/biz/project/attence';
-import { projectAttenceAddEdit } from './redux/biz/project/attence-addedit';
 import { projectWages } from './redux/biz/project/wages';
-import { projectWagesAddEdit } from './redux/biz/project/wages-addedit';
 import { companyInfo } from './redux/biz/company/info';
-import { companyInfoAddEdit } from './redux/biz/company/info-addedit';
 
 export default combineReducers({
   user,
@@ -216,18 +211,13 @@ export default combineReducers({
   ProjectManageMentAddedit,
   jiandangStep2,
   jiandangStep3,
+  bizBank,
   projectParticipating,
-  projectParticipatingBank,
   projectClass,
   projectMember,
   projectInout,
-  projectInoutAddEdit,
   projectMemContract,
-  projectMemContractAddEdit,
   projectAttence,
-  projectAttenceAddEdit,
   projectWages,
-  projectWagesAddEdit,
-  companyInfo,
-  companyInfoAddEdit
+  companyInfo
 });

@@ -1,52 +1,61 @@
 import React from 'react';
-import {
-  initStates,
-  doFetching,
-  cancelFetching,
-  setSelectData,
-  setPageData,
-  restore
-} from '@redux/biz/project/inout-addedit';
-import { getQueryString } from 'common/js/util';
-import { DetailWrapper } from 'common/js/build-detail';
+import { Form } from 'antd';
+import { getQueryString, getUserId } from 'common/js/util';
+import DetailUtil from 'common/js/build-detail-dev';
 
-@DetailWrapper(
-  state => state.projectInoutAddEdit,
-  { initStates, doFetching, cancelFetching, setSelectData, setPageData, restore }
-)
-class ProjectContractAddEdit extends React.Component {
+@Form.create()
+class ProjectMemContractAddEdit extends DetailUtil {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
-    this.pCode = getQueryString('pcode', this.props.location.search);
+    this.view = !!getQueryString('v', this.props.location.search);
+    this.state = {
+      ...this.state,
+      projectCode: ''
+    };
   }
   render() {
+    const _this = this;
     const fields = [{
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
       listCode: '631626',
-      keyName: 'projectCode',
+      keyName: 'localProjectCode',
       valueName: 'projectName',
-      search: true,
-      noClear: true
-    }, {
-      title: '所属企业名称',
-      field: 'corpName',
       required: true
     }, {
-      title: '所属企业统一社会信用代码',
-      field: 'corpCode',
-      required: true
-    }, {
-      title: '证件类型',
-      field: 'idcardType',
+      title: '项目人员',
+      field: 'workerCode',
       type: 'select',
-      key: 'legal_manid_card_type',
+      keyName: 'code',
+      valueName: '{{workerName.DATA}}-{{idCardNumber.DATA}}',
+      searchName: 'workerName',
+      pageCode: 631605,
+      params: {
+        projectCode: this.state.projectCode,
+        userId: getUserId()
+      },
+      onChange: (code, data) => {
+        let info = data.find(v => (v.code + '') === code);
+        if (info) {
+          let pageData = _this.state.pageData || {};
+          _this.setState({
+            pageData: {
+              ...pageData,
+              corpCode: info.corpCode
+            }
+          });
+        }
+      },
       required: true
     }, {
-      title: '证件号',
-      field: 'idcardNumber',
+      field: 'corpCode',
+      hidden: true,
+      required: true
+    }, {
+      title: '合同编号',
+      field: 'contractCode',
       required: true
     }, {
       title: '合同期限类型',
@@ -60,30 +69,68 @@ class ProjectContractAddEdit extends React.Component {
       type: 'date',
       required: true
     }, {
-      title: '结束时期',
+      title: '结束日期',
       field: 'endDate',
       type: 'date',
       required: true
     }, {
       title: '计量单位',
-      field: 'unit'
+      field: 'unit',
+      type: 'select',
+      key: 'unit'
     }, {
       title: '计量单价',
       field: 'unitPrice'
+    }, {
+      title: '合同照片',
+      field: 'contentPic',
+      type: 'img'
+    }, {
+      field: 'userId',
+      value: getUserId(),
+      hidden: true
     }];
-    return this.props.buildDetail({
+    if (this.view) {
+      fields.push({
+        title: '操作日志',
+        field: 'operationLogs',
+        type: 'o2m',
+        listCode: 631137,
+        params: {
+          userId: getUserId(),
+          refCode: this.code
+        },
+        options: {
+          noSelect: true,
+          fields: [{
+            title: '操作人',
+            field: 'operatorName'
+          }, {
+            title: '操作类型',
+            field: 'operate'
+          }, {
+            title: '操作时间',
+            field: 'operateDatetime',
+            type: 'datetime'
+          }, {
+            title: '备注',
+            field: 'remark'
+          }]
+        }
+      });
+    }
+    return this.buildDetail({
       fields,
-      key: 'idCardNumber',
       code: this.code,
-      view: true,
-      detailCode: 631917,
+      view: this.view,
+      detailCode: 631686,
+      addCode: 631670,
+      editCode: 631672,
       beforeDetail: (params) => {
-        params.pageIndex = 0;
-        params.pageSize = 1;
-        params.projectCode = this.pCode;
+        params.userId = getUserId();
       }
     });
   }
 }
 
-export default ProjectContractAddEdit;
+export default ProjectMemContractAddEdit;

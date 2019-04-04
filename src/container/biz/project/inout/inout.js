@@ -10,7 +10,7 @@ import {
   setSearchData
 } from '@redux/biz/project/inout';
 import { listWrapper } from 'common/js/build-list';
-import { isUndefined, showWarnMsg } from 'common/js/util';
+import { isUndefined, showWarnMsg, getUserId } from 'common/js/util';
 import { getProjectList } from 'api/general';
 
 @listWrapper(
@@ -22,25 +22,7 @@ import { getProjectList } from 'api/general';
       cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class ProjectInout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      projectCode: ''
-    };
-  }
-  componentDidMount() {
-    getProjectList().then((data) => {
-      if (data.length) {
-        this.setState({ projectCode: data[0].projectCode });
-      }
-      this.setState({ isLoaded: true });
-    }).catch(() => {
-      this.setState({ isLoaded: true });
-    });
-  }
   render() {
-    const { isLoaded, projectCode } = this.state;
     const fields = [{
       title: '工人姓名',
       field: 'workerName',
@@ -62,10 +44,9 @@ class ProjectInout extends React.Component {
       field: 'projectCode',
       type: 'select',
       listCode: '631626',
-      keyName: 'projectCode',
+      keyName: 'localProjectCode',
       valueName: 'projectName',
-      search: true,
-      noClear: true
+      search: true
     }, {
       title: '所在企业',
       field: 'corpName'
@@ -85,48 +66,38 @@ class ProjectInout extends React.Component {
       title: '所在班组',
       field: 'teamSysNo'
     }];
-    return isLoaded ? this.props.buildList({
+    return this.props.buildList({
       fields,
-      pageCode: 631915,
-      rowKey: ['projectCode', 'idcardNumber', 'teamSysNo'],
-      pagination: {
-        startKey: 'pageIndex',
-        limitKey: 'pageSize',
-        start: 0
+      pageCode: 631745,
+      deleteCode: 631731,
+      searchParams: {
+        userId: getUserId()
       },
-      exportLimit: 50,
+      beforeDelete: (params) => {
+        params.userId = getUserId();
+      },
       btnEvent: {
-        add: () => {
-          this.props.history.push('/project/inout/add');
+        // 上传平台
+        up: (keys, items) => {
+          this.props.history.push('/project/inout/up');
         },
-        detail: (keys, items) => {
+        // 导入
+        import: (keys, items) => {
+          this.props.history.push('/project/inout/import');
+        },
+        edit: (keys, items) => {
           if (!keys.length) {
             showWarnMsg('请选择记录');
           } else if (keys.length > 1) {
             showWarnMsg('请选择一条记录');
+          } else if (items[0].uploadStatus === '2') {
+            showWarnMsg('已上传不可修改');
           } else {
-            let item = items[0];
-            this.props.history.push(`/project/inout/addedit?v=1&idcard=${item.idcardNumber}&pcode=${item.projectCode}&teamno=${item.teamSysNo}`);
+            this.props.history.push(`/project/inout/addedit?code=${keys[0]}`);
           }
-        }
-      },
-      beforeDetail: (params) => {
-        if (isLoaded && projectCode && !this.isBefored) {
-          this.isBefored = true;
-          // 这个页面是第一次加载，并且redux里“对应项目”没有值
-          if (isUndefined(this.props.searchParam.projectCode)) {
-            params.projectCode = projectCode;
-          }
-        }
-      },
-      afterDetail: () => {
-        if (isUndefined(this.props.searchParam.projectCode)) {
-          this.props.form.setFieldsValue({ projectCode });
-          let values = this.props.form.getFieldsValue();
-          this.props.setSearchParam(values);
         }
       }
-    }) : null;
+    });
   }
 }
 
