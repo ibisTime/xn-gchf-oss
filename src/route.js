@@ -648,6 +648,16 @@ const ROUTES = [
     path: '/project/wages/addedit',
     component: asyncComponent(() => import('container/biz/project/wages/wages-addedit'))
   },
+  // 业务管理 -- 项目管理-- 项目基本信息
+  {
+    path: '/project/basic',
+    component: asyncComponent(() => import('container/biz/project/basic/basic'))
+  },
+  // 业务管理 -- 项目管理-- 项目基本信息-- 详情
+  {
+    path: '/project/basic/addedit',
+    component: asyncComponent(() => import('container/biz/project/basic/basic-addedit'))
+  },
   // 业务管理 -- 企业库-- 企业基本信息
   {
     path: '/company/info',

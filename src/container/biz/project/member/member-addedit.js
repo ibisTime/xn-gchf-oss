@@ -164,9 +164,6 @@ class ProjectMemberAddEdit extends DetailUtil {
       },
       beforeSubmit: (params) => {
         params.issueCardPicUrl = formatImg(params.issueCardPicUrl);
-        params.headImage = formatImg(params.headImage);
-        params.positiveIDCardImage = formatImg(params.positiveIDCardImage);
-        params.negativeIDCardImage = formatImg(params.negativeIDCardImage);
         return true;
       }
     });

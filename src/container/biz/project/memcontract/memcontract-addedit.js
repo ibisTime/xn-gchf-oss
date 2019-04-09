@@ -29,7 +29,7 @@ class ProjectMemContractAddEdit extends DetailUtil {
       field: 'workerCode',
       type: 'select',
       keyName: 'code',
-      valueName: '{{workerName.DATA}}-{{idCardNumber.DATA}}',
+      valueName: '{{workerName.DATA}}-{{idcardNumber.DATA}}',
       searchName: 'workerName',
       pageCode: 631605,
       params: {

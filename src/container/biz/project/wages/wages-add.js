@@ -37,13 +37,13 @@ class ProjectWagesAdd extends DetailUtil {
       type: 'select',
       pageCode: 631645,
       params: {
-        // projectCode: this.state.projectCode,
+        projectCode: this.state.projectCode,
         userId: getUserId()
       },
       keyName: 'corpCode',
       valueName: 'corpName',
       onChange: (corpCode, data) => {
-        this.setState({ corpCode });
+        _this.setState({ corpCode });
       },
       hidden: !this.state.projectCode,
       required: true
@@ -56,7 +56,7 @@ class ProjectWagesAdd extends DetailUtil {
       searchName: 'teamName',
       pageCode: 631665,
       params: {
-        // projectCode: this.state.projectCode,
+        projectCode: this.state.projectCode,
         corpCode: this.state.corpCode,
         userId: getUserId()
       },
@@ -72,7 +72,6 @@ class ProjectWagesAdd extends DetailUtil {
       field: 'detailList',
       type: 'o2m',
       options: {
-        rowKey: 'idCardNumber',
         add: true,
         edit: true,
         detail: true,
@@ -134,6 +133,11 @@ class ProjectWagesAdd extends DetailUtil {
           title: '实发金额',
           field: 'actualAmount',
           amount: true,
+          required: true
+        }, {
+          title: '发放日期',
+          field: 'balanceDate',
+          type: 'date',
           required: true
         }, {
           title: '是否为补发',

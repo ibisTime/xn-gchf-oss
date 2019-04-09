@@ -27,6 +27,13 @@ class Participating extends React.Component {
       title: '企业名称',
       field: 'corpName'
     }, {
+      title: '企业类型',
+      field: 'corpType',
+      type: 'select',
+      key: 'corp_type',
+      search: true,
+      hidden: true
+    }, {
       title: '企业名称',
       field: 'corpCode',
       pageCode: '631255',

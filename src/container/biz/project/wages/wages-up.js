@@ -13,6 +13,7 @@ class ProjectWagesUp extends DetailUtil {
     }, {
       title: '工资单列表',
       field: 'codeList',
+      help: '上传时不需要勾选，会全部上传表格中的数据。若不想上传某项，直接删除即可。',
       listCode: 631816,
       params: {
         userId: getUserId(),
@@ -27,7 +28,7 @@ class ProjectWagesUp extends DetailUtil {
           field: 'workerName'
         }, {
           title: '证件号',
-          field: 'idCardNumber'
+          field: 'idcardNumber'
         }, {
           title: '发放工资的月份',
           field: 'balanceDate',

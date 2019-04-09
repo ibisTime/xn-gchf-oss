@@ -83,6 +83,9 @@ class ProjectMemContract extends React.Component {
       searchParams: {
         userId: getUserId()
       },
+      beforeDelete: (params) => {
+        params.userId = getUserId();
+      },
       btnEvent: {
         // 上传平台
         up: (keys, items) => {

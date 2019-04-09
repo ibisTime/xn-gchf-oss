@@ -65,6 +65,12 @@ class ProjectInout extends React.Component {
     }, {
       title: '所在班组',
       field: 'teamSysNo'
+    }, {
+      title: '状态',
+      field: 'uploadStatus',
+      type: 'select',
+      key: 'upload_status',
+      search: true
     }];
     return this.props.buildList({
       fields,

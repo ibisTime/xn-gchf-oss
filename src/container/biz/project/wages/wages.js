@@ -29,7 +29,7 @@ class ProjectWages extends React.Component {
       search: true
     }, {
       title: '证件号',
-      field: 'idCardNumber'
+      field: 'idcardNumber'
     }, {
       title: '发放工资的月份',
       field: 'payMonth',

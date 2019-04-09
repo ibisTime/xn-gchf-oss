@@ -367,6 +367,7 @@ export default class DetailCompDev extends React.Component {
   }
   // 获取选择框类型的控件
   getSelectComp(item, initVal, rules, getFieldDecorator) {
+    initVal = isUndefined(initVal) ? '' : initVal + '';
     const props = {
       initVal,
       rules,

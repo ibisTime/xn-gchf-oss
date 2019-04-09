@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString, getUserId } from 'common/js/util';
+import { getQueryString, getUserId, formatImg } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
@@ -13,12 +13,12 @@ class ProjectInoutAddEdit extends DetailUtil {
   render() {
     const fields = [{
       title: '员工编号',
-      field: 'projectWorkerCode',
+      field: 'workerCode',
       type: 'select',
       pageCode: 631605,
       keyName: 'code',
       searchName: 'workerName',
-      valueName: '{{workerName.DATA}}-{{idCardNumber.DATA}}',
+      valueName: '{{workerName.DATA}}-{{idcardNumber.DATA}}',
       params: {
         userId: getUserId()
       },
@@ -34,6 +34,11 @@ class ProjectInoutAddEdit extends DetailUtil {
       type: 'select',
       key: 'entry_exit_type',
       required: true
+    }, {
+      title: '凭证扫描件',
+      field: 'voucherUrl',
+      type: 'img',
+      single: true
     }, {
       field: 'userId',
       value: getUserId(),
@@ -77,6 +82,10 @@ class ProjectInoutAddEdit extends DetailUtil {
       editCode: 631732,
       beforeDetail: (params) => {
         params.userId = getUserId();
+      },
+      beforeSubmit: (params) => {
+        params.voucherUrl = formatImg(params.voucherUrl);
+        return true;
       }
     });
   }

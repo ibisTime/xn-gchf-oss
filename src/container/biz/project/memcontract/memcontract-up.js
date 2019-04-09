@@ -13,6 +13,7 @@ class ProjectMemContractUp extends DetailUtil {
     }, {
       title: '项目人员合同列表',
       field: 'codeList',
+      help: '上传时不需要勾选，会全部上传表格中的数据。若不想上传某项，直接删除即可。',
       listCode: 631687,
       params: {
         userId: getUserId(),

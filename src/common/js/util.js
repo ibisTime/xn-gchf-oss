@@ -234,6 +234,8 @@ export function isUndefined(value) {
 }
 
 export function tempString(str, data) {
+  if (isUndefined(str)) return '';
+  str += '';
   return str.replace(/\{\{(\w+)\.DATA\}\}/gi, function (matchs) {
     var returns = data[matchs.replace(/\{\{(\w+)\.DATA\}\}/, '$1')];
     return isUndefined(returns) ? '' : returns;
@@ -404,7 +406,7 @@ export const getRealValue = ({ pageData, field, type, _keys, value, rangedate,
     try {
       if (_keys) {
         result = getValFromKeys(_keys, pageData, type);
-      } else if (!isUndefined(value) && !result) {
+      } else if (!isUndefined(value) && isUndefined(result)) {
         result = value;
       }
       if (type === 'citySelect') {

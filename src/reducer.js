@@ -108,6 +108,7 @@ import { projectInout } from './redux/biz/project/inout';
 import { projectMemContract } from './redux/biz/project/memcontract';
 import { projectAttence } from './redux/biz/project/attence';
 import { projectWages } from './redux/biz/project/wages';
+import { projectBasic } from './redux/biz/project/basic';
 import { companyInfo } from './redux/biz/company/info';
 
 export default combineReducers({
@@ -219,5 +220,6 @@ export default combineReducers({
   projectMemContract,
   projectAttence,
   projectWages,
+  projectBasic,
   companyInfo
 });

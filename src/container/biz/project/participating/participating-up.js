@@ -12,6 +12,7 @@ class ParticipatingUp extends DetailUtil {
       hidden: true
     }, {
       title: '参建单位列表',
+      help: '上传时不需要勾选，会全部上传表格中的数据。若不想上传某项，直接删除即可。',
       field: 'codeList',
       listCode: 631647,
       params: {

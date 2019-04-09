@@ -31,12 +31,12 @@ class ProjectAttenceAddEdit extends DetailUtil {
       required: true
     }, {
       title: '员工编号',
-      field: 'projectWorkerCode',
+      field: 'workerCode',
       type: 'select',
       pageCode: 631605,
       keyName: 'code',
       searchName: 'workerName',
-      valueName: '{{workerName.DATA}}-{{idCardNumber.DATA}}',
+      valueName: '{{workerName.DATA}}-{{idcardNumber.DATA}}',
       params: {
         projectCode: this.state.projectCode,
         userId: getUserId()
@@ -48,7 +48,7 @@ class ProjectAttenceAddEdit extends DetailUtil {
           _this.setState({
             pageData: {
               ...pageData,
-              teamSysNo: info.corpCode
+              teamSysNo: info.teamSysNo
             }
           });
         }
