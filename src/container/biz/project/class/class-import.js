@@ -50,7 +50,7 @@ class ClassImport extends DetailUtil {
         url: '/download/02.项目班组导入模板.xlsx'
       }]
     }, {
-      title: '参建单位列表',
+      title: '项目班组列表',
       field: 'dateList',
       type: 'import',
       required: true,

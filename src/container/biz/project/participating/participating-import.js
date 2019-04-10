@@ -55,7 +55,7 @@ class ParticipatingImport extends DetailUtil {
       value: getUserId(),
       hidden: true
     }, {
-      title: '参建单位列表',
+      title: '项目参建单位列表',
       field: 'dateList',
       type: 'import',
       required: true,

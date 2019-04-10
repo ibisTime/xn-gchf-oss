@@ -54,7 +54,7 @@ class ProjectMemContractImport extends DetailUtil {
         url: '/download/05.项目人员合同导入模板.xlsx'
       }]
     }, {
-      title: '参建单位列表',
+      title: '项目人员合同列表',
       field: 'dateList',
       type: 'import',
       required: true,

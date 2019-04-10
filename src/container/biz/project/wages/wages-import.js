@@ -54,7 +54,7 @@ class ProjectWagesImport extends DetailUtil {
         url: '/download/07.项目人员工资导入模板.xlsx'
       }]
     }, {
-      title: '参建单位列表',
+      title: '项目人员工资列表',
       field: 'dateList',
       type: 'import',
       required: true,

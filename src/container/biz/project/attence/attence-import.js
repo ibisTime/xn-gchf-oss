@@ -71,7 +71,7 @@ class AttenceImport extends DetailUtil {
         url: '/download/06.项目人员考勤导入模板.xlsx'
       }]
     }, {
-      title: '参建单位列表',
+      title: '项目人员考勤列表',
       field: 'dateList',
       type: 'import',
       required: true,

@@ -71,7 +71,7 @@ class ExportImport extends DetailUtil {
         url: '/download/03.项目人员导入模板.xlsx'
       }]
     }, {
-      title: '参建单位列表',
+      title: '项目人员列表',
       field: 'workerList',
       type: 'import',
       required: true,
@@ -110,13 +110,10 @@ class ExportImport extends DetailUtil {
           title: '发放工资银行名称',
           field: 'payRollBankName'
         }, {
-          title: '发放工资总行名称',
-          field: 'payRollTopBankName'
-        }, {
-          title: '工资卡银行联号',
+          title: '发放工资卡银行联号',
           field: 'bankLinkNumber'
         }, {
-          title: '工资卡银行代码',
+          title: '发放工资卡银行代码',
           field: 'payRollTopBankCode'
         }, {
           title: '是否购买保险',
