@@ -8,7 +8,8 @@ import {
   moneyParse, getRules, getRealValue } from 'common/js/util';
 import fetch from 'common/js/fetch';
 import { UPLOAD_URL, PIC_PREFIX, PIC_BASEURL_L, tailFormItemLayout, tailFormItemLayout1,
-  validateFieldsAndScrollOption, DATE_FORMAT, MONTH_FORMAT, DATETIME_FORMAT } from 'common/js/config';
+  validateFieldsAndScrollOption, formItemLayout, DATE_FORMAT, MONTH_FORMAT,
+  DATETIME_FORMAT } from 'common/js/config';
 import cityData from 'common/js/lib/city';
 import CInput from 'component/cInput/cInput';
 import CNormalTextArea from 'component/cNormalTextArea/cNormalTextArea';
@@ -309,9 +310,27 @@ export default class DetailCompDev extends React.Component {
         return this.getTreeSelectComp(item, initVal, rules, getFieldDecorator);
       case 'import':
         return this.getImportComp(item, initVal, getFieldDecorator);
+      case 'download':
+        return this.getDownloadComp(item, getFieldDecorator);
       default:
         return this.getInputComp(item, initVal, rules, getFieldDecorator);
     }
+  }
+  // 获取下载类型的控件
+  getDownloadComp(item, getFieldDecorator) {
+    let layoutProps = item.inline ? {} : formItemLayout;
+    let label = this.getLabel(item);
+    return (
+      <FormItem key={item.field} {...layoutProps} className={item.hidden ? 'hidden' : ''} label={label}>
+        <div className="readonly-text">
+          {
+            item.links.map(link => (
+              <a href={link.url} download={link.name + '.xlsx'} style={{marginRight: 20}}>{link.name}</a>
+            ))
+          }
+        </div>
+      </FormItem>
+    );
   }
   // 获取输入框类型的控件
   getInputComp(item, initVal, rules, getFieldDecorator) {

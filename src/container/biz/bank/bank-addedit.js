@@ -82,23 +82,25 @@ class BankAddEdit extends DetailUtil {
             params: { userId: getUserId() },
             require: true
           });
-        } else if (!this.view) {
+        } else {
+          if (!this.view) {
+            fields.unshift({
+              field: 'businessSysNo',
+              hidden: true
+            });
+          }
           fields.unshift({
-            field: 'businessSysNo',
-            hidden: true
+            title: '人员编号',
+            field: 'businessSysNo1',
+            _keys: ['businessSysNo'],
+            type: 'select',
+            pageCode: '631805',
+            keyName: 'code',
+            valueName: '{{name.DATA}}-{{idCardNumber.DATA}}',
+            params: { userId: getUserId() },
+            readonly: true
           });
         }
-        fields.unshift({
-          title: '人员编号',
-          field: 'businessSysNo1',
-          _keys: ['businessSysNo'],
-          type: 'select',
-          pageCode: '631805',
-          keyName: 'code',
-          valueName: '{{name.DATA}}-{{idCardNumber.DATA}}',
-          params: { userId: getUserId() },
-          readonly: true
-        });
       }
     }
     return this.buildDetail({

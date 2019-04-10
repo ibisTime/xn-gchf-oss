@@ -27,16 +27,16 @@ class JiandangStep3 extends React.Component {
       field: 'cellPhone',
       title: '手机号码',
       mobile: true,
-      require: true
+      required: true
     }, {
       field: 'urgentLinkMan',
       title: '紧急联系人姓名',
-      require: true
+      required: true
     }, {
       title: '紧急联系电话',
       field: 'urgentLinkManPhone',
       mobile: true,
-      require: true
+      required: true
     }, {
       field: 'userId',
       value: getUserId(),

@@ -14,24 +14,24 @@ class AttenceImport extends DetailUtil {
       cardTypeList: [],
       directionList: [],
       attendTypeList: [],
-      isLoading: true
+      isLoading: false
     };
   }
   componentDidMount() {
-    Promise.all([
-      getDictList({ parentKey: 'legal_manid_card_type' }),
-      getDictList({ parentKey: 'direction' }),
-      getDictList({ parentKey: 'attend_type' })
-    ]).then(([cardTypeList, directionList, attendTypeList]) => {
-      this.setState({
-        cardTypeList,
-        directionList,
-        attendTypeList,
-        isLoading: false
-      });
-    }).catch(() => {
-      this.setState({ isLoading: false });
-    });
+    // Promise.all([
+    //   getDictList({ parentKey: 'legal_manid_card_type' }),
+    //   getDictList({ parentKey: 'direction' }),
+    //   getDictList({ parentKey: 'attend_type' })
+    // ]).then(([cardTypeList, directionList, attendTypeList]) => {
+    //   this.setState({
+    //     cardTypeList,
+    //     directionList,
+    //     attendTypeList,
+    //     isLoading: false
+    //   });
+    // }).catch(() => {
+    //   this.setState({ isLoading: false });
+    // });
   }
   render() {
     const { cardTypeList, directionList, attendTypeList, isLoading } = this.state;
@@ -59,6 +59,17 @@ class AttenceImport extends DetailUtil {
         userId: getUserId()
       },
       required: true
+    }, {
+      title: '导入模版',
+      field: 'downloadTmp',
+      type: 'download',
+      links: [{
+        name: '字段填写说明',
+        url: '/download/00.字段填写说明.xlsx'
+      }, {
+        name: '项目人员考勤导入模板',
+        url: '/download/06.项目人员考勤导入模板.xlsx'
+      }]
     }, {
       title: '参建单位列表',
       field: 'dateList',
@@ -99,15 +110,20 @@ class AttenceImport extends DetailUtil {
       fields,
       addCode: 631713,
       beforeSubmit: (params) => {
-        for (let i = 0; i < params.dateList.length; i++) {
-          let item = params.dateList[i];
-          findAndchangeInfo(cardTypeList, item, 'idCardType', i);
-          findAndchangeInfo(directionList, item, 'direction', i);
-          if (!isUndefined(item.channel)) {
-            findAndchangeInfo(attendTypeList, item, 'channel', i);
-          }
-        }
-        return true;
+        let error = false;
+        // for (let i = 0; i < params.dateList.length; i++) {
+        //   let item = params.dateList[i];
+        //   let error1 = findAndchangeInfo(cardTypeList, item, 'idCardType', i);
+        //   let error2 = findAndchangeInfo(directionList, item, 'direction', i);
+        //   let error3;
+        //   if (!isUndefined(item.channel)) {
+        //     error3 = findAndchangeInfo(attendTypeList, item, 'channel', i);
+        //   }
+        //   if (!error) {
+        //     error = error1 || error2 || error3;
+        //   }
+        // }
+        return !error;
       }
     });
   }

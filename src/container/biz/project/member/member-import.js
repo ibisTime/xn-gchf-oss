@@ -18,35 +18,35 @@ class ExportImport extends DetailUtil {
       politicsTypeList: [],
       levelTypeList: [],
       maritalstatusList: [],
-      isLoading: true
+      isLoading: false
     };
   }
   componentDidMount() {
-    Promise.all([
-      getDictList({ parentKey: 'is_not' }),
-      getDictList({ parentKey: 'legal_manid_card_type' }),
-      getDictList({ parentKey: 'work_type' }),
-      getDictList({ parentKey: 'work_role' }),
-      getDictList({ parentKey: 'bank_code' }),
-      getDictList({ parentKey: 'politics_type' }),
-      getDictList({ parentKey: 'culture_level_type' }),
-      getDictList({ parentKey: 'marital_status' })
-    ]).then(([isNotList, cardTypeList, workTypeList, workRoleList,
-    bankCodeList, politicsTypeList, levelTypeList, maritalstatusList]) => {
-      this.setState({
-        isNotList,
-        cardTypeList,
-        workTypeList,
-        workRoleList,
-        bankCodeList,
-        politicsTypeList,
-        levelTypeList,
-        maritalstatusList,
-        isLoading: false
-      });
-    }).catch(() => {
-      this.setState({ isLoading: false });
-    });
+    // Promise.all([
+    //   getDictList({ parentKey: 'is_not' }),
+    //   getDictList({ parentKey: 'legal_manid_card_type' }),
+    //   getDictList({ parentKey: 'work_type' }),
+    //   getDictList({ parentKey: 'work_role' }),
+    //   getDictList({ parentKey: 'bank_code' }),
+    //   getDictList({ parentKey: 'politics_type' }),
+    //   getDictList({ parentKey: 'culture_level_type' }),
+    //   getDictList({ parentKey: 'marital_status' })
+    // ]).then(([isNotList, cardTypeList, workTypeList, workRoleList,
+    // bankCodeList, politicsTypeList, levelTypeList, maritalstatusList]) => {
+    //   this.setState({
+    //     isNotList,
+    //     cardTypeList,
+    //     workTypeList,
+    //     workRoleList,
+    //     bankCodeList,
+    //     politicsTypeList,
+    //     levelTypeList,
+    //     maritalstatusList,
+    //     isLoading: false
+    //   });
+    // }).catch(() => {
+    //   this.setState({ isLoading: false });
+    // });
   }
   render() {
     const { isNotList, cardTypeList, workTypeList, workRoleList, bankCodeList,
@@ -59,6 +59,17 @@ class ExportImport extends DetailUtil {
       keyName: 'localProjectCode',
       valueName: 'projectName',
       required: true
+    }, {
+      title: '导入模版',
+      field: 'downloadTmp',
+      type: 'download',
+      links: [{
+        name: '字段填写说明',
+        url: '/download/00.字段填写说明.xlsx'
+      }, {
+        name: '项目人员导入模板',
+        url: '/download/03.项目人员导入模板.xlsx'
+      }]
     }, {
       title: '参建单位列表',
       field: 'workerList',
@@ -168,28 +179,34 @@ class ExportImport extends DetailUtil {
       fields,
       addCode: 631693,
       beforeSubmit: (params) => {
-        for (let i = 0; i < params.workerList.length; i++) {
-          let item = params.workerList[i];
-          findAndchangeInfo(isNotList, item, 'isTeamLeader', i);
-          findAndchangeInfo(cardTypeList, item, 'idCardType', i);
-          findAndchangeInfo(workTypeList, item, 'workType', i);
-          findAndchangeInfo(workRoleList, item, 'workRole', i);
-          findAndchangeInfo(politicsTypeList, item, 'politicsType', i);
-          findAndchangeInfo(levelTypeList, item, 'cultureLevelType', i);
-          if (!isUndefined(item.payRollTopBankCode)) {
-            findAndchangeInfo(bankCodeList, item, 'payRollTopBankCode', i);
-          }
-          if (!isUndefined(item.hasBuyInsurance)) {
-            findAndchangeInfo(isNotList, item, 'hasBuyInsurance', i);
-          }
-          if (!isUndefined(item.hasBadMedicalHistory)) {
-            findAndchangeInfo(isNotList, item, 'hasBadMedicalHistory', i);
-          }
-          if (!isUndefined(item.maritalStatus)) {
-            findAndchangeInfo(maritalstatusList, item, 'maritalStatus', i);
-          }
-        }
-        return true;
+        let error = false;
+        // for (let i = 0; i < params.workerList.length; i++) {
+        //   let item = params.workerList[i];
+        //   let error1 = findAndchangeInfo(isNotList, item, 'isTeamLeader', i);
+        //   let error2 = findAndchangeInfo(cardTypeList, item, 'idCardType', i);
+        //   let error3 = findAndchangeInfo(workTypeList, item, 'workType', i);
+        //   let error4 = findAndchangeInfo(workRoleList, item, 'workRole', i);
+        //   let error5 = findAndchangeInfo(politicsTypeList, item, 'politicsType', i);
+        //   let error6 = findAndchangeInfo(levelTypeList, item, 'cultureLevelType', i);
+        //   let error7, error8, error9, error10;
+        //   if (!isUndefined(item.payRollTopBankCode)) {
+        //     error7 = findAndchangeInfo(bankCodeList, item, 'payRollTopBankCode', i);
+        //   }
+        //   if (!isUndefined(item.hasBuyInsurance)) {
+        //     error8 = findAndchangeInfo(isNotList, item, 'hasBuyInsurance', i);
+        //   }
+        //   if (!isUndefined(item.hasBadMedicalHistory)) {
+        //     error9 = findAndchangeInfo(isNotList, item, 'hasBadMedicalHistory', i);
+        //   }
+        //   if (!isUndefined(item.maritalStatus)) {
+        //     error10 = findAndchangeInfo(maritalstatusList, item, 'maritalStatus', i);
+        //   }
+        //   if (!error) {
+        //     error = error1 || error2 || error3 || error4 || error5 || error6 ||
+        //       error7 || error8 || error9 || error10;
+        //   }
+        // }
+        return !error;
       }
     });
   }

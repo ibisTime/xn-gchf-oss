@@ -11,18 +11,18 @@ class ClassImport extends DetailUtil {
     this.state = {
       ...this.state,
       cardTypeList: [],
-      isLoading: true
+      isLoading: false
     };
   }
   componentDidMount() {
-    getDictList({ parentKey: 'legal_manid_card_type' }).then((cardTypeList) => {
-      this.setState({
-        cardTypeList,
-        isLoading: false
-      });
-    }).catch(() => {
-      this.setState({ isLoading: false });
-    });
+    // getDictList({ parentKey: 'legal_manid_card_type' }).then((cardTypeList) => {
+    //   this.setState({
+    //     cardTypeList,
+    //     isLoading: false
+    //   });
+    // }).catch(() => {
+    //   this.setState({ isLoading: false });
+    // });
   }
   render() {
     const { cardTypeList, isLoading } = this.state;
@@ -38,6 +38,17 @@ class ClassImport extends DetailUtil {
       field: 'userId',
       value: getUserId(),
       hidden: true
+    }, {
+      title: '导入模版',
+      field: 'downloadTmp',
+      type: 'download',
+      links: [{
+        name: '字段填写说明',
+        url: '/download/00.字段填写说明.xlsx'
+      }, {
+        name: '项目班组导入模板',
+        url: '/download/02.项目班组导入模板.xlsx'
+      }]
     }, {
       title: '参建单位列表',
       field: 'dateList',
@@ -85,13 +96,17 @@ class ClassImport extends DetailUtil {
       fields,
       addCode: 631653,
       beforeSubmit: (params) => {
-        for (let i = 0; i < params.dateList.length; i++) {
-          let item = params.dateList[i];
-          if (!isUndefined(item.responsiblePersonIdcardType)) {
-            findAndchangeInfo(cardTypeList, item, 'responsiblePersonIdcardType', i);
-          }
-        }
-        return true;
+        let error = false;
+        // for (let i = 0; i < params.dateList.length; i++) {
+        //   let item = params.dateList[i];
+        //   if (!isUndefined(item.responsiblePersonIdcardType)) {
+        //     let error1 = findAndchangeInfo(cardTypeList, item, 'responsiblePersonIdcardType', i);
+        //     if (error1 && !error) {
+        //       error = true;
+        //     }
+        //   }
+        // }
+        return !error;
       }
     });
   }

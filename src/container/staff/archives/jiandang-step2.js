@@ -25,19 +25,19 @@ class JiandangStep2 extends React.Component {
       title: '正面照URL',
       type: 'img',
       single: true,
-      require: true
+      required: true
     }, {
       field: 'negativeIdCardImageUrl',
       title: '反面照URL',
       type: 'img',
       single: true,
-      require: true
+      required: true
     }, {
       title: '手持身份证照片URL',
       field: 'handIdCardImageUrl',
       type: 'img',
       single: true,
-      require: true
+      required: true
     }, {
       field: 'userId',
       value: getUserId(),

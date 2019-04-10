@@ -144,6 +144,7 @@ class ProjectWagesAdd extends DetailUtil {
           field: 'isBackPay',
           type: 'select',
           key: 'is_not',
+          required: true,
           onChange: (v) => {
             this.setState({ isBackPay: v === '1' });
           }

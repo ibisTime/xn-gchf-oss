@@ -12,23 +12,23 @@ class InputImport extends DetailUtil {
       ...this.state,
       cardTypeList: [],
       typeList: [],
-      isLoading: true
+      isLoading: false
     };
   }
   componentDidMount() {
-    Promise.all([
-      getDictList({ parentKey: 'legal_manid_card_type' }),
-      getDictList({ parentKey: 'entry_exit_type' })
-    ])
-    .then(([cardTypeList, typeList]) => {
-      this.setState({
-        cardTypeList,
-        typeList,
-        isLoading: false
-      });
-    }).catch(() => {
-      this.setState({ isLoading: false });
-    });
+    // Promise.all([
+    //   getDictList({ parentKey: 'legal_manid_card_type' }),
+    //   getDictList({ parentKey: 'entry_exit_type' })
+    // ])
+    // .then(([cardTypeList, typeList]) => {
+    //   this.setState({
+    //     cardTypeList,
+    //     typeList,
+    //     isLoading: false
+    //   });
+    // }).catch(() => {
+    //   this.setState({ isLoading: false });
+    // });
   }
   render() {
     const { cardTypeList, typeList, isLoading } = this.state;
@@ -40,6 +40,17 @@ class InputImport extends DetailUtil {
       keyName: 'localProjectCode',
       valueName: 'projectName',
       required: true
+    }, {
+      title: '导入模版',
+      field: 'downloadTmp',
+      type: 'download',
+      links: [{
+        name: '字段填写说明',
+        url: '/download/00.字段填写说明.xlsx'
+      }, {
+        name: '项目人员进退场导入模板',
+        url: '/download/04.项目人员进退场导入模板.xlsx'
+      }]
     }, {
       title: '项目人员进退场列表',
       field: 'dateList',
@@ -77,12 +88,16 @@ class InputImport extends DetailUtil {
       fields,
       addCode: 631733,
       beforeSubmit: (params) => {
-        for (let i = 0; i < params.dateList.length; i++) {
-          let item = params.dateList[i];
-          findAndchangeInfo(cardTypeList, item, 'idcardType', i);
-          findAndchangeInfo(typeList, item, 'type', i);
-        }
-        return true;
+        let error = false;
+        // for (let i = 0; i < params.dateList.length; i++) {
+        //   let item = params.dateList[i];
+        //   let error1 = findAndchangeInfo(cardTypeList, item, 'idcardType', i);
+        //   let error2 = findAndchangeInfo(typeList, item, 'type', i);
+        //   if (!error) {
+        //     error = error1 || error2;
+        //   }
+        // }
+        return !error;
       }
     });
   }

@@ -12,22 +12,22 @@ class ParticipatingImport extends DetailUtil {
       ...this.state,
       cropTypeList: [],
       cardTypeList: [],
-      isLoading: true
+      isLoading: false
     };
   }
   componentDidMount() {
-    Promise.all([
-      getDictList({ parentKey: 'project_corp_type' }),
-      getDictList({ parentKey: 'legal_manid_card_type' })
-    ]).then(([cropTypeList, cardTypeList]) => {
-      this.setState({
-        cropTypeList,
-        cardTypeList,
-        isLoading: false
-      });
-    }).catch(() => {
-      this.setState({ isLoading: false });
-    });
+    // Promise.all([
+    //   getDictList({ parentKey: 'project_corp_type' }),
+    //   getDictList({ parentKey: 'legal_manid_card_type' })
+    // ]).then(([cropTypeList, cardTypeList]) => {
+    //   this.setState({
+    //     cropTypeList,
+    //     cardTypeList,
+    //     isLoading: false
+    //   });
+    // }).catch(() => {
+    //   this.setState({ isLoading: false });
+    // });
   }
   render() {
     const { cropTypeList, cardTypeList, isLoading } = this.state;
@@ -39,6 +39,17 @@ class ParticipatingImport extends DetailUtil {
       keyName: 'localProjectCode',
       valueName: 'projectName',
       required: true
+    }, {
+      title: '导入模版',
+      field: 'downloadTmp',
+      type: 'download',
+      links: [{
+        name: '字段填写说明',
+        url: '/download/00.字段填写说明.xlsx'
+      }, {
+        name: '参建单位导入模板',
+        url: '/download/01.参建单位导入模板.xlsx'
+      }]
     }, {
       field: 'userId',
       value: getUserId(),
@@ -87,14 +98,19 @@ class ParticipatingImport extends DetailUtil {
       fields,
       addCode: 631633,
       beforeSubmit: (params) => {
-        for (let i = 0; i < params.dateList.length; i++) {
-          let item = params.dateList[i];
-          findAndchangeInfo(cropTypeList, item, 'corpType', i);
-          if (!isUndefined(item.pmIDCardType)) {
-            findAndchangeInfo(cardTypeList, item, 'pmIDCardType', i);
-          }
-        }
-        return true;
+        let error = false;
+        // for (let i = 0; i < params.dateList.length; i++) {
+        //   let item = params.dateList[i];
+        //   let error1 = findAndchangeInfo(cropTypeList, item, 'corpType', i);
+        //   let error2;
+        //   if (!isUndefined(item.pmIDCardType)) {
+        //     error2 = findAndchangeInfo(cardTypeList, item, 'pmIDCardType', i);
+        //   }
+        //   if (!error) {
+        //     error = error1 || error2;
+        //   }
+        // }
+        return !error;
       }
     });
   }

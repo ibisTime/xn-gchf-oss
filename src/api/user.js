@@ -106,6 +106,34 @@ export function jiandang(birthday, address, expiryDate, nation,
     idCardType: '01'
   });
 }
+// 建档
+export function reJiandang(code, birthday, address, expiryDate, nation,
+  idCardNumber, headImageUrl, grantOrg, startDate, name, gender,
+  politicsType, cultureLevelType, isJoined, joinedTime, specialty,
+  hasBadMedicalHistory, maritalStatus, userId) {
+  return fetch(631793, {
+    code,
+    birthday,
+    address,
+    expiryDate,
+    nation,
+    idCardNumber,
+    headImageUrl,
+    grantOrg,
+    startDate,
+    name,
+    gender,
+    politicsType,
+    cultureLevelType,
+    isJoined,
+    joinedTime,
+    specialty,
+    hasBadMedicalHistory,
+    maritalStatus,
+    userId,
+    idCardType: '01'
+  });
+}
 
 // 免冠照片
 export function mianguanPicture(info) {
