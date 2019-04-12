@@ -484,15 +484,6 @@ const ROUTES = [
     path: '/projectStaff/projectStaff/addBankCard',
     component: asyncComponent(() => import('container/projectStaff/projectStaff-addBankCard/projectStaff-addBankCard'))
   },
-  // 开设账号 -- 业主单位-- 项目管理
-  {
-    path: '/project/projectmanagement',
-    component: asyncComponent(() => import('container/newId/projectmanagement/projectmanagement'))
-  },
-  {
-    path: '/project/projectmanagement/addedit',
-    component: asyncComponent(() => import('container/newId/projectmanagement/projectmanagement-addedit'))
-  },
   // 业务管理 -- 项目管理-- 项目参建单位
   {
     path: '/project/projectparticipant',
@@ -502,11 +493,6 @@ const ROUTES = [
   {
     path: '/project/projectparticipant/addedit',
     component: asyncComponent(() => import('container/biz/project/participating/participating-addedit'))
-  },
-  // 业务管理 -- 项目管理-- 项目参建单位--上传
-  {
-    path: '/project/projectparticipant/up',
-    component: asyncComponent(() => import('container/biz/project/participating/participating-up'))
   },
   // 业务管理 -- 项目管理-- 项目参建单位--导入
   {
@@ -533,11 +519,6 @@ const ROUTES = [
     path: '/project/class/addedit',
     component: asyncComponent(() => import('container/biz/project/class/class-addedit'))
   },
-  // 业务管理 -- 项目管理-- 项目班组-- 上传
-  {
-    path: '/project/class/up',
-    component: asyncComponent(() => import('container/biz/project/class/class-up'))
-  },
   // 业务管理 -- 项目管理-- 项目班组-- 导入
   {
     path: '/project/class/import',
@@ -553,11 +534,6 @@ const ROUTES = [
     path: '/project/member/addedit',
     component: asyncComponent(() => import('container/biz/project/member/member-addedit'))
   },
-  // 业务管理 -- 项目管理-- 项目人员-- 上传平台
-  {
-    path: '/project/member/up',
-    component: asyncComponent(() => import('container/biz/project/member/member-up'))
-  },
   // 业务管理 -- 项目管理-- 项目人员-- 导入
   {
     path: '/project/member/import',
@@ -567,11 +543,6 @@ const ROUTES = [
   {
     path: '/project/inout',
     component: asyncComponent(() => import('container/biz/project/inout/inout'))
-  },
-  // 业务管理 -- 项目管理-- 项目人员进退场-- 上传平台
-  {
-    path: '/project/inout/up',
-    component: asyncComponent(() => import('container/biz/project/inout/inout-up'))
   },
   // 业务管理 -- 项目管理-- 项目人员进退场-- 导入
   {
@@ -588,11 +559,6 @@ const ROUTES = [
     path: '/project/memcontract',
     component: asyncComponent(() => import('container/biz/project/memcontract/memcontract'))
   },
-  // 业务管理 -- 项目管理-- 项目人员合同-- 上传平台
-  {
-    path: '/project/memcontract/up',
-    component: asyncComponent(() => import('container/biz/project/memcontract/memcontract-up'))
-  },
   // 业务管理 -- 项目管理-- 项目人员合同-- 导入
   {
     path: '/project/memcontract/import',
@@ -608,11 +574,6 @@ const ROUTES = [
     path: '/project/attence',
     component: asyncComponent(() => import('container/biz/project/attence/attence'))
   },
-  // 业务管理 -- 项目管理-- 项目人员考勤-- 上传平台
-  {
-    path: '/project/attence/up',
-    component: asyncComponent(() => import('container/biz/project/attence/attence-up'))
-  },
   // 业务管理 -- 项目管理-- 项目人员考勤-- 导入
   {
     path: '/project/attence/import',
@@ -627,11 +588,6 @@ const ROUTES = [
   {
     path: '/project/wages',
     component: asyncComponent(() => import('container/biz/project/wages/wages'))
-  },
-  // 业务管理 -- 项目管理-- 项目人员工资-- 上传平台
-  {
-    path: '/project/wages/up',
-    component: asyncComponent(() => import('container/biz/project/wages/wages-up'))
   },
   // 业务管理 -- 项目管理-- 项目人员工资-- 新增
   {
@@ -658,6 +614,11 @@ const ROUTES = [
     path: '/project/basic/addedit',
     component: asyncComponent(() => import('container/biz/project/basic/basic-addedit'))
   },
+  // 业务管理 -- 项目管理-- 项目基本信息-- 项目配置
+  {
+    path: '/project/basic/config',
+    component: asyncComponent(() => import('container/biz/project/basic/basic-config'))
+  },
   // 业务管理 -- 企业库-- 企业基本信息
   {
     path: '/company/info',
@@ -667,11 +628,6 @@ const ROUTES = [
   {
     path: '/company/info/addedit',
     component: asyncComponent(() => import('container/biz/company/info/info-addedit'))
-  },
-  // 业务管理 -- 企业库-- 企业基本信息-- 上传平台
-  {
-    path: '/company/info/up',
-    component: asyncComponent(() => import('container/biz/company/info/info-up'))
   }
 ];
 

@@ -11,7 +11,7 @@ import {
 } from '@redux/biz/project/participating';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, getUserId } from 'common/js/util';
-import { getProjectList } from 'api/general';
+import { showUploadConfirm } from '../../util';
 
 @listWrapper(
     state => ({
@@ -53,10 +53,14 @@ class Participating extends React.Component {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
-      search: true
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
+      search: true,
+      hidden: true
+    }, {
+      title: '对应项目',
+      field: 'projectName'
     }, {
       title: '进场时间',
       field: 'entryTime',
@@ -82,13 +86,19 @@ class Participating extends React.Component {
       fields,
       pageCode: 631645,
       deleteCode: 631631,
+      singleSelect: false,
       beforeDelete: (params) => {
         params.userId = getUserId();
       },
       btnEvent: {
         // 上传平台
         up: (keys, items) => {
-          this.props.history.push('/project/projectparticipant/up');
+          if (!keys.length) {
+            showWarnMsg('请选择记录');
+          } else {
+            showUploadConfirm(keys, items, this.props.getPageData,
+              this.props.doFetching, this.props.cancelFetching, 631634);
+          }
         },
         // 导入
         import: (keys, items) => {

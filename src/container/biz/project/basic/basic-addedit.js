@@ -32,7 +32,8 @@ class ProjectBasicAddEdit extends DetailUtil {
       required: true
     }, {
       field: 'buildCorpCode',
-      title: '建设单位统一社会信用代码'
+      title: '建设单位统一社会信用代码',
+      required: true
     }, {
       field: 'prjPlanNum',
       title: '建设工程规划许可证编号'
@@ -59,11 +60,13 @@ class ProjectBasicAddEdit extends DetailUtil {
       type: 'date'
     }, {
       field: 'linkMan',
-      title: '联系人姓名'
+      title: '联系人姓名',
+      required: true
     }, {
       field: 'linkPhone',
       title: '联系人电话',
-      mobile: true
+      mobile: true,
+      required: true
     }, {
       field: 'prjStatus',
       title: '项目状态',

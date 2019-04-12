@@ -19,7 +19,7 @@ class ProjectClassAddEdit extends DetailUtil {
       title: '班组编号',
       field: 'teamSysNo',
       readonly: true,
-      hidden: !this.view
+      hidden: !this.view || !this.state.pageData || !this.state.pageData.teamSysNo
     }, {
       title: '班组名称',
       field: 'teamName',
@@ -28,9 +28,9 @@ class ProjectClassAddEdit extends DetailUtil {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
       onChange: (projectCode, data) => {
         if (!this.view) {
           this.setState({ projectCode });

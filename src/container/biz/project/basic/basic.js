@@ -45,11 +45,6 @@ class ProjectBasic extends React.Component {
     }, {
       title: '负责人手机号',
       field: 'linkPhone'
-    }, {
-      title: '状态',
-      field: 'status',
-      type: 'select',
-      key: 'project_secret_status'
     }];
     return this.props.buildList({
       fields,
@@ -59,6 +54,17 @@ class ProjectBasic extends React.Component {
       },
       beforeDelete: (params) => {
         params.userId = getUserId();
+      },
+      btnEvent: {
+        config: (keys, items) => {
+          if (!keys.length) {
+            showWarnMsg('请选择记录');
+          } else if (keys.length > 1) {
+            showWarnMsg('请选择一条记录');
+          } else {
+            this.props.history.push(`/project/basic/config?code=${keys[0]}`);
+          }
+        }
       }
     });
   }

@@ -447,7 +447,7 @@ export default class DetailCompDev extends React.Component {
       inline: item.inline,
       field: item.field,
       label: this.getLabel(item),
-      isSingle: item.isSingle,
+      single: item.single,
       readonly: item.readonly,
       onChange: item.onChange,
       token: this.state.token,

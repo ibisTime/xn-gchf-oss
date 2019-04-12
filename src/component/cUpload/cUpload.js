@@ -27,7 +27,7 @@ export default class CUpload extends React.Component {
   }
   // props是否改变
   isPropsChange(nextProps) {
-    const { field, isLoaded, token, rules, readonly, isSingle, isImg, isFieldValidating,
+    const { field, isLoaded, token, rules, readonly, single, isImg, isFieldValidating,
       accept, getFieldValue, hidden, initVal, inline, getFieldError } = this.props;
     let nowFiles = getFieldValue(field);
     let flag = this.prevFiles !== nowFiles;
@@ -40,7 +40,7 @@ export default class CUpload extends React.Component {
     this.prevValid = validFlag ? nowValid : this.prevValid;
     return nextProps.field !== field || nextProps.isLoaded !== isLoaded ||
       nextProps.token !== token || nextProps.rules.length !== rules.length ||
-      nextProps.readonly !== readonly || nextProps.isSingle !== isSingle ||
+      nextProps.readonly !== readonly || nextProps.single !== single ||
       nextProps.isImg !== isImg || nextProps.accept !== accept ||
       nextProps.hidden !== hidden || nextProps.initVal !== initVal ||
       nextProps.inline !== inline || flag || errFlag || validFlag;
@@ -179,7 +179,7 @@ export default class CUpload extends React.Component {
     }
   }
   render() {
-    const { field, isLoaded, getFieldDecorator, token, rules, readonly, isSingle,
+    const { field, isLoaded, getFieldDecorator, token, rules, readonly, single,
       isImg, onChange, accept, getFieldValue, label, hidden, initVal, inline } = this.props;
     const { previewVisible, previewId } = this.state;
     const initValue = this.getFileInitVal(initVal, isImg);
@@ -200,11 +200,11 @@ export default class CUpload extends React.Component {
                   isImg,
                   accept,
                   readonly,
-                  isSingle,
+                  single,
                   onChange,
                   initValue
                 })}>
-                  {this.getUploadBtn(field, getFieldValue, readonly, isSingle, isImg)}
+                  {this.getUploadBtn(field, getFieldValue, readonly, single, isImg)}
                 </Upload>
               )
             ) : null
@@ -244,7 +244,7 @@ CUpload.propTypes = {
   initVal: PropTypes.string,
   accept: PropTypes.string,
   readonly: PropTypes.bool,
-  isSingle: PropTypes.bool,
+  single: PropTypes.bool,
   hidden: PropTypes.bool,
   onChange: PropTypes.func,
   field: PropTypes.string.isRequired,

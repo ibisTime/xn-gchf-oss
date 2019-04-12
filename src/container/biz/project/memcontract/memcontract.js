@@ -10,7 +10,8 @@ import {
   setSearchData
 } from '@redux/biz/project/memcontract';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, dateFormat, getUserId } from 'common/js/util';
+import { showWarnMsg, dateFormat, getUserId, isUndefined } from 'common/js/util';
+import { showUploadConfirm } from '../../util';
 
 @listWrapper(
     state => ({
@@ -42,18 +43,30 @@ class ProjectMemContract extends React.Component {
       }
     }, {
       title: '计量',
-      field: 'unitPrice',
-      render: (v, d) => {
-        return d ? d.unitPrice + '/' + d.unit : '';
+      field: 'unit',
+      type: 'select',
+      key: 'unit',
+      render: (v, data) => {
+        if (data && this.props.searchData.unit) {
+          let item = this.props.searchData.unit.find(s => s.dkey == v);
+          let unit = item ? item.dvalue : '';
+          let unitPrice = isUndefined(data.unitPrice) ? '' : data.unitPrice;
+          return unitPrice + '/' + unit;
+        }
+        return '';
       }
     }, {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
-      search: true
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
+      search: true,
+      hidden: true
+    }, {
+      title: '对应项目',
+      field: 'projectName'
     }, {
       title: '所在企业',
       field: 'corpName'
@@ -83,13 +96,19 @@ class ProjectMemContract extends React.Component {
       searchParams: {
         userId: getUserId()
       },
+      singleSelect: false,
       beforeDelete: (params) => {
         params.userId = getUserId();
       },
       btnEvent: {
         // 上传平台
         up: (keys, items) => {
-          this.props.history.push('/project/memcontract/up');
+          if (!keys.length) {
+            showWarnMsg('请选择记录');
+          } else {
+            showUploadConfirm(keys, items, this.props.getPageData,
+              this.props.doFetching, this.props.cancelFetching, 631674);
+          }
         },
         // 导入
         import: (keys, items) => {

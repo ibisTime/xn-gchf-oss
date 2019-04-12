@@ -52,9 +52,6 @@ class AllStaff extends React.Component {
       rangedate: ['createDatetimeStart', 'createDatetimeEnd'],
       formatter: dateTimeFormat,
       search: true
-    }, {
-      field: 'remark',
-      title: '备注'
     }];
     const btnEvent = {
       // 绑定银行卡

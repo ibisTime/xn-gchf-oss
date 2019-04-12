@@ -11,6 +11,7 @@ import {
 } from '@redux/biz/project/class';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, getUserId } from 'common/js/util';
+import { showUploadConfirm } from '../../util';
 
 @listWrapper(
     state => ({
@@ -23,9 +24,6 @@ import { showWarnMsg, getUserId } from 'common/js/util';
 class ProjectClass extends React.Component {
   render() {
     const fields = [{
-      title: '班组编号',
-      field: 'teamSysNo'
-    }, {
       title: '班组名称',
       field: 'teamName',
       search: true
@@ -33,10 +31,14 @@ class ProjectClass extends React.Component {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
-      search: true
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
+      search: true,
+      hidden: true
+    }, {
+      title: '对应项目',
+      field: 'projectName'
     }, {
       title: '所在企业',
       field: 'corpName'
@@ -85,13 +87,19 @@ class ProjectClass extends React.Component {
       searchParams: {
         userId: getUserId()
       },
+      singleSelect: false,
       beforeDelete: (params) => {
         params.userId = getUserId();
       },
       btnEvent: {
         // 上传平台
         up: (keys, items) => {
-          this.props.history.push('/project/class/up');
+          if (!keys.length) {
+            showWarnMsg('请选择记录');
+          } else {
+            showUploadConfirm(keys, items, this.props.getPageData,
+              this.props.doFetching, this.props.cancelFetching, 631654);
+          }
         },
         // 导入
         import: (keys, items) => {

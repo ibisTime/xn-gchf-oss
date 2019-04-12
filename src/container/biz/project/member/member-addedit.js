@@ -20,9 +20,9 @@ class ProjectMemberAddEdit extends DetailUtil {
       title: '项目编码',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
       onChange: (projectCode, data) => {
         this.setState({ projectCode });
       },
@@ -77,7 +77,8 @@ class ProjectMemberAddEdit extends DetailUtil {
       title: '工种',
       field: 'workType',
       type: 'select',
-      key: 'work_type'
+      key: 'work_type',
+      required: true
     }, {
       title: '工人类型',
       field: 'workRole',

@@ -11,6 +11,7 @@ import {
 } from '@redux/biz/company/info';
 import { listWrapper } from 'common/js/build-list';
 import { getUserId, showWarnMsg } from 'common/js/util';
+import { showUploadConfirm } from '../../util';
 
 @listWrapper(
     state => ({
@@ -47,6 +48,7 @@ class CompanyInfo extends React.Component {
       searchParams: {
         userId: getUserId()
       },
+      singleSelect: false,
       btnEvent: {
         edit: (keys, items) => {
           if (!keys.length) {
@@ -59,7 +61,14 @@ class CompanyInfo extends React.Component {
             this.props.history.push(`/company/info/addedit?code=${keys[0]}`);
           }
         },
-        up: () => this.props.history.push('/company/info/up')
+        up: (keys, items) => {
+          if (!keys.length) {
+            showWarnMsg('请选择记录');
+          } else {
+            showUploadConfirm(keys, items, this.props.getPageData,
+              this.props.doFetching, this.props.cancelFetching, 631253);
+          }
+        }
       }
     });
   }

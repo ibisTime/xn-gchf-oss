@@ -20,16 +20,19 @@ class ProjectMemContractAddEdit extends DetailUtil {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
+      onChange: (projectCode, data) => {
+        this.setState({ projectCode });
+      },
       required: true
     }, {
       title: '项目人员',
       field: 'workerCode',
       type: 'select',
       keyName: 'code',
-      valueName: '{{workerName.DATA}}-{{idcardNumber.DATA}}',
+      valueName: '{{projectName.DATA}}-{{teamName.DATA}}-{{workerName.DATA}}-{{idcardNumber.DATA}}',
       searchName: 'workerName',
       pageCode: 631605,
       params: {

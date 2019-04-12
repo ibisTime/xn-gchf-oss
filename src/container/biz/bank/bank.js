@@ -70,6 +70,10 @@ class Bank extends React.Component {
           this.props.history.push(`${this.props.location.pathname}/addedit?bcode=${this.code}&v=1&code=${keys[0]}&type=${this.type}`);
         }
       }
+    }, {
+      code: 'back',
+      name: '返回',
+      handler: () => this.props.history.go(-1)
     }];
     this.btnEvent = {
       add: () => this.props.history.push(`${this.props.location.pathname}/addedit?type=002`),
@@ -142,6 +146,9 @@ class Bank extends React.Component {
     let config = {
       fields,
       pageCode: 631765,
+      searchParams: {
+        userId: getUserId()
+      },
       beforeDetail: (params) => {
         params.userId = getUserId();
         if (this.code) {

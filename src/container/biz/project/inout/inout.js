@@ -10,8 +10,8 @@ import {
   setSearchData
 } from '@redux/biz/project/inout';
 import { listWrapper } from 'common/js/build-list';
-import { isUndefined, showWarnMsg, getUserId } from 'common/js/util';
-import { getProjectList } from 'api/general';
+import { showWarnMsg, getUserId } from 'common/js/util';
+import { showUploadConfirm } from '../../util';
 
 @listWrapper(
     state => ({
@@ -43,10 +43,14 @@ class ProjectInout extends React.Component {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
-      search: true
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
+      search: true,
+      hidden: true
+    }, {
+      title: '对应项目',
+      field: 'projectName'
     }, {
       title: '所在企业',
       field: 'corpName'
@@ -64,7 +68,7 @@ class ProjectInout extends React.Component {
       search: true
     }, {
       title: '所在班组',
-      field: 'teamSysNo'
+      field: 'teamName'
     }, {
       title: '状态',
       field: 'uploadStatus',
@@ -79,13 +83,19 @@ class ProjectInout extends React.Component {
       searchParams: {
         userId: getUserId()
       },
+      singleSelect: false,
       beforeDelete: (params) => {
         params.userId = getUserId();
       },
       btnEvent: {
         // 上传平台
         up: (keys, items) => {
-          this.props.history.push('/project/inout/up');
+          if (!keys.length) {
+            showWarnMsg('请选择记录');
+          } else {
+            showUploadConfirm(keys, items, this.props.getPageData,
+              this.props.doFetching, this.props.cancelFetching, 631734);
+          }
         },
         // 导入
         import: (keys, items) => {

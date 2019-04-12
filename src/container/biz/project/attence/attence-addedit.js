@@ -20,9 +20,9 @@ class ProjectAttenceAddEdit extends DetailUtil {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
       onChange: (projectCode, data) => {
         if (!this.view) {
           this.setState({ projectCode });
@@ -36,7 +36,7 @@ class ProjectAttenceAddEdit extends DetailUtil {
       pageCode: 631605,
       keyName: 'code',
       searchName: 'workerName',
-      valueName: '{{workerName.DATA}}-{{idcardNumber.DATA}}',
+      valueName: '{{projectName.DATA}}-{{teamName.DATA}}-{{workerName.DATA}}-{{idcardNumber.DATA}}',
       params: {
         projectCode: this.state.projectCode,
         userId: getUserId()
@@ -62,7 +62,8 @@ class ProjectAttenceAddEdit extends DetailUtil {
       title: '刷卡进出方向',
       field: 'direction',
       type: 'select',
-      key: 'direction'
+      key: 'direction',
+      required: true
     }, {
       field: 'teamSysNo',
       hidden: true

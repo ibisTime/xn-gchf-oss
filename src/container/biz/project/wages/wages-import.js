@@ -38,9 +38,9 @@ class ProjectWagesImport extends DetailUtil {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
       required: true
     }, {
       title: '导入模版',

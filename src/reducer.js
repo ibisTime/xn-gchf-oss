@@ -95,8 +95,6 @@ import { projectStaffAddEdit } from './redux/projectStaff/projectStaff-addedit';
 import { projectStaffAddBankCard } from './redux/projectStaff/projectStaff-addBankCard';
 import { waitListTextMessage } from './redux/waitList/textMessage';
 import { waitListTextMessageAddEdit } from './redux/waitList/textMessage-addedit';
-import { ProjectManageMent } from './redux/newId/projectmanagement';
-import { ProjectManageMentAddedit } from './redux/newId/projectmanagement-addedit';
 import { jiandangStep2 } from './redux/staff/jiandang-step2';
 import { jiandangStep3 } from './redux/staff/jiandang-step3';
 import { bizBank } from './redux/biz/bank';
@@ -208,8 +206,6 @@ export default combineReducers({
   projectStaffAddBankCard,
   waitListTextMessage,
   waitListTextMessageAddEdit,
-  ProjectManageMent,
-  ProjectManageMentAddedit,
   jiandangStep2,
   jiandangStep3,
   bizBank,

@@ -18,7 +18,7 @@ class ProjectInoutAddEdit extends DetailUtil {
       pageCode: 631605,
       keyName: 'code',
       searchName: 'workerName',
-      valueName: '{{workerName.DATA}}-{{idcardNumber.DATA}}',
+      valueName: '{{projectName.DATA}}-{{teamName.DATA}}-{{workerName.DATA}}-{{idcardNumber.DATA}}',
       params: {
         userId: getUserId()
       },

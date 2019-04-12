@@ -24,9 +24,9 @@ class ProjectWagesAdd extends DetailUtil {
       title: '项目编码',
       field: 'projectCode',
       type: 'select',
-      listCode: '631626',
-      keyName: 'localProjectCode',
-      valueName: 'projectName',
+      pageCode: '631615',
+      keyName: 'code',
+      valueName: 'name',
       onChange: (projectCode, data) => {
         this.setState({ projectCode });
       },
@@ -71,6 +71,7 @@ class ProjectWagesAdd extends DetailUtil {
       title: '明细列表',
       field: 'detailList',
       type: 'o2m',
+      required: true,
       options: {
         add: true,
         edit: true,
