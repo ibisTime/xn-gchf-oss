@@ -87,10 +87,14 @@ class ProjectBasicAddEdit extends DetailUtil {
       title: '立项文号'
     }, {
       field: 'approvalLevelNum',
-      title: '立项级别'
+      title: '立项级别',
+      type: 'select',
+      key: 'project_approval_level'
     }, {
       field: 'prjSize',
-      title: '建设规模'
+      title: '建设规模',
+      type: 'select',
+      key: 'project_size'
     }, {
       field: 'propertyNum',
       title: '建设性质',
