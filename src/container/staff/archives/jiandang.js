@@ -2,10 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import originJsonp from 'jsonp';
 import './jiandang.css';
-import { Form, Input, Button, Select, DatePicker, Spin } from 'antd';
-import { formItemLayout, tailFormItemLayout, jiandangFormItemLayout, DATE_FORMAT } from 'common/js/config';
+import { Form, Input, Button, Select, DatePicker, Spin, Upload } from 'antd';
+import { formItemLayout, tailFormItemLayout, jiandangFormItemLayout, DATE_FORMAT,
+  UPLOAD_URL } from 'common/js/config';
 import { jiandang, reJiandang, getUserId, getUserDetail, getStaffDetail } from 'api/user';
 import { getDictList } from 'api/dict';
+import { getQiniuToken } from 'api/general';
 import { showWarnMsg, showSucMsg, getQueryString, dateFormat, isUndefined } from 'common/js/util';
 import locale from 'common/js/lib/date-locale';
 import Avatar from './touxiang.png';
@@ -29,6 +31,11 @@ function jsonp(url, data, option) {
     });
   });
 }
+function getBase64(img, callback) {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+}
 
 class Jiandang extends React.Component {
   constructor(props) {
@@ -51,7 +58,8 @@ class Jiandang extends React.Component {
       maritalStatusData: [],
       cultureLevelTypeData: [],
       politicsTypeData: [],
-      fetching: false
+      fetching: true,
+      picLoading: false
     };
     this.openVideo = this.openVideo.bind(this);
     this.getCard = this.getCard.bind(this);
@@ -77,17 +85,26 @@ class Jiandang extends React.Component {
     });
     // 重新建档
     if (this.code) {
-      this.getUserInfo();
+      this.getUserInfo().then(this.getToken);
+    } else {
+      this.getToken();
     }
   };
+  getToken = () => {
+    getQiniuToken().then((data) => {
+      this.setState({
+        fetching: false,
+        token: data.uploadToken
+      });
+    }).catch(() => this.setState({ fetching: false }));
+  }
   getUserInfo() {
-    this.setState({ fetching: true });
-    fetch(631806, {
+    return fetch(631806, {
       code: this.code,
       userId: getUserId()
     }).then(data => {
       this.setState({
-        // idPic: data.headImageUrl,
+        idPic: data.headImageUrl,
         fetching: false
       });
       this.props.form.setFieldsValue({
@@ -152,9 +169,10 @@ class Jiandang extends React.Component {
     }
   };
   setStateByCardData(data) {
+    let sex = data.m_sex == '男' ? '0' : '1';
     this.setState({
+      sex,
       realName: data.m_name,
-      sex: data.m_sex,
       idNation: data.m_nation,
       birthday: data.m_birth,
       idNo: data.m_idcode,
@@ -259,7 +277,7 @@ class Jiandang extends React.Component {
         values.idPolice,
         values.idStartDate.format(format),
         values.realName,
-        this.state.sex || values.sex,
+        values.sex || this.state.sex,
         values.politicsType,
         values.cultureLevelType,
         values.isJoined,
@@ -291,11 +309,33 @@ class Jiandang extends React.Component {
       getUserId()
     );
   }
+  handleChange = (info) => {
+    if (info.file.status === 'uploading') {
+      this.setState({ picLoading: true });
+      return;
+    }
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, idPic => this.setState({
+        idPic,
+        picLoading: false
+      }));
+    }
+  }
   render() {
-    const { idPic } = this.state;
+    const { idPic, picLoading, token, fetching } = this.state;
+    const uploadButton = (
+      <Spin spinning={picLoading}>
+        <div id="idPicSlib">
+          <div className="img"><img src={Avatar}/></div>
+          <div>上传身份证</div>
+        </div>
+      </Spin>
+    );
+
     const { getFieldDecorator } = this.props.form;
     return (
-      <Spin spinning={this.state.fetching}>
+      <Spin spinning={fetching}>
         <div className="SectionContainer jiandang">
           <div className="section">
             <div style={{ display: 'table-cell', verticalAlign: 'middle', width: '100%' }}>
@@ -304,14 +344,19 @@ class Jiandang extends React.Component {
                   <div className="left-top" style={{ height: 970 }}>
                     <div className="head-wrap"><i></i>身份证头像</div>
                     <div className="left-cont">
-                      <div className={idPic ? 'active' : 'left-inner'} id="leftInner">
+                      <div className={idPic ? 'active jiandang-idpic-wrap' : 'left-inner jiandang-idpic-wrap'} style={{textAlign: 'center'}} id="leftInner">
                         {
-                          idPic
-                              ? <img className="idImg" id="idPicImg" src={idPic} style={{ margin: '0 100px', maxWidth: 104 }}/>
-                              : <div id="idPicSlib">
-                                <div className="img"><img src={Avatar}/></div>
-                                <div>上传身份证</div>
-                              </div>
+                          !token ? null : (
+                            <Upload
+                              listType="picture-card"
+                              showUploadList={false}
+                              data={{ token }}
+                              action={UPLOAD_URL}
+                              onChange={this.handleChange}
+                            >
+                              {idPic ? <img src={idPic} alt="avatar" /> : uploadButton}
+                            </Upload>
+                          )
                         }
                       </div>
                     </div>

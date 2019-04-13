@@ -72,7 +72,8 @@ class ProjectMemberAddEdit extends DetailUtil {
       title: '是否班长',
       field: 'isTeamLeader',
       type: 'select',
-      key: 'is_not'
+      key: 'is_not',
+      required: true
     }, {
       title: '工种',
       field: 'workType',
@@ -83,7 +84,8 @@ class ProjectMemberAddEdit extends DetailUtil {
       title: '工人类型',
       field: 'workRole',
       type: 'select',
-      key: 'work_role'
+      key: 'work_role',
+      required: true
     }, {
       title: '制卡时间',
       field: 'issueCardDate',

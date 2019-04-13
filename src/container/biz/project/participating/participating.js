@@ -87,6 +87,9 @@ class Participating extends React.Component {
       pageCode: 631645,
       deleteCode: 631631,
       singleSelect: false,
+      searchParams: {
+        userId: getUserId()
+      },
       beforeDelete: (params) => {
         params.userId = getUserId();
       },
