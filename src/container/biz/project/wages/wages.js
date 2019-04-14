@@ -66,6 +66,7 @@ class ProjectWages extends React.Component {
       pageCode: '631615',
       keyName: 'code',
       valueName: 'name',
+      searchName: 'name',
       hidden: true,
       search: true
     }, {

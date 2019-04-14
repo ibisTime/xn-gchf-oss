@@ -23,6 +23,7 @@ class ProjectMemContractAddEdit extends DetailUtil {
       pageCode: '631615',
       keyName: 'code',
       valueName: 'name',
+      searchName: 'name',
       onChange: (projectCode, data) => {
         this.setState({ projectCode });
       },

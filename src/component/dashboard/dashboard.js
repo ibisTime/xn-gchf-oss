@@ -25,7 +25,6 @@ import help from './help.png';
 
 const { SubMenu, Item } = Menu;
 const { Header, Content, Sider } = Layout;
-const Home = asyncComponent(() => import('../../container/home/home'));
 const Role = asyncComponent(() => import('../../container/security/role/role'));
 
 @connect(
@@ -185,11 +184,7 @@ class Dashboard extends React.Component {
         <Content className="right-content">
           <Switch>
             <Route exact path="/" render={() => (
-              this.loginKind === 'B'
-                ? <Redirect to="/waitList/postRequest"/>
-                : this.loginKind === 'O' || this.loginKind === 'S'
-                  ? <Home/>
-                  : <Redirect to="/system/role"/>
+              <Redirect to="/system/role"/>
             )}/>
             {this.props.topMenuList.length ? this.getRoutes() : null}
           </Switch>

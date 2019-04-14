@@ -62,6 +62,7 @@ class ProjectMemContract extends React.Component {
       pageCode: '631615',
       keyName: 'code',
       valueName: 'name',
+      searchName: 'name',
       search: true,
       hidden: true
     }, {

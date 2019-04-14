@@ -41,6 +41,7 @@ class ProjectMemContractImport extends DetailUtil {
       pageCode: '631615',
       keyName: 'code',
       valueName: 'name',
+      searchName: 'name',
       required: true
     }, {
       title: '导入模版',

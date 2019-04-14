@@ -20,6 +20,7 @@ class ParticipatingAddEdit extends DetailUtil {
       },
       keyName: 'corpCode',
       valueName: 'corpName',
+      searchName: 'corpName',
       type: 'select',
       required: true
     }, {
@@ -35,6 +36,7 @@ class ParticipatingAddEdit extends DetailUtil {
       pageCode: '631615',
       keyName: 'code',
       valueName: 'name',
+      searchName: 'name',
       required: true
     }, {
       title: '进场时间',

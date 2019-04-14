@@ -31,6 +31,7 @@ class ProjectClassAddEdit extends DetailUtil {
       pageCode: '631615',
       keyName: 'code',
       valueName: 'name',
+      searchName: 'name',
       onChange: (projectCode, data) => {
         if (!this.view) {
           this.setState({ projectCode });
