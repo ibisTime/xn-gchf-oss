@@ -38,7 +38,9 @@ class ProjectBasic extends React.Component {
       key: 'prj_status'
     }, {
       title: '立项级别',
-      field: 'approvalLevelNum'
+      field: 'approvalLevelNum',
+      key: 'approval_level_num',
+      type: 'select'
     }, {
       title: '负责人姓名',
       field: 'linkMan'

@@ -528,7 +528,9 @@ function getRealCheckboxVal(result) {
 // 供导入时判断数据字典是否正确使用
 // @return {Boolean} iserror
 export function findAndchangeInfo(list, item, key, i) {
-  let info = list.find(c => c.dvalue === item[key]);
+  let info = list.find(c => {
+    return c.dvalue === item[key];
+  });
   if (!info) {
     showWarnMsg(`导入的数据里第${i + 1}行的${item[key]}无法识别,请检查数据是否正确`);
     return true;

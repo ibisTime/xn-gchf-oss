@@ -2,334 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e080e660-c086-40ba-9e59-45752f881dfd" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/js/build-details.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/container/newId/projectmanagement/projectmanagement-addedit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/container/newId/projectmanagement/projectmanagement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/container/projectmanagement/projectparticipants/projectparticipants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/newId/projectmanagement-addedit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/newId/projectmanagement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/projectmanagement/projectparticipants-addedit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/projectmanagement/projectparticipants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ok-oss-react.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ok-oss-react.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/env.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/jest/cssTransform.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/jest/cssTransform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/jest/fileTransform.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/jest/fileTransform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/paths.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/paths.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/polyfills.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/polyfills.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpack.config.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpack.config.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpackDevServer.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpackDevServer.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/start.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/company.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/company.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/dict.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/dict.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/downLoad.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/downLoad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/general.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/general.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/staff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/build-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/build-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/build-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/build-list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/build-modal-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/build-modal-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/fetch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/lib/BigDecimal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/lib/BigDecimal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/lib/city.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/lib/city.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/lib/date-locale.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/lib/date-locale.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/lib/listComp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/lib/listComp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/00.字段填写说明.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/00.字段填写说明.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/01.参建单位导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/01.参建单位导入模板.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/02.项目班组导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/02.项目班组导入模板.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/03.项目人员导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/03.项目人员导入模板.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/04.项目人员进退场导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/04.项目人员进退场导入模板.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/05.项目人员合同导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/05.项目人员合同导入模板.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/06.项目人员考勤导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/06.项目人员考勤导入模板.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/07.项目人员工资导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/07.项目人员工资导入模板.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/accumulate-pie/accumulate-pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/accumulate-pie/accumulate-pie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/async-component/async-component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/async-component/async-component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/authroute/authroute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/authroute/authroute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/Echarts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/Echarts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/EchartsArea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/EchartsArea.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/EchartsEffectScatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/EchartsEffectScatter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/EchartsForce.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/EchartsForce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/EchartsGraphnpm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/EchartsGraphnpm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/EchartsPie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/EchartsPie.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/EchartsScatter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/EchartsScatter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/Recharts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/Recharts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/RechartsBarChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/RechartsBarChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/RechartsRadarChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/RechartsRadarChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/RechartsRadialBarChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/RechartsRadialBarChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/RechartsSimpleLineChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/RechartsSimpleLineChart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/contactWithUs/contactWithUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/contactWithUs/contactWithUs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/contactWithUs/contactWithUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/contactWithUs/contactWithUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/dashboard/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/dashboard/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/dashboard/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/dashboard/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/dashboard/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/edit-pwd/edit-pwd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/edit-pwd/edit-pwd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/money-line/money-line.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/money-line/money-line.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/thirty-pie/thirty-pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/thirty-pie/thirty-pie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/daifa/daifa/daifa.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/daifa/daifa/daifa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/dailiManage/map/map3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/dailiManage/map/map3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/demo/credit-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/demo/credit-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/demo/edit-pwd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/demo/edit-pwd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/demo/export_import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/demo/export_import.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/finance/account/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/finance/account/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/finance/dist-addr-ledger/dist-addr-ledger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/finance/dist-addr-ledger/dist-addr-ledger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/finance/dist-addr/dist-addr.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/finance/dist-addr/dist-addr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/finance/ledger-addedit/ledger-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/finance/ledger-addedit/ledger-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/finance/ledger/ledger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/finance/ledger/ledger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/finance/platform-ledger/platform-ledger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/finance/platform-ledger/platform-ledger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/general/text-param-addedit/text-param-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/general/text-param-addedit/text-param-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/general/text-param/text-param.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/general/text-param/text-param.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/hetong/chengbaoshang-addedit/chengbaoshang-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/chengbaoshang-addedit/chengbaoshang-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/hetong/chengbaoshang/chengbaoshang.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/chengbaoshang/chengbaoshang.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/hetong/wugong-addedit/wugong-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/wugong-addedit/wugong-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/hetong/wugong-edit/wugong-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/wugong-edit/wugong-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/hetong/wugong/wugong.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/hetong/wugong/wugong.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/home/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/home/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/home/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/login/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/addProject/addProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/addProject/addProject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/bank-addedit/bank-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/bank-addedit/bank-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/bank/bank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/bank/bank.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/newProject/newProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/newProject/newProject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/operation-addedit/operation-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/operation-addedit/operation-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/operation/operation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/operation/operation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/supervise-addedit/supervise-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/supervise-addedit/supervise-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/supervise/supervise.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/supervise/supervise.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/yezhu-addedit/yezhu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/yezhu-addedit/yezhu-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newId/yezhu/yezhu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newId/yezhu/yezhu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/addBumen/addBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/addBumen/addBumen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/bumenConstruct/bumenConstruct.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/bumenConstruct/bumenConstruct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/kaoqin/kaoqin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/kaoqin/kaoqin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-addBumen/project-addBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-addBumen/project-addBumen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-addedit/project-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-check/project-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-check/project-check.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-daka/project-daka.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-daka/project-daka.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-detail/project-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-detail/project-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-edit/project-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-end/project-end.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-end/project-end.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-leijifaxin/project-leijifaxin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-leijifaxin/project-leijifaxin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-quit/project-quit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-quit/project-quit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-salary-check/project-salary-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-salary-check/project-salary-check.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-salary-edit/project-salary-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-salary-edit/project-salary-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-stop/project-stop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-stop/project-stop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project-weekday/project-weekday.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project-weekday/project-weekday.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/newProj/project/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/newProj/project/project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/people/history/history.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/people/history/history.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/people/wugong-addedit/wugong-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/people/wugong-addedit/wugong-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/people/wugong-break/wugong-break.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/people/wugong-break/wugong-break.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/people/wugong-leave/wugong-leave.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/people/wugong-leave/wugong-leave.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/people/wugong/wugong.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/people/wugong/wugong.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/projectStaff/projectStaff-addBankCard/projectStaff-addBankCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/projectStaff/projectStaff-addBankCard/projectStaff-addBankCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/projectStaff/projectStaff-addedit/projectStaff-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/projectStaff/projectStaff-addedit/projectStaff-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/projectStaff/projectStaff/projectStaff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/projectStaff/projectStaff/projectStaff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/public/aboutus-addedit/aboutus-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/public/aboutus-addedit/aboutus-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/public/banner-addedit/banner-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/public/banner-addedit/banner-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/public/banner/banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/public/banner/banner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/public/time-addedit/time-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/public/time-addedit/time-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/dict-addedit/dict-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/dict-addedit/dict-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/dict/dict.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/dict/dict.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/help-addedit/help-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/help-addedit/help-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/help/help.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/help/help.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/menu-addedit/menu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/menu-addedit/menu-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/menu/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/menu/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/role-addedit/role-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/role-addedit/role-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/role/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/role/role.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/sysParam-addedit/sysParam-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/sysParam-addedit/sysParam-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/sysParam/sysParam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/sysParam/sysParam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/user-addedit/user-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/user-addedit/user-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/user-changeMobile/user-changeMobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/user-changeMobile/user-changeMobile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/user-resetPwd/user-resetPwd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/user-resetPwd/user-resetPwd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/user-setBumen/user-setBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/user-setBumen/user-setBumen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/security/user-setRole/user-setRole.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/user-setRole/user-setRole.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/attence/attence.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/attence/attence.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/basic/basic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/basic/basic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/class/class-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/class/class-import.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/inout/inout-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/inout/inout-import.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/member/member-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/member/member-import.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-import.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/wages/wages-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/wages/wages-import.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/wages/wages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/wages/wages.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/security/user/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/user/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/sss/export_import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/sss/export_import.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-addBankCard/allStaff-addBankCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-addBankCard/allStaff-addBankCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-detail/allStaff-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-detail/allStaff-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-errHistory/allStaff-errHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-errHistory/allStaff-errHistory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-errHistoryAddedit/allStaff-errHistoryAddedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-errHistoryAddedit/allStaff-errHistoryAddedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-error/allStaff-error.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-error/allStaff-error.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-errorAddedit/allStaff-errorAddedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-errorAddedit/allStaff-errorAddedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-errorEdit/allStaff-errorEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-errorEdit/allStaff-errorEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-history/allStaff-history.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-history/allStaff-history.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-leaveRecords/allStaff-leaveRecords.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-leaveRecords/allStaff-leaveRecords.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-notice/allStaff-notice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-notice/allStaff-notice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-noticeAddedit/allStaff-noticeAddedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-noticeAddedit/allStaff-noticeAddedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-skill/allStaff-skill.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-skill/allStaff-skill.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-wages/allStaff-wages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-wages/allStaff-wages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/idInfoRead.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/idInfoRead.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/idInfoRead.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/idInfoRead.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/idPicture.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/idPicture.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/idPicture.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/idPicture.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/idPicture1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/idPicture1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/idPicture2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/idPicture2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/jiandang.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/jiandang.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/luru.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/luru.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/luru1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/luru1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/luru2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/luru2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/mianguanRead2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/salaryCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/salaryCard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/salaryCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/salaryCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/bankCard-addedit/bankCard-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/bankCard-addedit/bankCard-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/bankCard/bankCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/bankCard/bankCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/history-detail/history-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/history-detail/history-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/idCardQuery/idCardQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/idCardQuery/idCardQuery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/leaveRecords-detail/leaveRecords-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/leaveRecords-detail/leaveRecords-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/staff/skill-addedit/skill-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/skill-addedit/skill-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/alreadyQuest-addedit/alreadyQuest-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/alreadyQuest-addedit/alreadyQuest-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/alreadyQuest/alreadyQuest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/feedback-addedit/feedback-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/feedback-addedit/feedback-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/feedback/feedback.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/feedback/feedback.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/postRequest-addedit/postRequest-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/postRequest-addedit/postRequest-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/postRequest/postRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/postRequest/postRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/textMessage-addedit/textMessage-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/textMessage-addedit/textMessage-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/waitList/textMessage/textMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/waitList/textMessage/textMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/yewuManage/account-addedit/account-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/yewuManage/account-addedit/account-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/yewuManage/account/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/yewuManage/account/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/daifa/daifa-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/daifa/daifa-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/daifa/daifa-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/daifa/daifa-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/daifa/daifa.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/daifa/daifa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/dailiManage/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/dailiManage/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/finance/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/finance/dist-addr-ledger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/dist-addr-ledger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/finance/dist-addr.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/dist-addr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/finance/ledger-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/ledger-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/finance/ledger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/ledger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/finance/platform-ledger.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/platform-ledger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/finance/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/finance/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/general/text-param-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/general/text-param-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/general/text-param.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/general/text-param.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/hetong/chengbaoshang-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/chengbaoshang-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/hetong/chengbaoshang.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/chengbaoshang.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/hetong/wugong-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/wugong-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/hetong/wugong-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/wugong-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/hetong/wugong.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/hetong/wugong.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/map/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/map/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/modal/build-modal-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/modal/build-modal-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/addProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/addProject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/bank-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/bank-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/bank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/bank.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/newProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/newProject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/operation-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/operation-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/operation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/operation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/supervise-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/supervise-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/supervise.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/supervise.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/yezhu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/yezhu-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newId/yezhu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newId/yezhu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/addBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/addBumen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/bumenConstruct.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/bumenConstruct.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/kaoqin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/kaoqin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-addBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-addBumen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-check.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-daka.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-daka.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-end.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-end.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-kaoqin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-kaoqin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-leijifaxin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-leijifaxin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-quit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-quit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-salary-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-salary-check.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-salary-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-salary-edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-salary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-salary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-stop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-stop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project-weekday.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project-weekday.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/newProj/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/newProj/project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/people/history.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/history.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/people/wugong-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/wugong-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/people/wugong-break.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/wugong-break.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/people/wugong-leave.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/wugong-leave.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/people/wugong.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/people/wugong.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/projectStaff/projectStaff-addBankCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/projectStaff/projectStaff-addBankCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/projectStaff/projectStaff-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/projectStaff/projectStaff-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/projectStaff/projectStaff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/projectStaff/projectStaff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/public/aboutus-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/public/aboutus-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/public/banner-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/public/banner-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/public/banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/public/banner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/public/time-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/public/time-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/dict-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/dict-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/dict.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/dict.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/help-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/help-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/help.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/help.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/menu-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/menu-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/role-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/role-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/role.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/sysParam-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/sysParam-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/sysParam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/sysParam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/user-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/user-changeMobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-changeMobile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/user-resetPwd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-resetPwd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/user-setBumen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-setBumen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/user-setRole.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user-setRole.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/security/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/security/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-addBankCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-addBankCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-errHistory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-errHistory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-error.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-error.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-errorAddedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-errorAddedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-errorEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-errorEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-history.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-history.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-leaveRecords.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-leaveRecords.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-notice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-notice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-noticeAddedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-noticeAddedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-skill.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-skill.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff-wages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff-wages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/allStaff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/allStaff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/bankCard-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/bankCard-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/bankCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/bankCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/history-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/history-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/leaveRecords-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/leaveRecords-detail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/staff/skill-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/staff/skill-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/waitList/alreadyQuest-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/waitList/alreadyQuest-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/waitList/alreadyQuest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/waitList/alreadyQuest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/waitList/feedback.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/waitList/feedback.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/waitList/postRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/waitList/postRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/waitList/textMessage-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/waitList/textMessage-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/waitList/textMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/waitList/textMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/yewuManage/account-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/yewuManage/account-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/yewuManage/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/yewuManage/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/route.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -337,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/newId/projectmanagement/projectmanagement-addedit.js">
+      <file leaf-file-name="attence.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+            <state relative-caret-position="427">
+              <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -349,40 +48,103 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/redux/projectmanagement/projectparticipants-addedit.js">
+      <file leaf-file-name="inout-import.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout-import.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/projectmanagement/projectparticipants/projectparticipants.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-471">
-              <caret line="19" column="34" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/route.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="485" column="11" lean-forward="true" selection-start-line="485" selection-start-column="11" selection-end-line="485" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="102" column="82" selection-start-line="102" selection-start-column="82" selection-end-line="102" selection-end-column="82" />
+            <state relative-caret-position="354">
+              <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="memcontract-import.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-import.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="52" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/js/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wages-import.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-import.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="101" column="10" selection-start-line="57" selection-start-column="8" selection-end-line="101" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="participating-import.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="101" column="27" selection-start-line="101" selection-start-column="27" selection-end-line="101" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class-import.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class-import.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="33">
+              <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/js/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="529" column="55" selection-start-line="529" selection-start-column="55" selection-end-line="529" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wages.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="88" column="22" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="member-import.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member-import.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3231">
+              <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -399,25 +161,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>/projectManage/project/addedit</find>
-      <find>this.code</find>
-      <find>getPagePayCode</find>
-      <find>631431</find>
-      <find>handleExport</find>
-      <find>/staff/allStafferror/history/addedit</find>
-      <find>/staff/allStafferrHistory</find>
-      <find>allStaffe</find>
-      <find>631358</find>
-      <find>/projectManage/project</find>
-      <find>补发</find>
-      <find>getPageabnormal</find>
-      <find>631006</find>
-      <find>信息</find>
-      <find>img</find>
-      <find>getImgComp</find>
-      <find>setUploadFileUrl</find>
-      <find>./src/container/home/home</find>
-      <find>研发</find>
       <find>type</find>
       <find>平台端</find>
       <find>631071</find>
@@ -429,6 +172,25 @@
       <find>edit</find>
       <find>btnEvent</find>
       <find>setSelectData</find>
+      <find>_keys</find>
+      <find>projectCode</find>
+      <find>getValFromKeys</find>
+      <find>key</find>
+      <find>/project/class/</find>
+      <find>cardType</find>
+      <find>hasBuyInsurance</find>
+      <find>direction</find>
+      <find>isTeamLeader</find>
+      <find>,请检查数据是否正确</find>
+      <find>idCardType</find>
+      <find>uploadStatus</find>
+      <find>责任人证件类型</find>
+      <find>project_corp_type</find>
+      <find>workRole</find>
+      <find>politicsType</find>
+      <find>contractPeriodType</find>
+      <find>findAndchangeInfo</find>
+      <find>periodTypeList</find>
     </findStrings>
     <replaceStrings>
       <replace>: action.payload, isLoaded: true};</replace>
@@ -444,19 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/redux/staff/allStaff-leaveRecords.js" />
-        <option value="$PROJECT_DIR$/src/redux/staff/leaveRecords-detail.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/leaveRecords-detail/leaveRecords-detail.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/allStaff-leaveRecords/allStaff-leaveRecords.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/idPicture.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/idPicture.css" />
-        <option value="$PROJECT_DIR$/src/container/newProj/project-salary-edit/project-salary-edit.js" />
-        <option value="$PROJECT_DIR$/src/container/newProj/project-salary/project-salary.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/allStaff-deatilAdd/allStaff-deatilAdd.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" />
-        <option value="$PROJECT_DIR$/src/container/newProj/project-kaoqin/project-kaoqin.js" />
-        <option value="$PROJECT_DIR$/src/container/daifa/daifa-addedit/daifa-addedit.js" />
         <option value="$PROJECT_DIR$/src/container/daifa/daifa-edit/daifa-edit.js" />
         <option value="$PROJECT_DIR$/src/component/contactWithUs/contactWithUs.css" />
         <option value="$PROJECT_DIR$/src/component/contactWithUs/contactWithUs.js" />
@@ -495,14 +244,40 @@
         <option value="$PROJECT_DIR$/src/reducer.js" />
         <option value="$PROJECT_DIR$/src/route.js" />
         <option value="$PROJECT_DIR$/src/container/projectmanagement/projectparticipants/projectparticipants.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/basic/basic.js" />
+        <option value="$PROJECT_DIR$/src/container/security/user/user.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/inout/inout-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/class/class-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/member/member-import.js" />
+        <option value="$PROJECT_DIR$/src/common/js/util.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages-import.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="62" />
-    <option name="y" value="137" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="247" />
+    <option name="y" value="256" />
     <option name="width" value="1440" />
-    <option name="height" value="868" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -517,69 +292,118 @@
         <subPane>
           <expand>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="newId" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="newId" type="462c0819:PsiDirectoryNode" />
-              <item name="projectmanagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="projectmanagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="container" type="462c0819:PsiDirectoryNode" />
-              <item name="projectmanagement" type="462c0819:PsiDirectoryNode" />
-              <item name="projectparticipants" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="newId" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gchf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gchf" type="462c0819:PsiDirectoryNode" />
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="redux" type="462c0819:PsiDirectoryNode" />
-              <item name="projectmanagement" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="attence" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="inout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="member" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="memcontract" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="participating" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="biz" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="wages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -653,160 +477,46 @@
       <workItem from="1553226445269" duration="4283000" />
       <workItem from="1553241116233" duration="503000" />
       <workItem from="1553241632173" duration="6297000" />
+      <workItem from="1555381424058" duration="14305000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129746000" />
+    <option name="totallyTimeSpent" value="144051000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="247" y="256" width="1440" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19484809" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19450317" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3283582" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="npm" order="3" side_tool="true" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3283582" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/mianguanRead2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4301">
-          <caret line="196" column="16" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/mianguanRead1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3841">
-          <caret line="175" column="5" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/menu/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="44" column="18" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/menu-addedit/menu-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1196">
-          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1265">
-          <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/role/role.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="45" column="6" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/mianguanRead.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="185" column="5" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/demo/edit-pwd.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-335">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/history-detail/history-detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1656">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-795" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/ruzhiInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="53" column="3" lean-forward="true" selection-start-line="53" selection-start-column="3" selection-end-line="53" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/home/home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/start.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-errorEdit/allStaff-errorEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/home/home.css" />
+    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-errorEdit/allStaff-errorEdit.js" />
     <entry file="file://$PROJECT_DIR$/.eslintignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -814,22 +524,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="92">
-            <caret line="4" selection-start-line="4" selection-end-line="4" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/src/container/login/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -837,25 +532,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/finance/account/account.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/finance/dist-addr/dist-addr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/finance/account/account.js" />
+    <entry file="file://$PROJECT_DIR$/src/container/finance/dist-addr/dist-addr.js" />
     <entry file="file://$PROJECT_DIR$/server/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -863,11 +541,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/newId/addProject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-451" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/newId/addProject.js" />
     <entry file="file://$PROJECT_DIR$/src/container/newId/yezhu/yezhu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -911,13 +585,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/newId/newProject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-786">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/newId/newProject.js" />
     <entry file="file://$PROJECT_DIR$/src/redux/newId/operation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -935,29 +603,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/hetong/chengbaoshang/chengbaoshang.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3027">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/hetong/chengbaoshang-addedit/chengbaoshang-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="132" column="8" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/demo/credit-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="209" column="6" selection-start-line="209" selection-start-column="6" selection-end-line="209" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/hetong/chengbaoshang/chengbaoshang.js" />
+    <entry file="file://$PROJECT_DIR$/src/container/hetong/chengbaoshang-addedit/chengbaoshang-addedit.js" />
+    <entry file="file://$PROJECT_DIR$/src/container/demo/credit-addedit.js" />
     <entry file="file://$PROJECT_DIR$/src/container/newId/operation/operation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1136">
@@ -978,13 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/lib/detailComp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="785" column="3" lean-forward="true" selection-start-line="785" selection-start-column="3" selection-end-line="785" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/newId/operation-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
@@ -999,92 +640,180 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/projectStaff/projectStaff/projectStaff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="167" column="8" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/projectStaff/projectStaff/projectStaff.js" />
     <entry file="file://$PROJECT_DIR$/src/reducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="102" column="82" selection-start-line="102" selection-start-column="82" selection-end-line="102" selection-end-column="82" />
+        <state relative-caret-position="1219">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/newId/projectmanagement-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/build-details.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/newId/projectmanagement.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/newId/projectmanagement-addedit.js" />
+    <entry file="file://$PROJECT_DIR$/src/common/js/build-details.js" />
+    <entry file="file://$PROJECT_DIR$/src/redux/newId/projectmanagement.js" />
     <entry file="file://$PROJECT_DIR$/src/route.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="485" column="11" lean-forward="true" selection-start-line="485" selection-start-column="11" selection-end-line="485" selection-end-column="39" />
+        <state relative-caret-position="209">
+          <caret line="187" column="72" selection-start-line="187" selection-start-column="57" selection-end-line="187" selection-end-column="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/newId/projectmanagement/projectmanagement.js">
+    <entry file="file://$PROJECT_DIR$/src/container/newId/projectmanagement/projectmanagement.js" />
+    <entry file="file://$PROJECT_DIR$/src/redux/projectmanagement/projectparticipants.js" />
+    <entry file="file://$PROJECT_DIR$/src/container/projectmanagement/projectparticipants/projectparticipants.js" />
+    <entry file="file://$PROJECT_DIR$/src/container/newId/projectmanagement/projectmanagement-addedit.js" />
+    <entry file="file://$PROJECT_DIR$/src/redux/projectmanagement/projectparticipants-addedit.js" />
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="63" column="76" selection-start-line="63" selection-start-column="76" selection-end-line="63" selection-end-column="76" />
+        <state relative-caret-position="242">
+          <caret line="56" column="11" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="11" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/projectmanagement/projectparticipants.js">
+    <entry file="file://$PROJECT_DIR$/src/common/js/lib/detailComp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        <state relative-caret-position="370">
+          <caret line="902" column="6" selection-start-line="902" selection-start-column="6" selection-end-line="902" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/projectmanagement/projectparticipants/projectparticipants.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-471">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/newId/projectmanagement/projectmanagement-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        <state relative-caret-position="317">
+          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/projectmanagement/projectparticipants-addedit.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        <state relative-caret-position="244">
+          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/security/user/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="22" selection-end-line="122" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="88" column="22" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="101" column="27" selection-start-line="101" selection-start-column="27" selection-end-line="101" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3231">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="529" column="55" selection-start-line="529" selection-start-column="55" selection-end-line="529" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="52" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="101" column="10" selection-start-line="57" selection-start-column="8" selection-end-line="101" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

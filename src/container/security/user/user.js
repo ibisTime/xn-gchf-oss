@@ -47,6 +47,9 @@ class User extends React.Component {
       title: '用户名',
       field: 'loginName'
     }, {
+      title: '真实姓名',
+      field: 'realName'
+    }, {
       title: '状态',
       field: 'status',
       type: 'select',

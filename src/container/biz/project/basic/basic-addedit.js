@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString, getUserId } from 'common/js/util';
+import { getQueryString, getUserId, showWarnMsg } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
@@ -75,10 +75,30 @@ class ProjectBasicAddEdit extends DetailUtil {
       required: true
     }, {
       field: 'lng',
-      title: '经度'
+      title: '经度',
+      onChange(v) {
+        if(v) {
+          let vd = v.toString().split('.')[0];
+          if(vd.length > 3) {
+            showWarnMsg('请输入正确的经度值');
+            document.getElementById('lng').value = vd.substr(0, 3);
+            return '';
+          }
+        }
+      }
     }, {
       field: 'lat',
-      title: '纬度'
+      title: '纬度',
+      onChange(v) {
+        if(v) {
+          let vd = v.toString().split('.')[0];
+          if(vd.length > 3) {
+            showWarnMsg('请输入正确的纬度值');
+            document.getElementById('lat').value = vd.substr(0, 3);
+            return '';
+          }
+        }
+      }
     }, {
       field: 'address',
       title: '项目地址'
