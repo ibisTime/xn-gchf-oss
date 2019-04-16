@@ -32,8 +32,7 @@ class ProjectBasicAddEdit extends DetailUtil {
       required: true
     }, {
       field: 'buildCorpCode',
-      title: '建设单位统一社会信用代码',
-      required: true
+      title: '建设单位统一社会信用代码'
     }, {
       field: 'prjPlanNum',
       title: '建设工程规划许可证编号'
