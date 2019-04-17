@@ -38,6 +38,28 @@ class ProjectWagesAddEdit extends DetailUtil {
       title: '第三方工资单编号',
       field: 'thirdPayRollCode'
     }, {
+      title: '工人工资卡号',
+      field: 'payRollBankCardNumber'
+    }, {
+      title: '工人工资卡银行',
+      field: 'payRollBankCode',
+      type: 'select',
+      key: ' bank_code'
+    }, {
+      title: '工人工资卡开户行名称',
+      field: 'payRollBankName'
+    }, {
+      title: '工资代发银行卡号',
+      field: 'payBankCardNumber'
+    }, {
+      title: '工资代发银行',
+      field: 'payBankCode',
+      type: 'select',
+      key: 'bank_code'
+    }, {
+      title: '工资代发开户行名称',
+      field: 'payBankName'
+    }, {
       field: 'userId',
       value: getUserId(),
       hidden: true
