@@ -40,11 +40,11 @@ class AllStaff extends React.Component {
       search: true
     }, {
       field: 'idCardNumber',
-      title: '身份证号码'
+      title: '身份证号码',
+      search: true
     }, {
       field: 'cellPhone',
-      title: '手机号',
-      search: true
+      title: '手机号'
     }, {
       field: 'createDatetime',
       title: '建档时间',

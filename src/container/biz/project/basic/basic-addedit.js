@@ -1,7 +1,8 @@
 import React from 'react';
-import { Form } from 'antd';
-import { getQueryString, getUserId, showWarnMsg } from 'common/js/util';
+import { Form, message } from 'antd';
+import { getQueryString, getUserId, showWarnMsg, showSucMsg } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail-dev';
+import fetch from 'common/js/fetch';
 
 @Form.create()
 class ProjectBasicAddEdit extends DetailUtil {
@@ -9,6 +10,7 @@ class ProjectBasicAddEdit extends DetailUtil {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.isSend = true;
   }
   render() {
     const fields = [{
@@ -164,9 +166,47 @@ class ProjectBasicAddEdit extends DetailUtil {
       fields,
       code: this.code,
       view: this.view,
-      addCode: 631600,
-      editCode: 631602,
-      detailCode: 631616
+      detailCode: 631616,
+      buttons: [{
+        title: '保存',
+        check: true,
+        type: 'primary',
+        handler: (params) => {
+          if(this.isSend) {
+            this.isSend = false;
+            const hasMsg = message.loading('', 10);
+            if(this.code) {
+              fetch(631602, params).then(() => {
+                hasMsg();
+                showSucMsg('操作成功');
+                setTimeout(() => {
+                  window.history.go(-1);
+                }, 1500);
+              }).catch(() => {
+                hasMsg();
+                this.isSend = true;
+              });
+            }else {
+              fetch(631600, params).then(() => {
+                hasMsg();
+                showSucMsg('操作成功');
+                setTimeout(() => {
+                  window.history.go(-1);
+                }, 1500);
+              }).catch(() => {
+                hasMsg();
+                this.isSend = true;
+              });
+            }
+          }
+        }
+      }, {
+        code: 'back',
+        title: '返回',
+        handler: () => {
+          window.history.go(-1);
+        }
+      }]
     });
   }
 }
