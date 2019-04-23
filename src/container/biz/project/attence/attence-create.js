@@ -5,6 +5,10 @@ import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
 class ProjectAttenceCreate extends DetailUtil {
+  constructor(props) {
+    super(props);
+    this.projectCode = '';
+  }
   render() {
     const fields = [{
       title: '对应项目',
@@ -14,6 +18,22 @@ class ProjectAttenceCreate extends DetailUtil {
       keyName: 'code',
       valueName: 'name',
       searchName: 'name',
+      required: true,
+      onChange: (projectCode) => {
+        this.projectCode = projectCode;
+      }
+    }, {
+      title: '所在班组',
+      field: 'teamSysNo',
+      type: 'select',
+      keyName: 'code',
+      valueName: 'teamName',
+      searchName: 'teamName',
+      pageCode: 631665,
+      params: {
+        projectCode: this.projectCode,
+        userId: getUserId()
+      },
       required: true
     }, {
       title: '刷卡进出方向',
@@ -39,8 +59,8 @@ class ProjectAttenceCreate extends DetailUtil {
     return this.buildDetail({
       fields,
       code: this.code,
-      view: this.view,
-      addCode: 631715
+      addCode: 631715,
+      detailCode: 631726
     });
   }
 }

@@ -44,13 +44,13 @@ class ProjectBasicAddEdit extends DetailUtil {
       required: true
     }, {
       field: 'invest',
-      title: '总投资'
+      title: '总投资(万)'
     }, {
       field: 'buildingArea',
-      title: '总面积'
+      title: '总面积(平方米)'
     }, {
       field: 'buildingLength',
-      title: '总长度'
+      title: '总长度(米)'
     }, {
       field: 'startDate',
       title: '开工日期',
@@ -141,7 +141,6 @@ class ProjectBasicAddEdit extends DetailUtil {
     }, {
       field: 'builderLicenses',
       title: '施工许可证',
-      required: true,
       type: 'o2m',
       options: {
         add: true,
@@ -167,7 +166,13 @@ class ProjectBasicAddEdit extends DetailUtil {
       code: this.code,
       view: this.view,
       detailCode: 631616,
-      buttons: [{
+      buttons: this.view ? [{
+        code: 'back',
+        title: '返回',
+        handler: () => {
+          window.history.go(-1);
+        }
+      }] : [{
         title: '保存',
         check: true,
         type: 'primary',

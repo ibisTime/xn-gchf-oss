@@ -1,4 +1,5 @@
 import fetch from 'common/js/fetch';
+import { getUserId } from 'common/js/util';
 
 // 加载七牛token 805951
 export function getQiniuToken() {
@@ -33,7 +34,8 @@ export function getCompanyList() {
   return fetch(631255, {
     start: 1,
     limit: 1,
-    uploadStatus: 2
+    uploadStatus: 2,
+    userId: getUserId()
   });
 }
 

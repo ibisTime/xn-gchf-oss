@@ -14,8 +14,14 @@ class BankAddEdit extends DetailUtil {
   }
   render() {
     let fields = [{
+      field: 'bankCode',
+      title: '银行名称',
+      key: 'bank_code',
+      type: 'select',
+      required: true
+    }, {
       title: '银行支行名称',
-      field: 'bankName',
+      field: 'subranch',
       required: true
     }, {
       title: '银行卡号',
@@ -81,7 +87,14 @@ class BankAddEdit extends DetailUtil {
             valueName: '{{projectName.DATA}}-{{teamName.DATA}}-{{workerName.DATA}}-{{idcardNumber.DATA}}',
             searchName: 'workerName',
             params: { userId: getUserId() },
-            require: true
+            require: true,
+            formatter(v, d) {
+              if(v) {
+                return `${d.projectName ? d.projectName : ''}-${d.teamName ? d.teamName : ''}-${d.workerName ? d.workerName : ''}-${d.idcardNumber ? d.idcardNumber : ''}`;
+              }else {
+                return '';
+              }
+            }
           });
         } else {
           if (!this.view) {
@@ -100,7 +113,14 @@ class BankAddEdit extends DetailUtil {
             valueName: '{{projectName.DATA}}-{{teamName.DATA}}-{{workerName.DATA}}-{{idcardNumber.DATA}}',
             searchName: 'workerName',
             params: { userId: getUserId() },
-            require: true
+            require: true,
+            formatter(v, d) {
+              if(v) {
+                return `${d.projectName ? d.projectName : ''}-${d.teamName ? d.teamName : ''}-${d.workerName ? d.workerName : ''}-${d.idcardNumber ? d.idcardNumber : ''}`;
+              }else {
+                return '';
+              }
+            }
           });
         }
       }

@@ -21,7 +21,20 @@ import { showWarnMsg, getUserId } from 'common/js/util';
       cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class ProjectBasic extends React.Component {
+  removeAllChild = () => {
+    const tools = document.querySelector('.ant-modal-body .tools-wrapper');
+    while(tools.hasChildNodes()) {
+        tools.removeChild(tools.firstChild);
+    }
+  };
+  componentDidMount() {
+    let { noBtn } = this.props;
+    if(noBtn) {
+      setTimeout(this.removeAllChild, 500);
+    }
+  }
   render() {
+    let { noBtn } = this.props;
     const fields = [{
       title: '项目名称',
       field: 'name',
@@ -51,6 +64,7 @@ class ProjectBasic extends React.Component {
     return this.props.buildList({
       fields,
       pageCode: 631615,
+      singleSelect: !noBtn,
       searchParams: {
         userId: getUserId()
       },

@@ -24,6 +24,9 @@ import fetch from 'common/js/fetch';
       cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class ProjectAttence extends React.Component {
+  state = {
+    projectCode: ''
+  };
   render() {
     const fields = [{
       title: '工人姓名',
@@ -50,7 +53,12 @@ class ProjectAttence extends React.Component {
       valueName: 'name',
       searchName: 'name',
       search: true,
-      hidden: true
+      hidden: true,
+      onChange: (projectCode) => {
+        if (!this.view) {
+          this.setState({ projectCode });
+        }
+      }
     }, {
       title: '对应项目',
       field: 'projectName'
@@ -62,13 +70,28 @@ class ProjectAttence extends React.Component {
       field: 'corpCode',
       pageCode: '631255',
       params: {
-        uploadStatus: '2'
+        uploadStatus: '2',
+        userId: getUserId()
       },
       keyName: 'corpCode',
       valueName: 'corpName',
       type: 'select',
       hidden: true,
       search: true
+    }, {
+      title: '所在班组',
+      field: 'teamSysNo',
+      type: 'select',
+      keyName: 'code',
+      valueName: 'teamName',
+      searchName: 'teamName',
+      pageCode: 631665,
+      params: {
+        projectCode: this.state.projectCode,
+        userId: getUserId()
+      },
+      search: true,
+      hidden: true
     }, {
       title: '所在班组',
       field: 'teamName'

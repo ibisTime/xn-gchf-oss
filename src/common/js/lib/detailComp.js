@@ -110,6 +110,7 @@ export default class DetailComp extends React.Component {
     this.props.restore();
   }
   buildDetail = (options) => {
+    const { ownerModel = '' } = options;
     this.options = {
       ...this.options,
       ...options
@@ -141,8 +142,8 @@ export default class DetailComp extends React.Component {
     });
     children.push(this.getBtns(this.options.buttons));
     this.first = false;
-    return this.getPageComponent(children);
-  }
+    return this.getPageComponent(children, ownerModel);
+  };
   beforeSubmit(err, values) {
     if (err) {
       return false;
@@ -248,7 +249,7 @@ export default class DetailComp extends React.Component {
       let msg = file.status === 'uploading' ? '文件还未上传完成' : '文件上传失败';
       showErrMsg(msg);
     }
-  }
+  };
   getToken() {
     if (!this.tokenFetch) {
       this.tokenFetch = true;
@@ -323,7 +324,7 @@ export default class DetailComp extends React.Component {
       }).catch(() => { });
     }
   }
-  getPageComponent = (children) => {
+  getPageComponent = (children, ownerModel) => {
     const { previewImage, previewVisible } = this.state;
     return (
       <Spin spinning={this.props.fetching}>
@@ -333,6 +334,9 @@ export default class DetailComp extends React.Component {
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
           <img alt="图片" style={{ width: '100%' }} src={previewImage} />
         </Modal>
+        {
+          ownerModel ? ownerModel() : null
+        }
       </Spin>
     );
   }
