@@ -167,7 +167,7 @@ class JiandangStep2 extends React.Component {
         }
         setTimeout(() => {
           this.spanElement(0);
-        }, 300);
+        }, 500);
       });
     });
     this.appendEle02.style.width = '100px';
@@ -190,7 +190,7 @@ class JiandangStep2 extends React.Component {
         }
         setTimeout(() => {
           this.spanElement(1);
-        }, 100);
+        }, 500);
       });
     });
     this.appendEle03.style.width = '100px';
@@ -213,7 +213,7 @@ class JiandangStep2 extends React.Component {
         }
         setTimeout(() => {
           this.spanElement(2);
-        }, 100);
+        }, 500);
       });
     });
     ele01.appendChild(this.appendEle01);
@@ -266,6 +266,10 @@ class JiandangStep2 extends React.Component {
     this.getMedia();
   };
   handleOk = () => {
+    if(!this.state[`updateUrl0${this.state.setIndex + 1}`]) {
+      message.warning('请选择拍照后操作', 1.5);
+      return;
+    }
     this.setState({ visible: false });
     this[`appendEle0${this.state.setIndex + 1}`].innerText = '';
     this[`appendEle0${this.state.setIndex + 1}`].style.backgroundImage = `url(${this.state[`updateUrl0${this.state.setIndex + 1}`]})`;
