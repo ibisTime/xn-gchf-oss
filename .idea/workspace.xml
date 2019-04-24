@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e080e660-c086-40ba-9e59-45752f881dfd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jiandang-step2.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jiandang-step2.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="169" column="16" lean-forward="true" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="16" />
+            <state relative-caret-position="-146">
+              <caret line="191" column="26" lean-forward="true" selection-end-line="432" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -73,15 +72,6 @@
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -142,7 +132,6 @@
       <find>spanElement</find>
       <find>afterDetailRuned</find>
       <find>afterDetail</find>
-      <find>takePhoto</find>
       <find>isIndex</find>
       <find>isAdd</find>
       <find>isok</find>
@@ -151,6 +140,7 @@
       <find>631255</find>
       <find>施工</find>
       <find>MediaStream</find>
+      <find>takePhoto</find>
     </findStrings>
     <replaceStrings>
       <replace>: action.payload, isLoaded: true};</replace>
@@ -215,8 +205,8 @@
         <option value="$PROJECT_DIR$/src/common/js/lib/listComp.js" />
         <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence-create.js" />
         <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating-addedit.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" />
         <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" />
       </list>
     </option>
   </component>
@@ -573,12 +563,12 @@
       <workItem from="1553241116233" duration="503000" />
       <workItem from="1553241632173" duration="6297000" />
       <workItem from="1555381424058" duration="14305000" />
-      <workItem from="1555912446607" duration="52521000" />
+      <workItem from="1555912446607" duration="54576000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230264000" />
+    <option name="totallyTimeSpent" value="232319000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="28" y="57" width="1440" height="797" extended-state="0" />
@@ -1012,16 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="47" column="12" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/js/lib/listComp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
@@ -1079,20 +1059,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js">
+    <entry file="file://$PROJECT_DIR$/server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="169" column="16" lean-forward="true" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="16" />
+        <state relative-caret-position="414">
+          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="47" column="12" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="12" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
+    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+        <state relative-caret-position="-146">
+          <caret line="191" column="26" lean-forward="true" selection-end-line="432" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
