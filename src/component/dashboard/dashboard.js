@@ -113,7 +113,10 @@ class Dashboard extends React.Component {
         'header': true,
         'home-header': this.state.home
       }}>
-        <Link to='/' className="logo"><img src={logo}/></Link>
+        <Link to='/' className="logo" onClick={() => {
+          this.props.setTopCode('SM201807201030483125593');
+          this.props.setSubMenuCode('SM201807201035525556549');
+        }}><img src={logo}/></Link>
         <Menu
           theme="dark"
           mode="horizontal"

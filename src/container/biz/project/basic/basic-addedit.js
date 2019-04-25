@@ -22,26 +22,41 @@ class ProjectBasicAddEdit extends DetailUtil {
       title: '总承包单位统一社会信用代码',
       required: true
     }, {
-      field: 'description',
-      title: '项目简介',
-      type: 'textarea',
-      normalArea: true
-    }, {
       field: 'category',
       title: '项目分类',
       key: 'category',
       type: 'select',
       required: true
     }, {
+      field: 'areaCode',
+      title: '项目所在地',
+      required: true
+    }, {
+      field: 'linkMan',
+      title: '联系人姓名',
+      required: true
+    }, {
+      field: 'linkPhone',
+      title: '联系人电话',
+      mobile: true,
+      required: true
+    }, {
+      field: 'prjStatus',
+      title: '项目状态',
+      type: 'select',
+      key: 'prj_status',
+      required: true
+    }, {
+      field: 'description',
+      title: '项目简介',
+      type: 'textarea',
+      normalArea: true
+    }, {
       field: 'buildCorpCode',
       title: '建设单位统一社会信用代码'
     }, {
       field: 'prjPlanNum',
       title: '建设工程规划许可证编号'
-    }, {
-      field: 'areaCode',
-      title: '项目所在地',
-      required: true
     }, {
       field: 'invest',
       title: '总投资(万)'
@@ -59,21 +74,6 @@ class ProjectBasicAddEdit extends DetailUtil {
       field: 'completeDate',
       title: '竣工日期',
       type: 'date'
-    }, {
-      field: 'linkMan',
-      title: '联系人姓名',
-      required: true
-    }, {
-      field: 'linkPhone',
-      title: '联系人电话',
-      mobile: true,
-      required: true
-    }, {
-      field: 'prjStatus',
-      title: '项目状态',
-      type: 'select',
-      key: 'prj_status',
-      required: true
     }, {
       field: 'lng',
       title: '经度',

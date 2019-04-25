@@ -29,10 +29,6 @@ class BankAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'a',
-      title: '单位',
-      type: 'line'
-    }, {
       field: 'bankName',
       title: '银行名称',
       type: 'select',
@@ -56,6 +52,10 @@ class BankAddEdit extends React.Component {
           loginName: this.props.form.getFieldValue('bankName') + val
         });
       }
+    }, {
+      field: 'a',
+      title: '单位',
+      type: 'line'
     }, {
       field: 'b',
       title: '管理员',

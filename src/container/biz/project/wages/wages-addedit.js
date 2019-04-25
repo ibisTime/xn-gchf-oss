@@ -12,12 +12,6 @@ class ProjectWagesAddEdit extends DetailUtil {
   }
   render() {
     const fields = [{
-      title: '出勤天数',
-      field: 'days'
-    }, {
-      title: '总工时',
-      field: 'workHours'
-    }, {
       title: '应发金额(元)',
       field: 'totalPayAmount',
       required: true
@@ -25,11 +19,6 @@ class ProjectWagesAddEdit extends DetailUtil {
       title: '实发金额(元)',
       field: 'actualAmount',
       required: true
-    }, {
-      title: '是否为补发',
-      field: 'isBackPay',
-      type: 'select',
-      key: 'is_not'
     }, {
       title: '发放日期',
       field: 'balanceDate',
@@ -63,6 +52,17 @@ class ProjectWagesAddEdit extends DetailUtil {
       title: '工资代发开户行名称',
       field: 'payBankName',
       required: true
+    }, {
+      title: '是否为补发',
+      field: 'isBackPay',
+      type: 'select',
+      key: 'is_not'
+    }, {
+      title: '出勤天数',
+      field: 'days'
+    }, {
+      title: '总工时',
+      field: 'workHours'
     }, {
       title: '第三方工资单编号',
       field: 'thirdPayRollCode'

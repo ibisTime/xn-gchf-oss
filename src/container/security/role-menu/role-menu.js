@@ -1,9 +1,8 @@
 import React from 'react';
-import cookies from 'browser-cookies';
 import { Form, Spin, Button, Tree } from 'antd';
 import { getMenuBtnList, getRoleMenuBtnList } from 'api/menu';
-import { setRoleMenus, getUserId } from 'api/user';
-import { getQueryString, showSucMsg } from 'common/js/util';
+import { setRoleMenus } from 'api/user';
+import { getQueryString, showSucMsg, showWarnMsg, getUserId } from 'common/js/util';
 import { formItemLayout, tailFormItemLayout } from 'common/js/config';
 
 const TreeNode = Tree.TreeNode;
@@ -22,14 +21,9 @@ class RoleMenu extends React.Component {
     };
     this.code = getQueryString('code');
     this.name = getQueryString('name');
-    this.type = getQueryString('type');
-    this.allMenuCode = cookies.get('roleCode');
   }
   componentDidMount() {
     Promise.all([
-      // cookies.get('loginKind') === 'P' ? getMenuBtnList()
-      //   : getRoleMenuBtnList(this.allMenuCode),
-      // getRoleMenuBtnList(this.code)
       getMenuBtnList(this.type),
       getRoleMenuBtnList(this.code, this.type)
     ]).then(([allData, checkData]) => {
@@ -46,6 +40,7 @@ class RoleMenu extends React.Component {
   }
   getTree(data) {
     let result = {};
+    let parentKeyMap = {};
     data.forEach(v => {
       v.parentCode = v.parentCode || 'ROOT';
       if (!result[v.parentCode]) {
@@ -55,12 +50,12 @@ class RoleMenu extends React.Component {
         title: v.name,
         key: v.code
       });
+      parentKeyMap[v.code] = v.parentCode === 'ROOT' ? '' : v.parentCode;
     });
+    this.parentKeyMap = parentKeyMap;
     this.result = result;
-    // console.log(this.result);
     let tree = [];
     this.getTreeNode(result['ROOT'], tree);
-    // console.log(tree);
     this.setState({ treeData: tree });
   }
   getTreeNode(arr, children) {
@@ -95,6 +90,19 @@ class RoleMenu extends React.Component {
           checked.splice(idx, 1);
         }
       });
+      if (this.parentKeyMap[key]) {
+        let flag = true;
+        this.result[this.parentKeyMap[key]].forEach(r => {
+          let idx = checked.findIndex(v => v === r.key);
+          if (idx > -1) {
+            flag = false;
+          }
+        });
+        if (flag) {
+          let idx = checked.findIndex(c => c === this.parentKeyMap[key]);
+          checked.splice(idx, 1);
+        }
+      }
     } else {
       childrenKeys.forEach(c => {
         let idx = checked.findIndex(v => c === v);
@@ -102,6 +110,13 @@ class RoleMenu extends React.Component {
           checked.push(c);
         }
       });
+      while(this.parentKeyMap[key]) {
+        let idx = checked.findIndex(c => c === this.parentKeyMap[key]);
+        if (idx === -1) {
+          checked.push(this.parentKeyMap[key]);
+        }
+        key = this.parentKeyMap[key];
+      }
     }
     this.setState({ checkedKeys });
   }
@@ -145,6 +160,10 @@ class RoleMenu extends React.Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
+    if (this.state.checkedKeys.checked.length <= 0) {
+      showWarnMsg('请勾选权限');
+      return;
+    }
     this.setState({ fetching: true });
     setRoleMenus(this.state.checkedKeys.checked, this.code, getUserId()).then(() => {
       this.setState({ fetching: false });
@@ -179,7 +198,7 @@ class RoleMenu extends React.Component {
           </FormItem>
           <FormItem key='btns' {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">保存</Button>
-            <Button style={{ marginLeft: 20 }} onClick={() => this.props.history.go(-1)}>返回</Button>
+            <Button style={{marginLeft: 20}} onClick={() => this.props.history.go(-1)}>返回</Button>
           </FormItem>
         </Form>
       </Spin>

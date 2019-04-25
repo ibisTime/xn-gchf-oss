@@ -4,7 +4,7 @@ import { getQueryString, getUserId } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail-dev';
 
 @Form.create()
-class ParticipatingAddEdit extends DetailUtil {
+class ParticipatingDetail extends DetailUtil {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
@@ -13,17 +13,7 @@ class ParticipatingAddEdit extends DetailUtil {
   render() {
     const fields = [{
       title: '企业名称',
-      field: 'corpCode',
-      pageCode: 631255,
-      params: {
-        uploadStatus: '2',
-        userId: getUserId()
-      },
-      keyName: 'corpCode',
-      valueName: 'corpName',
-      searchName: 'corpName',
-      type: 'select',
-      required: true
+      field: 'corpName'
     }, {
       title: '企业类型',
       field: 'corpType',
@@ -127,7 +117,7 @@ class ParticipatingAddEdit extends DetailUtil {
     return this.buildDetail({
       fields,
       code: this.code,
-      view: this.view,
+      view: true,
       detailCode: 631646,
       beforeDetail: (params) => {
         params.userId = getUserId();
@@ -138,4 +128,4 @@ class ParticipatingAddEdit extends DetailUtil {
   }
 }
 
-export default ParticipatingAddEdit;
+export default ParticipatingDetail;

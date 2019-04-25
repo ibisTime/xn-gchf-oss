@@ -27,10 +27,6 @@ class SuperviseAddEdit extends React.Component {
   }
   render() {
     const fields = [{
-      field: 'a',
-      title: '辖区',
-      type: 'line'
-    }, {
       title: '区域',
       field: 'quyu',
       type: 'citySelect',
@@ -58,6 +54,10 @@ class SuperviseAddEdit extends React.Component {
       field: 'mobile',
       mobile: true,
       required: true
+    }, {
+      field: 'a',
+      title: '辖区',
+      type: 'line'
     }, {
       title: '备注',
       field: 'remark'

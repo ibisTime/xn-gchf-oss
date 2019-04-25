@@ -78,7 +78,7 @@ class BankAddEdit extends DetailUtil {
       // 通过银行卡菜单进入的
       } else {
         if (!this.code) {
-          fields.unshift({
+          fields.push({
             title: '人员编号',
             field: 'businessSysNo',
             type: 'select',
@@ -103,7 +103,7 @@ class BankAddEdit extends DetailUtil {
               hidden: true
             });
           }
-          fields.unshift({
+          fields.push({
             title: '人员编号',
             field: 'businessSysNo1',
             _keys: ['businessSysNo'],
