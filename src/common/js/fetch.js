@@ -16,7 +16,6 @@ export default function fetch(code, param = {}) {
     // updater: cookies.get('userId'),
     ...param
   };
-
   param = 'code=' + code + '&json=' + encodeURIComponent(JSON.stringify(data));
   return axios.post(url, param, {
     headers: {

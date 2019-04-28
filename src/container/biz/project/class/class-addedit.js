@@ -8,23 +8,17 @@ class ProjectClassAddEdit extends DetailUtil {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.state,
-      projectCode: ''
+      ...this.state
     };
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.isShowTeam = false;
+    this.projectCode = '';
+    this.project = '';
+    this.corpCode = '';
   }
   render() {
     const fields = [{
-      title: '班组编号',
-      field: 'teamSysNo',
-      readonly: true,
-      hidden: !this.view || !this.state.pageData || !this.state.pageData.teamSysNo
-    }, {
-      title: '班组名称',
-      field: 'teamName',
-      required: true
-    }, {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
@@ -34,22 +28,45 @@ class ProjectClassAddEdit extends DetailUtil {
       searchName: 'name',
       onChange: (projectCode, data) => {
         if (!this.view) {
-          this.setState({ projectCode });
+          this.projectCode = projectCode;
         }
       },
-      required: true
+      required: true,
+      readonly: !!this.code,
+      formatter: (v) => {
+        if(!this.project) {
+          this.project = v;
+        }
+        return v;
+      }
     }, {
       title: '所在企业',
       field: 'corpCode',
       type: 'select',
       pageCode: 631645,
       params: {
-        projectCode: this.state.projectCode,
+        projectCode: this.projectCode,
         userId: getUserId()
       },
       keyName: 'corpCode',
       valueName: 'corpName',
       searchName: 'corpName',
+      required: true,
+      readonly: !!this.code,
+      formatter: (v) => {
+        if(!this.corpCode) {
+          this.corpCode = v;
+        }
+        return v;
+      }
+    }, {
+      title: '班组编号',
+      field: 'teamSysNo',
+      readonly: true,
+      hidden: !this.view || !this.state.pageData || !this.state.pageData.teamSysNo
+    }, {
+      title: '班组名称',
+      field: 'teamName',
       required: true
     }, {
       title: '所在企业统一社会信用代码',
@@ -82,19 +99,29 @@ class ProjectClassAddEdit extends DetailUtil {
       type: 'date'
     }, {
       title: '班组长姓名',
-      field: 'teamLeaderName'
+      field: 'teamLeaderName',
+      onChange: (v) => {
+        if(v) {
+          this.isShowTeam = false;
+        }else {
+          this.isShowTeam = true;
+        }
+      }
     }, {
       title: '班组长联系电话',
       field: 'teamLeaderPhone',
-      mobile: true
+      mobile: true,
+      hidden: this.isShowTeam
     }, {
       title: '班组长证件类型',
       field: 'teamLeaderIdcardType',
       key: 'legal_manid_card_type',
-      type: 'select'
+      type: 'select',
+      hidden: this.isShowTeam
     }, {
       title: '班组长证件号码',
-      field: 'teamLeaderIdNumber'
+      field: 'teamLeaderIdNumber',
+      hidden: this.isShowTeam
     }, {
       title: '备注',
       field: 'remark',
@@ -143,6 +170,20 @@ class ProjectClassAddEdit extends DetailUtil {
       addCode: 631650,
       beforeDetail: (params) => {
         params.userId = getUserId();
+      },
+      beforeSubmit: (params) => {
+        if(!params.teamLeaderName) {
+          delete params.teamLeaderPhone;
+          delete params.teamLeaderIdcardType;
+          delete params.teamLeaderIdNumber;
+        }
+        if(!params.corpCode) {
+          params.corpCode = this.corpCode;
+        }
+        if(!params.projectCode) {
+          params.projectCode = this.project;
+        }
+        return params;
       }
     });
   }

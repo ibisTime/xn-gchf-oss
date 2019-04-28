@@ -13,6 +13,7 @@ class ParticipatingImport extends DetailUtil {
       cropTypeList: [],
       isLoading: false
     };
+    this.isSend = true;
   }
   componentDidMount() {
     Promise.all([

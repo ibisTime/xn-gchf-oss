@@ -446,6 +446,7 @@ export default class DetailCompDev extends React.Component {
       hidden: item.hidden,
       inline: item.inline,
       field: item.field,
+      imgSize: item.imgSize,
       label: this.getLabel(item),
       single: item.single,
       readonly: item.readonly,

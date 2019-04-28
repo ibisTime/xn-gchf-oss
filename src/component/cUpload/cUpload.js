@@ -134,8 +134,12 @@ export default class CUpload extends React.Component {
   // 获取文件上传后的key
   normFile = (e) => {
     if (e) {
+      let { imgSize } = this.props;
       return e.fileList.map(v => {
         if (v.status === 'done') {
+          if(v.size > imgSize) {
+            showErrMsg(`该图片大于${imgSize / 1024}kb，请重新上传`);
+          }
           return v.key || v.response.key;
         } else if (v.status === 'error') {
           showErrMsg('文件上传失败');
@@ -159,13 +163,13 @@ export default class CUpload extends React.Component {
   // 格式化文件的url
   setUploadFileUrl(fileList, isImg, callback) {
     let format = isImg ? formatImg : formatFile;
-    fileList.forEach(f => {
-      if (!f.url && f.status === 'done' && f.response) {
-        f.url = format(f.response.key);
+    for(let i = 0, len = fileList.length; i < len; i++) {
+      if (!fileList[i].url && fileList[i].status === 'done' && fileList[i].response) {
+        fileList[i].url = format(fileList[i].response.key);
         const { setFieldsValue, doFetching, cancelFetching } = this.props;
-        callback && callback(f.response.key, setFieldsValue, doFetching, cancelFetching);
+        callback && callback(fileList[i].response.key, setFieldsValue, doFetching, cancelFetching);
       }
-    });
+    }
   }
 
   // 预览文件

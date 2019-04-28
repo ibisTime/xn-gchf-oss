@@ -8,6 +8,7 @@ class ProjectBasicConfig extends DetailUtil {
   constructor(props) {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
+    this.isSend = true;
   }
   render() {
     const fields = [{
