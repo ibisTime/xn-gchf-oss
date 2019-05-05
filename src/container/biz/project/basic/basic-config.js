@@ -22,11 +22,6 @@ class ProjectBasicConfig extends DetailUtil {
       _keys: ['projectConfig', 'projectCode'],
       required: true
     }, {
-      field: 'projectName',
-      title: '项目名称',
-      _keys: ['projectConfig', 'projectName'],
-      required: true
-    }, {
       field: 'password',
       title: '密码',
       _keys: ['projectConfig', 'password'],

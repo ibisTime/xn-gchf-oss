@@ -25,6 +25,10 @@ import { showWarnMsg } from 'common/js/util';
 class SysParam extends React.Component {
   render() {
     const fields = [{
+      field: 'id',
+      title: 'id',
+      hidden: true
+    }, {
       field: 'remark',
       title: '参数名'
     }, {
@@ -49,6 +53,7 @@ class SysParam extends React.Component {
     };
     return this.props.buildList({
       fields,
+      rowKey: 'id',
       btnEvent,
       pageCode: 631015,
       searchParam: {

@@ -2,28 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e080e660-c086-40ba-9e59-45752f881dfd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/public/download/03.项目人员导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/03.项目人员导入模板.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/fetch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/js/lib/DetailCompDev.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/lib/DetailCompDev.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/container/staff/allStaff/acquisitionFaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/download/07.项目人员工资导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/download/07.项目人员工资导入模板.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/js/build-modal-detail-dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/build-modal-detail-dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/js/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/cO2M/cO2M.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cO2M/cO2M.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/cUpload/cUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/cUpload/cUpload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/dashboard/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/bank/bank-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/bank/bank-addedit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/bank/bank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/bank/bank.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/biz/project/attence/attence-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/attence/attence-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/attence/attence.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/attence/attence.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/basic/basic-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/basic/basic-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/biz/project/class/class-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/class/class-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/class/class-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/class/class-import.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/class/class.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/class/class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/inout/inout-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/inout/inout-addedit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/inout/inout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/inout/inout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/member/member-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/member/member-addedit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/member/member-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/member/member-import.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/member/member.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/member/member.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/participating/participating-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/participating/participating-addedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/biz/project/participating/participating-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/participating/participating-detail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/participating/participating.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/participating/participating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/wages/wages-add.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/wages/wages-add.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/biz/project/wages/wages-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/wages/wages-addedit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/biz/project/wages/wages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/biz/project/wages/wages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/security/menu/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/menu/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/security/sysParam/sysParam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/security/sysParam/sysParam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/staff/archives/jiandang-step3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/jiandang-step3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/route.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,29 +53,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="participating.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating.js">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="12" selection-end-column="29" />
+            <state relative-caret-position="334">
+              <caret line="21" column="63" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inout.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout.js">
+      <file leaf-file-name="basic-addedit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="17" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="memcontract.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+            <state relative-caret-position="477">
+              <caret line="203" column="13" selection-start-line="188" selection-start-column="12" selection-end-line="203" selection-end-column="13" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -67,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="attence.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence.js">
+      <file leaf-file-name="bank.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/bank/bank.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="178" column="15" selection-start-line="163" selection-start-column="12" selection-end-line="178" selection-end-column="15" />
+            <state relative-caret-position="681">
+              <caret line="60" column="7" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -79,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wages.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages.js">
+      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
+            <state relative-caret-position="411">
+              <caret line="126" column="43" selection-start-line="116" selection-start-column="10" selection-end-line="126" selection-end-column="43" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -91,11 +98,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class.js">
+      <file leaf-file-name="wages-add.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-add.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="172" column="15" selection-start-line="157" selection-start-column="12" selection-end-line="172" selection-end-column="15" />
+            <state relative-caret-position="155">
+              <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wages-addedit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-addedit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="59" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -106,8 +125,8 @@
       <file leaf-file-name="member-addedit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member-addedit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1196">
-              <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="113" selection-end-column="20" />
+            <state relative-caret-position="380">
+              <caret line="112" column="16" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="16" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -115,11 +134,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="attence-addedit.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence-addedit.js">
+      <file leaf-file-name="detailComp.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/js/lib/detailComp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="80" selection-end-column="20" />
+            <state relative-caret-position="209">
+              <caret line="754" column="43" selection-start-line="754" selection-start-column="41" selection-end-line="754" selection-end-column="43" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -127,11 +146,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="member-import.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member-import.js">
+      <file leaf-file-name="cUpload.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/cUpload/cUpload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="210" column="13" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="32" />
+            <state relative-caret-position="276">
+              <caret line="222" column="100" selection-start-line="222" selection-start-column="100" selection-end-line="222" selection-end-column="100" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -139,14 +158,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member.js">
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/js/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="173" column="15" selection-start-line="158" selection-start-column="12" selection-end-line="173" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="115">
+              <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="7" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -162,36 +178,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data</find>
-      <find>projectCode</find>
-      <find>Upload</find>
-      <find>beforeUpload</find>
-      <find>image</find>
-      <find>getImgComp</find>
-      <find>getFileComp</find>
-      <find>handleChange</find>
-      <find>1024</find>
-      <find>uploadImgMaxSize</find>
-      <find>customConfig</find>
-      <find>cUpload</find>
-      <find>buildDetail</find>
-      <find>options</find>
-      <find>type === 'img'</find>
-      <find>img</find>
-      <find>getItemByType</find>
-      <find>getRules</find>
-      <find>single</find>
-      <find>this.ctx</find>
-      <find>handlePreview</find>
-      <find>setUploadFileUrl</find>
-      <find>normFile</find>
-      <find>getValueFromEvent</find>
-      <find>getUploadProps</find>
-      <find>getUploadBtn</find>
-      <find>idPic</find>
-      <find>CUpload</find>
       <find>imgUploadBtn</find>
+      <find>getRoleMenuBtnList</find>
+      <find>video</find>
+      <find>ownerModel</find>
+      <find>entryTime</find>
+      <find>exitTime</find>
+      <find>contractorCorpCode</find>
+      <find>mediaStreamTrack</find>
+      <find>initPwd</find>
+      <find>onChange</find>
+      <find>img</find>
+      <find>getImgComp</find>
+      <find>getUploadBtn</find>
+      <find>/system/dataDict</find>
+      <find>width: 520px;</find>
       <find>spanElement</find>
+      <find>getFileComp</find>
+      <find>imgUrl</find>
+      <find>buildDetail</find>
+      <find>员工编号</find>
+      <find>pageCode</find>
+      <find>getModalProps</find>
+      <find>getMenuBtnList</find>
+      <find>/staff/allStaff</find>
+      <find>previewImage</find>
+      <find>handlePreview</find>
+      <find>下载</find>
+      <find>PIC_BASEURL_L</find>
+      <find>setTopCode</find>
+      <find>handleTopMenuClick</find>
     </findStrings>
     <replaceStrings>
       <replace>: action.payload, isLoaded: true};</replace>
@@ -207,57 +223,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/common/js/config.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages-add.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/util.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/step2.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/inout/inout-import.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-import.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages-import.js" />
-        <option value="$PROJECT_DIR$/src/common/js/util.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/basic/basic.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/company/info/info.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/class/class-import.js" />
         <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence-create.js" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/src/container/biz/company/info/info-addedit.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages-addedit.js" />
         <option value="$PROJECT_DIR$/src/container/newId/supervise-addedit/supervise-addedit.js" />
         <option value="$PROJECT_DIR$/src/container/newId/yezhu-addedit/yezhu-addedit.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" />
         <option value="$PROJECT_DIR$/src/container/newId/bank-addedit/bank-addedit.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js" />
-        <option value="$PROJECT_DIR$/src/component/dashboard/dashboard.js" />
-        <option value="$PROJECT_DIR$/src/route.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang-step3.js" />
-        <option value="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" />
         <option value="$PROJECT_DIR$/../../../code/mac 笔记/tm.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/bank/bank.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/bank/bank-addedit.js" />
         <option value="$PROJECT_DIR$/src/common/js/lib/listComp.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/basic/basic-config.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js" />
         <option value="$PROJECT_DIR$/src/common/js/fetch.js" />
         <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating-detail.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating-addedit.js" />
         <option value="$PROJECT_DIR$/src/container/biz/project/class/class-addedit.js" />
-        <option value="$PROJECT_DIR$/src/common/js/lib/detailComp.js" />
-        <option value="$PROJECT_DIR$/src/common/js/lib/DetailCompDev.js" />
-        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" />
-        <option value="$PROJECT_DIR$/src/component/cUpload/cUpload.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/member/member-addedit.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/member/member-import.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/member/member.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/class/class.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/inout/inout.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence.js" />
-        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages.js" />
         <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence-addedit.js" />
+        <option value="$PROJECT_DIR$/src/common/js/lib/DetailCompDev.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/inout/inout-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/login/login.js" />
+        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang-step3.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/member/member-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/security/sysParam/sysParam.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/bank/bank-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang.js" />
+        <option value="$PROJECT_DIR$/src/common/js/build-modal-detail-dev.js" />
+        <option value="$PROJECT_DIR$/src/component/cO2M/cO2M.js" />
+        <option value="$PROJECT_DIR$/src/container/security/role-menu/role-menu.js" />
+        <option value="$PROJECT_DIR$/src/container/security/menu/menu.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/class/class-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/member/member.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/member/member-import.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/inout/inout.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/class/class.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/attence/attence.js" />
+        <option value="$PROJECT_DIR$/src/index.css" />
+        <option value="$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js" />
+        <option value="$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js" />
+        <option value="$PROJECT_DIR$/src/route.js" />
+        <option value="$PROJECT_DIR$/src/container/staff/allStaff/acquisitionFaces.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/basic/basic-config.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/participating/participating-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js" />
+        <option value="$PROJECT_DIR$/src/common/js/lib/detailComp.js" />
+        <option value="$PROJECT_DIR$/src/common/js/config.js" />
+        <option value="$PROJECT_DIR$/src/component/cUpload/cUpload.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/bank/bank.js" />
+        <option value="$PROJECT_DIR$/src/component/dashboard/dashboard.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages-addedit.js" />
+        <option value="$PROJECT_DIR$/src/container/biz/project/wages/wages-add.js" />
       </list>
     </option>
   </component>
@@ -358,7 +374,7 @@
               <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="component" type="462c0819:PsiDirectoryNode" />
-              <item name="cUpload" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
@@ -513,6 +529,60 @@
               <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="dict" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="menu-addedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="role-menu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="sysParam" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="xn-gchf-oss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="xn-gchf-oss" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="container" type="462c0819:PsiDirectoryNode" />
               <item name="staff" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -561,15 +631,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/img" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/container/staff/allStaff" />
       <recent name="$PROJECT_DIR$/src/container/biz/project/participating" />
       <recent name="$PROJECT_DIR$/public/download" />
       <recent name="C:\Users\xky\Desktop\gchf\src\redux\projectmanagement" />
       <recent name="C:\Users\xky\Desktop\gchf\src\container\projectmanagement\projectparticipants" />
-      <recent name="C:\Users\xky\Desktop\gchf\src\common\js\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -615,12 +685,14 @@
       <workItem from="1555381424058" duration="14305000" />
       <workItem from="1555912446607" duration="61070000" />
       <workItem from="1556246111568" duration="2356000" />
-      <workItem from="1556416233861" duration="21636000" />
+      <workItem from="1556416233861" duration="28354000" />
+      <workItem from="1556863863563" duration="11220000" />
+      <workItem from="1557020396195" duration="10707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="262805000" />
+    <option name="totallyTimeSpent" value="291450000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
@@ -631,13 +703,13 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info id="npm" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3283582" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -666,88 +738,119 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/container/security/dict-addedit/dict-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-755" />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/company/info/info-addedit.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/help-addedit/help-addedit.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1081" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/menu-addedit/menu-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1294" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/role-addedit/role-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-566" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/sysParam-addedit/sysParam-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-316" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/user-addedit/user-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1335" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/user-changeMobile/user-changeMobile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-454" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/security/user-resetPwd/user-resetPwd.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-461" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2958">
-          <caret line="139" column="5" lean-forward="true" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
+        <state relative-caret-position="1656">
+          <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/newId/bank-addedit/bank-addedit.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence-create.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="81" column="7" lean-forward="true" selection-start-line="66" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
+        <state relative-caret-position="4139">
+          <caret line="183" column="44" selection-start-line="183" selection-start-column="44" selection-end-line="183" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-256">
-          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        <state relative-caret-position="575">
+          <caret line="28" column="19" lean-forward="true" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
+    <entry file="file://$PROJECT_DIR$/src/container/login/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2162">
-          <caret line="117" column="63" lean-forward="true" selection-start-line="117" selection-start-column="63" selection-end-line="117" selection-end-column="63" />
+        <state relative-caret-position="470">
+          <caret line="57" column="4" lean-forward="true" selection-start-line="55" selection-start-column="2" selection-end-line="57" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang-step3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="57" column="47" selection-start-line="57" selection-start-column="47" selection-end-line="57" selection-end-column="47" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/route.js">
+    <entry file="file://$PROJECT_DIR$/src/container/security/dict/dict.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3956">
-          <caret line="172" column="100" selection-start-line="172" selection-start-column="100" selection-end-line="172" selection-end-column="100" />
+        <state relative-caret-position="467">
+          <caret line="48" column="119" lean-forward="true" selection-start-line="48" selection-start-column="105" selection-end-line="48" selection-end-column="119" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang-step3.js">
+    <entry file="file://$PROJECT_DIR$/src/container/security/sysParam/sysParam.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1104">
-          <caret line="61" column="7" lean-forward="true" selection-start-line="58" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+        <state relative-caret-position="316">
+          <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/bank/bank-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2101">
+          <caret line="92" column="127" selection-start-line="92" selection-start-column="127" selection-end-line="92" selection-end-column="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="120" column="26" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/build-modal-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-413">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/build-detail-dev.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="27" column="14" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/lib/DetailCompDev.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="449" column="33" lean-forward="true" selection-start-line="449" selection-start-column="33" selection-end-line="449" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/build-modal-detail-dev.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="63" column="33" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/cO2M/cO2M.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="460" column="35" selection-start-line="460" selection-start-column="35" selection-end-line="460" selection-end-column="35" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -756,308 +859,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/security/role-menu/role-menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3404">
-          <caret line="165" column="5" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="n#!!block;n#findCheckItem#0;n#RoleMenu#0" />
-          </folding>
+        <state relative-caret-position="389">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../code/mac 笔记/tm.js">
+    <entry file="file://$PROJECT_DIR$/src/container/security/menu/menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
-          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        <state relative-caret-position="310">
+          <caret line="40" column="18" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/bank/bank-addedit.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence-import.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2399">
-          <caret line="115" column="26" lean-forward="true" selection-start-line="115" selection-start-column="26" selection-end-line="115" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="235">
+          <caret line="120" column="26" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/bank/bank.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class-import.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="137" column="22" selection-start-line="137" selection-start-column="14" selection-end-line="137" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="384">
+          <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/lib/listComp.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout-import.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="200" column="55" selection-start-line="200" selection-start-column="55" selection-end-line="200" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2011" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member-import.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="210" column="32" selection-start-line="210" selection-start-column="32" selection-end-line="210" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic-config.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-import.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-382">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="168" column="13" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/fetch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="381">
+          <caret line="111" column="30" lean-forward="true" selection-start-line="111" selection-start-column="30" selection-end-line="111" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating-import.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="95" column="33" lean-forward="true" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="33" />
+        <state relative-caret-position="2415">
+          <caret line="109" column="31" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence-create.js">
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-import.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1049">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1535">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2424">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating-detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1585">
-          <caret line="77" column="14" lean-forward="true" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-626">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-265">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/dict.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="57" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="124" column="11" lean-forward="true" selection-start-line="124" selection-start-column="11" selection-end-line="124" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/company/info/info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2566">
-          <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="34" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-545">
-          <caret line="326" column="21" selection-start-line="326" selection-start-column="13" selection-end-line="326" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="361" column="26" lean-forward="true" selection-start-line="361" selection-start-column="26" selection-end-line="361" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/lib/detailComp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26488">
-          <caret line="2" column="58" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/js/lib/DetailCompDev.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="447" column="24" lean-forward="true" selection-start-line="447" selection-start-column="24" selection-end-line="448" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/cUpload/cUpload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="150" column="4" lean-forward="true" selection-start-line="134" selection-start-column="2" selection-end-line="150" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="41" column="28" selection-end-line="430" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#12031#12428#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class-addedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="183" column="44" selection-start-line="183" selection-start-column="44" selection-end-line="183" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member-import.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="210" column="13" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="173" column="15" selection-start-line="158" selection-start-column="12" selection-end-line="173" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="172" column="15" selection-start-line="157" selection-start-column="12" selection-end-line="172" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="17" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="178" column="15" selection-start-line="163" selection-start-column="12" selection-end-line="178" selection-end-column="15" />
+        <state>
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -1066,8 +925,153 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
+        <state relative-caret-position="3358">
+          <caret line="162" column="25" selection-start-line="162" selection-start-column="25" selection-end-line="162" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3473">
+          <caret line="166" column="29" selection-start-line="166" selection-start-column="10" selection-end-line="166" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/memcontract/memcontract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3335">
+          <caret line="160" column="25" selection-start-line="160" selection-start-column="25" selection-end-line="160" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3473">
+          <caret line="166" column="25" selection-start-line="166" selection-start-column="25" selection-end-line="166" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/inout/inout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3036">
+          <caret line="147" column="25" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/class/class.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3473">
+          <caret line="166" column="25" selection-start-line="166" selection-start-column="25" selection-end-line="166" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="175" column="26" lean-forward="true" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="296" column="1" selection-start-line="296" selection-start-column="1" selection-end-line="296" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff/allStaff.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="84" column="67" lean-forward="true" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="105" column="88" lean-forward="true" selection-start-line="105" selection-start-column="88" selection-end-line="105" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/archives/jiandang-step2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="469" column="7" selection-start-line="463" selection-start-column="7" selection-end-line="469" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff-addedit/allStaff-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic-config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/staff/allStaff/acquisitionFaces.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="130" column="9" lean-forward="true" selection-start-line="130" selection-start-column="9" selection-end-line="130" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+            <element signature="e#389#930#0" />
+            <element signature="e#1797#2279#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/participating/participating-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -1076,18 +1080,92 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/biz/project/member/member-addedit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1196">
-          <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="113" selection-end-column="20" />
+        <state relative-caret-position="380">
+          <caret line="112" column="16" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="16" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/container/biz/project/attence/attence-addedit.js">
+    <entry file="file://$PROJECT_DIR$/src/common/js/lib/detailComp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="80" selection-end-column="20" />
+        <state relative-caret-position="209">
+          <caret line="754" column="43" selection-start-line="754" selection-start-column="41" selection-end-line="754" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="7" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/cUpload/cUpload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="222" column="100" selection-start-line="222" selection-start-column="100" selection-end-line="222" selection-end-column="100" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="21" column="63" selection-start-line="21" selection-start-column="63" selection-end-line="21" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/basic/basic-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="203" column="13" selection-start-line="188" selection-start-column="12" selection-end-line="203" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/bank/bank.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="60" column="7" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/dashboard/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="126" column="43" selection-start-line="116" selection-start-column="10" selection-end-line="126" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-addedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="59" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/container/biz/project/wages/wages-add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

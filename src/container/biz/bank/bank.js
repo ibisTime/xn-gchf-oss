@@ -59,18 +59,6 @@ class Bank extends React.Component {
         this.upDownRecord(keys, items);
       }
     }, {
-      code: 'detail',
-      name: '详情',
-      handler: (keys, items) => {
-        if (!keys.length) {
-          showWarnMsg('请选择记录');
-        } else if (keys.length > 1) {
-          showWarnMsg('请选择一条记录');
-        } else {
-          this.props.history.push(`${this.props.location.pathname}/addedit?bcode=${this.code}&v=1&code=${keys[0]}&type=${this.type}`);
-        }
-      }
-    }, {
       code: 'back',
       name: '返回',
       handler: () => this.props.history.go(-1)
@@ -163,6 +151,7 @@ class Bank extends React.Component {
         params.userId = getUserId();
         if (this.code) {
           params.businessSysNo = this.code;
+          params.businessType = '001';
         } else {
           params.businessType = '002';
         }

@@ -71,7 +71,18 @@ class AllStaff extends React.Component {
         } else if (selectedRowKeys.length > 1) {
           showWarnMsg('请选择一条记录');
         } else {
+          sessionStorage.setItem('isStaff', 'true');
           this.props.history.push(`/staff/jiandang?code=${selectedRowKeys[0]}`);
+        }
+      },
+      // 采集人脸
+      face: (selectedRowKeys, selectedRows) => {
+        if (!selectedRowKeys.length) {
+          showWarnMsg('请选择记录');
+        } else if (selectedRowKeys.length > 1) {
+          showWarnMsg('请选择一条记录');
+        } else {
+          this.props.history.push(`/staff/allStaff/acquisitionFaces?code=${selectedRowKeys[0]}`);
         }
       }
     };

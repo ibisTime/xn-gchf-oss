@@ -26,7 +26,7 @@ class ProjectInoutAddEdit extends DetailUtil {
     }, {
       title: '进退场日期',
       field: 'date',
-      type: 'datetime',
+      type: 'date',
       required: true
     }, {
       title: '类型',

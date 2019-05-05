@@ -18,10 +18,6 @@ class ProjectBasicAddEdit extends DetailUtil {
       title: '项目名称',
       required: true
     }, {
-      field: 'contractorCorpCode',
-      title: '总承包单位统一社会信用代码',
-      required: true
-    }, {
       field: 'category',
       title: '项目分类',
       key: 'category',
@@ -51,6 +47,9 @@ class ProjectBasicAddEdit extends DetailUtil {
       title: '项目简介',
       type: 'textarea',
       normalArea: true
+    }, {
+      field: 'contractorCorpCode',
+      title: '总承包单位统一社会信用代码'
     }, {
       field: 'buildCorpCode',
       title: '建设单位统一社会信用代码'
@@ -104,14 +103,21 @@ class ProjectBasicAddEdit extends DetailUtil {
       field: 'address',
       title: '项目地址'
     }, {
-      field: 'province',
-      title: '省'
-    }, {
-      field: 'city',
-      title: '市'
-    }, {
-      field: 'area',
-      title: '区/县'
+      title: '省市区',
+      field: 'companyAddress',
+      _keys: ['company', 'address'],
+      type: 'citySelect',
+      formatter(v, d) {
+        if(d.province && d.city && d.area) {
+          return [d.province, d.city, d.area];
+        } else if(d.province && d.city && !d.area) {
+          return [d.province, d.city];
+        } else if(d.province && !d.city && !d.area) {
+          return [d.province];
+        }else {
+          return [];
+        }
+      }
     }, {
       field: 'approvalNum',
       title: '立项文号'
@@ -180,6 +186,22 @@ class ProjectBasicAddEdit extends DetailUtil {
           if(this.isSend) {
             this.isSend = false;
             const hasMsg = message.loading('', 10);
+            if(params.companyAddress) {
+              let companyAddress = params.companyAddress;
+              switch(companyAddress.length) {
+                case 0: break;
+                case 1: params.province = companyAddress[0]; break;
+                case 2:
+                  params.province = companyAddress[0];
+                  params.city = companyAddress[1];
+                  break;
+                case 3:
+                  params.province = companyAddress[0];
+                  params.city = companyAddress[1];
+                  params.area = companyAddress[2];
+                  break;
+              }
+            }
             if(this.code) {
               fetch(631602, params).then(() => {
                 hasMsg();

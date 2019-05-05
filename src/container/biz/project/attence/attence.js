@@ -67,6 +67,10 @@ class ProjectAttence extends React.Component {
       type: 'select',
       key: 'direction'
     }, {
+      title: '所在企业',
+      field: 'corpName',
+      search: true
+    }, {
       title: '对应项目',
       field: 'projectCode',
       type: 'select',
@@ -84,10 +88,6 @@ class ProjectAttence extends React.Component {
     }, {
       title: '对应项目',
       field: 'projectName'
-    }, {
-      title: '所在企业',
-      field: 'corpName',
-      search: true
     }, {
       title: '所在班组',
       field: 'teamSysNo',
@@ -158,6 +158,7 @@ class ProjectAttence extends React.Component {
         },
         // 批量删除
         delete: (keys) => {
+          const _this = this;
           if (!keys.length) {
             showWarnMsg('请选择记录');
           } else {
@@ -168,8 +169,8 @@ class ProjectAttence extends React.Component {
                 fetch('631711', { codeList: keys, userId: getUserId() }).then(() => {
                   showSucMsg('操作成功');
                   setTimeout(() => {
-                    this.props.getPageData();
-                  }, 1.5);
+                    _this.props.getPageData();
+                  }, 1000);
                 });
               },
               onCancel() {

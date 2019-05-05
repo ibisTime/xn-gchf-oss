@@ -9,6 +9,11 @@ class ProjectWagesAddEdit extends DetailUtil {
     super(props);
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
+    this.state = {
+      ...this.state,
+      isBackPay: false,
+      index: 0
+    };
   }
   render() {
     const fields = [{
@@ -25,28 +30,28 @@ class ProjectWagesAddEdit extends DetailUtil {
       type: 'date',
       required: true
     }, {
-      title: '工人工资卡号',
-      field: 'payRollBankCardNumber',
-      required: true
-    }, {
       title: '工人工资卡银行',
       field: 'payRollBankCode',
       type: 'select',
       key: 'bank_code',
       required: true
     }, {
-      title: '工人工资卡开户行名称',
-      field: 'payRollBankName',
+      title: '工人工资卡号',
+      field: 'payRollBankCardNumber',
       required: true
     }, {
-      title: '工资代发银行卡号',
-      field: 'payBankCardNumber',
+      title: '工人工资卡开户行名称',
+      field: 'payRollBankName',
       required: true
     }, {
       title: '工资代发银行',
       field: 'payBankCode',
       type: 'select',
       key: 'bank_code',
+      required: true
+    }, {
+      title: '工资代发银行卡号',
+      field: 'payBankCardNumber',
       required: true
     }, {
       title: '工资代发开户行名称',
@@ -56,7 +61,23 @@ class ProjectWagesAddEdit extends DetailUtil {
       title: '是否为补发',
       field: 'isBackPay',
       type: 'select',
-      key: 'is_not'
+      key: 'is_not',
+      required: true,
+      onChange: (v) => {
+        this.setState({ isBackPay: v === '1' });
+      },
+      formatter: (v) => {
+        if(v && this.state.index < 2) {
+          this.setState({ isBackPay: +v === 1, index: this.state.index + 1 });
+        }
+        return v;
+      }
+    }, {
+      title: '补发月份',
+      field: 'backPayMonth',
+      type: 'month',
+      required: this.state.isBackPay,
+      hidden: !this.state.isBackPay
     }, {
       title: '出勤天数',
       field: 'days'

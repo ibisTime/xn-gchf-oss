@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Upload, Carousel, Modal, Button, Icon, Form } from 'antd';
 import { showErrMsg, formatFile, formatImg, noop, getRealValue, isUndefined } from 'common/js/util';
-import { UPLOAD_URL, PIC_PREFIX, PIC_BASEURL_L, formItemLayout } from 'common/js/config';
+import { UPLOAD_URL, PIC_PREFIX, PIC_BASEURL_L, PIC_BASEURL_D, formItemLayout } from 'common/js/config';
 
 const FormItem = Form.Item;
 const fileUploadBtn = <Button><Icon type="upload"/> 上传</Button>;
@@ -181,7 +181,7 @@ export default class CUpload extends React.Component {
       let msg = file.status === 'uploading' ? '文件还未上传完成' : '文件上传失败';
       showErrMsg(msg);
     }
-  }
+  };
   render() {
     const { field, isLoaded, getFieldDecorator, token, rules, readonly, single,
       isImg, onChange, accept, getFieldValue, label, hidden, initVal, inline } = this.props;
@@ -220,7 +220,7 @@ export default class CUpload extends React.Component {
                 this.imgUrl = PIC_PREFIX + url + '?attname=' + url + '.jpg';
               }}>{
                 previewId && getFieldValue(previewId).split('||').map(v => {
-                  let url = PIC_PREFIX + v + PIC_BASEURL_L;
+                  let url = v.includes('http') ? v + PIC_BASEURL_L : PIC_PREFIX + v + PIC_BASEURL_L;
                   return (<div className='img-wrap' key={v}><img alt="图片" style={{width: '100%'}} src={url}/></div>);
                 })
               }</Carousel>
@@ -228,7 +228,13 @@ export default class CUpload extends React.Component {
             <div className="down-wrap">
               <Button icon="left" onClick={() => this.carousel.prev()}></Button>
               <Button style={{marginLeft: 20}} icon="right" onClick={() => this.carousel.next()}></Button>
-              <Button style={{marginLeft: 20}} onClick={() => { location.href = this.imgUrl; }} icon="download">下载</Button>
+              <Button style={{marginLeft: 20}} onClick={() => {
+                let url = '';
+                previewId && getFieldValue(previewId).split('||').map(v => {
+                  url = url = v.includes('http') ? v + '?attname=' + v + '.jpg' : PIC_PREFIX + v + '?attname=' + v + '.jpg';
+                });
+                location.href = url;
+              }} icon="download">下载</Button>
             </div>
           </Modal>
         </FormItem>

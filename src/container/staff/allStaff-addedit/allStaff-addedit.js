@@ -102,6 +102,12 @@ class AllStaffAddEdit extends React.Component {
       single: true,
       required: true
     }, {
+      title: '考勤人脸照(小于500KB)',
+      field: 'attendancePicture',
+      type: 'img',
+      single: true,
+      required: true
+    }, {
       field: 'cellPhone',
       title: '手机号码',
       mobile: true,

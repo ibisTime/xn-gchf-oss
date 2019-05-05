@@ -11,7 +11,8 @@ class ProjectWagesAdd extends DetailUtil {
       ...this.state,
       projectCode: '',
       corpCode: '',
-      isBackPay: false
+      isBackPay: false,
+      teamSysNo: ''
     };
   }
   render() {
@@ -62,7 +63,12 @@ class ProjectWagesAdd extends DetailUtil {
         userId: getUserId()
       },
       hidden: !this.state.corpCode,
-      required: true
+      required: true,
+      onChange(v) {
+        _this.setState({
+          teamSysNo: v
+        });
+      }
     }, {
       title: '发放工资的年月',
       field: 'payMonth',
@@ -79,31 +85,45 @@ class ProjectWagesAdd extends DetailUtil {
         detail: true,
         delete: true,
         fields: [{
-          title: '证件类型',
-          field: 'idCardType',
+          title: '员工编号',
+          field: 'workerCode',
           type: 'select',
-          key: 'legal_manid_card_type',
+          pageCode: 631605,
+          keyName: 'code',
+          searchName: 'workerName',
+          valueName: '{{projectName.DATA}}-{{teamName.DATA}}-{{workerName.DATA}}-{{idcardNumber.DATA}}',
+          params: {
+            projectCode: this.state.projectCode,
+            teamSysNo: _this.state.teamSysNo,
+            userId: getUserId()
+          },
+          required: true,
+          onChange(v) {
+            _this.setState({
+              workerCode: v
+            });
+          },
+          render(v) {
+            return v;
+          }
+        }, {
+          title: '发放工资银行',
+          field: 'payRollBankCode',
+          key: 'bank_code',
+          type: 'select',
           required: true
-        }, {
-          title: '证件号',
-          field: 'idCardNumber',
-          required: true
-        }, {
-          title: '出勤天数',
-          field: 'days',
-          natural: true
-        }, {
-          title: '总工时',
-          field: 'workHours',
-          number: true
         }, {
           title: '发放工资银行卡号',
           field: 'payRollBankCardNumber',
           bankCard: true,
           required: true
         }, {
-          title: '发放工资银行',
-          field: 'payRollBankCode',
+          title: '工人工资卡开户行名称',
+          field: 'payRollBankName',
+          required: true
+        }, {
+          title: '工资代发银行',
+          field: 'payBankCode',
           key: 'bank_code',
           type: 'select',
           required: true
@@ -113,10 +133,8 @@ class ProjectWagesAdd extends DetailUtil {
           bankCard: true,
           required: true
         }, {
-          title: '工资代发银行',
-          field: 'payBankCode',
-          key: 'bank_code',
-          type: 'select',
+          title: '工资代发开户行名称',
+          field: 'payBankName',
           required: true
         }, {
           title: '应发金额',
@@ -145,7 +163,22 @@ class ProjectWagesAdd extends DetailUtil {
           field: 'backPayMonth',
           type: 'month',
           required: this.state.isBackPay,
-          hidden: !this.state.isBackPay
+          hidden: !this.state.isBackPay,
+          render(v) {
+            if(!_this.state.isBackPay) {
+              return '';
+            }else {
+              return v;
+            }
+          }
+        }, {
+          title: '出勤天数',
+          field: 'days',
+          natural: true
+        }, {
+          title: '总工时',
+          field: 'workHours',
+          number: true
         }, {
           title: '第三方工资单编号',
           field: 'thirdPayRollCode'

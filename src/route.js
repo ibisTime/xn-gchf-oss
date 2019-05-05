@@ -102,6 +102,10 @@ const ROUTES = [
     component: asyncComponent(() => import('container/biz/bank/bank-addedit'))
   },
   {
+    path: '/staff/allStaff/acquisitionFaces',
+    component: asyncComponent(() => import('container/staff/allStaff/acquisitionFaces'))
+  },
+  {
     path: '/staff/allStaff/addedit',
     component: asyncComponent(() => import('container/staff/allStaff-addedit/allStaff-addedit'))
   },

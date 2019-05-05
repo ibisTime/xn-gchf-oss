@@ -153,6 +153,7 @@ class ProjectMember extends React.Component {
         },
         // 批量删除
         delete: (keys) => {
+          const _this = this;
           if (!keys.length) {
             showWarnMsg('请选择记录');
           } else {
@@ -163,7 +164,7 @@ class ProjectMember extends React.Component {
                 fetch('631691', { codeList: keys, userId: getUserId() }).then(() => {
                   showSucMsg('操作成功');
                   setTimeout(() => {
-                    this.props.getPageData();
+                    _this.props.getPageData();
                   }, 1.5);
                 });
               },

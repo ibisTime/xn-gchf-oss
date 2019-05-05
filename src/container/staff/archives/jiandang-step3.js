@@ -55,7 +55,12 @@ class JiandangStep3 extends React.Component {
         params.userId = getUserId();
       },
       onOk: () => {
-        this.props.history.push('/staff/jiandang');
+        if(sessionStorage.getItem('isStaff')) {
+          sessionStorage.removeItem('isStaff');
+          this.props.history.push('/staff/allStaff');
+        }else {
+          this.props.history.push('/staff/jiandang');
+        }
       },
       onCancel: () => {
         this.props.history.push(`/staff/jiandang/step2?code=${this.code}`);

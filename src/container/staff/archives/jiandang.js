@@ -118,6 +118,7 @@ class Jiandang extends React.Component {
         isShowJoinedTime: true
       });
     }
+    this.code = data.code;
     this.props.form.setFieldsValue({
       realName: data.name,
       sex: data.gender + '',

@@ -108,7 +108,7 @@ class ProjectMemberAddEdit extends DetailUtil {
       field: 'issueCardDate',
       type: 'datetime'
     }, {
-      title: '制卡采集照片',
+      title: '制卡采集照片(小于50KB)',
       field: 'issueCardPicUrl',
       type: 'img',
       imgSize: 51200
@@ -127,7 +127,7 @@ class ProjectMemberAddEdit extends DetailUtil {
       title: '工资卡银行联号',
       field: 'bankLinkNumber'
     }, {
-      title: '工资卡银行代码',
+      title: '工资卡银行',
       field: 'payRollTopBankCode',
       key: 'bank_code',
       type: 'select'

@@ -146,6 +146,7 @@ class ProjectMemContract extends React.Component {
         },
         // 批量删除
         delete: (keys) => {
+          const _this = this;
           if (!keys.length) {
             showWarnMsg('请选择记录');
           } else {
@@ -156,8 +157,8 @@ class ProjectMemContract extends React.Component {
                 fetch('631671', { codeList: keys, userId: getUserId() }).then(() => {
                   showSucMsg('操作成功');
                   setTimeout(() => {
-                    this.props.getPageData();
-                  }, 1.5);
+                    _this.props.getPageData();
+                  }, 1000);
                 });
               },
               onCancel() {

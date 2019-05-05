@@ -21,12 +21,14 @@ class RoleMenu extends React.Component {
     };
     this.code = getQueryString('code');
     this.name = getQueryString('name');
+    this.type = getQueryString('type');
   }
   componentDidMount() {
     Promise.all([
       getMenuBtnList(this.type),
       getRoleMenuBtnList(this.code, this.type)
     ]).then(([allData, checkData]) => {
+      console.log(allData);
       this.getTree(allData);
       let checkedKeys = checkData.map(v => v.code);
       this.setState({
