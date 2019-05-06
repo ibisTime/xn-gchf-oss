@@ -113,7 +113,7 @@ class Dashboard extends React.Component {
         'header': true,
         'home-header': this.state.home
       }}>
-        <Link to='/' className="logo" onClick={() => {
+        <Link to='/system/menu' className="logo" onClick={() => {
           let menuCode = Object.values(this.props.menus);
           let pCode = menuCode[0]['code'];
           let cCode = '';

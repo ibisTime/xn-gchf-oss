@@ -182,6 +182,22 @@ export default class CUpload extends React.Component {
       showErrMsg(msg);
     }
   };
+  getBase64Image = (img) => {
+      let canvas = document.createElement('canvas');
+      canvas.width = 500;
+      canvas.height = 500;
+      let ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, 500, 500);
+      let dataURL = canvas.toDataURL('image/png');
+      return dataURL;
+  };
+  downloadFile = (fileName, content) => {
+    let aLink = document.createElement('a');
+    let evt = new MouseEvent('click');
+    aLink.download = fileName;
+    aLink.href = content;
+    aLink.dispatchEvent(evt);
+  };
   render() {
     const { field, isLoaded, getFieldDecorator, token, rules, readonly, single,
       isImg, onChange, accept, getFieldValue, label, hidden, initVal, inline } = this.props;
@@ -230,10 +246,23 @@ export default class CUpload extends React.Component {
               <Button style={{marginLeft: 20}} icon="right" onClick={() => this.carousel.next()}></Button>
               <Button style={{marginLeft: 20}} onClick={() => {
                 let url = '';
+                let isHttp = false;
                 previewId && getFieldValue(previewId).split('||').map(v => {
-                  url = url = v.includes('http') ? v + '?attname=' + v + '.jpg' : PIC_PREFIX + v + '?attname=' + v + '.jpg';
+                  isHttp = v.includes('http');
+                  url = url = v.includes('http') ? v : PIC_PREFIX + v + '?attname=' + v + '.jpg';
                 });
-                location.href = url;
+                if(isHttp) {
+                  let img = new Image(500, 500);
+                  let basePic = '';
+                  img.setAttribute('crossOrigin', 'Anonymous');
+                  img.onload = () => {
+                    basePic = this.getBase64Image(img);
+                    this.downloadFile('downLoad', basePic);
+                  };
+                  img.src = url;
+                }else {
+                  location.href = url;
+                }
               }} icon="download">下载</Button>
             </div>
           </Modal>

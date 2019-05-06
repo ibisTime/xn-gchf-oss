@@ -150,6 +150,14 @@ const ROUTES = [
     component: asyncComponent(() => import('container/newId/yezhu/yezhu'))
   },
   {
+    path: '/newId/qudao',
+    component: asyncComponent(() => import('container/newId/qudao/qudao'))
+  },
+  {
+    path: '/newId/yezhu/reset',
+    component: asyncComponent(() => import('container/newId/yezhu/yezhu-reset'))
+  },
+  {
     path: '/newId/yezhu/addedit',
     component: asyncComponent(() => import('container/newId/yezhu-addedit/yezhu-addedit'))
   },
@@ -296,6 +304,16 @@ const ROUTES = [
     path: '/project/basic',
     component: asyncComponent(() => import('container/biz/project/basic/basic'))
   },
+  // 业务管理 -- 项目管理-- 项目配置
+  {
+    path: '/project/p_config',
+    component: asyncComponent(() => import('container/biz/project/project_config/p_config'))
+  },
+  // 业务管理 -- 项目管理-- 项目配置 --详情
+  {
+    path: '/project/p_config/addedit',
+    component: asyncComponent(() => import('container/biz/project/project_config/p_config-addedit'))
+  },
   // 业务管理 -- 项目管理-- 项目基本信息-- 详情
   {
     path: '/project/basic/addedit',
@@ -304,7 +322,7 @@ const ROUTES = [
   // 业务管理 -- 项目管理-- 项目基本信息-- 项目配置
   {
     path: '/project/basic/config',
-    component: asyncComponent(() => import('container/biz/project/basic/basic-config'))
+    component: asyncComponent(() => import('container/biz/project/project_config/basic-config'))
   },
   // 业务管理 -- 企业库-- 企业基本信息
   {

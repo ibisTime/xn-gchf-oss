@@ -9,20 +9,20 @@ import {
   doFetching,
   cancelFetching,
   setSearchData
-} from '@redux/newId/yezhu';
+} from '@redux/newId/qudao';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, showSucMsg } from 'common/js/util';
 import {getUserId} from '../../../common/js/util';
 
 @listWrapper(
   state => ({
-    ...state.newIdYezhu,
+    ...state.newIdQudao,
     parentCode: state.menu.subMenuCode
   }),
   { setTableData, clearSearchParam, doFetching, setBtnList,
     cancelFetching, setPagination, setSearchParam, setSearchData }
 )
-class Yezhu extends React.Component {
+class QuDao extends React.Component {
   constructor(props) {
     super(props);
     this.state = { userId: '' };
@@ -48,15 +48,15 @@ class Yezhu extends React.Component {
       key: 'user_status'
     },
       {
-      title: '备注',
-      field: 'remark'
-    }, {
-      title: '关键字',
-      field: 'keyword',
-      placeholder: '登录名/手机号',
-      search: true,
-      hidden: true
-    }];
+        title: '备注',
+        field: 'remark'
+      }, {
+        title: '关键字',
+        field: 'keyword',
+        placeholder: '登录名/手机号',
+        search: true,
+        hidden: true
+      }];
     return this.state.userId ? this.props.buildList({
       fields,
       searchParams: {
@@ -80,4 +80,4 @@ class Yezhu extends React.Component {
   }
 }
 
-export default Yezhu;
+export default QuDao;

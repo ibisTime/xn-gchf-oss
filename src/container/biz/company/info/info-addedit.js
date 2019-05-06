@@ -18,7 +18,8 @@ class CompanyInfoAddEdit extends DetailUtil {
     }, {
       title: '统一社会信用代码',
       field: 'corpCode',
-      required: true
+      required: true,
+      maxlength: 32
     }, {
       title: '注册地区编码',
       field: 'areaCode',

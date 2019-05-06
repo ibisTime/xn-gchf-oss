@@ -46,6 +46,8 @@ import { projectMemContract } from './redux/biz/project/memcontract';
 import { projectAttence } from './redux/biz/project/attence';
 import { projectWages } from './redux/biz/project/wages';
 import { projectBasic } from './redux/biz/project/basic';
+import { newIdQudao } from './redux/newId/qudao';
+import { projectConfig } from './redux/biz/project/p_config';
 import { companyInfo } from './redux/biz/company/info';
 
 export default combineReducers({
@@ -95,5 +97,7 @@ export default combineReducers({
   projectAttence,
   projectWages,
   projectBasic,
-  companyInfo
+  projectConfig,
+  companyInfo,
+  newIdQudao
 });
