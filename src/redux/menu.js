@@ -174,8 +174,8 @@ function sortSubMenus(result) {
 
 function getSubCode(code, state) {
   return {
-    subOpenCode: [state.top2SubObj[code][0].code],
-    subMenuCode: state.top2SubObj[code][0].children ? state.top2SubObj[code][0].children[0].code : state.top2SubObj[code][0].code,
+    subOpenCode: state.top2SubObj[code][0] && [state.top2SubObj[code][0].code],
+    subMenuCode: state.top2SubObj[code][0] && state.top2SubObj[code][0].children ? state.top2SubObj[code][0].children[0].code : state.top2SubObj[code][0].code,
     subMenuList: state.top2SubObj[code]
   };
 }

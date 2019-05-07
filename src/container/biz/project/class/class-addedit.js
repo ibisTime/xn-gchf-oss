@@ -33,11 +33,11 @@ class ProjectClassAddEdit extends DetailUtil {
       },
       required: true,
       readonly: !!this.code,
-      formatter: (v) => {
+      formatter: (v, d) => {
         if(!this.project) {
           this.project = v;
         }
-        return v;
+        return d.projectName;
       }
     }, {
       title: '所在企业',

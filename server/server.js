@@ -20,7 +20,7 @@ app.use('/api', function (req, res) {
   var url = 'http://47.98.248.153:2601/forward-service/api';
   // var url = 'http://47.98.248.153:2701/forward-service/api';
   // var url = 'http://47.98.248.153:2501/forward-service/api';
-  // var url = 'http://47.98.248.153:2501/forward-service/api';
+  // var url = 'http://47.98.248.153:2801/forward-service/api';  // 线上
   var _body = req.body;
   var param = 'code=' + _body.code + '&json=' + encodeURIComponent(_body.json);
   axios.post(url, param).then((response) => {
