@@ -22,7 +22,14 @@ class ProjectInoutAddEdit extends DetailUtil {
       params: {
         userId: getUserId()
       },
-      required: true
+      required: true,
+      formatter(v, d) {
+        if(d.projectName) {
+          return `${d.projectName}-${d.teamName}-${d.workerName}-${d.idcardNumber}`;
+        }else {
+          return '';
+        }
+      }
     }, {
       title: '进退场日期',
       field: 'date',

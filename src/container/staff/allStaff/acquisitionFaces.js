@@ -6,7 +6,6 @@ import { getQiniuToken } from 'api/general';
 import axios from 'axios';
 import fetch from 'common/js/fetch';
 
-const code = getQueryString('code');
 const styled = {
   fh5: {
     fontSize: '17px',
@@ -39,6 +38,7 @@ const styled = {
 
 export default function AcquisitionFaces() {
   const [visible, setVisible] = useState(false);
+  const code = getQueryString('code');
   let updateUrl = '';
   let ctxShow = null;
   let upUrl = '';
@@ -52,8 +52,10 @@ export default function AcquisitionFaces() {
       updateUrl = data.attendancePicture;
       upUrl = data.attendancePicture;
       let picEle = document.getElementById('pic');
-      picEle.style.backgroundImage = `url(${updateUrl})`;
-      picEle.style.backgroundSize = '100% 100%';
+      if(picEle) {
+        picEle.style.backgroundImage = `url(${updateUrl})`;
+        picEle.style.backgroundSize = '100% 100%';
+      }
     });
   }, []);
   const putb64 = useCallback((basePic, index) => {
@@ -83,7 +85,7 @@ export default function AcquisitionFaces() {
     ctx.drawImage(video, 0, 0, 300, 300);
     const dataUrl = canvasShow.toDataURL();
     updateUrl = dataUrl;
-    putb64(dataUrl);
+    // putb64(dataUrl);
   }, []);
   const getMedia = useCallback(() => {
     const hasMsg = message.loading('');

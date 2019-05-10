@@ -58,6 +58,12 @@ class ProjectAttence extends React.Component {
       title: '证件号',
       field: 'idCardNumber'
     }, {
+      title: '来源',
+      field: 'source',
+      type: 'select',
+      key: 'attendance_source',
+      search: true
+    }, {
       title: '刷卡时间',
       field: 'date',
       type: 'datetime'

@@ -120,7 +120,11 @@ class Bank extends React.Component {
       title: '银行名称',
       key: 'bank_code',
       type: 'select',
-      search: true
+      search: true,
+      hidden: true
+    }, {
+      field: 'bankName',
+      title: '银行名称'
     }, {
       title: '银行支行名称',
       field: 'subranch'

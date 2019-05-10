@@ -20,7 +20,14 @@ class ProjectBasicConfig extends DetailUtil {
       pageCode: '631615',
       keyName: 'code',
       valueName: 'name',
-      searchName: 'name'
+      searchName: 'name',
+      formatter(v, d) {
+        if(d.projectName) {
+          return d.projectName;
+        }else {
+          return '';
+        }
+      }
     }, {
       field: 'projectCode',
       title: '国家平台项目编码',

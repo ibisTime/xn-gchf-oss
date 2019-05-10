@@ -29,7 +29,7 @@ class ProjectAttenceCreate extends DetailUtil {
       keyName: 'code',
       valueName: 'teamName',
       searchName: 'teamName',
-      pageCode: 631665,
+      listCode: 631667,
       params: {
         projectCode: this.projectCode,
         userId: getUserId()

@@ -397,8 +397,8 @@ export default class DetailComp extends React.Component {
           : this.getDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', false);
       case 'month':
         return item.rangedate
-            ? this.getRangeDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', true)
-            : this.getDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', true);
+          ? this.getRangeDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', true)
+          : this.getDateItem(item, initVal, rules, getFieldDecorator, type === 'datetime', true);
       case 'time':
         return this.getTimeComp(item, initVal, rules, getFieldDecorator);
       case 'img':
@@ -674,12 +674,12 @@ export default class DetailComp extends React.Component {
         className={item.hidden ? 'hidden' : ''}
         key={item.field}
         {...formItemLayout}
-        >
+      >
         {
           item.readonly ? <div className="readonly-text" style={item.style ? item.style : {}}>{initVal}</div>
             : (
               <Row gutter={8}>
-              <Divider orientation="left">{item.title}</Divider>
+                <Divider orientation="left">{item.title}</Divider>
               </Row>
             )
         }
@@ -791,12 +791,12 @@ export default class DetailComp extends React.Component {
               rules,
               initialValue: initVal || null
             })(
-              <DatePicker
-                allowClear={false}
-                locale={locale}
-                placeholder={places}
-                format={format}
-                showTime={isTime} />
+            <DatePicker
+              allowClear={false}
+              locale={locale}
+              placeholder={places}
+              format={format}
+              showTime={isTime} />
             )
         }
       </FormItem>
@@ -809,11 +809,11 @@ export default class DetailComp extends React.Component {
               initialValue: initVal || null
             })(
             <MonthPicker
-                allowClear={false}
-                locale={locale}
-                placeholder={places}
-                format={format}
-                showTime={false} />
+              allowClear={false}
+              locale={locale}
+              placeholder={places}
+              format={format}
+              showTime={false} />
             )
         }
       </FormItem>
@@ -830,13 +830,13 @@ export default class DetailComp extends React.Component {
               rules,
               initialValue: initVal || null
             })(
-              <RangePicker
-                allowClear={false}
-                locale={locale}
-                placeholder={places}
-                ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
-                format={format}
-                showTime={isTime} />
+            <RangePicker
+              allowClear={false}
+              locale={locale}
+              placeholder={places}
+              ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
+              format={format}
+              showTime={isTime} />
             )
         }
       </FormItem>
@@ -852,7 +852,7 @@ export default class DetailComp extends React.Component {
               rules,
               initialValue: initVal || null
             })(
-              <TimePicker placeholder='选择时间' format={format} />
+            <TimePicker placeholder='选择时间' format={format} />
             )
         }
       </FormItem>
@@ -872,22 +872,22 @@ export default class DetailComp extends React.Component {
               rules,
               initialValue: item.data ? initVal : ''
             })(
-              <Select
-                allowClear
-                mode="combobox"
-                showArrow={false}
-                filterOption={false}
-                onSearch={v => this.searchSelectChange({ item, keyword: v })}
-                optionLabelProp="children"
-                style={{ width: 200 }}
-                notFoundContent={this.state.fetching[item.field] ? <Spin size="small" /> : '暂无数据'}
-                placeholder="请输入关键字搜索">
-                {item.data ? item.data.map(d => (
-                  <Option key={d[item.keyName] + ''} value={d[item.keyName] + ''}>
-                    {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
-                  </Option>
-                )) : null}
-              </Select>
+            <Select
+              allowClear
+              mode="combobox"
+              showArrow={false}
+              filterOption={false}
+              onSearch={v => this.searchSelectChange({ item, keyword: v })}
+              optionLabelProp="children"
+              style={{ width: 200 }}
+              notFoundContent={this.state.fetching[item.field] ? <Spin size="small" /> : '暂无数据'}
+              placeholder="请输入关键字搜索">
+              {item.data ? item.data.map(d => (
+                <Option key={d[item.keyName] + ''} value={d[item.keyName] + ''}>
+                  {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
+                </Option>
+              )) : null}
+            </Select>
             )
         }
       </FormItem>
@@ -920,22 +920,22 @@ export default class DetailComp extends React.Component {
               rules,
               initialValue: item.data ? initVal : ''
             })(
-              <Select
-                showSearch
-                allowClear
-                onChange={(val) => {
-                  item.onChange && item.onChange(val);
-                }}
-                optionFilterProp="children"
-                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                style={{ width: '100%' }}
-                placeholder="请选择">
-                {item.data ? item.data.map(d => (
-                  <Option key={d[item.keyName] + ''} value={d[item.keyName] + ''}>
-                    {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
-                  </Option>
-                )) : null}
-              </Select>
+            <Select
+              showSearch
+              allowClear
+              onChange={(val) => {
+                item.onChange && item.onChange(val);
+              }}
+              optionFilterProp="children"
+              filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              style={{ width: '100%' }}
+              placeholder="请选择">
+              {item.data ? item.data.map(d => (
+                <Option key={d[item.keyName] + ''} value={d[item.keyName] + ''}>
+                  {d[item.valueName] ? d[item.valueName] : tempString(item.valueName, d)}
+                </Option>
+              )) : null}
+            </Select>
             )
         }
       </FormItem>
@@ -965,7 +965,7 @@ export default class DetailComp extends React.Component {
     );
   }
   getFileComp(item, initVal, rules, getFieldDecorator, isImg) {
-    let initValue = this.getFileInitVal(initVal);
+    let initValue = this.getFileInitVal(initVal, isImg, item);
     // console.log(initVal);
     return (
       <FormItem key={item.field} {...formItemLayout} label={this.getLabel(item)}>
@@ -1007,7 +1007,7 @@ export default class DetailComp extends React.Component {
     };
     const imgProps = {
       ...commProps,
-      onChange: ({ fileList }) => this.setUploadFileUrl(fileList, true),
+      onChange: ({ fileList }) => this.setUploadFileUrl(fileList, true, item),
       onPreview: this.handlePreview,
       listType: 'picture-card',
       accept: 'image/*'
@@ -1069,8 +1069,9 @@ export default class DetailComp extends React.Component {
       </FormItem>
     );
   }
-  getFileInitVal(initVal, isImg) {
+  getFileInitVal(initVal, isImg, item) {
     const { token } = this.state;
+    // let { isBase64 } = item;
     !token && this.getToken();
     let initValue = [];
     if (initVal) {
@@ -1166,11 +1167,16 @@ export default class DetailComp extends React.Component {
           ? null : btn
         : btn;
   }
-  setUploadFileUrl(fileList, isImg) {
+  setUploadFileUrl(fileList, isImg, item) {
     let format = isImg ? formatImg : formatFile;
+    let {isBase64} = item;
     fileList.forEach(f => {
       if (!f.url && f.status === 'done' && f.response) {
-        f.url = format(f.response.key);
+        if(isBase64) {
+          f.response.key = f.thumbUrl;
+        }else {
+          f.url = format(f.response.key);
+        }
       }
     });
   }

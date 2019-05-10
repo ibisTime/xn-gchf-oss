@@ -465,7 +465,8 @@ class JiandangStep2 extends React.Component {
       field: 'attendancePicture',
       type: 'img',
       single: true,
-      imgSize: 512000
+      imgSize: 512000,
+      isBase64: true
     }, {
       field: 'userId',
       value: getUserId(),
