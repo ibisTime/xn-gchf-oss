@@ -7,7 +7,10 @@ import DetailUtil from 'common/js/build-detail-dev';
 class ProjectAttenceCreate extends DetailUtil {
   constructor(props) {
     super(props);
-    this.projectCode = '';
+    this.state = {
+      ...this.state,
+      projectCode: ''
+    };
   }
   render() {
     const fields = [{
@@ -20,7 +23,9 @@ class ProjectAttenceCreate extends DetailUtil {
       searchName: 'name',
       required: true,
       onChange: (projectCode) => {
-        this.projectCode = projectCode;
+        this.setState({
+            projectCode
+        });
       }
     }, {
       title: '所在班组',
@@ -29,9 +34,9 @@ class ProjectAttenceCreate extends DetailUtil {
       keyName: 'code',
       valueName: 'teamName',
       searchName: 'teamName',
-      listCode: 631667,
+      pageCode: 631665,
       params: {
-        projectCode: this.projectCode,
+        projectCode: this.state.projectCode,
         userId: getUserId()
       },
       required: true
