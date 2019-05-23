@@ -1179,6 +1179,7 @@ export default class DetailComp extends React.Component {
         }
       }
     });
+    console.log(fileList, isBase64);
   }
   getLabel(item) {
     return (

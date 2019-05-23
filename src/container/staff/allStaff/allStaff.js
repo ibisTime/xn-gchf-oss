@@ -52,6 +52,11 @@ class AllStaff extends React.Component {
       rangedate: ['createDatetimeStart', 'createDatetimeEnd'],
       formatter: dateTimeFormat,
       search: true
+    }, {
+        title: '人脸照片上传状态',
+        field: 'workerPicUploadStatus',
+        type: 'select',
+        key: 'workerPicUploadStatus'
     }];
     const btnEvent = {
       // 绑定银行卡

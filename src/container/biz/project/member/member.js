@@ -27,7 +27,8 @@ const confirm = Modal.confirm;
 )
 class ProjectMember extends React.Component {
   state = {
-    uploadStatusData: []
+    uploadStatusData: [],
+      projectCode: ''
   };
   componentWillMount() {
     fetch(631006, {
@@ -74,7 +75,24 @@ class ProjectMember extends React.Component {
       valueName: 'name',
       searchName: 'name',
       search: true,
-      hidden: true
+      hidden: true,
+      onChange: (projectCode) => {
+          this.setState({ projectCode });
+      }
+    }, {
+        title: '所在班组',
+        field: 'teamSysNo',
+        type: 'select',
+        keyName: 'code',
+        valueName: 'teamName',
+        searchName: 'teamName',
+        pageCode: 631665,
+        params: {
+            projectCode: this.state.projectCode,
+            userId: getUserId()
+        },
+        search: true,
+        hidden: true
     }, {
       title: '对应项目',
       field: 'projectName'
@@ -91,7 +109,12 @@ class ProjectMember extends React.Component {
       type: 'select',
       key: 'is_not'
     }, {
-      title: '状态',
+        title: '人脸照片上传状态',
+        field: 'workerPicUploadStatus',
+        type: 'select',
+        key: 'workerPicUploadStatus'
+    }, {
+      title: '人员上传国家平台状态',
       field: 'uploadStatus',
       type: 'select',
       data: this.state.uploadStatusData,
@@ -148,7 +171,7 @@ class ProjectMember extends React.Component {
           } else if (items[0].uploadStatus === '4' || items[0].uploadStatus === '5') {
             showWarnMsg('该状态下不可修改');
           } else {
-            this.props.history.push(`/project/member/addedit?code=${keys[0]}`);
+            this.props.history.push(`/project/member/addedit?code=${keys[0]}&projectCode=${items[0].projectCode}`);
           }
         },
         // 批量删除
@@ -174,6 +197,16 @@ class ProjectMember extends React.Component {
               cancelText: '取消'
             });
           }
+        },
+        // 档案详情
+        archivesDetail: (selectedRowKeys, selectedRows) => {
+            if (!selectedRowKeys.length) {
+                showWarnMsg('请选择记录');
+            } else if (selectedRowKeys.length > 1) {
+                showWarnMsg('请选择一条记录');
+            } else {
+                this.props.history.push(`/staff/allStaff/addedit?code=${selectedRows[0].workerCode}&v=1`);
+            }
         }
       }
     });

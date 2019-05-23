@@ -11,10 +11,11 @@ class ProjectMemberAddEdit extends DetailUtil {
     this.view = !!getQueryString('v', this.props.location.search);
     this.state = {
       ...this.state,
-      projectCode: ''
+      projectCode: getQueryString('projectCode', this.props.location.search) || ''
     };
     this.teamSysNo = '';
     this.project = '';
+    this.codeType = this.code ? 'listCode' : 'pageCode';
   }
   render() {
     const _this = this;
@@ -44,7 +45,7 @@ class ProjectMemberAddEdit extends DetailUtil {
       keyName: 'code',
       valueName: 'teamName',
       searchName: 'teamName',
-      pageCode: 631665,
+      [this.codeType]: this.code ? '631667' : '631665',
       params: {
         projectCode: this.state.projectCode,
         userId: getUserId()
@@ -67,8 +68,7 @@ class ProjectMemberAddEdit extends DetailUtil {
         }
         return v;
       },
-      required: true,
-      readonly: !!this.code
+      required: true
     }, {
       field: 'corpCode',
       hidden: true,
@@ -92,31 +92,31 @@ class ProjectMemberAddEdit extends DetailUtil {
       key: 'is_not',
       required: true
     }, {
+        title: '工人类型',
+        field: 'workRole',
+        type: 'select',
+        key: 'work_role',
+        required: true
+    }, {
       title: '工种',
       field: 'workType',
       type: 'select',
       key: 'work_type',
       required: true
-    }, {
-      title: '工人类型',
-      field: 'workRole',
-      type: 'select',
-      key: 'work_role',
-      required: true
-    }, {
-      title: '制卡时间',
-      field: 'issueCardDate',
-      type: 'datetime'
-    }, {
-      title: '制卡采集照片(小于50KB)',
-      field: 'issueCardPicUrl',
-      type: 'img',
-      imgSize: 51200,
-      single: true
-    }, {
-      title: '考勤卡号',
-      field: 'cardNumber',
-      maxlength: 20
+    // }, {
+    //   title: '制卡时间',
+    //   field: 'issueCardDate',
+    //   type: 'datetime'
+    // }, {
+    //   title: '制卡采集照片(小于50KB)',
+    //   field: 'issueCardPicUrl',
+    //   type: 'img',
+    //   imgSize: 51200,
+    //   single: true
+    // }, {
+    //   title: '考勤卡号',
+    //   field: 'cardNumber',
+    //   maxlength: 20
     }, {
       title: '发放工资银行卡号',
       field: 'payRollBankCardNumber',

@@ -60,6 +60,12 @@ class ProjectBasic extends React.Component {
     }, {
       title: '负责人手机号',
       field: 'linkPhone'
+    }, {
+        field: 'totalOcrCount',
+        title: '剩余身份证识别次数',
+        render(v, d) {
+          return (+d.totalOcrCount) - (+d.usedOcrCount);
+        }
     }];
     return this.props.buildList({
       fields,

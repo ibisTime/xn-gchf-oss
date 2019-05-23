@@ -37,6 +37,18 @@ class ProjectBasicAddEdit extends DetailUtil {
       mobile: true,
       required: true
     }, {
+        field: 'totalOcrCount',
+        title: '身份证识别次数',
+        number: true,
+        required: true
+    }, {
+        field: 'tcrCount',
+        title: '剩余身份证识别次数',
+        formatter(v, d) {
+            return (+d.totalOcrCount) - (+d.usedOcrCount);
+        },
+        hidden: !this.view
+    }, {
       field: 'prjStatus',
       title: '项目状态',
       type: 'select',

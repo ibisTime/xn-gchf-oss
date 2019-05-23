@@ -50,12 +50,12 @@ class ProjectWagesAddEdit extends DetailUtil {
       key: 'bank_code',
       required: true
     }, {
+        title: '工资代发开户行名称',
+        field: 'payBankName',
+        required: true
+    }, {
       title: '工资代发银行卡号',
       field: 'payBankCardNumber',
-      required: true
-    }, {
-      title: '工资代发开户行名称',
-      field: 'payBankName',
       required: true
     }, {
       title: '是否为补发',
