@@ -1169,7 +1169,12 @@ export default class DetailComp extends React.Component {
   }
   setUploadFileUrl(fileList, isImg, item) {
     let format = isImg ? formatImg : formatFile;
-    let {isBase64} = item;
+    let {isBase64, onUpImage, onDownImage} = item;
+    if(fileList.length) {
+        onUpImage();
+    }else {
+        onDownImage();
+    }
     fileList.forEach(f => {
       if (!f.url && f.status === 'done' && f.response) {
         if(isBase64) {
@@ -1179,7 +1184,6 @@ export default class DetailComp extends React.Component {
         }
       }
     });
-    console.log(fileList, isBase64);
   }
   getLabel(item) {
     return (

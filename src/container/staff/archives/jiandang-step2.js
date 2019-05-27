@@ -31,6 +31,10 @@ class JiandangStep2 extends React.Component {
     this.time = null;
     this.isIndex = 0;
     this.mediaStreamTrack = null;
+    this.isUpPic01 = false;
+    this.isUpPic02 = false;
+    this.isUpPic03 = false;
+    this.isUpPic04 = false;
   }
   state = {
     visible: false,
@@ -317,7 +321,7 @@ class JiandangStep2 extends React.Component {
     this.ctxShow = canvasShow.getContext('2d');
     this.ctxShow.drawImage(video, 0, 0, 300, 300);
     const dataUrl = canvasShow.toDataURL();
-    this.putb64(dataUrl, this.state.setIndex);
+    // this.putb64(dataUrl, this.state.setIndex);
     switch(this.state.setIndex) {
       case 0:
         this.setState({
@@ -448,28 +452,52 @@ class JiandangStep2 extends React.Component {
         }
         return(v);
       },
-      imgSize: 512000
+      imgSize: 512000,
+      onUpImage: () => {
+        this.isUpPic01 = true;
+      },
+      onDownImage: () => {
+          this.isUpPic01 = false;
+      }
     }, {
       field: 'negativeIdCardImageUrl',
       title: '身份证反面照(小于500KB)',
       type: 'img',
       single: true,
       isBase64: true,
-      imgSize: 512000
+      imgSize: 512000,
+        onUpImage: () => {
+            this.isUpPic02 = true;
+        },
+        onDownImage: () => {
+            this.isUpPic02 = false;
+        }
     }, {
       title: '手持身份证照片(小于500KB)',
       field: 'handIdCardImageUrl',
       type: 'img',
       single: true,
       isBase64: true,
-      imgSize: 512000
+      imgSize: 512000,
+        onUpImage: () => {
+            this.isUpPic03 = true;
+        },
+        onDownImage: () => {
+            this.isUpPic03 = false;
+        }
     }, {
       title: '考勤人脸照(小于500KB)',
       field: 'attendancePicture',
       type: 'img',
       single: true,
       imgSize: 512000,
-      isBase64: true
+      isBase64: true,
+        onUpImage: () => {
+            this.isUpPic04 = true;
+        },
+        onDownImage: () => {
+            this.isUpPic04 = false;
+        }
     }, {
       field: 'userId',
       value: getUserId(),
@@ -497,16 +525,16 @@ class JiandangStep2 extends React.Component {
       },
       ownerModel: this.ownerModel,
       beforeSubmit: (params) => {
-        if(this.state.upUrl01) {
-          params.positiveIdCardImageUrl = this.state.upUrl01;
+        if(this.state.updateUrl01 && !this.isUpPic01) {
+          params.positiveIdCardImageUrl = this.state.updateUrl01;
         }
-        if(this.state.upUrl02) {
-          params.negativeIdCardImageUrl = this.state.upUrl02;
+        if(this.state.updateUrl02 && !this.isUpPic02) {
+          params.negativeIdCardImageUrl = this.state.updateUrl02;
         }
-        if(this.state.upUrl03) {
-          params.handIdCardImageUrl = this.state.upUrl03;
+        if(this.state.updateUrl03 && !this.isUpPic03) {
+          params.handIdCardImageUrl = this.state.updateUrl03;
         }
-        if(this.state.updateUrl04) {
+        if(this.state.updateUrl04 && !this.isUpPic04) {
           params.attendancePicture = this.state.updateUrl04;
         }
         if(!params.positiveIdCardImageUrl || !params.negativeIdCardImageUrl || !params.handIdCardImageUrl || !params.attendancePicture) {

@@ -40,19 +40,11 @@ class ProjectWagesAddEdit extends DetailUtil {
       field: 'payRollBankCardNumber',
       required: true
     }, {
-      title: '工人工资卡开户行名称',
-      field: 'payRollBankName',
-      required: true
-    }, {
       title: '工资代发银行',
       field: 'payBankCode',
       type: 'select',
       key: 'bank_code',
       required: true
-    }, {
-        title: '工资代发开户行名称',
-        field: 'payBankName',
-        required: true
     }, {
       title: '工资代发银行卡号',
       field: 'payBankCardNumber',

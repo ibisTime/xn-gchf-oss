@@ -17,17 +17,10 @@ class ProjectBasicConfig extends DetailUtil {
       title: '项目名称',
       required: true,
       type: 'select',
-      pageCode: '631615',
+      listCode: '631617',
       keyName: 'code',
       valueName: 'name',
-      searchName: 'name',
-      formatter(v, d) {
-        if(d.projectName) {
-          return d.projectName;
-        }else {
-          return '';
-        }
-      }
+      searchName: 'name'
     }, {
       field: 'projectCode',
       title: '国家平台项目编码',
