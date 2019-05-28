@@ -16,9 +16,6 @@ class ProjectAttenceAddEdit extends DetailUtil {
     this.view = !!getQueryString('v', this.props.location.search);
     this.index = 0;
     this.teamIndex = 0;
-    this.woterIndex = 0;
-    this.tindex = true;
-    this.pindex = true;
   }
   render() {
     const _this = this;
@@ -30,21 +27,15 @@ class ProjectAttenceAddEdit extends DetailUtil {
       keyName: 'code',
       valueName: 'name',
       searchName: 'name',
+        params: {
+            limit: 100
+        },
       onChange: (projectCode, data) => {
-        if (!this.view && this.index > 0) {
-          this.tindex = false;
-          this.pindex = false;
+        if (!this.view && projectCode) {
           this.setState({ projectCode });
         }
-        this.index++;
       },
-      required: true,
-      formatter(v, d) {
-        if(d.projectName) {
-          return `${d.projectName}`;
-        }
-        return '';
-      }
+      required: true
     }, {
       title: '所在班组',
       field: 'teamSysNo',
@@ -55,18 +46,17 @@ class ProjectAttenceAddEdit extends DetailUtil {
       pageCode: 631665,
       params: {
         projectCode: this.state.projectCode,
-        userId: getUserId()
+        userId: getUserId(),
+        limit: 100
       },
       required: true,
       onChange: (v) => {
-        if(this.teamIndex > 0) {
-          this.tindex = false;
+        if(v) {
           this.pindex = false;
           this.setState({
             teamSysNo: v
           });
         }
-        this.teamIndex++;
       }
     }, {
       title: '员工编号',
@@ -95,7 +85,7 @@ class ProjectAttenceAddEdit extends DetailUtil {
       },
       required: true,
       formatter: (v, d) => {
-        if(d.projectName && this.pindex) {
+        if(d.projectName) {
           return `${d.projectName}-${d.teamName}-${d.workerName}-${d.idCardNumber}`;
         }
         return '';

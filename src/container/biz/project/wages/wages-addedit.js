@@ -30,6 +30,11 @@ class ProjectWagesAddEdit extends DetailUtil {
       type: 'date',
       required: true
     }, {
+        title: '发放工资年月',
+        field: 'payMonth',
+        type: 'month',
+        hidden: !this.view
+    }, {
       title: '工人工资卡银行',
       field: 'payRollBankCode',
       type: 'select',
