@@ -295,8 +295,11 @@ export default class DetailComp extends React.Component {
       this.props.setSelectData({ data: [], key: item.field });
     }
     let params = item.params || {};
-    params.start = start;
-    params.limit = limit;
+    params = {
+        start,
+        limit,
+        params
+    };
     key = key || item.searchName || item.keyName || item.field;
     params[key] = keyword;
     this.timeout = setTimeout(() => {

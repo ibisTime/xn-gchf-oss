@@ -138,8 +138,11 @@ export default class CSearchSelect extends React.Component {
       limitKey = pagination.limitKey || 'limit';
       start = !isUndefined(pagination.start) ? pagination.start : 1;
     }
-    param[startKey] = start;
-    param[limitKey] = 20;
+    param = {
+        [startKey]: start,
+        [limitKey]: 20,
+      ...param
+    };
     if (!isUndefined(keyword)) {
       let key;
       if (isFirst) {

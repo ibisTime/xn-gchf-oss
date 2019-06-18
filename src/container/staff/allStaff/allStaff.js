@@ -33,6 +33,9 @@ class AllStaff extends React.Component {
       area: null
     };
   }
+  componentDidMount() {
+      sessionStorage.removeItem('isStaff');
+  }
   render() {
     const fields = [{
       field: 'name',

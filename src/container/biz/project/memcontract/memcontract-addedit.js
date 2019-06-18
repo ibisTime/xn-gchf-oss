@@ -27,7 +27,10 @@ class ProjectMemContractAddEdit extends DetailUtil {
       onChange: (projectCode, data) => {
         this.setState({ projectCode });
       },
-      required: true
+      required: true,
+      params: {
+        limit: 500
+      }
     }, {
       title: '项目人员',
       field: 'workerCode',
@@ -38,7 +41,8 @@ class ProjectMemContractAddEdit extends DetailUtil {
       pageCode: 631605,
       params: {
         projectCode: this.state.projectCode,
-        userId: getUserId()
+        userId: getUserId(),
+        limit: 500
       },
       onChange: (code, data) => {
         let info = data.find(v => (v.code + '') === code);
